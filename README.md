@@ -1,7 +1,7 @@
-# FDK Javasciprt
+# FDK Swift
 
 
-Javascript 
+Swift 
 
 # Getting Started
 
