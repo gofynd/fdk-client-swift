@@ -21,7 +21,7 @@ public class Lead {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/services/application/lead/v1.0/ticket/\(id)"),
+            url: config.domain.appendAsPath("/service/application/lead/v1.0/ticket/\(id)"),
             query: opts,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -50,7 +50,7 @@ public class Lead {
         APIClient.execute(
             config: config,
             method: "post",
-            url: config.domain.appendAsPath("/services/application/lead/v1.0/ticket/\(ticketId)/history"),
+            url: config.domain.appendAsPath("/service/application/lead/v1.0/ticket/\(ticketId)/history"),
             query: opts,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -79,7 +79,7 @@ public class Lead {
         APIClient.execute(
             config: config,
             method: "post",
-            url: config.domain.appendAsPath("/services/application/lead/v1.0/ticket/"),
+            url: config.domain.appendAsPath("/service/application/lead/v1.0/ticket/"),
             query: opts,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -108,7 +108,7 @@ public class Lead {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/services/application/lead/v1.0/form/\(slug)"),
+            url: config.domain.appendAsPath("/service/application/lead/v1.0/form/\(slug)"),
             query: opts,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -132,12 +132,12 @@ public class Lead {
     public func submitCustomForm(
         slug: String,  
         opts: [String: Any]?,
-        onResponse: @escaping (_ response: [String: Any]?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
+        onResponse: @escaping (_ response: SubmitCustomFormResponse?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "post",
-            url: config.domain.appendAsPath("/services/application/lead/v1.0/form/\(slug)/submit"),
+            url: config.domain.appendAsPath("/service/application/lead/v1.0/form/\(slug)/submit"),
             query: opts,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -145,7 +145,7 @@ public class Lead {
                     let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     onResponse(nil, errorResponse, responseCode)
                 } else if let data = responseData {
-                    let response = Utility.decode([String: Any].self, from: data)
+                    let response = Utility.decode(SubmitCustomFormResponse.self, from: data)
                     onResponse(response, nil, responseCode)
                 } else {
                     onResponse(nil, nil, responseCode)
@@ -161,12 +161,12 @@ public class Lead {
     public func getParticipantsInsideVideoRoom(
         uniqueName: String,  
         opts: [String: Any]?,
-        onResponse: @escaping (_ response: [String: Any]?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
+        onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/services/application/lead/v1.0/video/room/\(uniqueName)/participants"),
+            url: config.domain.appendAsPath("/service/application/lead/v1.0/video/room/\(uniqueName)/participants"),
             query: opts,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -174,7 +174,7 @@ public class Lead {
                     let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     onResponse(nil, errorResponse, responseCode)
                 } else if let data = responseData {
-                    let response = Utility.decode([String: Any].self, from: data)
+                    let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
                     onResponse(response, nil, responseCode)
                 } else {
                     onResponse(nil, nil, responseCode)
@@ -190,12 +190,12 @@ public class Lead {
     public func getTokenForVideoRoom(
         uniqueName: String,  
         opts: [String: Any]?,
-        onResponse: @escaping (_ response: [String: Any]?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
+        onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/services/application/lead/v1.0/video/room/\(uniqueName)/token"),
+            url: config.domain.appendAsPath("/service/application/lead/v1.0/video/room/\(uniqueName)/token"),
             query: opts,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -203,7 +203,7 @@ public class Lead {
                     let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     onResponse(nil, errorResponse, responseCode)
                 } else if let data = responseData {
-                    let response = Utility.decode([String: Any].self, from: data)
+                    let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
                     onResponse(response, nil, responseCode)
                 } else {
                     onResponse(nil, nil, responseCode)

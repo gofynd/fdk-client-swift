@@ -1,6 +1,75 @@
 
 
 /*
+    Model: GetTokenForVideoRoomResponse,
+*/
+
+public struct GetTokenForVideoRoomResponse: Decodable {
+    
+    public let accessToken: String?
+    
+
+    enum CodingKeys: String, CodingKey {
+        
+        case accessToken = "access_token"
+        
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        accessToken = try? container.decode(String.self, forKey: .accessToken)
+        
+    }
+}
+
+/*
+    Model: GetParticipantsInsideVideoRoomResponse,
+*/
+
+public struct GetParticipantsInsideVideoRoomResponse: Decodable {
+    
+    public let participants: [Any]?
+    
+
+    enum CodingKeys: String, CodingKey {
+        
+        case participants = "participants"
+        
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        participants = try? container.decode([Any].self, forKey: .participants)
+        
+    }
+}
+
+/*
+    Model: SubmitCustomFormResponse,
+*/
+
+public struct SubmitCustomFormResponse: Decodable {
+    
+    public let ticket: Ticket?
+    
+
+    enum CodingKeys: String, CodingKey {
+        
+        case ticket = "ticket"
+        
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        ticket = try? container.decode(Ticket.self, forKey: .ticket)
+        
+    }
+}
+
+/*
     Model: Context,
 */
 
@@ -35,13 +104,19 @@ public struct Context: Decodable {
 
 public struct CreatedOn: Decodable {
     
+    public let userAgent: String?
+    
 
     enum CodingKeys: String, CodingKey {
+        
+        case userAgent = "user_agent"
         
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        userAgent = try? container.decode(String.self, forKey: .userAgent)
         
     }
 }

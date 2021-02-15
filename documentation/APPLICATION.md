@@ -761,11 +761,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "properties": {
-    "ticket": {
-      "$ref": "#/components/schemas/Ticket"
-    }
-  }
+  "$ref": "#/components/schemas/SubmitCustomFormResponse"
 }`
 
 
@@ -1018,11 +1014,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "properties": {
-    "participants": {
-      "type": "array"
-    }
-  }
+  "$ref": "#/components/schemas/GetParticipantsInsideVideoRoomResponse"
 }`
 
 
@@ -1082,11 +1074,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "properties": {
-    "access_token": {
-      "type": "string"
-    }
-  }
+  "$ref": "#/components/schemas/GetTokenForVideoRoomResponse"
 }`
 
 
