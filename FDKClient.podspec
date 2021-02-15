@@ -4,7 +4,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'fdk-client-swift'
+  s.name             = 'FDKClient'
   s.version          = '0.0.1'
   s.summary          = 'FDK Client SDK for Swift language'
 
@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '12.0'
   s.source_files = 'sdk/**/*'
-  s.dependency 'Alamofire', '= 5.0.0-rc.2'
+  s.dependency 'Alamofire', '= 5.0.2'
   s.static_framework = true
 end

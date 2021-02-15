@@ -1,11 +1,12 @@
 
 
 class APIClient {
-    static func execute(conf: Setup, method: String, iurl: String, pathParam: String, queryParams: [String: String], data: [String: String], onResponse: @escaping OnResponse) {
-        let headers = HTTPHeaders([
-            "Authorization": "Bearer " + (conf.applicationID + conf.applicationToken).asBase64
-        ])
-        //!TODO: Process iURL with pathParam
-        AlmofireHelper.request(_ path: iurl, query: queryParams, parameters: data, type rawType: method, headers: headers, onResponse: onResponse)
+    static func execute(config: Setup, method: String, url: String, query: [String: Any]?, body: [String: Any]?, onResponse: @escaping OnResponse) {
+        let headers = [
+            (key: "x-application-id", value: config.applicationID),
+            (key: "x-application-token", value: config.applicationToken),
+            (key: "Authorization", value: "Bearer " + "\(config.applicationID):\(config.applicationToken)".asBase64)
+        ]
+        AlmofireHelper.request(url, query: query, parameters: body, type: method, headers: headers, onResponse: onResponse)
     }
 }

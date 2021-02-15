@@ -1,10 +1,42 @@
 extension String {
+    func trim() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
     var asBase64: String {
         return Data(self.utf8).base64EncodedString()
+    }
+
+    var urlEncoded: String {
+        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? self
+    }
+
+    func appendAsPath(_ path: String) -> String {
+        var pathToJoin = path
+        if (self.last == "/" && path.first == "/") {
+            pathToJoin.removeFirst()
+        } else if (self.last != "/" && path.first != "/") {
+            pathToJoin = "/" + pathToJoin
+        }
+        return self + pathToJoin
     }
 }
 
 extension Dictionary {
+    public var pretty: String {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
+            guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else {
+                print("Can't create string with data.")
+                return "{}"
+            }
+            return jsonString
+        } catch let parseError {
+            print("json serialization error: \(parseError)")
+            return "{}"
+        }
+    }
+
     var asQueryString: String {
         get {
             let paramKeys = Array(self.keys)
@@ -31,8 +63,8 @@ extension Dictionary {
                     }
                 } else if let value1 = value as? String {
                     queries.append("\(key)=\(handleEncoding(url: value1) ?? "")")
-                } else {
-                    queries.append("\(key)=\(value ?? "")")
+                } else if let value1 = value {
+                    queries.append("\(key)=\(value1)")
                 }
             }
             queries.sort()
@@ -151,5 +183,56 @@ class Utility {
             print("error: ", error)
         }
         return decodedData
+    }
+}
+
+struct JSONCodingKeys: CodingKey {
+    var stringValue: String
+
+    init?(stringValue: String) {
+        self.stringValue = stringValue
+    }
+
+    var intValue: Int?
+
+    init?(intValue: Int) {
+        self.init(stringValue: "\(intValue)")
+        self.intValue = intValue
+    }
+}
+
+extension URLRequest {
+    /**
+     Returns a cURL command representation of this URL request.
+     */
+    public var curlString: String {
+        guard let url = url else { return "" }
+        var baseCommand = "curl '\(url.absoluteString)'"
+        
+        if httpMethod == "HEAD" {
+            baseCommand += " --head"
+        }
+        
+        var command = [baseCommand]
+        
+        if let method = httpMethod, method != "GET" && method != "HEAD" {
+            command.append("-X \(method)")
+        }
+        
+        if let headers = allHTTPHeaderFields {
+            for (key, value) in headers {
+                command.append("-H '\(key): \(value)'")
+            }
+        }
+        
+        HTTPCookieStorage.shared.cookies(for: url)?.forEach { cookie in
+            command.append("-H 'Cookie: \(cookie.name )=\(cookie.value)'")
+        }
+        
+        if let data = httpBody, let body = String(data: data, encoding: .utf8) {
+            command.append("-d '\(body)'")
+        }
+        
+        return command.joined(separator: " \\\n\t")
     }
 }

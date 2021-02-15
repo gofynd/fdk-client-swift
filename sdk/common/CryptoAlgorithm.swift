@@ -1,11 +1,3 @@
-//
-//  CryptoAlgorithm.swift
-//  Thundercracker
-//
-//  Created by Satyenkumar Mourya on 09/02/21.
-//  Copyright © 2021 Fynd. All rights reserved.
-//
-
 import Foundation
 import CommonCrypto
 

@@ -1,14 +1,4 @@
-//
-//  RequestSigner.swift
-//  Thundercracker
-//
-//  Created by Satyenkumar Mourya on 09/02/21.
-//  Copyright © 2021 Fynd. All rights reserved.
-//
-
 import Foundation
-import Alamofire
-import CommonCrypto
 
 class RequestSigner {
     //Constants
@@ -22,15 +12,15 @@ class RequestSigner {
     //Properties
     private let url: String
     private let reqData: [String: Any]?
-    private let headers: HTTPHeaders?
-    private let type: HTTPMethod
+    private let headers: [(key: String, value: String)]
+    private let type: String
     private let dateStr: String
     private let components: URLComponents?
     
-    init(url: String, reqData: [String: Any]?, type: HTTPMethod, headers: HTTPHeaders?) {
+    init(url: String, reqData: [String: Any]?, type: String, headers: [(key: String, value: String)]) {
         self.url = url
         self.reqData = reqData
-        self.type = type
+        self.type = type.uppercased()
         self.headers = headers
         self.components = URLComponents(string: url)
         let dateformatter = DateFormatter()
@@ -39,27 +29,27 @@ class RequestSigner {
         self.dateStr = dateformatter.string(from: Date())
     }
     
-    func sign() -> HTTPHeaders? {
-        var finalHeaders = headers ?? []
-        //finalHeaders.add(name: "host", value: "api.fyndx0.de")
-        finalHeaders.add(name: "x-fp-date", value: dateStr)
+    func sign() -> [(key: String, value: String)] {
+        var finalHeaders = headers
         guard let components = self.components else { return finalHeaders }
+        finalHeaders.append((key: "host", value: components.host ?? "api.fynd.com"))
+        finalHeaders.append((key: "x-fp-date", value: dateStr))
         var reqHash = "".sha256()
         if let data = reqData {
             reqHash = data.pretty.sha256()
         }
         let releventSignHeaders = finalHeaders.filter({ header -> Bool in
             for regex in HEADERS_TO_INCLUDE
-            where header.name.lowercased().range(of: regex, options: .regularExpression) != nil {
+            where header.key.lowercased().range(of: regex, options: .regularExpression) != nil {
                 return true
             }
             return false
         })
-        let signingData: [String] = [type.rawValue.uppercased(),
+        let signingData: [String] = [type,
                                      components.path,
-                                     components.percentEncodedQuery?.trim() ?? "",
-                                     releventSignHeaders.reduce("", {"\($0.isEmpty ? "" : ($0+"\n"))\($1.name):\($1.value)"}),
-                                     releventSignHeaders.reduce("", {"\($0.isEmpty ? "" : ($0+";"))\($1.name)"}),
+                                     components.query?.trim() ?? "",
+                                     releventSignHeaders.reduce("", {"\($0.isEmpty ? "" : ($0+"\n"))\($1.key):\($1.value)"}) + "\n",
+                                     releventSignHeaders.reduce("", {"\($0.isEmpty ? "" : ($0+";"))\($1.key)"}),
                                      reqHash]
         let finalSignatureData = [dateStr,
                                   signingData.joined(separator: "\n").sha256()]
@@ -71,7 +61,7 @@ class RequestSigner {
         print("-----------")
         let signature = finalSignatureData
             .joined(separator: "\n").hmac(algorithm: .SHA256, key: signingkey)
-        finalHeaders.add(name: "x-fp-signature", value: "v1:\(signature)")
+        finalHeaders.append((key: "x-fp-signature", value: "v1:\(signature)"))
         return finalHeaders
     }
 }

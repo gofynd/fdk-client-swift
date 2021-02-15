@@ -1,9 +1,12 @@
-class Setup {
+public class Setup {
     var applicationID: String
     var applicationToken: String
-    var domain = "https://api.fynd.com"
+    var domain: String
 
-    init?(applicationID: String, applicationToken: String, domain: String = "https://api.fynd.com") {
+    public init?(applicationID: String, applicationToken: String, domain: String = "https://api.fynd.com") {
+        self.applicationID = applicationID
+        self.applicationToken = applicationToken
+        self.domain = domain
         let regex = "^[0-9a-fA-F]{24}$"
         let mongoObjectIDRegex = NSPredicate(format: "SELF MATCHES %@", regex)
 
