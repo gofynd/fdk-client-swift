@@ -1,10 +1,78 @@
 
 
 /*
+    Model: TicketHistoryPayload,
+*/
+
+public struct TicketHistoryPayload: Codable {
+    
+    public let value: [String: Any]?
+    
+    public let type: String?
+    
+
+    enum CodingKeys: String, CodingKey {
+        
+        case value = "value"
+        
+        case type = "type"
+        
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        value = try? container.decode([String: Any].self, forKey: .value)
+        
+        type = try? container.decode(String.self, forKey: .type)
+        
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(value, forKey: .value)
+        
+        try? container.encodeIfPresent(type, forKey: .type)
+        
+    }
+}
+
+/*
+    Model: CustomFormSubmissionPayload,
+*/
+
+public struct CustomFormSubmissionPayload: Codable {
+    
+    public let response: [[String: Any]]?
+    
+
+    enum CodingKeys: String, CodingKey {
+        
+        case response = "response"
+        
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        response = try? container.decode([[String: Any]].self, forKey: .response)
+        
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(response, forKey: .response)
+        
+    }
+}
+
+/*
     Model: GetTokenForVideoRoomResponse,
 */
 
-public struct GetTokenForVideoRoomResponse: Decodable {
+public struct GetTokenForVideoRoomResponse: Codable {
     
     public let accessToken: String?
     
@@ -21,13 +89,20 @@ public struct GetTokenForVideoRoomResponse: Decodable {
         accessToken = try? container.decode(String.self, forKey: .accessToken)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(accessToken, forKey: .accessToken)
+        
+    }
 }
 
 /*
     Model: GetParticipantsInsideVideoRoomResponse,
 */
 
-public struct GetParticipantsInsideVideoRoomResponse: Decodable {
+public struct GetParticipantsInsideVideoRoomResponse: Codable {
     
     public let participants: [Any]?
     
@@ -44,13 +119,20 @@ public struct GetParticipantsInsideVideoRoomResponse: Decodable {
         participants = try? container.decode([Any].self, forKey: .participants)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(participants, forKey: .participants)
+        
+    }
 }
 
 /*
     Model: SubmitCustomFormResponse,
 */
 
-public struct SubmitCustomFormResponse: Decodable {
+public struct SubmitCustomFormResponse: Codable {
     
     public let ticket: Ticket?
     
@@ -67,13 +149,20 @@ public struct SubmitCustomFormResponse: Decodable {
         ticket = try? container.decode(Ticket.self, forKey: .ticket)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(ticket, forKey: .ticket)
+        
+    }
 }
 
 /*
     Model: Context,
 */
 
-public struct Context: Decodable {
+public struct Context: Codable {
     
     public let applicationId: String?
     
@@ -96,13 +185,22 @@ public struct Context: Decodable {
         companyId = try? container.decode(String.self, forKey: .companyId)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+        
+        try? container.encodeIfPresent(companyId, forKey: .companyId)
+        
+    }
 }
 
 /*
     Model: CreatedOn,
 */
 
-public struct CreatedOn: Decodable {
+public struct CreatedOn: Codable {
     
     public let userAgent: String?
     
@@ -119,13 +217,20 @@ public struct CreatedOn: Decodable {
         userAgent = try? container.decode(String.self, forKey: .userAgent)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(userAgent, forKey: .userAgent)
+        
+    }
 }
 
 /*
     Model: Asset,
 */
 
-public struct Asset: Decodable {
+public struct Asset: Codable {
     
     public let display: String?
     
@@ -154,19 +259,30 @@ public struct Asset: Decodable {
         type = try? container.decode(String.self, forKey: .type)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(display, forKey: .display)
+        
+        try? container.encodeIfPresent(value, forKey: .value)
+        
+        try? container.encodeIfPresent(type, forKey: .type)
+        
+    }
 }
 
 /*
     Model: Content,
 */
 
-public struct Content: Decodable {
+public struct Content: Codable {
     
     public let title: String?
     
     public let description: String?
     
-    public let attachments: [Any]?
+    public let attachments: [Asset]?
     
 
     enum CodingKeys: String, CodingKey {
@@ -186,7 +302,18 @@ public struct Content: Decodable {
         
         description = try? container.decode(String.self, forKey: .description)
         
-        attachments = try? container.decode([Any].self, forKey: .attachments)
+        attachments = try? container.decode([Asset].self, forKey: .attachments)
+        
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(title, forKey: .title)
+        
+        try? container.encodeIfPresent(description, forKey: .description)
+        
+        try? container.encodeIfPresent(attachments, forKey: .attachments)
         
     }
 }
@@ -195,7 +322,7 @@ public struct Content: Decodable {
     Model: APIError,
 */
 
-public struct APIError: Decodable {
+public struct APIError: Codable {
     
     public let code: Double?
     
@@ -224,13 +351,24 @@ public struct APIError: Decodable {
         message = try? container.decode(String.self, forKey: .message)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(code, forKey: .code)
+        
+        try? container.encodeIfPresent(error, forKey: .error)
+        
+        try? container.encodeIfPresent(message, forKey: .message)
+        
+    }
 }
 
 /*
     Model: AddTicketPayload,
 */
 
-public struct AddTicketPayload: Decodable {
+public struct AddTicketPayload: Codable {
     
     public let status: String?
     
@@ -265,13 +403,26 @@ public struct AddTicketPayload: Decodable {
         content = try? container.decode(Content.self, forKey: .content)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(status, forKey: .status)
+        
+        try? container.encodeIfPresent(priority, forKey: .priority)
+        
+        try? container.encodeIfPresent(category, forKey: .category)
+        
+        try? container.encodeIfPresent(content, forKey: .content)
+        
+    }
 }
 
 /*
     Model: Priority,
 */
 
-public struct Priority: Decodable {
+public struct Priority: Codable {
     
     public let key: String?
     
@@ -298,6 +449,17 @@ public struct Priority: Decodable {
         display = try? container.decode(String.self, forKey: .display)
         
         color = try? container.decode(String.self, forKey: .color)
+        
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(key, forKey: .key)
+        
+        try? container.encodeIfPresent(display, forKey: .display)
+        
+        try? container.encodeIfPresent(color, forKey: .color)
         
     }
 }
@@ -306,7 +468,7 @@ public struct Priority: Decodable {
     Model: Status,
 */
 
-public struct Status: Decodable {
+public struct Status: Codable {
     
     public let key: String?
     
@@ -335,13 +497,24 @@ public struct Status: Decodable {
         color = try? container.decode(String.self, forKey: .color)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(key, forKey: .key)
+        
+        try? container.encodeIfPresent(display, forKey: .display)
+        
+        try? container.encodeIfPresent(color, forKey: .color)
+        
+    }
 }
 
 /*
     Model: Category,
 */
 
-public struct Category: Decodable {
+public struct Category: Codable {
     
     public let key: String?
     
@@ -364,13 +537,22 @@ public struct Category: Decodable {
         display = try? container.decode(String.self, forKey: .display)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(key, forKey: .key)
+        
+        try? container.encodeIfPresent(display, forKey: .display)
+        
+    }
 }
 
 /*
     Model: SubmitButton,
 */
 
-public struct SubmitButton: Decodable {
+public struct SubmitButton: Codable {
     
     public let title: String?
     
@@ -399,13 +581,24 @@ public struct SubmitButton: Decodable {
         backgroundColor = try? container.decode(String.self, forKey: .backgroundColor)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(title, forKey: .title)
+        
+        try? container.encodeIfPresent(titleColor, forKey: .titleColor)
+        
+        try? container.encodeIfPresent(backgroundColor, forKey: .backgroundColor)
+        
+    }
 }
 
 /*
     Model: PollForAssignment,
 */
 
-public struct PollForAssignment: Decodable {
+public struct PollForAssignment: Codable {
     
     public let duration: Double?
     
@@ -440,13 +633,26 @@ public struct PollForAssignment: Decodable {
         failureMessage = try? container.decode(String.self, forKey: .failureMessage)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(duration, forKey: .duration)
+        
+        try? container.encodeIfPresent(message, forKey: .message)
+        
+        try? container.encodeIfPresent(successMessage, forKey: .successMessage)
+        
+        try? container.encodeIfPresent(failureMessage, forKey: .failureMessage)
+        
+    }
 }
 
 /*
     Model: CustomForm,
 */
 
-public struct CustomForm: Decodable {
+public struct CustomForm: Codable {
     
     public let applicationId: String?
     
@@ -466,7 +672,7 @@ public struct CustomForm: Decodable {
     
     public let submitButton: SubmitButton?
     
-    public let inputs: [Any]?
+    public let inputs: [[String: Any]]?
     
     public let createdOn: CreatedOn?
     
@@ -538,7 +744,7 @@ public struct CustomForm: Decodable {
         
         submitButton = try? container.decode(SubmitButton.self, forKey: .submitButton)
         
-        inputs = try? container.decode([Any].self, forKey: .inputs)
+        inputs = try? container.decode([[String: Any]].self, forKey: .inputs)
         
         createdOn = try? container.decode(CreatedOn.self, forKey: .createdOn)
         
@@ -553,13 +759,50 @@ public struct CustomForm: Decodable {
         createdAt = try? container.decode(String.self, forKey: .createdAt)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+        
+        try? container.encodeIfPresent(slug, forKey: .slug)
+        
+        try? container.encodeIfPresent(headerImage, forKey: .headerImage)
+        
+        try? container.encodeIfPresent(title, forKey: .title)
+        
+        try? container.encodeIfPresent(description, forKey: .description)
+        
+        try? container.encodeIfPresent(loginRequired, forKey: .loginRequired)
+        
+        try? container.encodeIfPresent(shouldNotify, forKey: .shouldNotify)
+        
+        try? container.encodeIfPresent(successMessage, forKey: .successMessage)
+        
+        try? container.encodeIfPresent(submitButton, forKey: .submitButton)
+        
+        try? container.encodeIfPresent(inputs, forKey: .inputs)
+        
+        try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+        
+        try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+        
+        try? container.encodeIfPresent(pollForAssignment, forKey: .pollForAssignment)
+        
+        try? container.encodeIfPresent(id, forKey: .id)
+        
+        try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        
+        try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+        
+    }
 }
 
 /*
     Model: TicketHistory,
 */
 
-public struct TicketHistory: Decodable {
+public struct TicketHistory: Codable {
     
     public let type: String?
     
@@ -618,13 +861,34 @@ public struct TicketHistory: Decodable {
         createdAt = try? container.decode(String.self, forKey: .createdAt)
         
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(type, forKey: .type)
+        
+        try? container.encodeIfPresent(value, forKey: .value)
+        
+        try? container.encodeIfPresent(ticketId, forKey: .ticketId)
+        
+        try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+        
+        try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+        
+        try? container.encodeIfPresent(id, forKey: .id)
+        
+        try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        
+        try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+        
+    }
 }
 
 /*
     Model: Ticket,
 */
 
-public struct Ticket: Decodable {
+public struct Ticket: Codable {
     
     public let context: Context?
     
@@ -648,7 +912,7 @@ public struct Ticket: Decodable {
     
     public let assignedTo: [String: Any]?
     
-    public let tags: [Any]?
+    public let tags: [String]?
     
     public let customJson: [String: Any]?
     
@@ -720,7 +984,7 @@ public struct Ticket: Decodable {
         
         assignedTo = try? container.decode([String: Any].self, forKey: .assignedTo)
         
-        tags = try? container.decode([Any].self, forKey: .tags)
+        tags = try? container.decode([String].self, forKey: .tags)
         
         customJson = try? container.decode([String: Any].self, forKey: .customJson)
         
@@ -729,6 +993,43 @@ public struct Ticket: Decodable {
         updatedAt = try? container.decode(String.self, forKey: .updatedAt)
         
         createdAt = try? container.decode(String.self, forKey: .createdAt)
+        
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try? container.encodeIfPresent(context, forKey: .context)
+        
+        try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+        
+        try? container.encodeIfPresent(responseId, forKey: .responseId)
+        
+        try? container.encodeIfPresent(content, forKey: .content)
+        
+        try? container.encodeIfPresent(ticketId, forKey: .ticketId)
+        
+        try? container.encodeIfPresent(category, forKey: .category)
+        
+        try? container.encodeIfPresent(source, forKey: .source)
+        
+        try? container.encodeIfPresent(status, forKey: .status)
+        
+        try? container.encodeIfPresent(priority, forKey: .priority)
+        
+        try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+        
+        try? container.encodeIfPresent(assignedTo, forKey: .assignedTo)
+        
+        try? container.encodeIfPresent(tags, forKey: .tags)
+        
+        try? container.encodeIfPresent(customJson, forKey: .customJson)
+        
+        try? container.encodeIfPresent(id, forKey: .id)
+        
+        try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        
+        try? container.encodeIfPresent(createdAt, forKey: .createdAt)
         
     }
 }

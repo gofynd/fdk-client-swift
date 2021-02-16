@@ -24,11 +24,7 @@ class AlmofireHelper {
             case .success(_):
                 onResponse(response.data, nil, response.response?.statusCode)
             case .failure(let error):
-                if let data = response.data {
-                    onResponse(data, error, error.asAFError?.responseCode)
-                } else {
-                    onResponse(nil, error, error.asAFError?.responseCode)
-                }
+                onResponse(response.data, error, error.asAFError?.responseCode)
             }
         }
     }    

@@ -2,27 +2,28 @@
 
     
 public class Lead {
-    var config: Setup
+    var config: ApplicationConfig
 
-    public init(config: Setup) {
+    init(config: ApplicationConfig) {
         self.config = config;
     }
     
     /**
     *
     * Summary: Get Ticket with the specific id
-    * Description:  Get Ticket with the specific id, this is used to view the ticket details
+    * Description: Get Ticket with the specific id, this is used to view the ticket details
     **/
     public func getTicket(
         id: String,  
-        opts: [String: Any]?,
+         
+        
         onResponse: @escaping (_ response: Ticket?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/service/application/lead/v1.0/ticket/\(id)"),
-            query: opts,
+            url: "/service/application/lead/v1.0/ticket/\(id)",
+            query: nil,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
                 if let _ = error, let data = responseData {
@@ -40,19 +41,20 @@ public class Lead {
     /**
     *
     * Summary: Create history for specific Ticket
-    * Description:  Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+    * Description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
     **/
     public func createHistoryForTicket(
         ticketId: String,  
-        opts: [String: Any]?,
+         
+        body: TicketHistoryPayload,
         onResponse: @escaping (_ response: TicketHistory?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "post",
-            url: config.domain.appendAsPath("/service/application/lead/v1.0/ticket/\(ticketId)/history"),
-            query: opts,
-            body: nil,
+            url: "/service/application/lead/v1.0/ticket/\(ticketId)/history",
+            query: nil,
+            body: body.dictionary,
             onResponse: { (responseData, error, responseCode) in
                 if let _ = error, let data = responseData {
                     let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -69,19 +71,20 @@ public class Lead {
     /**
     *
     * Summary: Create Ticket
-    * Description:  This is used to Create Ticket.
+    * Description: This is used to Create Ticket.
     **/
     public func createTicket(
          
-        opts: [String: Any]?,
+         
+        body: AddTicketPayload,
         onResponse: @escaping (_ response: Ticket?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "post",
-            url: config.domain.appendAsPath("/service/application/lead/v1.0/ticket/"),
-            query: opts,
-            body: nil,
+            url: "/service/application/lead/v1.0/ticket/",
+            query: nil,
+            body: body.dictionary,
             onResponse: { (responseData, error, responseCode) in
                 if let _ = error, let data = responseData {
                     let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -98,18 +101,19 @@ public class Lead {
     /**
     *
     * Summary: Get specific Custom Form using it's slug
-    * Description:  Get specific Custom Form using it's slug, this is used to view the form.
+    * Description: Get specific Custom Form using it's slug, this is used to view the form.
     **/
     public func getCustomForm(
         slug: String,  
-        opts: [String: Any]?,
+         
+        
         onResponse: @escaping (_ response: CustomForm?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/service/application/lead/v1.0/form/\(slug)"),
-            query: opts,
+            url: "/service/application/lead/v1.0/form/\(slug)",
+            query: nil,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
                 if let _ = error, let data = responseData {
@@ -127,19 +131,20 @@ public class Lead {
     /**
     *
     * Summary: Submit Response for a specific Custom Form using it's slug
-    * Description:  Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+    * Description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
     **/
     public func submitCustomForm(
         slug: String,  
-        opts: [String: Any]?,
+         
+        body: CustomFormSubmissionPayload,
         onResponse: @escaping (_ response: SubmitCustomFormResponse?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "post",
-            url: config.domain.appendAsPath("/service/application/lead/v1.0/form/\(slug)/submit"),
-            query: opts,
-            body: nil,
+            url: "/service/application/lead/v1.0/form/\(slug)/submit",
+            query: nil,
+            body: body.dictionary,
             onResponse: { (responseData, error, responseCode) in
                 if let _ = error, let data = responseData {
                     let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -156,18 +161,19 @@ public class Lead {
     /**
     *
     * Summary: Get participants of a specific Video Room using it's unique name
-    * Description:  Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+    * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
     **/
     public func getParticipantsInsideVideoRoom(
         uniqueName: String,  
-        opts: [String: Any]?,
+         
+        
         onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/service/application/lead/v1.0/video/room/\(uniqueName)/participants"),
-            query: opts,
+            url: "/service/application/lead/v1.0/video/room/\(uniqueName)/participants",
+            query: nil,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
                 if let _ = error, let data = responseData {
@@ -185,18 +191,19 @@ public class Lead {
     /**
     *
     * Summary: Get Token to join a specific Video Room using it's unqiue name
-    * Description:  Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+    * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
     **/
     public func getTokenForVideoRoom(
         uniqueName: String,  
-        opts: [String: Any]?,
+         
+        
         onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: [String: Any]?, _ responseCode: Int?) -> Void
     ) {
         APIClient.execute(
             config: config,
             method: "get",
-            url: config.domain.appendAsPath("/service/application/lead/v1.0/video/room/\(uniqueName)/token"),
-            query: opts,
+            url: "/service/application/lead/v1.0/video/room/\(uniqueName)/token",
+            query: nil,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
                 if let _ = error, let data = responseData {

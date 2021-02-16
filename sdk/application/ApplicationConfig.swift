@@ -1,4 +1,4 @@
-public class Setup {
+public class ApplicationConfig {
     var applicationID: String
     var applicationToken: String
     var domain: String
