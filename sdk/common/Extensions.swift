@@ -8,7 +8,7 @@ extension String {
     }
 
     var urlEncoded: String {
-        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? self
+        return addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? self
     }
 
     func appendAsPath(_ path: String) -> String {
@@ -54,17 +54,6 @@ public extension Dictionary {
 
     var asQueryString: String {
         get {
-            return stringify()
-        }
-    }
-
-    public var asSolrString: String {
-        get {
-            return stringify(separator: ":::", equator: ":")
-        }
-    }
-
-    func stringify(separator: String = "&", equator: String = "=") -> String {
             let paramKeys = Array(self.keys)
             var queries: [String] = []
             for keyIndex in paramKeys.indices {
@@ -73,35 +62,53 @@ public extension Dictionary {
                 if let valueDict = value as? [String: Any] {
                     //TODO: check dict implementation for signing
                     if let jsonData = try? JSONSerialization.data(withJSONObject: valueDict,
-                                                                options: JSONSerialization.WritingOptions(rawValue: 0)) {
-                        let jsonString = (String(data: jsonData, encoding: .utf8) ?? "{}").urlEncoded
-                        queries.append("\(key)\(equator)\(jsonString)")
+                                                                  options: JSONSerialization.WritingOptions(rawValue: 0)) {
+                        let jsonString = (String(data: jsonData, encoding: .utf8) ?? "{}")
+                            .addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? ""
+                        queries.append("\(key)=\(jsonString)")
                     } else {
-                        queries.append("\(key)\(equator)\("{}".urlEncoded)")
+                        queries.append("\(key)=\("{}".addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
                     }
                 } else if let valueArray = value as? [Any] {
                     for value1 in valueArray {
                         if let strValue = value1 as? String {
-                            queries.append("\(key)\(equator)\(handleEncoding(url: strValue) ?? "")")
+                            queries.append("\(key)=\(strValue.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
                         } else {
-                            queries.append("\(key)\(equator)\(value1)")
+                            queries.append("\(key)=\(value1)")
                         }
                     }
                 } else if let value1 = value as? String {
-                    queries.append("\(key)\(equator)\(handleEncoding(url: value1) ?? "")")
-                } else if let value1 = value {
-                    queries.append("\(key)\(equator)\(value1)")
+                    queries.append("\(key)=\(value1.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
+                } else if let value = value {
+                    queries.append("\(key)=\(value)")
                 }
             }
             queries.sort()
-            return queries.joined(separator: separator)
+            return queries.joined(separator: "&")
+        }
     }
 
-    func handleEncoding(url: String) -> String? {
-        let encodedStr = CFURLCreateStringByAddingPercentEscapes(nil, url  as CFString?, nil, "!*'();:@&=+$,/?%#[]" as CFString, CFStringBuiltInEncodings.UTF8.rawValue) as String
-        return encodedStr
+    var asSolrString: String {
+        get {
+            var queryStrings: [String] = []
+            self.keys.forEach { (key) in
+                guard let keyString = key as? String else { return }
+                var valueString: String? = nil
+                if let values = self[key] as? [Any] {
+                    valueString = values.map{ "\($0)".urlEncoded }.joined(separator: "||")
+                } else {
+                    valueString = String(describing: self[key]).urlEncoded
+                }
+                if let valueString = valueString {
+                    queryStrings.append("\(keyString):\(valueString)")
+                }
+            }
+            
+            return queryStrings.joined(separator: ":::")
+        }
     }
 }
+
 
 extension Encodable {
     var dictionary: [String: Any]? {
