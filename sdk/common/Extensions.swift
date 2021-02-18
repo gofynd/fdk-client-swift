@@ -37,8 +37,8 @@ extension Decodable {
     }
 }
 
-extension Dictionary {
-    public var pretty: String {
+public extension Dictionary {
+    var pretty: String {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [])
             guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else {
@@ -54,6 +54,17 @@ extension Dictionary {
 
     var asQueryString: String {
         get {
+            return stringify()
+        }
+    }
+
+    public var asSolrString: String {
+        get {
+            return stringify(separator: ":::", equator: ":")
+        }
+    }
+
+    func stringify(separator: String = "&", equator: String = "=") -> String {
             let paramKeys = Array(self.keys)
             var queries: [String] = []
             for keyIndex in paramKeys.indices {
@@ -64,27 +75,26 @@ extension Dictionary {
                     if let jsonData = try? JSONSerialization.data(withJSONObject: valueDict,
                                                                 options: JSONSerialization.WritingOptions(rawValue: 0)) {
                         let jsonString = (String(data: jsonData, encoding: .utf8) ?? "{}").urlEncoded
-                        queries.append("\(key)=\(jsonString)")
+                        queries.append("\(key)\(equator)\(jsonString)")
                     } else {
-                        queries.append("\(key)=\("{}".urlEncoded)")
+                        queries.append("\(key)\(equator)\("{}".urlEncoded)")
                     }
                 } else if let valueArray = value as? [Any] {
                     for value1 in valueArray {
                         if let strValue = value1 as? String {
-                            queries.append("\(key)=\(handleEncoding(url: strValue) ?? "")")
+                            queries.append("\(key)\(equator)\(handleEncoding(url: strValue) ?? "")")
                         } else {
-                            queries.append("\(key)=\(value1)")
+                            queries.append("\(key)\(equator)\(value1)")
                         }
                     }
                 } else if let value1 = value as? String {
-                    queries.append("\(key)=\(handleEncoding(url: value1) ?? "")")
+                    queries.append("\(key)\(equator)\(handleEncoding(url: value1) ?? "")")
                 } else if let value1 = value {
-                    queries.append("\(key)=\(value1)")
+                    queries.append("\(key)\(equator)\(value1)")
                 }
             }
             queries.sort()
-            return queries.joined(separator: "&")
-        }
+            return queries.joined(separator: separator)
     }
 
     func handleEncoding(url: String) -> String? {
