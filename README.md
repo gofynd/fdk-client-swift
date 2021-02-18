@@ -23,7 +23,7 @@ Get started with the Swift Development SDK for Fynd Platform
       domain: "BASE_URL"
   ) {
       let applicationClient = ApplicationClient(config: config)
-      YOUR_APPLICATION_TOKEN.lead.getCustomForm(slug: "form-slug") { (form, error) in
+      applicationClient.lead.getCustomForm(slug: "form-slug") { (form, error) in
           if let form = form {
               print(form.title)
           } else if let error = error {
