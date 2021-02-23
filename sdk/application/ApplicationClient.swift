@@ -4,7 +4,9 @@ public class ApplicationClient {
 
     public let lead: Lead
 
-    public let share: Share
+    public let order: Order
+
+    public let posCart: PosCart
 
     public init(config: ApplicationConfig) {
         
@@ -12,7 +14,9 @@ public class ApplicationClient {
         
         lead = Lead(config: config)
         
-        share = Share(config: config)
+        order = Order(config: config)
+        
+        posCart = PosCart(config: config)
         
     }
 }

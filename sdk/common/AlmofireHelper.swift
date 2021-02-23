@@ -22,7 +22,11 @@ class AlmofireHelper {
             print(response.request?.curlString ?? "No Request !!!")
             switch response.result {
             case .success(_):
-                onResponse(response.data, nil, response.response?.statusCode)
+                if rawType == "head" {
+                    onResponse(response.response?.allHeaderFields.data, nil, response.response?.statusCode)
+                } else {
+                    onResponse(response.data, nil, response.response?.statusCode)
+                }
             case .failure(let error):
                 onResponse(response.data, error, error.asAFError?.responseCode)
             }

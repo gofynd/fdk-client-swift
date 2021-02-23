@@ -21,7 +21,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/",
@@ -35,6 +35,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductDetail.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -58,7 +59,7 @@ public class Catalog {
 
         query["store_id"] = storeId
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/sizes/",
@@ -72,6 +73,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductSizes.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -98,7 +100,7 @@ public class Catalog {
         query["pincode"] = pincode
         query["store_id"] = storeId
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/price/",
@@ -112,6 +114,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductSizePriceResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -140,7 +143,7 @@ public class Catalog {
         query["page_no"] = pageNo
         query["page_size"] = pageSize
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/sellers/",
@@ -154,6 +157,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductSizeSellersResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -175,7 +179,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/compare/",
@@ -189,6 +193,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductsComparisonResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -210,7 +215,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/similar/compare/",
@@ -224,6 +229,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductCompareResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -245,7 +251,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/similar/compared-frequently/",
@@ -259,6 +265,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductFrequentlyComparedSimilarResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -281,7 +288,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/similar/\(similarType)/",
@@ -295,6 +302,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(SimilarProductByTypeResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -316,7 +324,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/\(slug)/variants/",
@@ -330,6 +338,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductVariantsResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -360,7 +369,7 @@ public class Catalog {
         query["ean"] = ean
         query["upc"] = upc
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/stock-status/",
@@ -374,6 +383,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductStockStatusResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -399,7 +409,7 @@ public class Catalog {
         query["page_size"] = pageSize
         query["page_id"] = pageId
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/stock-status/poll/",
@@ -413,6 +423,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductStockPolling.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -429,7 +440,7 @@ public class Catalog {
     public func getProducts(
         q: String?,
         f: String?,
-        filters: Bool?,
+        filters: String?,
         sortOn: String?,
         pageId: String?,
         pageSize: Int?,
@@ -449,7 +460,7 @@ public class Catalog {
         query["page_no"] = pageNo
         query["page_type"] = pageType
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/products/",
@@ -463,6 +474,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(ProductListingResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -489,7 +501,7 @@ public class Catalog {
         query["page_no"] = pageNo
         query["page_size"] = pageSize
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/brands/",
@@ -503,6 +515,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(BrandListingResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -524,7 +537,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/brands/\(slug)/",
@@ -538,6 +551,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(BrandDetailResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -560,7 +574,7 @@ public class Catalog {
 
         query["department"] = department
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/categories/",
@@ -574,6 +588,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(CategoryListingResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -595,7 +610,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/categories/\(slug)/",
@@ -609,6 +624,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(CategoryMetaResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -635,7 +651,7 @@ public class Catalog {
         query["page_id"] = pageId
         query["page_size"] = pageSize
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/home/listing/",
@@ -649,6 +665,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(HomeListingResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -669,7 +686,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/departments/",
@@ -683,6 +700,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(DepartmentResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -704,7 +722,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/auto-complete/",
@@ -718,7 +736,43 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(AutoCompleteResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Add a Collection
+    * Description: Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
+    **/
+    public func addCollection(
+        body: CreateCollection,
+        onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/catalog/v1.0/collections/",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CollectionDetailResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -742,7 +796,7 @@ public class Catalog {
         query["page_id"] = pageId
         query["page_size"] = pageSize
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/collections/",
@@ -756,86 +810,8 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(GetCollectionListingResponse.self, from: data)
-                    onResponse(response, nil)
-                } else {
-                    onResponse(nil, nil)
-                }
-        });
-    }
-    
-    /**
-    *
-    * Summary: Add a Collection
-    * Description: Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
-    **/
-    public func addCollection(
-        body: CreateCollection,
-        onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
-    ) {
-        let query: [String: Any] = [:]
-
-         
-        APIClient.execute(
-            config: config,
-            method: "post",
-            url: "/service/application/catalog/v1.0/collections/",
-            query: query,
-            body: body.dictionary,
-            onResponse: { (responseData, error, responseCode) in
-                if let _ = error, let data = responseData {
-                    var err = Utility.decode(FDKError.self, from: data)
-                    if err?.status == nil {
-                        err?.status = responseCode
-                    }
-                    onResponse(nil, err)
-                } else if let data = responseData {
-                    let response = Utility.decode(CollectionDetailResponse.self, from: data)
-                    onResponse(response, nil)
-                } else {
-                    onResponse(nil, nil)
-                }
-        });
-    }
-    
-    /**
-    *
-    * Summary: Get the items in a collection
-    * Description: Get items in a collection specified by its `slug`.
-    **/
-    public func getCollectionItemsBySlug(
-        slug: String,
-        f: String?,
-        filters: Bool?,
-        sortOn: String?,
-        pageId: String?,
-        pageSize: Int?,
-        
-        onResponse: @escaping (_ response: GetCollectionListingItemsResponse?, _ error: FDKError?) -> Void
-    ) {
-        var query: [String: Any] = [:]
-
-        query["f"] = f
-        query["filters"] = filters
-        query["sort_on"] = sortOn
-        query["page_id"] = pageId
-        query["page_size"] = pageSize
-         
-        APIClient.execute(
-            config: config,
-            method: "get",
-            url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
-            query: query,
-            body: nil,
-            onResponse: { (responseData, error, responseCode) in
-                if let _ = error, let data = responseData {
-                    var err = Utility.decode(FDKError.self, from: data)
-                    if err?.status == nil {
-                        err?.status = responseCode
-                    }
-                    onResponse(nil, err)
-                } else if let data = responseData {
-                    let response = Utility.decode(GetCollectionListingItemsResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -856,7 +832,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "post",
             url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
@@ -870,7 +846,54 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(CollectionItemsResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Get the items in a collection
+    * Description: Get items in a collection specified by its `slug`.
+    **/
+    public func getCollectionItemsBySlug(
+        slug: String,
+        f: String?,
+        filters: Bool?,
+        sortOn: String?,
+        pageId: String?,
+        pageSize: Int?,
+        
+        onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["f"] = f
+        query["filters"] = filters
+        query["sort_on"] = sortOn
+        query["page_id"] = pageId
+        query["page_size"] = pageSize
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(ProductListingResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -891,7 +914,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "put",
             url: "/service/application/catalog/v1.0/collections/\(slug)/",
@@ -905,42 +928,8 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(CollectionsUpdateDetailResponse.self, from: data)
-                    onResponse(response, nil)
-                } else {
-                    onResponse(nil, nil)
-                }
-        });
-    }
-    
-    /**
-    *
-    * Summary: Delete a Collection
-    * Description: Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-    **/
-    public func deleteCollectionDetailBySlug(
-        slug: String,
-        
-        onResponse: @escaping (_ response: CollectionDetailViewDeleteResponse?, _ error: FDKError?) -> Void
-    ) {
-        let query: [String: Any] = [:]
-
-         
-        APIClient.execute(
-            config: config,
-            method: "delete",
-            url: "/service/application/catalog/v1.0/collections/\(slug)/",
-            query: query,
-            body: nil,
-            onResponse: { (responseData, error, responseCode) in
-                if let _ = error, let data = responseData {
-                    var err = Utility.decode(FDKError.self, from: data)
-                    if err?.status == nil {
-                        err?.status = responseCode
-                    }
-                    onResponse(nil, err)
-                } else if let data = responseData {
-                    let response = Utility.decode(CollectionDetailViewDeleteResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -961,7 +950,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/collections/\(slug)/",
@@ -975,7 +964,44 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(CollectionDetailResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Delete a Collection
+    * Description: Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
+    **/
+    public func deleteCollectionDetailBySlug(
+        slug: String,
+        
+        onResponse: @escaping (_ response: CollectionDetailViewDeleteResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "delete",
+            url: "/service/application/catalog/v1.0/collections/\(slug)/",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CollectionDetailViewDeleteResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -996,7 +1022,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/follow/\(collectionType)/",
@@ -1010,43 +1036,8 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(GetFollowListingResponse.self, from: data)
-                    onResponse(response, nil)
-                } else {
-                    onResponse(nil, nil)
-                }
-        });
-    }
-    
-    /**
-    *
-    * Summary: UnFollow a Product
-    * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    public func unfollowById(
-        collectionType: String,
-        collectionId: Int,
-        
-        onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
-    ) {
-        let query: [String: Any] = [:]
-
-         
-        APIClient.execute(
-            config: config,
-            method: "delete",
-            url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
-            query: query,
-            body: nil,
-            onResponse: { (responseData, error, responseCode) in
-                if let _ = error, let data = responseData {
-                    var err = Utility.decode(FDKError.self, from: data)
-                    if err?.status == nil {
-                        err?.status = responseCode
-                    }
-                    onResponse(nil, err)
-                } else if let data = responseData {
-                    let response = Utility.decode(FollowPostResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -1068,7 +1059,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "post",
             url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
@@ -1082,6 +1073,44 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
+                    let response = Utility.decode(FollowPostResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    public func unfollowById(
+        collectionType: String,
+        collectionId: Int,
+        
+        onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "delete",
+            url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
                     let response = Utility.decode(FollowPostResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1104,7 +1133,7 @@ public class Catalog {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/count/",
@@ -1118,6 +1147,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(FollowerCountResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1140,7 +1170,7 @@ public class Catalog {
 
         query["collection_type"] = collectionType
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/catalog/v1.0/follow/ids/",
@@ -1154,6 +1184,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(FollowIdsResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1186,10 +1217,10 @@ public class Catalog {
         query["latitude"] = latitude
         query["longitude"] = longitude
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
-            url: "/service/application/catalog/v1.0/analytics/store-list/",
+            url: "/service/application/catalog/v1.0/locations/",
             query: query,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -1200,6 +1231,7 @@ public class Catalog {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(StoreListingResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1232,7 +1264,7 @@ public class Lead {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/lead/v1.0/ticket/\(id)",
@@ -1246,6 +1278,7 @@ public class Lead {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(Ticket.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1267,7 +1300,7 @@ public class Lead {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "post",
             url: "/service/application/lead/v1.0/ticket/\(ticketId)/history",
@@ -1281,6 +1314,7 @@ public class Lead {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(TicketHistory.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1301,7 +1335,7 @@ public class Lead {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "post",
             url: "/service/application/lead/v1.0/ticket/",
@@ -1315,6 +1349,7 @@ public class Lead {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(Ticket.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1336,7 +1371,7 @@ public class Lead {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/lead/v1.0/form/\(slug)",
@@ -1350,6 +1385,7 @@ public class Lead {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(CustomForm.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1371,7 +1407,7 @@ public class Lead {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "post",
             url: "/service/application/lead/v1.0/form/\(slug)/submit",
@@ -1385,6 +1421,7 @@ public class Lead {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(SubmitCustomFormResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1406,7 +1443,7 @@ public class Lead {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/lead/v1.0/video/room/\(uniqueName)/participants",
@@ -1420,6 +1457,7 @@ public class Lead {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1441,7 +1479,7 @@ public class Lead {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
             url: "/service/application/lead/v1.0/video/room/\(uniqueName)/token",
@@ -1455,6 +1493,7 @@ public class Lead {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
+                    
                     let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
@@ -1467,7 +1506,7 @@ public class Lead {
 
 
     
-public class Share {
+public class Order {
     var config: ApplicationConfig
 
     init(config: ApplicationConfig) {
@@ -1476,20 +1515,28 @@ public class Share {
     
     /**
     *
-    * Summary: Create application QR Code
-    * Description: Create application QR Code
+    * Summary: Get Orders for application based on application Id
+    * Description: Get Orders
     **/
-    public func getApplicationQRCode(
+    public func getOrders(
+        pageNo: String?,
+        pageSize: String?,
+        fromDate: String?,
+        toDate: String?,
         
-        onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
     ) {
-        let query: [String: Any] = [:]
+        var query: [String: Any] = [:]
 
+        query["page_no"] = pageNo
+        query["page_size"] = pageSize
+        query["from_date"] = fromDate
+        query["to_date"] = toDate
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
-            method: "post",
-            url: "/service/application/share/v1.0/qr/",
+            method: "get",
+            url: "/services/application/v1.0/orders",
             query: query,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -1500,7 +1547,8 @@ public class Share {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
-                    let response = Utility.decode(QRCodeResp.self, from: data)
+                    
+                    let response = Utility.decode(OrderList.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -1510,21 +1558,21 @@ public class Share {
     
     /**
     *
-    * Summary: Create product QR Code
-    * Description: Create product QR Code
+    * Summary: Get Order by order id for application based on application Id
+    * Description: Get Order By Fynd Order Id
     **/
-    public func getProductQRCodeBySlug(
-        slug: String,
+    public func getOrderById(
+        orderId: String,
         
-        onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
     ) {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
-            method: "post",
-            url: "/service/application/share/v1.0/qr/products/\(slug)/",
+            method: "get",
+            url: "/services/application/v1.0/orders/\(orderId)",
             query: query,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -1535,7 +1583,8 @@ public class Share {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
-                    let response = Utility.decode(QRCodeResp.self, from: data)
+                    
+                    let response = Utility.decode(OrderById.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -1545,21 +1594,21 @@ public class Share {
     
     /**
     *
-    * Summary: Create collection QR Code
-    * Description: Create collection QR Code
+    * Summary: Get Shipment by shipment id and order id for application based on application Id
+    * Description: Get Shipment
     **/
-    public func getCollectionQRCodeBySlug(
-        slug: String,
+    public func getShipmentById(
+        shipmentId: String,
         
-        onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        onResponse: @escaping (_ response: ShipmentById?, _ error: FDKError?) -> Void
     ) {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
-            method: "post",
-            url: "/service/application/share/v1.0/qr/collection/\(slug)/",
+            method: "get",
+            url: "/services/application/v1.0/orders/shipments/\(shipmentId)",
             query: query,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -1570,7 +1619,8 @@ public class Share {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
-                    let response = Utility.decode(QRCodeResp.self, from: data)
+                    
+                    let response = Utility.decode(ShipmentById.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -1580,21 +1630,21 @@ public class Share {
     
     /**
     *
-    * Summary: Create url QR Code
-    * Description: Create url QR Code
+    * Summary: Get Shipment reasons by shipment id and order id for application based on application Id
+    * Description: Get Shipment Reasons
     **/
-    public func getUrlQRCode(
-        url: String,
+    public func getShipmentReasons(
+        shipmentId: String,
         
-        onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        onResponse: @escaping (_ response: ShipmentReasons?, _ error: FDKError?) -> Void
     ) {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
-            method: "post",
-            url: "/service/application/share/v1.0/qr/url/",
+            method: "get",
+            url: "/services/application/v1.0/orders/shipments/\(shipmentId)/reasons",
             query: query,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -1605,7 +1655,8 @@ public class Share {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
-                    let response = Utility.decode(QRCodeResp.self, from: data)
+                    
+                    let response = Utility.decode(ShipmentReasons.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -1615,20 +1666,21 @@ public class Share {
     
     /**
     *
-    * Summary: Create short link
-    * Description: Create short link
+    * Summary: Update Shipment status by shipment id and order id for application based on application Id
+    * Description: Update Shipment Status
     **/
-    public func createShortLink(
-        body: ShortLinkReq,
-        onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+    public func updateShipmentStatus(
+        shipmentId: String,
+        body: ShipmentStatusUpdateBody,
+        onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
     ) {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
-            method: "post",
-            url: "/service/application/share/v1.0/links/short-link/",
+            method: "put",
+            url: "/services/application/v1.0/orders/shipments/\(shipmentId)/status",
             query: query,
             body: body.dictionary,
             onResponse: { (responseData, error, responseCode) in
@@ -1639,7 +1691,8 @@ public class Share {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
-                    let response = Utility.decode(ShortLinkRes.self, from: data)
+                    
+                    let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -1649,21 +1702,21 @@ public class Share {
     
     /**
     *
-    * Summary: Get short link by hash
-    * Description: Get short link by hash
+    * Summary: Track Shipment by shipment id and order id for application based on application Id
+    * Description: Shipment Track
     **/
-    public func getShortLinkByHash(
-        hash: String,
+    public func trackShipment(
+        shipmentId: String,
         
-        onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+        onResponse: @escaping (_ response: ShipmentTrack?, _ error: FDKError?) -> Void
     ) {
         let query: [String: Any] = [:]
 
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
-            url: "/service/application/share/v1.0/links/short-link/\(hash)/",
+            url: "/services/application/v1.0/orders/shipments/\(shipmentId)/track",
             query: query,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -1674,7 +1727,8 @@ public class Share {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
-                    let response = Utility.decode(ShortLinkRes.self, from: data)
+                    
+                    let response = Utility.decode(ShipmentTrack.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)
@@ -1682,23 +1736,37 @@ public class Share {
         });
     }
     
+}
+
+
+    
+public class PosCart {
+    var config: ApplicationConfig
+
+    init(config: ApplicationConfig) {
+        self.config = config;
+    }
+    
     /**
     *
-    * Summary: Get original link by hash
-    * Description: Get original link by hash
+    * Summary: Fetch all Items Added to  Cart
+    * Description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartResponse
     **/
-    public func getOriginalShortLinkByHash(
-        hash: String,
+    public func getCart(
+        uid: Int?,
+        assignCardId: Int?,
         
-        onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+        onResponse: @escaping (_ response: GetCartResponse?, _ error: FDKError?) -> Void
     ) {
-        let query: [String: Any] = [:]
+        var query: [String: Any] = [:]
 
+        query["uid"] = uid
+        query["assign_card_id"] = assignCardId
          
-        APIClient.execute(
+        ApplicationAPIClient.execute(
             config: config,
             method: "get",
-            url: "/service/application/share/v1.0/links/short-link/\(hash)/original/",
+            url: "/service/application/pos/cart/v1.0/detail",
             query: query,
             body: nil,
             onResponse: { (responseData, error, responseCode) in
@@ -1709,7 +1777,899 @@ public class Share {
                     }
                     onResponse(nil, err)
                 } else if let data = responseData {
-                    let response = Utility.decode(ShortLinkRes.self, from: data)
+                    
+                    let response = Utility.decode(GetCartResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Fetch Last-Modified timestamp
+    * Description: Fetch Last-Modified timestamp in header metadata
+    **/
+    public func getCartLastModified(
+        uid: Int?,
+        
+        onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "head",
+            url: "/service/application/pos/cart/v1.0/detail",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    let response = data.dictionary 
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Add Items to Cart
+    * Description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+    **/
+    public func addItems(
+        body: AddCartRequest,
+        onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/pos/cart/v1.0/detail",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Update Items already added to Cart
+    * Description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+    **/
+    public func updateCart(
+        body: UpdateCartRequest,
+        onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "put",
+            url: "/service/application/pos/cart/v1.0/detail",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Cart item count
+    * Description: Get total count of item present in cart
+    **/
+    public func getItemCount(
+        uid: Int?,
+        
+        onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/basic",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartItemCountResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Fetch Coupon
+    * Description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+    **/
+    public func getCoupons(
+        uid: Int?,
+        
+        onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/coupon",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(GetCouponResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Apply Coupon
+    * Description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
+</ul>
+    **/
+    public func applyCoupon(
+        i: Bool?,
+        b: Bool?,
+        p: Bool?,
+        body: ApplyCouponRequest,
+        onResponse: @escaping (_ response: SaveCouponResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["i"] = i
+        query["b"] = b
+        query["p"] = p
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/pos/cart/v1.0/coupon",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(SaveCouponResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Remove Coupon Applied
+    * Description: Remove Coupon applied on the cart by passing uid in request body.
+    **/
+    public func removeCoupon(
+        uid: Int?,
+        
+        onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "delete",
+            url: "/service/application/pos/cart/v1.0/coupon",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Get discount offers based on quantity
+    * Description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+    **/
+    public func getBulkDiscountOffers(
+        itemId: Int?,
+        articleId: String?,
+        uid: Int?,
+        slug: String?,
+        
+        onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["item_id"] = itemId
+        query["article_id"] = articleId
+        query["uid"] = uid
+        query["slug"] = slug
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/bulk-price",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(BulkPriceResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Fetch Address
+    * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    **/
+    public func getAddresses(
+        uid: Int?,
+        mobileNo: Int?,
+        checkoutMode: String?,
+        tags: Int?,
+        isDefault: Bool?,
+        
+        onResponse: @escaping (_ response: GetAddressResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+        query["mobile_no"] = mobileNo
+        query["checkout_mode"] = checkoutMode
+        query["tags"] = tags
+        query["is_default"] = isDefault
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/address",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(GetAddressResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Add Address to the account
+    * Description: <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+    **/
+    public func addAddress(
+        body: SaveAddressRequest,
+        onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/pos/cart/v1.0/address",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(SaveAddressResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Fetch Single Address
+    * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    **/
+    public func getAddressById(
+        id: Int,
+        uid: Int?,
+        mobileNo: Int?,
+        checkoutMode: String?,
+        tags: Int?,
+        isDefault: Bool?,
+        
+        onResponse: @escaping (_ response: GetAddressResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+        query["mobile_no"] = mobileNo
+        query["checkout_mode"] = checkoutMode
+        query["tags"] = tags
+        query["is_default"] = isDefault
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/address/\(id)",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(GetAddressResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Update Address alreay added to account
+    * Description: Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+    **/
+    public func updateAddress(
+        id: Int,
+        body: UpdateAddressRequest,
+        onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "put",
+            url: "/service/application/pos/cart/v1.0/address/\(id)",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(UpdateAddressResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Remove Address Associated to the account
+    * Description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+    **/
+    public func removeAddress(
+        id: Int,
+        
+        onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "delete",
+            url: "/service/application/pos/cart/v1.0/address/\(id)",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(DeleteAddressResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Select Address from All Addresses
+    * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+    **/
+    public func selectAddress(
+        body: SelectCartAddressRequest,
+        onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/pos/cart/v1.0/select-address",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Get Cart Payment for valid coupon
+    * Description: Validate coupon for selected payment mode
+    **/
+    public func getPaymentModes(
+        uid: String?,
+        addressId: String?,
+        paymentMode: String?,
+        paymentIdentifier: String?,
+        aggregatorName: String?,
+        merchantCode: String?,
+        
+        onResponse: @escaping (_ response: PaymentOptions?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+        query["address_id"] = addressId
+        query["payment_mode"] = paymentMode
+        query["payment_identifier"] = paymentIdentifier
+        query["aggregator_name"] = aggregatorName
+        query["merchant_code"] = merchantCode
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/payment",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(PaymentOptions.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Update Cart Payment
+    * Description: Update Cart Payment for Your Account
+    **/
+    public func selectPaymentMode(
+        uid: String?,
+        body: UpdateCartPaymentRequest,
+        onResponse: @escaping (_ response: PaymentOptions?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "put",
+            url: "/service/application/pos/cart/v1.0/payment",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(PaymentOptions.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Get delivery date and options before checkout
+    * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+    **/
+    public func getShipments(
+        pickAtStoreUid: Int?,
+        orderingStoreId: Int?,
+        p: Bool?,
+        uid: Int?,
+        addressId: Int?,
+        
+        onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["pick_at_store_uid"] = pickAtStoreUid
+        query["ordering_store_id"] = orderingStoreId
+        query["p"] = p
+        query["uid"] = uid
+        query["address_id"] = addressId
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/shipment",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartShipmentsResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Update shipment delivery type and quantity before checkout
+    * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+    **/
+    public func updateShipments(
+        i: Bool?,
+        p: Bool?,
+        uid: Int?,
+        addressId: Int?,
+        orderType: String?,
+        body: UpdateCartShipmentRequest,
+        onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["i"] = i
+        query["p"] = p
+        query["uid"] = uid
+        query["address_id"] = addressId
+        query["order_type"] = orderType
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "put",
+            url: "/service/application/pos/cart/v1.0/shipment",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartShipmentsResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Checkout Cart
+    * Description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
+    **/
+    public func checkoutCart(
+        uid: Bool?,
+        body: CartCheckoutRequest,
+        onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/pos/cart/v1.0/checkout",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartCheckoutResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Update Cart Meta
+    * Description: Update cart meta like checkout_mode, gstin.
+    **/
+    public func updateCartMeta(
+        uid: Int?,
+        body: CartMetaRequest,
+        onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
+    ) {
+        var query: [String: Any] = [:]
+
+        query["uid"] = uid
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "put",
+            url: "/service/application/pos/cart/v1.0/meta",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(CartMetaResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Generate Cart sharing link token
+    * Description: Generates shared cart snapshot and returns shortlink token
+    **/
+    public func getCartShareLink(
+        body: GetShareCartLinkRequest,
+        onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/pos/cart/v1.0/share-cart",
+            query: query,
+            body: body.dictionary,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Get shared cart snapshot and cart response
+    * Description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+    **/
+    public func getCartSharedItems(
+        token: String,
+        
+        onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "get",
+            url: "/service/application/pos/cart/v1.0/share-cart/\(token)",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(SharedCartResponse.self, from: data)
+                    onResponse(response, nil)
+                } else {
+                    onResponse(nil, nil)
+                }
+        });
+    }
+    
+    /**
+    *
+    * Summary: Merge or Replace existing cart
+    * Description: Merge or Replace cart based on `action` parameter with shared cart of `token`
+    **/
+    public func updateCartWithSharedItems(
+        token: String,
+        action: String,
+        
+        onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
+    ) {
+        let query: [String: Any] = [:]
+
+         
+        ApplicationAPIClient.execute(
+            config: config,
+            method: "post",
+            url: "/service/application/pos/cart/v1.0/share-cart/\(token)/\(action)",
+            query: query,
+            body: nil,
+            onResponse: { (responseData, error, responseCode) in
+                if let _ = error, let data = responseData {
+                    var err = Utility.decode(FDKError.self, from: data)
+                    if err?.status == nil {
+                        err?.status = responseCode
+                    }
+                    onResponse(nil, err)
+                } else if let data = responseData {
+                    
+                    let response = Utility.decode(SharedCartResponse.self, from: data)
                     onResponse(response, nil)
                 } else {
                     onResponse(nil, nil)

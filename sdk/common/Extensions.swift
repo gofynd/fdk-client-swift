@@ -37,7 +37,17 @@ extension Decodable {
     }
 }
 
+public extension Data {
+    var dictionary: [String: Any]? {
+        return try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
+    }
+}
+
 public extension Dictionary {
+    var data: Data? {
+        return try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+    }
+
     var pretty: String {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [])
