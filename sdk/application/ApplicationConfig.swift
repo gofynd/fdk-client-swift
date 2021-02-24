@@ -1,16 +1,16 @@
 public class ApplicationConfig {
-    var applicationID: String
+    var applicationId: String
     var applicationToken: String
     var domain: String
 
-    public init?(applicationID: String, applicationToken: String, domain: String = "https://api.fynd.com") {
-        self.applicationID = applicationID
+    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com") {
+        self.applicationId = applicationId
         self.applicationToken = applicationToken
         self.domain = domain
         let regex = "^[0-9a-fA-F]{24}$"
-        let mongoObjectIDRegex = NSPredicate(format: "SELF MATCHES %@", regex)
+        let mongoObjectIdRegex = NSPredicate(format: "SELF MATCHES %@", regex)
 
-        if (!mongoObjectIDRegex.evaluate(with: applicationID)) {
+        if (!mongoObjectIdRegex.evaluate(with: applicationId)) {
             return nil
         }
     }
