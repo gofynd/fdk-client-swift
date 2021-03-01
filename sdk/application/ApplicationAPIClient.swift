@@ -1,5 +1,3 @@
-
-
 class ApplicationAPIClient {
     static func execute(config: ApplicationConfig, method: String, url: String, query: [String: Any]?, body: [String: Any]?, onResponse: @escaping OnResponse) {
         let headers = [
