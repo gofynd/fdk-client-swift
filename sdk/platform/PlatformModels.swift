@@ -21,7 +21,7 @@ public extension PlatformClient {
         public var total: Int?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case docs = "docs"
             
@@ -91,7 +91,7 @@ public extension PlatformClient {
         public var total: Int?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case docs = "docs"
             
@@ -155,7 +155,7 @@ public extension PlatformClient {
         public var total: Int?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case docs = "docs"
             
@@ -225,7 +225,7 @@ public extension PlatformClient {
         public var pollForAssignment: PollForAssignment?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case slug = "slug"
             
@@ -313,7 +313,7 @@ public extension PlatformClient {
         public var pollForAssignment: PollForAssignment?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case title = "title"
             
@@ -384,7 +384,7 @@ public extension PlatformClient {
     struct EditTicketPayload: Codable {
         
         
-        public var content: Content?
+        public var content: TicketContent?
         
         public var category: String?
         
@@ -399,7 +399,7 @@ public extension PlatformClient {
         public var tags: [String]?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case content = "content"
             
@@ -420,7 +420,7 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            content = try? container.decode(Content.self, forKey: .content)
+            content = try? container.decode(TicketContent.self, forKey: .content)
             
             category = try? container.decode(String.self, forKey: .category)
             
@@ -467,7 +467,7 @@ public extension PlatformClient {
         public var agentId: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case agentId = "agent_id"
             
@@ -499,7 +499,7 @@ public extension PlatformClient {
         public var uniqueName: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case uniqueName = "unique_name"
             
@@ -522,6 +522,38 @@ public extension PlatformClient {
     }
     
     /*
+        Model: CloseVideoRoomResponse
+    */
+
+    struct CloseVideoRoomResponse: Codable {
+        
+        
+        public var success: Bool
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case success = "success"
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            success = try container.decode(Bool.self, forKey: .success)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+        }
+        
+    }
+    
+    /*
         Model: CreateVideoRoomPayload
     */
 
@@ -533,7 +565,7 @@ public extension PlatformClient {
         public var notify: [[String: Any]]?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case uniqueName = "unique_name"
             
@@ -577,7 +609,7 @@ public extension PlatformClient {
         public var assignees: [[String: Any]]
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case priorities = "priorities"
             
@@ -629,7 +661,7 @@ public extension PlatformClient {
         public var type: String?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case value = "value"
             
@@ -667,7 +699,7 @@ public extension PlatformClient {
         public var response: [[String: Any]]
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case response = "response"
             
@@ -699,7 +731,7 @@ public extension PlatformClient {
         public var accessToken: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case accessToken = "access_token"
             
@@ -731,7 +763,7 @@ public extension PlatformClient {
         public var participants: [[String: Any]]
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case participants = "participants"
             
@@ -763,7 +795,7 @@ public extension PlatformClient {
         public var ticket: Ticket
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case ticket = "ticket"
             
@@ -797,7 +829,7 @@ public extension PlatformClient {
         public var companyId: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case applicationId = "application_id"
             
@@ -835,7 +867,7 @@ public extension PlatformClient {
         public var userAgent: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case userAgent = "user_agent"
             
@@ -871,7 +903,7 @@ public extension PlatformClient {
         public var type: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case display = "display"
             
@@ -906,10 +938,10 @@ public extension PlatformClient {
     }
     
     /*
-        Model: Content
+        Model: TicketContent
     */
 
-    struct Content: Codable {
+    struct TicketContent: Codable {
         
         
         public var title: String
@@ -919,7 +951,7 @@ public extension PlatformClient {
         public var attachments: [Asset]?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case title = "title"
             
@@ -967,7 +999,7 @@ public extension PlatformClient {
         public var message: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case code = "code"
             
@@ -1014,10 +1046,10 @@ public extension PlatformClient {
         
         public var category: String
         
-        public var content: Content
+        public var content: TicketContent
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case status = "status"
             
@@ -1038,7 +1070,7 @@ public extension PlatformClient {
             
             category = try container.decode(String.self, forKey: .category)
             
-            content = try container.decode(Content.self, forKey: .content)
+            content = try container.decode(TicketContent.self, forKey: .content)
             
         }
         
@@ -1071,7 +1103,7 @@ public extension PlatformClient {
         public var color: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case key = "key"
             
@@ -1119,7 +1151,7 @@ public extension PlatformClient {
         public var color: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case key = "key"
             
@@ -1167,7 +1199,7 @@ public extension PlatformClient {
         public var form: CustomForm?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case key = "key"
             
@@ -1215,7 +1247,7 @@ public extension PlatformClient {
         public var backgroundColor: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case title = "title"
             
@@ -1265,7 +1297,7 @@ public extension PlatformClient {
         public var failureMessage: String
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case duration = "duration"
             
@@ -1345,7 +1377,7 @@ public extension PlatformClient {
         public var createdAt: String?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case applicationId = "application_id"
             
@@ -1481,7 +1513,7 @@ public extension PlatformClient {
         public var createdAt: String?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case type = "type"
             
@@ -1558,7 +1590,7 @@ public extension PlatformClient {
         
         public var responseId: String?
         
-        public var content: Content?
+        public var content: TicketContent?
         
         public var ticketId: String
         
@@ -1585,7 +1617,7 @@ public extension PlatformClient {
         public var createdAt: String?
         
 
-        enum CodingKeys: String, CodingKey {
+        public enum CodingKeys: String, CodingKey {
             
             case context = "context"
             
@@ -1630,7 +1662,7 @@ public extension PlatformClient {
             
             responseId = try? container.decode(String.self, forKey: .responseId)
             
-            content = try? container.decode(Content.self, forKey: .content)
+            content = try? container.decode(TicketContent.self, forKey: .content)
             
             ticketId = try container.decode(String.self, forKey: .ticketId)
             

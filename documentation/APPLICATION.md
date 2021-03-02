@@ -6,6 +6,7 @@
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
@@ -46,9 +47,9 @@
     * [Catalog#getCollections](#cataloggetcollections)
     * [Catalog#addCollectionItemsBySlug](#catalogaddcollectionitemsbyslug)
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-    * [Catalog#updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
     * [Catalog#deleteCollectionDetailBySlug](#catalogdeletecollectiondetailbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
+    * [Catalog#updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
     * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#unfollowById](#catalogunfollowbyid)
@@ -139,6 +140,22 @@
     * [User#deleteEmail](#userdeleteemail)
     * [User#setEmailAsPrimary](#usersetemailasprimary)
     * [User#sendVerificationLinkToEmail](#usersendverificationlinktoemail)
+    
+   
+
+* [Content](#Content)
+  * Methods
+    * [Content#getAnnouncements](#contentgetannouncements)
+    * [Content#getBlog](#contentgetblog)
+    * [Content#getFaqs](#contentgetfaqs)
+    * [Content#getLandingPage](#contentgetlandingpage)
+    * [Content#getLegalInformation](#contentgetlegalinformation)
+    * [Content#getNavigations](#contentgetnavigations)
+    * [Content#getPage](#contentgetpage)
+    * [Content#getSeoConfiguration](#contentgetseoconfiguration)
+    * [Content#getSlideshow](#contentgetslideshow)
+    * [Content#getSupportInformation](#contentgetsupportinformation)
+    * [Content#getTags](#contentgettags)
     
    
 
@@ -1728,67 +1745,6 @@ Error Response:
 ---
 
 
-#### Catalog#updateCollectionDetailBySlug
-Update a collection
-
-```javascript
-// Promise
-const promise = catalog.updateCollectionDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.updateCollectionDetailBySlug(slug, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update. | 
-
-Update a collection by it's slug. On successful request, returns the updated collection
-
-Success Response:
-
-
-
-The Collection object. See example below or refer `CollectionsUpdateDetailResponse` for details.
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionsUpdateDetailResponse"
-}`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
 #### Catalog#deleteCollectionDetailBySlug
 Delete a Collection
 
@@ -1879,6 +1835,67 @@ Content Type: `application/json`
 
 Schema: `{
   "$ref": "#/components/schemas/CollectionDetailResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Catalog#updateCollectionDetailBySlug
+Update a collection
+
+```javascript
+// Promise
+const promise = catalog.updateCollectionDetailBySlug(slug, );
+
+// Async/Await
+const data = await catalog.updateCollectionDetailBySlug(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update. | 
+
+Update a collection by it's slug. On successful request, returns the updated collection
+
+Success Response:
+
+
+
+The Collection object. See example below or refer `CollectionsUpdateDetailResponse` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CollectionsUpdateDetailResponse"
 }`
 
 
@@ -9102,6 +9119,766 @@ Content Type: `application/json`
 
 Schema: `{
   "$ref": "#/components/schemas/SendEmailVerifyLinkSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## Content
+
+```javascript
+const { Configuration, Content } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const content = new Content(conf);
+
+```
+
+
+#### Content#getAnnouncements
+Get live announcements
+
+```javascript
+// Promise
+const promise = content.getAnnouncements();
+
+// Async/Await
+const data = await content.getAnnouncements();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get live announcements for each or all pages with page slug of page and end date schedule.
+
+Success Response:
+
+
+
+Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AnnouncementsResponseSchema"
+}`
+
+
+Examples: 
+
+
+Announcements enabled
+```javascript
+{
+  "$ref": "#/components/examples/AnnouncementEnabledExample"
+}
+```
+
+No Announcement enabled
+```javascript
+{
+  "value": {
+    "announcements": [],
+    "refresh_rate": 900,
+    "refresh_pages": []
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getBlog
+Get Blog by slug
+
+```javascript
+// Promise
+const promise = content.getBlog(slug, );
+
+// Async/Await
+const data = await content.getBlog(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+
+Use this API to fetch a blog using `slug`
+
+Success Response:
+
+
+
+A JSON object with blog details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomBlog"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomBlog"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getFaqs
+Get frequently asked questions
+
+```javascript
+// Promise
+const promise = content.getFaqs();
+
+// Async/Await
+const data = await content.getFaqs();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/FaqResponseSchema"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/AppFaqs"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getLandingPage
+Get landing page
+
+```javascript
+// Promise
+const promise = content.getLandingPage(x-device-platform, );
+
+// Async/Await
+const data = await content.getLandingPage(x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a landing page
+
+Success Response:
+
+
+
+A JSON object with landing details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LandingPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/LandingPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation();
+
+// Async/Await
+const data = await content.getLegalInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationLegal"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getNavigations
+Get navigation
+
+```javascript
+// Promise
+const promise = content.getNavigations(x-device-platform, );
+
+// Async/Await
+const data = await content.getNavigations(x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a navigation
+
+Success Response:
+
+
+
+A JSON object with navigation details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Navigation"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Navigation"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getPage
+Get Page by slug
+
+```javascript
+// Promise
+const promise = content.getPage(slug, );
+
+// Async/Await
+const data = await content.getPage(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+
+Use this API to fetch a custom page using `slug`
+
+Success Response:
+
+
+
+A JSON object with page details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSeoConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSeoConfiguration();
+
+// Async/Await
+const data = await content.getSeoConfiguration();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get seo of application
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Seo"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSlideshow
+Get slideshow by slug
+
+```javascript
+// Promise
+const promise = content.getSlideshow(slug, x-device-platform, );
+
+// Async/Await
+const data = await content.getSlideshow(slug, x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a slideshow using `slug`
+
+Success Response:
+
+
+
+A JSON object with slideshow details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Slideshow"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Slideshow"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation();
+
+// Async/Await
+const data = await content.getSupportInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get contact details for customer support. Including emails and phone numbers
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Support"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getTags
+Get Tags for application
+
+```javascript
+// Promise
+const promise = content.getTags();
+
+// Async/Await
+const data = await content.getTags();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+A JSON object of tags
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/TagsSchema"
 }`
 
 
