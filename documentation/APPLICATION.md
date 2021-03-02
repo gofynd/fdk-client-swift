@@ -24,274 +24,260 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [Catalog#getProductDetailBySlug](#cataloggetproductdetailbyslug)
-    * [Catalog#getProductSizesBySlug](#cataloggetproductsizesbyslug)
-    * [Catalog#getProductPriceBySlug](#cataloggetproductpricebyslug)
-    * [Catalog#getProductSellersBySlug](#cataloggetproductsellersbyslug)
-    * [Catalog#getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
-    * [Catalog#getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
-    * [Catalog#getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
-    * [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
-    * [Catalog#getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
-    * [Catalog#getProductStockByIds](#cataloggetproductstockbyids)
-    * [Catalog#getProductStockForTimeByIds](#cataloggetproductstockfortimebyids)
-    * [Catalog#getProducts](#cataloggetproducts)
-    * [Catalog#getBrands](#cataloggetbrands)
-    * [Catalog#getBrandDetailBySlug](#cataloggetbranddetailbyslug)
-    * [Catalog#getCategories](#cataloggetcategories)
-    * [Catalog#getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
-    * [Catalog#getHomeProducts](#cataloggethomeproducts)
-    * [Catalog#getDepartments](#cataloggetdepartments)
-    * [Catalog#getSearchResults](#cataloggetsearchresults)
-    * [Catalog#addCollection](#catalogaddcollection)
-    * [Catalog#getCollections](#cataloggetcollections)
-    * [Catalog#addCollectionItemsBySlug](#catalogaddcollectionitemsbyslug)
-    * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-    * [Catalog#deleteCollectionDetailBySlug](#catalogdeletecollectiondetailbyslug)
-    * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
-    * [Catalog#updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
-    * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#followById](#catalogfollowbyid)
-    * [Catalog#unfollowById](#catalogunfollowbyid)
-    * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
-    * [Catalog#getFollowIds](#cataloggetfollowids)
-    * [Catalog#getStores](#cataloggetstores)
+    * [getProductDetailBySlug](#cataloggetproductdetailbyslug)
+    * [getProductSizesBySlug](#cataloggetproductsizesbyslug)
+    * [getProductPriceBySlug](#cataloggetproductpricebyslug)
+    * [getProductSellersBySlug](#cataloggetproductsellersbyslug)
+    * [getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
+    * [getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
+    * [getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
+    * [getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
+    * [getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
+    * [getProductStockByIds](#cataloggetproductstockbyids)
+    * [getProductStockForTimeByIds](#cataloggetproductstockfortimebyids)
+    * [getProducts](#cataloggetproducts)
+    * [getBrands](#cataloggetbrands)
+    * [getBrandDetailBySlug](#cataloggetbranddetailbyslug)
+    * [getCategories](#cataloggetcategories)
+    * [getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
+    * [getHomeProducts](#cataloggethomeproducts)
+    * [getDepartments](#cataloggetdepartments)
+    * [getSearchResults](#cataloggetsearchresults)
+    * [addCollection](#catalogaddcollection)
+    * [getCollections](#cataloggetcollections)
+    * [addCollectionItemsBySlug](#catalogaddcollectionitemsbyslug)
+    * [getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
+    * [deleteCollectionDetailBySlug](#catalogdeletecollectiondetailbyslug)
+    * [getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
+    * [updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
+    * [getFollowedListing](#cataloggetfollowedlisting)
+    * [followById](#catalogfollowbyid)
+    * [unfollowById](#catalogunfollowbyid)
+    * [getFollowerCountById](#cataloggetfollowercountbyid)
+    * [getFollowIds](#cataloggetfollowids)
+    * [getStores](#cataloggetstores)
     
-   
 
 * [Cart](#Cart)
   * Methods
-    * [Cart#getCart](#cartgetcart)
-    * [Cart#getCartLastModified](#cartgetcartlastmodified)
-    * [Cart#addItems](#cartadditems)
-    * [Cart#updateCart](#cartupdatecart)
-    * [Cart#getItemCount](#cartgetitemcount)
-    * [Cart#getCoupons](#cartgetcoupons)
-    * [Cart#applyCoupon](#cartapplycoupon)
-    * [Cart#removeCoupon](#cartremovecoupon)
-    * [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
-    * [Cart#getAddresses](#cartgetaddresses)
-    * [Cart#addAddress](#cartaddaddress)
-    * [Cart#getAddressById](#cartgetaddressbyid)
-    * [Cart#updateAddress](#cartupdateaddress)
-    * [Cart#removeAddress](#cartremoveaddress)
-    * [Cart#selectAddress](#cartselectaddress)
-    * [Cart#getPaymentModes](#cartgetpaymentmodes)
-    * [Cart#selectPaymentMode](#cartselectpaymentmode)
-    * [Cart#getShipments](#cartgetshipments)
-    * [Cart#checkoutCart](#cartcheckoutcart)
-    * [Cart#updateCartMeta](#cartupdatecartmeta)
-    * [Cart#getCartShareLink](#cartgetcartsharelink)
-    * [Cart#getCartSharedItems](#cartgetcartshareditems)
-    * [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
+    * [getCart](#cartgetcart)
+    * [getCartLastModified](#cartgetcartlastmodified)
+    * [addItems](#cartadditems)
+    * [updateCart](#cartupdatecart)
+    * [getItemCount](#cartgetitemcount)
+    * [getCoupons](#cartgetcoupons)
+    * [applyCoupon](#cartapplycoupon)
+    * [removeCoupon](#cartremovecoupon)
+    * [getBulkDiscountOffers](#cartgetbulkdiscountoffers)
+    * [getAddresses](#cartgetaddresses)
+    * [addAddress](#cartaddaddress)
+    * [getAddressById](#cartgetaddressbyid)
+    * [updateAddress](#cartupdateaddress)
+    * [removeAddress](#cartremoveaddress)
+    * [selectAddress](#cartselectaddress)
+    * [getPaymentModes](#cartgetpaymentmodes)
+    * [selectPaymentMode](#cartselectpaymentmode)
+    * [getShipments](#cartgetshipments)
+    * [checkoutCart](#cartcheckoutcart)
+    * [updateCartMeta](#cartupdatecartmeta)
+    * [getCartShareLink](#cartgetcartsharelink)
+    * [getCartSharedItems](#cartgetcartshareditems)
+    * [updateCartWithSharedItems](#cartupdatecartwithshareditems)
     
-   
 
 * [Lead](#Lead)
   * Methods
-    * [Lead#getTicket](#leadgetticket)
-    * [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
-    * [Lead#createTicket](#leadcreateticket)
-    * [Lead#getCustomForm](#leadgetcustomform)
-    * [Lead#submitCustomForm](#leadsubmitcustomform)
-    * [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
-    * [Lead#getTokenForVideoRoom](#leadgettokenforvideoroom)
+    * [getTicket](#leadgetticket)
+    * [createHistoryForTicket](#leadcreatehistoryforticket)
+    * [createTicket](#leadcreateticket)
+    * [getCustomForm](#leadgetcustomform)
+    * [submitCustomForm](#leadsubmitcustomform)
+    * [getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
+    * [getTokenForVideoRoom](#leadgettokenforvideoroom)
     
-   
 
 * [Theme](#Theme)
   * Methods
-    * [Theme#getAppliedTheme](#themegetappliedtheme)
-    * [Theme#getThemeForPreview](#themegetthemeforpreview)
+    * [getAppliedTheme](#themegetappliedtheme)
+    * [getThemeForPreview](#themegetthemeforpreview)
     
-   
 
 * [User](#User)
   * Methods
-    * [User#loginWithFacebook](#userloginwithfacebook)
-    * [User#loginWithGoogle](#userloginwithgoogle)
-    * [User#loginWithGoogleAndroid](#userloginwithgoogleandroid)
-    * [User#loginWithGoogleIOS](#userloginwithgoogleios)
-    * [User#loginWithOTP](#userloginwithotp)
-    * [User#loginWithEmailAndPassword](#userloginwithemailandpassword)
-    * [User#sendResetPasswordEmail](#usersendresetpasswordemail)
-    * [User#forgotPassword](#userforgotpassword)
-    * [User#sendResetToken](#usersendresettoken)
-    * [User#loginWithToken](#userloginwithtoken)
-    * [User#registerWithForm](#userregisterwithform)
-    * [User#verifyEmail](#userverifyemail)
-    * [User#verifyMobile](#userverifymobile)
-    * [User#hasPassword](#userhaspassword)
-    * [User#updatePassword](#userupdatepassword)
-    * [User#logout](#userlogout)
-    * [User#sendOTPOnMobile](#usersendotponmobile)
-    * [User#verifyMobileOTP](#userverifymobileotp)
-    * [User#sendOTPOnEmail](#usersendotponemail)
-    * [User#verifyEmailOTP](#userverifyemailotp)
-    * [User#getLoggedInUser](#usergetloggedinuser)
-    * [User#getListOfActiveSessions](#usergetlistofactivesessions)
-    * [User#getPlatformConfig](#usergetplatformconfig)
-    * [User#updateProfile](#userupdateprofile)
-    * [User#addMobileNumber](#useraddmobilenumber)
-    * [User#deleteMobileNumber](#userdeletemobilenumber)
-    * [User#setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
-    * [User#sendVerificationLinkToMobile](#usersendverificationlinktomobile)
-    * [User#addEmail](#useraddemail)
-    * [User#deleteEmail](#userdeleteemail)
-    * [User#setEmailAsPrimary](#usersetemailasprimary)
-    * [User#sendVerificationLinkToEmail](#usersendverificationlinktoemail)
+    * [loginWithFacebook](#userloginwithfacebook)
+    * [loginWithGoogle](#userloginwithgoogle)
+    * [loginWithGoogleAndroid](#userloginwithgoogleandroid)
+    * [loginWithGoogleIOS](#userloginwithgoogleios)
+    * [loginWithOTP](#userloginwithotp)
+    * [loginWithEmailAndPassword](#userloginwithemailandpassword)
+    * [sendResetPasswordEmail](#usersendresetpasswordemail)
+    * [forgotPassword](#userforgotpassword)
+    * [sendResetToken](#usersendresettoken)
+    * [loginWithToken](#userloginwithtoken)
+    * [registerWithForm](#userregisterwithform)
+    * [verifyEmail](#userverifyemail)
+    * [verifyMobile](#userverifymobile)
+    * [hasPassword](#userhaspassword)
+    * [updatePassword](#userupdatepassword)
+    * [logout](#userlogout)
+    * [sendOTPOnMobile](#usersendotponmobile)
+    * [verifyMobileOTP](#userverifymobileotp)
+    * [sendOTPOnEmail](#usersendotponemail)
+    * [verifyEmailOTP](#userverifyemailotp)
+    * [getLoggedInUser](#usergetloggedinuser)
+    * [getListOfActiveSessions](#usergetlistofactivesessions)
+    * [getPlatformConfig](#usergetplatformconfig)
+    * [updateProfile](#userupdateprofile)
+    * [addMobileNumber](#useraddmobilenumber)
+    * [deleteMobileNumber](#userdeletemobilenumber)
+    * [setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
+    * [sendVerificationLinkToMobile](#usersendverificationlinktomobile)
+    * [addEmail](#useraddemail)
+    * [deleteEmail](#userdeleteemail)
+    * [setEmailAsPrimary](#usersetemailasprimary)
+    * [sendVerificationLinkToEmail](#usersendverificationlinktoemail)
     
-   
 
 * [Content](#Content)
   * Methods
-    * [Content#getAnnouncements](#contentgetannouncements)
-    * [Content#getBlog](#contentgetblog)
-    * [Content#getFaqs](#contentgetfaqs)
-    * [Content#getLandingPage](#contentgetlandingpage)
-    * [Content#getLegalInformation](#contentgetlegalinformation)
-    * [Content#getNavigations](#contentgetnavigations)
-    * [Content#getPage](#contentgetpage)
-    * [Content#getSeoConfiguration](#contentgetseoconfiguration)
-    * [Content#getSlideshow](#contentgetslideshow)
-    * [Content#getSupportInformation](#contentgetsupportinformation)
-    * [Content#getTags](#contentgettags)
+    * [getAnnouncements](#contentgetannouncements)
+    * [getBlog](#contentgetblog)
+    * [getFaqs](#contentgetfaqs)
+    * [getLandingPage](#contentgetlandingpage)
+    * [getLegalInformation](#contentgetlegalinformation)
+    * [getNavigations](#contentgetnavigations)
+    * [getPage](#contentgetpage)
+    * [getSeoConfiguration](#contentgetseoconfiguration)
+    * [getSlideshow](#contentgetslideshow)
+    * [getSupportInformation](#contentgetsupportinformation)
+    * [getTags](#contentgettags)
     
-   
 
 * [Communication](#Communication)
   * Methods
-    * [Communication#getCommunicationConsent](#communicationgetcommunicationconsent)
-    * [Communication#upsertCommunicationConsent](#communicationupsertcommunicationconsent)
-    * [Communication#upsertPushtoken](#communicationupsertpushtoken)
+    * [getCommunicationConsent](#communicationgetcommunicationconsent)
+    * [upsertCommunicationConsent](#communicationupsertcommunicationconsent)
+    * [upsertPushtoken](#communicationupsertpushtoken)
     
-   
 
 * [Share](#Share)
   * Methods
-    * [Share#getApplicationQRCode](#sharegetapplicationqrcode)
-    * [Share#getProductQRCodeBySlug](#sharegetproductqrcodebyslug)
-    * [Share#getCollectionQRCodeBySlug](#sharegetcollectionqrcodebyslug)
-    * [Share#getUrlQRCode](#sharegeturlqrcode)
-    * [Share#createShortLink](#sharecreateshortlink)
-    * [Share#getShortLinkByHash](#sharegetshortlinkbyhash)
-    * [Share#getOriginalShortLinkByHash](#sharegetoriginalshortlinkbyhash)
+    * [getApplicationQRCode](#sharegetapplicationqrcode)
+    * [getProductQRCodeBySlug](#sharegetproductqrcodebyslug)
+    * [getCollectionQRCodeBySlug](#sharegetcollectionqrcodebyslug)
+    * [getUrlQRCode](#sharegeturlqrcode)
+    * [createShortLink](#sharecreateshortlink)
+    * [getShortLinkByHash](#sharegetshortlinkbyhash)
+    * [getOriginalShortLinkByHash](#sharegetoriginalshortlinkbyhash)
     
-   
 
 * [FileStorage](#FileStorage)
   * Methods
-    * [FileStorage#completeUpload](#filestoragecompleteupload)
-    * [FileStorage#startUpload](#filestoragestartupload)
+    * [completeUpload](#filestoragecompleteupload)
+    * [startUpload](#filestoragestartupload)
     
-   
 
 * [Payment](#Payment)
   * Methods
-    * [Payment#getAggregatorsConfig](#paymentgetaggregatorsconfig)
-    * [Payment#attachCardToCustomer](#paymentattachcardtocustomer)
-    * [Payment#getActiveCardAggregator](#paymentgetactivecardaggregator)
-    * [Payment#getActiveUserCards](#paymentgetactiveusercards)
-    * [Payment#deleteUserCard](#paymentdeleteusercard)
-    * [Payment#verifyCustomerForPayment](#paymentverifycustomerforpayment)
-    * [Payment#verifyAndChargePayment](#paymentverifyandchargepayment)
-    * [Payment#initialisePayment](#paymentinitialisepayment)
-    * [Payment#checkAndUpdatePaymentStatus](#paymentcheckandupdatepaymentstatus)
-    * [Payment#getPaymentModeRoutes](#paymentgetpaymentmoderoutes)
-    * [Payment#getPosPaymentModeRoutes](#paymentgetpospaymentmoderoutes)
-    * [Payment#getUserBeneficiariesDetail](#paymentgetuserbeneficiariesdetail)
-    * [Payment#verifyIfscCode](#paymentverifyifsccode)
-    * [Payment#getOrderBeneficiariesDetail](#paymentgetorderbeneficiariesdetail)
-    * [Payment#verifyOtpAndAddBeneficiaryForBank](#paymentverifyotpandaddbeneficiaryforbank)
-    * [Payment#addBeneficiaryDetails](#paymentaddbeneficiarydetails)
-    * [Payment#verifyOtpAndAddBeneficiaryForWallet](#paymentverifyotpandaddbeneficiaryforwallet)
-    * [Payment#updateDefaultBeneficiary](#paymentupdatedefaultbeneficiary)
+    * [getAggregatorsConfig](#paymentgetaggregatorsconfig)
+    * [attachCardToCustomer](#paymentattachcardtocustomer)
+    * [getActiveCardAggregator](#paymentgetactivecardaggregator)
+    * [getActiveUserCards](#paymentgetactiveusercards)
+    * [deleteUserCard](#paymentdeleteusercard)
+    * [verifyCustomerForPayment](#paymentverifycustomerforpayment)
+    * [verifyAndChargePayment](#paymentverifyandchargepayment)
+    * [initialisePayment](#paymentinitialisepayment)
+    * [checkAndUpdatePaymentStatus](#paymentcheckandupdatepaymentstatus)
+    * [getPaymentModeRoutes](#paymentgetpaymentmoderoutes)
+    * [getPosPaymentModeRoutes](#paymentgetpospaymentmoderoutes)
+    * [getUserBeneficiariesDetail](#paymentgetuserbeneficiariesdetail)
+    * [verifyIfscCode](#paymentverifyifsccode)
+    * [getOrderBeneficiariesDetail](#paymentgetorderbeneficiariesdetail)
+    * [verifyOtpAndAddBeneficiaryForBank](#paymentverifyotpandaddbeneficiaryforbank)
+    * [addBeneficiaryDetails](#paymentaddbeneficiarydetails)
+    * [verifyOtpAndAddBeneficiaryForWallet](#paymentverifyotpandaddbeneficiaryforwallet)
+    * [updateDefaultBeneficiary](#paymentupdatedefaultbeneficiary)
     
-   
 
 * [Order](#Order)
   * Methods
-    * [Order#getOrders](#ordergetorders)
-    * [Order#getOrderById](#ordergetorderbyid)
-    * [Order#getShipmentById](#ordergetshipmentbyid)
-    * [Order#getShipmentReasons](#ordergetshipmentreasons)
-    * [Order#updateShipmentStatus](#orderupdateshipmentstatus)
-    * [Order#trackShipment](#ordertrackshipment)
+    * [getOrders](#ordergetorders)
+    * [getOrderById](#ordergetorderbyid)
+    * [getShipmentById](#ordergetshipmentbyid)
+    * [getShipmentReasons](#ordergetshipmentreasons)
+    * [updateShipmentStatus](#orderupdateshipmentstatus)
+    * [trackShipment](#ordertrackshipment)
     
-   
 
 * [Rewards](#Rewards)
   * Methods
-    * [Rewards#getPointsOnProduct](#rewardsgetpointsonproduct)
-    * [Rewards#getOrderDiscount](#rewardsgetorderdiscount)
-    * [Rewards#getUserPoints](#rewardsgetuserpoints)
-    * [Rewards#getUserPointsHistory](#rewardsgetuserpointshistory)
-    * [Rewards#getUserReferralDetails](#rewardsgetuserreferraldetails)
-    * [Rewards#redeemReferralCode](#rewardsredeemreferralcode)
+    * [getPointsOnProduct](#rewardsgetpointsonproduct)
+    * [getOrderDiscount](#rewardsgetorderdiscount)
+    * [getUserPoints](#rewardsgetuserpoints)
+    * [getUserPointsHistory](#rewardsgetuserpointshistory)
+    * [getUserReferralDetails](#rewardsgetuserreferraldetails)
+    * [redeemReferralCode](#rewardsredeemreferralcode)
     
-   
 
 * [Feedback](#Feedback)
   * Methods
-    * [Feedback#createAbuseReport](#feedbackcreateabusereport)
-    * [Feedback#updateAbuseReport](#feedbackupdateabusereport)
-    * [Feedback#getAbuseReports](#feedbackgetabusereports)
-    * [Feedback#getAttributes](#feedbackgetattributes)
-    * [Feedback#createAttribute](#feedbackcreateattribute)
-    * [Feedback#getAttribute](#feedbackgetattribute)
-    * [Feedback#updateAttribute](#feedbackupdateattribute)
-    * [Feedback#createComment](#feedbackcreatecomment)
-    * [Feedback#updateComment](#feedbackupdatecomment)
-    * [Feedback#getComments](#feedbackgetcomments)
-    * [Feedback#checkEligibility](#feedbackcheckeligibility)
-    * [Feedback#deleteMedia](#feedbackdeletemedia)
-    * [Feedback#createMedia](#feedbackcreatemedia)
-    * [Feedback#updateMedia](#feedbackupdatemedia)
-    * [Feedback#getMedias](#feedbackgetmedias)
-    * [Feedback#getReviewSummaries](#feedbackgetreviewsummaries)
-    * [Feedback#createReview](#feedbackcreatereview)
-    * [Feedback#updateReview](#feedbackupdatereview)
-    * [Feedback#getReviews](#feedbackgetreviews)
-    * [Feedback#getTemplates](#feedbackgettemplates)
-    * [Feedback#createQuestion](#feedbackcreatequestion)
-    * [Feedback#updateQuestion](#feedbackupdatequestion)
-    * [Feedback#getQuestionAndAnswers](#feedbackgetquestionandanswers)
-    * [Feedback#getVotes](#feedbackgetvotes)
-    * [Feedback#createVote](#feedbackcreatevote)
-    * [Feedback#updateVote](#feedbackupdatevote)
+    * [createAbuseReport](#feedbackcreateabusereport)
+    * [updateAbuseReport](#feedbackupdateabusereport)
+    * [getAbuseReports](#feedbackgetabusereports)
+    * [getAttributes](#feedbackgetattributes)
+    * [createAttribute](#feedbackcreateattribute)
+    * [getAttribute](#feedbackgetattribute)
+    * [updateAttribute](#feedbackupdateattribute)
+    * [createComment](#feedbackcreatecomment)
+    * [updateComment](#feedbackupdatecomment)
+    * [getComments](#feedbackgetcomments)
+    * [checkEligibility](#feedbackcheckeligibility)
+    * [deleteMedia](#feedbackdeletemedia)
+    * [createMedia](#feedbackcreatemedia)
+    * [updateMedia](#feedbackupdatemedia)
+    * [getMedias](#feedbackgetmedias)
+    * [getReviewSummaries](#feedbackgetreviewsummaries)
+    * [createReview](#feedbackcreatereview)
+    * [updateReview](#feedbackupdatereview)
+    * [getReviews](#feedbackgetreviews)
+    * [getTemplates](#feedbackgettemplates)
+    * [createQuestion](#feedbackcreatequestion)
+    * [updateQuestion](#feedbackupdatequestion)
+    * [getQuestionAndAnswers](#feedbackgetquestionandanswers)
+    * [getVotes](#feedbackgetvotes)
+    * [createVote](#feedbackcreatevote)
+    * [updateVote](#feedbackupdatevote)
     
-   
 
 * [PosCart](#PosCart)
   * Methods
-    * [PosCart#getCart](#poscartgetcart)
-    * [PosCart#getCartLastModified](#poscartgetcartlastmodified)
-    * [PosCart#addItems](#poscartadditems)
-    * [PosCart#updateCart](#poscartupdatecart)
-    * [PosCart#getItemCount](#poscartgetitemcount)
-    * [PosCart#getCoupons](#poscartgetcoupons)
-    * [PosCart#applyCoupon](#poscartapplycoupon)
-    * [PosCart#removeCoupon](#poscartremovecoupon)
-    * [PosCart#getBulkDiscountOffers](#poscartgetbulkdiscountoffers)
-    * [PosCart#getAddresses](#poscartgetaddresses)
-    * [PosCart#addAddress](#poscartaddaddress)
-    * [PosCart#getAddressById](#poscartgetaddressbyid)
-    * [PosCart#updateAddress](#poscartupdateaddress)
-    * [PosCart#removeAddress](#poscartremoveaddress)
-    * [PosCart#selectAddress](#poscartselectaddress)
-    * [PosCart#getPaymentModes](#poscartgetpaymentmodes)
-    * [PosCart#selectPaymentMode](#poscartselectpaymentmode)
-    * [PosCart#getShipments](#poscartgetshipments)
-    * [PosCart#updateShipments](#poscartupdateshipments)
-    * [PosCart#checkoutCart](#poscartcheckoutcart)
-    * [PosCart#updateCartMeta](#poscartupdatecartmeta)
-    * [PosCart#getAvailableDeliveryModes](#poscartgetavailabledeliverymodes)
-    * [PosCart#getStoreAddressByUid](#poscartgetstoreaddressbyuid)
-    * [PosCart#getCartShareLink](#poscartgetcartsharelink)
-    * [PosCart#getCartSharedItems](#poscartgetcartshareditems)
-    * [PosCart#updateCartWithSharedItems](#poscartupdatecartwithshareditems)
+    * [getCart](#poscartgetcart)
+    * [getCartLastModified](#poscartgetcartlastmodified)
+    * [addItems](#poscartadditems)
+    * [updateCart](#poscartupdatecart)
+    * [getItemCount](#poscartgetitemcount)
+    * [getCoupons](#poscartgetcoupons)
+    * [applyCoupon](#poscartapplycoupon)
+    * [removeCoupon](#poscartremovecoupon)
+    * [getBulkDiscountOffers](#poscartgetbulkdiscountoffers)
+    * [getAddresses](#poscartgetaddresses)
+    * [addAddress](#poscartaddaddress)
+    * [getAddressById](#poscartgetaddressbyid)
+    * [updateAddress](#poscartupdateaddress)
+    * [removeAddress](#poscartremoveaddress)
+    * [selectAddress](#poscartselectaddress)
+    * [getPaymentModes](#poscartgetpaymentmodes)
+    * [selectPaymentMode](#poscartselectpaymentmode)
+    * [getShipments](#poscartgetshipments)
+    * [updateShipments](#poscartupdateshipments)
+    * [checkoutCart](#poscartcheckoutcart)
+    * [updateCartMeta](#poscartupdatecartmeta)
+    * [getAvailableDeliveryModes](#poscartgetavailabledeliverymodes)
+    * [getStoreAddressByUid](#poscartgetstoreaddressbyuid)
+    * [getCartShareLink](#poscartgetcartsharelink)
+    * [getCartSharedItems](#poscartgetcartshareditems)
+    * [updateCartWithSharedItems](#poscartupdatecartwithshareditems)
     
-   
 
 
 ---
@@ -301,27 +287,14 @@
 
 ## Catalog
 
-```javascript
-const { Configuration, Catalog } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const catalog = new Catalog(conf);
 
-```
-
-
-#### Catalog#getProductDetailBySlug
+#### getProductDetailBySlug
 Get a product
 
-```javascript
-// Promise
-const promise = catalog.getProductDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.getProductDetailBySlug(slug, );
-
+```swift
+catalog.getProductDetailBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -337,11 +310,7 @@ Success Response:
 The Product object. See example below or refer `ProductDetail` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductDetail"
-}`
+Schema: `ProductDetail`
 
 
 
@@ -353,36 +322,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductSizesBySlug
+#### getProductSizesBySlug
 Get the sizes of a product
 
-```javascript
-// Promise
-const promise = catalog.getProductSizesBySlug(slug, store_id, );
-
-// Async/Await
-const data = await catalog.getProductSizesBySlug(slug, store_id, );
-
+```swift
+catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -399,11 +358,7 @@ Success Response:
 The ProductSize object. See example below or refer `ProductSizes` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductSizes"
-}`
+Schema: `ProductSizes`
 
 
 
@@ -415,36 +370,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductPriceBySlug
+#### getProductPriceBySlug
 Get price a product size
 
-```javascript
-// Promise
-const promise = catalog.getProductPriceBySlug(slug, size, pincode, store_id, );
-
-// Async/Await
-const data = await catalog.getProductPriceBySlug(slug, size, pincode, store_id, );
-
+```swift
+catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId: storeId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -463,11 +408,7 @@ Success Response:
 The ProductSizePrice object. See example below or refer `ProductSizePriceResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductSizePriceResponse"
-}`
+Schema: `ProductSizePriceResponse`
 
 
 
@@ -479,36 +420,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductSellersBySlug
+#### getProductSellersBySlug
 List sellers of a product
 
-```javascript
-// Promise
-const promise = catalog.getProductSellersBySlug(slug, size, pincode, page_no, page_size, );
-
-// Async/Await
-const data = await catalog.getProductSellersBySlug(slug, size, pincode, page_no, page_size, );
-
+```swift
+catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -528,11 +459,7 @@ Success Response:
 The ProductSizeSeller object. See example below or refer `ProductSizeSellersResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductSizeSellersResponse"
-}`
+Schema: `ProductSizeSellersResponse`
 
 
 
@@ -544,36 +471,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductComparisonBySlugs
+#### getProductComparisonBySlugs
 Compare products
 
-```javascript
-// Promise
-const promise = catalog.getProductComparisonBySlugs(slug, );
-
-// Async/Await
-const data = await catalog.getProductComparisonBySlugs(slug, );
-
+```swift
+catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -589,11 +506,7 @@ Success Response:
 The comparison between the products. See example below or refer `ProductsComparisonResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductsComparisonResponse"
-}`
+Schema: `ProductsComparisonResponse`
 
 
 
@@ -605,36 +518,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getSimilarComparisonProductBySlug
+#### getSimilarComparisonProductBySlug
 Get comparison between similar products
 
-```javascript
-// Promise
-const promise = catalog.getSimilarComparisonProductBySlug(slug, );
-
-// Async/Await
-const data = await catalog.getSimilarComparisonProductBySlug(slug, );
-
+```swift
+catalog.getSimilarComparisonProductBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -650,11 +553,7 @@ Success Response:
 The comparison between products similar to given product. See example below or refer `ProductCompareResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductCompareResponse"
-}`
+Schema: `ProductCompareResponse`
 
 
 
@@ -666,36 +565,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getComparedFrequentlyProductBySlug
+#### getComparedFrequentlyProductBySlug
 Get comparison between frequently compared products with the given product
 
-```javascript
-// Promise
-const promise = catalog.getComparedFrequentlyProductBySlug(slug, );
-
-// Async/Await
-const data = await catalog.getComparedFrequentlyProductBySlug(slug, );
-
+```swift
+catalog.getComparedFrequentlyProductBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -711,11 +600,7 @@ Success Response:
 The comparison between products similar to given product. See example below or refer `ProductFrequentlyComparedSimilarResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductFrequentlyComparedSimilarResponse"
-}`
+Schema: `ProductFrequentlyComparedSimilarResponse`
 
 
 
@@ -727,36 +612,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductSimilarByIdentifier
+#### getProductSimilarByIdentifier
 Get similar products
 
-```javascript
-// Promise
-const promise = catalog.getProductSimilarByIdentifier(slug, similar_type, );
-
-// Async/Await
-const data = await catalog.getProductSimilarByIdentifier(slug, similar_type, );
-
+```swift
+catalog.getProductSimilarByIdentifier(slug: slug, similarType: similarType) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -773,11 +648,7 @@ Success Response:
 Similar Products based on type passed in the request path. Refer `SimilarProductByTypeResponse` for response structure
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SimilarProductByTypeResponse"
-}`
+Schema: `SimilarProductByTypeResponse`
 
 
 
@@ -789,36 +660,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductVariantsBySlug
+#### getProductVariantsBySlug
 Get variant of a particular product
 
-```javascript
-// Promise
-const promise = catalog.getProductVariantsBySlug(slug, );
-
-// Async/Await
-const data = await catalog.getProductVariantsBySlug(slug, );
-
+```swift
+catalog.getProductVariantsBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -834,11 +695,7 @@ Success Response:
 See example below or refer `ProductVariantsResponse` for details. For `display_type:image`, `color` key will be present otherwise `value` key will be preset.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductVariantsResponse"
-}`
+Schema: `ProductVariantsResponse`
 
 
 
@@ -850,36 +707,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductStockByIds
+#### getProductStockByIds
 Get the stock of a product
 
-```javascript
-// Promise
-const promise = catalog.getProductStockByIds(item_id, alu, sku_code, ean, upc, );
-
-// Async/Await
-const data = await catalog.getProductStockByIds(item_id, alu, sku_code, ean, upc, );
-
+```swift
+catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode: skuCode, ean: ean, upc: upc) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -899,11 +746,7 @@ Success Response:
 The ProductStockStatus object. See example below or refer `ProductStockStatusResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductStockStatusResponse"
-}`
+Schema: `ProductStockStatusResponse`
 
 
 
@@ -915,36 +758,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProductStockForTimeByIds
+#### getProductStockForTimeByIds
 Get the stock of a product
 
-```javascript
-// Promise
-const promise = catalog.getProductStockForTimeByIds(timestamp, page_size, page_id, );
-
-// Async/Await
-const data = await catalog.getProductStockForTimeByIds(timestamp, page_size, page_id, );
-
+```swift
+catalog.getProductStockForTimeByIds(timestamp: timestamp, pageSize: pageSize, pageId: pageId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -962,11 +795,7 @@ Success Response:
 The ProductStockStatus object. See example below or refer `ProductStockPolling` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductStockPolling"
-}`
+Schema: `ProductStockPolling`
 
 
 
@@ -978,36 +807,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getProducts
+#### getProducts
 List the products
 
-```javascript
-// Promise
-const promise = catalog.getProducts(q, f, filters, sort_on, page_id, page_size, page_no, page_type, );
-
-// Async/Await
-const data = await catalog.getProducts(q, f, filters, sort_on, page_id, page_size, page_no, page_type, );
-
+```swift
+catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId, pageSize: pageSize, pageNo: pageNo, pageType: pageType) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1030,11 +849,7 @@ Success Response:
 List of Products. See example below or refer `ProductListingResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductListingResponse"
-}`
+Schema: `ProductListingResponse`
 
 
 
@@ -1046,36 +861,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getBrands
+#### getBrands
 List all the brands
 
-```javascript
-// Promise
-const promise = catalog.getBrands(department, page_no, page_size, );
-
-// Async/Await
-const data = await catalog.getBrands(department, page_no, page_size, );
-
+```swift
+catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1093,11 +898,7 @@ Success Response:
 List of Brands. See example below or refer `BrandListingResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/BrandListingResponse"
-}`
+Schema: `BrandListingResponse`
 
 
 
@@ -1109,36 +910,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getBrandDetailBySlug
+#### getBrandDetailBySlug
 Get metadata of a brand
 
-```javascript
-// Promise
-const promise = catalog.getBrandDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.getBrandDetailBySlug(slug, );
-
+```swift
+catalog.getBrandDetailBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1154,11 +945,7 @@ Success Response:
 The Metadata object. See example below or refer `BrandDetailResponse` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/BrandDetailResponse"
-}`
+Schema: `BrandDetailResponse`
 
 
 
@@ -1170,36 +957,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getCategories
+#### getCategories
 List all the categories
 
-```javascript
-// Promise
-const promise = catalog.getCategories(department, );
-
-// Async/Await
-const data = await catalog.getCategories(department, );
-
+```swift
+catalog.getCategories(department: department) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1215,11 +992,7 @@ Success Response:
 List of Categories. See example below or refer `CategoryListingResponse` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CategoryListingResponse"
-}`
+Schema: `CategoryListingResponse`
 
 
 
@@ -1231,36 +1004,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getCategoryDetailBySlug
+#### getCategoryDetailBySlug
 Get metadata of a category
 
-```javascript
-// Promise
-const promise = catalog.getCategoryDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.getCategoryDetailBySlug(slug, );
-
+```swift
+catalog.getCategoryDetailBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1276,11 +1039,7 @@ Success Response:
 The Metadata object. See example below or refer `CategoryMetaResponse` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CategoryMetaResponse"
-}`
+Schema: `CategoryMetaResponse`
 
 
 
@@ -1292,36 +1051,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getHomeProducts
+#### getHomeProducts
 List the products
 
-```javascript
-// Promise
-const promise = catalog.getHomeProducts(sort_on, page_id, page_size, );
-
-// Async/Await
-const data = await catalog.getHomeProducts(sort_on, page_id, page_size, );
-
+```swift
+catalog.getHomeProducts(sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1339,11 +1088,7 @@ Success Response:
 List of Products. See example below or refer `HomeListingResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HomeListingResponse"
-}`
+Schema: `HomeListingResponse`
 
 
 
@@ -1355,36 +1100,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getDepartments
+#### getDepartments
 List all the departments
 
-```javascript
-// Promise
-const promise = catalog.getDepartments();
-
-// Async/Await
-const data = await catalog.getDepartments();
-
+```swift
+catalog.getDepartments() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1399,11 +1134,7 @@ Success Response:
 List of Departments. See example below or refer `DepartmentResponse` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/DepartmentResponse"
-}`
+Schema: `DepartmentResponse`
 
 
 
@@ -1415,36 +1146,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getSearchResults
+#### getSearchResults
 Get relevant suggestions for a search query
 
-```javascript
-// Promise
-const promise = catalog.getSearchResults(q, );
-
-// Async/Await
-const data = await catalog.getSearchResults(q, );
-
+```swift
+catalog.getSearchResults(q: q) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1460,11 +1181,7 @@ Success Response:
 Lists of autocomplete suggestions for the search query `q`. See example response below or refer `AutoCompleteResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AutoCompleteResponse"
-}`
+Schema: `AutoCompleteResponse`
 
 
 
@@ -1476,36 +1193,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#addCollection
+#### addCollection
 Add a Collection
 
-```javascript
-// Promise
-const promise = catalog.addCollection();
-
-// Async/Await
-const data = await catalog.addCollection();
-
+```swift
+catalog.addCollection(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1520,11 +1227,7 @@ Success Response:
 List of all the collections including the one you added. See example below or refer `CollectionDetailResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionDetailResponse"
-}`
+Schema: `CollectionDetailResponse`
 
 
 
@@ -1536,36 +1239,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getCollections
+#### getCollections
 List all the collections
 
-```javascript
-// Promise
-const promise = catalog.getCollections(page_id, page_size, );
-
-// Async/Await
-const data = await catalog.getCollections(page_id, page_size, );
-
+```swift
+catalog.getCollections(pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1582,11 +1275,7 @@ Success Response:
 List of collections. See example below or refer `GetCollectionListingResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetCollectionListingResponse"
-}`
+Schema: `GetCollectionListingResponse`
 
 
 
@@ -1598,36 +1287,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#addCollectionItemsBySlug
+#### addCollectionItemsBySlug
 Add items to a collection
 
-```javascript
-// Promise
-const promise = catalog.addCollectionItemsBySlug(slug, );
-
-// Async/Await
-const data = await catalog.addCollectionItemsBySlug(slug, );
-
+```swift
+catalog.addCollectionItemsBySlug(slug: slug, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1643,11 +1322,7 @@ Success Response:
 Status object. Tells whether the operation was successful.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionItemsResponse"
-}`
+Schema: `CollectionItemsResponse`
 
 
 
@@ -1659,36 +1334,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getCollectionItemsBySlug
+#### getCollectionItemsBySlug
 Get the items in a collection
 
-```javascript
-// Promise
-const promise = catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
-
-// Async/Await
-const data = await catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
-
+```swift
+catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1709,11 +1374,7 @@ Success Response:
 The attached items of an collection. See example below or refer `ProductListingResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ProductListingResponse"
-}`
+Schema: `ProductListingResponse`
 
 
 
@@ -1725,36 +1386,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#deleteCollectionDetailBySlug
+#### deleteCollectionDetailBySlug
 Delete a Collection
 
-```javascript
-// Promise
-const promise = catalog.deleteCollectionDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.deleteCollectionDetailBySlug(slug, );
-
+```swift
+catalog.deleteCollectionDetailBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1770,11 +1421,7 @@ Success Response:
 Status object. Tells whether the operation was successful. See example below or refer `CollectionDetailViewDeleteResponse`
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionDetailViewDeleteResponse"
-}`
+Schema: `CollectionDetailViewDeleteResponse`
 
 
 
@@ -1786,36 +1433,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getCollectionDetailBySlug
+#### getCollectionDetailBySlug
 Get a particular collection
 
-```javascript
-// Promise
-const promise = catalog.getCollectionDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.getCollectionDetailBySlug(slug, );
-
+```swift
+catalog.getCollectionDetailBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1831,11 +1468,7 @@ Success Response:
 The Collection object. See example below or refer `CollectionDetailResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionDetailResponse"
-}`
+Schema: `CollectionDetailResponse`
 
 
 
@@ -1847,36 +1480,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#updateCollectionDetailBySlug
+#### updateCollectionDetailBySlug
 Update a collection
 
-```javascript
-// Promise
-const promise = catalog.updateCollectionDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.updateCollectionDetailBySlug(slug, );
-
+```swift
+catalog.updateCollectionDetailBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1892,11 +1515,7 @@ Success Response:
 The Collection object. See example below or refer `CollectionsUpdateDetailResponse` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionsUpdateDetailResponse"
-}`
+Schema: `CollectionsUpdateDetailResponse`
 
 
 
@@ -1908,36 +1527,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getFollowedListing
+#### getFollowedListing
 Get a list of followed Products, Brands, Collections
 
-```javascript
-// Promise
-const promise = catalog.getFollowedListing(collection_type, );
-
-// Async/Await
-const data = await catalog.getFollowedListing(collection_type, );
-
+```swift
+catalog.getFollowedListing(collectionType: collectionType) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -1953,11 +1562,7 @@ Success Response:
 The Followed resource object. See example below or refer `GetFollowListingResponse` for details.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetFollowListingResponse"
-}`
+Schema: `GetFollowListingResponse`
 
 
 
@@ -1969,36 +1574,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#followById
+#### followById
 Follow a particular Product
 
-```javascript
-// Promise
-const promise = catalog.followById(collection_type, collection_id, );
-
-// Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
-
+```swift
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2015,11 +1610,7 @@ Success Response:
 The response object. See example below or refer `FollowPostResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/FollowPostResponse"
-}`
+Schema: `FollowPostResponse`
 
 
 
@@ -2031,36 +1622,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#unfollowById
+#### unfollowById
 UnFollow a Product
 
-```javascript
-// Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
-
-// Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
-
+```swift
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2077,11 +1658,7 @@ Success Response:
 The response object. See example below or refer `FollowPostResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/FollowPostResponse"
-}`
+Schema: `FollowPostResponse`
 
 
 
@@ -2093,36 +1670,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getFollowerCountById
+#### getFollowerCountById
 Get Follow Count
 
-```javascript
-// Promise
-const promise = catalog.getFollowerCountById(collection_type, collection_id, );
-
-// Async/Await
-const data = await catalog.getFollowerCountById(collection_type, collection_id, );
-
+```swift
+catalog.getFollowerCountById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2139,11 +1706,7 @@ Success Response:
 The response object. See example below or refer `FollowerCountResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/FollowerCountResponse"
-}`
+Schema: `FollowerCountResponse`
 
 
 
@@ -2155,36 +1718,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getFollowIds
+#### getFollowIds
 Get the Ids of followed product, brand and collection.
 
-```javascript
-// Promise
-const promise = catalog.getFollowIds(collection_type, );
-
-// Async/Await
-const data = await catalog.getFollowIds(collection_type, );
-
+```swift
+catalog.getFollowIds(collectionType: collectionType) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2200,11 +1753,7 @@ Success Response:
 The response object. See example below or refer `FollowIdsResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/FollowIdsResponse"
-}`
+Schema: `FollowIdsResponse`
 
 
 
@@ -2216,36 +1765,26 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Catalog#getStores
+#### getStores
 List store meta information.
 
-```javascript
-// Promise
-const promise = catalog.getStores(page_no, page_size, q, range, latitude, longitude, );
-
-// Async/Await
-const data = await catalog.getStores(page_no, page_size, q, range, latitude, longitude, );
-
+```swift
+catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitude: latitude, longitude: longitude) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2266,11 +1805,7 @@ Success Response:
 List of Stores. See example below or refer `StoreListingResponse` for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/StoreListingResponse"
-}`
+Schema: `StoreListingResponse`
 
 
 
@@ -2282,20 +1817,13 @@ Schema: `{
 Bad request. See the error object in the response body for specific reason
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -2308,27 +1836,14 @@ Error Response:
 
 ## Cart
 
-```javascript
-const { Configuration, Cart } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const cart = new Cart(conf);
 
-```
-
-
-#### Cart#getCart
+#### getCart
 Fetch all Items Added to  Cart
 
-```javascript
-// Promise
-const promise = cart.getCart(uid, assign_card_id, );
-
-// Async/Await
-const data = await cart.getCart(uid, assign_card_id, );
-
+```swift
+cart.getCart(uid: uid, assignCardId: assignCardId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2345,36 +1860,26 @@ Success Response:
 The Cart object. See example below or refer CartResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
-}`
+Schema: `CartResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#getCartLastModified
+#### getCartLastModified
 Fetch Last-Modified timestamp
 
-```javascript
-// Promise
-const promise = cart.getCartLastModified(uid, );
-
-// Async/Await
-const data = await cart.getCartLastModified(uid, );
-
+```swift
+cart.getCartLastModified(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2393,23 +1898,17 @@ Fetch Last-Modified Timestamp Response
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Cart#addItems
+#### addItems
 Add Items to Cart
 
-```javascript
-// Promise
-const promise = cart.addItems();
-
-// Async/Await
-const data = await cart.addItems();
-
+```swift
+cart.addItems(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -2424,11 +1923,7 @@ Success Response:
 Response of the cart object including all item details included in .the cart,coupons etc.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AddCartResponse"
-}`
+Schema: `AddCartResponse`
 
 
 Examples: 
@@ -3070,23 +2565,17 @@ Sorry, item is out of stock
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Cart#updateCart
+#### updateCart
 Update Items already added to Cart
 
-```javascript
-// Promise
-const promise = cart.updateCart();
-
-// Async/Await
-const data = await cart.updateCart();
-
+```swift
+cart.updateCart(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3101,11 +2590,7 @@ Success Response:
 Response of the cart object including all item with their updated details included in .the cart,coupons etc..
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/UpdateCartResponse"
-}`
+Schema: `UpdateCartResponse`
 
 
 Examples: 
@@ -3476,23 +2961,17 @@ Item updated in the cart
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Cart#getItemCount
+#### getItemCount
 Cart item count
 
-```javascript
-// Promise
-const promise = cart.getItemCount(uid, );
-
-// Async/Await
-const data = await cart.getItemCount(uid, );
-
+```swift
+cart.getItemCount(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3508,36 +2987,26 @@ Success Response:
 OK
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartItemCountResponse"
-}`
+Schema: `CartItemCountResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#getCoupons
+#### getCoupons
 Fetch Coupon
 
-```javascript
-// Promise
-const promise = cart.getCoupons(uid, );
-
-// Async/Await
-const data = await cart.getCoupons(uid, );
-
+```swift
+cart.getCoupons(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3553,36 +3022,26 @@ Success Response:
 Returns The Couppon object which has list of all available_coupon applicale for the cart. See example below or refer GetCouponResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetCouponResponse"
-}`
+Schema: `GetCouponResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#applyCoupon
+#### applyCoupon
 Apply Coupon
 
-```javascript
-// Promise
-const promise = cart.applyCoupon(i, b, p, );
-
-// Async/Await
-const data = await cart.applyCoupon(i, b, p, );
-
+```swift
+cart.applyCoupon(i: i, b: b, p: p, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3601,36 +3060,26 @@ Success Response:
 Response of the Coupon object including all item details included in .the cart,coupons applied etc.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SaveCouponResponse"
-}`
+Schema: `SaveCouponResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#removeCoupon
+#### removeCoupon
 Remove Coupon Applied
 
-```javascript
-// Promise
-const promise = cart.removeCoupon(uid, );
-
-// Async/Await
-const data = await cart.removeCoupon(uid, );
-
+```swift
+cart.removeCoupon(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3646,36 +3095,26 @@ Success Response:
 Response of the Coupon object including all item details included in .the cart,coupons removed etc.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
-}`
+Schema: `CartResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#getBulkDiscountOffers
+#### getBulkDiscountOffers
 Get discount offers based on quantity
 
-```javascript
-// Promise
-const promise = cart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
-
-// Async/Await
-const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
-
+```swift
+cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3694,11 +3133,7 @@ Success Response:
 Offers found or not found with valid input
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/BulkPriceResponse"
-}`
+Schema: `BulkPriceResponse`
 
 
 Examples: 
@@ -3781,41 +3216,26 @@ Offers not found
 Unhandled api error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#getAddresses
+#### getAddresses
 Fetch Address
 
-```javascript
-// Promise
-const promise = cart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
-
-// Async/Await
-const data = await cart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
-
+```swift
+cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3835,36 +3255,26 @@ Success Response:
 Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetAddressResponse"
-}`
+Schema: `GetAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#addAddress
+#### addAddress
 Add Address to the account
 
-```javascript
-// Promise
-const promise = cart.addAddress();
-
-// Async/Await
-const data = await cart.addAddress();
-
+```swift
+cart.addAddress(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3879,36 +3289,26 @@ Success Response:
 Return Address Id on successfull completion of the request.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SaveAddressResponse"
-}`
+Schema: `SaveAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#getAddressById
+#### getAddressById
 Fetch Single Address
 
-```javascript
-// Promise
-const promise = cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
-
-// Async/Await
-const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
-
+```swift
+cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3929,36 +3329,26 @@ Success Response:
 Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetAddressResponse"
-}`
+Schema: `GetAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#updateAddress
+#### updateAddress
 Update Address alreay added to account
 
-```javascript
-// Promise
-const promise = cart.updateAddress(id, );
-
-// Async/Await
-const data = await cart.updateAddress(id, );
-
+```swift
+cart.updateAddress(id: id, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -3974,36 +3364,26 @@ Success Response:
 Response of the Address object containing address_id and sucess message.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/UpdateAddressResponse"
-}`
+Schema: `UpdateAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#removeAddress
+#### removeAddress
 Remove Address Associated to the account
 
-```javascript
-// Promise
-const promise = cart.removeAddress(id, );
-
-// Async/Await
-const data = await cart.removeAddress(id, );
-
+```swift
+cart.removeAddress(id: id) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -4019,36 +3399,26 @@ Success Response:
 Status object. Tells whether the operation was successful. See example below or refer DeleteAddressResponse
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/DeleteAddressResponse"
-}`
+Schema: `DeleteAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#selectAddress
+#### selectAddress
 Select Address from All Addresses
 
-```javascript
-// Promise
-const promise = cart.selectAddress();
-
-// Async/Await
-const data = await cart.selectAddress();
-
+```swift
+cart.selectAddress(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -4063,11 +3433,7 @@ Success Response:
 Response of the Address object containing Cart Object and success message.  .
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
-}`
+Schema: `CartResponse`
 
 
 
@@ -4079,19 +3445,7 @@ Schema: `{
 Address or Pincode Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "status": {
-      "type": "string"
-    },
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 Examples: 
@@ -4124,23 +3478,17 @@ Pincode Not Serviciable
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Cart#getPaymentModes
+#### getPaymentModes
 Get Cart Payment for valid coupon
 
-```javascript
-// Promise
-const promise = cart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
-
-// Async/Await
-const data = await cart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
-
+```swift
+cart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -4161,36 +3509,26 @@ Success Response:
 Cart Affiliates.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentOptions"
-}`
+Schema: `PaymentOptions`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#selectPaymentMode
+#### selectPaymentMode
 Update Cart Payment
 
-```javascript
-// Promise
-const promise = cart.selectPaymentMode(uid, );
-
-// Async/Await
-const data = await cart.selectPaymentMode(uid, );
-
+```swift
+cart.selectPaymentMode(uid: uid, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -4206,36 +3544,26 @@ Success Response:
 Cart Affiliates.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentOptions"
-}`
+Schema: `PaymentOptions`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#getShipments
+#### getShipments
 Get delivery date and options before checkout
 
-```javascript
-// Promise
-const promise = cart.getShipments(p, uid, address_id, );
-
-// Async/Await
-const data = await cart.getShipments(p, uid, address_id, );
-
+```swift
+cart.getShipments(p: p, uid: uid, addressId: addressId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -4253,11 +3581,7 @@ Success Response:
 OK
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartShipmentsResponse"
-}`
+Schema: `CartShipmentsResponse`
 
 
 Examples: 
@@ -4909,41 +4233,26 @@ Shipment Generation Failed
 Unhandled api error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#checkoutCart
+#### checkoutCart
 Checkout Cart
 
-```javascript
-// Promise
-const promise = cart.checkoutCart();
-
-// Async/Await
-const data = await cart.checkoutCart();
-
+```swift
+cart.checkoutCart(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -4958,11 +4267,7 @@ Success Response:
 OK
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartCheckoutResponse"
-}`
+Schema: `CartCheckoutResponse`
 
 
 Examples: 
@@ -5348,23 +4653,17 @@ Successful checkout cod payment
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Cart#updateCartMeta
+#### updateCartMeta
 Update Cart Meta
 
-```javascript
-// Promise
-const promise = cart.updateCartMeta(uid, );
-
-// Async/Await
-const data = await cart.updateCartMeta(uid, );
-
+```swift
+cart.updateCartMeta(uid: uid, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -5380,11 +4679,7 @@ Success Response:
 Cart meta updated successfully
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartMetaResponse"
-}`
+Schema: `CartMetaResponse`
 
 
 
@@ -5396,36 +4691,26 @@ Schema: `{
 Missing required Field
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartMetaMissingResponse"
-}`
+Schema: `CartMetaMissingResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#getCartShareLink
+#### getCartShareLink
 Generate Cart sharing link token
 
-```javascript
-// Promise
-const promise = cart.getCartShareLink();
-
-// Async/Await
-const data = await cart.getCartShareLink();
-
+```swift
+cart.getCartShareLink(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -5440,11 +4725,7 @@ Success Response:
 Token Generated successfully
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetShareCartLinkResponse"
-}`
+Schema: `GetShareCartLinkResponse`
 
 
 Examples: 
@@ -5467,23 +4748,17 @@ Token Generated
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Cart#getCartSharedItems
+#### getCartSharedItems
 Get shared cart snapshot and cart response
 
-```javascript
-// Promise
-const promise = cart.getCartSharedItems(token, );
-
-// Async/Await
-const data = await cart.getCartSharedItems(token, );
-
+```swift
+cart.getCartSharedItems(token: token) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -5499,11 +4774,7 @@ Success Response:
 Cart for valid token
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
-}`
+Schema: `SharedCartResponse`
 
 
 
@@ -5515,36 +4786,26 @@ Schema: `{
 No cart found for sent token
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
-}`
+Schema: `SharedCartResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Cart#updateCartWithSharedItems
+#### updateCartWithSharedItems
 Merge or Replace existing cart
 
-```javascript
-// Promise
-const promise = cart.updateCartWithSharedItems(token, action, );
-
-// Async/Await
-const data = await cart.updateCartWithSharedItems(token, action, );
-
+```swift
+cart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -5561,11 +4822,7 @@ Success Response:
 Success of Merge or Replace of cart with `shared_cart_details`                    containing shared cart details in response
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
-}`
+Schema: `SharedCartResponse`
 
 
 Examples: 
@@ -5860,9 +5117,6 @@ Cart Merged/Replaced
 
 
 
-Error Response:
-
-
 
 ---
 
@@ -5873,27 +5127,14 @@ Error Response:
 
 ## Lead
 
-```javascript
-const { Configuration, Lead } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const lead = new Lead(conf);
 
-```
-
-
-#### Lead#getTicket
+#### getTicket
 Get Ticket with the specific id
 
-```javascript
-// Promise
-const promise = lead.getTicket(id, );
-
-// Async/Await
-const data = await lead.getTicket(id, );
-
+```swift
+lead.getTicket(id: id) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -5909,11 +5150,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Ticket"
-}`
+Schema: `Ticket`
 
 
 Examples: 
@@ -6124,23 +5361,17 @@ Default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Lead#createHistoryForTicket
+#### createHistoryForTicket
 Create history for specific Ticket
 
-```javascript
-// Promise
-const promise = lead.createHistoryForTicket(ticket_id, );
-
-// Async/Await
-const data = await lead.createHistoryForTicket(ticket_id, );
-
+```swift
+lead.createHistoryForTicket(ticketId: ticketId, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -6156,11 +5387,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/TicketHistory"
-}`
+Schema: `TicketHistory`
 
 
 Examples: 
@@ -6214,23 +5441,17 @@ Default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Lead#createTicket
+#### createTicket
 Create Ticket
 
-```javascript
-// Promise
-const promise = lead.createTicket();
-
-// Async/Await
-const data = await lead.createTicket();
-
+```swift
+lead.createTicket(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -6245,11 +5466,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Ticket"
-}`
+Schema: `Ticket`
 
 
 Examples: 
@@ -6460,23 +5677,17 @@ Default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Lead#getCustomForm
+#### getCustomForm
 Get specific Custom Form using it's slug
 
-```javascript
-// Promise
-const promise = lead.getCustomForm(slug, );
-
-// Async/Await
-const data = await lead.getCustomForm(slug, );
-
+```swift
+lead.getCustomForm(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -6492,11 +5703,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CustomForm"
-}`
+Schema: `CustomForm`
 
 
 Examples: 
@@ -6560,23 +5767,17 @@ Default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Lead#submitCustomForm
+#### submitCustomForm
 Submit Response for a specific Custom Form using it's slug
 
-```javascript
-// Promise
-const promise = lead.submitCustomForm(slug, );
-
-// Async/Await
-const data = await lead.submitCustomForm(slug, );
-
+```swift
+lead.submitCustomForm(slug: slug, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -6592,11 +5793,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SubmitCustomFormResponse"
-}`
+Schema: `SubmitCustomFormResponse`
 
 
 Examples: 
@@ -6809,23 +6006,17 @@ Default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Lead#getParticipantsInsideVideoRoom
+#### getParticipantsInsideVideoRoom
 Get participants of a specific Video Room using it's unique name
 
-```javascript
-// Promise
-const promise = lead.getParticipantsInsideVideoRoom(unique_name, );
-
-// Async/Await
-const data = await lead.getParticipantsInsideVideoRoom(unique_name, );
-
+```swift
+lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -6841,11 +6032,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetParticipantsInsideVideoRoomResponse"
-}`
+Schema: `GetParticipantsInsideVideoRoomResponse`
 
 
 Examples: 
@@ -6867,23 +6054,17 @@ Default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Lead#getTokenForVideoRoom
+#### getTokenForVideoRoom
 Get Token to join a specific Video Room using it's unqiue name
 
-```javascript
-// Promise
-const promise = lead.getTokenForVideoRoom(unique_name, );
-
-// Async/Await
-const data = await lead.getTokenForVideoRoom(unique_name, );
-
+```swift
+lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -6899,11 +6080,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetTokenForVideoRoomResponse"
-}`
+Schema: `GetTokenForVideoRoomResponse`
 
 
 Examples: 
@@ -6925,9 +6102,6 @@ Default
 
 
 
-Error Response:
-
-
 
 ---
 
@@ -6938,27 +6112,14 @@ Error Response:
 
 ## Theme
 
-```javascript
-const { Configuration, Theme } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const theme = new Theme(conf);
 
-```
-
-
-#### Theme#getAppliedTheme
+#### getAppliedTheme
 Get applied theme for an application
 
-```javascript
-// Promise
-const promise = theme.getAppliedTheme();
-
-// Async/Await
-const data = await theme.getAppliedTheme();
-
+```swift
+theme.getAppliedTheme() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -6973,11 +6134,7 @@ Success Response:
 A JSON object of theme
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ThemesSchema"
-}`
+Schema: `ThemesSchema`
 
 
 Examples: 
@@ -7009,23 +6166,17 @@ Applied Theme
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Theme#getThemeForPreview
+#### getThemeForPreview
 Get theme for preview
 
-```javascript
-// Promise
-const promise = theme.getThemeForPreview(theme_id, );
-
-// Async/Await
-const data = await theme.getThemeForPreview(theme_id, );
-
+```swift
+theme.getThemeForPreview(themeId: themeId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7041,11 +6192,7 @@ Success Response:
 A JSON object of theme
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ThemesSchema"
-}`
+Schema: `ThemesSchema`
 
 
 Examples: 
@@ -7077,9 +6224,6 @@ Preview Theme
 
 
 
-Error Response:
-
-
 
 ---
 
@@ -7090,27 +6234,14 @@ Error Response:
 
 ## User
 
-```javascript
-const { Configuration, User } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const user = new User(conf);
 
-```
-
-
-#### User#loginWithFacebook
+#### loginWithFacebook
 Login/Register with Facebook
 
-```javascript
-// Promise
-const promise = user.loginWithFacebook();
-
-// Async/Await
-const data = await user.loginWithFacebook();
-
+```swift
+user.loginWithFacebook(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7125,11 +6256,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AuthSuccess"
-}`
+Schema: `AuthSuccess`
 
 
 Examples: 
@@ -7161,23 +6288,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#loginWithGoogle
+#### loginWithGoogle
 Login/Register with Google
 
-```javascript
-// Promise
-const promise = user.loginWithGoogle();
-
-// Async/Await
-const data = await user.loginWithGoogle();
-
+```swift
+user.loginWithGoogle(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7192,11 +6313,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AuthSuccess"
-}`
+Schema: `AuthSuccess`
 
 
 Examples: 
@@ -7228,23 +6345,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#loginWithGoogleAndroid
+#### loginWithGoogleAndroid
 Login/Register with Google for android
 
-```javascript
-// Promise
-const promise = user.loginWithGoogleAndroid();
-
-// Async/Await
-const data = await user.loginWithGoogleAndroid();
-
+```swift
+user.loginWithGoogleAndroid(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7259,11 +6370,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AuthSuccess"
-}`
+Schema: `AuthSuccess`
 
 
 Examples: 
@@ -7295,23 +6402,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#loginWithGoogleIOS
+#### loginWithGoogleIOS
 Login/Register with Google for ios
 
-```javascript
-// Promise
-const promise = user.loginWithGoogleIOS();
-
-// Async/Await
-const data = await user.loginWithGoogleIOS();
-
+```swift
+user.loginWithGoogleIOS(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7326,11 +6427,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AuthSuccess"
-}`
+Schema: `AuthSuccess`
 
 
 Examples: 
@@ -7362,23 +6459,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#loginWithOTP
+#### loginWithOTP
 Login/Register with OTP
 
-```javascript
-// Promise
-const promise = user.loginWithOTP(platform, );
-
-// Async/Await
-const data = await user.loginWithOTP(platform, );
-
+```swift
+user.loginWithOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7394,11 +6485,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SendOtpResponse"
-}`
+Schema: `SendOtpResponse`
 
 
 Examples: 
@@ -7430,23 +6517,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#loginWithEmailAndPassword
+#### loginWithEmailAndPassword
 Login/Register with password
 
-```javascript
-// Promise
-const promise = user.loginWithEmailAndPassword();
-
-// Async/Await
-const data = await user.loginWithEmailAndPassword();
-
+```swift
+user.loginWithEmailAndPassword(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7461,11 +6542,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -7497,23 +6574,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#sendResetPasswordEmail
+#### sendResetPasswordEmail
 Reset Password
 
-```javascript
-// Promise
-const promise = user.sendResetPasswordEmail(platform, );
-
-// Async/Await
-const data = await user.sendResetPasswordEmail(platform, );
-
+```swift
+user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7529,11 +6600,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ResetPasswordSuccess"
-}`
+Schema: `ResetPasswordSuccess`
 
 
 
@@ -7552,25 +6619,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#forgotPassword
+#### forgotPassword
 
 
-```javascript
-// Promise
-const promise = user.forgotPassword();
-
-// Async/Await
-const data = await user.forgotPassword();
-
+```swift
+user.forgotPassword(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7585,11 +6646,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -7621,23 +6678,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#sendResetToken
+#### sendResetToken
 
 
-```javascript
-// Promise
-const promise = user.sendResetToken();
-
-// Async/Await
-const data = await user.sendResetToken();
-
+```swift
+user.sendResetToken(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7652,11 +6703,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ResetPasswordSuccess"
-}`
+Schema: `ResetPasswordSuccess`
 
 
 
@@ -7675,25 +6722,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#loginWithToken
+#### loginWithToken
 Login/Register with token
 
-```javascript
-// Promise
-const promise = user.loginWithToken();
-
-// Async/Await
-const data = await user.loginWithToken();
-
+```swift
+user.loginWithToken(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7708,11 +6749,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -7735,16 +6772,7 @@ Success
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 
@@ -7763,25 +6791,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#registerWithForm
+#### registerWithForm
 Registration Form
 
-```javascript
-// Promise
-const promise = user.registerWithForm(platform, );
-
-// Async/Await
-const data = await user.registerWithForm(platform, );
-
+```swift
+user.registerWithForm(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7797,11 +6819,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/RegisterFormSuccess"
-}`
+Schema: `RegisterFormSuccess`
 
 
 
@@ -7820,25 +6838,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#verifyEmail
+#### verifyEmail
 Verify email
 
-```javascript
-// Promise
-const promise = user.verifyEmail();
-
-// Async/Await
-const data = await user.verifyEmail();
-
+```swift
+user.verifyEmail(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7853,11 +6865,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/VerifyEmailSuccess"
-}`
+Schema: `VerifyEmailSuccess`
 
 
 
@@ -7876,25 +6884,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#verifyMobile
+#### verifyMobile
 Verify mobile
 
-```javascript
-// Promise
-const promise = user.verifyMobile();
-
-// Async/Await
-const data = await user.verifyMobile();
-
+```swift
+user.verifyMobile(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7909,11 +6911,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/VerifyEmailSuccess"
-}`
+Schema: `VerifyEmailSuccess`
 
 
 
@@ -7932,25 +6930,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#hasPassword
+#### hasPassword
 Check if user has password
 
-```javascript
-// Promise
-const promise = user.hasPassword();
-
-// Async/Await
-const data = await user.hasPassword();
-
+```swift
+user.hasPassword() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -7965,11 +6957,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HasPasswordSuccess"
-}`
+Schema: `HasPasswordSuccess`
 
 
 
@@ -7988,25 +6976,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#updatePassword
+#### updatePassword
 Update user password
 
-```javascript
-// Promise
-const promise = user.updatePassword();
-
-// Async/Await
-const data = await user.updatePassword();
-
+```swift
+user.updatePassword(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8021,11 +7003,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/VerifyEmailSuccess"
-}`
+Schema: `VerifyEmailSuccess`
 
 
 
@@ -8044,25 +7022,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#logout
+#### logout
 Logout user
 
-```javascript
-// Promise
-const promise = user.logout();
-
-// Async/Await
-const data = await user.logout();
-
+```swift
+user.logout() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8077,11 +7049,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LogoutSuccess"
-}`
+Schema: `LogoutSuccess`
 
 
 
@@ -8100,25 +7068,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#sendOTPOnMobile
+#### sendOTPOnMobile
 Send OTP on mobile
 
-```javascript
-// Promise
-const promise = user.sendOTPOnMobile(platform, );
-
-// Async/Await
-const data = await user.sendOTPOnMobile(platform, );
-
+```swift
+user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8134,11 +7096,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/OtpSuccess"
-}`
+Schema: `OtpSuccess`
 
 
 
@@ -8157,25 +7115,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#verifyMobileOTP
+#### verifyMobileOTP
 Verify OTP on mobile
 
-```javascript
-// Promise
-const promise = user.verifyMobileOTP(platform, );
-
-// Async/Await
-const data = await user.verifyMobileOTP(platform, );
-
+```swift
+user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8191,11 +7143,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/VerifyOtpSuccess"
-}`
+Schema: `VerifyOtpSuccess`
 
 
 Examples: 
@@ -8227,23 +7175,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#sendOTPOnEmail
+#### sendOTPOnEmail
 Send OTP on email
 
-```javascript
-// Promise
-const promise = user.sendOTPOnEmail(platform, );
-
-// Async/Await
-const data = await user.sendOTPOnEmail(platform, );
-
+```swift
+user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8259,11 +7201,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/EmailOtpSuccess"
-}`
+Schema: `EmailOtpSuccess`
 
 
 
@@ -8282,25 +7220,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#verifyEmailOTP
+#### verifyEmailOTP
 Verify OTP on email
 
-```javascript
-// Promise
-const promise = user.verifyEmailOTP(platform, );
-
-// Async/Await
-const data = await user.verifyEmailOTP(platform, );
-
+```swift
+user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8316,11 +7248,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/VerifyOtpSuccess"
-}`
+Schema: `VerifyOtpSuccess`
 
 
 Examples: 
@@ -8352,23 +7280,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#getLoggedInUser
+#### getLoggedInUser
 Get logged in user
 
-```javascript
-// Promise
-const promise = user.getLoggedInUser();
-
-// Async/Await
-const data = await user.getLoggedInUser();
-
+```swift
+user.getLoggedInUser() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8383,11 +7305,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/UserSchema"
-}`
+Schema: `UserSchema`
 
 
 Examples: 
@@ -8419,23 +7337,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#getListOfActiveSessions
+#### getListOfActiveSessions
 Get list of sessions
 
-```javascript
-// Promise
-const promise = user.getListOfActiveSessions();
-
-// Async/Await
-const data = await user.getListOfActiveSessions();
-
+```swift
+user.getListOfActiveSessions() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8450,11 +7362,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SessionListSuccess"
-}`
+Schema: `SessionListSuccess`
 
 
 
@@ -8473,25 +7381,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#getPlatformConfig
+#### getPlatformConfig
 Get platform config
 
-```javascript
-// Promise
-const promise = user.getPlatformConfig(name, );
-
-// Async/Await
-const data = await user.getPlatformConfig(name, );
-
+```swift
+user.getPlatformConfig(name: name) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8507,11 +7409,7 @@ Success Response:
 Platform Config
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PlatformSchema"
-}`
+Schema: `PlatformSchema`
 
 
 
@@ -8530,25 +7428,19 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### User#updateProfile
+#### updateProfile
 Edit Profile Details
 
-```javascript
-// Promise
-const promise = user.updateProfile(platform, );
-
-// Async/Await
-const data = await user.updateProfile(platform, );
-
+```swift
+user.updateProfile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8564,11 +7456,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -8600,23 +7488,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#addMobileNumber
+#### addMobileNumber
 Add mobile number to profile
 
-```javascript
-// Promise
-const promise = user.addMobileNumber(platform, );
-
-// Async/Await
-const data = await user.addMobileNumber(platform, );
-
+```swift
+user.addMobileNumber(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8632,11 +7514,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/VerifyMobileOTPSuccess"
-}`
+Schema: `VerifyMobileOTPSuccess`
 
 
 Examples: 
@@ -8668,23 +7546,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#deleteMobileNumber
+#### deleteMobileNumber
 Delete mobile number from profile
 
-```javascript
-// Promise
-const promise = user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
-
-// Async/Await
-const data = await user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
-
+```swift
+user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8705,11 +7577,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -8741,23 +7609,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#setMobileNumberAsPrimary
+#### setMobileNumberAsPrimary
 Set mobile as primary
 
-```javascript
-// Promise
-const promise = user.setMobileNumberAsPrimary();
-
-// Async/Await
-const data = await user.setMobileNumberAsPrimary();
-
+```swift
+user.setMobileNumberAsPrimary(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8772,11 +7634,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -8808,23 +7666,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#sendVerificationLinkToMobile
+#### sendVerificationLinkToMobile
 Send verification link to mobile
 
-```javascript
-// Promise
-const promise = user.sendVerificationLinkToMobile(platform, );
-
-// Async/Await
-const data = await user.sendVerificationLinkToMobile(platform, );
-
+```swift
+user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8840,11 +7692,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SendMobileVerifyLinkSuccess"
-}`
+Schema: `SendMobileVerifyLinkSuccess`
 
 
 Examples: 
@@ -8876,23 +7724,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#addEmail
+#### addEmail
 Add email to profile
 
-```javascript
-// Promise
-const promise = user.addEmail(platform, );
-
-// Async/Await
-const data = await user.addEmail(platform, );
-
+```swift
+user.addEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8908,11 +7750,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/VerifyEmailOTPSuccess"
-}`
+Schema: `VerifyEmailOTPSuccess`
 
 
 Examples: 
@@ -8944,23 +7782,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#deleteEmail
+#### deleteEmail
 Delete email from profile
 
-```javascript
-// Promise
-const promise = user.deleteEmail(platform, active, primary, verified, email, );
-
-// Async/Await
-const data = await user.deleteEmail(platform, active, primary, verified, email, );
-
+```swift
+user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -8980,11 +7812,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -9016,23 +7844,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#setEmailAsPrimary
+#### setEmailAsPrimary
 Set email as primary
 
-```javascript
-// Promise
-const promise = user.setEmailAsPrimary();
-
-// Async/Await
-const data = await user.setEmailAsPrimary();
-
+```swift
+user.setEmailAsPrimary(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9047,11 +7869,7 @@ Success Response:
 A JSON object with user details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LoginSuccess"
-}`
+Schema: `LoginSuccess`
 
 
 Examples: 
@@ -9083,23 +7901,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### User#sendVerificationLinkToEmail
+#### sendVerificationLinkToEmail
 Send verification link to email
 
-```javascript
-// Promise
-const promise = user.sendVerificationLinkToEmail(platform, );
-
-// Async/Await
-const data = await user.sendVerificationLinkToEmail(platform, );
-
+```swift
+user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9115,11 +7927,7 @@ Success Response:
 
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SendEmailVerifyLinkSuccess"
-}`
+Schema: `SendEmailVerifyLinkSuccess`
 
 
 
@@ -9138,9 +7946,6 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
@@ -9153,27 +7958,14 @@ Error Response:
 
 ## Content
 
-```javascript
-const { Configuration, Content } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const content = new Content(conf);
 
-```
-
-
-#### Content#getAnnouncements
+#### getAnnouncements
 Get live announcements
 
-```javascript
-// Promise
-const promise = content.getAnnouncements();
-
-// Async/Await
-const data = await content.getAnnouncements();
-
+```swift
+content.getAnnouncements() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9188,11 +7980,7 @@ Success Response:
 Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AnnouncementsResponseSchema"
-}`
+Schema: `AnnouncementsResponseSchema`
 
 
 Examples: 
@@ -9235,23 +8023,17 @@ No Announcement enabled
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getBlog
+#### getBlog
 Get Blog by slug
 
-```javascript
-// Promise
-const promise = content.getBlog(slug, );
-
-// Async/Await
-const data = await content.getBlog(slug, );
-
+```swift
+content.getBlog(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9267,11 +8049,7 @@ Success Response:
 A JSON object with blog details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CustomBlog"
-}`
+Schema: `CustomBlog`
 
 
 Examples: 
@@ -9303,23 +8081,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getFaqs
+#### getFaqs
 Get frequently asked questions
 
-```javascript
-// Promise
-const promise = content.getFaqs();
-
-// Async/Await
-const data = await content.getFaqs();
-
+```swift
+content.getFaqs() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9334,11 +8106,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/FaqResponseSchema"
-}`
+Schema: `FaqResponseSchema`
 
 
 Examples: 
@@ -9370,23 +8138,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getLandingPage
+#### getLandingPage
 Get landing page
 
-```javascript
-// Promise
-const promise = content.getLandingPage(x-device-platform, );
-
-// Async/Await
-const data = await content.getLandingPage(x-device-platform, );
-
+```swift
+content.getLandingPage(xDevicePlatform: xDevicePlatform) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9402,11 +8164,7 @@ Success Response:
 A JSON object with landing details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/LandingPage"
-}`
+Schema: `LandingPage`
 
 
 Examples: 
@@ -9438,23 +8196,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getLegalInformation
+#### getLegalInformation
 Get legal information
 
-```javascript
-// Promise
-const promise = content.getLegalInformation();
-
-// Async/Await
-const data = await content.getLegalInformation();
-
+```swift
+content.getLegalInformation() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9469,11 +8221,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApplicationLegal"
-}`
+Schema: `ApplicationLegal`
 
 
 Examples: 
@@ -9505,23 +8253,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getNavigations
+#### getNavigations
 Get navigation
 
-```javascript
-// Promise
-const promise = content.getNavigations(x-device-platform, );
-
-// Async/Await
-const data = await content.getNavigations(x-device-platform, );
-
+```swift
+content.getNavigations(xDevicePlatform: xDevicePlatform) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9537,11 +8279,7 @@ Success Response:
 A JSON object with navigation details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Navigation"
-}`
+Schema: `Navigation`
 
 
 Examples: 
@@ -9573,23 +8311,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getPage
+#### getPage
 Get Page by slug
 
-```javascript
-// Promise
-const promise = content.getPage(slug, );
-
-// Async/Await
-const data = await content.getPage(slug, );
-
+```swift
+content.getPage(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9605,11 +8337,7 @@ Success Response:
 A JSON object with page details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CustomPage"
-}`
+Schema: `CustomPage`
 
 
 Examples: 
@@ -9641,23 +8369,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getSeoConfiguration
+#### getSeoConfiguration
 Get seo of application
 
-```javascript
-// Promise
-const promise = content.getSeoConfiguration();
-
-// Async/Await
-const data = await content.getSeoConfiguration();
-
+```swift
+content.getSeoConfiguration() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9672,11 +8394,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Seo"
-}`
+Schema: `Seo`
 
 
 Examples: 
@@ -9708,23 +8426,17 @@ Success
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getSlideshow
+#### getSlideshow
 Get slideshow by slug
 
-```javascript
-// Promise
-const promise = content.getSlideshow(slug, x-device-platform, );
-
-// Async/Await
-const data = await content.getSlideshow(slug, x-device-platform, );
-
+```swift
+content.getSlideshow(slug: slug, xDevicePlatform: xDevicePlatform) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9741,11 +8453,7 @@ Success Response:
 A JSON object with slideshow details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Slideshow"
-}`
+Schema: `Slideshow`
 
 
 Examples: 
@@ -9777,23 +8485,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getSupportInformation
+#### getSupportInformation
 Get support information
 
-```javascript
-// Promise
-const promise = content.getSupportInformation();
-
-// Async/Await
-const data = await content.getSupportInformation();
-
+```swift
+content.getSupportInformation() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9808,11 +8510,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Support"
-}`
+Schema: `Support`
 
 
 Examples: 
@@ -9844,23 +8542,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Content#getTags
+#### getTags
 Get Tags for application
 
-```javascript
-// Promise
-const promise = content.getTags();
-
-// Async/Await
-const data = await content.getTags();
-
+```swift
+content.getTags() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9875,11 +8567,7 @@ Success Response:
 A JSON object of tags
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/TagsSchema"
-}`
+Schema: `TagsSchema`
 
 
 
@@ -9898,9 +8586,6 @@ Schema: `{
 
 
 
-
-
-Error Response:
 
 
 
@@ -9913,27 +8598,14 @@ Error Response:
 
 ## Communication
 
-```javascript
-const { Configuration, Communication } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const communication = new Communication(conf);
 
-```
-
-
-#### Communication#getCommunicationConsent
+#### getCommunicationConsent
 Get communication consent
 
-```javascript
-// Promise
-const promise = communication.getCommunicationConsent();
-
-// Async/Await
-const data = await communication.getCommunicationConsent();
-
+```swift
+communication.getCommunicationConsent() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -9948,11 +8620,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CommunicationConsent"
-}`
+Schema: `CommunicationConsent`
 
 
 Examples: 
@@ -9972,23 +8640,17 @@ default
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### Communication#upsertCommunicationConsent
+#### upsertCommunicationConsent
 Upsert communication consent
 
-```javascript
-// Promise
-const promise = communication.upsertCommunicationConsent();
-
-// Async/Await
-const data = await communication.upsertCommunicationConsent();
-
+```swift
+communication.upsertCommunicationConsent(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10003,11 +8665,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CommunicationConsentRes"
-}`
+Schema: `CommunicationConsentRes`
 
 
 Examples: 
@@ -10030,36 +8688,26 @@ default
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/responses/BadRequest"
-}`
+Schema: `BadRequest`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Communication#upsertPushtoken
+#### upsertPushtoken
 Upsert push token of a user
 
-```javascript
-// Promise
-const promise = communication.upsertPushtoken();
-
-// Async/Await
-const data = await communication.upsertPushtoken();
-
+```swift
+communication.upsertPushtoken(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10074,11 +8722,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PushtokenRes"
-}`
+Schema: `PushtokenRes`
 
 
 Examples: 
@@ -10115,20 +8759,13 @@ reset
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/responses/BadRequest"
-}`
+Schema: `BadRequest`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -10141,27 +8778,14 @@ Error Response:
 
 ## Share
 
-```javascript
-const { Configuration, Share } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const share = new Share(conf);
 
-```
-
-
-#### Share#getApplicationQRCode
+#### getApplicationQRCode
 Create application QR Code
 
-```javascript
-// Promise
-const promise = share.getApplicationQRCode();
-
-// Async/Await
-const data = await share.getApplicationQRCode();
-
+```swift
+share.getApplicationQRCode() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10176,36 +8800,26 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/QRCodeResp"
-}`
+Schema: `QRCodeResp`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Share#getProductQRCodeBySlug
+#### getProductQRCodeBySlug
 Create product QR Code
 
-```javascript
-// Promise
-const promise = share.getProductQRCodeBySlug(slug, );
-
-// Async/Await
-const data = await share.getProductQRCodeBySlug(slug, );
-
+```swift
+share.getProductQRCodeBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10221,36 +8835,26 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/QRCodeResp"
-}`
+Schema: `QRCodeResp`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Share#getCollectionQRCodeBySlug
+#### getCollectionQRCodeBySlug
 Create collection QR Code
 
-```javascript
-// Promise
-const promise = share.getCollectionQRCodeBySlug(slug, );
-
-// Async/Await
-const data = await share.getCollectionQRCodeBySlug(slug, );
-
+```swift
+share.getCollectionQRCodeBySlug(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10266,36 +8870,26 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/QRCodeResp"
-}`
+Schema: `QRCodeResp`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Share#getUrlQRCode
+#### getUrlQRCode
 Create url QR Code
 
-```javascript
-// Promise
-const promise = share.getUrlQRCode(url, );
-
-// Async/Await
-const data = await share.getUrlQRCode(url, );
-
+```swift
+share.getUrlQRCode(url: url) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10311,36 +8905,26 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/QRCodeResp"
-}`
+Schema: `QRCodeResp`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Share#createShortLink
+#### createShortLink
 Create short link
 
-```javascript
-// Promise
-const promise = share.createShortLink();
-
-// Async/Await
-const data = await share.createShortLink();
-
+```swift
+share.createShortLink(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10355,36 +8939,26 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ShortLinkRes"
-}`
+Schema: `ShortLinkRes`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Share#getShortLinkByHash
+#### getShortLinkByHash
 Get short link by hash
 
-```javascript
-// Promise
-const promise = share.getShortLinkByHash(hash, );
-
-// Async/Await
-const data = await share.getShortLinkByHash(hash, );
-
+```swift
+share.getShortLinkByHash(hash: hash) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10400,36 +8974,26 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ShortLinkRes"
-}`
+Schema: `ShortLinkRes`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Share#getOriginalShortLinkByHash
+#### getOriginalShortLinkByHash
 Get original link by hash
 
-```javascript
-// Promise
-const promise = share.getOriginalShortLinkByHash(hash, );
-
-// Async/Await
-const data = await share.getOriginalShortLinkByHash(hash, );
-
+```swift
+share.getOriginalShortLinkByHash(hash: hash) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10445,20 +9009,13 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ShortLinkRes"
-}`
+Schema: `ShortLinkRes`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -10471,27 +9028,14 @@ Error Response:
 
 ## FileStorage
 
-```javascript
-const { Configuration, FileStorage } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const filestorage = new FileStorage(conf);
 
-```
-
-
-#### FileStorage#completeUpload
+#### completeUpload
 This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
-```javascript
-// Promise
-const promise = filestorage.completeUpload(namespace, company_id, );
-
-// Async/Await
-const data = await filestorage.completeUpload(namespace, company_id, );
-
+```swift
+filestorage.completeUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10526,11 +9070,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CompleteResponse"
-}`
+Schema: `CompleteResponse`
 
 
 
@@ -10542,36 +9082,26 @@ Schema: `{
 Failed
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/FailedResponse"
-}`
+Schema: `FailedResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### FileStorage#startUpload
+#### startUpload
 This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
-```javascript
-// Promise
-const promise = filestorage.startUpload(namespace, company_id, );
-
-// Async/Await
-const data = await filestorage.startUpload(namespace, company_id, );
-
+```swift
+filestorage.startUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10606,11 +9136,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/StartResponse"
-}`
+Schema: `StartResponse`
 
 
 
@@ -10622,20 +9148,13 @@ Schema: `{
 Failed
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/FailedResponse"
-}`
+Schema: `FailedResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -10648,27 +9167,14 @@ Error Response:
 
 ## Payment
 
-```javascript
-const { Configuration, Payment } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const payment = new Payment(conf);
 
-```
-
-
-#### Payment#getAggregatorsConfig
+#### getAggregatorsConfig
 Get payment gateway keys
 
-```javascript
-// Promise
-const promise = payment.getAggregatorsConfig(x-api-token, refresh, );
-
-// Async/Await
-const data = await payment.getAggregatorsConfig(x-api-token, refresh, );
-
+```swift
+payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10685,11 +9191,7 @@ Success Response:
 Keys of all payment gateway
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AggregatorsConfigDetailResponse"
-}`
+Schema: `AggregatorsConfigDetailResponse`
 
 
 
@@ -10701,11 +9203,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -10717,36 +9215,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#attachCardToCustomer
+#### attachCardToCustomer
 Attach a saved card to customer.
 
-```javascript
-// Promise
-const promise = payment.attachCardToCustomer();
-
-// Async/Await
-const data = await payment.attachCardToCustomer();
-
+```swift
+payment.attachCardToCustomer(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10761,11 +9249,7 @@ Success Response:
 List of cards objects
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AttachCardsResponse"
-}`
+Schema: `AttachCardsResponse`
 
 
 
@@ -10777,9 +9261,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: ``
+Schema: `[String: Any]`
 
 
 
@@ -10791,34 +9273,26 @@ Schema: ``
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: ``
+Schema: `[String: Any]`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#getActiveCardAggregator
+#### getActiveCardAggregator
 Fetch active payment gateway for card
 
-```javascript
-// Promise
-const promise = payment.getActiveCardAggregator(refresh, );
-
-// Async/Await
-const data = await payment.getActiveCardAggregator(refresh, );
-
+```swift
+payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10834,11 +9308,7 @@ Success Response:
 Object of payment gateway and customer id
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ActiveCardPaymentGatewayResponse"
-}`
+Schema: `ActiveCardPaymentGatewayResponse`
 
 
 
@@ -10850,11 +9320,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -10866,36 +9332,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#getActiveUserCards
+#### getActiveUserCards
 Fetch the list of saved cards of user.
 
-```javascript
-// Promise
-const promise = payment.getActiveUserCards(force_refresh, );
-
-// Async/Await
-const data = await payment.getActiveUserCards(force_refresh, );
-
+```swift
+payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10911,11 +9367,7 @@ Success Response:
 List of cards objects
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ListCardsResponse"
-}`
+Schema: `ListCardsResponse`
 
 
 
@@ -10927,11 +9379,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -10943,36 +9391,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#deleteUserCard
+#### deleteUserCard
 Delete an user card.
 
-```javascript
-// Promise
-const promise = payment.deleteUserCard();
-
-// Async/Await
-const data = await payment.deleteUserCard();
-
+```swift
+payment.deleteUserCard(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -10987,11 +9425,7 @@ Success Response:
 List of cards objects
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/DeleteCardsResponse"
-}`
+Schema: `DeleteCardsResponse`
 
 
 
@@ -11003,11 +9437,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11019,36 +9449,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#verifyCustomerForPayment
+#### verifyCustomerForPayment
 Validate customer for payment.
 
-```javascript
-// Promise
-const promise = payment.verifyCustomerForPayment();
-
-// Async/Await
-const data = await payment.verifyCustomerForPayment();
-
+```swift
+payment.verifyCustomerForPayment(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11063,11 +9483,7 @@ Success Response:
 List of cards objects
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ValidateCustomerResponse"
-}`
+Schema: `ValidateCustomerResponse`
 
 
 
@@ -11079,11 +9495,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11095,36 +9507,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#verifyAndChargePayment
+#### verifyAndChargePayment
 Verify and charge payment
 
-```javascript
-// Promise
-const promise = payment.verifyAndChargePayment();
-
-// Async/Await
-const data = await payment.verifyAndChargePayment();
-
+```swift
+payment.verifyAndChargePayment(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11139,11 +9541,7 @@ Success Response:
 List of cards objects
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ChargeCustomerResponse"
-}`
+Schema: `ChargeCustomerResponse`
 
 
 
@@ -11155,11 +9553,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11171,36 +9565,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#initialisePayment
+#### initialisePayment
 Payment Initialisation server to server for UPI and BharatQR.
 
-```javascript
-// Promise
-const promise = payment.initialisePayment();
-
-// Async/Await
-const data = await payment.initialisePayment();
-
+```swift
+payment.initialisePayment(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11215,11 +9599,7 @@ Success Response:
 List of cards objects
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentInitializationResponse"
-}`
+Schema: `PaymentInitializationResponse`
 
 
 
@@ -11231,11 +9611,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11247,36 +9623,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#checkAndUpdatePaymentStatus
+#### checkAndUpdatePaymentStatus
 Continous polling to check status of payment on server.
 
-```javascript
-// Promise
-const promise = payment.checkAndUpdatePaymentStatus();
-
-// Async/Await
-const data = await payment.checkAndUpdatePaymentStatus();
-
+```swift
+payment.checkAndUpdatePaymentStatus(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11291,11 +9657,7 @@ Success Response:
 List of cards objects
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentStatusUpdateResponse"
-}`
+Schema: `PaymentStatusUpdateResponse`
 
 
 
@@ -11307,11 +9669,7 @@ Schema: `{
 Bad request error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11323,36 +9681,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#getPaymentModeRoutes
+#### getPaymentModeRoutes
 Get All Valid Payment Options
 
-```javascript
-// Promise
-const promise = payment.getPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, delivery_address, );
-
-// Async/Await
-const data = await payment.getPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, delivery_address, );
-
+```swift
+payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, assignCardId: assignCardId, deliveryAddress: deliveryAddress) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11374,11 +9722,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentOptionsResponse"
-}`
+Schema: `PaymentOptionsResponse`
 
 
 
@@ -11390,11 +9734,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11406,36 +9746,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#getPosPaymentModeRoutes
+#### getPosPaymentModeRoutes
 Get All Valid Payment Options for POS
 
-```javascript
-// Promise
-const promise = payment.getPosPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, order_type, delivery_address, );
-
-// Async/Await
-const data = await payment.getPosPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, order_type, delivery_address, );
-
+```swift
+payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, assignCardId: assignCardId, orderType: orderType, deliveryAddress: deliveryAddress) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11458,11 +9788,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentOptionsResponse"
-}`
+Schema: `PaymentOptionsResponse`
 
 
 
@@ -11474,11 +9800,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11490,36 +9812,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#getUserBeneficiariesDetail
+#### getUserBeneficiariesDetail
 List User Beneficiary
 
-```javascript
-// Promise
-const promise = payment.getUserBeneficiariesDetail(order_id, );
-
-// Async/Await
-const data = await payment.getUserBeneficiariesDetail(order_id, );
-
+```swift
+payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11535,11 +9847,7 @@ Success Response:
 List User Beneficiary
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/OrderBeneficiaryResponse"
-}`
+Schema: `OrderBeneficiaryResponse`
 
 
 
@@ -11551,11 +9859,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/NotFoundResourceError"
-}`
+Schema: `NotFoundResourceError`
 
 
 
@@ -11567,36 +9871,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#verifyIfscCode
+#### verifyIfscCode
 Ifsc Code Verification
 
-```javascript
-// Promise
-const promise = payment.verifyIfscCode(ifsc_code, );
-
-// Async/Await
-const data = await payment.verifyIfscCode(ifsc_code, );
-
+```swift
+payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11612,11 +9906,7 @@ Success Response:
 Bank details on correct Ifsc Code
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/IfscCodeResponse"
-}`
+Schema: `IfscCodeResponse`
 
 
 
@@ -11628,11 +9918,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/NotFoundResourceError"
-}`
+Schema: `NotFoundResourceError`
 
 
 
@@ -11644,36 +9930,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorCodeDescription"
-}`
+Schema: `ErrorCodeDescription`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#getOrderBeneficiariesDetail
+#### getOrderBeneficiariesDetail
 List Order Beneficiary
 
-```javascript
-// Promise
-const promise = payment.getOrderBeneficiariesDetail(order_id, );
-
-// Async/Await
-const data = await payment.getOrderBeneficiariesDetail(order_id, );
-
+```swift
+payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11689,11 +9965,7 @@ Success Response:
 List Order Beneficiary
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/OrderBeneficiaryResponse"
-}`
+Schema: `OrderBeneficiaryResponse`
 
 
 
@@ -11705,11 +9977,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/NotFoundResourceError"
-}`
+Schema: `NotFoundResourceError`
 
 
 
@@ -11721,36 +9989,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#verifyOtpAndAddBeneficiaryForBank
+#### verifyOtpAndAddBeneficiaryForBank
 Save Beneficiary details on otp validation.
 
-```javascript
-// Promise
-const promise = payment.verifyOtpAndAddBeneficiaryForBank();
-
-// Async/Await
-const data = await payment.verifyOtpAndAddBeneficiaryForBank();
-
+```swift
+payment.verifyOtpAndAddBeneficiaryForBank(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11765,11 +10023,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AddBeneficiaryViaOtpVerificationResponse"
-}`
+Schema: `AddBeneficiaryViaOtpVerificationResponse`
 
 
 
@@ -11781,11 +10035,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/WrongOtpError"
-}`
+Schema: `WrongOtpError`
 
 
 
@@ -11797,36 +10047,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#addBeneficiaryDetails
+#### addBeneficiaryDetails
 Save bank details for cancelled/returned order
 
-```javascript
-// Promise
-const promise = payment.addBeneficiaryDetails();
-
-// Async/Await
-const data = await payment.addBeneficiaryDetails();
-
+```swift
+payment.addBeneficiaryDetails(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11841,11 +10081,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/RefundAccountResponse"
-}`
+Schema: `RefundAccountResponse`
 
 
 
@@ -11857,11 +10093,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/NotFoundResourceError"
-}`
+Schema: `NotFoundResourceError`
 
 
 
@@ -11873,36 +10105,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#verifyOtpAndAddBeneficiaryForWallet
+#### verifyOtpAndAddBeneficiaryForWallet
 Send Otp on Adding wallet beneficiary
 
-```javascript
-// Promise
-const promise = payment.verifyOtpAndAddBeneficiaryForWallet();
-
-// Async/Await
-const data = await payment.verifyOtpAndAddBeneficiaryForWallet();
-
+```swift
+payment.verifyOtpAndAddBeneficiaryForWallet(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11917,11 +10139,7 @@ Success Response:
 WalletOtp
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/WalletOtpResponse"
-}`
+Schema: `WalletOtpResponse`
 
 
 
@@ -11933,11 +10151,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/NotFoundResourceError"
-}`
+Schema: `NotFoundResourceError`
 
 
 
@@ -11949,36 +10163,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Payment#updateDefaultBeneficiary
+#### updateDefaultBeneficiary
 Mark Default Beneficiary For Refund
 
-```javascript
-// Promise
-const promise = payment.updateDefaultBeneficiary();
-
-// Async/Await
-const data = await payment.updateDefaultBeneficiary();
-
+```swift
+payment.updateDefaultBeneficiary(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -11993,11 +10197,7 @@ Success Response:
 Set Default Beneficiary Response.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SetDefaultBeneficiaryResponse"
-}`
+Schema: `SetDefaultBeneficiaryResponse`
 
 
 
@@ -12009,11 +10209,7 @@ Schema: `{
 Bad Request Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SetDefaultBeneficiaryResponse"
-}`
+Schema: `SetDefaultBeneficiaryResponse`
 
 
 
@@ -12025,20 +10221,13 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
-}`
+Schema: `HttpErrorCodeAndResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -12051,27 +10240,14 @@ Error Response:
 
 ## Order
 
-```javascript
-const { Configuration, Order } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const order = new Order(conf);
 
-```
-
-
-#### Order#getOrders
+#### getOrders
 Get Orders for application based on application Id
 
-```javascript
-// Promise
-const promise = order.getOrders(page_no, page_size, from_date, to_date, );
-
-// Async/Await
-const data = await order.getOrders(page_no, page_size, from_date, to_date, );
-
+```swift
+order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12090,11 +10266,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/OrderList"
-}`
+Schema: `OrderList`
 
 
 
@@ -12106,11 +10278,7 @@ Schema: `{
 API Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
@@ -12122,36 +10290,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Order#getOrderById
+#### getOrderById
 Get Order by order id for application based on application Id
 
-```javascript
-// Promise
-const promise = order.getOrderById(order_id, );
-
-// Async/Await
-const data = await order.getOrderById(order_id, );
-
+```swift
+order.getOrderById(orderId: orderId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12167,11 +10325,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/OrderById"
-}`
+Schema: `OrderById`
 
 
 
@@ -12183,11 +10337,7 @@ Schema: `{
 API Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
@@ -12199,36 +10349,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Order#getShipmentById
+#### getShipmentById
 Get Shipment by shipment id and order id for application based on application Id
 
-```javascript
-// Promise
-const promise = order.getShipmentById(shipment_id, );
-
-// Async/Await
-const data = await order.getShipmentById(shipment_id, );
-
+```swift
+order.getShipmentById(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12244,11 +10384,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ShipmentById"
-}`
+Schema: `ShipmentById`
 
 
 
@@ -12260,11 +10396,7 @@ Schema: `{
 API Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
@@ -12276,36 +10408,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Order#getShipmentReasons
+#### getShipmentReasons
 Get Shipment reasons by shipment id and order id for application based on application Id
 
-```javascript
-// Promise
-const promise = order.getShipmentReasons(shipment_id, );
-
-// Async/Await
-const data = await order.getShipmentReasons(shipment_id, );
-
+```swift
+order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12321,11 +10443,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ShipmentReasons"
-}`
+Schema: `ShipmentReasons`
 
 
 
@@ -12337,11 +10455,7 @@ Schema: `{
 API Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
@@ -12353,36 +10467,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Order#updateShipmentStatus
+#### updateShipmentStatus
 Update Shipment status by shipment id and order id for application based on application Id
 
-```javascript
-// Promise
-const promise = order.updateShipmentStatus(shipment_id, );
-
-// Async/Await
-const data = await order.updateShipmentStatus(shipment_id, );
-
+```swift
+order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12398,11 +10502,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ShipmentStatusUpdate"
-}`
+Schema: `ShipmentStatusUpdate`
 
 
 
@@ -12414,11 +10514,7 @@ Schema: `{
 API Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
@@ -12430,36 +10526,26 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Order#trackShipment
+#### trackShipment
 Track Shipment by shipment id and order id for application based on application Id
 
-```javascript
-// Promise
-const promise = order.trackShipment(shipment_id, );
-
-// Async/Await
-const data = await order.trackShipment(shipment_id, );
-
+```swift
+order.trackShipment(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12475,11 +10561,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ShipmentTrack"
-}`
+Schema: `ShipmentTrack`
 
 
 
@@ -12491,11 +10573,7 @@ Schema: `{
 API Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
@@ -12507,20 +10585,13 @@ Schema: `{
 Internal Server Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
+Schema: `ApefaceApiError`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -12533,27 +10604,14 @@ Error Response:
 
 ## Rewards
 
-```javascript
-const { Configuration, Rewards } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const rewards = new Rewards(conf);
 
-```
-
-
-#### Rewards#getPointsOnProduct
+#### getPointsOnProduct
 Get reward points that could be earned on any catalogue product.
 
-```javascript
-// Promise
-const promise = rewards.getPointsOnProduct();
-
-// Async/Await
-const data = await rewards.getPointsOnProduct();
-
+```swift
+rewards.getPointsOnProduct(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12568,11 +10626,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CatalogueOrderResponse"
-}`
+Schema: `CatalogueOrderResponse`
 
 
 
@@ -12584,36 +10638,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Error"
-}`
+Schema: `Error`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Rewards#getOrderDiscount
+#### getOrderDiscount
 Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
-```javascript
-// Promise
-const promise = rewards.getOrderDiscount();
-
-// Async/Await
-const data = await rewards.getOrderDiscount();
-
+```swift
+rewards.getOrderDiscount(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12628,11 +10672,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/OrderDiscountResponse"
-}`
+Schema: `OrderDiscountResponse`
 
 
 
@@ -12644,36 +10684,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Error"
-}`
+Schema: `Error`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Rewards#getUserPoints
+#### getUserPoints
 Total available points of a user for current application
 
-```javascript
-// Promise
-const promise = rewards.getUserPoints();
-
-// Async/Await
-const data = await rewards.getUserPoints();
-
+```swift
+rewards.getUserPoints() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12688,11 +10718,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PointsResponse"
-}`
+Schema: `PointsResponse`
 
 
 
@@ -12704,36 +10730,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Error"
-}`
+Schema: `Error`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Rewards#getUserPointsHistory
+#### getUserPointsHistory
 Get list of points transactions.
 
-```javascript
-// Promise
-const promise = rewards.getUserPointsHistory(pageID, pageSize, );
-
-// Async/Await
-const data = await rewards.getUserPointsHistory(pageID, pageSize, );
-
+```swift
+rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12751,11 +10767,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PointsHistoryResponse"
-}`
+Schema: `PointsHistoryResponse`
 
 
 
@@ -12767,36 +10779,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Error"
-}`
+Schema: `Error`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Rewards#getUserReferralDetails
+#### getUserReferralDetails
 User's referral details.
 
-```javascript
-// Promise
-const promise = rewards.getUserReferralDetails();
-
-// Async/Await
-const data = await rewards.getUserReferralDetails();
-
+```swift
+rewards.getUserReferralDetails() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12811,11 +10813,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ReferralDetailsResponse"
-}`
+Schema: `ReferralDetailsResponse`
 
 
 
@@ -12827,36 +10825,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Error"
-}`
+Schema: `Error`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Rewards#redeemReferralCode
+#### redeemReferralCode
 Redeems referral code and credits points to users points account.
 
-```javascript
-// Promise
-const promise = rewards.redeemReferralCode();
-
-// Async/Await
-const data = await rewards.redeemReferralCode();
-
+```swift
+rewards.redeemReferralCode(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12871,11 +10859,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/RedeemReferralCodeResponse"
-}`
+Schema: `RedeemReferralCodeResponse`
 
 
 
@@ -12887,20 +10871,13 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Error"
-}`
+Schema: `Error`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -12913,27 +10890,14 @@ Error Response:
 
 ## Feedback
 
-```javascript
-const { Configuration, Feedback } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const feedback = new Feedback(conf);
 
-```
-
-
-#### Feedback#createAbuseReport
+#### createAbuseReport
 post a new abuse request
 
-```javascript
-// Promise
-const promise = feedback.createAbuseReport();
-
-// Async/Await
-const data = await feedback.createAbuseReport();
-
+```swift
+feedback.createAbuseReport(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -12948,11 +10912,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XInsertResponse"
-}`
+Schema: `XInsertResponse`
 
 
 
@@ -12964,36 +10924,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#updateAbuseReport
+#### updateAbuseReport
 Update abuse details
 
-```javascript
-// Promise
-const promise = feedback.updateAbuseReport();
-
-// Async/Await
-const data = await feedback.updateAbuseReport();
-
+```swift
+feedback.updateAbuseReport(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13008,11 +10958,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -13024,36 +10970,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getAbuseReports
+#### getAbuseReports
 Get list of abuse data
 
-```javascript
-// Promise
-const promise = feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
-
-// Async/Await
-const data = await feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
-
+```swift
+feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13073,11 +11009,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XNumberGetResponse"
-}`
+Schema: `XNumberGetResponse`
 
 
 
@@ -13089,36 +11021,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getAttributes
+#### getAttributes
 Get list of attribute data
 
-```javascript
-// Promise
-const promise = feedback.getAttributes();
-
-// Async/Await
-const data = await feedback.getAttributes();
-
+```swift
+feedback.getAttributes() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13133,11 +11055,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XNumberGetResponse"
-}`
+Schema: `XNumberGetResponse`
 
 
 
@@ -13149,36 +11067,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#createAttribute
+#### createAttribute
 Add a new attribute request
 
-```javascript
-// Promise
-const promise = feedback.createAttribute();
-
-// Async/Await
-const data = await feedback.createAttribute();
-
+```swift
+feedback.createAttribute(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13193,11 +11101,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XInsertResponse"
-}`
+Schema: `XInsertResponse`
 
 
 
@@ -13209,36 +11113,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getAttribute
+#### getAttribute
 Get single attribute data
 
-```javascript
-// Promise
-const promise = feedback.getAttribute(slug, );
-
-// Async/Await
-const data = await feedback.getAttribute(slug, );
-
+```swift
+feedback.getAttribute(slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13254,11 +11148,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/Attribute"
-}`
+Schema: `Attribute`
 
 
 
@@ -13270,36 +11160,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#updateAttribute
+#### updateAttribute
 Update attribute details
 
-```javascript
-// Promise
-const promise = feedback.updateAttribute(slug, );
-
-// Async/Await
-const data = await feedback.updateAttribute(slug, );
-
+```swift
+feedback.updateAttribute(slug: slug, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13315,11 +11195,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -13331,36 +11207,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#createComment
+#### createComment
 post a new comment
 
-```javascript
-// Promise
-const promise = feedback.createComment();
-
-// Async/Await
-const data = await feedback.createComment();
-
+```swift
+feedback.createComment(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13375,11 +11241,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XInsertResponse"
-}`
+Schema: `XInsertResponse`
 
 
 
@@ -13391,36 +11253,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#updateComment
+#### updateComment
 Update comment status
 
-```javascript
-// Promise
-const promise = feedback.updateComment();
-
-// Async/Await
-const data = await feedback.updateComment();
-
+```swift
+feedback.updateComment(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13435,11 +11287,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -13451,36 +11299,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getComments
+#### getComments
 Get list of comments
 
-```javascript
-// Promise
-const promise = feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
-
-// Async/Await
-const data = await feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
-
+```swift
+feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13501,11 +11339,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XCursorGetResponse"
-}`
+Schema: `XCursorGetResponse`
 
 
 
@@ -13517,36 +11351,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#checkEligibility
+#### checkEligibility
 Checks eligibility and cloud media config
 
-```javascript
-// Promise
-const promise = feedback.checkEligibility(entity_type, entity_id, );
-
-// Async/Await
-const data = await feedback.checkEligibility(entity_type, entity_id, );
-
+```swift
+feedback.checkEligibility(entityType: entityType, entityId: entityId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13563,11 +11387,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CheckEligibilityResponse"
-}`
+Schema: `CheckEligibilityResponse`
 
 
 
@@ -13579,36 +11399,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#deleteMedia
+#### deleteMedia
 Delete Media
 
-```javascript
-// Promise
-const promise = feedback.deleteMedia();
-
-// Async/Await
-const data = await feedback.deleteMedia();
-
+```swift
+feedback.deleteMedia() { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13623,11 +11433,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -13639,36 +11445,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#createMedia
+#### createMedia
 Add Media
 
-```javascript
-// Promise
-const promise = feedback.createMedia();
-
-// Async/Await
-const data = await feedback.createMedia();
-
+```swift
+feedback.createMedia(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13683,11 +11479,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XInsertResponse"
-}`
+Schema: `XInsertResponse`
 
 
 
@@ -13699,36 +11491,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#updateMedia
+#### updateMedia
 Update Media
 
-```javascript
-// Promise
-const promise = feedback.updateMedia();
-
-// Async/Await
-const data = await feedback.updateMedia();
-
+```swift
+feedback.updateMedia(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13743,11 +11525,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -13759,36 +11537,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getMedias
+#### getMedias
 Get Media
 
-```javascript
-// Promise
-const promise = feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
-
-// Async/Await
-const data = await feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
-
+```swift
+feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13808,11 +11576,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XCursorGetResponse"
-}`
+Schema: `XCursorGetResponse`
 
 
 
@@ -13824,36 +11588,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getReviewSummaries
+#### getReviewSummaries
 Get a review summary
 
-```javascript
-// Promise
-const promise = feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
-
-// Async/Await
-const data = await feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
-
+```swift
+feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13874,11 +11628,7 @@ Success Response:
 success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XCursorGetResponse"
-}`
+Schema: `XCursorGetResponse`
 
 
 
@@ -13890,36 +11640,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#createReview
+#### createReview
 Add customer reviews
 
-```javascript
-// Promise
-const promise = feedback.createReview();
-
-// Async/Await
-const data = await feedback.createReview();
-
+```swift
+feedback.createReview(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13935,11 +11675,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -13951,36 +11687,26 @@ Schema: `{
 Bad Request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#updateReview
+#### updateReview
 Update customer reviews
 
-```javascript
-// Promise
-const promise = feedback.updateReview();
-
-// Async/Await
-const data = await feedback.updateReview();
-
+```swift
+feedback.updateReview(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -13996,11 +11722,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -14012,36 +11734,26 @@ Schema: `{
 Bad Request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getReviews
+#### getReviews
 Get list of customer reviews
 
-```javascript
-// Promise
-const promise = feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
-
-// Async/Await
-const data = await feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
-
+```swift
+feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14067,11 +11779,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XCursorGetResponse"
-}`
+Schema: `XCursorGetResponse`
 
 
 
@@ -14083,36 +11791,26 @@ Schema: `{
 Bad Request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getTemplates
+#### getTemplates
 Get the templates for product or l3 type
 
-```javascript
-// Promise
-const promise = feedback.getTemplates(template_id, entity_id, entity_type, );
-
-// Async/Await
-const data = await feedback.getTemplates(template_id, entity_id, entity_type, );
-
+```swift
+feedback.getTemplates(templateId: templateId, entityId: entityId, entityType: entityType) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14130,11 +11828,7 @@ Success Response:
 Success
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XCursorGetResponse"
-}`
+Schema: `XCursorGetResponse`
 
 
 
@@ -14146,36 +11840,26 @@ Schema: `{
 Bad Request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#createQuestion
+#### createQuestion
 Create a new question
 
-```javascript
-// Promise
-const promise = feedback.createQuestion();
-
-// Async/Await
-const data = await feedback.createQuestion();
-
+```swift
+feedback.createQuestion(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14191,11 +11875,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XInsertResponse"
-}`
+Schema: `XInsertResponse`
 
 
 
@@ -14207,36 +11887,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#updateQuestion
+#### updateQuestion
 Update question
 
-```javascript
-// Promise
-const promise = feedback.updateQuestion();
-
-// Async/Await
-const data = await feedback.updateQuestion();
-
+```swift
+feedback.updateQuestion(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14251,11 +11921,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -14267,36 +11933,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getQuestionAndAnswers
+#### getQuestionAndAnswers
 Get a list of QnA
 
-```javascript
-// Promise
-const promise = feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
-
-// Async/Await
-const data = await feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
-
+```swift
+feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: id, showAnswer: showAnswer, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14317,11 +11973,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XCursorGetResponse"
-}`
+Schema: `XCursorGetResponse`
 
 
 
@@ -14333,36 +11985,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#getVotes
+#### getVotes
 Get list of votes
 
-```javascript
-// Promise
-const promise = feedback.getVotes(id, ref_type, );
-
-// Async/Await
-const data = await feedback.getVotes(id, ref_type, );
-
+```swift
+feedback.getVotes(id: id, refType: refType) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14379,11 +12021,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XNumberGetResponse"
-}`
+Schema: `XNumberGetResponse`
 
 
 
@@ -14395,36 +12033,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#createVote
+#### createVote
 Create a new vote
 
-```javascript
-// Promise
-const promise = feedback.createVote();
-
-// Async/Await
-const data = await feedback.createVote();
-
+```swift
+feedback.createVote(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14439,11 +12067,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XInsertResponse"
-}`
+Schema: `XInsertResponse`
 
 
 
@@ -14455,36 +12079,26 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### Feedback#updateVote
+#### updateVote
 Update vote
 
-```javascript
-// Promise
-const promise = feedback.updateVote();
-
-// Async/Await
-const data = await feedback.updateVote();
-
+```swift
+feedback.updateVote(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14499,11 +12113,7 @@ Success Response:
 ok
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/XUpdateResponse"
-}`
+Schema: `XUpdateResponse`
 
 
 
@@ -14515,20 +12125,13 @@ Schema: `{
 Bad request
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
+Schema: `ErrorResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
@@ -14541,27 +12144,14 @@ Error Response:
 
 ## PosCart
 
-```javascript
-const { Configuration, PosCart } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
-});
-const poscart = new PosCart(conf);
 
-```
-
-
-#### PosCart#getCart
+#### getCart
 Fetch all Items Added to  Cart
 
-```javascript
-// Promise
-const promise = poscart.getCart(uid, assign_card_id, );
-
-// Async/Await
-const data = await poscart.getCart(uid, assign_card_id, );
-
+```swift
+poscart.getCart(uid: uid, assignCardId: assignCardId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14578,36 +12168,26 @@ Success Response:
 The Cart object. See example below or refer CartResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
-}`
+Schema: `CartResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getCartLastModified
+#### getCartLastModified
 Fetch Last-Modified timestamp
 
-```javascript
-// Promise
-const promise = poscart.getCartLastModified(uid, );
-
-// Async/Await
-const data = await poscart.getCartLastModified(uid, );
-
+```swift
+poscart.getCartLastModified(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14626,23 +12206,17 @@ Fetch Last-Modified Timestamp Response
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### PosCart#addItems
+#### addItems
 Add Items to Cart
 
-```javascript
-// Promise
-const promise = poscart.addItems();
-
-// Async/Await
-const data = await poscart.addItems();
-
+```swift
+poscart.addItems(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -14657,11 +12231,7 @@ Success Response:
 Response of the cart object including all item details included in .the cart,coupons etc.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/AddCartResponse"
-}`
+Schema: `AddCartResponse`
 
 
 Examples: 
@@ -15303,23 +12873,17 @@ Sorry, item is out of stock
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### PosCart#updateCart
+#### updateCart
 Update Items already added to Cart
 
-```javascript
-// Promise
-const promise = poscart.updateCart();
-
-// Async/Await
-const data = await poscart.updateCart();
-
+```swift
+poscart.updateCart(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -15334,11 +12898,7 @@ Success Response:
 Response of the cart object including all item with their updated details included in .the cart,coupons etc..
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/UpdateCartResponse"
-}`
+Schema: `UpdateCartResponse`
 
 
 Examples: 
@@ -15709,23 +13269,17 @@ Item updated in the cart
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### PosCart#getItemCount
+#### getItemCount
 Cart item count
 
-```javascript
-// Promise
-const promise = poscart.getItemCount(uid, );
-
-// Async/Await
-const data = await poscart.getItemCount(uid, );
-
+```swift
+poscart.getItemCount(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -15741,36 +13295,26 @@ Success Response:
 OK
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartItemCountResponse"
-}`
+Schema: `CartItemCountResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getCoupons
+#### getCoupons
 Fetch Coupon
 
-```javascript
-// Promise
-const promise = poscart.getCoupons(uid, );
-
-// Async/Await
-const data = await poscart.getCoupons(uid, );
-
+```swift
+poscart.getCoupons(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -15786,36 +13330,26 @@ Success Response:
 Returns The Couppon object which has list of all available_coupon applicale for the cart. See example below or refer GetCouponResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetCouponResponse"
-}`
+Schema: `GetCouponResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#applyCoupon
+#### applyCoupon
 Apply Coupon
 
-```javascript
-// Promise
-const promise = poscart.applyCoupon(i, b, p, );
-
-// Async/Await
-const data = await poscart.applyCoupon(i, b, p, );
-
+```swift
+poscart.applyCoupon(i: i, b: b, p: p, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -15834,36 +13368,26 @@ Success Response:
 Response of the Coupon object including all item details included in .the cart,coupons applied etc.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SaveCouponResponse"
-}`
+Schema: `SaveCouponResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#removeCoupon
+#### removeCoupon
 Remove Coupon Applied
 
-```javascript
-// Promise
-const promise = poscart.removeCoupon(uid, );
-
-// Async/Await
-const data = await poscart.removeCoupon(uid, );
-
+```swift
+poscart.removeCoupon(uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -15879,36 +13403,26 @@ Success Response:
 Response of the Coupon object including all item details included in .the cart,coupons removed etc.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
-}`
+Schema: `CartResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getBulkDiscountOffers
+#### getBulkDiscountOffers
 Get discount offers based on quantity
 
-```javascript
-// Promise
-const promise = poscart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
-
-// Async/Await
-const data = await poscart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
-
+```swift
+poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -15927,11 +13441,7 @@ Success Response:
 Offers found or not found with valid input
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/BulkPriceResponse"
-}`
+Schema: `BulkPriceResponse`
 
 
 Examples: 
@@ -16014,41 +13524,26 @@ Offers not found
 Unhandled api error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getAddresses
+#### getAddresses
 Fetch Address
 
-```javascript
-// Promise
-const promise = poscart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
-
-// Async/Await
-const data = await poscart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
-
+```swift
+poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16068,36 +13563,26 @@ Success Response:
 Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetAddressResponse"
-}`
+Schema: `GetAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#addAddress
+#### addAddress
 Add Address to the account
 
-```javascript
-// Promise
-const promise = poscart.addAddress();
-
-// Async/Await
-const data = await poscart.addAddress();
-
+```swift
+poscart.addAddress(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16112,36 +13597,26 @@ Success Response:
 Return Address Id on successfull completion of the request.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SaveAddressResponse"
-}`
+Schema: `SaveAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getAddressById
+#### getAddressById
 Fetch Single Address
 
-```javascript
-// Promise
-const promise = poscart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
-
-// Async/Await
-const data = await poscart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
-
+```swift
+poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16162,36 +13637,26 @@ Success Response:
 Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetAddressResponse"
-}`
+Schema: `GetAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#updateAddress
+#### updateAddress
 Update Address alreay added to account
 
-```javascript
-// Promise
-const promise = poscart.updateAddress(id, );
-
-// Async/Await
-const data = await poscart.updateAddress(id, );
-
+```swift
+poscart.updateAddress(id: id, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16207,36 +13672,26 @@ Success Response:
 Response of the Address object containing address_id and sucess message.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/UpdateAddressResponse"
-}`
+Schema: `UpdateAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#removeAddress
+#### removeAddress
 Remove Address Associated to the account
 
-```javascript
-// Promise
-const promise = poscart.removeAddress(id, );
-
-// Async/Await
-const data = await poscart.removeAddress(id, );
-
+```swift
+poscart.removeAddress(id: id) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16252,36 +13707,26 @@ Success Response:
 Status object. Tells whether the operation was successful. See example below or refer DeleteAddressResponse
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/DeleteAddressResponse"
-}`
+Schema: `DeleteAddressResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#selectAddress
+#### selectAddress
 Select Address from All Addresses
 
-```javascript
-// Promise
-const promise = poscart.selectAddress();
-
-// Async/Await
-const data = await poscart.selectAddress();
-
+```swift
+poscart.selectAddress(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16296,11 +13741,7 @@ Success Response:
 Response of the Address object containing Cart Object and success message.  .
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
-}`
+Schema: `CartResponse`
 
 
 
@@ -16312,19 +13753,7 @@ Schema: `{
 Address or Pincode Error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "status": {
-      "type": "string"
-    },
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 Examples: 
@@ -16357,23 +13786,17 @@ Pincode Not Serviciable
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### PosCart#getPaymentModes
+#### getPaymentModes
 Get Cart Payment for valid coupon
 
-```javascript
-// Promise
-const promise = poscart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
-
-// Async/Await
-const data = await poscart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
-
+```swift
+poscart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16394,36 +13817,26 @@ Success Response:
 Cart Affiliates.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentOptions"
-}`
+Schema: `PaymentOptions`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#selectPaymentMode
+#### selectPaymentMode
 Update Cart Payment
 
-```javascript
-// Promise
-const promise = poscart.selectPaymentMode(uid, );
-
-// Async/Await
-const data = await poscart.selectPaymentMode(uid, );
-
+```swift
+poscart.selectPaymentMode(uid: uid, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16439,36 +13852,26 @@ Success Response:
 Cart Affiliates.
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/PaymentOptions"
-}`
+Schema: `PaymentOptions`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getShipments
+#### getShipments
 Get delivery date and options before checkout
 
-```javascript
-// Promise
-const promise = poscart.getShipments(pick_at_store_uid, ordering_store_id, p, uid, address_id, );
-
-// Async/Await
-const data = await poscart.getShipments(pick_at_store_uid, ordering_store_id, p, uid, address_id, );
-
+```swift
+poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingStoreId, p: p, uid: uid, addressId: addressId) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -16488,11 +13891,7 @@ Success Response:
 OK
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartShipmentsResponse"
-}`
+Schema: `CartShipmentsResponse`
 
 
 Examples: 
@@ -17144,41 +14543,26 @@ Shipment Generation Failed
 Unhandled api error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#updateShipments
+#### updateShipments
 Update shipment delivery type and quantity before checkout
 
-```javascript
-// Promise
-const promise = poscart.updateShipments(i, p, uid, address_id, order_type, );
-
-// Async/Await
-const data = await poscart.updateShipments(i, p, uid, address_id, order_type, );
-
+```swift
+poscart.updateShipments(i: i, p: p, uid: uid, addressId: addressId, orderType: orderType, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -17198,11 +14582,7 @@ Success Response:
 OK
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartShipmentsResponse"
-}`
+Schema: `CartShipmentsResponse`
 
 
 Examples: 
@@ -17855,41 +15235,26 @@ Shipment Generation Failed
 Unhandled api error
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
-}`
+Schema: `[String: Any]`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#checkoutCart
+#### checkoutCart
 Checkout Cart
 
-```javascript
-// Promise
-const promise = poscart.checkoutCart(uid, );
-
-// Async/Await
-const data = await poscart.checkoutCart(uid, );
-
+```swift
+poscart.checkoutCart(uid: uid, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -17905,11 +15270,7 @@ Success Response:
 OK
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartCheckoutResponse"
-}`
+Schema: `CartCheckoutResponse`
 
 
 Examples: 
@@ -18295,23 +15656,17 @@ Successful checkout cod payment
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### PosCart#updateCartMeta
+#### updateCartMeta
 Update Cart Meta
 
-```javascript
-// Promise
-const promise = poscart.updateCartMeta(uid, );
-
-// Async/Await
-const data = await poscart.updateCartMeta(uid, );
-
+```swift
+poscart.updateCartMeta(uid: uid, body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -18327,11 +15682,7 @@ Success Response:
 Cart meta updated successfully
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartMetaResponse"
-}`
+Schema: `CartMetaResponse`
 
 
 
@@ -18343,36 +15694,26 @@ Schema: `{
 Missing required Field
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartMetaMissingResponse"
-}`
+Schema: `CartMetaMissingResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getAvailableDeliveryModes
+#### getAvailableDeliveryModes
 Get available delivery modes for cart
 
-```javascript
-// Promise
-const promise = poscart.getAvailableDeliveryModes(area_code, uid, );
-
-// Async/Await
-const data = await poscart.getAvailableDeliveryModes(area_code, uid, );
-
+```swift
+poscart.getAvailableDeliveryModes(areaCode: areaCode, uid: uid) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -18389,36 +15730,26 @@ Success Response:
 Returns Available delivery modes for cart and pick up available store uid for current cart items
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartDeliveryModesResponse"
-}`
+Schema: `CartDeliveryModesResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getStoreAddressByUid
+#### getStoreAddressByUid
 Get list of stores for give uids
 
-```javascript
-// Promise
-const promise = poscart.getStoreAddressByUid(area_code, );
-
-// Async/Await
-const data = await poscart.getStoreAddressByUid(area_code, );
-
+```swift
+poscart.getStoreAddressByUid(areaCode: areaCode) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -18434,36 +15765,26 @@ Success Response:
 Returns available store information with its address
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/StoreDetailsResponse"
-}`
+Schema: `StoreDetailsResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#getCartShareLink
+#### getCartShareLink
 Generate Cart sharing link token
 
-```javascript
-// Promise
-const promise = poscart.getCartShareLink();
-
-// Async/Await
-const data = await poscart.getCartShareLink();
-
+```swift
+poscart.getCartShareLink(body: body) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -18478,11 +15799,7 @@ Success Response:
 Token Generated successfully
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/GetShareCartLinkResponse"
-}`
+Schema: `GetShareCartLinkResponse`
 
 
 Examples: 
@@ -18505,23 +15822,17 @@ Token Generated
 
 
 
-Error Response:
-
-
 
 ---
 
 
-#### PosCart#getCartSharedItems
+#### getCartSharedItems
 Get shared cart snapshot and cart response
 
-```javascript
-// Promise
-const promise = poscart.getCartSharedItems(token, );
-
-// Async/Await
-const data = await poscart.getCartSharedItems(token, );
-
+```swift
+poscart.getCartSharedItems(token: token) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -18537,11 +15848,7 @@ Success Response:
 Cart for valid token
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
-}`
+Schema: `SharedCartResponse`
 
 
 
@@ -18553,36 +15860,26 @@ Schema: `{
 No cart found for sent token
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
-}`
+Schema: `SharedCartResponse`
 
 
 
 
 
 
-
-
-Error Response:
 
 
 
 ---
 
 
-#### PosCart#updateCartWithSharedItems
+#### updateCartWithSharedItems
 Merge or Replace existing cart
 
-```javascript
-// Promise
-const promise = poscart.updateCartWithSharedItems(token, action, );
-
-// Async/Await
-const data = await poscart.updateCartWithSharedItems(token, action, );
-
+```swift
+poscart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
+    // Use response
+}
 ```
 
 | Argument  |  Type  | Description |
@@ -18599,11 +15896,7 @@ Success Response:
 Success of Merge or Replace of cart with `shared_cart_details`                    containing shared cart details in response
 
 
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
-}`
+Schema: `SharedCartResponse`
 
 
 Examples: 
@@ -18896,9 +16189,6 @@ Cart Merged/Replaced
 
 
 
-
-
-Error Response:
 
 
 
