@@ -36,5 +36,4 @@ Get started with the Swift Development SDK for Fynd Platform
 ### Documentation
 
 * [Application Front](documentation/APPLICATION.md)
-* [Platform](documentation/PLATFORM.md)
-* [Code Examples](documentation/EXAMPLES.md)
+* [Platform Front](documentation/PLATFORM.md)
