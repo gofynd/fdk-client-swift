@@ -4940,7 +4940,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/services/application/v1.0/orders",
+                url: "/service/application/v1.0/orders",
                 query: query,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -4974,7 +4974,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/services/application/v1.0/orders/\(orderId)",
+                url: "/service/application/v1.0/orders/\(orderId)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -5008,7 +5008,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/services/application/v1.0/orders/shipments/\(shipmentId)",
+                url: "/service/application/v1.0/orders/shipments/\(shipmentId)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -5042,7 +5042,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/services/application/v1.0/orders/shipments/\(shipmentId)/reasons",
+                url: "/service/application/v1.0/orders/shipments/\(shipmentId)/reasons",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -5076,7 +5076,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/services/application/v1.0/orders/shipments/\(shipmentId)/status",
+                url: "/service/application/v1.0/orders/shipments/\(shipmentId)/status",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -5110,7 +5110,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/services/application/v1.0/orders/shipments/\(shipmentId)/track",
+                url: "/service/application/v1.0/orders/shipments/\(shipmentId)/track",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
