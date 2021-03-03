@@ -24,254 +24,254 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [getProductDetailBySlug](#cataloggetproductdetailbyslug)
-    * [getProductSizesBySlug](#cataloggetproductsizesbyslug)
-    * [getProductPriceBySlug](#cataloggetproductpricebyslug)
-    * [getProductSellersBySlug](#cataloggetproductsellersbyslug)
-    * [getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
-    * [getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
-    * [getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
-    * [getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
-    * [getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
-    * [getProductStockByIds](#cataloggetproductstockbyids)
-    * [getProductStockForTimeByIds](#cataloggetproductstockfortimebyids)
-    * [getProducts](#cataloggetproducts)
-    * [getBrands](#cataloggetbrands)
-    * [getBrandDetailBySlug](#cataloggetbranddetailbyslug)
-    * [getCategories](#cataloggetcategories)
-    * [getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
-    * [getHomeProducts](#cataloggethomeproducts)
-    * [getDepartments](#cataloggetdepartments)
-    * [getSearchResults](#cataloggetsearchresults)
-    * [getCollections](#cataloggetcollections)
-    * [getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-    * [getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
-    * [getFollowedListing](#cataloggetfollowedlisting)
-    * [followById](#catalogfollowbyid)
-    * [unfollowById](#catalogunfollowbyid)
-    * [getFollowerCountById](#cataloggetfollowercountbyid)
-    * [getFollowIds](#cataloggetfollowids)
-    * [getStores](#cataloggetstores)
+    * [getProductDetailBySlug](#getproductdetailbyslug)
+    * [getProductSizesBySlug](#getproductsizesbyslug)
+    * [getProductPriceBySlug](#getproductpricebyslug)
+    * [getProductSellersBySlug](#getproductsellersbyslug)
+    * [getProductComparisonBySlugs](#getproductcomparisonbyslugs)
+    * [getSimilarComparisonProductBySlug](#getsimilarcomparisonproductbyslug)
+    * [getComparedFrequentlyProductBySlug](#getcomparedfrequentlyproductbyslug)
+    * [getProductSimilarByIdentifier](#getproductsimilarbyidentifier)
+    * [getProductVariantsBySlug](#getproductvariantsbyslug)
+    * [getProductStockByIds](#getproductstockbyids)
+    * [getProductStockForTimeByIds](#getproductstockfortimebyids)
+    * [getProducts](#getproducts)
+    * [getBrands](#getbrands)
+    * [getBrandDetailBySlug](#getbranddetailbyslug)
+    * [getCategories](#getcategories)
+    * [getCategoryDetailBySlug](#getcategorydetailbyslug)
+    * [getHomeProducts](#gethomeproducts)
+    * [getDepartments](#getdepartments)
+    * [getSearchResults](#getsearchresults)
+    * [getCollections](#getcollections)
+    * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
+    * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
+    * [getFollowedListing](#getfollowedlisting)
+    * [followById](#followbyid)
+    * [unfollowById](#unfollowbyid)
+    * [getFollowerCountById](#getfollowercountbyid)
+    * [getFollowIds](#getfollowids)
+    * [getStores](#getstores)
     
 
 * [Cart](#Cart)
   * Methods
-    * [getCart](#cartgetcart)
-    * [getCartLastModified](#cartgetcartlastmodified)
-    * [addItems](#cartadditems)
-    * [updateCart](#cartupdatecart)
-    * [getItemCount](#cartgetitemcount)
-    * [getCoupons](#cartgetcoupons)
-    * [applyCoupon](#cartapplycoupon)
-    * [removeCoupon](#cartremovecoupon)
-    * [getBulkDiscountOffers](#cartgetbulkdiscountoffers)
-    * [getAddresses](#cartgetaddresses)
-    * [addAddress](#cartaddaddress)
-    * [getAddressById](#cartgetaddressbyid)
-    * [updateAddress](#cartupdateaddress)
-    * [removeAddress](#cartremoveaddress)
-    * [selectAddress](#cartselectaddress)
-    * [getPaymentModes](#cartgetpaymentmodes)
-    * [selectPaymentMode](#cartselectpaymentmode)
-    * [getShipments](#cartgetshipments)
-    * [checkoutCart](#cartcheckoutcart)
-    * [updateCartMeta](#cartupdatecartmeta)
-    * [getCartShareLink](#cartgetcartsharelink)
-    * [getCartSharedItems](#cartgetcartshareditems)
-    * [updateCartWithSharedItems](#cartupdatecartwithshareditems)
+    * [getCart](#getcart)
+    * [getCartLastModified](#getcartlastmodified)
+    * [addItems](#additems)
+    * [updateCart](#updatecart)
+    * [getItemCount](#getitemcount)
+    * [getCoupons](#getcoupons)
+    * [applyCoupon](#applycoupon)
+    * [removeCoupon](#removecoupon)
+    * [getBulkDiscountOffers](#getbulkdiscountoffers)
+    * [getAddresses](#getaddresses)
+    * [addAddress](#addaddress)
+    * [getAddressById](#getaddressbyid)
+    * [updateAddress](#updateaddress)
+    * [removeAddress](#removeaddress)
+    * [selectAddress](#selectaddress)
+    * [getPaymentModes](#getpaymentmodes)
+    * [selectPaymentMode](#selectpaymentmode)
+    * [getShipments](#getshipments)
+    * [checkoutCart](#checkoutcart)
+    * [updateCartMeta](#updatecartmeta)
+    * [getCartShareLink](#getcartsharelink)
+    * [getCartSharedItems](#getcartshareditems)
+    * [updateCartWithSharedItems](#updatecartwithshareditems)
     
 
 * [Lead](#Lead)
   * Methods
-    * [getTicket](#leadgetticket)
-    * [createHistoryForTicket](#leadcreatehistoryforticket)
-    * [createTicket](#leadcreateticket)
-    * [getCustomForm](#leadgetcustomform)
-    * [submitCustomForm](#leadsubmitcustomform)
-    * [getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
-    * [getTokenForVideoRoom](#leadgettokenforvideoroom)
+    * [getTicket](#getticket)
+    * [createHistoryForTicket](#createhistoryforticket)
+    * [createTicket](#createticket)
+    * [getCustomForm](#getcustomform)
+    * [submitCustomForm](#submitcustomform)
+    * [getParticipantsInsideVideoRoom](#getparticipantsinsidevideoroom)
+    * [getTokenForVideoRoom](#gettokenforvideoroom)
     
 
 * [Theme](#Theme)
   * Methods
-    * [getAppliedTheme](#themegetappliedtheme)
-    * [getThemeForPreview](#themegetthemeforpreview)
+    * [getAppliedTheme](#getappliedtheme)
+    * [getThemeForPreview](#getthemeforpreview)
     
 
 * [User](#User)
   * Methods
-    * [loginWithFacebook](#userloginwithfacebook)
-    * [loginWithGoogle](#userloginwithgoogle)
-    * [loginWithGoogleAndroid](#userloginwithgoogleandroid)
-    * [loginWithGoogleIOS](#userloginwithgoogleios)
-    * [loginWithOTP](#userloginwithotp)
-    * [loginWithEmailAndPassword](#userloginwithemailandpassword)
-    * [sendResetPasswordEmail](#usersendresetpasswordemail)
-    * [forgotPassword](#userforgotpassword)
-    * [sendResetToken](#usersendresettoken)
-    * [loginWithToken](#userloginwithtoken)
-    * [registerWithForm](#userregisterwithform)
-    * [verifyEmail](#userverifyemail)
-    * [verifyMobile](#userverifymobile)
-    * [hasPassword](#userhaspassword)
-    * [updatePassword](#userupdatepassword)
-    * [logout](#userlogout)
-    * [sendOTPOnMobile](#usersendotponmobile)
-    * [verifyMobileOTP](#userverifymobileotp)
-    * [sendOTPOnEmail](#usersendotponemail)
-    * [verifyEmailOTP](#userverifyemailotp)
-    * [getLoggedInUser](#usergetloggedinuser)
-    * [getListOfActiveSessions](#usergetlistofactivesessions)
-    * [getPlatformConfig](#usergetplatformconfig)
-    * [updateProfile](#userupdateprofile)
-    * [addMobileNumber](#useraddmobilenumber)
-    * [deleteMobileNumber](#userdeletemobilenumber)
-    * [setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
-    * [sendVerificationLinkToMobile](#usersendverificationlinktomobile)
-    * [addEmail](#useraddemail)
-    * [deleteEmail](#userdeleteemail)
-    * [setEmailAsPrimary](#usersetemailasprimary)
-    * [sendVerificationLinkToEmail](#usersendverificationlinktoemail)
+    * [loginWithFacebook](#loginwithfacebook)
+    * [loginWithGoogle](#loginwithgoogle)
+    * [loginWithGoogleAndroid](#loginwithgoogleandroid)
+    * [loginWithGoogleIOS](#loginwithgoogleios)
+    * [loginWithOTP](#loginwithotp)
+    * [loginWithEmailAndPassword](#loginwithemailandpassword)
+    * [sendResetPasswordEmail](#sendresetpasswordemail)
+    * [forgotPassword](#forgotpassword)
+    * [sendResetToken](#sendresettoken)
+    * [loginWithToken](#loginwithtoken)
+    * [registerWithForm](#registerwithform)
+    * [verifyEmail](#verifyemail)
+    * [verifyMobile](#verifymobile)
+    * [hasPassword](#haspassword)
+    * [updatePassword](#updatepassword)
+    * [logout](#logout)
+    * [sendOTPOnMobile](#sendotponmobile)
+    * [verifyMobileOTP](#verifymobileotp)
+    * [sendOTPOnEmail](#sendotponemail)
+    * [verifyEmailOTP](#verifyemailotp)
+    * [getLoggedInUser](#getloggedinuser)
+    * [getListOfActiveSessions](#getlistofactivesessions)
+    * [getPlatformConfig](#getplatformconfig)
+    * [updateProfile](#updateprofile)
+    * [addMobileNumber](#addmobilenumber)
+    * [deleteMobileNumber](#deletemobilenumber)
+    * [setMobileNumberAsPrimary](#setmobilenumberasprimary)
+    * [sendVerificationLinkToMobile](#sendverificationlinktomobile)
+    * [addEmail](#addemail)
+    * [deleteEmail](#deleteemail)
+    * [setEmailAsPrimary](#setemailasprimary)
+    * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
     
 
 * [Content](#Content)
   * Methods
-    * [getAnnouncements](#contentgetannouncements)
-    * [getBlog](#contentgetblog)
-    * [getFaqs](#contentgetfaqs)
-    * [getLandingPage](#contentgetlandingpage)
-    * [getLegalInformation](#contentgetlegalinformation)
-    * [getNavigations](#contentgetnavigations)
-    * [getPage](#contentgetpage)
-    * [getSeoConfiguration](#contentgetseoconfiguration)
-    * [getSlideshow](#contentgetslideshow)
-    * [getSupportInformation](#contentgetsupportinformation)
-    * [getTags](#contentgettags)
+    * [getAnnouncements](#getannouncements)
+    * [getBlog](#getblog)
+    * [getFaqs](#getfaqs)
+    * [getLandingPage](#getlandingpage)
+    * [getLegalInformation](#getlegalinformation)
+    * [getNavigations](#getnavigations)
+    * [getPage](#getpage)
+    * [getSeoConfiguration](#getseoconfiguration)
+    * [getSlideshow](#getslideshow)
+    * [getSupportInformation](#getsupportinformation)
+    * [getTags](#gettags)
     
 
 * [Communication](#Communication)
   * Methods
-    * [getCommunicationConsent](#communicationgetcommunicationconsent)
-    * [upsertCommunicationConsent](#communicationupsertcommunicationconsent)
-    * [upsertPushtoken](#communicationupsertpushtoken)
+    * [getCommunicationConsent](#getcommunicationconsent)
+    * [upsertCommunicationConsent](#upsertcommunicationconsent)
+    * [upsertPushtoken](#upsertpushtoken)
     
 
 * [Share](#Share)
   * Methods
-    * [getApplicationQRCode](#sharegetapplicationqrcode)
-    * [getProductQRCodeBySlug](#sharegetproductqrcodebyslug)
-    * [getCollectionQRCodeBySlug](#sharegetcollectionqrcodebyslug)
-    * [getUrlQRCode](#sharegeturlqrcode)
-    * [createShortLink](#sharecreateshortlink)
-    * [getShortLinkByHash](#sharegetshortlinkbyhash)
-    * [getOriginalShortLinkByHash](#sharegetoriginalshortlinkbyhash)
+    * [getApplicationQRCode](#getapplicationqrcode)
+    * [getProductQRCodeBySlug](#getproductqrcodebyslug)
+    * [getCollectionQRCodeBySlug](#getcollectionqrcodebyslug)
+    * [getUrlQRCode](#geturlqrcode)
+    * [createShortLink](#createshortlink)
+    * [getShortLinkByHash](#getshortlinkbyhash)
+    * [getOriginalShortLinkByHash](#getoriginalshortlinkbyhash)
     
 
 * [FileStorage](#FileStorage)
   * Methods
-    * [completeUpload](#filestoragecompleteupload)
-    * [startUpload](#filestoragestartupload)
+    * [completeUpload](#completeupload)
+    * [startUpload](#startupload)
     
 
 * [Payment](#Payment)
   * Methods
-    * [getAggregatorsConfig](#paymentgetaggregatorsconfig)
-    * [attachCardToCustomer](#paymentattachcardtocustomer)
-    * [getActiveCardAggregator](#paymentgetactivecardaggregator)
-    * [getActiveUserCards](#paymentgetactiveusercards)
-    * [deleteUserCard](#paymentdeleteusercard)
-    * [verifyCustomerForPayment](#paymentverifycustomerforpayment)
-    * [verifyAndChargePayment](#paymentverifyandchargepayment)
-    * [initialisePayment](#paymentinitialisepayment)
-    * [checkAndUpdatePaymentStatus](#paymentcheckandupdatepaymentstatus)
-    * [getPaymentModeRoutes](#paymentgetpaymentmoderoutes)
-    * [getPosPaymentModeRoutes](#paymentgetpospaymentmoderoutes)
-    * [getUserBeneficiariesDetail](#paymentgetuserbeneficiariesdetail)
-    * [verifyIfscCode](#paymentverifyifsccode)
-    * [getOrderBeneficiariesDetail](#paymentgetorderbeneficiariesdetail)
-    * [verifyOtpAndAddBeneficiaryForBank](#paymentverifyotpandaddbeneficiaryforbank)
-    * [addBeneficiaryDetails](#paymentaddbeneficiarydetails)
-    * [verifyOtpAndAddBeneficiaryForWallet](#paymentverifyotpandaddbeneficiaryforwallet)
-    * [updateDefaultBeneficiary](#paymentupdatedefaultbeneficiary)
+    * [getAggregatorsConfig](#getaggregatorsconfig)
+    * [attachCardToCustomer](#attachcardtocustomer)
+    * [getActiveCardAggregator](#getactivecardaggregator)
+    * [getActiveUserCards](#getactiveusercards)
+    * [deleteUserCard](#deleteusercard)
+    * [verifyCustomerForPayment](#verifycustomerforpayment)
+    * [verifyAndChargePayment](#verifyandchargepayment)
+    * [initialisePayment](#initialisepayment)
+    * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
+    * [getPaymentModeRoutes](#getpaymentmoderoutes)
+    * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
+    * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
+    * [verifyIfscCode](#verifyifsccode)
+    * [getOrderBeneficiariesDetail](#getorderbeneficiariesdetail)
+    * [verifyOtpAndAddBeneficiaryForBank](#verifyotpandaddbeneficiaryforbank)
+    * [addBeneficiaryDetails](#addbeneficiarydetails)
+    * [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
+    * [updateDefaultBeneficiary](#updatedefaultbeneficiary)
     
 
 * [Order](#Order)
   * Methods
-    * [getOrders](#ordergetorders)
-    * [getOrderById](#ordergetorderbyid)
-    * [getShipmentById](#ordergetshipmentbyid)
-    * [getShipmentReasons](#ordergetshipmentreasons)
-    * [updateShipmentStatus](#orderupdateshipmentstatus)
-    * [trackShipment](#ordertrackshipment)
+    * [getOrders](#getorders)
+    * [getOrderById](#getorderbyid)
+    * [getShipmentById](#getshipmentbyid)
+    * [getShipmentReasons](#getshipmentreasons)
+    * [updateShipmentStatus](#updateshipmentstatus)
+    * [trackShipment](#trackshipment)
     
 
 * [Rewards](#Rewards)
   * Methods
-    * [getPointsOnProduct](#rewardsgetpointsonproduct)
-    * [getOrderDiscount](#rewardsgetorderdiscount)
-    * [getUserPoints](#rewardsgetuserpoints)
-    * [getUserPointsHistory](#rewardsgetuserpointshistory)
-    * [getUserReferralDetails](#rewardsgetuserreferraldetails)
-    * [redeemReferralCode](#rewardsredeemreferralcode)
+    * [getPointsOnProduct](#getpointsonproduct)
+    * [getOrderDiscount](#getorderdiscount)
+    * [getUserPoints](#getuserpoints)
+    * [getUserPointsHistory](#getuserpointshistory)
+    * [getUserReferralDetails](#getuserreferraldetails)
+    * [redeemReferralCode](#redeemreferralcode)
     
 
 * [Feedback](#Feedback)
   * Methods
-    * [createAbuseReport](#feedbackcreateabusereport)
-    * [updateAbuseReport](#feedbackupdateabusereport)
-    * [getAbuseReports](#feedbackgetabusereports)
-    * [getAttributes](#feedbackgetattributes)
-    * [createAttribute](#feedbackcreateattribute)
-    * [getAttribute](#feedbackgetattribute)
-    * [updateAttribute](#feedbackupdateattribute)
-    * [createComment](#feedbackcreatecomment)
-    * [updateComment](#feedbackupdatecomment)
-    * [getComments](#feedbackgetcomments)
-    * [checkEligibility](#feedbackcheckeligibility)
-    * [deleteMedia](#feedbackdeletemedia)
-    * [createMedia](#feedbackcreatemedia)
-    * [updateMedia](#feedbackupdatemedia)
-    * [getMedias](#feedbackgetmedias)
-    * [getReviewSummaries](#feedbackgetreviewsummaries)
-    * [createReview](#feedbackcreatereview)
-    * [updateReview](#feedbackupdatereview)
-    * [getReviews](#feedbackgetreviews)
-    * [getTemplates](#feedbackgettemplates)
-    * [createQuestion](#feedbackcreatequestion)
-    * [updateQuestion](#feedbackupdatequestion)
-    * [getQuestionAndAnswers](#feedbackgetquestionandanswers)
-    * [getVotes](#feedbackgetvotes)
-    * [createVote](#feedbackcreatevote)
-    * [updateVote](#feedbackupdatevote)
+    * [createAbuseReport](#createabusereport)
+    * [updateAbuseReport](#updateabusereport)
+    * [getAbuseReports](#getabusereports)
+    * [getAttributes](#getattributes)
+    * [createAttribute](#createattribute)
+    * [getAttribute](#getattribute)
+    * [updateAttribute](#updateattribute)
+    * [createComment](#createcomment)
+    * [updateComment](#updatecomment)
+    * [getComments](#getcomments)
+    * [checkEligibility](#checkeligibility)
+    * [deleteMedia](#deletemedia)
+    * [createMedia](#createmedia)
+    * [updateMedia](#updatemedia)
+    * [getMedias](#getmedias)
+    * [getReviewSummaries](#getreviewsummaries)
+    * [createReview](#createreview)
+    * [updateReview](#updatereview)
+    * [getReviews](#getreviews)
+    * [getTemplates](#gettemplates)
+    * [createQuestion](#createquestion)
+    * [updateQuestion](#updatequestion)
+    * [getQuestionAndAnswers](#getquestionandanswers)
+    * [getVotes](#getvotes)
+    * [createVote](#createvote)
+    * [updateVote](#updatevote)
     
 
 * [PosCart](#PosCart)
   * Methods
-    * [getCart](#poscartgetcart)
-    * [getCartLastModified](#poscartgetcartlastmodified)
-    * [addItems](#poscartadditems)
-    * [updateCart](#poscartupdatecart)
-    * [getItemCount](#poscartgetitemcount)
-    * [getCoupons](#poscartgetcoupons)
-    * [applyCoupon](#poscartapplycoupon)
-    * [removeCoupon](#poscartremovecoupon)
-    * [getBulkDiscountOffers](#poscartgetbulkdiscountoffers)
-    * [getAddresses](#poscartgetaddresses)
-    * [addAddress](#poscartaddaddress)
-    * [getAddressById](#poscartgetaddressbyid)
-    * [updateAddress](#poscartupdateaddress)
-    * [removeAddress](#poscartremoveaddress)
-    * [selectAddress](#poscartselectaddress)
-    * [getPaymentModes](#poscartgetpaymentmodes)
-    * [selectPaymentMode](#poscartselectpaymentmode)
-    * [getShipments](#poscartgetshipments)
-    * [checkoutCart](#poscartcheckoutcart)
-    * [updateCartMeta](#poscartupdatecartmeta)
-    * [getAvailableDeliveryModes](#poscartgetavailabledeliverymodes)
-    * [getStoreAddressByUid](#poscartgetstoreaddressbyuid)
-    * [getCartShareLink](#poscartgetcartsharelink)
-    * [getCartSharedItems](#poscartgetcartshareditems)
-    * [updateCartWithSharedItems](#poscartupdatecartwithshareditems)
+    * [getCart](#getcart)
+    * [getCartLastModified](#getcartlastmodified)
+    * [addItems](#additems)
+    * [updateCart](#updatecart)
+    * [getItemCount](#getitemcount)
+    * [getCoupons](#getcoupons)
+    * [applyCoupon](#applycoupon)
+    * [removeCoupon](#removecoupon)
+    * [getBulkDiscountOffers](#getbulkdiscountoffers)
+    * [getAddresses](#getaddresses)
+    * [addAddress](#addaddress)
+    * [getAddressById](#getaddressbyid)
+    * [updateAddress](#updateaddress)
+    * [removeAddress](#removeaddress)
+    * [selectAddress](#selectaddress)
+    * [getPaymentModes](#getpaymentmodes)
+    * [selectPaymentMode](#selectpaymentmode)
+    * [getShipments](#getshipments)
+    * [checkoutCart](#checkoutcart)
+    * [updateCartMeta](#updatecartmeta)
+    * [getAvailableDeliveryModes](#getavailabledeliverymodes)
+    * [getStoreAddressByUid](#getstoreaddressbyuid)
+    * [getCartShareLink](#getcartsharelink)
+    * [getCartSharedItems](#getcartshareditems)
+    * [updateCartWithSharedItems](#updatecartwithshareditems)
     
 
 
@@ -298,7 +298,7 @@ catalog.getProductDetailBySlug(slug: slug) { (response, error) in
 
 Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -346,7 +346,7 @@ catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { (response, error) 
 
 A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -396,7 +396,7 @@ catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId:
 
 Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -447,7 +447,7 @@ catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo
 
 A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
 
-Success Response:
+#####Success Response:
 
 
 
@@ -494,7 +494,7 @@ catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -541,7 +541,7 @@ catalog.getSimilarComparisonProductBySlug(slug: slug) { (response, error) in
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products
 
-Success Response:
+#####Success Response:
 
 
 
@@ -588,7 +588,7 @@ catalog.getComparedFrequentlyProductBySlug(slug: slug) { (response, error) in
 
 Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
 
-Success Response:
+#####Success Response:
 
 
 
@@ -636,7 +636,7 @@ catalog.getProductSimilarByIdentifier(slug: slug, similarType: similarType) { (r
 
 Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -683,7 +683,7 @@ catalog.getProductVariantsBySlug(slug: slug) { (response, error) in
 
 A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -734,7 +734,7 @@ catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode: skuCode, ean: ea
 
 Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
 
-Success Response:
+#####Success Response:
 
 
 
@@ -783,7 +783,7 @@ catalog.getProductStockForTimeByIds(timestamp: timestamp, pageSize: pageSize, pa
 
 Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
 
-Success Response:
+#####Success Response:
 
 
 
@@ -837,7 +837,7 @@ catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -886,7 +886,7 @@ catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { 
 
 A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -933,7 +933,7 @@ catalog.getBrandDetailBySlug(slug: slug) { (response, error) in
 
 Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -980,7 +980,7 @@ catalog.getCategories(department: department) { (response, error) in
 
 List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1027,7 +1027,7 @@ catalog.getCategoryDetailBySlug(slug: slug) { (response, error) in
 
 Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1076,7 +1076,7 @@ catalog.getHomeProducts(sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (r
 
 List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1122,7 +1122,7 @@ catalog.getDepartments() { (response, error) in
 
 Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1169,7 +1169,7 @@ catalog.getSearchResults(q: q) { (response, error) in
 
 Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1217,7 +1217,7 @@ catalog.getCollections(pageId: pageId, pageSize: pageSize) { (response, error) i
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1269,7 +1269,7 @@ catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sor
 
 Get items in a collection specified by its `slug`.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1316,7 +1316,7 @@ catalog.getCollectionDetailBySlug(slug: slug) { (response, error) in
 
 Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1363,7 +1363,7 @@ catalog.getFollowedListing(collectionType: collectionType) { (response, error) i
 
 A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1411,7 +1411,7 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 
 Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1459,7 +1459,7 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 
 You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1507,7 +1507,7 @@ catalog.getFollowerCountById(collectionType: collectionType, collectionId: colle
 
 Get count of followers for given collection type and collection id.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1554,7 +1554,7 @@ catalog.getFollowIds(collectionType: collectionType) { (response, error) in
 
 You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1606,7 +1606,7 @@ catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitu
 
 Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1661,7 +1661,7 @@ cart.getCart(uid: uid, assignCardId: assignCardId) { (response, error) in
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1696,7 +1696,7 @@ cart.getCartLastModified(uid: uid) { (response, error) in
 
 Fetch Last-Modified timestamp in header metadata
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1724,7 +1724,7 @@ cart.addItems(body: body) { (response, error) in
 
 <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -1734,11 +1734,11 @@ Response of the cart object including all item details included in .the cart,cou
 Schema: `AddCartResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Product has been added to your cart
-```javascript
+```json
 {
   "value": {
     "message": "Product has been added to your cart",
@@ -2189,7 +2189,7 @@ Product has been added to your cart
 ```
 
 Sorry, item is out of stock
-```javascript
+```json
 {
   "value": {
     "message": "Sorry, item is out of stock",
@@ -2391,7 +2391,7 @@ cart.updateCart(body: body) { (response, error) in
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -2401,11 +2401,11 @@ Response of the cart object including all item with their updated details includ
 Schema: `UpdateCartResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Nothing updated
-```javascript
+```json
 {
   "value": {
     "cart": {
@@ -2588,7 +2588,7 @@ Nothing updated
 ```
 
 Item updated in the cart
-```javascript
+```json
 {
   "value": {
     "cart": {
@@ -2788,7 +2788,7 @@ cart.getItemCount(uid: uid) { (response, error) in
 
 Get total count of item present in cart
 
-Success Response:
+#####Success Response:
 
 
 
@@ -2823,7 +2823,7 @@ cart.getCoupons(uid: uid) { (response, error) in
 
 Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
 
-Success Response:
+#####Success Response:
 
 
 
@@ -2861,7 +2861,7 @@ cart.applyCoupon(i: i, b: b, p: p, body: body) { (response, error) in
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -2896,7 +2896,7 @@ cart.removeCoupon(uid: uid) { (response, error) in
 
 Remove Coupon applied on the cart by passing uid in request body.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -2934,7 +2934,7 @@ cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug:
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
-Success Response:
+#####Success Response:
 
 
 
@@ -2944,11 +2944,11 @@ Offers found or not found with valid input
 Schema: `BulkPriceResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Offers found
-```javascript
+```json
 {
   "value": {
     "data": [
@@ -3006,7 +3006,7 @@ Offers found
 ```
 
 Offers not found
-```javascript
+```json
 {
   "value": {
     "data": []
@@ -3056,7 +3056,7 @@ cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3090,7 +3090,7 @@ cart.addAddress(body: body) { (response, error) in
 
 <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3130,7 +3130,7 @@ cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkout
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3165,7 +3165,7 @@ cart.updateAddress(id: id, body: body) { (response, error) in
 
 Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3200,7 +3200,7 @@ cart.removeAddress(id: id) { (response, error) in
 
 Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3234,7 +3234,7 @@ cart.selectAddress(body: body) { (response, error) in
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3256,11 +3256,11 @@ Address or Pincode Error
 Schema: `[String: Any]`
 
 
-Examples: 
+#####Examples: 
 
 
 Address Not Found
-```javascript
+```json
 {
   "value": {
     "status": "ERROR",
@@ -3270,7 +3270,7 @@ Address Not Found
 ```
 
 Pincode Not Serviciable
-```javascript
+```json
 {
   "value": {
     "status": "ERROR",
@@ -3310,7 +3310,7 @@ cart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode, p
 
 Validate coupon for selected payment mode
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3345,7 +3345,7 @@ cart.selectPaymentMode(uid: uid, body: body) { (response, error) in
 
 Update Cart Payment for Your Account
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3382,7 +3382,7 @@ cart.getShipments(p: p, uid: uid, addressId: addressId) { (response, error) in
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -3392,11 +3392,11 @@ OK
 Schema: `CartShipmentsResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Shipment Generated
-```javascript
+```json
 {
   "value": {
     "items": [],
@@ -3782,7 +3782,7 @@ Shipment Generated
 ```
 
 Shipment Generation Failed
-```javascript
+```json
 {
   "value": {
     "items": [],
@@ -4068,7 +4068,7 @@ cart.checkoutCart(body: body) { (response, error) in
 
 Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
 
-Success Response:
+#####Success Response:
 
 
 
@@ -4078,11 +4078,11 @@ OK
 Schema: `CartCheckoutResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Address id not found
-```javascript
+```json
 {
   "value": {
     "success": false,
@@ -4092,7 +4092,7 @@ Address id not found
 ```
 
 Missing address_id
-```javascript
+```json
 {
   "value": {
     "address_id": [
@@ -4103,7 +4103,7 @@ Missing address_id
 ```
 
 Successful checkout cod payment
-```javascript
+```json
 {
   "value": {
     "success": true,
@@ -4480,7 +4480,7 @@ cart.updateCartMeta(uid: uid, body: body) { (response, error) in
 
 Update cart meta like checkout_mode, gstin.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -4526,7 +4526,7 @@ cart.getCartShareLink(body: body) { (response, error) in
 
 Generates shared cart snapshot and returns shortlink token
 
-Success Response:
+#####Success Response:
 
 
 
@@ -4536,11 +4536,11 @@ Token Generated successfully
 Schema: `GetShareCartLinkResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Token Generated
-```javascript
+```json
 {
   "value": {
     "token": "ZweG1XyX",
@@ -4575,7 +4575,7 @@ cart.getCartSharedItems(token: token) { (response, error) in
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -4623,7 +4623,7 @@ cart.updateCartWithSharedItems(token: token, action: action) { (response, error)
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -4633,11 +4633,11 @@ Success of Merge or Replace of cart with `shared_cart_details`                  
 Schema: `SharedCartResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Cart Merged/Replaced
-```javascript
+```json
 {
   "value": {
     "cart": {
@@ -4951,7 +4951,7 @@ lead.getTicket(id: id) { (response, error) in
 
 Get Ticket with the specific id, this is used to view the ticket details
 
-Success Response:
+#####Success Response:
 
 
 
@@ -4961,11 +4961,11 @@ Success
 Schema: `Ticket`
 
 
-Examples: 
+#####Examples: 
 
 
 Default
-```javascript
+```json
 {
   "value": {
     "context": {
@@ -5188,7 +5188,7 @@ lead.createHistoryForTicket(ticketId: ticketId, body: body) { (response, error) 
 
 Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -5198,11 +5198,11 @@ Success
 Schema: `TicketHistory`
 
 
-Examples: 
+#####Examples: 
 
 
 Default
-```javascript
+```json
 {
   "value": {
     "_id": "601a9d52c26687d086c499ef",
@@ -5267,7 +5267,7 @@ lead.createTicket(body: body) { (response, error) in
 
 This is used to Create Ticket.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -5277,11 +5277,11 @@ Success
 Schema: `Ticket`
 
 
-Examples: 
+#####Examples: 
 
 
 Default
-```javascript
+```json
 {
   "value": {
     "context": {
@@ -5504,7 +5504,7 @@ lead.getCustomForm(slug: slug) { (response, error) in
 
 Get specific Custom Form using it's slug, this is used to view the form.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -5514,11 +5514,11 @@ Success
 Schema: `CustomForm`
 
 
-Examples: 
+#####Examples: 
 
 
 Default
-```javascript
+```json
 {
   "value": {
     "login_required": false,
@@ -5594,7 +5594,7 @@ lead.submitCustomForm(slug: slug, body: body) { (response, error) in
 
 Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -5604,11 +5604,11 @@ Success
 Schema: `SubmitCustomFormResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Default
-```javascript
+```json
 {
   "value": {
     "ticket": {
@@ -5833,7 +5833,7 @@ lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) 
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -5843,11 +5843,11 @@ Success
 Schema: `GetParticipantsInsideVideoRoomResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Default
-```javascript
+```json
 {
   "value": {
     "participants": []
@@ -5881,7 +5881,7 @@ lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -5891,11 +5891,11 @@ Success
 Schema: `GetTokenForVideoRoomResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Default
-```javascript
+```json
 {
   "value": {
     "access_token": "your_token_to_the_room"
@@ -5935,7 +5935,7 @@ theme.getAppliedTheme() { (response, error) in
 
 
 
-Success Response:
+#####Success Response:
 
 
 
@@ -5945,11 +5945,11 @@ A JSON object of theme
 Schema: `ThemesSchema`
 
 
-Examples: 
+#####Examples: 
 
 
 Applied Theme
-```javascript
+```json
 {
   "$ref": "#/components/examples/Themes"
 }
@@ -5993,7 +5993,7 @@ theme.getThemeForPreview(themeId: themeId) { (response, error) in
 
 
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6003,11 +6003,11 @@ A JSON object of theme
 Schema: `ThemesSchema`
 
 
-Examples: 
+#####Examples: 
 
 
 Preview Theme
-```javascript
+```json
 {
   "$ref": "#/components/examples/Themes"
 }
@@ -6057,7 +6057,7 @@ user.loginWithFacebook(body: body) { (response, error) in
 
 Used to login or register with Facebook
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6067,11 +6067,11 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
@@ -6114,7 +6114,7 @@ user.loginWithGoogle(body: body) { (response, error) in
 
 Used to login or register with Google
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6124,11 +6124,11 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
@@ -6171,7 +6171,7 @@ user.loginWithGoogleAndroid(body: body) { (response, error) in
 
 Used to login or register with Google for android
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6181,11 +6181,11 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
@@ -6228,7 +6228,7 @@ user.loginWithGoogleIOS(body: body) { (response, error) in
 
 Used to login or register with google for ios
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6238,11 +6238,11 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
@@ -6286,7 +6286,7 @@ user.loginWithOTP(platform: platform, body: body) { (response, error) in
 
 Used to login or register with OTP
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6296,11 +6296,11 @@ Success Response:
 Schema: `SendOtpResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/SendOtpResponse"
 }
@@ -6343,7 +6343,7 @@ user.loginWithEmailAndPassword(body: body) { (response, error) in
 
 Used to login or register with email & password
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6353,11 +6353,11 @@ Success Response:
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -6401,7 +6401,7 @@ user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) 
 
 Used to reset account password
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6447,7 +6447,7 @@ user.forgotPassword(body: body) { (response, error) in
 
 
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6457,11 +6457,11 @@ Success Response:
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -6504,7 +6504,7 @@ user.sendResetToken(body: body) { (response, error) in
 
 Send code incase of reset password
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6550,7 +6550,7 @@ user.loginWithToken(body: body) { (response, error) in
 
 Login/Register with token
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6560,11 +6560,11 @@ Success Response:
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -6620,7 +6620,7 @@ user.registerWithForm(platform: platform, body: body) { (response, error) in
 
 Register using form
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6666,7 +6666,7 @@ user.verifyEmail(body: body) { (response, error) in
 
 Used to verify email
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6712,7 +6712,7 @@ user.verifyMobile(body: body) { (response, error) in
 
 Verify mobile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6758,7 +6758,7 @@ user.hasPassword() { (response, error) in
 
 Checks if user is using password or not
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6804,7 +6804,7 @@ user.updatePassword(body: body) { (response, error) in
 
 Used to update user password
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6850,7 +6850,7 @@ user.logout() { (response, error) in
 
 Used to log out user
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6897,7 +6897,7 @@ user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
 
 Used to send otp to mobile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6944,7 +6944,7 @@ user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
 
 Used to verify otp sent to mobile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -6954,11 +6954,11 @@ Success Response:
 Schema: `VerifyOtpSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
@@ -7002,7 +7002,7 @@ user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
 
 Used to send otp to email
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7049,7 +7049,7 @@ user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
 
 Used to verify otp sent to email
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7059,11 +7059,11 @@ Success Response:
 Schema: `VerifyOtpSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
@@ -7106,7 +7106,7 @@ user.getLoggedInUser() { (response, error) in
 
 Used to get logged in user details
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7116,11 +7116,11 @@ Success Response:
 Schema: `UserSchema`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExample"
 }
@@ -7163,7 +7163,7 @@ user.getListOfActiveSessions() { (response, error) in
 
 Lists all active sessions
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7210,7 +7210,7 @@ user.getPlatformConfig(name: name) { (response, error) in
 
 Used to get platform config
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7257,7 +7257,7 @@ user.updateProfile(platform: platform, body: body) { (response, error) in
 
 Used to update profile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7267,11 +7267,11 @@ Success Response:
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -7315,7 +7315,7 @@ user.addMobileNumber(platform: platform, body: body) { (response, error) in
 
 Used to add new mobile number to profile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7325,11 +7325,11 @@ A JSON object with user details
 Schema: `VerifyMobileOTPSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
@@ -7378,7 +7378,7 @@ user.deleteMobileNumber(platform: platform, active: active, primary: primary, ve
 
 Used to delete mobile number from profile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7388,11 +7388,11 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -7435,7 +7435,7 @@ user.setMobileNumberAsPrimary(body: body) { (response, error) in
 
 Used to set a mobile number as primary
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7445,11 +7445,11 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -7493,7 +7493,7 @@ user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, e
 
 Used to send verification link to a mobile number
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7503,11 +7503,11 @@ Success Response:
 Schema: `SendMobileVerifyLinkSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
@@ -7551,7 +7551,7 @@ user.addEmail(platform: platform, body: body) { (response, error) in
 
 Used to add new email to profile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7561,11 +7561,11 @@ A JSON object with user details
 Schema: `VerifyEmailOTPSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/VerifyEmailOTP"
 }
@@ -7613,7 +7613,7 @@ user.deleteEmail(platform: platform, active: active, primary: primary, verified:
 
 Used to delete email from profile
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7623,11 +7623,11 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -7670,7 +7670,7 @@ user.setEmailAsPrimary(body: body) { (response, error) in
 
 Used to set an email as primart
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7680,11 +7680,11 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
@@ -7728,7 +7728,7 @@ user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, er
 
 Used to sent verification to an email
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7781,7 +7781,7 @@ content.getAnnouncements() { (response, error) in
 
 Get live announcements for each or all pages with page slug of page and end date schedule.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7791,18 +7791,18 @@ Announcement api response. announcements object contains page slug name as prope
 Schema: `AnnouncementsResponseSchema`
 
 
-Examples: 
+#####Examples: 
 
 
 Announcements enabled
-```javascript
+```json
 {
   "$ref": "#/components/examples/AnnouncementEnabledExample"
 }
 ```
 
 No Announcement enabled
-```javascript
+```json
 {
   "value": {
     "announcements": [],
@@ -7850,7 +7850,7 @@ content.getBlog(slug: slug) { (response, error) in
 
 Use this API to fetch a blog using `slug`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7860,11 +7860,11 @@ A JSON object with blog details
 Schema: `CustomBlog`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/CustomBlog"
 }
@@ -7907,7 +7907,7 @@ content.getFaqs() { (response, error) in
 
 Get frequently asked questions list. These will be helpful for users to using website.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7917,11 +7917,11 @@ Success
 Schema: `FaqResponseSchema`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/AppFaqs"
 }
@@ -7965,7 +7965,7 @@ content.getLandingPage(xDevicePlatform: xDevicePlatform) { (response, error) in
 
 Use this API to fetch a landing page
 
-Success Response:
+#####Success Response:
 
 
 
@@ -7975,11 +7975,11 @@ A JSON object with landing details
 Schema: `LandingPage`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/LandingPage"
 }
@@ -8022,7 +8022,7 @@ content.getLegalInformation() { (response, error) in
 
 Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8032,11 +8032,11 @@ Success
 Schema: `ApplicationLegal`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/Legal"
 }
@@ -8080,7 +8080,7 @@ content.getNavigations(xDevicePlatform: xDevicePlatform) { (response, error) in
 
 Use this API to fetch a navigation
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8090,11 +8090,11 @@ A JSON object with navigation details
 Schema: `Navigation`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/Navigation"
 }
@@ -8138,7 +8138,7 @@ content.getPage(slug: slug) { (response, error) in
 
 Use this API to fetch a custom page using `slug`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8148,11 +8148,11 @@ A JSON object with page details
 Schema: `CustomPage`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/CustomPage"
 }
@@ -8195,7 +8195,7 @@ content.getSeoConfiguration() { (response, error) in
 
 Get seo of application
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8205,11 +8205,11 @@ Success
 Schema: `Seo`
 
 
-Examples: 
+#####Examples: 
 
 
 Success
-```javascript
+```json
 {
   "$ref": "#/components/examples/Seo"
 }
@@ -8254,7 +8254,7 @@ content.getSlideshow(slug: slug, xDevicePlatform: xDevicePlatform) { (response, 
 
 Use this API to fetch a slideshow using `slug`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8264,11 +8264,11 @@ A JSON object with slideshow details
 Schema: `Slideshow`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/Slideshow"
 }
@@ -8311,7 +8311,7 @@ content.getSupportInformation() { (response, error) in
 
 Get contact details for customer support. Including emails and phone numbers
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8321,11 +8321,11 @@ Success
 Schema: `Support`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/Support"
 }
@@ -8368,7 +8368,7 @@ content.getTags() { (response, error) in
 
 
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8421,7 +8421,7 @@ communication.getCommunicationConsent() { (response, error) in
 
 Get communication consent
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8431,11 +8431,11 @@ Success
 Schema: `CommunicationConsent`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/CommunicationConsent"
 }
@@ -8466,7 +8466,7 @@ communication.upsertCommunicationConsent(body: body) { (response, error) in
 
 Upsert communication consent
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8476,11 +8476,11 @@ Success
 Schema: `CommunicationConsentRes`
 
 
-Examples: 
+#####Examples: 
 
 
 default
-```javascript
+```json
 {
   "$ref": "#/components/examples/CommunicationConsentRes"
 }
@@ -8523,7 +8523,7 @@ communication.upsertPushtoken(body: body) { (response, error) in
 
 Upsert push token of a user
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8533,25 +8533,25 @@ Success
 Schema: `PushtokenRes`
 
 
-Examples: 
+#####Examples: 
 
 
 create
-```javascript
+```json
 {
   "$ref": "#/components/examples/PushtokenResponseCreate"
 }
 ```
 
 update
-```javascript
+```json
 {
   "$ref": "#/components/examples/PushtokenResponseUpdate"
 }
 ```
 
 reset
-```javascript
+```json
 {
   "$ref": "#/components/examples/PushtokenResponseReset"
 }
@@ -8601,7 +8601,7 @@ share.getApplicationQRCode() { (response, error) in
 
 Create application QR Code
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8636,7 +8636,7 @@ share.getProductQRCodeBySlug(slug: slug) { (response, error) in
 
 Create product QR Code
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8671,7 +8671,7 @@ share.getCollectionQRCodeBySlug(slug: slug) { (response, error) in
 
 Create collection QR Code
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8706,7 +8706,7 @@ share.getUrlQRCode(url: url) { (response, error) in
 
 Create url QR Code
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8740,7 +8740,7 @@ share.createShortLink(body: body) { (response, error) in
 
 Create short link
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8775,7 +8775,7 @@ share.getShortLinkByHash(hash: hash) { (response, error) in
 
 Get short link by hash
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8810,7 +8810,7 @@ share.getOriginalShortLinkByHash(hash: hash) { (response, error) in
 
 Get original link by hash
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8871,7 +8871,7 @@ After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to comp
 This operation will return the url for the uploaded file.
 
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8937,7 +8937,7 @@ After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to comp
 This operation will return the url for the uploaded file.
 
 
-Success Response:
+#####Success Response:
 
 
 
@@ -8992,7 +8992,7 @@ payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response
 
 Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9050,7 +9050,7 @@ payment.attachCardToCustomer(body: body) { (response, error) in
 
 Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9109,7 +9109,7 @@ payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
 
 Fetch active payment gateway along with customer id for cards payments.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9168,7 +9168,7 @@ payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
 
 Fetch the list of saved cards of user from active payment gateway.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9226,7 +9226,7 @@ payment.deleteUserCard(body: body) { (response, error) in
 
 Delete an added user card on payment gateway and remove from cache.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9284,7 +9284,7 @@ payment.verifyCustomerForPayment(body: body) { (response, error) in
 
 Validate customer for payment i.e Simpl paylater, Rupifi loan.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9342,7 +9342,7 @@ payment.verifyAndChargePayment(body: body) { (response, error) in
 
 Verify and charge payment server to server for Simpl & Mswipe.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9400,7 +9400,7 @@ payment.initialisePayment(body: body) { (response, error) in
 
 Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9458,7 +9458,7 @@ payment.checkAndUpdatePaymentStatus(body: body) { (response, error) in
 
 Continous polling on interval to check status of payment untill timeout.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9523,7 +9523,7 @@ payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, c
 
 Use this API to get Get All Valid Payment Options for making payment
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9589,7 +9589,7 @@ payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode
 
 Use this API to get Get All Valid Payment Options for making payment
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9648,7 +9648,7 @@ payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
 
 Get all active  beneficiary details added by the user for refund
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9707,7 +9707,7 @@ payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
 
 Get True/False for correct IFSC Code for adding bank details for refund
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9766,7 +9766,7 @@ payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
 
 Get all active  beneficiary details added by the user for refund
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9824,7 +9824,7 @@ payment.verifyOtpAndAddBeneficiaryForBank(body: body) { (response, error) in
 
 Save Beneficiary details on otp validation.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9882,7 +9882,7 @@ payment.addBeneficiaryDetails(body: body) { (response, error) in
 
 Use this API to save bank details for returned/cancelled order to refund amount in his account.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9940,7 +9940,7 @@ payment.verifyOtpAndAddBeneficiaryForWallet(body: body) { (response, error) in
 
 Send Otp on Adding wallet beneficiary for user mobile verification
 
-Success Response:
+#####Success Response:
 
 
 
@@ -9998,7 +9998,7 @@ payment.updateDefaultBeneficiary(body: body) { (response, error) in
 
 Mark Default Beneficiary ot of all Beneficiary Details for Refund
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10067,7 +10067,7 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 
 Get Orders
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10126,7 +10126,7 @@ order.getOrderById(orderId: orderId) { (response, error) in
 
 Get Order By Fynd Order Id
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10185,7 +10185,7 @@ order.getShipmentById(shipmentId: shipmentId) { (response, error) in
 
 Get Shipment
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10244,7 +10244,7 @@ order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
 
 Get Shipment Reasons
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10303,7 +10303,7 @@ order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, erro
 
 Update Shipment Status
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10362,7 +10362,7 @@ order.trackShipment(shipmentId: shipmentId) { (response, error) in
 
 Shipment Track
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10427,7 +10427,7 @@ rewards.getPointsOnProduct(body: body) { (response, error) in
 
 Evaluate the amount of reward points that could be earned on any catalogue product.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10473,7 +10473,7 @@ rewards.getOrderDiscount(body: body) { (response, error) in
 
 Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10519,7 +10519,7 @@ rewards.getUserPoints() { (response, error) in
 
 Total available points of a user for current application
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10568,7 +10568,7 @@ rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, er
 Get list of points transactions.
 The list of points history is paginated.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10614,7 +10614,7 @@ rewards.getUserReferralDetails() { (response, error) in
 
 User's referral details.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10660,7 +10660,7 @@ rewards.redeemReferralCode(body: body) { (response, error) in
 
 Redeems referral code and credits points to users points account.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10713,7 +10713,7 @@ feedback.createAbuseReport(body: body) { (response, error) in
 
 Report a new abuse for specific entity with description text.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10759,7 +10759,7 @@ feedback.updateAbuseReport(body: body) { (response, error) in
 
 Update the abuse details like status and description text.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10810,7 +10810,7 @@ feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pag
 
 Get the list of abuse data from entity type and entity ID.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10856,7 +10856,7 @@ feedback.getAttributes() { (response, error) in
 
 Provides a list of all attribute data.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10902,7 +10902,7 @@ feedback.createAttribute(body: body) { (response, error) in
 
 Add a new attribute with its name, slug and description.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10949,7 +10949,7 @@ feedback.getAttribute(slug: slug) { (response, error) in
 
 Get a single attribute data from a given slug.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -10996,7 +10996,7 @@ feedback.updateAttribute(slug: slug, body: body) { (response, error) in
 
 Update the attribute's name and description.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11042,7 +11042,7 @@ feedback.createComment(body: body) { (response, error) in
 
 This is used to add a new comment for specific entity.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11088,7 +11088,7 @@ feedback.updateComment(body: body) { (response, error) in
 
 Update the comment status (active/approve) or text.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11140,7 +11140,7 @@ feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId:
 
 Get the list of comments from specific entity type.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11188,7 +11188,7 @@ feedback.checkEligibility(entityType: entityType, entityId: entityId) { (respons
 
 Checks eligibility to rate and review and cloud media configuration
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11234,7 +11234,7 @@ feedback.deleteMedia() { (response, error) in
 
 Delete Media for the given entity IDs.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11280,7 +11280,7 @@ feedback.createMedia(body: body) { (response, error) in
 
 Add Media list for specific entity.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11326,7 +11326,7 @@ feedback.updateMedia(body: body) { (response, error) in
 
 Update Media (archive/approve) for the given entity.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11377,7 +11377,7 @@ feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: p
 
 Get Media from the given entity type and entity ID.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11429,7 +11429,7 @@ feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, 
 Review summary gives ratings and attribute metrics of a review per entity
 It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11476,7 +11476,7 @@ feedback.createReview(body: body) { (response, error) in
 Add customer reviews for specific entity with following data:
 attributes rating, entity rating, title, description, media resources and template id.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11523,7 +11523,7 @@ feedback.updateReview(body: body) { (response, error) in
 Update customer reviews for specific entity with following data:
 attributes rating, entity rating, title, description, media resources and template id.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11580,7 +11580,7 @@ feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: 
 
 This is used to get the list of customer reviews based on entity and provided filters.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11629,7 +11629,7 @@ feedback.getTemplates(templateId: templateId, entityId: entityId, entityType: en
 
 This is used to get the templates details.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11676,7 +11676,7 @@ feedback.createQuestion(body: body) { (response, error) in
 This is used to create a new question with following data:
 tags, text, type, choices for MCQ type questions, maximum length of answer.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11722,7 +11722,7 @@ feedback.updateQuestion(body: body) { (response, error) in
 
 This is used to update question's status, tags and choices.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11774,7 +11774,7 @@ feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: i
 
 This is used to get a list of questions and its answers.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11822,7 +11822,7 @@ feedback.getVotes(id: id, refType: refType) { (response, error) in
 
 This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11868,7 +11868,7 @@ feedback.createVote(body: body) { (response, error) in
 
 This is used to create a new vote and the actions can be upvote or downvote.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11914,7 +11914,7 @@ feedback.updateVote(body: body) { (response, error) in
 
 This is used to update the vote and the actions can be upvote or downvote.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -11969,7 +11969,7 @@ poscart.getCart(uid: uid, assignCardId: assignCardId) { (response, error) in
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
 
-Success Response:
+#####Success Response:
 
 
 
@@ -12004,7 +12004,7 @@ poscart.getCartLastModified(uid: uid) { (response, error) in
 
 Fetch Last-Modified timestamp in header metadata
 
-Success Response:
+#####Success Response:
 
 
 
@@ -12032,7 +12032,7 @@ poscart.addItems(body: body) { (response, error) in
 
 <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -12042,11 +12042,11 @@ Response of the cart object including all item details included in .the cart,cou
 Schema: `AddCartResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Product has been added to your cart
-```javascript
+```json
 {
   "value": {
     "message": "Product has been added to your cart",
@@ -12497,7 +12497,7 @@ Product has been added to your cart
 ```
 
 Sorry, item is out of stock
-```javascript
+```json
 {
   "value": {
     "message": "Sorry, item is out of stock",
@@ -12699,7 +12699,7 @@ poscart.updateCart(body: body) { (response, error) in
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -12709,11 +12709,11 @@ Response of the cart object including all item with their updated details includ
 Schema: `UpdateCartResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Nothing updated
-```javascript
+```json
 {
   "value": {
     "cart": {
@@ -12896,7 +12896,7 @@ Nothing updated
 ```
 
 Item updated in the cart
-```javascript
+```json
 {
   "value": {
     "cart": {
@@ -13096,7 +13096,7 @@ poscart.getItemCount(uid: uid) { (response, error) in
 
 Get total count of item present in cart
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13131,7 +13131,7 @@ poscart.getCoupons(uid: uid) { (response, error) in
 
 Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13169,7 +13169,7 @@ poscart.applyCoupon(i: i, b: b, p: p, body: body) { (response, error) in
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13204,7 +13204,7 @@ poscart.removeCoupon(uid: uid) { (response, error) in
 
 Remove Coupon applied on the cart by passing uid in request body.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13242,7 +13242,7 @@ poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, sl
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13252,11 +13252,11 @@ Offers found or not found with valid input
 Schema: `BulkPriceResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Offers found
-```javascript
+```json
 {
   "value": {
     "data": [
@@ -13314,7 +13314,7 @@ Offers found
 ```
 
 Offers not found
-```javascript
+```json
 {
   "value": {
     "data": []
@@ -13364,7 +13364,7 @@ poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, t
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13398,7 +13398,7 @@ poscart.addAddress(body: body) { (response, error) in
 
 <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13438,7 +13438,7 @@ poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: check
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13473,7 +13473,7 @@ poscart.updateAddress(id: id, body: body) { (response, error) in
 
 Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13508,7 +13508,7 @@ poscart.removeAddress(id: id) { (response, error) in
 
 Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13542,7 +13542,7 @@ poscart.selectAddress(body: body) { (response, error) in
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13564,11 +13564,11 @@ Address or Pincode Error
 Schema: `[String: Any]`
 
 
-Examples: 
+#####Examples: 
 
 
 Address Not Found
-```javascript
+```json
 {
   "value": {
     "status": "ERROR",
@@ -13578,7 +13578,7 @@ Address Not Found
 ```
 
 Pincode Not Serviciable
-```javascript
+```json
 {
   "value": {
     "status": "ERROR",
@@ -13618,7 +13618,7 @@ poscart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode
 
 Validate coupon for selected payment mode
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13653,7 +13653,7 @@ poscart.selectPaymentMode(uid: uid, body: body) { (response, error) in
 
 Update Cart Payment for Your Account
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13692,7 +13692,7 @@ poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingSt
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -13702,11 +13702,11 @@ OK
 Schema: `CartShipmentsResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Shipment Generated
-```javascript
+```json
 {
   "value": {
     "items": [],
@@ -14092,7 +14092,7 @@ Shipment Generated
 ```
 
 Shipment Generation Failed
-```javascript
+```json
 {
   "value": {
     "items": [],
@@ -14379,7 +14379,7 @@ poscart.checkoutCart(uid: uid, body: body) { (response, error) in
 
 Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
 
-Success Response:
+#####Success Response:
 
 
 
@@ -14389,11 +14389,11 @@ OK
 Schema: `CartCheckoutResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Address id not found
-```javascript
+```json
 {
   "value": {
     "success": false,
@@ -14403,7 +14403,7 @@ Address id not found
 ```
 
 Missing address_id
-```javascript
+```json
 {
   "value": {
     "address_id": [
@@ -14414,7 +14414,7 @@ Missing address_id
 ```
 
 Successful checkout cod payment
-```javascript
+```json
 {
   "value": {
     "success": true,
@@ -14791,7 +14791,7 @@ poscart.updateCartMeta(uid: uid, body: body) { (response, error) in
 
 Update cart meta like checkout_mode, gstin.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -14839,7 +14839,7 @@ poscart.getAvailableDeliveryModes(areaCode: areaCode, uid: uid) { (response, err
 
 Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
 
-Success Response:
+#####Success Response:
 
 
 
@@ -14874,7 +14874,7 @@ poscart.getStoreAddressByUid(areaCode: areaCode) { (response, error) in
 
 Get list of stores by providing pick up available store uids.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -14908,7 +14908,7 @@ poscart.getCartShareLink(body: body) { (response, error) in
 
 Generates shared cart snapshot and returns shortlink token
 
-Success Response:
+#####Success Response:
 
 
 
@@ -14918,11 +14918,11 @@ Token Generated successfully
 Schema: `GetShareCartLinkResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Token Generated
-```javascript
+```json
 {
   "value": {
     "token": "ZweG1XyX",
@@ -14957,7 +14957,7 @@ poscart.getCartSharedItems(token: token) { (response, error) in
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
-Success Response:
+#####Success Response:
 
 
 
@@ -15005,7 +15005,7 @@ poscart.updateCartWithSharedItems(token: token, action: action) { (response, err
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
 
-Success Response:
+#####Success Response:
 
 
 
@@ -15015,11 +15015,11 @@ Success of Merge or Replace of cart with `shared_cart_details`                  
 Schema: `SharedCartResponse`
 
 
-Examples: 
+#####Examples: 
 
 
 Cart Merged/Replaced
-```javascript
+```json
 {
   "value": {
     "cart": {
