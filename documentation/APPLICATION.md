@@ -5,6 +5,7 @@
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
+* [User](#User) - Authentication Service 
 * [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
@@ -95,6 +96,42 @@
   * Methods
     * [getAppliedTheme](#themegetappliedtheme)
     * [getThemeForPreview](#themegetthemeforpreview)
+    
+
+* [User](#User)
+  * Methods
+    * [loginWithFacebook](#userloginwithfacebook)
+    * [loginWithGoogle](#userloginwithgoogle)
+    * [loginWithGoogleAndroid](#userloginwithgoogleandroid)
+    * [loginWithGoogleIOS](#userloginwithgoogleios)
+    * [loginWithOTP](#userloginwithotp)
+    * [loginWithEmailAndPassword](#userloginwithemailandpassword)
+    * [sendResetPasswordEmail](#usersendresetpasswordemail)
+    * [forgotPassword](#userforgotpassword)
+    * [sendResetToken](#usersendresettoken)
+    * [loginWithToken](#userloginwithtoken)
+    * [registerWithForm](#userregisterwithform)
+    * [verifyEmail](#userverifyemail)
+    * [verifyMobile](#userverifymobile)
+    * [hasPassword](#userhaspassword)
+    * [updatePassword](#userupdatepassword)
+    * [logout](#userlogout)
+    * [sendOTPOnMobile](#usersendotponmobile)
+    * [verifyMobileOTP](#userverifymobileotp)
+    * [sendOTPOnEmail](#usersendotponemail)
+    * [verifyEmailOTP](#userverifyemailotp)
+    * [getLoggedInUser](#usergetloggedinuser)
+    * [getListOfActiveSessions](#usergetlistofactivesessions)
+    * [getPlatformConfig](#usergetplatformconfig)
+    * [updateProfile](#userupdateprofile)
+    * [addMobileNumber](#useraddmobilenumber)
+    * [deleteMobileNumber](#userdeletemobilenumber)
+    * [setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
+    * [sendVerificationLinkToMobile](#usersendverificationlinktomobile)
+    * [addEmail](#useraddemail)
+    * [deleteEmail](#userdeleteemail)
+    * [setEmailAsPrimary](#usersetemailasprimary)
+    * [sendVerificationLinkToEmail](#usersendverificationlinktoemail)
     
 
 * [Content](#Content)
@@ -5975,6 +6012,1730 @@ Preview Theme
   "$ref": "#/components/examples/Themes"
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## User
+
+
+#### loginWithFacebook
+Login/Register with Facebook
+
+```swift
+user.loginWithFacebook(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Facebook
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogle
+Login/Register with Google
+
+```swift
+user.loginWithGoogle(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleAndroid
+Login/Register with Google for android
+
+```swift
+user.loginWithGoogleAndroid(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google for android
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleIOS
+Login/Register with Google for ios
+
+```swift
+user.loginWithGoogleIOS(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with google for ios
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithOTP
+Login/Register with OTP
+
+```swift
+user.loginWithOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to login or register with OTP
+
+Success Response:
+
+
+
+
+
+
+Schema: `SendOtpResponse`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/SendOtpResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithEmailAndPassword
+Login/Register with password
+
+```swift
+user.loginWithEmailAndPassword(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with email & password
+
+Success Response:
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendResetPasswordEmail
+Reset Password
+
+```swift
+user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to reset account password
+
+Success Response:
+
+
+
+
+
+
+Schema: `ResetPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### forgotPassword
+
+
+```swift
+user.forgotPassword(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendResetToken
+
+
+```swift
+user.sendResetToken(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send code incase of reset password
+
+Success Response:
+
+
+
+
+
+
+Schema: `ResetPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithToken
+Login/Register with token
+
+```swift
+user.loginWithToken(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Login/Register with token
+
+Success Response:
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerWithForm
+Registration Form
+
+```swift
+user.registerWithForm(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Register using form
+
+Success Response:
+
+
+
+
+
+
+Schema: `RegisterFormSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyEmail
+Verify email
+
+```swift
+user.verifyEmail(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to verify email
+
+Success Response:
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyMobile
+Verify mobile
+
+```swift
+user.verifyMobile(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify mobile
+
+Success Response:
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### hasPassword
+Check if user has password
+
+```swift
+user.hasPassword() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Checks if user is using password or not
+
+Success Response:
+
+
+
+
+
+
+Schema: `HasPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePassword
+Update user password
+
+```swift
+user.updatePassword(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to update user password
+
+Success Response:
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### logout
+Logout user
+
+```swift
+user.logout() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to log out user
+
+Success Response:
+
+
+
+
+
+
+Schema: `LogoutSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendOTPOnMobile
+Send OTP on mobile
+
+```swift
+user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to mobile
+
+Success Response:
+
+
+
+
+
+
+Schema: `OtpSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyMobileOTP
+Verify OTP on mobile
+
+```swift
+user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to mobile
+
+Success Response:
+
+
+
+
+
+
+Schema: `VerifyOtpSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendOTPOnEmail
+Send OTP on email
+
+```swift
+user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to email
+
+Success Response:
+
+
+
+
+
+
+Schema: `EmailOtpSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyEmailOTP
+Verify OTP on email
+
+```swift
+user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to email
+
+Success Response:
+
+
+
+
+
+
+Schema: `VerifyOtpSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLoggedInUser
+Get logged in user
+
+```swift
+user.getLoggedInUser() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to get logged in user details
+
+Success Response:
+
+
+
+
+
+
+Schema: `UserSchema`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExample"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getListOfActiveSessions
+Get list of sessions
+
+```swift
+user.getListOfActiveSessions() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Lists all active sessions
+
+Success Response:
+
+
+
+
+
+
+Schema: `SessionListSuccess`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPlatformConfig
+Get platform config
+
+```swift
+user.getPlatformConfig(name: name) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| name | string | Name | 
+
+Used to get platform config
+
+Success Response:
+
+
+
+Platform Config
+
+
+Schema: `PlatformSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateProfile
+Edit Profile Details
+
+```swift
+user.updateProfile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to update profile
+
+Success Response:
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addMobileNumber
+Add mobile number to profile
+
+```swift
+user.addMobileNumber(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new mobile number to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `VerifyMobileOTPSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteMobileNumber
+Delete mobile number from profile
+
+```swift
+user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Active mobile number | 
+| primary | boolean | Primary number | 
+| verified | boolean | Verified Number | 
+| countryCode | string | Country code of phone number | 
+| phone | string | Phone number | 
+
+Used to delete mobile number from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### setMobileNumberAsPrimary
+Set mobile as primary
+
+```swift
+user.setMobileNumberAsPrimary(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set a mobile number as primary
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendVerificationLinkToMobile
+Send verification link to mobile
+
+```swift
+user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send verification link to a mobile number
+
+Success Response:
+
+
+
+
+
+
+Schema: `SendMobileVerifyLinkSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addEmail
+Add email to profile
+
+```swift
+user.addEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new email to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `VerifyEmailOTPSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyEmailOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteEmail
+Delete email from profile
+
+```swift
+user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Whether email id is active | 
+| primary | boolean | Whether email id is primary email | 
+| verified | boolean | Whether email id is verified | 
+| email | string | Email ID to be deleted | 
+
+Used to delete email from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### setEmailAsPrimary
+Set email as primary
+
+```swift
+user.setEmailAsPrimary(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set an email as primart
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendVerificationLinkToEmail
+Send verification link to email
+
+```swift
+user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to sent verification to an email
+
+Success Response:
+
+
+
+
+
+
+Schema: `SendEmailVerifyLinkSuccess`
 
 
 
