@@ -22,9 +22,9 @@ Get started with the Swift Development SDK for Fynd Platform
       applicationToken: "YOUR_APPLICATION_TOKEN"
   ) {
       let applicationClient = ApplicationClient(config: config)
-      applicationClient.lead.getCustomForm(slug: "form-slug") { (form, error) in
-          if let form = form {
-              print(form.title)
+      applicationClient.catalog.getProductDetailBySlug(slug: "product-slug") { (product, error) in
+          if let product = product {
+              print(product.name)
           } else if let error = error {
               print(error.message)
           }
