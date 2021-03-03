@@ -16,7 +16,7 @@ Get started with the Swift Development SDK for Fynd Platform
 4. Start integrating
 
 ### Sample Usage:
-```
+```swift
   if let config = ApplicationConfig(
       applicationID: "YOUR_APPLICATION_ID",
       applicationToken: "YOUR_APPLICATION_TOKEN"
