@@ -5,7 +5,6 @@
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
-* [User](#User) - Authentication Service 
 * [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
@@ -43,13 +42,9 @@
     * [getHomeProducts](#cataloggethomeproducts)
     * [getDepartments](#cataloggetdepartments)
     * [getSearchResults](#cataloggetsearchresults)
-    * [addCollection](#catalogaddcollection)
     * [getCollections](#cataloggetcollections)
-    * [addCollectionItemsBySlug](#catalogaddcollectionitemsbyslug)
     * [getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-    * [deleteCollectionDetailBySlug](#catalogdeletecollectiondetailbyslug)
     * [getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
-    * [updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
     * [getFollowedListing](#cataloggetfollowedlisting)
     * [followById](#catalogfollowbyid)
     * [unfollowById](#catalogunfollowbyid)
@@ -100,42 +95,6 @@
   * Methods
     * [getAppliedTheme](#themegetappliedtheme)
     * [getThemeForPreview](#themegetthemeforpreview)
-    
-
-* [User](#User)
-  * Methods
-    * [loginWithFacebook](#userloginwithfacebook)
-    * [loginWithGoogle](#userloginwithgoogle)
-    * [loginWithGoogleAndroid](#userloginwithgoogleandroid)
-    * [loginWithGoogleIOS](#userloginwithgoogleios)
-    * [loginWithOTP](#userloginwithotp)
-    * [loginWithEmailAndPassword](#userloginwithemailandpassword)
-    * [sendResetPasswordEmail](#usersendresetpasswordemail)
-    * [forgotPassword](#userforgotpassword)
-    * [sendResetToken](#usersendresettoken)
-    * [loginWithToken](#userloginwithtoken)
-    * [registerWithForm](#userregisterwithform)
-    * [verifyEmail](#userverifyemail)
-    * [verifyMobile](#userverifymobile)
-    * [hasPassword](#userhaspassword)
-    * [updatePassword](#userupdatepassword)
-    * [logout](#userlogout)
-    * [sendOTPOnMobile](#usersendotponmobile)
-    * [verifyMobileOTP](#userverifymobileotp)
-    * [sendOTPOnEmail](#usersendotponemail)
-    * [verifyEmailOTP](#userverifyemailotp)
-    * [getLoggedInUser](#usergetloggedinuser)
-    * [getListOfActiveSessions](#usergetlistofactivesessions)
-    * [getPlatformConfig](#usergetplatformconfig)
-    * [updateProfile](#userupdateprofile)
-    * [addMobileNumber](#useraddmobilenumber)
-    * [deleteMobileNumber](#userdeletemobilenumber)
-    * [setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
-    * [sendVerificationLinkToMobile](#usersendverificationlinktomobile)
-    * [addEmail](#useraddemail)
-    * [deleteEmail](#userdeleteemail)
-    * [setEmailAsPrimary](#usersetemailasprimary)
-    * [sendVerificationLinkToEmail](#usersendverificationlinktoemail)
     
 
 * [Content](#Content)
@@ -269,7 +228,6 @@
     * [getPaymentModes](#poscartgetpaymentmodes)
     * [selectPaymentMode](#poscartselectpaymentmode)
     * [getShipments](#poscartgetshipments)
-    * [updateShipments](#poscartupdateshipments)
     * [checkoutCart](#poscartcheckoutcart)
     * [updateCartMeta](#poscartupdatecartmeta)
     * [getAvailableDeliveryModes](#poscartgetavailabledeliverymodes)
@@ -301,7 +259,7 @@ catalog.getProductDetailBySlug(slug: slug) { (response, error) in
 | --------- | ----  | --- |
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
 
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given ``slug``. If successful, returns a Product resource in the response body specified in `ProductDetail`
+Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
 
 Success Response:
 
@@ -347,7 +305,7 @@ catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { (response, error) 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-| store_id | string | The store id of the product whose sizes need to be retrieved | 
+| storeId | string | The store id of the product whose sizes need to be retrieved | 
 
 A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
 
@@ -397,7 +355,7 @@ catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId:
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
 | size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/** | 
 | pincode | integer | The pincode of the product for which the price needs to be retrieved. | 
-| store_id | string | The store of the product whose size level price need to be retrieved | 
+| storeId | string | The store of the product whose size level price need to be retrieved | 
 
 Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
 
@@ -447,8 +405,8 @@ catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
 | size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes** | 
 | pincode | integer | The pincode of the product for which the price needs to be retrieved. | 
-| page_no | integer | The page number to navigate through the given set of results. | 
-| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+| pageNo | integer | The page number to navigate through the given set of results. | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
 
@@ -637,7 +595,7 @@ catalog.getProductSimilarByIdentifier(slug: slug, similarType: similarType) { (r
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-| similar_type | string | The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec. | 
+| similarType | string | The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec. | 
 
 Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
 
@@ -731,9 +689,9 @@ catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode: skuCode, ean: ea
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| item_id | string | Product id to get product stock (Max. 50 allowed) | 
+| itemId | string | Product id to get product stock (Max. 50 allowed) | 
 | alu | string | Product identifier alu to get product stock (Max. 50 allowed) | 
-| sku_code | string | Product identifier sku_code to get product stock (Max. 50 allowed) | 
+| skuCode | string | Product identifier sku_code to get product stock (Max. 50 allowed) | 
 | ean | string | Product identifier ean to get product stock (Max. 50 allowed) | 
 | upc | string | Product identifier upc to get product stock (Max. 50 allowed) | 
 
@@ -783,8 +741,8 @@ catalog.getProductStockForTimeByIds(timestamp: timestamp, pageSize: pageSize, pa
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | timestamp | string | timestamp in UTC format (2020-07-23T10:27:50Z) | 
-| page_size | integer | Limit of number of items for stock status default 12 | 
-| page_id | string | will give next page results | 
+| pageSize | integer | Limit of number of items for stock status default 12 | 
+| pageId | string | will give next page results | 
 
 Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
 
@@ -832,13 +790,13 @@ catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts`` | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
 | filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
-| sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| page_id | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
-| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
-| page_no | integer | If page_type is number then pass it to fetch page items. Default is 1. | 
-| page_type | string | For pagination type should be cursor or number. Default is cursor. | 
+| sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
+| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+| pageNo | integer | If page_type is number then pass it to fetch page items. Default is 1. | 
+| pageType | string | For pagination type should be cursor or number. Default is cursor. | 
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
 
@@ -886,8 +844,8 @@ catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | department | string | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API | 
-| page_no | integer | The page number to navigate through the given set of results | 
-| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
 
@@ -1075,9 +1033,9 @@ catalog.getHomeProducts(sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| sort_on | string | Each response will contain ``sort_on`` param, which should be sent back to make pagination work. | 
-| page_id | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
-| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+| sortOn | string | Each response will contain **sort_on** param, which should be sent back to make pagination work. | 
+| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
 
@@ -1206,52 +1164,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### addCollection
-Add a Collection
-
-```swift
-catalog.addCollection(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
-
-Success Response:
-
-
-
-List of all the collections including the one you added. See example below or refer `CollectionDetailResponse` for details
-
-
-Schema: `CollectionDetailResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCollections
 List all the collections
 
@@ -1263,8 +1175,8 @@ catalog.getCollections(pageId: pageId, pageSize: pageSize) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| page_id | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
-| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
 
@@ -1276,53 +1188,6 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 
 
 Schema: `GetCollectionListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addCollectionItemsBySlug
-Add items to a collection
-
-```swift
-catalog.addCollectionItemsBySlug(slug: slug, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to add items into. | 
-
-Adds items to a collection specified by its `slug`. See `CollectionItemsRequest` for the list of attributes needed to add items to an collection.
-
-Success Response:
-
-
-
-Status object. Tells whether the operation was successful.
-
-
-Schema: `CollectionItemsResponse`
 
 
 
@@ -1359,11 +1224,11 @@ catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sor
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts`` | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
 | filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
-| sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| page_id | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
-| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+| sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
+| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 Get items in a collection specified by its `slug`.
 
@@ -1375,53 +1240,6 @@ The attached items of an collection. See example below or refer `ProductListingR
 
 
 Schema: `ProductListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteCollectionDetailBySlug
-Delete a Collection
-
-```swift
-catalog.deleteCollectionDetailBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to delete. | 
-
-Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-
-Success Response:
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `CollectionDetailViewDeleteResponse`
-
-
-Schema: `CollectionDetailViewDeleteResponse`
 
 
 
@@ -1493,53 +1311,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCollectionDetailBySlug
-Update a collection
-
-```swift
-catalog.updateCollectionDetailBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update. | 
-
-Update a collection by it's slug. On successful request, returns the updated collection
-
-Success Response:
-
-
-
-The Collection object. See example below or refer `CollectionsUpdateDetailResponse` for details.
-
-
-Schema: `CollectionsUpdateDetailResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getFollowedListing
 Get a list of followed Products, Brands, Collections
 
@@ -1551,7 +1322,7 @@ catalog.getFollowedListing(collectionType: collectionType) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
+| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
 
 A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
 
@@ -1598,8 +1369,8 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to follow | 
+| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
+| collectionId | integer | the `id` of the collection type you want to follow | 
 
 Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
@@ -1646,8 +1417,8 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to unfollow | 
+| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
+| collectionId | integer | the `id` of the collection type you want to unfollow | 
 
 You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
@@ -1694,8 +1465,8 @@ catalog.getFollowerCountById(collectionType: collectionType, collectionId: colle
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string | the `type` of the collection products/brands/collections. | 
-| collection_id | string | the `id` of the product/brand/collection. | 
+| collectionType | string | the `type` of the collection products/brands/collections. | 
+| collectionId | string | the `id` of the product/brand/collection. | 
 
 Get count of followers for given collection type and collection id.
 
@@ -1742,7 +1513,7 @@ catalog.getFollowIds(collectionType: collectionType) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
+| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
 
 You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
 
@@ -1789,8 +1560,8 @@ catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitu
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| page_no | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| page_size | integer | Number of items to retrieve in each page. | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 | q | string | This can be used to search a particulr store by its name or store_code. | 
 | range | integer | This can be used to retrieve store within a particular range. For eg range=10000 (in meters) | 
 | latitude | number | This should be the latitude of the location from which one needs to retreive the nearest stores. | 
@@ -1849,7 +1620,7 @@ cart.getCart(uid: uid, assignCardId: assignCardId) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| assign_card_id | integer |  | 
+| assignCardId | integer |  | 
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
 
@@ -3119,8 +2890,8 @@ cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| item_id | integer | Item id | 
-| article_id | string | Article mongo id | 
+| itemId | integer | Item id | 
+| articleId | string | Article mongo id | 
 | uid | integer | Item id | 
 | slug | string | Item unique url from product page | 
 
@@ -3241,10 +3012,10 @@ cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| mobile_no | integer |  | 
-| checkout_mode | string |  | 
+| mobileNo | integer |  | 
+| checkoutMode | string |  | 
 | tags | integer |  | 
-| is_default | boolean |  | 
+| isDefault | boolean |  | 
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -3315,10 +3086,10 @@ cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkout
 | --------- | ----  | --- |
 | id | integer |  | 
 | uid | integer |  | 
-| mobile_no | integer |  | 
-| checkout_mode | string |  | 
+| mobileNo | integer |  | 
+| checkoutMode | string |  | 
 | tags | integer |  | 
-| is_default | boolean |  | 
+| isDefault | boolean |  | 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -3494,11 +3265,11 @@ cart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode, p
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | string |  | 
-| address_id | string |  | 
-| payment_mode | string |  | 
-| payment_identifier | string |  | 
-| aggregator_name | string |  | 
-| merchant_code | string |  | 
+| addressId | string |  | 
+| paymentMode | string |  | 
+| paymentIdentifier | string |  | 
+| aggregatorName | string |  | 
+| merchantCode | string |  | 
 
 Validate coupon for selected payment mode
 
@@ -3570,7 +3341,7 @@ cart.getShipments(p: p, uid: uid, addressId: addressId) { (response, error) in
 | --------- | ----  | --- |
 | p | boolean | Get payment options or not | 
 | uid | integer | Cart id | 
-| address_id | integer | Address id | 
+| addressId | integer | Address id | 
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
@@ -5376,7 +5147,7 @@ lead.createHistoryForTicket(ticketId: ticketId, body: body) { (response, error) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| ticket_id | string | Ticket ID for which history is created | 
+| ticketId | string | Ticket ID for which history is created | 
 
 Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -6021,7 +5792,7 @@ lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| unique_name | string | Unique name of Video Room | 
+| uniqueName | string | Unique name of Video Room | 
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
@@ -6069,7 +5840,7 @@ lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| unique_name | string | Unique name of Video Room | 
+| uniqueName | string | Unique name of Video Room | 
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
@@ -6181,7 +5952,7 @@ theme.getThemeForPreview(themeId: themeId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| theme_id | string | ID of the theme to be retrieved | 
+| themeId | string | ID of the theme to be retrieved | 
 
 
 
@@ -6204,1730 +5975,6 @@ Preview Theme
   "$ref": "#/components/examples/Themes"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
-## User
-
-
-#### loginWithFacebook
-Login/Register with Facebook
-
-```swift
-user.loginWithFacebook(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to login or register with Facebook
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `AuthSuccess`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### loginWithGoogle
-Login/Register with Google
-
-```swift
-user.loginWithGoogle(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to login or register with Google
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `AuthSuccess`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### loginWithGoogleAndroid
-Login/Register with Google for android
-
-```swift
-user.loginWithGoogleAndroid(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to login or register with Google for android
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `AuthSuccess`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### loginWithGoogleIOS
-Login/Register with Google for ios
-
-```swift
-user.loginWithGoogleIOS(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to login or register with google for ios
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `AuthSuccess`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### loginWithOTP
-Login/Register with OTP
-
-```swift
-user.loginWithOTP(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to login or register with OTP
-
-Success Response:
-
-
-
-
-
-
-Schema: `SendOtpResponse`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/SendOtpResponse"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### loginWithEmailAndPassword
-Login/Register with password
-
-```swift
-user.loginWithEmailAndPassword(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to login or register with email & password
-
-Success Response:
-
-
-
-
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### sendResetPasswordEmail
-Reset Password
-
-```swift
-user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to reset account password
-
-Success Response:
-
-
-
-
-
-
-Schema: `ResetPasswordSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### forgotPassword
-
-
-```swift
-user.forgotPassword(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-
-
-Success Response:
-
-
-
-
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### sendResetToken
-
-
-```swift
-user.sendResetToken(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Send code incase of reset password
-
-Success Response:
-
-
-
-
-
-
-Schema: `ResetPasswordSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### loginWithToken
-Login/Register with token
-
-```swift
-user.loginWithToken(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Login/Register with token
-
-Success Response:
-
-
-
-
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-Success
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `[String: Any]`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### registerWithForm
-Registration Form
-
-```swift
-user.registerWithForm(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Register using form
-
-Success Response:
-
-
-
-
-
-
-Schema: `RegisterFormSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### verifyEmail
-Verify email
-
-```swift
-user.verifyEmail(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to verify email
-
-Success Response:
-
-
-
-
-
-
-Schema: `VerifyEmailSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### verifyMobile
-Verify mobile
-
-```swift
-user.verifyMobile(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Verify mobile
-
-Success Response:
-
-
-
-
-
-
-Schema: `VerifyEmailSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### hasPassword
-Check if user has password
-
-```swift
-user.hasPassword() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Checks if user is using password or not
-
-Success Response:
-
-
-
-
-
-
-Schema: `HasPasswordSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePassword
-Update user password
-
-```swift
-user.updatePassword(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to update user password
-
-Success Response:
-
-
-
-
-
-
-Schema: `VerifyEmailSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### logout
-Logout user
-
-```swift
-user.logout() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to log out user
-
-Success Response:
-
-
-
-
-
-
-Schema: `LogoutSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### sendOTPOnMobile
-Send OTP on mobile
-
-```swift
-user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to send otp to mobile
-
-Success Response:
-
-
-
-
-
-
-Schema: `OtpSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### verifyMobileOTP
-Verify OTP on mobile
-
-```swift
-user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to verify otp sent to mobile
-
-Success Response:
-
-
-
-
-
-
-Schema: `VerifyOtpSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### sendOTPOnEmail
-Send OTP on email
-
-```swift
-user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to send otp to email
-
-Success Response:
-
-
-
-
-
-
-Schema: `EmailOtpSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### verifyEmailOTP
-Verify OTP on email
-
-```swift
-user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to verify otp sent to email
-
-Success Response:
-
-
-
-
-
-
-Schema: `VerifyOtpSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLoggedInUser
-Get logged in user
-
-```swift
-user.getLoggedInUser() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to get logged in user details
-
-Success Response:
-
-
-
-
-
-
-Schema: `UserSchema`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/UserExample"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### getListOfActiveSessions
-Get list of sessions
-
-```swift
-user.getListOfActiveSessions() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Lists all active sessions
-
-Success Response:
-
-
-
-
-
-
-Schema: `SessionListSuccess`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPlatformConfig
-Get platform config
-
-```swift
-user.getPlatformConfig(name: name) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| name | string | Name | 
-
-Used to get platform config
-
-Success Response:
-
-
-
-Platform Config
-
-
-Schema: `PlatformSchema`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateProfile
-Edit Profile Details
-
-```swift
-user.updateProfile(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to update profile
-
-Success Response:
-
-
-
-
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### addMobileNumber
-Add mobile number to profile
-
-```swift
-user.addMobileNumber(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to add new mobile number to profile
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `VerifyMobileOTPSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteMobileNumber
-Delete mobile number from profile
-
-```swift
-user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-| active | boolean | Active mobile number | 
-| primary | boolean | Primary number | 
-| verified | boolean | Verified Number | 
-| country_code | string | Country code of phone number | 
-| phone | string | Phone number | 
-
-Used to delete mobile number from profile
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### setMobileNumberAsPrimary
-Set mobile as primary
-
-```swift
-user.setMobileNumberAsPrimary(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to set a mobile number as primary
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### sendVerificationLinkToMobile
-Send verification link to mobile
-
-```swift
-user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to send verification link to a mobile number
-
-Success Response:
-
-
-
-
-
-
-Schema: `SendMobileVerifyLinkSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### addEmail
-Add email to profile
-
-```swift
-user.addEmail(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to add new email to profile
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `VerifyEmailOTPSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/VerifyEmailOTP"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteEmail
-Delete email from profile
-
-```swift
-user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-| active | boolean | Whether email id is active | 
-| primary | boolean | Whether email id is primary email | 
-| verified | boolean | Whether email id is verified | 
-| email | string | Email ID to be deleted | 
-
-Used to delete email from profile
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### setEmailAsPrimary
-Set email as primary
-
-```swift
-user.setEmailAsPrimary(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Used to set an email as primart
-
-Success Response:
-
-
-
-A JSON object with user details
-
-
-Schema: `LoginSuccess`
-
-
-Examples: 
-
-
-default
-```javascript
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-#### sendVerificationLinkToEmail
-Send verification link to email
-
-```swift
-user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-
-Used to sent verification to an email
-
-Success Response:
-
-
-
-
-
-
-Schema: `SendEmailVerifyLinkSuccess`
 
 
 
@@ -8153,7 +6200,7 @@ content.getLandingPage(xDevicePlatform: xDevicePlatform) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-device-platform | string | Platform | 
+| xDevicePlatform | string | Platform | 
 
 Use this API to fetch a landing page
 
@@ -8268,7 +6315,7 @@ content.getNavigations(xDevicePlatform: xDevicePlatform) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-device-platform | string | Platform | 
+| xDevicePlatform | string | Platform | 
 
 Use this API to fetch a navigation
 
@@ -8442,7 +6489,7 @@ content.getSlideshow(slug: slug, xDevicePlatform: xDevicePlatform) { (response, 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
-| x-device-platform | string | Platform | 
+| xDevicePlatform | string | Platform | 
 
 Use this API to fetch a slideshow using `slug`
 
@@ -9041,7 +7088,7 @@ filestorage.completeUpload(namespace: namespace, companyId: companyId, body: bod
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | namespace | string | bucket name | 
-| company_id | integer | company_id | 
+| companyId | integer | company_id | 
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -9107,7 +7154,7 @@ filestorage.startUpload(namespace: namespace, companyId: companyId, body: body) 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | namespace | string | bucket name | 
-| company_id | integer | company_id | 
+| companyId | integer | company_id | 
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -9179,7 +7226,7 @@ payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-api-token | string | api token | 
+| xApiToken | string | api token | 
 | refresh | boolean | refresh cache | 
 
 Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
@@ -9356,7 +7403,7 @@ payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| force_refresh | boolean |  | 
+| forceRefresh | boolean |  | 
 
 Fetch the list of saved cards of user from active payment gateway.
 
@@ -9706,12 +7753,12 @@ payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, c
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | amount | integer | Payment amount | 
-| cart_id | string | Cart id | 
+| cartId | string | Cart id | 
 | pincode | integer | Pincode | 
-| checkout_mode | string | Checkout mode | 
+| checkoutMode | string | Checkout mode | 
 | refresh | boolean |  | 
-| assign_card_id | string | selected card id | 
-| delivery_address | string | URIencoded json delivery address of cart for annonymous user | 
+| assignCardId | string | selected card id | 
+| deliveryAddress | string | URIencoded json delivery address of cart for annonymous user | 
 
 Use this API to get Get All Valid Payment Options for making payment
 
@@ -9771,13 +7818,13 @@ payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | amount | integer | Payment amount | 
-| cart_id | string | Cart id | 
+| cartId | string | Cart id | 
 | pincode | integer | Pincode | 
-| checkout_mode | string | Checkout mode | 
+| checkoutMode | string | Checkout mode | 
 | refresh | boolean |  | 
-| assign_card_id | string | selected card id | 
-| order_type | string | Order type | 
-| delivery_address | string | URIencoded json delivery address of cart for annonymous user | 
+| assignCardId | string | selected card id | 
+| orderType | string | Order type | 
+| deliveryAddress | string | URIencoded json delivery address of cart for annonymous user | 
 
 Use this API to get Get All Valid Payment Options for making payment
 
@@ -9836,7 +7883,7 @@ payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| order_id | string |  | 
+| orderId | string |  | 
 
 Get all active  beneficiary details added by the user for refund
 
@@ -9895,7 +7942,7 @@ payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| ifsc_code | string |  | 
+| ifscCode | string |  | 
 
 Get True/False for correct IFSC Code for adding bank details for refund
 
@@ -9954,7 +8001,7 @@ payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| order_id | string |  | 
+| orderId | string |  | 
 
 Get all active  beneficiary details added by the user for refund
 
@@ -10252,10 +8299,10 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| page_no | string | Current page number | 
-| page_size | string | Page limit | 
-| from_date | string | From Date | 
-| to_date | string | To Date | 
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
 
 Get Orders
 
@@ -10314,7 +8361,7 @@ order.getOrderById(orderId: orderId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| order_id | string | Order Id | 
+| orderId | string | Order Id | 
 
 Get Order By Fynd Order Id
 
@@ -10373,7 +8420,7 @@ order.getShipmentById(shipmentId: shipmentId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
+| shipmentId | string | Shipment Id | 
 
 Get Shipment
 
@@ -10432,7 +8479,7 @@ order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
+| shipmentId | string | Shipment Id | 
 
 Get Shipment Reasons
 
@@ -10491,7 +8538,7 @@ order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, erro
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
+| shipmentId | string | Shipment Id | 
 
 Update Shipment Status
 
@@ -10550,7 +8597,7 @@ order.trackShipment(shipmentId: shipmentId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
+| shipmentId | string | Shipment Id | 
 
 Shipment Track
 
@@ -10754,7 +8801,7 @@ rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, er
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageID | string | PageID is the ID of the requested page. For first request it should be kept empty. | 
+| pageId | string | PageID is the ID of the requested page. For first request it should be kept empty. | 
 | pageSize | integer | PageSize is the number of requested items in response. | 
 
 Get list of points transactions.
@@ -10994,11 +9041,11 @@ feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entity_id | string | entity id | 
-| entity_type | string | entity type | 
+| entityId | string | entity id | 
+| entityType | string | entity type | 
 | id | string | abuse id | 
-| page_id | string | pagination page id | 
-| page_size | string | pagination page size | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
 
 Get the list of abuse data from entity type and entity ID.
 
@@ -11323,12 +9370,12 @@ feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entity_type | string | entity type | 
+| entityType | string | entity type | 
 | id | string | comment id | 
-| entity_id | string | entity id | 
-| user_id | string | user id - flag/filter to get comments for user | 
-| page_id | string | pagination page id | 
-| page_size | string | pagination page size | 
+| entityId | string | entity id | 
+| userId | string | user id - flag/filter to get comments for user | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
 
 Get the list of comments from specific entity type.
 
@@ -11375,8 +9422,8 @@ feedback.checkEligibility(entityType: entityType, entityId: entityId) { (respons
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entity_type | string | entity type | 
-| entity_id | string | entity id | 
+| entityType | string | entity type | 
+| entityId | string | entity id | 
 
 Checks eligibility to rate and review and cloud media configuration
 
@@ -11561,11 +9608,11 @@ feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entity_type | string | entity type | 
-| entity_id | string | entity id | 
+| entityType | string | entity type | 
+| entityId | string | entity id | 
 | id | string | vote id | 
-| page_id | string | pagination page id | 
-| page_size | string | pagination page size | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
 
 Get Media from the given entity type and entity ID.
 
@@ -11612,11 +9659,11 @@ feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entity_type | string | entity type | 
-| entity_id | string | entity id | 
+| entityType | string | entity type | 
+| entityId | string | entity id | 
 | id | string | review summary identifier | 
-| page_id | string | pagination page id | 
-| page_size | string | pagination page size | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
 
 Review summary gives ratings and attribute metrics of a review per entity
 It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
@@ -11758,17 +9805,17 @@ feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entity_type | string | entity type | 
-| entity_id | string | entity id | 
+| entityType | string | entity type | 
+| entityId | string | entity id | 
 | id | string | review id | 
-| user_id | string | user id | 
+| userId | string | user id | 
 | media | string | media type e.g. image | video | video_file | video_link | 
 | rating | array | rating filter, 1-5 | 
-| attribute_rating | array | attribute rating filter | 
+| attributeRating | array | attribute rating filter | 
 | facets | boolean | facets (true|false) | 
 | sort | string | sort by : default | top | recent | 
-| page_id | string | pagination page id | 
-| page_size | string | pagination page size | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
 
 This is used to get the list of customer reviews based on entity and provided filters.
 
@@ -11815,9 +9862,9 @@ feedback.getTemplates(templateId: templateId, entityId: entityId, entityType: en
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| template_id | string | template id | 
-| entity_id | string | entity id | 
-| entity_type | string | entity type e.g. product | l3 | 
+| templateId | string | template id | 
+| entityId | string | entity id | 
+| entityType | string | entity type e.g. product | l3 | 
 
 This is used to get the templates details.
 
@@ -11957,12 +10004,12 @@ feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entity_type | string | entity type | 
-| entity_id | string | entity id | 
+| entityType | string | entity type | 
+| entityId | string | entity id | 
 | id | string | qna id | 
-| show_answer | boolean | show answer flag | 
-| page_id | string | pagination page id | 
-| page_size | string | pagination page size | 
+| showAnswer | boolean | show answer flag | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
 
 This is used to get a list of questions and its answers.
 
@@ -12010,7 +10057,7 @@ feedback.getVotes(id: id, refType: refType) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string | vote id | 
-| ref_type | string | entity type e.g. review | comment | 
+| refType | string | entity type e.g. review | comment | 
 
 This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
 
@@ -12157,7 +10204,7 @@ poscart.getCart(uid: uid, assignCardId: assignCardId) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| assign_card_id | integer |  | 
+| assignCardId | integer |  | 
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
 
@@ -13427,8 +11474,8 @@ poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, sl
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| item_id | integer | Item id | 
-| article_id | string | Article mongo id | 
+| itemId | integer | Item id | 
+| articleId | string | Article mongo id | 
 | uid | integer | Item id | 
 | slug | string | Item unique url from product page | 
 
@@ -13549,10 +11596,10 @@ poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, t
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| mobile_no | integer |  | 
-| checkout_mode | string |  | 
+| mobileNo | integer |  | 
+| checkoutMode | string |  | 
 | tags | integer |  | 
-| is_default | boolean |  | 
+| isDefault | boolean |  | 
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -13623,10 +11670,10 @@ poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: check
 | --------- | ----  | --- |
 | id | integer |  | 
 | uid | integer |  | 
-| mobile_no | integer |  | 
-| checkout_mode | string |  | 
+| mobileNo | integer |  | 
+| checkoutMode | string |  | 
 | tags | integer |  | 
-| is_default | boolean |  | 
+| isDefault | boolean |  | 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -13802,11 +11849,11 @@ poscart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | string |  | 
-| address_id | string |  | 
-| payment_mode | string |  | 
-| payment_identifier | string |  | 
-| aggregator_name | string |  | 
-| merchant_code | string |  | 
+| addressId | string |  | 
+| paymentMode | string |  | 
+| paymentIdentifier | string |  | 
+| aggregatorName | string |  | 
+| merchantCode | string |  | 
 
 Validate coupon for selected payment mode
 
@@ -13876,11 +11923,11 @@ poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingSt
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pick_at_store_uid | integer |  | 
-| ordering_store_id | integer |  | 
+| pickAtStoreUid | integer |  | 
+| orderingStoreId | integer |  | 
 | p | boolean | Get payment options or not | 
 | uid | integer | Cart id | 
-| address_id | integer | Address id | 
+| addressId | integer | Address id | 
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
@@ -14140,698 +12187,6 @@ Shipment Generated
         "shipment_type": "single_shipment",
         "fulfillment_type": "store",
         "dp_id": "29",
-        "dp_options": {
-          "4": {
-            "f_priority": 4,
-            "r_priority": 5,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "7": {
-            "f_priority": 3,
-            "r_priority": 4,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "29": {
-            "f_priority": 1,
-            "r_priority": 2,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          }
-        },
-        "promise": {
-          "timestamp": {
-            "min": 1566678108,
-            "max": 1567023708
-          },
-          "formatted": {
-            "min": "Aug 24",
-            "max": "Aug 28"
-          }
-        },
-        "box_type": "Small Courier bag",
-        "shipments": 1,
-        "items": [
-          {
-            "quantity": 1,
-            "product": {
-              "type": "product",
-              "uid": 820312,
-              "name": "Navy Blue Melange Shorts",
-              "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-              "brand": {
-                "uid": 610,
-                "name": "883 Police"
-              },
-              "categories": [
-                {
-                  "uid": 193,
-                  "name": "Shorts"
-                }
-              ],
-              "images": [
-                {
-                  "aspect_ratio": "16:25",
-                  "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                  "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-                }
-              ],
-              "action": {
-                "type": "product",
-                "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-                "query": {
-                  "product_slug": [
-                    "883-police-navy-blue-melange-shorts-820312-4943a8"
-                  ]
-                }
-              }
-            },
-            "discount": "",
-            "bulk_offer": {},
-            "key": "820312_L",
-            "price": {
-              "base": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              }
-            },
-            "article": {
-              "type": "article",
-              "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-              "size": "L",
-              "seller": {
-                "uid": 381,
-                "name": "INTERSOURCE GARMENTS PVT LTD"
-              },
-              "store": {
-                "uid": 3009,
-                "name": "Kormangala"
-              },
-              "quantity": 2,
-              "price": {
-                "base": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                },
-                "converted": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                }
-              }
-            },
-            "availability": {
-              "sizes": [
-                "L",
-                "XL",
-                "XXL"
-              ],
-              "other_store_quantity": 1,
-              "out_of_stock": false,
-              "deliverable": true,
-              "is_valid": true
-            },
-            "coupon_message": "",
-            "message": ""
-          }
-        ]
-      }
-    ],
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": true
-  }
-}
-```
-
-Shipment Generation Failed
-```javascript
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [],
-    "message": "Shipments could not be generated. Please Try again after some time.",
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": false
-  }
-}
-```
-
-
-
-
-
-
-
-
-Unhandled api error
-
-
-Schema: `[String: Any]`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateShipments
-Update shipment delivery type and quantity before checkout
-
-```swift
-poscart.updateShipments(i: i, p: p, uid: uid, addressId: addressId, orderType: orderType, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| i | boolean | Get items or not | 
-| p | boolean | Get payment options or not | 
-| uid | integer | Cart id | 
-| address_id | integer | Address id | 
-| order_type | string | Order is hand over or home delivery | 
-
-Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
-
-Success Response:
-
-
-
-OK
-
-
-Schema: `CartShipmentsResponse`
-
-
-Examples: 
-
-
-Shipment Generated
-```javascript
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [
-      {
-        "fulfillment_id": 3009,
-        "shipment_type": "single_shipment",
-        "fulfillment_type": "store",
-        "dp_id": "29",
-        "order_type": "PickAtStore",
         "dp_options": {
           "4": {
             "f_priority": 4,
@@ -15718,7 +13073,7 @@ poscart.getAvailableDeliveryModes(areaCode: areaCode, uid: uid) { (response, err
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| area_code | integer |  | 
+| areaCode | integer |  | 
 | uid | integer |  | 
 
 Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
@@ -15754,7 +13109,7 @@ poscart.getStoreAddressByUid(areaCode: areaCode) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| area_code | integer |  | 
+| areaCode | integer |  | 
 
 Get list of stores by providing pick up available store uids.
 

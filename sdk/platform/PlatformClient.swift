@@ -43,7 +43,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
+                url: "service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: query,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -76,7 +76,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
+                url: "service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -111,7 +111,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
+                url: "service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -145,7 +145,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
+                url: "service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -180,7 +180,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/application/\(applicationId)/\(ticketId)",
+                url: "service/platform/lead/v1.0/company/\(companyId)/ticket/application/\(applicationId)/\(ticketId)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -215,7 +215,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
+                url: "service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -249,7 +249,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
+                url: "service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -267,7 +267,6 @@ public class PlatformClient {
                     }
             });
         }
-        
         
         
         
@@ -307,7 +306,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket",
                     query: query,
                     body: nil,
                     onResponse: { (responseData, error, responseCode) in
@@ -342,7 +341,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)",
                     query: nil,
                     body: body.dictionary,
                     onResponse: { (responseData, error, responseCode) in
@@ -377,7 +376,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)/history",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)/history",
                     query: nil,
                     body: body.dictionary,
                     onResponse: { (responseData, error, responseCode) in
@@ -412,7 +411,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)/history",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)/history",
                     query: nil,
                     body: nil,
                     onResponse: { (responseData, error, responseCode) in
@@ -447,7 +446,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
                     query: nil,
                     body: nil,
                     onResponse: { (responseData, error, responseCode) in
@@ -482,7 +481,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
                     query: nil,
                     body: body.dictionary,
                     onResponse: { (responseData, error, responseCode) in
@@ -516,7 +515,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
                     query: nil,
                     body: nil,
                     onResponse: { (responseData, error, responseCode) in
@@ -550,7 +549,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
                     query: nil,
                     body: body.dictionary,
                     onResponse: { (responseData, error, responseCode) in
@@ -585,7 +584,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room/\(uniqueName)/token",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room/\(uniqueName)/token",
                     query: nil,
                     body: nil,
                     onResponse: { (responseData, error, responseCode) in
@@ -620,7 +619,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room/\(uniqueName)/participants",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room/\(uniqueName)/participants",
                     query: nil,
                     body: nil,
                     onResponse: { (responseData, error, responseCode) in
@@ -642,10 +641,10 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Open a video room.
-            * Description: Open a video room.
+            * Summary: Get video room id
+            * Description: Get video room id.
             **/
-            public func openVideoRoom(
+            public func createVideoRoom(
                 body: CreateVideoRoomPayload,
                 onResponse: @escaping (_ response: CreateVideoRoomResponse?, _ error: FDKError?) -> Void
             ) {
@@ -654,7 +653,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room",
+                    url: "service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room",
                     query: nil,
                     body: body.dictionary,
                     onResponse: { (responseData, error, responseCode) in
@@ -667,40 +666,6 @@ public class PlatformClient {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(CreateVideoRoomResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            /**
-            *
-            * Summary: Close the video room and force all participants to leave.
-            * Description: Close the video room and force all participants to leave.
-            **/
-            public func closeVideoRoom(
-                
-                onResponse: @escaping (_ response: CloseVideoRoomResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room",
-                    query: nil,
-                    body: nil,
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)

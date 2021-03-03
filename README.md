@@ -19,8 +19,7 @@ Get started with the Swift Development SDK for Fynd Platform
 ```
   if let config = ApplicationConfig(
       applicationID: "YOUR_APPLICATION_ID",
-      applicationToken: "YOUR_APPLICATION_TOKEN",
-      domain: "BASE_URL"
+      applicationToken: "YOUR_APPLICATION_TOKEN"
   ) {
       let applicationClient = ApplicationClient(config: config)
       applicationClient.lead.getCustomForm(slug: "form-slug") { (form, error) in
