@@ -122,13 +122,13 @@ public extension Dictionary {
 
 extension Encodable {
     var dictionary: [String: Any]? {
-    let encoder = JSONEncoder()
-    guard let data = try? encoder.encode(self) else { return nil }
-    return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }}
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(self) else { return nil }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+    }
 }
 
 extension KeyedDecodingContainer {
-
     func decode(_ type: [String: Any].Type, forKey key: K) throws -> [String: Any] {
         let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         return try container.decode(type)

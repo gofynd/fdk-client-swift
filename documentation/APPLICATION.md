@@ -47,8 +47,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -1395,11 +1395,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1407,9 +1407,9 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to follow | 
+| collectionId | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1443,11 +1443,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1455,9 +1455,9 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to unfollow | 
+| collectionId | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -10806,7 +10806,7 @@ feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pag
 | entityType | string | entity type | 
 | id | string | abuse id | 
 | pageId | string | pagination page id | 
-| pageSize | string | pagination page size | 
+| pageSize | integer | pagination page size | 
 
 Get the list of abuse data from entity type and entity ID.
 
@@ -11136,7 +11136,7 @@ feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId:
 | entityId | string | entity id | 
 | userId | string | user id - flag/filter to get comments for user | 
 | pageId | string | pagination page id | 
-| pageSize | string | pagination page size | 
+| pageSize | integer | pagination page size | 
 
 Get the list of comments from specific entity type.
 
@@ -11373,7 +11373,7 @@ feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: p
 | entityId | string | entity id | 
 | id | string | vote id | 
 | pageId | string | pagination page id | 
-| pageSize | string | pagination page size | 
+| pageSize | integer | pagination page size | 
 
 Get Media from the given entity type and entity ID.
 
@@ -11424,7 +11424,7 @@ feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, 
 | entityId | string | entity id | 
 | id | string | review summary identifier | 
 | pageId | string | pagination page id | 
-| pageSize | string | pagination page size | 
+| pageSize | integer | pagination page size | 
 
 Review summary gives ratings and attribute metrics of a review per entity
 It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
@@ -11576,7 +11576,7 @@ feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: 
 | facets | boolean | facets (true|false) | 
 | sort | string | sort by : default | top | recent | 
 | pageId | string | pagination page id | 
-| pageSize | string | pagination page size | 
+| pageSize | integer | pagination page size | 
 
 This is used to get the list of customer reviews based on entity and provided filters.
 
@@ -11770,7 +11770,7 @@ feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: i
 | id | string | qna id | 
 | showAnswer | boolean | show answer flag | 
 | pageId | string | pagination page id | 
-| pageSize | string | pagination page size | 
+| pageSize | integer | pagination page size | 
 
 This is used to get a list of questions and its answers.
 

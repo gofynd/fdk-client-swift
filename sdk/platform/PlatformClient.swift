@@ -1,10 +1,13 @@
 
 
+
 public class PlatformClient {
+    public let config: PlatformConfig
 
     public let lead: Lead
 
     public init(config: PlatformConfig) {
+        self.config = config
         
         lead = Lead(config: config)
         
@@ -14,10 +17,6 @@ public class PlatformClient {
     public class Lead {        
         var config: PlatformConfig
         var companyId: String
-
-        public func application(id: String) -> Application {
-            return Application(applicationId: id, config: config)
-        }
 
         init(config: PlatformConfig) {
             self.config = config
@@ -276,17 +275,48 @@ public class PlatformClient {
         
         
         
-        public class Application {
+    }
+    
+    
+
+    public func application(id: String) -> Application {
+        return Application(applicationId: id, config: config)
+    }
+
+    public class Application {
+        var config: PlatformConfig
+        var companyId: String
+        var applicationId: String
+
+        
+        public let lead: Lead
+        
+        
+        public init(applicationId: String, config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+            self.applicationId = applicationId
+
+            
+            lead = Lead(config: config, applicationId: applicationId)
+            
+        }
+
+        
+            
+        public class Lead {        
             var config: PlatformConfig
             var companyId: String
             var applicationId: String
-            
-            init(applicationId: String, config: PlatformConfig) {
+
+            init(config: PlatformConfig, applicationId: String) {
                 self.config = config
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
-
+            
+            
+            
             
             /**
             *
@@ -317,7 +347,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(TicketList.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -325,6 +354,9 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
+            
             
             /**
             *
@@ -352,7 +384,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(Ticket.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -360,6 +391,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -387,7 +420,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(TicketHistory.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -422,7 +454,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(TicketHistoryList.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -457,7 +488,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(CustomForm.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -492,7 +522,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(CustomForm.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -526,7 +555,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(CustomFormList.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -560,7 +588,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(CustomForm.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -595,7 +622,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -630,7 +656,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -664,7 +689,6 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            
                             let response = Utility.decode(CreateVideoRoomResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
@@ -672,9 +696,8 @@ public class PlatformClient {
                         }
                 });
             }
-            
         }
+        
+        
     }
-    
-    
 }

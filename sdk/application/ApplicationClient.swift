@@ -106,6 +106,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get the sizes of a product
@@ -141,6 +142,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -180,6 +182,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -222,6 +225,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Compare products
@@ -257,6 +261,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get comparison between similar products
@@ -291,6 +296,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get comparison between frequently compared products with the given product
@@ -324,6 +330,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -360,6 +367,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get variant of a particular product
@@ -393,6 +401,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -437,6 +446,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get the stock of a product
@@ -475,6 +485,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -525,6 +536,130 @@ public class ApplicationClient {
             });
         }
         
+        
+        
+        
+        
+            
+                
+            
+            
+        
+            
+                
+            
+            
+        
+            
+                
+            
+            
+        
+            
+                
+            
+            
+        
+            
+            
+                
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        /**
+        *
+        * Summary: get paginator for getProducts
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getProductsPaginator(
+            q: String?,
+            f: String?,
+            filters: Bool?,
+            sortOn: String?
+            
+            ) -> GetProductsPaginator {
+            return GetProductsPaginator(
+                q: q,
+                f: f,
+                filters: filters,
+                sortOn: sortOn,
+                
+                
+                catalog: self)
+        }
+
+        /**
+        *
+        * Summary: Paginator for getProducts
+        **/
+        public class GetProductsPaginator {
+            let catalog: Catalog
+            public private(set) var hasNext: Bool = true
+            var nextId: String? = "*"
+            
+            let q: String?
+            let f: String?
+            let filters: Bool?
+            let sortOn: String?
+            
+            init(
+                q: String?,
+                f: String?,
+                filters: Bool?,
+                sortOn: String?,
+                
+                
+                catalog: Catalog) {
+                self.catalog = catalog
+                self.q = q
+                self.f = f
+                self.filters = filters
+                self.sortOn = sortOn
+                
+                
+            }
+
+            public func next(onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void) {
+                catalog.getProducts(
+                    
+                    q: q,
+                    f: f,
+                    filters: filters,
+                    sortOn: sortOn,
+                    pageId: nextId
+                    ,
+                    pageSize: 20
+                    ,
+                    pageNo: nil
+                    ,
+                    pageType: nil
+                    
+                ) { (response, error) in
+                    if let response = response {
+                        self.hasNext = response.page?.hasNext ?? false
+                        
+                        self.nextId = response.page?.nextId
+                        
+                    }
+                    onResponse(response, error)
+                }
+            }
+
+            public func reset() {
+                hasNext = true
+                nextId = "*"
+            }
+        }
+        
+        
         /**
         *
         * Summary: List all the brands
@@ -564,6 +699,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get metadata of a brand
@@ -597,6 +733,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -633,6 +770,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get metadata of a category
@@ -666,6 +804,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -706,6 +845,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: List all the departments
@@ -738,6 +878,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -773,6 +914,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -810,6 +952,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -855,6 +998,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get a particular collection
@@ -888,6 +1032,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -923,40 +1068,6 @@ public class ApplicationClient {
             });
         }
         
-        /**
-        *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-        **/
-        public func followById(
-            collectionType: String,
-            collectionId: Int,
-            
-            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(FollowPostResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
         
         /**
         *
@@ -993,6 +1104,43 @@ public class ApplicationClient {
             });
         }
         
+        
+        /**
+        *
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        **/
+        public func followById(
+            collectionType: String,
+            collectionId: Int,
+            
+            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(FollowPostResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
         /**
         *
         * Summary: Get Follow Count
@@ -1028,6 +1176,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get the Ids of followed product, brand and collection.
@@ -1062,6 +1211,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1107,6 +1257,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -1157,6 +1308,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Fetch Last-Modified timestamp
@@ -1192,6 +1344,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Add Items to Cart
@@ -1225,6 +1378,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Update Items already added to Cart
@@ -1257,6 +1411,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1293,6 +1448,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Fetch Coupon
@@ -1327,6 +1483,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1368,6 +1525,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Remove Coupon Applied
@@ -1402,6 +1560,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1443,6 +1602,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1487,6 +1647,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Add Address to the account
@@ -1519,6 +1680,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1564,6 +1726,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Update Address alreay added to account
@@ -1597,6 +1760,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1632,6 +1796,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Select Address from All Addresses
@@ -1664,6 +1829,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1710,6 +1876,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Update Cart Payment
@@ -1744,6 +1911,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1784,6 +1952,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Checkout Cart
@@ -1816,6 +1985,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1852,6 +2022,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Generate Cart sharing link token
@@ -1884,6 +2055,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -1919,6 +2091,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Merge or Replace existing cart
@@ -1953,6 +2126,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -2000,6 +2174,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Create history for specific Ticket
@@ -2034,6 +2209,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Create Ticket
@@ -2066,6 +2242,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2101,6 +2278,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Submit Response for a specific Custom Form using it's slug
@@ -2134,6 +2312,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2169,6 +2348,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get Token to join a specific Video Room using it's unqiue name
@@ -2202,6 +2382,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -2248,6 +2429,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get theme for preview
@@ -2281,6 +2463,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -2327,6 +2510,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Login/Register with Google
@@ -2359,6 +2543,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2393,6 +2578,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Login/Register with Google for ios
@@ -2425,6 +2611,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2461,6 +2648,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Login/Register with password
@@ -2493,6 +2681,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2529,6 +2718,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: 
@@ -2561,6 +2751,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2595,6 +2786,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Login/Register with token
@@ -2627,6 +2819,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2663,6 +2856,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Verify email
@@ -2695,6 +2889,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2729,6 +2924,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Check if user has password
@@ -2761,6 +2957,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2795,6 +2992,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Logout user
@@ -2827,6 +3025,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2863,6 +3062,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Verify OTP on mobile
@@ -2897,6 +3097,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -2933,6 +3134,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Verify OTP on email
@@ -2968,6 +3170,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get logged in user
@@ -3001,6 +3204,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get list of sessions
@@ -3033,6 +3237,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3069,6 +3274,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Edit Profile Details
@@ -3104,6 +3310,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Add mobile number to profile
@@ -3138,6 +3345,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3184,6 +3392,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Set mobile as primary
@@ -3216,6 +3425,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3252,6 +3462,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Add email to profile
@@ -3286,6 +3497,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3330,6 +3542,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Set email as primary
@@ -3362,6 +3575,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3397,6 +3611,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -3443,6 +3658,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get Blog by slug
@@ -3477,6 +3693,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get frequently asked questions
@@ -3509,6 +3726,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3544,6 +3762,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get legal information
@@ -3576,6 +3795,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3611,6 +3831,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get Page by slug
@@ -3645,6 +3866,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get seo of application
@@ -3677,6 +3899,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -3713,6 +3936,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get support information
@@ -3746,6 +3970,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get Tags for application
@@ -3778,6 +4003,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -3824,6 +4050,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Upsert communication consent
@@ -3857,6 +4084,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Upsert push token of a user
@@ -3889,6 +4117,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -3935,6 +4164,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Create product QR Code
@@ -3969,6 +4199,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Create collection QR Code
@@ -4002,6 +4233,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -4038,6 +4270,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Create short link
@@ -4070,6 +4303,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
         /**
         *
@@ -4105,6 +4339,7 @@ public class ApplicationClient {
             });
         }
         
+        
         /**
         *
         * Summary: Get original link by hash
@@ -4138,6 +4373,7 @@ public class ApplicationClient {
                     }
             });
         }
+        
         
     }
     
@@ -4204,6 +4440,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
@@ -4257,6 +4494,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
     }
     
     
@@ -4305,6 +4543,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Attach a saved card to customer.
@@ -4337,6 +4576,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -4373,6 +4613,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Fetch the list of saved cards of user.
@@ -4408,6 +4649,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Delete an user card.
@@ -4440,6 +4682,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -4474,6 +4717,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Verify and charge payment
@@ -4506,6 +4750,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -4540,6 +4785,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Continous polling to check status of payment on server.
@@ -4572,6 +4818,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -4619,6 +4866,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -4669,6 +4917,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: List User Beneficiary
@@ -4703,6 +4952,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -4739,6 +4989,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: List Order Beneficiary
@@ -4774,6 +5025,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Save Beneficiary details on otp validation.
@@ -4806,6 +5058,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -4840,6 +5093,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Send Otp on Adding wallet beneficiary
@@ -4873,6 +5127,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Mark Default Beneficiary For Refund
@@ -4905,6 +5160,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
     }
     
@@ -4959,6 +5215,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Get Order by order id for application based on application Id
@@ -4992,6 +5249,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -5027,6 +5285,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Get Shipment reasons by shipment id and order id for application based on application Id
@@ -5060,6 +5319,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -5095,6 +5355,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Track Shipment by shipment id and order id for application based on application Id
@@ -5128,6 +5389,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
     }
     
@@ -5174,6 +5436,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
@@ -5207,6 +5470,7 @@ This operation will return the url for the uploaded file.
             });
         }
         
+        
         /**
         *
         * Summary: Total available points of a user for current application
@@ -5239,6 +5503,7 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
         
         /**
         *
@@ -5278,6 +5543,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: User's referral details.
@@ -5311,6 +5577,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Redeems referral code and credits points to users points account.
@@ -5343,6 +5610,7 @@ The list of points history is paginated.
                     }
             });
         }
+        
         
     }
     
@@ -5389,6 +5657,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Update abuse details
@@ -5422,6 +5691,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Get list of abuse data
@@ -5432,7 +5702,7 @@ The list of points history is paginated.
             entityType: String,
             id: String?,
             pageId: String?,
-            pageSize: String?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5462,6 +5732,7 @@ The list of points history is paginated.
                     }
             });
         }
+        
         
         /**
         *
@@ -5496,6 +5767,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Add a new attribute request
@@ -5528,6 +5800,7 @@ The list of points history is paginated.
                     }
             });
         }
+        
         
         /**
         *
@@ -5563,6 +5836,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Update attribute details
@@ -5597,6 +5871,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: post a new comment
@@ -5629,6 +5904,7 @@ The list of points history is paginated.
                     }
             });
         }
+        
         
         /**
         *
@@ -5663,6 +5939,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Get list of comments
@@ -5674,7 +5951,7 @@ The list of points history is paginated.
             entityId: String?,
             userId: String?,
             pageId: String?,
-            pageSize: String?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5706,6 +5983,7 @@ The list of points history is paginated.
                     }
             });
         }
+        
         
         /**
         *
@@ -5742,6 +6020,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Delete Media
@@ -5774,6 +6053,7 @@ The list of points history is paginated.
                     }
             });
         }
+        
         
         /**
         *
@@ -5808,6 +6088,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Update Media
@@ -5841,6 +6122,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Get Media
@@ -5851,7 +6133,7 @@ The list of points history is paginated.
             entityId: String,
             id: String?,
             pageId: String?,
-            pageSize: String?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5882,6 +6164,7 @@ The list of points history is paginated.
             });
         }
         
+        
         /**
         *
         * Summary: Get a review summary
@@ -5893,7 +6176,7 @@ It gives following response data: review count, rating average. review metrics /
             entityId: String,
             id: String?,
             pageId: String?,
-            pageSize: String?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5923,6 +6206,7 @@ It gives following response data: review count, rating average. review metrics /
                     }
             });
         }
+        
         
         /**
         *
@@ -5958,6 +6242,7 @@ attributes rating, entity rating, title, description, media resources and templa
             });
         }
         
+        
         /**
         *
         * Summary: Update customer reviews
@@ -5992,6 +6277,7 @@ attributes rating, entity rating, title, description, media resources and templa
             });
         }
         
+        
         /**
         *
         * Summary: Get list of customer reviews
@@ -6008,7 +6294,7 @@ attributes rating, entity rating, title, description, media resources and templa
             facets: Bool?,
             sort: String?,
             pageId: String?,
-            pageSize: String?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -6044,6 +6330,7 @@ attributes rating, entity rating, title, description, media resources and templa
                     }
             });
         }
+        
         
         /**
         *
@@ -6084,6 +6371,7 @@ attributes rating, entity rating, title, description, media resources and templa
             });
         }
         
+        
         /**
         *
         * Summary: Create a new question
@@ -6118,6 +6406,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Update question
@@ -6151,6 +6440,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Get a list of QnA
@@ -6162,7 +6452,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             id: String?,
             showAnswer: Bool?,
             pageId: String?,
-            pageSize: String?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -6193,6 +6483,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6231,6 +6522,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Create a new vote
@@ -6264,6 +6556,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Update vote
@@ -6296,6 +6589,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
     }
     
@@ -6346,6 +6640,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Fetch Last-Modified timestamp
@@ -6381,6 +6676,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Add Items to Cart
@@ -6414,6 +6710,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Update Items already added to Cart
@@ -6446,6 +6743,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6482,6 +6780,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Fetch Coupon
@@ -6516,6 +6815,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6557,6 +6857,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Remove Coupon Applied
@@ -6591,6 +6892,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6632,6 +6934,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6676,6 +6979,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Add Address to the account
@@ -6708,6 +7012,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6753,6 +7058,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Update Address alreay added to account
@@ -6786,6 +7092,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6821,6 +7128,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Select Address from All Addresses
@@ -6853,6 +7161,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6899,6 +7208,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Update Cart Payment
@@ -6933,6 +7243,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -6977,6 +7288,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Checkout Cart
@@ -7012,6 +7324,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Update Cart Meta
@@ -7046,6 +7359,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -7084,6 +7398,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Get list of stores for give uids
@@ -7119,6 +7434,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Generate Cart sharing link token
@@ -7151,6 +7467,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
         /**
         *
@@ -7186,6 +7503,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             });
         }
         
+        
         /**
         *
         * Summary: Merge or Replace existing cart
@@ -7220,6 +7538,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                     }
             });
         }
+        
         
     }
     
