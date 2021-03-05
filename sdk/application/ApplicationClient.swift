@@ -75,7 +75,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get a product
-        * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
+        * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given ``slug``. If successful, returns a Product resource in the response body specified in `ProductDetail`
         **/
         public func getProductDetailBySlug(
             slug: String,
@@ -956,6 +956,40 @@ public class ApplicationClient {
         
         /**
         *
+        * Summary: Add a Collection
+        * Description: Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
+        **/
+        public func addCollection(
+            body: CreateCollection,
+            onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/catalog/v1.0/collections/",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CollectionDetailResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
         * Summary: Get the items in a collection
         * Description: Get items in a collection specified by its `slug`.
         **/
@@ -1001,6 +1035,76 @@ public class ApplicationClient {
         
         /**
         *
+        * Summary: Add items to a collection
+        * Description: Adds items to a collection specified by its `slug`. See `CollectionItemsRequest` for the list of attributes needed to add items to an collection.
+        **/
+        public func addCollectionItemsBySlug(
+            slug: String,
+            body: CollectionItemsRequest,
+            onResponse: @escaping (_ response: CollectionItemsResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CollectionItemsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update a collection
+        * Description: Update a collection by it's slug. On successful request, returns the updated collection
+        **/
+        public func updateCollectionDetailBySlug(
+            slug: String,
+            
+            onResponse: @escaping (_ response: CollectionsUpdateDetailResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/catalog/v1.0/collections/\(slug)/",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CollectionsUpdateDetailResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
         * Summary: Get a particular collection
         * Description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
         **/
@@ -1026,6 +1130,41 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(CollectionDetailResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Delete a Collection
+        * Description: Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
+        **/
+        public func deleteCollectionDetailBySlug(
+            slug: String,
+            
+            onResponse: @escaping (_ response: CollectionDetailViewDeleteResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/application/catalog/v1.0/collections/\(slug)/",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CollectionDetailViewDeleteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -2155,7 +2294,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "service/application/lead/v1.0/ticket/\(id)",
+                url: "/service/application/lead/v1.0/ticket/\(id)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2190,7 +2329,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "service/application/lead/v1.0/ticket/\(ticketId)/history",
+                url: "/service/application/lead/v1.0/ticket/\(ticketId)/history",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2224,7 +2363,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "service/application/lead/v1.0/ticket/",
+                url: "/service/application/lead/v1.0/ticket/",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2259,7 +2398,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "service/application/lead/v1.0/form/\(slug)",
+                url: "/service/application/lead/v1.0/form/\(slug)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2294,7 +2433,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "service/application/lead/v1.0/form/\(slug)/submit",
+                url: "/service/application/lead/v1.0/form/\(slug)/submit",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2329,7 +2468,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "service/application/lead/v1.0/video/room/\(uniqueName)/participants",
+                url: "/service/application/lead/v1.0/video/room/\(uniqueName)/participants",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2364,7 +2503,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "service/application/lead/v1.0/video/room/\(uniqueName)/token",
+                url: "/service/application/lead/v1.0/video/room/\(uniqueName)/token",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -3708,7 +3847,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/content/v1.0/faqs",
+                url: "/service/application/content/v1.0/faq",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -3730,11 +3869,149 @@ public class ApplicationClient {
         
         /**
         *
+        * Summary: Get FAQ categories list
+        * Description: Get list of FAQ categories
+        **/
+        public func getFaqCategories(
+            
+            onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/categories",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetFaqCategoriesSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get frequently asked question
+        * Description: Get frequently asked questions list. These will be helpful for users to using website.
+        **/
+        public func getFaqByIdOrSlug(
+            idOrSlug: String,
+            
+            onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/\(idOrSlug)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(FaqSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get FAQ category by slug or id
+        * Description: Get FAQ category by slug or id
+        **/
+        public func getFaqCategoryBySlugOrId(
+            idOrSlug: String,
+            
+            onResponse: @escaping (_ response: GetFaqCategoryByIdOrSlugSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/category/\(idOrSlug)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetFaqCategoryByIdOrSlugSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get FAQs of a Faq Category id or slug
+        * Description: Get FAQs of a Faq Category `id` or `slug`
+        **/
+        public func getFaqsByCategoryIdOrSlug(
+            idOrSlug: String,
+            
+            onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/category/\(idOrSlug)/faqs",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetFaqSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
         * Summary: Get landing page
         * Description: Use this API to fetch a landing page
         **/
         public func getLandingPage(
-            xDevicePlatform: String,
             
             onResponse: @escaping (_ response: LandingPage?, _ error: FDKError?) -> Void
         ) {
@@ -3803,7 +4080,6 @@ public class ApplicationClient {
         * Description: Use this API to fetch a navigation
         **/
         public func getNavigations(
-            xDevicePlatform: String,
             
             onResponse: @escaping (_ response: Navigation?, _ error: FDKError?) -> Void
         ) {
@@ -3908,7 +4184,6 @@ public class ApplicationClient {
         **/
         public func getSlideshow(
             slug: String,
-            xDevicePlatform: String,
             
             onResponse: @escaping (_ response: Slideshow?, _ error: FDKError?) -> Void
         ) {
@@ -7272,6 +7547,50 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 url: "/service/application/pos/cart/v1.0/shipment",
                 query: query,
                 body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CartShipmentsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update shipment delivery type and quantity before checkout
+        * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+        **/
+        public func updateShipments(
+            i: Bool?,
+            p: Bool?,
+            uid: Int?,
+            addressId: Int?,
+            orderType: String?,
+            body: UpdateCartShipmentRequest,
+            onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["i"] = i
+            query["p"] = p
+            query["uid"] = uid
+            query["address_id"] = addressId
+            query["order_type"] = orderType
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/pos/cart/v1.0/shipment",
+                query: query,
+                body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)

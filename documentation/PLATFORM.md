@@ -2,6 +2,10 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Theme](#Theme) - Responsible for themes 
+* [User](#User) - Authentication Service 
+* [Content](#Content) - Content 
+* [Inventory](#Inventory) -  
 
 ----
 ----
@@ -28,7 +32,81 @@
     * [createCustomForm](#createcustomform)
     * [getTokenForVideoRoom](#gettokenforvideoroom)
     * [getVideoParticipants](#getvideoparticipants)
-    * [createVideoRoom](#createvideoroom)
+    * [openVideoRoom](#openvideoroom)
+    * [closeVideoRoom](#closevideoroom)
+    
+
+* [Theme](#Theme)
+  * Methods
+    * [getThemeLibrary](#getthemelibrary)
+    * [addToThemeLibrary](#addtothemelibrary)
+    * [applyTheme](#applytheme)
+    * [isUpgradable](#isupgradable)
+    * [upgradeTheme](#upgradetheme)
+    * [getPublicThemes](#getpublicthemes)
+    * [createTheme](#createtheme)
+    * [getAppliedTheme](#getappliedtheme)
+    * [getFonts](#getfonts)
+    * [getThemeById](#getthemebyid)
+    * [updateTheme](#updatetheme)
+    * [deleteTheme](#deletetheme)
+    * [getThemeForPreview](#getthemeforpreview)
+    * [publishTheme](#publishtheme)
+    * [unpublishTheme](#unpublishtheme)
+    * [archiveTheme](#archivetheme)
+    * [unarchiveTheme](#unarchivetheme)
+    
+
+* [User](#User)
+  * Methods
+    * [getCustomers](#getcustomers)
+    * [searchUsers](#searchusers)
+    * [getPlatformConfig](#getplatformconfig)
+    * [updatePlatformConfig](#updateplatformconfig)
+    
+
+* [Content](#Content)
+  * Methods
+    * [getAnnouncementsList](#getannouncementslist)
+    * [createAnnouncement](#createannouncement)
+    * [getAnnouncementById](#getannouncementbyid)
+    * [updateAnnouncement](#updateannouncement)
+    * [updateAnnouncementSchedule](#updateannouncementschedule)
+    * [deleteAnnouncement](#deleteannouncement)
+    * [getFaqCategories](#getfaqcategories)
+    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
+    * [createFaqCategory](#createfaqcategory)
+    * [updateFaqCategory](#updatefaqcategory)
+    * [deleteFaqCategory](#deletefaqcategory)
+    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
+    * [addFaqToFaqCategory](#addfaqtofaqcategory)
+    * [updateFaq](#updatefaq)
+    * [deleteFaq](#deletefaq)
+    * [getLegalInformation](#getlegalinformation)
+    * [updateLegalInformation](#updatelegalinformation)
+    * [getSeoConfiguration](#getseoconfiguration)
+    * [updateSeoConfiguration](#updateseoconfiguration)
+    * [getSupportInformation](#getsupportinformation)
+    * [updateSupportInformation](#updatesupportinformation)
+    * [createTag](#createtag)
+    * [updateTag](#updatetag)
+    * [deleteAllTags](#deletealltags)
+    * [getTags](#gettags)
+    * [addTag](#addtag)
+    * [removeTag](#removetag)
+    * [editTag](#edittag)
+    
+
+* [Inventory](#Inventory)
+  * Methods
+    * [getJobs](#getjobs)
+    * [update](#update)
+    * [create](#create)
+    * [getJobConfigDefaults](#getjobconfigdefaults)
+    * [getJobsByCompany](#getjobsbycompany)
+    * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
+    * [getJobByCode](#getjobbycode)
+    * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
     
 
 
@@ -3160,11 +3238,11 @@ Default
 ---
 
 
-#### createVideoRoom
-Get video room id
+#### openVideoRoom
+Open a video room.
 
 ```swift
-lead.createVideoRoom(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+lead.openVideoRoom(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3174,7 +3252,7 @@ lead.createVideoRoom(companyId: companyId, applicationId: applicationId, body: b
 | companyId | string | Company ID of the application | 
 | applicationId | string | Application ID for video room | 
 
-Get video room id.
+Open a video room.
 
 *Success Response:*
 
@@ -3197,6 +3275,3279 @@ Default
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### closeVideoRoom
+Close the video room and force all participants to leave.
+
+```swift
+lead.closeVideoRoom(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID of the application | 
+| applicationId | string | Application ID for video room | 
+
+Close the video room and force all participants to leave.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CloseVideoRoomResponse`
+
+
+*Examples:*
+
+
+Default
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Theme
+
+
+#### getThemeLibrary
+Gets list of themes in theme library
+
+```swift
+theme.getThemeLibrary(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| pageNo | integer | Page number. Default is 1. | 
+
+Gets list of themes in theme library
+
+*Success Response:*
+
+
+
+Themes list
+
+
+Schema: `ThemesListingResponseSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/ThemesListingResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addToThemeLibrary
+Add theme to theme library
+
+```swift
+theme.addToThemeLibrary(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add theme to theme library
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### applyTheme
+Apply theme
+
+```swift
+theme.applyTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Apply theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### isUpgradable
+Checks if theme is upgradable
+
+```swift
+theme.isUpgradable(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Checks if theme is upgradable
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `UpgradableThemeSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UpgradableTheme"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upgradeTheme
+Upgrades theme
+
+```swift
+theme.upgradeTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Upgrades theme
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPublicThemes
+Gets public themes
+
+```swift
+theme.getPublicThemes(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| pageNo | integer | Page number. Default is 1. | 
+
+Gets public themes
+
+*Success Response:*
+
+
+
+Themes list
+
+
+Schema: `ThemesListingResponseSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/ThemesListingResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTheme
+Create new theme
+
+```swift
+theme.createTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create new theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppliedTheme
+Get applied theme
+
+```swift
+theme.getAppliedTheme(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get applied theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFonts
+Gets fonts
+
+```swift
+theme.getFonts(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Gets fonts
+
+*Success Response:*
+
+
+
+Fonts list
+
+
+Schema: `FontsSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/FontsResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getThemeById
+Gets theme by id
+
+```swift
+theme.getThemeById(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Gets theme by id
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTheme
+Update theme
+
+```swift
+theme.updateTheme(companyId: companyId, applicationId: applicationId, themeId: themeId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Update theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteTheme
+Delete theme
+
+```swift
+theme.deleteTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Delete theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getThemeForPreview
+Gets theme for preview
+
+```swift
+theme.getThemeForPreview(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Gets theme for preview
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### publishTheme
+Publish theme
+
+```swift
+theme.publishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Publish theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### unpublishTheme
+Unpublish theme
+
+```swift
+theme.unpublishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Unpublish theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### archiveTheme
+Archive theme
+
+```swift
+theme.archiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Archive theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### unarchiveTheme
+Unarchive theme
+
+```swift
+theme.unarchiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Unarchive theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## User
+
+
+#### getCustomers
+Gets list of customers
+
+```swift
+user.getCustomers(companyId: companyId, applicationId: applicationId, q: q, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| pageNo | integer | Page number. Default is 1. | 
+
+Used to get application customers list
+
+*Success Response:*
+
+
+
+Customer list
+
+
+Schema: `CustomerListResponseSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/CustomersListResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### searchUsers
+Search users
+
+```swift
+user.searchUsers(companyId: companyId, applicationId: applicationId, query: query) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| query | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
+
+Search users
+
+*Success Response:*
+
+
+
+User list
+
+
+Schema: `UserSearchResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPlatformConfig
+Get platform config
+
+```swift
+user.getPlatformConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Used to get platform config
+
+*Success Response:*
+
+
+
+Platform Config
+
+
+Schema: `PlatformSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePlatformConfig
+Update platform config
+
+```swift
+user.updatePlatformConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Used to update platform config
+
+*Success Response:*
+
+
+
+Platform Config
+
+
+Schema: `PlatformSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Content
+
+
+#### getAnnouncementsList
+Get annoucements list
+
+```swift
+content.getAnnouncementsList(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get list of announcements
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetAnnouncementListSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/GetAnnouncementList"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAnnouncement
+Create an annoucement
+
+```swift
+content.createAnnouncement(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/CreateAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAnnouncementById
+Get annoucement by id
+
+```swift
+content.getAnnouncementById(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Get announcement by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AdminAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/Announcement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAnnouncement
+Update an annoucement
+
+```swift
+content.updateAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Update an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/UpdateAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAnnouncementSchedule
+Update schedule or published status of an annoucement
+
+```swift
+content.updateAnnouncementSchedule(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Update schedule or published status of an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/PatchAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAnnouncement
+Delete annoucement by id
+
+```swift
+content.deleteAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Delete announcement by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/DeleteAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategories
+Get FAQ categories list
+
+```swift
+content.getFaqCategories(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get list of FAQ categories
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoriesSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategoryBySlugOrId
+Get FAQ category by slug or id
+
+```swift
+content.getFaqCategoryBySlugOrId(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Slug or Id of FAQ Category | 
+
+Get FAQ category by slug or id
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoryByIdOrSlugSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createFaqCategory
+Creates a FAQ category
+
+```swift
+content.createFaqCategory(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add Faq Category
+
+*Success Response:*
+
+
+
+Create a FAQ Category
+
+
+Schema: `CreateFaqCategorySchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateFaqCategory
+Updates a FAQ category
+
+```swift
+content.updateFaqCategory(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Faq category ID | 
+
+Update Faq Category
+
+*Success Response:*
+
+
+
+Update a FAQ Category
+
+
+Schema: `CreateFaqCategorySchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteFaqCategory
+Deletes a FAQ category
+
+```swift
+content.deleteFaqCategory(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Faq category ID | 
+
+Delete Faq Category
+
+*Success Response:*
+
+
+
+Delete a FAQ Category
+
+
+Schema: `CreateFaqCategorySchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqsByCategoryIdOrSlug
+Get FAQs of a Faq Category id or slug
+
+```swift
+content.getFaqsByCategoryIdOrSlug(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Faq category ID or slug | 
+
+Get FAQs of a Faq Category `id` or `slug`
+
+*Success Response:*
+
+
+
+Get FAQs by slug/id of FAQ Category
+
+
+Schema: `GetFaqSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addFaqToFaqCategory
+Creates FAQs for category whose `id` is specified
+
+```swift
+content.addFaqToFaqCategory(companyId: companyId, applicationId: applicationId, categoryId: categoryId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+
+Creates FAQs for category whose `id` is specified
+
+*Success Response:*
+
+
+
+Create a FAQ for FAQ Category
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateFaq
+Updates FAQ
+
+```swift
+content.updateFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+Updates FAQ
+
+*Success Response:*
+
+
+
+Update FAQ by id
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteFaq
+Delete FAQ
+
+```swift
+content.deleteFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+Delete FAQ
+
+*Success Response:*
+
+
+
+Delete FAQ by id
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLegalInformation
+Get legal information
+
+```swift
+content.getLegalInformation(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLegalInformation
+Save legal information
+
+```swift
+content.updateLegalInformation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSeoConfiguration
+Get seo of application
+
+```swift
+content.getSeoConfiguration(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Seo`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSeoConfiguration
+Update seo of application
+
+```swift
+content.updateSeoConfiguration(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Seo`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSupportInformation
+Get support information
+
+```swift
+content.getSupportInformation(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get contact details for customer support. Including emails and phone numbers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSupportInformation
+Update support data of application
+
+```swift
+content.updateSupportInformation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update support data of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTag
+Creates Tag
+
+```swift
+content.createTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create tags
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTag
+Updates a Tag
+
+```swift
+content.updateTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAllTags
+Delete tags for application
+
+```swift
+content.deleteAllTags(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Delete tags for application
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTags
+Get tags for application
+
+```swift
+content.getTags(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get tags for application
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addTag
+Adds a Tag
+
+```swift
+content.addTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeTag
+Removes a Tag
+
+```swift
+content.removeTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Remove a particular tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editTag
+Edits a Tag by Id
+
+```swift
+content.editTag(companyId: companyId, applicationId: applicationId, tagId: tagId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| tagId | string | Tag ID | 
+
+Edits a particular tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Inventory
+
+
+#### getJobs
+Get All Job Configs
+
+```swift
+inventory.getJobs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job configs
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### update
+Updates An Existing Job Config
+
+```swift
+inventory.update(xUserData: xUserData, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| xUserData | string |  | 
+
+REST Endpoint that updates a job config
+
+*Success Response:*
+
+
+
+Job Config Updated Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### create
+Creates A New Job Config
+
+```swift
+inventory.create(xUserData: xUserData, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| xUserData | string |  | 
+
+REST Endpoint that creates a new job config
+
+*Success Response:*
+
+
+
+Job Config Created Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Job Config Already Exists
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobConfigDefaults
+Get Job Configs Defaults
+
+```swift
+inventory.getJobConfigDefaults() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+REST Endpoint that returns default fields job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobsByCompany
+Get Job Configs For A Company
+
+```swift
+inventory.getJobsByCompany(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job configs for a company
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobByCompanyAndIntegration
+Get Job Configs By Company And Integration
+
+```swift
+inventory.getJobByCompanyAndIntegration(companyId: companyId, integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| integrationId | string | Integration Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobByCode
+Get Job Config By Code
+
+```swift
+inventory.getJobByCode(code: code) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| code | string | Job Code | 
+
+REST Endpoint that returns job config by code
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobCodesByCompanyAndIntegration
+Get Job Codes By Company And Integration
+
+```swift
+inventory.getJobCodesByCompanyAndIntegration(companyId: companyId, integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| integrationId | string | Integration Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job codes by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
 
 
 
