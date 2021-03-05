@@ -107,15 +107,15 @@
     * [getCompanyMetrics](#getcompanymetrics)
     * [getCountries](#getcountries)
     * [verifyGstPan](#verifygstpan)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getCompanyBrands](#getcompanybrands)
     * [createCompanyBrand](#createcompanybrand)
     * [locationList](#locationlist)
     * [createLocation](#createlocation)
-    * [editLocation](#editlocation)
     * [getSingleLocation](#getsinglelocation)
+    * [editLocation](#editlocation)
     * [getChoices](#getchoices)
     
 
@@ -6398,11 +6398,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
+#### getBrand
+Get a single brand.
 
 ```swift
-companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
+companyprofile.getBrand(brandId: brandId) { (response, error) in
     // Use response
 }
 ```
@@ -6411,16 +6411,16 @@ companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
 | --------- | ----  | --- |
 | brandId | string | Id of the brand to be viewed. | 
 
-This API allows to edit meta of a brand.
+This API helps to get data associated to a particular brand.
 
 *Success Response:*
 
 
 
-Returns a success response
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
 
 
-Schema: `SuccessResponse`
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -6445,11 +6445,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
+#### editBrand
+Edit a brand.
 
 ```swift
-companyprofile.getBrand(brandId: brandId) { (response, error) in
+companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6458,16 +6458,16 @@ companyprofile.getBrand(brandId: brandId) { (response, error) in
 | --------- | ----  | --- |
 | brandId | string | Id of the brand to be viewed. | 
 
-This API helps to get data associated to a particular brand.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
 
 
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
+Returns a success response
 
 
-Schema: `GetBrandResponseSerializer`
+Schema: `SuccessResponse`
 
 
 
@@ -6731,54 +6731,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editLocation
-Edit a location asscoiated to a company.
-
-```swift
-companyprofile.editLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSingleLocation
 Get a single location.
 
@@ -6803,6 +6755,54 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editLocation
+Edit a location asscoiated to a company.
+
+```swift
+companyprofile.editLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
