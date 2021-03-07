@@ -75,7 +75,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get a product
-        * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given ``slug``. If successful, returns a Product resource in the response body specified in `ProductDetail`
+        * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
         **/
         public func getProductDetailBySlug(
             slug: String,
@@ -956,40 +956,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Add a Collection
-        * Description: Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
-        **/
-        public func addCollection(
-            body: CreateCollection,
-            onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/catalog/v1.0/collections/",
-                query: nil,
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CollectionDetailResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Get the items in a collection
         * Description: Get items in a collection specified by its `slug`.
         **/
@@ -1035,76 +1001,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Add items to a collection
-        * Description: Adds items to a collection specified by its `slug`. See `CollectionItemsRequest` for the list of attributes needed to add items to an collection.
-        **/
-        public func addCollectionItemsBySlug(
-            slug: String,
-            body: CollectionItemsRequest,
-            onResponse: @escaping (_ response: CollectionItemsResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
-                query: nil,
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CollectionItemsResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Update a collection
-        * Description: Update a collection by it's slug. On successful request, returns the updated collection
-        **/
-        public func updateCollectionDetailBySlug(
-            slug: String,
-            
-            onResponse: @escaping (_ response: CollectionsUpdateDetailResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/application/catalog/v1.0/collections/\(slug)/",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CollectionsUpdateDetailResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Get a particular collection
         * Description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
         **/
@@ -1130,41 +1026,6 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(CollectionDetailResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Delete a Collection
-        * Description: Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-        **/
-        public func deleteCollectionDetailBySlug(
-            slug: String,
-            
-            onResponse: @escaping (_ response: CollectionDetailViewDeleteResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "delete",
-                url: "/service/application/catalog/v1.0/collections/\(slug)/",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CollectionDetailViewDeleteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -5109,7 +4970,7 @@ This operation will return the url for the uploaded file.
             assignCardId: String?,
             deliveryAddress: String?,
             
-            onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["amount"] = amount
@@ -5134,7 +4995,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentOptionsResponse.self, from: data)
+                        let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -5158,7 +5019,7 @@ This operation will return the url for the uploaded file.
             orderType: String,
             deliveryAddress: String?,
             
-            onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["amount"] = amount
@@ -5184,7 +5045,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentOptionsResponse.self, from: data)
+                        let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
