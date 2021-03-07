@@ -1278,12 +1278,16 @@ public class ApplicationClient {
         **/
         public func getCart(
             uid: Int?,
+            i: Bool?,
+            b: Bool?,
             assignCardId: Int?,
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            query["i"] = i
+            query["b"] = b
             query["assign_card_id"] = assignCardId
              
             ApplicationAPIClient.execute(
@@ -1351,16 +1355,20 @@ public class ApplicationClient {
         * Description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
         **/
         public func addItems(
+            i: Bool?,
+            b: Bool?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var query: [String: Any] = [:] 
+            query["i"] = i
+            query["b"] = b
              
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/detail",
-                query: nil,
+                query: query,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1385,16 +1393,22 @@ public class ApplicationClient {
         * Description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
+            uid: Int?,
+            i: Bool?,
+            b: Bool?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var query: [String: Any] = [:] 
+            query["uid"] = uid
+            query["i"] = i
+            query["b"] = b
              
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/detail",
-                query: nil,
+                query: query,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1496,7 +1510,7 @@ public class ApplicationClient {
             b: Bool?,
             p: Bool?,
             body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: SaveCouponResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["i"] = i
@@ -1517,7 +1531,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SaveCouponResponse.self, from: data)
+                        let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1607,7 +1621,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Fetch Address
-        * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddresses(
             uid: Int?,
@@ -1616,7 +1630,7 @@ public class ApplicationClient {
             tags: Int?,
             isDefault: Bool?,
             
-            onResponse: @escaping (_ response: GetAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -1639,7 +1653,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetAddressResponse.self, from: data)
+                        let response = Utility.decode(GetAddressesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1651,10 +1665,10 @@ public class ApplicationClient {
         /**
         *
         * Summary: Add Address to the account
-        * Description: <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+        * Description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
         **/
         public func addAddress(
-            body: SaveAddressRequest,
+            body: UpdateAddressRequest,
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
@@ -1685,7 +1699,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Fetch Single Address
-        * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddressById(
             id: Int,
@@ -1695,7 +1709,7 @@ public class ApplicationClient {
             tags: Int?,
             isDefault: Bool?,
             
-            onResponse: @escaping (_ response: GetAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AddressResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -1718,7 +1732,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetAddressResponse.self, from: data)
+                        let response = Utility.decode(AddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1803,16 +1817,22 @@ public class ApplicationClient {
         * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
         **/
         public func selectAddress(
+            uid: Int?,
+            i: Bool?,
+            b: Bool?,
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var query: [String: Any] = [:] 
+            query["uid"] = uid
+            query["i"] = i
+            query["b"] = b
              
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/select-address",
-                query: nil,
+                query: query,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1922,6 +1942,7 @@ public class ApplicationClient {
             p: Bool?,
             uid: Int?,
             addressId: Int?,
+            areaCode: Int?,
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1929,6 +1950,7 @@ public class ApplicationClient {
             query["p"] = p
             query["uid"] = uid
             query["address_id"] = addressId
+            query["area_code"] = areaCode
              
             ApplicationAPIClient.execute(
                 config: config,
@@ -6746,12 +6768,16 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         **/
         public func getCart(
             uid: Int?,
+            i: Bool?,
+            b: Bool?,
             assignCardId: Int?,
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            query["i"] = i
+            query["b"] = b
             query["assign_card_id"] = assignCardId
              
             ApplicationAPIClient.execute(
@@ -6819,16 +6845,20 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         * Description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
         **/
         public func addItems(
+            i: Bool?,
+            b: Bool?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var query: [String: Any] = [:] 
+            query["i"] = i
+            query["b"] = b
              
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/detail",
-                query: nil,
+                query: query,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6853,16 +6883,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         * Description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
+            uid: Int?,
+            i: Bool?,
+            b: Bool?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var query: [String: Any] = [:] 
+            query["uid"] = uid
+            query["i"] = i
+            query["b"] = b
              
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/detail",
-                query: nil,
+                query: query,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6964,7 +7000,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             b: Bool?,
             p: Bool?,
             body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: SaveCouponResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["i"] = i
@@ -6985,7 +7021,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SaveCouponResponse.self, from: data)
+                        let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -7075,7 +7111,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         /**
         *
         * Summary: Fetch Address
-        * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddresses(
             uid: Int?,
@@ -7084,7 +7120,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             tags: Int?,
             isDefault: Bool?,
             
-            onResponse: @escaping (_ response: GetAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -7107,7 +7143,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetAddressResponse.self, from: data)
+                        let response = Utility.decode(GetAddressesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -7119,10 +7155,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         /**
         *
         * Summary: Add Address to the account
-        * Description: <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+        * Description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
         **/
         public func addAddress(
-            body: SaveAddressRequest,
+            body: UpdateAddressRequest,
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
@@ -7153,7 +7189,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         /**
         *
         * Summary: Fetch Single Address
-        * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddressById(
             id: Int,
@@ -7163,7 +7199,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             tags: Int?,
             isDefault: Bool?,
             
-            onResponse: @escaping (_ response: GetAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AddressResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -7186,7 +7222,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetAddressResponse.self, from: data)
+                        let response = Utility.decode(AddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -7271,16 +7307,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
         **/
         public func selectAddress(
+            uid: Int?,
+            i: Bool?,
+            b: Bool?,
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var query: [String: Any] = [:] 
+            query["uid"] = uid
+            query["i"] = i
+            query["b"] = b
              
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/select-address",
-                query: nil,
+                query: query,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7392,6 +7434,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             p: Bool?,
             uid: Int?,
             addressId: Int?,
+            areaCode: Int?,
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -7401,6 +7444,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["p"] = p
             query["uid"] = uid
             query["address_id"] = addressId
+            query["area_code"] = areaCode
              
             ApplicationAPIClient.execute(
                 config: config,
