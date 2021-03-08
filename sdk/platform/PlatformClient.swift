@@ -12,6 +12,8 @@ public class PlatformClient {
 
     public let content: Content
 
+    public let communication: Communication
+
     public let companyProfile: CompanyProfile
 
     public let inventory: Inventory
@@ -26,6 +28,8 @@ public class PlatformClient {
         user = User(config: config)
         
         content = Content(config: config)
+        
+        communication = Communication(config: config)
         
         companyProfile = CompanyProfile(config: config)
         
@@ -354,6 +358,55 @@ public class PlatformClient {
     
     
     
+    public class Communication {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
     public class CompanyProfile {        
         var config: PlatformConfig
         var companyId: String
@@ -399,39 +452,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get company profile
-        * Description: This API allows to view the company profile of the seller account.
-        **/
-        public func cbsOnboardGet(
-            
-            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
         * Summary: Edit company profile
         * Description: This API allows to edit the company profile of the seller account.
         **/
@@ -456,6 +476,39 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get company profile
+        * Description: This API allows to view the company profile of the seller account.
+        **/
+        public func cbsOnboardGet(
+            
+            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -611,40 +664,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get a single brand.
-        * Description: This API helps to get data associated to a particular brand.
-        **/
-        public func getBrand(
-            brandId: String,
-            
-            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/brand/\(brandId)",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
         * Summary: Edit a brand.
         * Description: This API allows to edit meta of a brand.
         **/
@@ -670,6 +689,40 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get a single brand.
+        * Description: This API helps to get data associated to a particular brand.
+        **/
+        public func getBrand(
+            brandId: String,
+            
+            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/brand/\(brandId)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -854,40 +907,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get a single location.
-        * Description: This API helps to get data associated to a particular location.
-        **/
-        public func getSingleLocation(
-            locationId: String,
-            
-            onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetLocationSerializer.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
         * Summary: Edit a location asscoiated to a company.
         * Description: This API allows to edit a location associated to a company.
         **/
@@ -913,6 +932,40 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get a single location.
+        * Description: This API helps to get data associated to a particular location.
+        **/
+        public func getSingleLocation(
+            locationId: String,
+            
+            onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetLocationSerializer.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1307,6 +1360,8 @@ public class PlatformClient {
         
         public let content: Content
         
+        public let communication: Communication
+        
         public let companyProfile: CompanyProfile
         
         public let inventory: Inventory
@@ -1325,6 +1380,8 @@ public class PlatformClient {
             user = User(config: config, applicationId: applicationId)
             
             content = Content(config: config, applicationId: applicationId)
+            
+            communication = Communication(config: config, applicationId: applicationId)
             
             companyProfile = CompanyProfile(config: config, applicationId: applicationId)
             
@@ -3488,6 +3545,1234 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(TagsSchema.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+        }
+        
+        
+            
+        public class Communication {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            /**
+            *
+            * Summary: Get campaigns
+            * Description: Get campaigns
+            **/
+            public func getCampaigns(
+                
+                onResponse: @escaping (_ response: Campaigns?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaigns.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create campaign
+            * Description: Create campaign
+            **/
+            public func createCampaign(
+                body: CampaignReq,
+                onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaign.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get campaign by id
+            * Description: Get campaign by id
+            **/
+            public func getCampaignById(
+                id: String,
+                
+                onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaign.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update campaign by id
+            * Description: Update campaign by id
+            **/
+            public func updateCampaignById(
+                id: String,
+                body: CampaignReq,
+                onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaign.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get stats of campaign by id
+            * Description: Get stats of campaign by id
+            **/
+            public func getStatsOfCampaignById(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetStats?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/getStats/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetStats.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get audiences
+            * Description: Get audiences
+            **/
+            public func getAudiences(
+                
+                onResponse: @escaping (_ response: Audiences?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audiences.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create audience
+            * Description: Create audience
+            **/
+            public func createAudience(
+                body: AudienceReq,
+                onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audience.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get bigquery headers
+            * Description: Get bigquery headers
+            **/
+            public func getBigqueryHeaders(
+                body: BigqueryHeadersReq,
+                onResponse: @escaping (_ response: BigqueryHeadersRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigquery-headers",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(BigqueryHeadersRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get audience by id
+            * Description: Get audience by id
+            **/
+            public func getAudienceById(
+                id: String,
+                
+                onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audience.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update audience by id
+            * Description: Update audience by id
+            **/
+            public func updateAudienceById(
+                id: String,
+                body: AudienceReq,
+                onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audience.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get n sample records from csv
+            * Description: Get n sample records from csv
+            **/
+            public func getNSampleRecordsFromCsv(
+                body: GetNRecordsCsvReq,
+                onResponse: @escaping (_ response: GetNRecordsCsvRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/get-n-records",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetNRecordsCsvRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email providers
+            * Description: Get email providers
+            **/
+            public func getEmailProviders(
+                companyId: String,
+                applicationId: String,
+                
+                onResponse: @escaping (_ response: EmailProviders?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProviders.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create email provider
+            * Description: Create email provider
+            **/
+            public func createEmailProvider(
+                body: EmailProviderReq,
+                onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email provider by id
+            * Description: Get email provider by id
+            **/
+            public func getEmailProviderById(
+                id: String,
+                
+                onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update email provider by id
+            * Description: Update email provider by id
+            **/
+            public func updateEmailProviderById(
+                id: String,
+                body: EmailProviderReq,
+                onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email templates
+            * Description: Get email templates
+            **/
+            public func getEmailTemplates(
+                
+                onResponse: @escaping (_ response: EmailTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplates.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create email template
+            * Description: Create email template
+            **/
+            public func createEmailTemplate(
+                body: EmailTemplateReq,
+                onResponse: @escaping (_ response: EmailTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get system email templates
+            * Description: Get system email templates
+            **/
+            public func getSystemEmailTemplates(
+                
+                onResponse: @escaping (_ response: SystemEmailTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/system-templates",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SystemEmailTemplates.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email template by id
+            * Description: Get email template by id
+            **/
+            public func getEmailTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: EmailTemplate?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplate.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update email template by id
+            * Description: Update email template by id
+            **/
+            public func updateEmailTemplateById(
+                id: String,
+                body: EmailTemplateReq,
+                onResponse: @escaping (_ response: EmailTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Delete email template by id
+            * Description: Delete email template by id
+            **/
+            public func deleteEmailTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: EmailTemplateDeleteSuccessRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplateDeleteSuccessRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get event subscriptions
+            * Description: Get event subscriptions
+            **/
+            public func getEventSubscriptions(
+                companyId: String,
+                applicationId: String,
+                
+                onResponse: @escaping (_ response: EventSubscriptions?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EventSubscriptions.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get jobs
+            * Description: Get jobs
+            **/
+            public func getJobs(
+                companyId: String,
+                applicationId: String,
+                
+                onResponse: @escaping (_ response: Jobs?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/jobs",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Jobs.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Trigger campaign job
+            * Description: Trigger campaign job
+            **/
+            public func triggerCampaignJob(
+                body: TriggerJobRequest,
+                onResponse: @escaping (_ response: TriggerJobResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/trigger-job",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(TriggerJobResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get job logs
+            * Description: Get job logs
+            **/
+            public func getJobLogs(
+                companyId: String,
+                applicationId: String,
+                
+                onResponse: @escaping (_ response: JobLogs?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/logs",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(JobLogs.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get communication logs
+            * Description: Get communication logs
+            **/
+            public func getCommunicationLogs(
+                companyId: String,
+                applicationId: String,
+                
+                onResponse: @escaping (_ response: Logs?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/log",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Logs.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms providers
+            * Description: Get sms providers
+            **/
+            public func getSmsProviders(
+                
+                onResponse: @escaping (_ response: SmsProviders?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProviders.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create sms provider
+            * Description: Create sms provider
+            **/
+            public func createSmsProvider(
+                body: SmsProviderReq,
+                onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms provider by id
+            * Description: Get sms provider by id
+            **/
+            public func getSmsProviderById(
+                id: String,
+                
+                onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update sms provider by id
+            * Description: Update sms provider by id
+            **/
+            public func updateSmsProviderById(
+                id: String,
+                body: SmsProviderReq,
+                onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms templates
+            * Description: Get sms templates
+            **/
+            public func getSmsTemplates(
+                
+                onResponse: @escaping (_ response: SmsTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplates.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create sms template
+            * Description: Create sms template
+            **/
+            public func createSmsTemplate(
+                body: SmsTemplateReq,
+                onResponse: @escaping (_ response: SmsTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms template by id
+            * Description: Get sms template by id
+            **/
+            public func getSmsTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: SmsTemplate?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplate.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update sms template by id
+            * Description: Update sms template by id
+            **/
+            public func updateSmsTemplateById(
+                id: String,
+                body: SmsTemplateReq,
+                onResponse: @escaping (_ response: SmsTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Delete sms template by id
+            * Description: Delete sms template by id
+            **/
+            public func deleteSmsTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: SmsTemplateDeleteSuccessRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplateDeleteSuccessRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get system sms templates
+            * Description: Get system sms templates
+            **/
+            public func getSystemSystemTemplates(
+                
+                onResponse: @escaping (_ response: SystemSmsTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/system-templates",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SystemSmsTemplates.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)

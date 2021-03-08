@@ -5,6 +5,7 @@
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content 
+* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [CompanyProfile](#CompanyProfile) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Inventory](#Inventory) -  
 
@@ -98,24 +99,64 @@
     * [editTag](#edittag)
     
 
+* [Communication](#Communication)
+  * Methods
+    * [getCampaigns](#getcampaigns)
+    * [createCampaign](#createcampaign)
+    * [getCampaignById](#getcampaignbyid)
+    * [updateCampaignById](#updatecampaignbyid)
+    * [getStatsOfCampaignById](#getstatsofcampaignbyid)
+    * [getAudiences](#getaudiences)
+    * [createAudience](#createaudience)
+    * [getBigqueryHeaders](#getbigqueryheaders)
+    * [getAudienceById](#getaudiencebyid)
+    * [updateAudienceById](#updateaudiencebyid)
+    * [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
+    * [getEmailProviders](#getemailproviders)
+    * [createEmailProvider](#createemailprovider)
+    * [getEmailProviderById](#getemailproviderbyid)
+    * [updateEmailProviderById](#updateemailproviderbyid)
+    * [getEmailTemplates](#getemailtemplates)
+    * [createEmailTemplate](#createemailtemplate)
+    * [getSystemEmailTemplates](#getsystememailtemplates)
+    * [getEmailTemplateById](#getemailtemplatebyid)
+    * [updateEmailTemplateById](#updateemailtemplatebyid)
+    * [deleteEmailTemplateById](#deleteemailtemplatebyid)
+    * [getEventSubscriptions](#geteventsubscriptions)
+    * [getJobs](#getjobs)
+    * [triggerCampaignJob](#triggercampaignjob)
+    * [getJobLogs](#getjoblogs)
+    * [getCommunicationLogs](#getcommunicationlogs)
+    * [getSmsProviders](#getsmsproviders)
+    * [createSmsProvider](#createsmsprovider)
+    * [getSmsProviderById](#getsmsproviderbyid)
+    * [updateSmsProviderById](#updatesmsproviderbyid)
+    * [getSmsTemplates](#getsmstemplates)
+    * [createSmsTemplate](#createsmstemplate)
+    * [getSmsTemplateById](#getsmstemplatebyid)
+    * [updateSmsTemplateById](#updatesmstemplatebyid)
+    * [deleteSmsTemplateById](#deletesmstemplatebyid)
+    * [getSystemSystemTemplates](#getsystemsystemtemplates)
+    
+
 * [CompanyProfile](#CompanyProfile)
   * Methods
     * [registerCompany](#registercompany)
-    * [cbsOnboardGet](#cbsonboardget)
     * [cbsOnboardEdit](#cbsonboardedit)
+    * [cbsOnboardGet](#cbsonboardget)
     * [companyList](#companylist)
     * [getCompanyMetrics](#getcompanymetrics)
     * [getCountries](#getcountries)
     * [verifyGstPan](#verifygstpan)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
     * [createCompanyBrand](#createcompanybrand)
     * [getCompanyBrands](#getcompanybrands)
     * [createLocation](#createlocation)
     * [locationList](#locationlist)
-    * [getSingleLocation](#getsinglelocation)
     * [editLocation](#editlocation)
+    * [getSingleLocation](#getsinglelocation)
     * [getChoices](#getchoices)
     * [validateSeller](#validateseller)
     
@@ -6064,6 +6105,1824 @@ Schema: `TagsSchema`
 ---
 
 
+## Communication
+
+
+#### getCampaigns
+Get campaigns
+
+```swift
+communication.getCampaigns() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get campaigns
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaigns`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaigns"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCampaign
+Create campaign
+
+```swift
+communication.createCampaign(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create campaign
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCampaignById
+Get campaign by id
+
+```swift
+communication.getCampaignById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Campaign id | 
+
+Get campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCampaignById
+Update campaign by id
+
+```swift
+communication.updateCampaignById(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Campaign id | 
+
+Update campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStatsOfCampaignById
+Get stats of campaign by id
+
+```swift
+communication.getStatsOfCampaignById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Campaign id | 
+
+Get stats of campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetStats`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/GetStats"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAudiences
+Get audiences
+
+```swift
+communication.getAudiences() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get audiences
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audiences`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audiences"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAudience
+Create audience
+
+```swift
+communication.createAudience(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create audience
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBigqueryHeaders
+Get bigquery headers
+
+```swift
+communication.getBigqueryHeaders(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get bigquery headers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BigqueryHeadersRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BigqueryHeadersRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAudienceById
+Get audience by id
+
+```swift
+communication.getAudienceById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Audience id | 
+
+Get audience by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAudienceById
+Update audience by id
+
+```swift
+communication.updateAudienceById(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Audience id | 
+
+Update audience by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNSampleRecordsFromCsv
+Get n sample records from csv
+
+```swift
+communication.getNSampleRecordsFromCsv(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get n sample records from csv
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetNRecordsCsvRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/GetNRecordsCsvRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailProviders
+Get email providers
+
+```swift
+communication.getEmailProviders(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get email providers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProviders`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProviders"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createEmailProvider
+Create email provider
+
+```swift
+communication.createEmailProvider(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create email provider
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailProviderById
+Get email provider by id
+
+```swift
+communication.getEmailProviderById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Email provider id | 
+
+Get email provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateEmailProviderById
+Update email provider by id
+
+```swift
+communication.updateEmailProviderById(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Email provider id | 
+
+Update email provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailTemplates
+Get email templates
+
+```swift
+communication.getEmailTemplates() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get email templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createEmailTemplate
+Create email template
+
+```swift
+communication.createEmailTemplate(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create email template
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemEmailTemplates
+Get system email templates
+
+```swift
+communication.getSystemEmailTemplates() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get system email templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SystemEmailTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SystemEmailTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailTemplateById
+Get email template by id
+
+```swift
+communication.getEmailTemplateById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Email template id | 
+
+Get email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplate`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplate"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateEmailTemplateById
+Update email template by id
+
+```swift
+communication.updateEmailTemplateById(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Email template id | 
+
+Update email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteEmailTemplateById
+Delete email template by id
+
+```swift
+communication.deleteEmailTemplateById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Email template id | 
+
+Delete email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateDeleteSuccessRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateDeleteSuccessRes"
+}
+```
+
+
+
+
+
+
+
+
+Failure
+
+
+Schema: `EmailTemplateDeleteFailureRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateDeleteFailureRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEventSubscriptions
+Get event subscriptions
+
+```swift
+communication.getEventSubscriptions(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get event subscriptions
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EventSubscriptions`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EventSubscriptions"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobs
+Get jobs
+
+```swift
+communication.getJobs(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get jobs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Jobs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Jobs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### triggerCampaignJob
+Trigger campaign job
+
+```swift
+communication.triggerCampaignJob(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Trigger campaign job
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TriggerJobResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/TriggerJobResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobLogs
+Get job logs
+
+```swift
+communication.getJobLogs(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get job logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `JobLogs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/JobLogs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCommunicationLogs
+Get communication logs
+
+```swift
+communication.getCommunicationLogs(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get communication logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Logs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Logs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsProviders
+Get sms providers
+
+```swift
+communication.getSmsProviders() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get sms providers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProviders`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProviders"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSmsProvider
+Create sms provider
+
+```swift
+communication.createSmsProvider(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create sms provider
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsProviderById
+Get sms provider by id
+
+```swift
+communication.getSmsProviderById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Sms provider id | 
+
+Get sms provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSmsProviderById
+Update sms provider by id
+
+```swift
+communication.updateSmsProviderById(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Sms provider id | 
+
+Update sms provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsTemplates
+Get sms templates
+
+```swift
+communication.getSmsTemplates() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get sms templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSmsTemplate
+Create sms template
+
+```swift
+communication.createSmsTemplate(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create sms template
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsTemplateById
+Get sms template by id
+
+```swift
+communication.getSmsTemplateById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Sms template id | 
+
+Get sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplate`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplate"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSmsTemplateById
+Update sms template by id
+
+```swift
+communication.updateSmsTemplateById(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Sms template id | 
+
+Update sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSmsTemplateById
+Delete sms template by id
+
+```swift
+communication.deleteSmsTemplateById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Sms template id | 
+
+Delete sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateDeleteSuccessRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateDeleteSuccessRes"
+}
+```
+
+
+
+
+
+
+
+
+Failure
+
+
+Schema: `SmsTemplateDeleteFailureRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateDeleteFailureRes"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemSystemTemplates
+Get system sms templates
+
+```swift
+communication.getSystemSystemTemplates() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get system sms templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SystemSmsTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SystemSmsTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## CompanyProfile
 
 
@@ -6086,6 +7945,53 @@ This API allows to create a seller account on Fynd Platform.
 
 
 Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cbsOnboardEdit
+Edit company profile
+
+```swift
+companyprofile.cbsOnboardEdit(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to edit the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Returns a success message
 
 
 Schema: `SuccessResponse`
@@ -6136,53 +8042,6 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 
 
 Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### cbsOnboardEdit
-Edit company profile
-
-```swift
-companyprofile.cbsOnboardEdit(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -6399,11 +8258,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
+#### editBrand
+Edit a brand.
 
 ```swift
-companyprofile.getBrand(brandId: brandId) { (response, error) in
+companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6412,16 +8271,16 @@ companyprofile.getBrand(brandId: brandId) { (response, error) in
 | --------- | ----  | --- |
 | brandId | string | Id of the brand to be viewed. | 
 
-This API helps to get data associated to a particular brand.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
 
 
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
+Returns a success response
 
 
-Schema: `GetBrandResponseSerializer`
+Schema: `SuccessResponse`
 
 
 
@@ -6446,11 +8305,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
+#### getBrand
+Get a single brand.
 
 ```swift
-companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
+companyprofile.getBrand(brandId: brandId) { (response, error) in
     // Use response
 }
 ```
@@ -6459,16 +8318,16 @@ companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
 | --------- | ----  | --- |
 | brandId | string | Id of the brand to be viewed. | 
 
-This API allows to edit meta of a brand.
+This API helps to get data associated to a particular brand.
 
 *Success Response:*
 
 
 
-Returns a success response
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
 
 
-Schema: `SuccessResponse`
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -6732,54 +8591,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getSingleLocation
-Get a single location.
-
-```swift
-companyprofile.getSingleLocation(companyId: companyId, locationId: locationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
-
-This API helps to get data associated to a particular location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### editLocation
 Edit a location asscoiated to a company.
 
@@ -6804,6 +8615,54 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSingleLocation
+Get a single location.
+
+```swift
+companyprofile.getSingleLocation(companyId: companyId, locationId: locationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a particular location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 
