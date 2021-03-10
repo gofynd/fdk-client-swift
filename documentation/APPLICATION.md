@@ -15,6 +15,7 @@
 * [Rewards](#Rewards) - Earn and redeem Reward Points 
 * [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
+* [Logistic](#Logistic) - Handles Platform websites OMS 
 
 ----
 ----
@@ -47,8 +48,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -277,6 +278,12 @@
     * [getCartShareLink](#getcartsharelink)
     * [getCartSharedItems](#getcartshareditems)
     * [updateCartWithSharedItems](#updatecartwithshareditems)
+    
+
+* [Logistic](#Logistic)
+  * Methods
+    * [getTatProduct](#gettatproduct)
+    * [getPincodeCity](#getpincodecity)
     
 
 
@@ -1400,11 +1407,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1412,9 +1419,9 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to follow | 
+| collectionId | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1448,11 +1455,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1460,9 +1467,9 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to unfollow | 
+| collectionId | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -11017,7 +11024,7 @@ Get the list of abuse data from entity type and entity ID.
 ok
 
 
-Schema: `XNumberGetResponse`
+Schema: `XCursorGetResponse`
 
 
 
@@ -11046,13 +11053,15 @@ Schema: `ErrorResponse`
 Get list of attribute data
 
 ```swift
-feedback.getAttributes() { (response, error) in
+feedback.getAttributes(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| pageNo | integer | pagination page number | 
+| pageSize | integer | pagination page size | 
 
 Provides a list of all attribute data.
 
@@ -16202,6 +16211,130 @@ Cart Merged/Replaced
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Logistic
+
+
+#### getTatProduct
+Get Tat Product
+
+```swift
+logistic.getTatProduct(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get Tat Product
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetTatProductResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPincodeCity
+Get City from Pincode
+
+```swift
+logistic.getPincodeCity(pincode: pincode) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pincode | number | Pincode | 
+
+Get City from Pincode
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetPincodeCityResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
 
 
 

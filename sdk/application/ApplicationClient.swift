@@ -30,6 +30,8 @@ public class ApplicationClient {
 
     public let posCart: PosCart
 
+    public let logistic: Logistic
+
     public init(config: ApplicationConfig) {
         
         catalog = Catalog(config: config)
@@ -59,6 +61,8 @@ public class ApplicationClient {
         feedback = Feedback(config: config)
         
         posCart = PosCart(config: config)
+        
+        logistic = Logistic(config: config)
         
     }
 
@@ -223,6 +227,67 @@ public class ApplicationClient {
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getProductSellersBySlug
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getProductSellersBySlugPaginator(
+            slug: String,
+            size: String,
+            pincode: Int?,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductSizeSellersResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductSizeSellersResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getProductSellersBySlug(
+                        
+                        slug: slug,
+                        size: size,
+                        pincode: pincode,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -487,6 +552,56 @@ public class ApplicationClient {
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getProductStockForTimeByIds
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getProductStockForTimeByIdsPaginator(
+            timestamp: String,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductStockPolling> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductStockPolling>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getProductStockForTimeByIds(
+                        
+                        timestamp: timestamp,
+                        pageSize: paginator.pageSize
+                        ,
+                        pageId: paginator.pageId
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
         /**
         *
         * Summary: List the products
@@ -540,39 +655,39 @@ public class ApplicationClient {
         
         
         
-            
-                
-            
-            
         
-            
-                
-            
-            
         
-            
-                
-            
-            
         
-            
-                
-            
-            
         
-            
-            
-                
-            
         
-            
-            
         
-            
-            
         
-            
-            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         /**
         *
@@ -583,80 +698,37 @@ public class ApplicationClient {
             q: String?,
             f: String?,
             filters: Bool?,
-            sortOn: String?
+            sortOn: String?,
+            pageSize: Int?
             
-            ) -> GetProductsPaginator {
-            return GetProductsPaginator(
-                q: q,
-                f: f,
-                filters: filters,
-                sortOn: sortOn,
-                
-                
-                catalog: self)
-        }
-
-        /**
-        *
-        * Summary: Paginator for getProducts
-        **/
-        public class GetProductsPaginator {
-            let catalog: Catalog
-            public private(set) var hasNext: Bool = true
-            var nextId: String? = "*"
-            
-            let q: String?
-            let f: String?
-            let filters: Bool?
-            let sortOn: String?
-            
-            init(
-                q: String?,
-                f: String?,
-                filters: Bool?,
-                sortOn: String?,
-                
-                
-                catalog: Catalog) {
-                self.catalog = catalog
-                self.q = q
-                self.f = f
-                self.filters = filters
-                self.sortOn = sortOn
-                
-                
-            }
-
-            public func next(onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void) {
-                catalog.getProducts(
-                    
-                    q: q,
-                    f: f,
-                    filters: filters,
-                    sortOn: sortOn,
-                    pageId: nextId
-                    ,
-                    pageSize: 20
-                    ,
-                    pageNo: nil
-                    ,
-                    pageType: nil
-                    
-                ) { (response, error) in
-                    if let response = response {
-                        self.hasNext = response.page?.hasNext ?? false
+            ) -> Paginator<ProductListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getProducts(
                         
-                        self.nextId = response.page?.nextId
+                        q: q,
+                        f: f,
+                        filters: filters,
+                        sortOn: sortOn,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageType: paginator.type
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
                         
                     }
-                    onResponse(response, error)
+                    paginator.onNext?(response, error)
                 }
             }
-
-            public func reset() {
-                hasNext = true
-                nextId = "*"
-            }
+            return paginator
         }
         
         
@@ -697,6 +769,55 @@ public class ApplicationClient {
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getBrands
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getBrandsPaginator(
+            department: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<BrandListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getBrands(
+                        
+                        department: department,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -846,6 +967,56 @@ public class ApplicationClient {
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getHomeProducts
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getHomeProductsPaginator(
+            sortOn: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<HomeListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<HomeListingResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getHomeProducts(
+                        
+                        sortOn: sortOn,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
         /**
         *
         * Summary: List all the departments
@@ -954,6 +1125,50 @@ public class ApplicationClient {
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getCollections
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCollectionsPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<GetCollectionListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getCollections(
+                        
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
         /**
         *
         * Summary: Get the items in a collection
@@ -996,6 +1211,74 @@ public class ApplicationClient {
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getCollectionItemsBySlug
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCollectionItemsBySlugPaginator(
+            slug: String,
+            f: String?,
+            filters: Bool?,
+            sortOn: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getCollectionItemsBySlug(
+                        
+                        slug: slug,
+                        f: f,
+                        filters: filters,
+                        sortOn: sortOn,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -1069,12 +1352,48 @@ public class ApplicationClient {
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        * Summary: get paginator for getFollowedListing
+        * Description: fetch the next page by calling .next(...) function
         **/
-        public func followById(
+        public func getFollowedListingPaginator(
+            collectionType: String
+            
+            ) -> Paginator<GetFollowListingResponse> {
+            let pageSize = 20
+            let paginator = Paginator<GetFollowListingResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getFollowedListing(
+                        
+                        collectionType: collectionType
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: UnFollow a Product
+        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        **/
+        public func unfollowById(
             collectionType: String,
             collectionId: Int,
             
@@ -1084,7 +1403,7 @@ public class ApplicationClient {
              
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 body: nil,
@@ -1107,10 +1426,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: Int,
             
@@ -1120,7 +1439,7 @@ public class ApplicationClient {
              
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 body: nil,
@@ -1256,6 +1575,73 @@ public class ApplicationClient {
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getStores
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getStoresPaginator(
+            pageSize: Int?,
+            q: String?,
+            range: Int?,
+            latitude: Double?,
+            longitude: Double?
+            
+            ) -> Paginator<StoreListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<StoreListingResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getStores(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        range: range,
+                        latitude: latitude,
+                        longitude: longitude
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -5702,6 +6088,48 @@ The list of points history is paginated.
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getUserPointsHistory
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getUserPointsHistoryPaginator(
+            
+            ) -> Paginator<PointsHistoryResponse> {
+            let pageSize = 20
+            let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getUserPointsHistory(
+                        
+                        pageId: nil
+                        ,
+                        pageSize: nil
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
         /**
         *
         * Summary: User's referral details.
@@ -5862,7 +6290,7 @@ The list of points history is paginated.
             pageId: String?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["id"] = id
@@ -5883,12 +6311,74 @@ The list of points history is paginated.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(XNumberGetResponse.self, from: data)
+                        let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAbuseReports
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAbuseReportsPaginator(
+            entityId: String,
+            entityType: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<XCursorGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getAbuseReports(
+                        
+                        entityId: entityId,
+                        entityType: entityType,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -5898,16 +6388,20 @@ The list of points history is paginated.
         * Description: Provides a list of all attribute data.
         **/
         public func getAttributes(
+            pageNo: Int?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var query: [String: Any] = [:] 
+            query["page_no"] = pageNo
+            query["page_size"] = pageSize
              
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/attributes",
-                query: nil,
+                query: query,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5923,6 +6417,49 @@ The list of points history is paginated.
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAttributes
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAttributesPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<XNumberGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<XNumberGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAttributes(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -6143,6 +6680,74 @@ The list of points history is paginated.
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getComments
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCommentsPaginator(
+            entityType: String,
+            id: String?,
+            entityId: String?,
+            userId: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<XCursorGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getComments(
+                        
+                        entityType: entityType,
+                        id: id,
+                        entityId: entityId,
+                        userId: userId,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
         /**
         *
         * Summary: Checks eligibility and cloud media config
@@ -6323,6 +6928,68 @@ The list of points history is paginated.
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getMedias
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getMediasPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<XCursorGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getMedias(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
         /**
         *
         * Summary: Get a review summary
@@ -6363,6 +7030,68 @@ It gives following response data: review count, rating average. review metrics /
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getReviewSummaries
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getReviewSummariesPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<XCursorGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviewSummaries(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -6487,6 +7216,104 @@ attributes rating, entity rating, title, description, media resources and templa
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getReviews
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getReviewsPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            userId: String?,
+            media: String?,
+            rating: [Double]?,
+            attributeRating: [String]?,
+            facets: Bool?,
+            sort: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<XCursorGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviews(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        userId: userId,
+                        media: media,
+                        rating: rating,
+                        attributeRating: attributeRating,
+                        facets: facets,
+                        sort: sort,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -6640,6 +7467,74 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getQuestionAndAnswers
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getQuestionAndAnswersPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            showAnswer: Bool?,
+            pageSize: Int?
+            
+            ) -> Paginator<XCursorGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getQuestionAndAnswers(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        showAnswer: showAnswer,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -7756,6 +8651,87 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SharedCartResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Logistic {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Get Tat Product
+        * Description: Get Tat Product
+        **/
+        public func getTatProduct(
+            body: GetTatProductReqBody,
+            onResponse: @escaping (_ response: GetTatProductResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/v1.0/logistics/",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetTatProductResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get City from Pincode
+        * Description: Get City from Pincode
+        **/
+        public func getPincodeCity(
+            pincode: Double,
+            
+            onResponse: @escaping (_ response: GetPincodeCityResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/v1.0/logistics/pincode/\(pincode)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetPincodeCityResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)

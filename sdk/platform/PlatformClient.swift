@@ -354,6 +354,13 @@ public class PlatformClient {
         
         
         
+        
+        
+        
+        
+        
+        
+        
     }
     
     
@@ -416,39 +423,6 @@ public class PlatformClient {
             self.companyId = config.companyId
         }
         
-        
-        /**
-        *
-        * Summary: Create a Seller account.
-        * Description: This API allows to create a seller account on Fynd Platform.
-        **/
-        public func registerCompany(
-            body: CompanyStoreSerializerRequest,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/company-profile/v1.0/onboard/",
-                query: nil,
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
         
         /**
         *
@@ -518,49 +492,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get list of companies
-        * Description: This API allows to view all the companies created by the seller.
-        **/
-        public func companyList(
-            sortBy: String?,
-            q: String?,
-            stage: String?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: CompanyListSerializer?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            query["sort_by"] = sortBy
-            query["q"] = q
-            query["stage"] = stage
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/companies/",
-                query: query,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CompanyListSerializer.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
         * Summary: Get company metrics
         * Description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
         **/
@@ -594,76 +525,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get data associated to countries
-        * Description: This API gets meta associated to countries for eg valid documents.
-        **/
-        public func getCountries(
-            type: String?,
-            stage: String?,
-            
-            onResponse: @escaping (_ response: CountriesResponse?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            query["type"] = type
-            query["stage"] = stage
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/countries",
-                query: query,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CountriesResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
-        * Summary: Verify GST/PAN against legal name.
-        * Description: This API is used to verify legal name againt GST/PAN number.
-        **/
-        public func verifyGstPan(
-            body: GstPanResponseSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/company-profile/v1.0/documents/verification/config",
-                query: nil,
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
         * Summary: Edit a brand.
         * Description: This API allows to edit meta of a brand.
         **/
@@ -677,7 +538,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/platform/company-profile/v1.0/brand/\(brandId)",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -711,7 +572,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/company-profile/v1.0/brand/\(brandId)",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -744,7 +605,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/company-profile/v1.0/onboard/brand",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -972,74 +833,6 @@ public class PlatformClient {
                     }
             });
         }
-        
-        /**
-        *
-        * Summary: Get constant data asccoiated to company, brand, locations.
-        * Description: This API gets constant data asccoiated to company, brand, locations.
-        **/
-        public func getChoices(
-            choiceType: String?,
-            
-            onResponse: @escaping (_ response: ChoicesResponse?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            query["choice_type"] = choiceType
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/choices",
-                query: query,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ChoicesResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
-        * Summary: Validate a seller
-        * Description: This API helps in validating a seller and returns the Seller name
-        **/
-        public func validateSeller(
-            
-            onResponse: @escaping (_ response: ValidateResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/validate",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ValidateResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
     }
     
     
@@ -1056,10 +849,10 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get All Job Configs
-        * Description: REST Endpoint that returns all job configs
+        * Summary: Get Job Configs For A Company
+        * Description: REST Endpoint that returns all job configs for a company
         **/
-        public func getJobs(
+        public func getJobsByCompany(
             pageNo: Int?,
             pageSize: Int?,
             
@@ -1072,7 +865,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/configurations/v1.0/jobs",
+                url: "/v1.0/company/\(companyId)/jobs",
                 query: query,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1096,7 +889,7 @@ public class PlatformClient {
         * Summary: Updates An Existing Job Config
         * Description: REST Endpoint that updates a job config
         **/
-        public func update(
+        public func updateJob(
             xUserData: String?,
             body: JobConfigDTO,
             onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
@@ -1106,7 +899,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/configurations/v1.0/jobs",
+                url: "/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -1130,7 +923,7 @@ public class PlatformClient {
         * Summary: Creates A New Job Config
         * Description: REST Endpoint that creates a new job config
         **/
-        public func create(
+        public func createJob(
             xUserData: String?,
             body: JobConfigDTO,
             onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
@@ -1140,7 +933,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/configurations/v1.0/jobs",
+                url: "/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -1152,76 +945,6 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ResponseEnvelopeString.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
-        * Summary: Get Job Configs Defaults
-        * Description: REST Endpoint that returns default fields job configs by company And integration
-        **/
-        public func getJobConfigDefaults(
-            
-            onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/configurations/v1.0/jobs/defaults",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ResponseEnvelopeJobConfigDTO.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        /**
-        *
-        * Summary: Get Job Configs For A Company
-        * Description: REST Endpoint that returns all job configs for a company
-        **/
-        public func getJobsByCompany(
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigRawDTO?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
-             
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/configurations/v1.0/jobs/company/\(companyId)",
-                query: query,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ResponseEnvelopeListJobConfigRawDTO.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1248,7 +971,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/configurations/v1.0/jobs/company/\(companyId)/integration/\(integrationId)",
+                url: "/v1.0/company/\(companyId)/jobs/integration/\(integrationId)",
                 query: query,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1260,6 +983,39 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ResponseEnvelopeListJobConfigDTO.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Job Configs Defaults
+        * Description: REST Endpoint that returns default fields job configs by company And integration
+        **/
+        public func getJobConfigDefaults(
+            
+            onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/v1.0/company/\(companyId)/jobs/defaults",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeJobConfigDTO.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1282,7 +1038,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/configurations/v1.0/jobs/code/\(code)",
+                url: "/v1.0/company/\(companyId)/jobs/code/\(code)",
                 query: nil,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1320,7 +1076,7 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/configurations/v1.0/jobs/code/company/\(companyId)/integration/\(integrationId)",
+                url: "/v1.0/company/\(companyId)/jobs/code/integration/\(integrationId)",
                 query: query,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1459,7 +1215,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/application/\(applicationId)/\(ticketId)",
+                    url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)",
                     query: nil,
                     body: nil,
                     onResponse: { (responseData, error, responseCode) in
@@ -2818,6 +2574,141 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Updates a component
+            * Description: Updates a component for the given component ID
+            **/
+            public func updateComponent(
+                id: String,
+                
+                onResponse: @escaping (_ response: Components?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/components/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Components.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get components by component ID
+            * Description: The endpoint fetches the component by component ID
+            **/
+            public func getComponentByID(
+                id: String,
+                
+                onResponse: @escaping (_ response: Components?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/components/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Components.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Delete a component from the page
+            * Description: It deletes a component from the page
+            **/
+            public func deleteComponent(
+                id: String,
+                
+                onResponse: @escaping (_ response: Components?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/components/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Components.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get components
+            * Description: The endpoint fetches the components
+            **/
+            public func getComponents(
+                
+                onResponse: @escaping (_ response: Components?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/components",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Components.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
             * Summary: Get FAQ categories list
             * Description: Get list of FAQ categories
             **/
@@ -3115,6 +3006,106 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create key values for templating
+            * Description: Use this to create key-values for templating.
+            **/
+            public func createKeyValue(
+                body: KeyValueRequestBody,
+                onResponse: @escaping (_ response: KeyValue?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/key-values/",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(KeyValue.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get KeyValue by id
+            * Description: Use this to fetch a keyvalue by `id`
+            **/
+            public func getKeyValueByID(
+                id: String,
+                
+                onResponse: @escaping (_ response: KeyValue?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/keyValues/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(KeyValue.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create landing-page
+            * Description: Use this to create landing-page.
+            **/
+            public func createLandingPage(
+                body: KeyValueRequestBody,
+                onResponse: @escaping (_ response: LandingPage?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(LandingPage.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)
@@ -4806,12 +4797,6 @@ public class PlatformClient {
             
             
             
-            
-            
-            
-            
-            
-            
         }
         
         
@@ -4826,7 +4811,6 @@ public class PlatformClient {
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
-            
             
             
             

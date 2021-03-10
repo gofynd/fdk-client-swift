@@ -75,6 +75,10 @@
     * [updateAnnouncement](#updateannouncement)
     * [updateAnnouncementSchedule](#updateannouncementschedule)
     * [deleteAnnouncement](#deleteannouncement)
+    * [updateComponent](#updatecomponent)
+    * [getComponentByID](#getcomponentbyid)
+    * [deleteComponent](#deletecomponent)
+    * [getComponents](#getcomponents)
     * [getFaqCategories](#getfaqcategories)
     * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
     * [createFaqCategory](#createfaqcategory)
@@ -84,6 +88,9 @@
     * [addFaqToFaqCategory](#addfaqtofaqcategory)
     * [updateFaq](#updatefaq)
     * [deleteFaq](#deletefaq)
+    * [createKeyValue](#createkeyvalue)
+    * [getKeyValueByID](#getkeyvaluebyid)
+    * [createLandingPage](#createlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [updateLegalInformation](#updatelegalinformation)
     * [getSeoConfiguration](#getseoconfiguration)
@@ -141,13 +148,9 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [registerCompany](#registercompany)
     * [cbsOnboardEdit](#cbsonboardedit)
     * [cbsOnboardGet](#cbsonboardget)
-    * [companyList](#companylist)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getCountries](#getcountries)
-    * [verifyGstPan](#verifygstpan)
     * [editBrand](#editbrand)
     * [getBrand](#getbrand)
     * [createBrand](#createbrand)
@@ -157,18 +160,15 @@
     * [locationList](#locationlist)
     * [editLocation](#editlocation)
     * [getSingleLocation](#getsinglelocation)
-    * [getChoices](#getchoices)
-    * [validateSeller](#validateseller)
     
 
 * [Inventory](#Inventory)
   * Methods
-    * [getJobs](#getjobs)
-    * [update](#update)
-    * [create](#create)
-    * [getJobConfigDefaults](#getjobconfigdefaults)
     * [getJobsByCompany](#getjobsbycompany)
+    * [updateJob](#updatejob)
+    * [createJob](#createjob)
     * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
+    * [getJobConfigDefaults](#getjobconfigdefaults)
     * [getJobByCode](#getjobbycode)
     * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
     
@@ -5003,6 +5003,245 @@ success
 ---
 
 
+#### updateComponent
+Updates a component
+
+```swift
+content.updateComponent(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | ID of component to be fetched | 
+
+Updates a component for the given component ID
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentByID
+Get components by component ID
+
+```swift
+content.getComponentByID(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | ID of component to be fetched | 
+
+The endpoint fetches the component by component ID
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteComponent
+Delete a component from the page
+
+```swift
+content.deleteComponent(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | ID of component to be deleted | 
+
+It deletes a component from the page
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponents
+Get components
+
+```swift
+content.getComponents(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+The endpoint fetches the components
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getFaqCategories
 Get FAQ categories list
 
@@ -5420,6 +5659,184 @@ Delete FAQ by id
 
 
 Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createKeyValue
+Create key values for templating
+
+```swift
+content.createKeyValue(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create key-values for templating.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `KeyValue`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/KeyValue"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getKeyValueByID
+Get KeyValue by id
+
+```swift
+content.getKeyValueByID(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | The `id` of a keyvalue. Use this parameter to retrieve a particular keyvalue | 
+
+Use this to fetch a keyvalue by `id`
+
+*Success Response:*
+
+
+
+A JSON object with keyvalue details
+
+
+Schema: `KeyValue`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/KeyValue"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createLandingPage
+Create landing-page
+
+```swift
+content.createLandingPage(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPage`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPage"
+}
+```
 
 
 
@@ -7926,52 +8343,6 @@ default
 ## CompanyProfile
 
 
-#### registerCompany
-Create a Seller account.
-
-```swift
-companyprofile.registerCompany(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This API allows to create a seller account on Fynd Platform.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardEdit
 Edit company profile
 
@@ -8066,57 +8437,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### companyList
-Get list of companies
-
-```swift
-companyprofile.companyList(sortBy: sortBy, q: q, stage: stage, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| sortBy | string | Helps to sort the company list on the basis of last accessed, ascending or descending order. | 
-| q | string | Query that is to be searched. | 
-| stage | string | to filter companies on basis of verified or unverified companies. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-
-This API allows to view all the companies created by the seller.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `CompanyListSerializer` for details
-
-
-Schema: `CompanyListSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyMetrics
 Get company metrics
 
@@ -8140,100 +8460,6 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 Schema: `MetricsSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCountries
-Get data associated to countries
-
-```swift
-companyprofile.getCountries(type: type, stage: stage) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| type | string | The type of entity. This can be company or store. By default it is company. | 
-| stage | string | Ths stage from where the API is called. This can be profile & onboarding. By default it is profile. | 
-
-This API gets meta associated to countries for eg valid documents.
-
-*Success Response:*
-
-
-
-Country Meta. See example below or refer `CountriesResponseSchema` for details
-
-
-Schema: `CountriesResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### verifyGstPan
-Verify GST/PAN against legal name.
-
-```swift
-companyprofile.verifyGstPan(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This API is used to verify legal name againt GST/PAN number.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -8687,100 +8913,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getChoices
-Get constant data asccoiated to company, brand, locations.
-
-```swift
-companyprofile.getChoices(choiceType: choiceType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| choiceType | string | Lists all the constants associated to the passed choice types. Acceptable choice types for the API are as follows, business_type, market_channels, company_type, address_type, brand_tier, store_type, account_type, weekday, admin_stage, stage, verification_stage, integration_type, identifier_type, item_dimension_measure_unit, item_weight_measure_unit, colors, channels, designations, manufacturer, variants, item_types, manufacturing_time_unit. | 
-
-This API gets constant data asccoiated to company, brand, locations.
-
-*Success Response:*
-
-
-
-Choice object. See example below or refer `ChoicesResponseSchema` for details
-
-
-Schema: `ChoicesResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### validateSeller
-Validate a seller
-
-```swift
-companyprofile.validateSeller(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the seller to be validated. | 
-
-This API helps in validating a seller and returns the Seller name
-
-*Success Response:*
-
-
-
-Validate response. See example below or refer `ValidateResponseSchema` for details
-
-
-Schema: `ValidateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 
 ---
 
@@ -8788,21 +8920,22 @@ Schema: `ErrorResponse`
 ## Inventory
 
 
-#### getJobs
-Get All Job Configs
+#### getJobsByCompany
+Get Job Configs For A Company
 
 ```swift
-inventory.getJobs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+inventory.getJobsByCompany(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | pageNo | integer | Page Number | 
 | pageSize | integer | Page Size | 
 
-REST Endpoint that returns all job configs
+REST Endpoint that returns all job configs for a company
 
 *Success Response:*
 
@@ -8848,17 +8981,18 @@ Schema: `ResponseEnvelopeListJobConfigRawDTO`
 ---
 
 
-#### update
+#### updateJob
 Updates An Existing Job Config
 
 ```swift
-inventory.update(xUserData: xUserData, body: body) { (response, error) in
+inventory.updateJob(companyId: companyId, xUserData: xUserData, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | xUserData | string |  | 
 
 REST Endpoint that updates a job config
@@ -8919,17 +9053,18 @@ Schema: `ResponseEnvelopeString`
 ---
 
 
-#### create
+#### createJob
 Creates A New Job Config
 
 ```swift
-inventory.create(xUserData: xUserData, body: body) { (response, error) in
+inventory.createJob(companyId: companyId, xUserData: xUserData, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | xUserData | string |  | 
 
 REST Endpoint that creates a new job config
@@ -8990,125 +9125,6 @@ Internal Server Error
 
 
 Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobConfigDefaults
-Get Job Configs Defaults
-
-```swift
-inventory.getJobConfigDefaults() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-REST Endpoint that returns default fields job configs by company And integration
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobsByCompany
-Get Job Configs For A Company
-
-```swift
-inventory.getJobsByCompany(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
-
-REST Endpoint that returns all job configs for a company
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
 
 
 
@@ -9183,17 +9199,77 @@ Schema: `ResponseEnvelopeListJobConfigDTO`
 ---
 
 
-#### getJobByCode
-Get Job Config By Code
+#### getJobConfigDefaults
+Get Job Configs Defaults
 
 ```swift
-inventory.getJobByCode(code: code) { (response, error) in
+inventory.getJobConfigDefaults(companyId: companyId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+REST Endpoint that returns default fields job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobByCode
+Get Job Config By Code
+
+```swift
+inventory.getJobByCode(companyId: companyId, code: code) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | code | string | Job Code | 
 
 REST Endpoint that returns job config by code
