@@ -67,7 +67,7 @@
                 
             }
 
-            public init(type: String?, query: [String: Any]?) {
+            public init(query: [String: Any]?, type: String?) {
                 
                 self.type = type
                 
@@ -114,7 +114,7 @@
                 
             }
 
-            public init(type: String?, page: ProductListingActionPage?) {
+            public init(page: ProductListingActionPage?, type: String?) {
                 
                 self.type = type
                 
@@ -169,7 +169,7 @@
                 
             }
 
-            public init(action: ProductListingAction?, name: String?, uid: Int?, logo: Media?) {
+            public init(action: ProductListingAction?, logo: Media?, name: String?, uid: Int?) {
                 
                 self.action = action
                 
@@ -232,7 +232,7 @@
                 
             }
 
-            public init(type: String?, key: String?, value: String?) {
+            public init(key: String?, type: String?, value: String?) {
                 
                 self.type = type
                 
@@ -412,7 +412,7 @@
                 
             }
 
-            public init(rating: Double?, tryouts: [String]?, teaserTag: String?, description: String?, attributes: [String: Any]?, uid: Int?, ratingCount: Int?, slug: String, medias: [Media]?, color: String?, name: String?, imageNature: String?, similars: [String]?, shortDescription: String?, type: String?, highlights: [String]?, brand: ProductBrand?, groupedAttributes: [ProductDetailGroupedAttribute]?, productOnlineDate: String?, itemType: String?, categories: [ProductBrand]?, hasVariant: Bool?) {
+            public init(attributes: [String: Any]?, brand: ProductBrand?, categories: [ProductBrand]?, color: String?, description: String?, groupedAttributes: [ProductDetailGroupedAttribute]?, hasVariant: Bool?, highlights: [String]?, imageNature: String?, itemType: String?, medias: [Media]?, name: String?, productOnlineDate: String?, rating: Double?, ratingCount: Int?, shortDescription: String?, similars: [String]?, slug: String, teaserTag: String?, tryouts: [String]?, type: String?, uid: Int?) {
                 
                 self.rating = rating
                 
@@ -624,7 +624,7 @@
                 
             }
 
-            public init(currencySymbol: String?, currencyCode: String?, min: Double?, max: Double?) {
+            public init(currencyCode: String?, currencySymbol: String?, max: Double?, min: Double?) {
                 
                 self.currencySymbol = currencySymbol
                 
@@ -683,7 +683,7 @@
                 
             }
 
-            public init(marked: Price?, effective: Price?) {
+            public init(effective: Price?, marked: Price?) {
                 
                 self.marked = marked
                 
@@ -775,7 +775,7 @@
                 
             }
 
-            public init(value: String?, quantity: Int?, display: String?, isAvailable: Bool?) {
+            public init(display: String?, isAvailable: Bool?, quantity: Int?, value: String?) {
                 
                 self.value = value
                 
@@ -850,7 +850,7 @@
                 
             }
 
-            public init(discount: String?, price: ProductListingPrice?, sizeChart: [String: Any]?, stores: ProductSizeStores?, sizes: [ProductSize]?, sellable: Bool?) {
+            public init(discount: String?, price: ProductListingPrice?, sellable: Bool?, sizes: [ProductSize]?, sizeChart: [String: Any]?, stores: ProductSizeStores?) {
                 
                 self.discount = discount
                 
@@ -921,7 +921,7 @@
                 
             }
 
-            public init(strategy: String?, level: String?) {
+            public init(level: String?, strategy: String?) {
                 
                 self.strategy = strategy
                 
@@ -972,7 +972,7 @@
                 
             }
 
-            public init(currency: String?, marked: Double?, effective: Double?) {
+            public init(currency: String?, effective: Double?, marked: Double?) {
                 
                 self.currency = currency
                 
@@ -1029,7 +1029,7 @@
                 
             }
 
-            public init(name: String?, uid: Int?, count: Int?) {
+            public init(count: Int?, name: String?, uid: Int?) {
                 
                 self.name = name
                 
@@ -1086,7 +1086,7 @@
                 
             }
 
-            public init(name: String?, uid: Int?, count: Int?) {
+            public init(count: Int?, name: String?, uid: Int?) {
                 
                 self.name = name
                 
@@ -1191,7 +1191,7 @@
                 
             }
 
-            public init(articleAssignment: ArticleAssignment?, longLat: [Double]?, discount: String?, price: ProductStockPrice?, specialBadge: String?, seller: Seller?, set: [String: Any]?, articleId: String?, strategyWiseListing: [[String: Any]]?, itemType: String?, store: Store?, sellerCount: Int?, pincode: Int?, pricePerPrice: ProductStockPrice?, quantity: Int?) {
+            public init(articleAssignment: ArticleAssignment?, articleId: String?, discount: String?, itemType: String?, longLat: [Double]?, pincode: Int?, price: ProductStockPrice?, pricePerPrice: ProductStockPrice?, quantity: Int?, seller: Seller?, sellerCount: Int?, set: [String: Any]?, specialBadge: String?, store: Store?, strategyWiseListing: [[String: Any]]?) {
                 
                 self.articleAssignment = articleAssignment
                 
@@ -1336,7 +1336,7 @@
                 
             }
 
-            public init(type: String?, size: Int?, itemTotal: Int?, current: Int?, hasPrevious: Bool?, nextId: String?, hasNext: Bool?) {
+            public init(current: Int?, hasNext: Bool?, hasPrevious: Bool?, itemTotal: Int?, nextId: String?, size: Int?, type: String?) {
                 
                 self.type = type
                 
@@ -1531,7 +1531,7 @@
                 
             }
 
-            public init(key: String?, description: String?, display: String?) {
+            public init(description: String?, display: String?, key: String?) {
                 
                 self.key = key
                 
@@ -1584,7 +1584,7 @@
                 
             }
 
-            public init(items: [ProductDetail]?, attributesMetadata: [AttributeDetail]?) {
+            public init(attributesMetadata: [AttributeDetail]?, items: [ProductDetail]?) {
                 
                 self.items = items
                 
@@ -1639,7 +1639,7 @@
                 
             }
 
-            public init(items: [ProductDetail]?, subtitle: String?, title: String?, attributesMetadata: [AttributeDetail]?) {
+            public init(attributesMetadata: [AttributeDetail]?, items: [ProductDetail]?, subtitle: String?, title: String?) {
                 
                 self.items = items
                 
@@ -1857,7 +1857,7 @@
                 
             }
 
-            public init(action: ProductListingAction?, name: String?, value: String?, uid: Int?, isAvailable: Bool?, slug: String?, colorName: String?, medias: [Media]?, color: String?) {
+            public init(action: ProductListingAction?, color: String?, colorName: String?, isAvailable: Bool?, medias: [Media]?, name: String?, slug: String?, uid: Int?, value: String?) {
                 
                 self.action = action
                 
@@ -1950,7 +1950,7 @@
                 
             }
 
-            public init(items: [ProductVariantItemResponse]?, header: String?, displayType: String?) {
+            public init(displayType: String?, header: String?, items: [ProductVariantItemResponse]?) {
                 
                 self.items = items
                 
@@ -2040,7 +2040,7 @@
                 
             }
 
-            public init(name: String?, id: Int?) {
+            public init(id: Int?, name: String?) {
                 
                 self.name = name
                 
@@ -2095,7 +2095,7 @@
                 
             }
 
-            public init(name: String?, code: String?, id: Int?, city: String?) {
+            public init(city: String?, code: String?, id: Int?, name: String?) {
                 
                 self.name = name
                 
@@ -2182,7 +2182,7 @@
                 
             }
 
-            public init(identifier: [String: Any]?, price: ProductStockPrice?, seller: Seller?, size: String?, itemId: Int?, company: CompanyDetail?, store: StoreDetail?, uid: String?, quantity: Int?) {
+            public init(company: CompanyDetail?, identifier: [String: Any]?, itemId: Int?, price: ProductStockPrice?, quantity: Int?, seller: Seller?, size: String?, store: StoreDetail?, uid: String?) {
                 
                 self.identifier = identifier
                 
@@ -2447,7 +2447,7 @@
                 
             }
 
-            public init(rating: Double?, discount: String?, price: ProductListingPrice?, tryouts: [String]?, teaserTag: String?, description: String?, attributes: [String: Any]?, uid: Int?, ratingCount: Int?, slug: String, medias: [Media]?, color: String?, name: String?, imageNature: String?, similars: [String]?, sellable: Bool?, shortDescription: String?, type: String?, highlights: [String]?, brand: ProductBrand?, groupedAttributes: [ProductDetailGroupedAttribute]?, productOnlineDate: String?, itemType: String?, categories: [ProductBrand]?, hasVariant: Bool?) {
+            public init(attributes: [String: Any]?, brand: ProductBrand?, categories: [ProductBrand]?, color: String?, description: String?, discount: String?, groupedAttributes: [ProductDetailGroupedAttribute]?, hasVariant: Bool?, highlights: [String]?, imageNature: String?, itemType: String?, medias: [Media]?, name: String?, price: ProductListingPrice?, productOnlineDate: String?, rating: Double?, ratingCount: Int?, sellable: Bool?, shortDescription: String?, similars: [String]?, slug: String, teaserTag: String?, tryouts: [String]?, type: String?, uid: Int?) {
                 
                 self.rating = rating
                 
@@ -2697,7 +2697,7 @@
                 
             }
 
-            public init(kind: String?, name: String, display: String, logo: String?) {
+            public init(display: String, kind: String?, logo: String?, name: String) {
                 
                 self.kind = kind
                 
@@ -2796,7 +2796,7 @@
                 
             }
 
-            public init(value: String, isSelected: Bool, display: String, queryFormat: String?, selectedMax: Int?, currencySymbol: String?, count: Int?, displayFormat: String?, min: Int?, currencyCode: String?, selectedMin: Int?, max: Int?) {
+            public init(count: Int?, currencyCode: String?, currencySymbol: String?, display: String, displayFormat: String?, isSelected: Bool, max: Int?, min: Int?, queryFormat: String?, selectedMax: Int?, selectedMin: Int?, value: String) {
                 
                 self.value = value
                 
@@ -2958,7 +2958,7 @@
                 
             }
 
-            public init(items: [ProductListingDetail]?, page: Page?, sortOn: [ProductSortOn]?, filters: [ProductFilters]?) {
+            public init(filters: [ProductFilters]?, items: [ProductListingDetail]?, page: Page?, sortOn: [ProductSortOn]?) {
                 
                 self.items = items
                 
@@ -3088,7 +3088,7 @@
                 
             }
 
-            public init(action: ProductListingAction?, name: String?, discount: String?, departments: [String]?, banners: ImageUrls?, uid: Int?, slug: String?, logo: Media?) {
+            public init(action: ProductListingAction?, banners: ImageUrls?, departments: [String]?, discount: String?, logo: Media?, name: String?, slug: String?, uid: Int?) {
                 
                 self.action = action
                 
@@ -3226,7 +3226,7 @@
                 
             }
 
-            public init(name: String?, banners: ImageUrls?, uid: Int?, logo: Media?) {
+            public init(banners: ImageUrls?, logo: Media?, name: String?, uid: Int?) {
                 
                 self.name = name
                 
@@ -3348,7 +3348,7 @@
                 
             }
 
-            public init(action: ProductListingAction?, name: String?, banners: ImageUrls?, uid: Int?, childs: [[String: Any]]?, slug: String?) {
+            public init(action: ProductListingAction?, banners: ImageUrls?, childs: [[String: Any]]?, name: String?, slug: String?, uid: Int?) {
                 
                 self.action = action
                 
@@ -3419,7 +3419,7 @@
                 
             }
 
-            public init(items: [CategoryItems]?, department: String?) {
+            public init(department: String?, items: [CategoryItems]?) {
                 
                 self.items = items
                 
@@ -3466,7 +3466,7 @@
                 
             }
 
-            public init(departments: [DepartmentIdentifier]?, data: [DepartmentCategoryTree]?) {
+            public init(data: [DepartmentCategoryTree]?, departments: [DepartmentIdentifier]?) {
                 
                 self.departments = departments
                 
@@ -3521,7 +3521,7 @@
                 
             }
 
-            public init(name: String?, banners: ImageUrls?, uid: Int?, logo: Media?) {
+            public init(banners: ImageUrls?, logo: Media?, name: String?, uid: Int?) {
                 
                 self.name = name
                 
@@ -3584,7 +3584,7 @@
                 
             }
 
-            public init(items: [ProductListingDetail]?, page: Page?, message: String?) {
+            public init(items: [ProductListingDetail]?, message: String?, page: Page?) {
                 
                 self.items = items
                 
@@ -3649,7 +3649,7 @@
                 
             }
 
-            public init(name: String?, priorityOrder: Int?, uid: Int?, slug: String?, logo: Media?) {
+            public init(logo: Media?, name: String?, priorityOrder: Int?, slug: String?, uid: Int?) {
                 
                 self.name = name
                 
@@ -3759,7 +3759,7 @@
                 
             }
 
-            public init(action: [String: Any]?, logo: Media?, display: String?, type: String?) {
+            public init(action: [String: Any]?, display: String?, logo: Media?, type: String?) {
                 
                 self.action = action
                 
@@ -3923,7 +3923,7 @@
                 
             }
 
-            public init(badge: [String: Any]?, description: String?, schedule: [String: Any]?, uid: String?, slug: String?, tag: [String]?, name: String?, appId: String?, logo: Media?, type: String?, query: [String: Any]?, meta: [String: Any]?, isActive: Bool?, allowFacets: Bool?, cron: [String: Any]?, allowSort: Bool?, action: ProductListingAction?, banners: ImageUrls?, visibleFacetsKeys: [String]?) {
+            public init(action: ProductListingAction?, allowFacets: Bool?, allowSort: Bool?, appId: String?, badge: [String: Any]?, banners: ImageUrls?, cron: [String: Any]?, description: String?, isActive: Bool?, logo: Media?, meta: [String: Any]?, name: String?, query: [String: Any]?, slug: String?, tag: [String]?, type: String?, uid: String?, visibleFacetsKeys: [String]?, schedule: [String: Any]?) {
                 
                 self.badge = badge
                 
@@ -4076,7 +4076,7 @@
                 
             }
 
-            public init(isSelected: Bool?, name: String?, display: String?) {
+            public init(display: String?, isSelected: Bool?, name: String?) {
                 
                 self.isSelected = isSelected
                 
@@ -4133,7 +4133,7 @@
                 
             }
 
-            public init(isSelected: Bool?, name: String?, display: String?) {
+            public init(display: String?, isSelected: Bool?, name: String?) {
                 
                 self.isSelected = isSelected
                 
@@ -4186,7 +4186,7 @@
                 
             }
 
-            public init(type: [CollectionListingFilterType]?, tags: [CollectionListingFilterTag]?) {
+            public init(tags: [CollectionListingFilterTag]?, type: [CollectionListingFilterType]?) {
                 
                 self.type = type
                 
@@ -4237,7 +4237,7 @@
                 
             }
 
-            public init(items: [GetCollectionDetailNest]?, page: Page?, filters: CollectionListingFilter?) {
+            public init(filters: CollectionListingFilter?, items: [GetCollectionDetailNest]?, page: Page?) {
                 
                 self.items = items
                 
@@ -4350,7 +4350,7 @@
                 
             }
 
-            public init(tag: [String]?, name: String?, query: [String: Any]?, appId: String?, type: String?, badge: [String: Any]?, description: String?, banners: ImageUrls?, schedule: [String: Any]?, meta: [String: Any]?, isActive: Bool?, visibleFacetsKeys: [String]?, allowFacets: Bool?, slug: String?, cron: [String: Any]?, allowSort: Bool?, logo: Media?) {
+            public init(allowFacets: Bool?, allowSort: Bool?, appId: String?, badge: [String: Any]?, banners: ImageUrls?, cron: [String: Any]?, description: String?, isActive: Bool?, logo: Media?, meta: [String: Any]?, name: String?, query: [String: Any]?, slug: String?, tag: [String]?, type: String?, visibleFacetsKeys: [String]?, schedule: [String: Any]?) {
                 
                 self.tag = tag
                 
@@ -4622,7 +4622,7 @@
                 
             }
 
-            public init(collections: [Int]?, products: [Int]?, brands: [Int]?) {
+            public init(brands: [Int]?, collections: [Int]?, products: [Int]?) {
                 
                 self.collections = collections
                 
@@ -4712,7 +4712,7 @@
                 
             }
 
-            public init(type: String?, coordinates: [Double]?) {
+            public init(coordinates: [Double]?, type: String?) {
                 
                 self.type = type
                 
@@ -4791,7 +4791,7 @@
                 
             }
 
-            public init(state: String?, name: String?, address: String?, latLong: LatLong?, city: String?, storeCode: String?, uid: Int?, storeEmail: String?, pincode: Int?, country: String?) {
+            public init(address: String?, city: String?, country: String?, latLong: LatLong?, name: String?, pincode: Int?, state: String?, storeCode: String?, storeEmail: String?, uid: Int?) {
                 
                 self.state = state
                 
@@ -5127,7 +5127,7 @@
                 
             }
 
-            public init(data: [String: Any]?, paymentFlow: String?, apiLink: String?) {
+            public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?) {
                 
                 self.data = data
                 
@@ -5192,7 +5192,7 @@
                 
             }
 
-            public init(simpl: PaymentFlow?, fynd: PaymentFlow?, juspay: PaymentFlow?, upiRazorpay: PaymentFlow?, razorpay: PaymentFlow?) {
+            public init(fynd: PaymentFlow?, juspay: PaymentFlow?, razorpay: PaymentFlow?, simpl: PaymentFlow?, upiRazorpay: PaymentFlow?) {
                 
                 self.simpl = simpl
                 
@@ -5269,7 +5269,7 @@
                 
             }
 
-            public init(name: String?, paymentModeId: Int?, displayPriority: Int?, list: [[String: Any]]?, displayName: String?) {
+            public init(displayName: String?, displayPriority: Int?, list: [[String: Any]]?, name: String?, paymentModeId: Int?) {
                 
                 self.name = name
                 
@@ -5397,7 +5397,7 @@
                 
             }
 
-            public init(selling: Double?, marked: Double?, currencySymbol: String?, currencyCode: String?, effective: Double?, addOn: Double?) {
+            public init(addOn: Double?, currencyCode: String?, currencySymbol: String?, effective: Double?, marked: Double?, selling: Double?) {
                 
                 self.selling = selling
                 
@@ -5468,7 +5468,7 @@
                 
             }
 
-            public init(converted: ProductPrice?, base: ProductPrice?) {
+            public init(base: ProductPrice?, converted: ProductPrice?) {
                 
                 self.converted = converted
                 
@@ -5527,7 +5527,7 @@
                 
             }
 
-            public init(sizes: [String]?, outOfStock: Bool?, otherStoreQuantity: Int?, deliverable: Bool?, isValid: Bool?) {
+            public init(deliverable: Bool?, isValid: Bool?, otherStoreQuantity: Int?, outOfStock: Bool?, sizes: [String]?) {
                 
                 self.sizes = sizes
                 
@@ -5592,7 +5592,7 @@
                 
             }
 
-            public init(converted: Price?, base: Price?) {
+            public init(base: Price?, converted: Price?) {
                 
                 self.converted = converted
                 
@@ -5639,7 +5639,7 @@
                 
             }
 
-            public init(uid: Int?, name: String?) {
+            public init(name: String?, uid: Int?) {
                 
                 self.uid = uid
                 
@@ -5706,7 +5706,7 @@
                 
             }
 
-            public init(price: ArticlePriceInfo?, size: String?, seller: BaseInfo?, store: String?, quantity: Int?, type: String?, uid: Int?) {
+            public init(price: ArticlePriceInfo?, quantity: Int?, seller: BaseInfo?, size: String?, store: String?, type: String?, uid: Int?) {
                 
                 self.price = price
                 
@@ -5824,7 +5824,7 @@
                 
             }
 
-            public init(url: String?, query: ActionQuery?, type: String?) {
+            public init(query: ActionQuery?, type: String?, url: String?) {
                 
                 self.url = url
                 
@@ -5877,7 +5877,7 @@
                 
             }
 
-            public init(uid: Int?, name: Int?) {
+            public init(name: Int?, uid: Int?) {
                 
                 self.uid = uid
                 
@@ -5928,7 +5928,7 @@
                 
             }
 
-            public init(aspectRatio: String?, url: String?, secureUrl: String?) {
+            public init(aspectRatio: String?, secureUrl: String?, url: String?) {
                 
                 self.aspectRatio = aspectRatio
                 
@@ -6005,7 +6005,7 @@
                 
             }
 
-            public init(slug: String?, action: Action?, name: String?, brand: BaseInfo?, categories: [CategoryInfo]?, type: String?, uid: Int?, images: [Image]?) {
+            public init(action: Action?, brand: BaseInfo?, categories: [CategoryInfo]?, images: [Image]?, name: String?, slug: String?, type: String?, uid: Int?) {
                 
                 self.slug = slug
                 
@@ -6120,7 +6120,7 @@
                 
             }
 
-            public init(price: ProductPriceInfo?, couponMessage: String?, message: String?, key: String?, discount: String?, availability: ProductAvailability?, article: ProductArticle?, quantity: Int?, product: Product?, bulkOffer: String?) {
+            public init(article: ProductArticle?, availability: ProductAvailability?, bulkOffer: String?, couponMessage: String?, discount: String?, key: String?, message: String?, price: ProductPriceInfo?, product: Product?, quantity: Int?) {
                 
                 self.price = price
                 
@@ -6235,7 +6235,7 @@
                 
             }
 
-            public init(subtotal: Double?, codCharge: Double?, total: Double?, youSaved: Double?, fyndCash: Double?, deliveryCharge: Double?, coupon: Double?) {
+            public init(codCharge: Double?, coupon: Double?, deliveryCharge: Double?, fyndCash: Double?, subtotal: Double?, total: Double?, youSaved: Double?) {
                 
                 self.subtotal = subtotal
                 
@@ -6320,7 +6320,7 @@
                 
             }
 
-            public init(description: String?, total: Double?, isApplied: Bool?, applicable: Double?) {
+            public init(applicable: Double?, description: String?, isApplied: Bool?, total: Double?) {
                 
                 self.description = description
                 
@@ -6395,7 +6395,7 @@
                 
             }
 
-            public init(value: Double?, code: String?, message: String?, type: String?, isApplied: Bool?, uid: Int?) {
+            public init(code: String?, isApplied: Bool?, message: String?, type: String?, uid: Int?, value: Double?) {
                 
                 self.value = value
                 
@@ -6478,7 +6478,7 @@
                 
             }
 
-            public init(currencySymbol: String?, value: Double?, currencyCode: String?, key: String?, display: String?) {
+            public init(currencyCode: String?, currencySymbol: String?, display: String?, key: String?, value: Double?) {
                 
                 self.currencySymbol = currencySymbol
                 
@@ -6551,7 +6551,7 @@
                 
             }
 
-            public init(raw: RawBreakup?, loyaltyPoints: LoyaltyPoints?, coupon: CouponBreakup?, display: [DisplayBreakup]?) {
+            public init(coupon: CouponBreakup?, display: [DisplayBreakup]?, loyaltyPoints: LoyaltyPoints?, raw: RawBreakup?) {
                 
                 self.raw = raw
                 
@@ -6666,7 +6666,7 @@
                 
             }
 
-            public init(deliveryPromise: ShipmentPromise?, cartId: Int?, gstin: String?, deliveryChargeInfo: [String]?, restrictCheckout: Bool?, message: String?, currency: CartCurrency?, paymentOptions: PaymentOptions?, comment: String?, couponText: String?, items: [CartProductInfo]?, lastModified: String?, isValid: Bool?, checkoutMode: String?, uid: String?, breakupValues: CartBreakup?) {
+            public init(breakupValues: CartBreakup?, cartId: Int?, checkoutMode: String?, comment: String?, couponText: String?, currency: CartCurrency?, deliveryChargeInfo: [String]?, deliveryPromise: ShipmentPromise?, gstin: String?, isValid: Bool?, items: [CartProductInfo]?, lastModified: String?, message: String?, paymentOptions: PaymentOptions?, restrictCheckout: Bool?, uid: String?) {
                 
                 self.deliveryPromise = deliveryPromise
                 
@@ -6825,7 +6825,7 @@
                 
             }
 
-            public init(sellerId: Int?, pos: Bool?, storeId: Int?, articleId: String?, itemSize: String?, quantity: Int?, itemId: Int?, articleAssignment: [String: Any]?, display: String?) {
+            public init(articleAssignment: [String: Any]?, articleId: String?, display: String?, itemId: Int?, itemSize: String?, pos: Bool?, quantity: Int?, sellerId: Int?, storeId: Int?) {
                 
                 self.sellerId = sellerId
                 
@@ -6959,7 +6959,7 @@
                 
             }
 
-            public init(partial: Bool?, message: String?, cart: CartResponse?, success: Bool?) {
+            public init(cart: CartResponse?, message: String?, partial: Bool?, success: Bool?) {
                 
                 self.partial = partial
                 
@@ -7030,7 +7030,7 @@
                 
             }
 
-            public init(articleId: String?, itemSize: Int?, quantity: Int?, itemId: Int?, itemIndex: Int?) {
+            public init(articleId: String?, itemId: Int?, itemIndex: Int?, itemSize: Int?, quantity: Int?) {
                 
                 self.articleId = articleId
                 
@@ -7146,7 +7146,7 @@
                 
             }
 
-            public init(message: String?, cart: CartResponse?, success: Bool?) {
+            public init(cart: CartResponse?, message: String?, success: Bool?) {
                 
                 self.message = message
                 
@@ -7248,7 +7248,7 @@
                 
             }
 
-            public init(current: Int?, hasNext: Bool?, total: Int?, totalItemCount: Int?, hasPrevious: Bool?) {
+            public init(current: Int?, hasNext: Bool?, hasPrevious: Bool?, total: Int?, totalItemCount: Int?) {
                 
                 self.current = current
                 
@@ -7349,7 +7349,7 @@
                 
             }
 
-            public init(isApplicable: Bool?, expiresOn: String?, couponValue: Double?, uid: Int?, maxDiscountValue: Double?, subTitle: String?, message: String?, couponCode: String?, minimumCartValue: Double?, isApplied: Bool?, title: String?) {
+            public init(couponCode: String?, couponValue: Double?, expiresOn: String?, isApplicable: Bool?, isApplied: Bool?, maxDiscountValue: Double?, message: String?, minimumCartValue: Double?, subTitle: String?, title: String?, uid: Int?) {
                 
                 self.isApplicable = isApplicable
                 
@@ -7450,7 +7450,7 @@
                 
             }
 
-            public init(page: PageCoupon?, availableCouponList: [Coupon]?) {
+            public init(availableCouponList: [Coupon]?, page: PageCoupon?) {
                 
                 self.page = page
                 
@@ -7534,7 +7534,7 @@
                 
             }
 
-            public init(uid: Int?, name: String?) {
+            public init(name: String?, uid: Int?) {
                 
                 self.uid = uid
                 
@@ -7593,7 +7593,7 @@
                 
             }
 
-            public init(bulkEffective: Double?, marked: Int?, currencySymbol: String?, currencyCode: String?, effective: Int?) {
+            public init(bulkEffective: Double?, currencyCode: String?, currencySymbol: String?, effective: Int?, marked: Int?) {
                 
                 self.bulkEffective = bulkEffective
                 
@@ -7678,7 +7678,7 @@
                 
             }
 
-            public init(price: OfferPrice?, autoApplied: Bool?, total: Double?, margin: Int?, best: Bool?, quantity: Int?, type: String?) {
+            public init(autoApplied: Bool?, best: Bool?, margin: Int?, price: OfferPrice?, quantity: Int?, total: Double?, type: String?) {
                 
                 self.price = price
                 
@@ -7755,7 +7755,7 @@
                 
             }
 
-            public init(seller: OfferSeller?, offers: [OfferItem]?) {
+            public init(offers: [OfferItem]?, seller: OfferSeller?) {
                 
                 self.seller = seller
                 
@@ -7966,7 +7966,7 @@
                 
             }
 
-            public init(name: String?, state: String?, checkoutMode: String?, areaCode: String?, landmark: String?, area: String?, email: String?, meta: [String: Any]?, isDefaultAddress: Bool?, tags: [[String: Any]]?, isActive: Bool?, userId: String?, geoLocation: GeoLocation?, addressId: Int?, address: String?, areaCodeSlug: String?, uid: Int?, city: String?, phone: Int?, country: String?, addressType: String?, countryCode: String?) {
+            public init(address: String?, addressId: Int?, addressType: String?, area: String?, areaCode: String?, areaCodeSlug: String?, checkoutMode: String?, city: String?, country: String?, countryCode: String?, email: String?, geoLocation: GeoLocation?, isActive: Bool?, isDefaultAddress: Bool?, landmark: String?, meta: [String: Any]?, name: String?, phone: Int?, state: String?, tags: [[String: Any]]?, uid: Int?, userId: String?) {
                 
                 self.name = name
                 
@@ -8250,7 +8250,7 @@
                 
             }
 
-            public init(name: String?, state: String?, checkoutMode: String?, areaCode: String?, landmark: String?, area: String?, email: String?, meta: [String: Any]?, isDefaultAddress: Bool?, tags: [[String: Any]]?, isActive: Bool?, userId: String?, geoLocation: GeoLocation?, addressId: Int?, address: String?, areaCodeSlug: String?, uid: Int?, city: String?, phone: Int?, country: String?, addressType: String?, countryCode: String?) {
+            public init(address: String?, addressId: Int?, addressType: String?, area: String?, areaCode: String?, areaCodeSlug: String?, checkoutMode: String?, city: String?, country: String?, countryCode: String?, email: String?, geoLocation: GeoLocation?, isActive: Bool?, isDefaultAddress: Bool?, landmark: String?, meta: [String: Any]?, name: String?, phone: Int?, state: String?, tags: [[String: Any]]?, uid: Int?, userId: String?) {
                 
                 self.name = name
                 
@@ -8554,7 +8554,7 @@
                 
             }
 
-            public init(name: String?, state: String?, checkoutMode: String?, areaCode: String?, landmark: String?, area: String?, email: String?, meta: [String: Any]?, isDefaultAddress: Bool?, tags: [[String: Any]]?, isActive: Bool?, userId: String?, geoLocation: GeoLocation?, addressId: Int?, address: String?, areaCodeSlug: String?, uid: Int?, city: String?, phone: Int?, country: String?, addressType: String?, countryCode: String?) {
+            public init(address: String?, addressId: Int?, addressType: String?, area: String?, areaCode: String?, areaCodeSlug: String?, checkoutMode: String?, city: String?, country: String?, countryCode: String?, email: String?, geoLocation: GeoLocation?, isActive: Bool?, isDefaultAddress: Bool?, landmark: String?, meta: [String: Any]?, name: String?, phone: Int?, state: String?, tags: [[String: Any]]?, uid: Int?, userId: String?) {
                 
                 self.name = name
                 
@@ -8729,7 +8729,7 @@
                 
             }
 
-            public init(addressId: Int?, isUpdated: Bool?, isDefaultAddress: Bool?, success: Bool?) {
+            public init(addressId: Int?, isDefaultAddress: Bool?, isUpdated: Bool?, success: Bool?) {
                 
                 self.addressId = addressId
                 
@@ -8788,7 +8788,7 @@
                 
             }
 
-            public init(isDeleted: Bool?, addressId: Int?) {
+            public init(addressId: Int?, isDeleted: Bool?) {
                 
                 self.isDeleted = isDeleted
                 
@@ -8839,7 +8839,7 @@
                 
             }
 
-            public init(addressId: String?, uid: String?, billingAddressId: Int?) {
+            public init(addressId: String?, billingAddressId: Int?, uid: String?) {
                 
                 self.addressId = addressId
                 
@@ -8908,7 +8908,7 @@
                 
             }
 
-            public init(paymentIdentifier: String?, addressId: Int?, merchantCode: String?, aggregatorName: String?, paymentMode: String?, uid: Int?) {
+            public init(addressId: Int?, aggregatorName: String?, merchantCode: String?, paymentIdentifier: String?, paymentMode: String?, uid: Int?) {
                 
                 self.paymentIdentifier = paymentIdentifier
                 
@@ -9007,7 +9007,7 @@
                 
             }
 
-            public init(shipmentType: String?, dpId: Int?, shipments: Int?, boxType: String?, fulfillmentId: Int?, dpOptions: [String: Any]?, promise: String?, items: [CartProductInfo]?, fulfillmentType: String?) {
+            public init(boxType: String?, dpId: Int?, dpOptions: [String: Any]?, fulfillmentId: Int?, fulfillmentType: String?, items: [CartProductInfo]?, promise: String?, shipments: Int?, shipmentType: String?) {
                 
                 self.shipmentType = shipmentType
                 
@@ -9152,7 +9152,7 @@
                 
             }
 
-            public init(deliveryPromise: ShipmentPromise?, cartId: Int?, shipments: [ShipmentResponse]?, gstin: String?, deliveryChargeInfo: [String]?, restrictCheckout: Bool?, message: String?, currency: CartCurrency?, paymentOptions: PaymentOptions?, comment: String?, couponText: String?, lastModified: String?, isValid: Bool?, checkoutMode: String?, uid: String?, breakupValues: CartBreakup?) {
+            public init(breakupValues: CartBreakup?, cartId: Int?, checkoutMode: String?, comment: String?, couponText: String?, currency: CartCurrency?, deliveryChargeInfo: [String]?, deliveryPromise: ShipmentPromise?, gstin: String?, isValid: Bool?, lastModified: String?, message: String?, paymentOptions: PaymentOptions?, restrictCheckout: Bool?, shipments: [ShipmentResponse]?, uid: String?) {
                 
                 self.deliveryPromise = deliveryPromise
                 
@@ -9335,7 +9335,7 @@
                 
             }
 
-            public init(staff: [String: Any]?, extraMeta: [String: Any]?, billingAddressId: Int?, orderingStore: Int?, aggregator: String?, fyndstoreEmpId: String?, paymentAutoConfirm: Bool?, meta: [String: Any]?, paymentIdentifier: String?, addressId: Int?, merchantCode: String?, callbackUrl: String?, paymentMode: String, billingAddress: [String: Any]?, paymentParams: [String: Any]?) {
+            public init(addressId: Int?, aggregator: String?, billingAddress: [String: Any]?, billingAddressId: Int?, callbackUrl: String?, extraMeta: [String: Any]?, fyndstoreEmpId: String?, merchantCode: String?, meta: [String: Any]?, orderingStore: Int?, paymentAutoConfirm: Bool?, paymentIdentifier: String?, paymentMode: String, paymentParams: [String: Any]?, staff: [String: Any]?) {
                 
                 self.staff = staff
                 
@@ -9597,7 +9597,7 @@
                 
             }
 
-            public init(gstin: String?, restrictCheckout: Bool?, deliveryCharges: Int?, codAvailable: Bool?, codMessage: String?, checkoutMode: String?, deliveryPromise: ShipmentPromise?, cartId: Int?, storeEmps: [[String: Any]]?, deliveryChargeInfo: [String]?, success: Bool?, couponText: String?, items: [CartProductInfo]?, lastModified: String?, errorMessage: String?, comment: String?, currency: CartCurrency?, storeCode: String?, paymentOptions: PaymentOptions?, deliveryChargeOrderValue: Int?, userType: String?, uid: String?, breakupValues: CartBreakup?, orderId: String?, message: String?, codCharges: Int?, isValid: Bool?) {
+            public init(breakupValues: CartBreakup?, cartId: Int?, checkoutMode: String?, codAvailable: Bool?, codCharges: Int?, codMessage: String?, comment: String?, couponText: String?, currency: CartCurrency?, deliveryCharges: Int?, deliveryChargeInfo: [String]?, deliveryChargeOrderValue: Int?, deliveryPromise: ShipmentPromise?, errorMessage: String?, gstin: String?, isValid: Bool?, items: [CartProductInfo]?, lastModified: String?, message: String?, orderId: String?, paymentOptions: PaymentOptions?, restrictCheckout: Bool?, storeCode: String?, storeEmps: [[String: Any]]?, success: Bool?, uid: String?, userType: String?) {
                 
                 self.gstin = gstin
                 
@@ -9814,7 +9814,7 @@
                 
             }
 
-            public init(orderId: String?, data: OrderData?, message: String?, cart: CheckCart?, success: Bool?, appInterceptUrl: String?, callbackUrl: String?) {
+            public init(appInterceptUrl: String?, callbackUrl: String?, cart: CheckCart?, data: OrderData?, message: String?, orderId: String?, success: Bool?) {
                 
                 self.orderId = orderId
                 
@@ -9899,7 +9899,7 @@
                 
             }
 
-            public init(pickUpCustomerDetails: [String: Any]?, gstin: String?, comment: String?, checkoutMode: String?) {
+            public init(checkoutMode: String?, comment: String?, gstin: String?, pickUpCustomerDetails: [String: Any]?) {
                 
                 self.pickUpCustomerDetails = pickUpCustomerDetails
                 
@@ -10138,7 +10138,7 @@
                 
             }
 
-            public init(source: [String: Any]?, createdOn: String?, user: [String: Any]?, meta: [String: Any]?, token: String?) {
+            public init(createdOn: String?, meta: [String: Any]?, source: [String: Any]?, token: String?, user: [String: Any]?) {
                 
                 self.source = source
                 
@@ -10263,7 +10263,7 @@
                 
             }
 
-            public init(deliveryPromise: ShipmentPromise?, cartId: Int?, gstin: String?, deliveryChargeInfo: [String]?, restrictCheckout: Bool?, message: String?, currency: CartCurrency?, paymentOptions: PaymentOptions?, comment: String?, couponText: String?, sharedCartDetails: SharedCartDetails?, items: [CartProductInfo]?, lastModified: String?, isValid: Bool?, checkoutMode: String?, uid: String?, breakupValues: CartBreakup?) {
+            public init(breakupValues: CartBreakup?, cartId: Int?, checkoutMode: String?, comment: String?, couponText: String?, currency: CartCurrency?, deliveryChargeInfo: [String]?, deliveryPromise: ShipmentPromise?, gstin: String?, isValid: Bool?, items: [CartProductInfo]?, lastModified: String?, message: String?, paymentOptions: PaymentOptions?, restrictCheckout: Bool?, sharedCartDetails: SharedCartDetails?, uid: String?) {
                 
                 self.deliveryPromise = deliveryPromise
                 
@@ -10400,7 +10400,7 @@
                 
             }
 
-            public init(error: String?, cart: SharedCart?) {
+            public init(cart: SharedCart?, error: String?) {
                 
                 self.error = error
                 
@@ -10714,7 +10714,7 @@
                 
             }
 
-            public init(slug: String, title: String, inputs: [[String: Any]], description: String?, headerImage: String?, shouldNotify: Bool?, successMessage: String?, pollForAssignment: PollForAssignment?) {
+            public init(description: String?, headerImage: String?, inputs: [[String: Any]], pollForAssignment: PollForAssignment?, shouldNotify: Bool?, slug: String, successMessage: String?, title: String) {
                 
                 self.slug = slug
                 
@@ -10821,7 +10821,7 @@
                 
             }
 
-            public init(title: String, inputs: [[String: Any]], description: String?, headerImage: String?, shouldNotify: Bool?, loginRequired: Bool?, successMessage: String?, pollForAssignment: PollForAssignment?) {
+            public init(description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool?, pollForAssignment: PollForAssignment?, shouldNotify: Bool?, successMessage: String?, title: String) {
                 
                 self.title = title
                 
@@ -10924,7 +10924,7 @@
                 
             }
 
-            public init(content: TicketContent?, category: String?, source: String?, status: String?, priority: String?, assignedTo: AgentChangePayload?, tags: [String]?) {
+            public init(assignedTo: AgentChangePayload?, category: String?, content: TicketContent?, priority: String?, source: String?, status: String?, tags: [String]?) {
                 
                 self.content = content
                 
@@ -11112,7 +11112,7 @@
                 
             }
 
-            public init(uniqueName: String, notify: [[String: Any]]?) {
+            public init(notify: [[String: Any]]?, uniqueName: String) {
                 
                 self.uniqueName = uniqueName
                 
@@ -11167,7 +11167,7 @@
                 
             }
 
-            public init(priorities: Priority, categories: Category?, statuses: Status, assignees: [[String: Any]]) {
+            public init(assignees: [[String: Any]], categories: Category?, priorities: Priority, statuses: Status) {
                 
                 self.priorities = priorities
                 
@@ -11226,7 +11226,7 @@
                 
             }
 
-            public init(value: [String: Any]?, type: String?) {
+            public init(type: String?, value: [String: Any]?) {
                 
                 self.value = value
                 
@@ -11509,7 +11509,7 @@
                 
             }
 
-            public init(display: String?, value: String, type: String) {
+            public init(display: String?, type: String, value: String) {
                 
                 self.display = display
                 
@@ -11566,7 +11566,7 @@
                 
             }
 
-            public init(title: String, description: String?, attachments: [Asset]?) {
+            public init(attachments: [Asset]?, description: String?, title: String) {
                 
                 self.title = title
                 
@@ -11684,7 +11684,7 @@
                 
             }
 
-            public init(status: String, priority: String, category: String, content: TicketContent) {
+            public init(category: String, content: TicketContent, priority: String, status: String) {
                 
                 self.status = status
                 
@@ -11747,7 +11747,7 @@
                 
             }
 
-            public init(key: String, display: String, color: String) {
+            public init(color: String, display: String, key: String) {
                 
                 self.key = key
                 
@@ -11804,7 +11804,7 @@
                 
             }
 
-            public init(key: String, display: String, color: String) {
+            public init(color: String, display: String, key: String) {
                 
                 self.key = key
                 
@@ -11861,7 +11861,7 @@
                 
             }
 
-            public init(key: String, display: String, form: CustomForm?) {
+            public init(display: String, form: CustomForm?, key: String) {
                 
                 self.key = key
                 
@@ -11918,7 +11918,7 @@
                 
             }
 
-            public init(title: String, titleColor: String, backgroundColor: String) {
+            public init(backgroundColor: String, title: String, titleColor: String) {
                 
                 self.title = title
                 
@@ -11979,7 +11979,7 @@
                 
             }
 
-            public init(duration: Double, message: String, successMessage: String, failureMessage: String) {
+            public init(duration: Double, failureMessage: String, message: String, successMessage: String) {
                 
                 self.duration = duration
                 
@@ -12094,7 +12094,7 @@
                 
             }
 
-            public init(applicationId: String, slug: String, headerImage: String?, title: String, description: String?, loginRequired: Bool, shouldNotify: Bool, successMessage: String?, submitButton: SubmitButton?, inputs: [[String: Any]], createdOn: CreatedOn?, createdBy: [String: Any]?, pollForAssignment: PollForAssignment?, id: String, updatedAt: String?, createdAt: String?) {
+            public init(applicationId: String, createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment?, shouldNotify: Bool, slug: String, submitButton: SubmitButton?, successMessage: String?, title: String, updatedAt: String?, id: String) {
                 
                 self.applicationId = applicationId
                 
@@ -12249,7 +12249,7 @@
                 
             }
 
-            public init(type: String, value: [String: Any], ticketId: String, createdOn: CreatedOn?, createdBy: [String: Any]?, id: String, updatedAt: String?, createdAt: String?) {
+            public init(createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, ticketId: String, type: String, updatedAt: String?, value: [String: Any], id: String) {
                 
                 self.type = type
                 
@@ -12388,7 +12388,7 @@
                 
             }
 
-            public init(context: TicketContext?, createdOn: CreatedOn?, responseId: String?, content: TicketContent?, ticketId: String, category: Category, source: String, status: Status, priority: Priority, createdBy: [String: Any]?, assignedTo: [String: Any]?, tags: [String]?, customJson: [String: Any]?, id: String?, updatedAt: String?, createdAt: String?) {
+            public init(assignedTo: [String: Any]?, category: Category, content: TicketContent?, context: TicketContext?, createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, priority: Priority, responseId: String?, source: String, status: Status, tags: [String]?, ticketId: String, updatedAt: String?, customJson: [String: Any]?, id: String?) {
                 
                 self.context = context
                 
@@ -12533,7 +12533,7 @@
                 
             }
 
-            public init(size: Int?, itemTotal: Int?, hasNext: Bool?, type: String?, current: Int?) {
+            public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
                 
                 self.size = size
                 
@@ -12686,7 +12686,7 @@
                 
             }
 
-            public init(parentTheme: String?, appliedTheme: String?, upgrade: Bool?) {
+            public init(appliedTheme: String?, parentTheme: String?, upgrade: Bool?) {
                 
                 self.parentTheme = parentTheme
                 
@@ -12882,7 +12882,7 @@
                 
             }
 
-            public init(application: String?, applied: Bool?, customized: Bool?, published: Bool?, archived: Bool?, createdAt: String?, updatedAt: String?, version: String?, parentThemeVersion: String?, parentTheme: String?, information: [String: Any]?, tags: [String]?, src: [String: Any]?, assets: [String: Any]?, availablePages: [[String: Any]]?, pages: [String: Any]?, availableSections: [availableSectionSchema]?, sections: [sectionSchema]?, constants: [String: Any]?, styles: [String: Any]?, config: [String: Any]?, settings: [String: Any]?, font: [String: Any]?, id: String?, v: Int?, colors: [String: Any]?) {
+            public init(application: String?, applied: Bool?, archived: Bool?, assets: [String: Any]?, availablePages: [[String: Any]]?, availableSections: [availableSectionSchema]?, colors: [String: Any]?, config: [String: Any]?, constants: [String: Any]?, createdAt: String?, customized: Bool?, font: [String: Any]?, information: [String: Any]?, pages: [String: Any]?, parentTheme: String?, parentThemeVersion: String?, published: Bool?, sections: [sectionSchema]?, settings: [String: Any]?, src: [String: Any]?, styles: [String: Any]?, tags: [String]?, updatedAt: String?, version: String?, id: String?, v: Int?) {
                 
                 self.application = application
                 
@@ -13085,7 +13085,7 @@
                 
             }
 
-            public init(text: String?, path: String?, type: String?, value: String?, sections: [[String: Any]]?) {
+            public init(path: String?, sections: [[String: Any]]?, text: String?, type: String?, value: String?) {
                 
                 self.text = text
                 
@@ -13158,7 +13158,7 @@
                 
             }
 
-            public init(blocks: [[String: Any]]?, name: String?, label: String?, props: [[String: Any]]?) {
+            public init(blocks: [[String: Any]]?, label: String?, name: String?, props: [[String: Any]]?) {
                 
                 self.blocks = blocks
                 
@@ -13315,7 +13315,7 @@
                 
             }
 
-            public init(verified: Bool?, active: Bool?, countryCode: String?, phone: String?, primary: Bool?) {
+            public init(active: Bool?, countryCode: String?, phone: String?, primary: Bool?, verified: Bool?) {
                 
                 self.verified = verified
                 
@@ -13459,7 +13459,7 @@
                 
             }
 
-            public init(firstName: String?, lastName: String?, mobile: String?, email: String?, gender: String?, dob: String?, profilePicUrl: String?, androidHash: String?, sender: String?, registerToken: String?) {
+            public init(androidHash: String?, dob: String?, email: String?, firstName: String?, gender: String?, lastName: String?, mobile: String?, profilePicUrl: String?, registerToken: String?, sender: String?) {
                 
                 self.firstName = firstName
                 
@@ -13562,7 +13562,7 @@
                 
             }
 
-            public init(email: String?, action: String?, token: String?, registerToken: String?) {
+            public init(action: String?, email: String?, registerToken: String?, token: String?) {
                 
                 self.email = email
                 
@@ -13625,7 +13625,7 @@
                 
             }
 
-            public init(requestId: String?, registerToken: String?, otp: String?) {
+            public init(otp: String?, registerToken: String?, requestId: String?) {
                 
                 self.requestId = requestId
                 
@@ -13694,7 +13694,7 @@
                 
             }
 
-            public init(mobile: String?, countryCode: String?, action: String?, token: String?, androidHash: String?, force: String?) {
+            public init(action: String?, androidHash: String?, countryCode: String?, force: String?, mobile: String?, token: String?) {
                 
                 self.mobile = mobile
                 
@@ -13765,7 +13765,7 @@
                 
             }
 
-            public init(oldPassword: String?, newPassword: String?) {
+            public init(newPassword: String?, oldPassword: String?) {
                 
                 self.oldPassword = oldPassword
                 
@@ -13832,7 +13832,7 @@
                 
             }
 
-            public init(firstName: String?, lastName: String?, gender: String?, email: String?, password: String?, phone: [String: Any]?, registerToken: String?) {
+            public init(email: String?, firstName: String?, gender: String?, lastName: String?, password: String?, phone: [String: Any]?, registerToken: String?) {
                 
                 self.firstName = firstName
                 
@@ -14252,7 +14252,7 @@
                 
             }
 
-            public init(registerToken: String?, userExists: Bool?, user: [String: Any]?) {
+            public init(registerToken: String?, user: [String: Any]?, userExists: Bool?) {
                 
                 self.registerToken = registerToken
                 
@@ -14325,7 +14325,7 @@
                 
             }
 
-            public init(resendTimer: Int?, resendToken: String?, success: Bool?, requestId: String?, message: String?, mobile: String?, countryCode: String?) {
+            public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
                 
                 self.resendTimer = resendTimer
                 
@@ -14543,7 +14543,7 @@
                 
             }
 
-            public init(resendTimer: Int?, resendToken: String?, success: Bool?, requestId: String?, message: String?, mobile: String?, countryCode: String?) {
+            public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
                 
                 self.resendTimer = resendTimer
                 
@@ -14751,7 +14751,7 @@
                 
             }
 
-            public init(resendTimer: Int?, resendToken: String?, success: Bool?, requestId: String?, message: String?, mobile: String?, countryCode: String?) {
+            public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
                 
                 self.resendTimer = resendTimer
                 
@@ -15193,7 +15193,7 @@
                 
             }
 
-            public init(display: String?, lookAndFeel: [String: Any]?, updatedAt: String?, active: Bool?, forgotPassword: Bool?, login: [String: Any]?, skipCaptcha: Bool?, name: String?, meta: [String: Any]?, id: String?, social: [String: Any]?, requiredFields: [String: Any]?, registerRequiredFields: [String: Any]?, skipLogin: Bool?, flashCard: [String: Any]?, subtext: String?, socialTokens: [String: Any]?, createdAt: String?, register: Bool?) {
+            public init(active: Bool?, createdAt: String?, display: String?, flashCard: [String: Any]?, forgotPassword: Bool?, login: [String: Any]?, lookAndFeel: [String: Any]?, meta: [String: Any]?, name: String?, register: Bool?, registerRequiredFields: [String: Any]?, requiredFields: [String: Any]?, skipCaptcha: Bool?, skipLogin: Bool?, social: [String: Any]?, socialTokens: [String: Any]?, subtext: String?, updatedAt: String?, id: String?) {
                 
                 self.display = display
                 
@@ -15394,7 +15394,7 @@
                 
             }
 
-            public init(firstName: String?, lastName: String?, phoneNumbers: [[String: Any]]?, emails: [[String: Any]]?, gender: String?, active: Bool?, profilePicUrl: String?, username: String?, accountType: String?, uid: String?, debug: [String: Any]?, hasOldPasswordHash: Bool?, id: String?, createdAt: String?, updatedAt: String?) {
+            public init(accountType: String?, active: Bool?, createdAt: String?, debug: [String: Any]?, emails: [[String: Any]]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, phoneNumbers: [[String: Any]]?, profilePicUrl: String?, uid: String?, updatedAt: String?, username: String?, id: String?) {
                 
                 self.firstName = firstName
                 
@@ -15545,7 +15545,7 @@
                 
             }
 
-            public init(application: String?, tnc: String?, policy: String?, faq: [[String: Any]]?, id: String?, updatedAt: String?, createdAt: String?, v: Double?) {
+            public init(application: String?, createdAt: String?, faq: [[String: Any]]?, policy: String?, tnc: String?, updatedAt: String?, id: String?, v: Double?) {
                 
                 self.application = application
                 
@@ -15640,7 +15640,7 @@
                 
             }
 
-            public init(app: String, robotsTxt: String?, sitemapEnabled: Bool?, customMetaTags: [[String: Any]]?, details: [String: Any]?) {
+            public init(app: String, customMetaTags: [[String: Any]]?, details: [String: Any]?, robotsTxt: String?, sitemapEnabled: Bool?) {
                 
                 self.app = app
                 
@@ -15709,7 +15709,7 @@
                 
             }
 
-            public init(announcements: [String: Any]?, refreshRate: Int?, refreshPages: [String]?) {
+            public init(announcements: [String: Any]?, refreshPages: [String]?, refreshRate: Int?) {
                 
                 self.announcements = announcements
                 
@@ -15798,7 +15798,7 @@
                 
             }
 
-            public init(id: String?, platform: [String]?, title: String?, announcement: String?, pages: [[String: Any]]?, editorMeta: [String: Any]?, author: [String: Any]?, createdAt: String?, app: String?, modifiedAt: String?, schedule: [String: Any]?) {
+            public init(announcement: String?, app: String?, author: [String: Any]?, createdAt: String?, editorMeta: [String: Any]?, modifiedAt: String?, pages: [[String: Any]]?, platform: [String]?, title: String?, id: String?, schedule: [String: Any]?) {
                 
                 self.id = id
                 
@@ -15899,7 +15899,7 @@
                 
             }
 
-            public init(schedule: [String: Any]?, published: Bool?) {
+            public init(published: Bool?, schedule: [String: Any]?) {
                 
                 self.schedule = schedule
                 
@@ -15962,7 +15962,7 @@
                 
             }
 
-            public init(id: String?, application: String?, keyValues: [[String: Any]]?, identifier: [String: Any]?, dateMeta: [String: Any]?, archived: Bool?) {
+            public init(application: String?, archived: Bool?, dateMeta: [String: Any]?, identifier: [String: Any]?, keyValues: [[String: Any]]?, id: String?) {
                 
                 self.id = id
                 
@@ -16033,7 +16033,7 @@
                 
             }
 
-            public init(keyValues: [[String: Any]]?, identifier: [String: Any]?) {
+            public init(identifier: [String: Any]?, keyValues: [[String: Any]]?) {
                 
                 self.keyValues = keyValues
                 
@@ -16117,7 +16117,7 @@
                 
             }
 
-            public init(message: String?, data: AdminAnnouncementSchema?) {
+            public init(data: AdminAnnouncementSchema?, message: String?) {
                 
                 self.message = message
                 
@@ -16180,7 +16180,7 @@
                 
             }
 
-            public init(slug: String?, application: String?, v: Int?, id: String?, question: String?, answer: String?) {
+            public init(answer: String?, application: String?, question: String?, slug: String?, id: String?, v: Int?) {
                 
                 self.slug = slug
                 
@@ -16579,7 +16579,7 @@
                 
             }
 
-            public init(name: String?, slug: String?, orientation: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, id: String?, position: String?, application: String?, platform: String?, navigation: NavigationRef?) {
+            public init(application: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, name: String?, navigation: NavigationRef?, orientation: String?, platform: String?, position: String?, slug: String?, id: String?) {
                 
                 self.name = name
                 
@@ -16702,7 +16702,7 @@
                 
             }
 
-            public init(acl: [[String: Any]]?, localeLanguage: [String: Any]?, image: String?, type: String?, action: [String: Any]?, active: Bool?, display: String?, sortOrder: Int?, subNavigation: [String: Any]?) {
+            public init(acl: [[String: Any]]?, action: [String: Any]?, active: Bool?, display: String?, image: String?, sortOrder: Int?, subNavigation: [String: Any]?, type: String?, localeLanguage: [String: Any]?) {
                 
                 self.acl = acl
                 
@@ -16811,7 +16811,7 @@
                 
             }
 
-            public init(slug: String?, action: [String: Any]?, platform: [[String: Any]]?, createdBy: [String: Any]?, dateMeta: [String: Any]?, id: String?, application: String?) {
+            public init(action: [String: Any]?, application: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, platform: [[String: Any]]?, slug: String?, id: String?) {
                 
                 self.slug = slug
                 
@@ -16916,7 +16916,7 @@
                 
             }
 
-            public init(id: String?, slug: String?, dateMeta: [String: Any]?, application: String?, name: String?, platform: String?, configuration: [String: Any]?, media: [[String: Any]]?, active: Bool?) {
+            public init(active: Bool?, application: String?, configuration: [String: Any]?, dateMeta: [String: Any]?, media: [[String: Any]]?, name: String?, platform: String?, slug: String?, id: String?) {
                 
                 self.id = id
                 
@@ -17161,7 +17161,7 @@
                 
             }
 
-            public init(id: String?, tags: [[String: Any]]?, application: String?, v: Int?) {
+            public init(application: String?, tags: [[String: Any]]?, id: String?, v: Int?) {
                 
                 self.id = id
                 
@@ -17273,7 +17273,7 @@
                 
             }
 
-            public init(id: String?, question: String?, answer: String?, slug: String?, application: String?, v: Int?) {
+            public init(answer: String?, application: String?, question: String?, slug: String?, id: String?, v: Int?) {
                 
                 self.id = id
                 
@@ -17360,7 +17360,7 @@
                 
             }
 
-            public init(id: String?, application: String?, keyValues: [[String: Any]]?, identifier: [String: Any]?, dateMeta: [String: Any]?, archived: Bool?) {
+            public init(application: String?, archived: Bool?, dateMeta: [String: Any]?, identifier: [String: Any]?, keyValues: [[String: Any]]?, id: String?) {
                 
                 self.id = id
                 
@@ -17525,7 +17525,7 @@
                 
             }
 
-            public init(created: Bool?, id: String?, configType: String?, application: String?, createdAt: String?, updatedAt: String?, contact: [String: Any]?) {
+            public init(application: String?, configType: String?, contact: [String: Any]?, created: Bool?, createdAt: String?, updatedAt: String?, id: String?) {
                 
                 self.created = created
                 
@@ -17608,7 +17608,7 @@
                 
             }
 
-            public init(response: String?, action: String?, channel: String?) {
+            public init(action: String?, channel: String?, response: String?) {
                 
                 self.response = response
                 
@@ -17665,7 +17665,7 @@
                 
             }
 
-            public init(appId: String?, userId: String?, channels: [String: Any]?) {
+            public init(appId: String?, channels: [String: Any]?, userId: String?) {
                 
                 self.appId = appId
                 
@@ -17722,7 +17722,7 @@
                 
             }
 
-            public init(appId: String?, userId: String?, channels: [String: Any]?) {
+            public init(appId: String?, channels: [String: Any]?, userId: String?) {
                 
                 self.appId = appId
                 
@@ -17787,7 +17787,7 @@
                 
             }
 
-            public init(action: String?, bundleIdentifier: String?, pushToken: String?, uniqueDeviceId: String?, type: String?) {
+            public init(action: String?, bundleIdentifier: String?, pushToken: String?, type: String?, uniqueDeviceId: String?) {
                 
                 self.action = action
                 
@@ -17888,7 +17888,7 @@
                 
             }
 
-            public init(id: String?, bundleIdentifier: String?, pushToken: String?, uniqueDeviceId: String?, type: String?, platform: String?, applicationId: String?, userId: String?, createdAt: String?, updatedAt: String?, expiredAt: String?) {
+            public init(applicationId: String?, bundleIdentifier: String?, createdAt: String?, expiredAt: String?, platform: String?, pushToken: String?, type: String?, uniqueDeviceId: String?, updatedAt: String?, userId: String?, id: String?) {
                 
                 self.id = id
                 
@@ -18093,7 +18093,7 @@
                 
             }
 
-            public init(ios: RedirectDevice?, android: RedirectDevice?, web: [String: Any]?, forceWeb: Bool?) {
+            public init(android: RedirectDevice?, forceWeb: Bool?, ios: RedirectDevice?, web: [String: Any]?) {
                 
                 self.ios = ios
                 
@@ -18176,7 +18176,7 @@
                 
             }
 
-            public init(title: String, url: String, hash: String?, active: String?, type: String?, expireAt: String?, enableTracking: Bool?, redirects: Redirects?) {
+            public init(active: String?, enableTracking: Bool?, expireAt: String?, hash: String?, redirects: Redirects?, title: String, type: String?, url: String) {
                 
                 self.title = title
                 
@@ -18311,7 +18311,7 @@
                 
             }
 
-            public init(title: String?, url: [String: Any]?, createdBy: String?, personalized: String?, appRedirect: String?, fallback: String?, active: Bool?, id: String?, enableTracking: Bool?, expireAt: Bool?, application: String?, userId: Bool?, createdAt: Bool?, updatedAt: Bool?, redirects: Redirects?) {
+            public init(active: Bool?, application: String?, appRedirect: String?, createdAt: Bool?, createdBy: String?, enableTracking: Bool?, expireAt: Bool?, fallback: String?, personalized: String?, redirects: Redirects?, title: String?, updatedAt: Bool?, url: [String: Any]?, userId: Bool?, id: String?) {
                 
                 self.title = title
                 
@@ -18587,7 +18587,7 @@
                 
             }
 
-            public init(fileName: String, filePath: String, contentType: String, method: String, namespace: String, operation: String, size: Int, upload: Upload, cdn: CDN) {
+            public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, upload: Upload) {
                 
                 self.fileName = fileName
                 
@@ -18684,7 +18684,7 @@
                 
             }
 
-            public init(fileName: String, contentType: String, size: Int, tags: [String]?) {
+            public init(contentType: String, fileName: String, size: Int, tags: [String]?) {
                 
                 self.fileName = fileName
                 
@@ -18791,7 +18791,7 @@
                 
             }
 
-            public init(id: String, fileName: String, filePath: String, contentType: String, method: String, namespace: String, operation: String, size: Int, upload: Upload, cdn: CDN, success: String, tags: [String]?, createdOn: String, modifiedOn: String) {
+            public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, method: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: String, tags: [String]?, upload: Upload, id: String) {
                 
                 self.id = id
                 
@@ -18944,7 +18944,7 @@
                 
             }
 
-            public init(merchantKey: String?, key: String, secret: String, api: String?, merchantId: String?, pin: String?, sdk: Bool?, userId: String?, verifyApi: String?, configType: String) {
+            public init(api: String?, configType: String, key: String, merchantId: String?, merchantKey: String?, pin: String?, sdk: Bool?, secret: String, userId: String?, verifyApi: String?) {
                 
                 self.merchantKey = merchantKey
                 
@@ -19071,7 +19071,7 @@
                 
             }
 
-            public init(simpl: AggregatorConfigDetail?, env: String, rupifi: AggregatorConfigDetail?, payumoney: AggregatorConfigDetail?, stripe: AggregatorConfigDetail?, razorpay: AggregatorConfigDetail?, mswipe: AggregatorConfigDetail?, ccavenue: AggregatorConfigDetail?, success: Bool, juspay: AggregatorConfigDetail?) {
+            public init(ccavenue: AggregatorConfigDetail?, env: String, juspay: AggregatorConfigDetail?, mswipe: AggregatorConfigDetail?, payumoney: AggregatorConfigDetail?, razorpay: AggregatorConfigDetail?, rupifi: AggregatorConfigDetail?, simpl: AggregatorConfigDetail?, stripe: AggregatorConfigDetail?, success: Bool) {
                 
                 self.simpl = simpl
                 
@@ -19260,7 +19260,7 @@
                 
             }
 
-            public init(refresh: Bool?, cardId: String) {
+            public init(cardId: String, refresh: Bool?) {
                 
                 self.refresh = refresh
                 
@@ -19311,7 +19311,7 @@
                 
             }
 
-            public init(success: Bool, data: [String: Any], message: String?) {
+            public init(data: [String: Any], message: String?, success: Bool) {
                 
                 self.success = success
                 
@@ -19368,7 +19368,7 @@
                 
             }
 
-            public init(customerId: String?, api: String?, aggregator: String) {
+            public init(aggregator: String, api: String?, customerId: String?) {
                 
                 self.customerId = customerId
                 
@@ -19425,7 +19425,7 @@
                 
             }
 
-            public init(success: Bool, cards: CardPaymentGateway, message: String) {
+            public init(cards: CardPaymentGateway, message: String, success: Bool) {
                 
                 self.success = success
                 
@@ -19534,7 +19534,7 @@
                 
             }
 
-            public init(cardNumber: String?, aggregatorName: String, cardName: String?, expYear: Int?, expMonth: Int?, nickname: String?, cardIsin: String?, expired: Bool?, cardReference: String?, cardToken: String?, cardId: String?, cardType: String?, cardIssuer: String?, cardBrand: String?, cardFingerprint: String?, cardBrandImage: String?) {
+            public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, expired: Bool?, expMonth: Int?, expYear: Int?, nickname: String?) {
                 
                 self.cardNumber = cardNumber
                 
@@ -19669,7 +19669,7 @@
                 
             }
 
-            public init(success: Bool, data: [Card]?, message: String) {
+            public init(data: [Card]?, message: String, success: Bool) {
                 
                 self.success = success
                 
@@ -19759,7 +19759,7 @@
                 
             }
 
-            public init(success: Bool, message: String?) {
+            public init(message: String?, success: Bool) {
                 
                 self.success = success
                 
@@ -19818,7 +19818,7 @@
                 
             }
 
-            public init(phoneNumber: String, payload: String, aggregator: String, merchantParams: [String: Any], transactionAmountInPaise: Int) {
+            public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
                 
                 self.phoneNumber = phoneNumber
                 
@@ -19887,7 +19887,7 @@
                 
             }
 
-            public init(success: Bool, data: [String: Any], message: String) {
+            public init(data: [String: Any], message: String, success: Bool) {
                 
                 self.success = success
                 
@@ -19952,7 +19952,7 @@
                 
             }
 
-            public init(orderId: String, aggregator: String, transactionToken: String?, amount: Int, verified: Bool?) {
+            public init(aggregator: String, amount: Int, orderId: String, transactionToken: String?, verified: Bool?) {
                 
                 self.orderId = orderId
                 
@@ -20037,7 +20037,7 @@
                 
             }
 
-            public init(orderId: String, status: String, deliveryAddressId: String?, aggregator: String, message: String, success: Bool, cartId: String?) {
+            public init(aggregator: String, cartId: String?, deliveryAddressId: String?, message: String, orderId: String, status: String, success: Bool) {
                 
                 self.orderId = orderId
                 
@@ -20142,7 +20142,7 @@
                 
             }
 
-            public init(merchantOrderId: String, razorpayPaymentId: String, customerId: String, virtualId: String?, aggregator: String, method: String, aggregatorOrderId: String, timeout: Int, pollingUrl: String) {
+            public init(aggregator: String, aggregatorOrderId: String, customerId: String, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String, timeout: Int, virtualId: String?) {
                 
                 self.merchantOrderId = merchantOrderId
                 
@@ -20275,7 +20275,7 @@
                 
             }
 
-            public init(orderId: String, merchantOrderId: String, status: String, currency: String, contact: String, customerId: String, aggregator: String, message: String?, method: String, amount: Int, vpa: String, success: Bool, email: String) {
+            public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, message: String?, method: String, orderId: String, status: String, success: Bool, vpa: String) {
                 
                 self.orderId = orderId
                 
@@ -20424,7 +20424,7 @@
                 
             }
 
-            public init(orderId: String, merchantOrderId: String, status: String, currency: String, contact: String, customerId: String, aggregator: String, method: String, amount: Int, vpa: String, email: String) {
+            public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String) {
                 
                 self.orderId = orderId
                 
@@ -20529,7 +20529,7 @@
                 
             }
 
-            public init(aggregatorName: String, status: String, retry: Bool) {
+            public init(aggregatorName: String, retry: Bool, status: String) {
                 
                 self.aggregatorName = aggregatorName
                 
@@ -20586,7 +20586,7 @@
                 
             }
 
-            public init(apiLink: String?, paymentFlow: String?, data: [String: Any]?) {
+            public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?) {
                 
                 self.apiLink = apiLink
                 
@@ -20639,7 +20639,7 @@
                 
             }
 
-            public init(small: String, large: String) {
+            public init(large: String, small: String) {
                 
                 self.small = small
                 
@@ -20766,7 +20766,7 @@
                 
             }
 
-            public init(cardName: String?, expYear: Int?, merchantCode: String?, cardType: String?, cardFingerprint: String?, cardIssuer: String?, cardNumber: String?, aggregatorName: String, cardIsin: String?, cardReference: String?, cardBrand: String?, expired: Bool?, name: String?, logoUrl: PaymentModeLogo?, cardToken: String?, expMonth: Int?, nickname: String?, displayName: String?, code: String?, cardBrandImage: String?, cardId: String?, displayPriority: Int?) {
+            public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, code: String?, displayName: String?, displayPriority: Int?, expired: Bool?, expMonth: Int?, expYear: Int?, logoUrl: PaymentModeLogo?, merchantCode: String?, name: String?, nickname: String?) {
                 
                 self.cardName = cardName
                 
@@ -20953,7 +20953,7 @@
                 
             }
 
-            public init(aggregatorName: String?, anonymousEnable: Bool?, list: [PaymentModeList]?, displayName: String, name: String, addCardEnabled: Bool?, displayPriority: Int) {
+            public init(addCardEnabled: Bool?, aggregatorName: String?, anonymousEnable: Bool?, displayName: String, displayPriority: Int, list: [PaymentModeList]?, name: String) {
                 
                 self.aggregatorName = aggregatorName
                 
@@ -21155,7 +21155,7 @@
                 
             }
 
-            public init(address: String, delightsUserName: String, transferMode: String, accountNo: String, title: String, accountHolder: String, branchName: Bool?, beneficiaryId: String, id: Int, bankName: String, isActive: Bool, mobile: Bool?, subtitle: String, createdOn: String, email: String, displayName: String, modifiedOn: String, ifscCode: String, comment: Bool?) {
+            public init(accountHolder: String, accountNo: String, address: String, bankName: String, beneficiaryId: String, branchName: Bool?, comment: Bool?, createdOn: String, delightsUserName: String, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, mobile: Bool?, modifiedOn: String, subtitle: String, title: String, transferMode: String) {
                 
                 self.address = address
                 
@@ -21345,7 +21345,7 @@
                 
             }
 
-            public init(code: String, success: Bool, description: String) {
+            public init(code: String, description: String, success: Bool) {
                 
                 self.code = code
                 
@@ -21402,7 +21402,7 @@
                 
             }
 
-            public init(bankName: String, success: Bool?, branchName: String) {
+            public init(bankName: String, branchName: String, success: Bool?) {
                 
                 self.bankName = bankName
                 
@@ -21459,7 +21459,7 @@
                 
             }
 
-            public init(code: String, success: Bool, description: String) {
+            public init(code: String, description: String, success: Bool) {
                 
                 self.code = code
                 
@@ -21516,7 +21516,7 @@
                 
             }
 
-            public init(hashKey: String, requestId: String, otp: String) {
+            public init(hashKey: String, otp: String, requestId: String) {
                 
                 self.hashKey = hashKey
                 
@@ -21573,7 +21573,7 @@
                 
             }
 
-            public init(hashKey: String, requestId: String, otp: String) {
+            public init(hashKey: String, otp: String, requestId: String) {
                 
                 self.hashKey = hashKey
                 
@@ -21626,7 +21626,7 @@
                 
             }
 
-            public init(success: String, description: String) {
+            public init(description: String, success: String) {
                 
                 self.success = success
                 
@@ -21701,7 +21701,7 @@
                 
             }
 
-            public init(email: String, address: String, accountNo: String, bankName: String, accountHolder: String, ifscCode: String, comment: String?, mobile: String, branchName: String) {
+            public init(accountHolder: String, accountNo: String, address: String, bankName: String, branchName: String, comment: String?, email: String, ifscCode: String, mobile: String) {
                 
                 self.email = email
                 
@@ -21802,7 +21802,7 @@
                 
             }
 
-            public init(orderId: String, transferMode: String, details: BankDetails, shipmentId: String, delights: Bool) {
+            public init(delights: Bool, details: BankDetails, orderId: String, shipmentId: String, transferMode: String) {
                 
                 self.orderId = orderId
                 
@@ -21871,7 +21871,7 @@
                 
             }
 
-            public init(success: Bool, data: [String: Any]?, message: String) {
+            public init(data: [String: Any]?, message: String, success: Bool) {
                 
                 self.success = success
                 
@@ -21924,7 +21924,7 @@
                 
             }
 
-            public init(mobile: Bool, countryCode: String) {
+            public init(countryCode: String, mobile: Bool) {
                 
                 self.mobile = mobile
                 
@@ -21975,7 +21975,7 @@
                 
             }
 
-            public init(isVerifiedFlag: String, success: Bool?, requestId: String) {
+            public init(isVerifiedFlag: String, requestId: String, success: Bool?) {
                 
                 self.isVerifiedFlag = isVerifiedFlag
                 
@@ -22028,7 +22028,7 @@
                 
             }
 
-            public init(orderId: String, beneficiaryId: String) {
+            public init(beneficiaryId: String, orderId: String) {
                 
                 self.orderId = orderId
                 
@@ -22286,7 +22286,7 @@
                 
             }
 
-            public init(shipments: [String: Any], forceTransition: Bool, task: Bool) {
+            public init(forceTransition: Bool, shipments: [String: Any], task: Bool) {
                 
                 self.shipments = shipments
                 
@@ -22856,7 +22856,7 @@
                 
             }
 
-            public init(schedule: String?, active: Bool?, applicationId: String?, bannerImage: Asset?, createdAt: String?, infoAction: Action?, name: String?, rule: [String: Any]?, share: ShareMessages?, subText: String?, text: String?, type: String?, updatedAt: String?, updatedBy: String?, url: String?) {
+            public init(active: Bool?, applicationId: String?, bannerImage: Asset?, createdAt: String?, infoAction: Action?, name: String?, rule: [String: Any]?, share: ShareMessages?, subText: String?, text: String?, type: String?, updatedAt: String?, updatedBy: String?, url: String?, schedule: String?) {
                 
                 self.schedule = schedule
                 
@@ -23230,7 +23230,7 @@
                 
             }
 
-            public init(id: String?, applicationId: String?, claimed: Bool?, createdAt: String?, expiresOn: String?, meta: String?, points: Double?, remainingPoints: Double?, text1: String?, text2: String?, text3: String?, txnName: String?, updatedAt: String?, userId: String?) {
+            public init(applicationId: String?, claimed: Bool?, createdAt: String?, expiresOn: String?, meta: String?, points: Double?, remainingPoints: Double?, text1: String?, text2: String?, text3: String?, txnName: String?, updatedAt: String?, userId: String?, id: String?) {
                 
                 self.id = id
                 
@@ -26019,7 +26019,7 @@
                 
             }
 
-            public init(pickupStores: [Int]?, availableModes: [String]?) {
+            public init(availableModes: [String]?, pickupStores: [Int]?) {
                 
                 self.pickupStores = pickupStores
                 
@@ -26117,7 +26117,7 @@
                 
             }
 
-            public init(stormbreakerUuid: String, error: [String: Any], success: Bool, data: [[String: Any]], requestUuid: String) {
+            public init(data: [[String: Any]], error: [String: Any], requestUuid: String, stormbreakerUuid: String, success: Bool) {
                 
                 self.stormbreakerUuid = stormbreakerUuid
                 
@@ -26198,7 +26198,7 @@
                 
             }
 
-            public init(locationDetails: [[String: Any]], source: String, toPincode: String, action: String, identifier: String, journey: String) {
+            public init(action: String, identifier: String, journey: String, locationDetails: [[String: Any]], source: String, toPincode: String) {
                 
                 self.locationDetails = locationDetails
                 
@@ -26305,7 +26305,7 @@
                 
             }
 
-            public init(locationDetails: [[String: Any]], requestUuid: String, error: [String: Any], toCity: String, source: String, toPincode: String, action: String, stormbreakerUuid: String, success: Bool, identifier: String, journey: String) {
+            public init(action: String, error: [String: Any], identifier: String, journey: String, locationDetails: [[String: Any]], requestUuid: String, source: String, stormbreakerUuid: String, success: Bool, toCity: String, toPincode: String) {
                 
                 self.locationDetails = locationDetails
                 

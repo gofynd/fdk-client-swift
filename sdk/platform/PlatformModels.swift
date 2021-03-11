@@ -289,7 +289,7 @@ public extension PlatformClient {
             
         }
 
-        public init(slug: String, title: String, inputs: [[String: Any]], description: String?, headerImage: String?, shouldNotify: Bool?, successMessage: String?, pollForAssignment: PollForAssignment?) {
+        public init(description: String?, headerImage: String?, inputs: [[String: Any]], pollForAssignment: PollForAssignment?, shouldNotify: Bool?, slug: String, successMessage: String?, title: String) {
             
             self.slug = slug
             
@@ -397,7 +397,7 @@ public extension PlatformClient {
             
         }
 
-        public init(title: String, inputs: [[String: Any]], description: String?, headerImage: String?, shouldNotify: Bool?, loginRequired: Bool?, successMessage: String?, pollForAssignment: PollForAssignment?) {
+        public init(description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool?, pollForAssignment: PollForAssignment?, shouldNotify: Bool?, successMessage: String?, title: String) {
             
             self.title = title
             
@@ -501,7 +501,7 @@ public extension PlatformClient {
             
         }
 
-        public init(content: TicketContent?, category: String?, source: String?, status: String?, priority: String?, assignedTo: AgentChangePayload?, tags: [String]?) {
+        public init(assignedTo: AgentChangePayload?, category: String?, content: TicketContent?, priority: String?, source: String?, status: String?, tags: [String]?) {
             
             self.content = content
             
@@ -693,7 +693,7 @@ public extension PlatformClient {
             
         }
 
-        public init(uniqueName: String, notify: [[String: Any]]?) {
+        public init(notify: [[String: Any]]?, uniqueName: String) {
             
             self.uniqueName = uniqueName
             
@@ -749,7 +749,7 @@ public extension PlatformClient {
             
         }
 
-        public init(priorities: Priority, categories: Category?, statuses: Status, assignees: [[String: Any]]) {
+        public init(assignees: [[String: Any]], categories: Category?, priorities: Priority, statuses: Status) {
             
             self.priorities = priorities
             
@@ -809,7 +809,7 @@ public extension PlatformClient {
             
         }
 
-        public init(value: [String: Any]?, type: String?) {
+        public init(type: String?, value: [String: Any]?) {
             
             self.value = value
             
@@ -1099,7 +1099,7 @@ public extension PlatformClient {
             
         }
 
-        public init(display: String?, value: String, type: String) {
+        public init(display: String?, type: String, value: String) {
             
             self.display = display
             
@@ -1157,7 +1157,7 @@ public extension PlatformClient {
             
         }
 
-        public init(title: String, description: String?, attachments: [Asset]?) {
+        public init(attachments: [Asset]?, description: String?, title: String) {
             
             self.title = title
             
@@ -1277,7 +1277,7 @@ public extension PlatformClient {
             
         }
 
-        public init(status: String, priority: String, category: String, content: TicketContent) {
+        public init(category: String, content: TicketContent, priority: String, status: String) {
             
             self.status = status
             
@@ -1341,7 +1341,7 @@ public extension PlatformClient {
             
         }
 
-        public init(key: String, display: String, color: String) {
+        public init(color: String, display: String, key: String) {
             
             self.key = key
             
@@ -1399,7 +1399,7 @@ public extension PlatformClient {
             
         }
 
-        public init(key: String, display: String, color: String) {
+        public init(color: String, display: String, key: String) {
             
             self.key = key
             
@@ -1457,7 +1457,7 @@ public extension PlatformClient {
             
         }
 
-        public init(key: String, display: String, form: CustomForm?) {
+        public init(display: String, form: CustomForm?, key: String) {
             
             self.key = key
             
@@ -1515,7 +1515,7 @@ public extension PlatformClient {
             
         }
 
-        public init(title: String, titleColor: String, backgroundColor: String) {
+        public init(backgroundColor: String, title: String, titleColor: String) {
             
             self.title = title
             
@@ -1577,7 +1577,7 @@ public extension PlatformClient {
             
         }
 
-        public init(duration: Double, message: String, successMessage: String, failureMessage: String) {
+        public init(duration: Double, failureMessage: String, message: String, successMessage: String) {
             
             self.duration = duration
             
@@ -1693,7 +1693,7 @@ public extension PlatformClient {
             
         }
 
-        public init(applicationId: String, slug: String, headerImage: String?, title: String, description: String?, loginRequired: Bool, shouldNotify: Bool, successMessage: String?, submitButton: SubmitButton?, inputs: [[String: Any]], createdOn: CreatedOn?, createdBy: [String: Any]?, pollForAssignment: PollForAssignment?, id: String, updatedAt: String?, createdAt: String?) {
+        public init(applicationId: String, createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment?, shouldNotify: Bool, slug: String, submitButton: SubmitButton?, successMessage: String?, title: String, updatedAt: String?, id: String) {
             
             self.applicationId = applicationId
             
@@ -1849,7 +1849,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: String, value: [String: Any], ticketId: String, createdOn: CreatedOn?, createdBy: [String: Any]?, id: String, updatedAt: String?, createdAt: String?) {
+        public init(createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, ticketId: String, type: String, updatedAt: String?, value: [String: Any], id: String) {
             
             self.type = type
             
@@ -1989,7 +1989,7 @@ public extension PlatformClient {
             
         }
 
-        public init(context: TicketContext?, createdOn: CreatedOn?, responseId: String?, content: TicketContent?, ticketId: String, category: Category, source: String, status: Status, priority: Priority, createdBy: [String: Any]?, assignedTo: [String: Any]?, tags: [String]?, customJson: [String: Any]?, id: String?, updatedAt: String?, createdAt: String?) {
+        public init(assignedTo: [String: Any]?, category: Category, content: TicketContent?, context: TicketContext?, createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, priority: Priority, responseId: String?, source: String, status: Status, tags: [String]?, ticketId: String, updatedAt: String?, customJson: [String: Any]?, id: String?) {
             
             self.context = context
             
@@ -2135,7 +2135,7 @@ public extension PlatformClient {
             
         }
 
-        public init(size: Int?, itemTotal: Int?, hasNext: Bool?, type: String?, current: Int?) {
+        public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
             
             self.size = size
             
@@ -2291,7 +2291,7 @@ public extension PlatformClient {
             
         }
 
-        public init(parentTheme: String?, appliedTheme: String?, upgrade: Bool?) {
+        public init(appliedTheme: String?, parentTheme: String?, upgrade: Bool?) {
             
             self.parentTheme = parentTheme
             
@@ -2489,7 +2489,7 @@ public extension PlatformClient {
             
         }
 
-        public init(application: String?, applied: Bool?, customized: Bool?, published: Bool?, archived: Bool?, createdAt: String?, updatedAt: String?, version: String?, parentThemeVersion: String?, parentTheme: String?, information: [String: Any]?, tags: [String]?, src: [String: Any]?, assets: [String: Any]?, availablePages: [[String: Any]]?, pages: [String: Any]?, availableSections: [availableSectionSchema]?, sections: [sectionSchema]?, constants: [String: Any]?, styles: [String: Any]?, config: [String: Any]?, settings: [String: Any]?, font: [String: Any]?, id: String?, v: Int?, colors: [String: Any]?) {
+        public init(application: String?, applied: Bool?, archived: Bool?, assets: [String: Any]?, availablePages: [[String: Any]]?, availableSections: [availableSectionSchema]?, colors: [String: Any]?, config: [String: Any]?, constants: [String: Any]?, createdAt: String?, customized: Bool?, font: [String: Any]?, information: [String: Any]?, pages: [String: Any]?, parentTheme: String?, parentThemeVersion: String?, published: Bool?, sections: [sectionSchema]?, settings: [String: Any]?, src: [String: Any]?, styles: [String: Any]?, tags: [String]?, updatedAt: String?, version: String?, id: String?, v: Int?) {
             
             self.application = application
             
@@ -2693,7 +2693,7 @@ public extension PlatformClient {
             
         }
 
-        public init(text: String?, path: String?, type: String?, value: String?, sections: [[String: Any]]?) {
+        public init(path: String?, sections: [[String: Any]]?, text: String?, type: String?, value: String?) {
             
             self.text = text
             
@@ -2767,7 +2767,7 @@ public extension PlatformClient {
             
         }
 
-        public init(blocks: [[String: Any]]?, name: String?, label: String?, props: [[String: Any]]?) {
+        public init(blocks: [[String: Any]]?, label: String?, name: String?, props: [[String: Any]]?) {
             
             self.blocks = blocks
             
@@ -2927,7 +2927,7 @@ public extension PlatformClient {
             
         }
 
-        public init(verified: Bool?, active: Bool?, countryCode: String?, phone: String?, primary: Bool?) {
+        public init(active: Bool?, countryCode: String?, phone: String?, primary: Bool?, verified: Bool?) {
             
             self.verified = verified
             
@@ -3073,7 +3073,7 @@ public extension PlatformClient {
             
         }
 
-        public init(firstName: String?, lastName: String?, mobile: String?, email: String?, gender: String?, dob: String?, profilePicUrl: String?, androidHash: String?, sender: String?, registerToken: String?) {
+        public init(androidHash: String?, dob: String?, email: String?, firstName: String?, gender: String?, lastName: String?, mobile: String?, profilePicUrl: String?, registerToken: String?, sender: String?) {
             
             self.firstName = firstName
             
@@ -3177,7 +3177,7 @@ public extension PlatformClient {
             
         }
 
-        public init(email: String?, action: String?, token: String?, registerToken: String?) {
+        public init(action: String?, email: String?, registerToken: String?, token: String?) {
             
             self.email = email
             
@@ -3241,7 +3241,7 @@ public extension PlatformClient {
             
         }
 
-        public init(requestId: String?, registerToken: String?, otp: String?) {
+        public init(otp: String?, registerToken: String?, requestId: String?) {
             
             self.requestId = requestId
             
@@ -3311,7 +3311,7 @@ public extension PlatformClient {
             
         }
 
-        public init(mobile: String?, countryCode: String?, action: String?, token: String?, androidHash: String?, force: String?) {
+        public init(action: String?, androidHash: String?, countryCode: String?, force: String?, mobile: String?, token: String?) {
             
             self.mobile = mobile
             
@@ -3383,7 +3383,7 @@ public extension PlatformClient {
             
         }
 
-        public init(oldPassword: String?, newPassword: String?) {
+        public init(newPassword: String?, oldPassword: String?) {
             
             self.oldPassword = oldPassword
             
@@ -3451,7 +3451,7 @@ public extension PlatformClient {
             
         }
 
-        public init(firstName: String?, lastName: String?, gender: String?, email: String?, password: String?, phone: [String: Any]?, registerToken: String?) {
+        public init(email: String?, firstName: String?, gender: String?, lastName: String?, password: String?, phone: [String: Any]?, registerToken: String?) {
             
             self.firstName = firstName
             
@@ -3879,7 +3879,7 @@ public extension PlatformClient {
             
         }
 
-        public init(registerToken: String?, userExists: Bool?, user: [String: Any]?) {
+        public init(registerToken: String?, user: [String: Any]?, userExists: Bool?) {
             
             self.registerToken = registerToken
             
@@ -3953,7 +3953,7 @@ public extension PlatformClient {
             
         }
 
-        public init(resendTimer: Int?, resendToken: String?, success: Bool?, requestId: String?, message: String?, mobile: String?, countryCode: String?) {
+        public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
             
             self.resendTimer = resendTimer
             
@@ -4175,7 +4175,7 @@ public extension PlatformClient {
             
         }
 
-        public init(resendTimer: Int?, resendToken: String?, success: Bool?, requestId: String?, message: String?, mobile: String?, countryCode: String?) {
+        public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
             
             self.resendTimer = resendTimer
             
@@ -4387,7 +4387,7 @@ public extension PlatformClient {
             
         }
 
-        public init(resendTimer: Int?, resendToken: String?, success: Bool?, requestId: String?, message: String?, mobile: String?, countryCode: String?) {
+        public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
             
             self.resendTimer = resendTimer
             
@@ -4837,7 +4837,7 @@ public extension PlatformClient {
             
         }
 
-        public init(display: String?, lookAndFeel: [String: Any]?, updatedAt: String?, active: Bool?, forgotPassword: Bool?, login: [String: Any]?, skipCaptcha: Bool?, name: String?, meta: [String: Any]?, id: String?, social: [String: Any]?, requiredFields: [String: Any]?, registerRequiredFields: [String: Any]?, skipLogin: Bool?, flashCard: [String: Any]?, subtext: String?, socialTokens: [String: Any]?, createdAt: String?, register: Bool?) {
+        public init(active: Bool?, createdAt: String?, display: String?, flashCard: [String: Any]?, forgotPassword: Bool?, login: [String: Any]?, lookAndFeel: [String: Any]?, meta: [String: Any]?, name: String?, register: Bool?, registerRequiredFields: [String: Any]?, requiredFields: [String: Any]?, skipCaptcha: Bool?, skipLogin: Bool?, social: [String: Any]?, socialTokens: [String: Any]?, subtext: String?, updatedAt: String?, id: String?) {
             
             self.display = display
             
@@ -5039,7 +5039,7 @@ public extension PlatformClient {
             
         }
 
-        public init(firstName: String?, lastName: String?, phoneNumbers: [[String: Any]]?, emails: [[String: Any]]?, gender: String?, active: Bool?, profilePicUrl: String?, username: String?, accountType: String?, uid: String?, debug: [String: Any]?, hasOldPasswordHash: Bool?, id: String?, createdAt: String?, updatedAt: String?) {
+        public init(accountType: String?, active: Bool?, createdAt: String?, debug: [String: Any]?, emails: [[String: Any]]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, phoneNumbers: [[String: Any]]?, profilePicUrl: String?, uid: String?, updatedAt: String?, username: String?, id: String?) {
             
             self.firstName = firstName
             
@@ -5191,7 +5191,7 @@ public extension PlatformClient {
             
         }
 
-        public init(application: String?, tnc: String?, policy: String?, faq: [[String: Any]]?, id: String?, updatedAt: String?, createdAt: String?, v: Double?) {
+        public init(application: String?, createdAt: String?, faq: [[String: Any]]?, policy: String?, tnc: String?, updatedAt: String?, id: String?, v: Double?) {
             
             self.application = application
             
@@ -5287,7 +5287,7 @@ public extension PlatformClient {
             
         }
 
-        public init(app: String, robotsTxt: String?, sitemapEnabled: Bool?, customMetaTags: [[String: Any]]?, details: [String: Any]?) {
+        public init(app: String, customMetaTags: [[String: Any]]?, details: [String: Any]?, robotsTxt: String?, sitemapEnabled: Bool?) {
             
             self.app = app
             
@@ -5357,7 +5357,7 @@ public extension PlatformClient {
             
         }
 
-        public init(announcements: [String: Any]?, refreshRate: Int?, refreshPages: [String]?) {
+        public init(announcements: [String: Any]?, refreshPages: [String]?, refreshRate: Int?) {
             
             self.announcements = announcements
             
@@ -5447,7 +5447,7 @@ public extension PlatformClient {
             
         }
 
-        public init(id: String?, platform: [String]?, title: String?, announcement: String?, pages: [[String: Any]]?, editorMeta: [String: Any]?, author: [String: Any]?, createdAt: String?, app: String?, modifiedAt: String?, schedule: [String: Any]?) {
+        public init(announcement: String?, app: String?, author: [String: Any]?, createdAt: String?, editorMeta: [String: Any]?, modifiedAt: String?, pages: [[String: Any]]?, platform: [String]?, title: String?, id: String?, schedule: [String: Any]?) {
             
             self.id = id
             
@@ -5549,7 +5549,7 @@ public extension PlatformClient {
             
         }
 
-        public init(schedule: [String: Any]?, published: Bool?) {
+        public init(published: Bool?, schedule: [String: Any]?) {
             
             self.schedule = schedule
             
@@ -5613,7 +5613,7 @@ public extension PlatformClient {
             
         }
 
-        public init(id: String?, application: String?, keyValues: [[String: Any]]?, identifier: [String: Any]?, dateMeta: [String: Any]?, archived: Bool?) {
+        public init(application: String?, archived: Bool?, dateMeta: [String: Any]?, identifier: [String: Any]?, keyValues: [[String: Any]]?, id: String?) {
             
             self.id = id
             
@@ -5685,7 +5685,7 @@ public extension PlatformClient {
             
         }
 
-        public init(keyValues: [[String: Any]]?, identifier: [String: Any]?) {
+        public init(identifier: [String: Any]?, keyValues: [[String: Any]]?) {
             
             self.keyValues = keyValues
             
@@ -5771,7 +5771,7 @@ public extension PlatformClient {
             
         }
 
-        public init(message: String?, data: AdminAnnouncementSchema?) {
+        public init(data: AdminAnnouncementSchema?, message: String?) {
             
             self.message = message
             
@@ -5835,7 +5835,7 @@ public extension PlatformClient {
             
         }
 
-        public init(slug: String?, application: String?, v: Int?, id: String?, question: String?, answer: String?) {
+        public init(answer: String?, application: String?, question: String?, slug: String?, id: String?, v: Int?) {
             
             self.slug = slug
             
@@ -6243,7 +6243,7 @@ public extension PlatformClient {
             
         }
 
-        public init(name: String?, slug: String?, orientation: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, id: String?, position: String?, application: String?, platform: String?, navigation: NavigationRef?) {
+        public init(application: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, name: String?, navigation: NavigationRef?, orientation: String?, platform: String?, position: String?, slug: String?, id: String?) {
             
             self.name = name
             
@@ -6367,7 +6367,7 @@ public extension PlatformClient {
             
         }
 
-        public init(acl: [[String: Any]]?, localeLanguage: [String: Any]?, image: String?, type: String?, action: [String: Any]?, active: Bool?, display: String?, sortOrder: Int?, subNavigation: [String: Any]?) {
+        public init(acl: [[String: Any]]?, action: [String: Any]?, active: Bool?, display: String?, image: String?, sortOrder: Int?, subNavigation: [String: Any]?, type: String?, localeLanguage: [String: Any]?) {
             
             self.acl = acl
             
@@ -6477,7 +6477,7 @@ public extension PlatformClient {
             
         }
 
-        public init(slug: String?, action: [String: Any]?, platform: [[String: Any]]?, createdBy: [String: Any]?, dateMeta: [String: Any]?, id: String?, application: String?) {
+        public init(action: [String: Any]?, application: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, platform: [[String: Any]]?, slug: String?, id: String?) {
             
             self.slug = slug
             
@@ -6583,7 +6583,7 @@ public extension PlatformClient {
             
         }
 
-        public init(id: String?, slug: String?, dateMeta: [String: Any]?, application: String?, name: String?, platform: String?, configuration: [String: Any]?, media: [[String: Any]]?, active: Bool?) {
+        public init(active: Bool?, application: String?, configuration: [String: Any]?, dateMeta: [String: Any]?, media: [[String: Any]]?, name: String?, platform: String?, slug: String?, id: String?) {
             
             self.id = id
             
@@ -6833,7 +6833,7 @@ public extension PlatformClient {
             
         }
 
-        public init(id: String?, tags: [[String: Any]]?, application: String?, v: Int?) {
+        public init(application: String?, tags: [[String: Any]]?, id: String?, v: Int?) {
             
             self.id = id
             
@@ -6947,7 +6947,7 @@ public extension PlatformClient {
             
         }
 
-        public init(id: String?, question: String?, answer: String?, slug: String?, application: String?, v: Int?) {
+        public init(answer: String?, application: String?, question: String?, slug: String?, id: String?, v: Int?) {
             
             self.id = id
             
@@ -7035,7 +7035,7 @@ public extension PlatformClient {
             
         }
 
-        public init(id: String?, application: String?, keyValues: [[String: Any]]?, identifier: [String: Any]?, dateMeta: [String: Any]?, archived: Bool?) {
+        public init(application: String?, archived: Bool?, dateMeta: [String: Any]?, identifier: [String: Any]?, keyValues: [[String: Any]]?, id: String?) {
             
             self.id = id
             
@@ -7203,7 +7203,7 @@ public extension PlatformClient {
             
         }
 
-        public init(created: Bool?, id: String?, configType: String?, application: String?, createdAt: String?, updatedAt: String?, contact: [String: Any]?) {
+        public init(application: String?, configType: String?, contact: [String: Any]?, created: Bool?, createdAt: String?, updatedAt: String?, id: String?) {
             
             self.created = created
             
@@ -7319,7 +7319,7 @@ public extension PlatformClient {
             
         }
 
-        public init(description: String?, tags: [String]?, headers: [String]?, isActive: Bool?, name: String?, fileUrl: String?, type: String?, recordsCount: Int?, application: String?) {
+        public init(application: String?, description: String?, fileUrl: String?, headers: [String]?, isActive: Bool?, name: String?, recordsCount: Int?, tags: [String]?, type: String?) {
             
             self.description = description
             
@@ -7457,7 +7457,7 @@ public extension PlatformClient {
             
         }
 
-        public init(recipientHeaders: [String: Any]?, email: [String: Any]?, description: String?, tags: [[String: Any]]?, isActive: Bool?, id: String?, datasource: String?, type: String?, name: String?, application: String?, createdAt: String?, updatedAt: String?, slug: String?, v: Int?) {
+        public init(application: String?, createdAt: String?, datasource: String?, description: String?, email: [String: Any]?, isActive: Bool?, name: String?, recipientHeaders: [String: Any]?, slug: String?, tags: [[String: Any]]?, type: String?, updatedAt: String?, id: String?, v: Int?) {
             
             self.recipientHeaders = recipientHeaders
             
@@ -7593,7 +7593,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [Campaign]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [Campaign]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -7755,7 +7755,7 @@ public extension PlatformClient {
             
         }
 
-        public init(url: String?, header: Bool?, count: Int?) {
+        public init(count: Int?, header: Bool?, url: String?) {
             
             self.url = url
             
@@ -7845,7 +7845,7 @@ public extension PlatformClient {
             
         }
 
-        public init(description: String?, tags: [String]?, headers: [String]?, isActive: Bool?, name: String?, fileUrl: String?, type: String?, recordsCount: Int?, application: String?) {
+        public init(application: String?, description: String?, fileUrl: String?, headers: [String]?, isActive: Bool?, name: String?, recordsCount: Int?, tags: [String]?, type: String?) {
             
             self.description = description
             
@@ -7983,7 +7983,7 @@ public extension PlatformClient {
             
         }
 
-        public init(description: String?, tags: [String]?, headers: [String]?, isActive: Bool?, id: String?, name: String?, fileUrl: String?, type: String?, recordsCount: Int?, application: String?, createdAt: String?, updatedAt: String?, slug: String?, v: Int?) {
+        public init(application: String?, createdAt: String?, description: String?, fileUrl: String?, headers: [String]?, isActive: Bool?, name: String?, recordsCount: Int?, slug: String?, tags: [String]?, type: String?, updatedAt: String?, id: String?, v: Int?) {
             
             self.description = description
             
@@ -8119,7 +8119,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [Audience]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [Audience]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -8207,7 +8207,7 @@ public extension PlatformClient {
             
         }
 
-        public init(name: String?, description: String?, apiKey: String?, type: String?, provider: String?, from: [[String: Any]]?) {
+        public init(apiKey: String?, description: String?, from: [[String: Any]]?, name: String?, provider: String?, type: String?) {
             
             self.name = name
             
@@ -8319,7 +8319,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: String?, provider: String?, from: [[String: Any]]?, id: String?, name: String?, description: String?, apiKey: String?, application: String?, createdAt: String?, updatedAt: String?, slug: String?, v: Int?) {
+        public init(apiKey: String?, application: String?, createdAt: String?, description: String?, from: [[String: Any]]?, name: String?, provider: String?, slug: String?, type: String?, updatedAt: String?, id: String?, v: Int?) {
             
             self.type = type
             
@@ -8443,7 +8443,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [EmailProvider]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [EmailProvider]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -8515,7 +8515,7 @@ public extension PlatformClient {
             
         }
 
-        public init(success: Bool?, message: String?) {
+        public init(message: String?, success: Bool?) {
             
             self.success = success
             
@@ -8563,7 +8563,7 @@ public extension PlatformClient {
             
         }
 
-        public init(success: Bool?, message: String?) {
+        public init(message: String?, success: Bool?) {
             
             self.success = success
             
@@ -8659,7 +8659,7 @@ public extension PlatformClient {
             
         }
 
-        public init(name: String?, description: String?, keys: [String: Any]?, from: String?, staticTo: [String]?, staticCc: [String]?, staticBcc: [String]?, replyTo: String?, headers: [[String: Any]]?, subject: [String: Any]?, html: [String: Any]?, text: [String: Any]?, attachments: [[String: Any]]?, priority: String?) {
+        public init(attachments: [[String: Any]]?, description: String?, from: String?, headers: [[String: Any]]?, html: [String: Any]?, keys: [String: Any]?, name: String?, priority: String?, replyTo: String?, staticBcc: [String]?, staticCc: [String]?, staticTo: [String]?, subject: [String: Any]?, text: [String: Any]?) {
             
             self.name = name
             
@@ -8863,7 +8863,7 @@ public extension PlatformClient {
             
         }
 
-        public init(isSystem: Bool?, isInternal: Bool?, description: String?, staticTo: [String]?, staticCc: [String]?, staticBcc: [String]?, tags: [[String: Any]]?, priority: String?, published: Bool?, id: String?, name: String?, keys: [String: Any]?, from: String?, replyTo: String?, headers: [[String: Any]]?, subject: [String: Any]?, html: [String: Any]?, text: [String: Any]?, attachments: [[String: Any]]?, createdAt: String?, updatedAt: String?, slug: String?, v: Int?) {
+        public init(attachments: [[String: Any]]?, createdAt: String?, description: String?, from: String?, headers: [[String: Any]]?, html: [String: Any]?, isInternal: Bool?, isSystem: Bool?, keys: [String: Any]?, name: String?, priority: String?, published: Bool?, replyTo: String?, slug: String?, staticBcc: [String]?, staticCc: [String]?, staticTo: [String]?, subject: [String: Any]?, tags: [[String: Any]]?, text: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
             
             self.isSystem = isSystem
             
@@ -9117,7 +9117,7 @@ public extension PlatformClient {
             
         }
 
-        public init(isSystem: Bool?, isInternal: Bool?, description: String?, staticTo: [[String: Any]]?, staticCc: [[String: Any]]?, staticBcc: [[String: Any]]?, tags: [[String: Any]]?, priority: String?, published: Bool?, id: String?, slug: String?, name: String?, from: String?, fromName: String?, subject: [String: Any]?, html: [String: Any]?, text: [String: Any]?, headers: [[String: Any]]?, attachments: [[String: Any]]?, createdAt: String?, updatedAt: String?, v: Int?) {
+        public init(attachments: [[String: Any]]?, createdAt: String?, description: String?, from: String?, fromName: String?, headers: [[String: Any]]?, html: [String: Any]?, isInternal: Bool?, isSystem: Bool?, name: String?, priority: String?, published: Bool?, slug: String?, staticBcc: [[String: Any]]?, staticCc: [[String: Any]]?, staticTo: [[String: Any]]?, subject: [String: Any]?, tags: [[String: Any]]?, text: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
             
             self.isSystem = isSystem
             
@@ -9365,7 +9365,7 @@ public extension PlatformClient {
             
         }
 
-        public init(isSystem: Bool?, isInternal: Bool?, description: String?, staticTo: [[String: Any]]?, staticCc: [[String: Any]]?, staticBcc: [[String: Any]]?, tags: [[String: Any]]?, priority: String?, published: Bool?, id: String?, slug: String?, name: String?, from: String?, fromName: String?, subject: [String: Any]?, html: [String: Any]?, text: [String: Any]?, headers: [[String: Any]]?, attachments: [[String: Any]]?, createdAt: String?, updatedAt: String?, v: Int?) {
+        public init(attachments: [[String: Any]]?, createdAt: String?, description: String?, from: String?, fromName: String?, headers: [[String: Any]]?, html: [String: Any]?, isInternal: Bool?, isSystem: Bool?, name: String?, priority: String?, published: Bool?, slug: String?, staticBcc: [[String: Any]]?, staticCc: [[String: Any]]?, staticTo: [[String: Any]]?, subject: [String: Any]?, tags: [[String: Any]]?, text: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
             
             self.isSystem = isSystem
             
@@ -9549,7 +9549,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [EmailTemplate]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [EmailTemplate]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -9637,7 +9637,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [SystemEmailTemplate]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [SystemEmailTemplate]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -9729,7 +9729,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: String?, current: Int?, size: Int?, itemTotal: Int?, hasNext: Bool?) {
+        public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
             
             self.type = type
             
@@ -9863,7 +9863,7 @@ public extension PlatformClient {
             
         }
 
-        public init(email: [String: Any]?, pushnotification: [String: Any]?, meta: [String: Any]?, id: String?, application: String?, service: String?, step: String?, status: String?, data: [String: Any]?, expireAt: String?, createdAt: String?) {
+        public init(application: String?, createdAt: String?, data: [String: Any]?, email: [String: Any]?, expireAt: String?, meta: [String: Any]?, pushnotification: [String: Any]?, service: String?, status: String?, step: String?, id: String?) {
             
             self.email = email
             
@@ -10023,7 +10023,7 @@ public extension PlatformClient {
             
         }
 
-        public init(name: String?, description: String?, sender: String?, username: String?, authkey: String?, type: String?, provider: String?) {
+        public init(authkey: String?, description: String?, name: String?, provider: String?, sender: String?, type: String?, username: String?) {
             
             self.name = name
             
@@ -10149,7 +10149,7 @@ public extension PlatformClient {
             
         }
 
-        public init(rpt: Int?, type: String?, provider: String?, id: String?, name: String?, description: String?, sender: String?, username: String?, authkey: String?, application: String?, createdAt: String?, updatedAt: String?, slug: String?, v: Int?) {
+        public init(application: String?, authkey: String?, createdAt: String?, description: String?, name: String?, provider: String?, rpt: Int?, sender: String?, slug: String?, type: String?, updatedAt: String?, username: String?, id: String?, v: Int?) {
             
             self.rpt = rpt
             
@@ -10285,7 +10285,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [SmsProvider]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [SmsProvider]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -10357,7 +10357,7 @@ public extension PlatformClient {
             
         }
 
-        public init(success: Bool?, message: String?) {
+        public init(message: String?, success: Bool?) {
             
             self.success = success
             
@@ -10405,7 +10405,7 @@ public extension PlatformClient {
             
         }
 
-        public init(success: Bool?, message: String?) {
+        public init(message: String?, success: Bool?) {
             
             self.success = success
             
@@ -10469,7 +10469,7 @@ public extension PlatformClient {
             
         }
 
-        public init(name: String?, description: String?, message: [String: Any]?, templateVariables: [String: Any]?, attachments: [[String: Any]]?, priority: String?) {
+        public init(attachments: [[String: Any]]?, description: String?, message: [String: Any]?, name: String?, priority: String?, templateVariables: [String: Any]?) {
             
             self.name = name
             
@@ -10589,7 +10589,7 @@ public extension PlatformClient {
             
         }
 
-        public init(isSystem: Bool?, isInternal: Bool?, description: String?, tags: [[String: Any]]?, priority: String?, published: Bool?, id: String?, name: String?, message: [String: Any]?, templateVariables: [String: Any]?, createdAt: String?, updatedAt: String?, slug: String?, v: Int?) {
+        public init(createdAt: String?, description: String?, isInternal: Bool?, isSystem: Bool?, message: [String: Any]?, name: String?, priority: String?, published: Bool?, slug: String?, tags: [[String: Any]]?, templateVariables: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
             
             self.isSystem = isSystem
             
@@ -10757,7 +10757,7 @@ public extension PlatformClient {
             
         }
 
-        public init(isSystem: Bool?, isInternal: Bool?, description: String?, priority: String?, tags: [[String: Any]]?, published: Bool?, id: String?, slug: String?, name: String?, message: [String: Any]?, templateVariables: [String: Any]?, createdAt: String?, updatedAt: String?, v: Int?) {
+        public init(createdAt: String?, description: String?, isInternal: Bool?, isSystem: Bool?, message: [String: Any]?, name: String?, priority: String?, published: Bool?, slug: String?, tags: [[String: Any]]?, templateVariables: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
             
             self.isSystem = isSystem
             
@@ -10925,7 +10925,7 @@ public extension PlatformClient {
             
         }
 
-        public init(isSystem: Bool?, isInternal: Bool?, description: String?, tags: [[String: Any]]?, priority: String?, published: Bool?, id: String?, slug: String?, name: String?, message: [String: Any]?, templateVariables: [String: Any]?, createdAt: String?, updatedAt: String?, v: Int?) {
+        public init(createdAt: String?, description: String?, isInternal: Bool?, isSystem: Bool?, message: [String: Any]?, name: String?, priority: String?, published: Bool?, slug: String?, tags: [[String: Any]]?, templateVariables: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
             
             self.isSystem = isSystem
             
@@ -11061,7 +11061,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [SmsTemplate]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [SmsTemplate]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -11149,7 +11149,7 @@ public extension PlatformClient {
             
         }
 
-        public init(docs: [SystemSmsTemplate]?, total: Int?, limit: Int?, offset: Int?, page: Int?, pages: Int?) {
+        public init(docs: [SystemSmsTemplate]?, limit: Int?, offset: Int?, page: Int?, pages: Int?, total: Int?) {
             
             self.docs = docs
             
@@ -11261,7 +11261,7 @@ public extension PlatformClient {
             
         }
 
-        public init(countryCode: String?, country: String?) {
+        public init(country: String?, countryCode: String?) {
             
             self.countryCode = countryCode
             
@@ -11321,7 +11321,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: String, value: String, legalName: String, url: String?, verified: Bool?) {
+        public init(legalName: String, type: String, url: String?, value: String, verified: Bool?) {
             
             self.type = type
             
@@ -11419,7 +11419,7 @@ public extension PlatformClient {
             
         }
 
-        public init(address2: String?, latitude: Double, longitude: Double, pincode: Int, address1: String, city: String, country: String, state: String, landmark: String?, countryCode: String?) {
+        public init(address1: String, address2: String?, city: String, country: String, countryCode: String?, landmark: String?, latitude: Double, longitude: Double, pincode: Int, state: String) {
             
             self.address2 = address2
             
@@ -11555,7 +11555,7 @@ public extension PlatformClient {
             
         }
 
-        public init(referralInfo: ReferralInfo?, name: String, uid: Int?, businessCountryInfo: BusinessCountryInfo, warnings: [String: Any]?, notificationEmails: [String]?, businessType: String, franchiseEnabled: Bool?, document: Document, address: CompanyAddress, businessInfo: String?, brands: [Int]) {
+        public init(address: CompanyAddress, brands: [Int], businessCountryInfo: BusinessCountryInfo, businessInfo: String?, businessType: String, document: Document, franchiseEnabled: Bool?, name: String, notificationEmails: [String]?, referralInfo: ReferralInfo?, uid: Int?, warnings: [String: Any]?) {
             
             self.referralInfo = referralInfo
             
@@ -11663,7 +11663,7 @@ public extension PlatformClient {
             
         }
 
-        public init(uid: Int?, success: Bool?) {
+        public init(success: Bool?, uid: Int?) {
             
             self.uid = uid
             
@@ -11763,7 +11763,7 @@ public extension PlatformClient {
             
         }
 
-        public init(username: String?, contact: String?, userId: String?) {
+        public init(contact: String?, username: String?, userId: String?) {
             
             self.username = username
             
@@ -11893,7 +11893,7 @@ public extension PlatformClient {
             
         }
 
-        public init(countryCode: String?, country: String?) {
+        public init(country: String?, countryCode: String?) {
             
             self.countryCode = countryCode
             
@@ -11977,7 +11977,7 @@ public extension PlatformClient {
             
         }
 
-        public init(address2: String?, latitude: Double?, longitude: Double?, pincode: Int?, address1: String?, addressType: String?, city: String?, country: String?, state: String?, landmark: String?, countryCode: String?) {
+        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
             
             self.address2 = address2
             
@@ -12079,7 +12079,7 @@ public extension PlatformClient {
             
         }
 
-        public init(number: String, countryCode: Int) {
+        public init(countryCode: Int, number: String) {
             
             self.number = number
             
@@ -12127,7 +12127,7 @@ public extension PlatformClient {
             
         }
 
-        public init(phone: [PhoneNumber]?, emails: [String]?) {
+        public init(emails: [String]?, phone: [PhoneNumber]?) {
             
             self.phone = phone
             
@@ -12247,7 +12247,7 @@ public extension PlatformClient {
             
         }
 
-        public init(uid: Int, createdBy: UserSerializer?, warnings: [String: Any]?, modifiedOn: String?, stage: String?, name: String?, modifiedBy: UserSerializer?, verifiedBy: UserSerializer?, businessDetails: BusinessDetails?, createdOn: String?, businessCountryInfo: BusinessCountryInfo1?, addresses: [GetAddressSerializer]?, notificationEmails: [String]?, documents: [Document]?, businessType: String, businessInfo: String?, verifiedOn: String?, contactDetails: ContactDetails?, companyType: String, franchiseEnabled: Bool?) {
+        public init(addresses: [GetAddressSerializer]?, businessCountryInfo: BusinessCountryInfo1?, businessDetails: BusinessDetails?, businessInfo: String?, businessType: String, companyType: String, contactDetails: ContactDetails?, createdBy: UserSerializer?, createdOn: String?, documents: [Document]?, franchiseEnabled: Bool?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, notificationEmails: [String]?, stage: String?, uid: Int, verifiedBy: UserSerializer?, verifiedOn: String?, warnings: [String: Any]?) {
             
             self.uid = uid
             
@@ -12471,7 +12471,7 @@ public extension PlatformClient {
             
         }
 
-        public init(companyDocuments: DocumentsObj?, uid: Int?, store: DocumentsObj?, storeDocuments: DocumentsObj?, product: DocumentsObj?, brand: DocumentsObj?, stage: String?) {
+        public init(brand: DocumentsObj?, companyDocuments: DocumentsObj?, product: DocumentsObj?, stage: String?, store: DocumentsObj?, storeDocuments: DocumentsObj?, uid: Int?) {
             
             self.companyDocuments = companyDocuments
             
@@ -12549,7 +12549,7 @@ public extension PlatformClient {
             
         }
 
-        public init(portrait: String?, landscape: String?) {
+        public init(landscape: String?, portrait: String?) {
             
             self.portrait = portrait
             
@@ -12629,7 +12629,7 @@ public extension PlatformClient {
             
         }
 
-        public init(synonyms: [String]?, description: String?, logo: String, name: String, uid: Int?, companyId: Int?, customJson: [String: Any]?, localeLanguage: [String: Any]?, brandTier: String?, banner: BrandBannerSerializer?) {
+        public init(banner: BrandBannerSerializer?, brandTier: String?, companyId: Int?, description: String?, logo: String, name: String, synonyms: [String]?, uid: Int?, customJson: [String: Any]?, localeLanguage: [String: Any]?) {
             
             self.synonyms = synonyms
             
@@ -12729,7 +12729,7 @@ public extension PlatformClient {
             
         }
 
-        public init(username: String?, contact: String?, userId: String?) {
+        public init(contact: String?, username: String?, userId: String?) {
             
             self.username = username
             
@@ -12847,7 +12847,7 @@ public extension PlatformClient {
             
         }
 
-        public init(synonyms: [String]?, description: String?, logo: String?, verifiedOn: String?, name: String, rejectReason: String?, createdOn: String?, uid: Int?, createdBy: UserSerializer1?, modifiedOn: String?, modifiedBy: UserSerializer1?, verifiedBy: UserSerializer1?, customJson: [String: Any]?, warnings: [String: Any]?, slugKey: String?, localeLanguage: [String: Any]?, stage: String?, banner: BrandBannerSerializer?) {
+        public init(banner: BrandBannerSerializer?, createdBy: UserSerializer1?, createdOn: String?, description: String?, logo: String?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, rejectReason: String?, slugKey: String?, stage: String?, synonyms: [String]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?, localeLanguage: [String: Any]?) {
             
             self.synonyms = synonyms
             
@@ -12995,7 +12995,7 @@ public extension PlatformClient {
             
         }
 
-        public init(uid: Int?, brands: [Int], company: Int) {
+        public init(brands: [Int], company: Int, uid: Int?) {
             
             self.uid = uid
             
@@ -13049,7 +13049,7 @@ public extension PlatformClient {
             
         }
 
-        public init(page: [String: Any]?, items: [[String: Any]]?) {
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
             
             self.page = page
             
@@ -13097,7 +13097,7 @@ public extension PlatformClient {
             
         }
 
-        public init(storeUid: Int?, onSameStore: Bool?) {
+        public init(onSameStore: Bool?, storeUid: Int?) {
             
             self.storeUid = storeUid
             
@@ -13201,7 +13201,7 @@ public extension PlatformClient {
             
         }
 
-        public init(weekday: String, open: Bool, closing: LocationTimingSerializer?, opening: LocationTimingSerializer?) {
+        public init(closing: LocationTimingSerializer?, open: Bool, opening: LocationTimingSerializer?, weekday: String) {
             
             self.weekday = weekday
             
@@ -13265,7 +13265,7 @@ public extension PlatformClient {
             
         }
 
-        public init(enabled: Bool?, username: String?, password: String?) {
+        public init(enabled: Bool?, password: String?, username: String?) {
             
             self.enabled = enabled
             
@@ -13319,7 +13319,7 @@ public extension PlatformClient {
             
         }
 
-        public init(eWaybill: InvoiceCredSerializer?, eInvoice: InvoiceCredSerializer?) {
+        public init(eInvoice: InvoiceCredSerializer?, eWaybill: InvoiceCredSerializer?) {
             
             self.eWaybill = eWaybill
             
@@ -13403,7 +13403,7 @@ public extension PlatformClient {
             
         }
 
-        public init(address2: String?, latitude: Double?, longitude: Double?, pincode: Int?, address1: String?, addressType: String?, city: String?, country: String?, state: String?, landmark: String?, countryCode: String?) {
+        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
             
             self.address2 = address2
             
@@ -13509,7 +13509,7 @@ public extension PlatformClient {
             
         }
 
-        public init(name: String?, email: String?, mobileNo: PhoneNumber) {
+        public init(email: String?, mobileNo: PhoneNumber, name: String?) {
             
             self.name = name
             
@@ -13623,7 +13623,7 @@ public extension PlatformClient {
             
         }
 
-        public init(productReturnConfig: ProductReturnConfigSerializer?, displayName: String, timing: [LocationDayWiseSerializer]?, name: String, uid: Int?, contactNumbers: [PhoneNumber]?, stage: String?, warnings: [String: Any]?, notificationEmails: [String]?, customJson: [String: Any]?, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, address: GetAddressSerializer1, code: String, manager: LocationManagerSerializer?, company: Int, storeType: String?) {
+        public init(address: GetAddressSerializer1, code: String, company: Int, contactNumbers: [PhoneNumber]?, displayName: String, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, manager: LocationManagerSerializer?, name: String, notificationEmails: [String]?, productReturnConfig: ProductReturnConfigSerializer?, stage: String?, storeType: String?, timing: [LocationDayWiseSerializer]?, uid: Int?, warnings: [String: Any]?, customJson: [String: Any]?) {
             
             self.productReturnConfig = productReturnConfig
             
@@ -13761,7 +13761,7 @@ public extension PlatformClient {
             
         }
 
-        public init(page: [String: Any]?, items: [[String: Any]]?) {
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
             
             self.page = page
             
@@ -13853,7 +13853,7 @@ public extension PlatformClient {
             
         }
 
-        public init(verifiedOn: String?, name: String?, rejectReason: String?, createdOn: String?, uid: Int?, createdBy: UserSerializer?, modifiedOn: String?, modifiedBy: UserSerializer?, verifiedBy: UserSerializer?, addresses: [GetAddressSerializer]?, businessType: String?, companyType: String?, stage: String?) {
+        public init(addresses: [GetAddressSerializer]?, businessType: String?, companyType: String?, createdBy: UserSerializer?, createdOn: String?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, rejectReason: String?, stage: String?, uid: Int?, verifiedBy: UserSerializer?, verifiedOn: String?) {
             
             self.verifiedOn = verifiedOn
             
@@ -13967,7 +13967,7 @@ public extension PlatformClient {
             
         }
 
-        public init(order: String?, inventory: String?) {
+        public init(inventory: String?, order: String?) {
             
             self.order = order
             
@@ -14107,7 +14107,7 @@ public extension PlatformClient {
             
         }
 
-        public init(productReturnConfig: ProductReturnConfigSerializer?, uid: Int?, createdBy: UserSerializer1?, warnings: [String: Any]?, modifiedOn: String?, customJson: [String: Any]?, stage: String?, contactNumbers: [PhoneNumber]?, manager: LocationManagerSerializer?, company: GetCompanySerializer?, displayName: String, name: String, modifiedBy: UserSerializer1?, verifiedBy: UserSerializer1?, address: GetAddressSerializer, code: String, createdOn: String?, notificationEmails: [String]?, documents: [Document]?, integrationType: LocationIntegrationType?, verifiedOn: String?, timing: [LocationDayWiseSerializer]?, gstCredentials: InvoiceDetailsSerializer?, phoneNumber: String, storeType: String?) {
+        public init(address: GetAddressSerializer, code: String, company: GetCompanySerializer?, contactNumbers: [PhoneNumber]?, createdBy: UserSerializer1?, createdOn: String?, displayName: String, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, integrationType: LocationIntegrationType?, manager: LocationManagerSerializer?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, notificationEmails: [String]?, phoneNumber: String, productReturnConfig: ProductReturnConfigSerializer?, stage: String?, storeType: String?, timing: [LocationDayWiseSerializer]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?) {
             
             self.productReturnConfig = productReturnConfig
             
@@ -14307,7 +14307,7 @@ public extension PlatformClient {
             
         }
 
-        public init(minPrice: Double?, safeStock: Int?, periodThreshold: Int?, periodThresholdType: String?, periodTypeList: [GenericDTO]?) {
+        public init(minPrice: Double?, periodThreshold: Int?, periodThresholdType: String?, periodTypeList: [GenericDTO]?, safeStock: Int?) {
             
             self.minPrice = minPrice
             
@@ -14445,7 +14445,7 @@ public extension PlatformClient {
             
         }
 
-        public init(companyName: String?, integration: String, companyId: Int, integrationData: [String: Any]?, taskDetails: TaskDTO?, thresholdDetails: DataTresholdDTO?, jobCode: String?, alias: String?) {
+        public init(alias: String?, companyId: Int, companyName: String?, integration: String, integrationData: [String: Any]?, jobCode: String?, taskDetails: TaskDTO?, thresholdDetails: DataTresholdDTO?) {
             
             self.companyName = companyName
             
@@ -14529,7 +14529,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: Int?, groupList: [GenericDTO]?) {
+        public init(groupList: [GenericDTO]?, type: Int?) {
             
             self.type = type
             
@@ -14589,7 +14589,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: String?, size: Int?, current: Int?, hasNext: Bool?, itemTotal: Int?) {
+        public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
             
             self.type = type
             
@@ -14691,7 +14691,7 @@ public extension PlatformClient {
             
         }
 
-        public init(timestamp: String?, status: Int?, error: String?, exception: String?, message: String?, totalTimeTakenInMillis: Int?, httpStatus: String?, items: String?, payload: String?, traceId: String?, page: Page?) {
+        public init(error: String?, exception: String?, httpStatus: String?, items: String?, message: String?, page: Page?, payload: String?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
             
             self.timestamp = timestamp
             
@@ -14837,7 +14837,7 @@ public extension PlatformClient {
             
         }
 
-        public init(bucket: String?, region: String?, dir: String?, accessKey: String?, secretKey: String?, localFilePath: String?, archivePath: String?, archive: Bool?, delete: Bool?, unzip: Bool?, zipFormat: String?, fileRegex: String?, archiveConfig: ArchiveConfig?) {
+        public init(accessKey: String?, archive: Bool?, archiveConfig: ArchiveConfig?, archivePath: String?, bucket: String?, delete: Bool?, dir: String?, fileRegex: String?, localFilePath: String?, region: String?, secretKey: String?, unzip: Bool?, zipFormat: String?) {
             
             self.bucket = bucket
             
@@ -14955,7 +14955,7 @@ public extension PlatformClient {
             
         }
 
-        public init(delete: Bool?, archive: Bool?, archiveDir: String?) {
+        public init(archive: Bool?, archiveDir: String?, delete: Bool?) {
             
             self.delete = delete
             
@@ -15017,7 +15017,7 @@ public extension PlatformClient {
             
         }
 
-        public init(createdBy: String?, modifiedBy: String?, createdOn: String?, modifiedOn: String?) {
+        public init(createdBy: String?, createdOn: String?, modifiedBy: String?, modifiedOn: String?) {
             
             self.createdBy = createdBy
             
@@ -15131,7 +15131,7 @@ public extension PlatformClient {
             
         }
 
-        public init(companyId: Int?, excludeSteps: [Int]?, hiddenClosetKeys: [String]?, openTags: [String: Any]?, taxIdentifiers: [String]?, deleteQuantityThreshold: Int?) {
+        public init(companyId: Int?, deleteQuantityThreshold: Int?, excludeSteps: [Int]?, hiddenClosetKeys: [String]?, openTags: [String: Any]?, taxIdentifiers: [String]?) {
             
             self.companyId = companyId
             
@@ -15227,7 +15227,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: String?, name: String?, filename: String?, charset: [String: Any]?, size: Int?, creationDate: String?, modificationDate: String?, readDate: String?) {
+        public init(charset: [String: Any]?, creationDate: String?, filename: String?, modificationDate: String?, name: String?, readDate: String?, size: Int?, type: String?) {
             
             self.type = type
             
@@ -15347,7 +15347,7 @@ public extension PlatformClient {
             
         }
 
-        public init(vendor: String?, host: String?, port: Int?, username: String?, password: String?, dbname: String?, query: String?, procedure: Bool?, driverClass: String?, jdbcUrl: String?, optionalProperties: [String: Any]?) {
+        public init(dbname: String?, driverClass: String?, host: String?, jdbcUrl: String?, optionalProperties: [String: Any]?, password: String?, port: Int?, procedure: Bool?, query: String?, username: String?, vendor: String?) {
             
             self.vendor = vendor
             
@@ -15533,7 +15533,7 @@ public extension PlatformClient {
             
         }
 
-        public init(store: PropBeanDTO?, intfArticleId: PropBeanDTO?, priceEffective: PropBeanDTO?, quantity: PropBeanDTO?) {
+        public init(intfArticleId: PropBeanDTO?, priceEffective: PropBeanDTO?, quantity: PropBeanDTO?, store: PropBeanDTO?) {
             
             self.store = store
             
@@ -15605,7 +15605,7 @@ public extension PlatformClient {
             
         }
 
-        public init(properties: [String: Any]?, junkDataThresholdCount: Int?, propBeanConfigs: [PropBeanConfig]?, unwindField: String?, defaultHeaders: DefaultHeadersDTO?) {
+        public init(defaultHeaders: DefaultHeadersDTO?, junkDataThresholdCount: Int?, properties: [String: Any]?, propBeanConfigs: [PropBeanConfig]?, unwindField: String?) {
             
             self.properties = properties
             
@@ -15755,7 +15755,7 @@ public extension PlatformClient {
             
         }
 
-        public init(recepient: String?, host: String?, username: String?, password: String?, unzip: Bool?, readFromContent: Bool?, filterBasedOnRecepients: Bool?, pcol: String?, subjectLineRegex: String?, senderAddress: String?, localDir: String?, folderNameHierarchies: [String]?, attachmentRegex: String?, bodyContentRegex: String?, passwordProtected: Bool?, zipFormat: String?, attachmentMandate: Bool?, filterFilesAfterExtraction: Bool?, archiveConfig: ArchiveConfig?, readAllUnreadMails: Bool?, contentType: String?, downloadableLink: Bool?, properties: [String: Any]?) {
+        public init(archiveConfig: ArchiveConfig?, attachmentMandate: Bool?, attachmentRegex: String?, bodyContentRegex: String?, contentType: String?, downloadableLink: Bool?, filterFilesAfterExtraction: Bool?, filterBasedOnRecepients: Bool?, folderNameHierarchies: [String]?, host: String?, localDir: String?, password: String?, passwordProtected: Bool?, pcol: String?, properties: [String: Any]?, readAllUnreadMails: Bool?, readFromContent: Bool?, recepient: String?, senderAddress: String?, subjectLineRegex: String?, unzip: Bool?, username: String?, zipFormat: String?) {
             
             self.recepient = recepient
             
@@ -15977,7 +15977,7 @@ public extension PlatformClient {
             
         }
 
-        public init(host: String?, port: Int?, username: String?, password: String?, unzip: Bool?, retries: Int?, interval: Int?, localDir: String?, remoteDir: String?, zipFileRegex: String?, archiveConfig: ArchiveConfig?, fileRegex: String?, zipFormat: String?, readAllFiles: Bool?) {
+        public init(archiveConfig: ArchiveConfig?, fileRegex: String?, host: String?, interval: Int?, localDir: String?, password: String?, port: Int?, readAllFiles: Bool?, remoteDir: String?, retries: Int?, unzip: Bool?, username: String?, zipFileRegex: String?, zipFormat: String?) {
             
             self.host = host
             
@@ -16097,7 +16097,7 @@ public extension PlatformClient {
             
         }
 
-        public init(strict: Bool?, name: String?) {
+        public init(name: String?, strict: Bool?) {
             
             self.strict = strict
             
@@ -16201,7 +16201,7 @@ public extension PlatformClient {
             
         }
 
-        public init(delimiter: String?, charset: String?, properties: [String: Any]?, fileHasHeader: Bool?, headerIndex: Int?, headerArray: [String]?, dataStartIndex: Int?, propBeanConfigs: [PropBeanConfig]?, junkDataThresholdCount: Int?, fileType: String?, lineValidityCheck: Bool?, sheetNames: [String]?, readAllSheets: Bool?, quoteChar: String?, escapeChar: String?, defaultHeaders: DefaultHeadersDTO?) {
+        public init(charset: String?, dataStartIndex: Int?, defaultHeaders: DefaultHeadersDTO?, delimiter: String?, escapeChar: String?, fileHasHeader: Bool?, fileType: String?, headerArray: [String]?, headerIndex: Int?, junkDataThresholdCount: Int?, lineValidityCheck: Bool?, properties: [String: Any]?, propBeanConfigs: [PropBeanConfig]?, quoteChar: String?, readAllSheets: Bool?, sheetNames: [String]?) {
             
             self.delimiter = delimiter
             
@@ -16349,7 +16349,7 @@ public extension PlatformClient {
             
         }
 
-        public init(sheetId: String?, range: String?, clientSecretLocation: String?, credStorageDirectory: String?, localDir: String?, archiveConfig: ArchiveConfig?) {
+        public init(archiveConfig: ArchiveConfig?, clientSecretLocation: String?, credStorageDirectory: String?, localDir: String?, range: String?, sheetId: String?) {
             
             self.sheetId = sheetId
             
@@ -16449,7 +16449,7 @@ public extension PlatformClient {
             
         }
 
-        public init(hosturl: String?, headers: [String: Any]?, username: String?, password: String?, requestParams: [String: Any]?, httpMethod: String?, requestPayload: String?, localPath: String?, archiveConfig: ArchiveConfig?) {
+        public init(archiveConfig: ArchiveConfig?, headers: [String: Any]?, hosturl: String?, httpMethod: String?, localPath: String?, password: String?, requestParams: [String: Any]?, requestPayload: String?, username: String?) {
             
             self.hosturl = hosturl
             
@@ -16667,7 +16667,7 @@ public extension PlatformClient {
             
         }
 
-        public init(syncInterval: Int?, brandRemoteNames: [String]?, companyNames: [String]?, id: Int?, jobCode: String?, taskType: String?, syncDelay: Int?, cronExpression: String?, storeFilter: StoreFilter?, processConfig: ProcessConfig?, storeConfig: [StoreConfig]?, properties: [String: Any]?, immediateFirstRun: Bool?, disable: Bool?, dependentJobCodes: [String]?, companyConfig: [CompanyConfig]?, companyIds: [Int]?, taxIdentifiers: [String]?, priority: String?, periodThreshold: Int?, periodThresholdType: String?, dbConnectionProfile: DBConnectionProfile?, params: [String: Any]?, openTags: [String: Any]?, deleteQuantityThreshold: Int?, catalogMasterConfig: CatalogMasterConfig?, aggregatorTypes: [String]?, integrationType: String?, minPrice: Double?, audit: Audit?, version: Int?, alias: String?) {
+        public init(aggregatorTypes: [String]?, alias: String?, audit: Audit?, brandRemoteNames: [String]?, catalogMasterConfig: CatalogMasterConfig?, companyNames: [String]?, companyConfig: [CompanyConfig]?, companyIds: [Int]?, cronExpression: String?, dbConnectionProfile: DBConnectionProfile?, deleteQuantityThreshold: Int?, dependentJobCodes: [String]?, disable: Bool?, immediateFirstRun: Bool?, integrationType: String?, jobCode: String?, minPrice: Double?, openTags: [String: Any]?, params: [String: Any]?, periodThreshold: Int?, periodThresholdType: String?, priority: String?, processConfig: ProcessConfig?, properties: [String: Any]?, storeConfig: [StoreConfig]?, storeFilter: StoreFilter?, syncInterval: Int?, syncDelay: Int?, taskType: String?, taxIdentifiers: [String]?, version: Int?, id: Int?) {
             
             self.syncInterval = syncInterval
             
@@ -16903,7 +16903,7 @@ public extension PlatformClient {
             
         }
 
-        public init(companyName: String, integration: String, companyId: Int, data: JobConfig?) {
+        public init(companyId: Int, companyName: String, data: JobConfig?, integration: String) {
             
             self.companyName = companyName
             
@@ -17033,7 +17033,7 @@ public extension PlatformClient {
             
         }
 
-        public init(retries: Int?, interval: Int?, localDir: String?, workingDir: String?, unzip: Bool?, zipFileRegex: String?, fileRegex: String?, zipFormat: String?, archiveConfig: ArchiveConfig?, readAllFiles: Bool?) {
+        public init(archiveConfig: ArchiveConfig?, fileRegex: String?, interval: Int?, localDir: String?, readAllFiles: Bool?, retries: Int?, unzip: Bool?, workingDir: String?, zipFileRegex: String?, zipFormat: String?) {
             
             self.retries = retries
             
@@ -17153,7 +17153,7 @@ public extension PlatformClient {
             
         }
 
-        public init(type: String?, subtype: String?, parameters: [String: Any]?, qualityValue: Double?, charset: [String: Any]?, wildcardType: Bool?, wildcardSubtype: Bool?, concrete: Bool?) {
+        public init(charset: [String: Any]?, concrete: Bool?, parameters: [String: Any]?, qualityValue: Double?, subtype: String?, type: String?, wildcardSubtype: Bool?, wildcardType: Bool?) {
             
             self.type = type
             
@@ -17253,7 +17253,7 @@ public extension PlatformClient {
             
         }
 
-        public init(collectionName: String?, findQuery: Document?, projectionQuery: Document?, propBeanConfigs: [PropBeanConfig]?, aggregatePipeLine: [Document]?, skipSave: Bool?) {
+        public init(aggregatePipeLine: [Document]?, collectionName: String?, findQuery: Document?, projectionQuery: Document?, propBeanConfigs: [PropBeanConfig]?, skipSave: Bool?) {
             
             self.collectionName = collectionName
             
@@ -17357,7 +17357,7 @@ public extension PlatformClient {
             
         }
 
-        public init(limit: Int?, pages: Int?, interval: Int?, consumerKey: String?, consumerSecret: String?, token: String?, tokenSecret: String?, restUrl: String?, restBaseUrl: String?, functionName: String?) {
+        public init(consumerKey: String?, consumerSecret: String?, functionName: String?, interval: Int?, limit: Int?, pages: Int?, restBaseUrl: String?, restUrl: String?, token: String?, tokenSecret: String?) {
             
             self.limit = limit
             
@@ -17505,7 +17505,7 @@ public extension PlatformClient {
             
         }
 
-        public init(dbConfig: DBConfig?, dbParamConfig: DBParamConfig?, sftpConfig: SFTPConfig?, awsS3Config: AWSS3config?, mongoDocConfig: MongoDocConfig?, ftpConfig: FTPConfig?, emailConfig: EmailConfig?, fileConfig: FileConfig?, jsonDocConfig: JsonDocConfig?, docMappingConfig: DocMappingConfig?, taskStepConfig: TaskStepConfig?, httpConfig: HttpConfig?, localFileConfig: LocalFileConfig?, oauthConfig: OAuthConfig?, googleSpreadsheetConfig: GoogleSpreadSheetConfig?) {
+        public init(awsS3Config: AWSS3config?, dbConfig: DBConfig?, dbParamConfig: DBParamConfig?, docMappingConfig: DocMappingConfig?, emailConfig: EmailConfig?, fileConfig: FileConfig?, ftpConfig: FTPConfig?, googleSpreadsheetConfig: GoogleSpreadSheetConfig?, httpConfig: HttpConfig?, jsonDocConfig: JsonDocConfig?, localFileConfig: LocalFileConfig?, mongoDocConfig: MongoDocConfig?, oauthConfig: OAuthConfig?, sftpConfig: SFTPConfig?, taskStepConfig: TaskStepConfig?) {
             
             self.dbConfig = dbConfig
             
@@ -17719,7 +17719,7 @@ public extension PlatformClient {
             
         }
 
-        public init(required: Bool?, mapping: [String: Any]?, optional: Bool?, send: Send?, fieldValidations: [FieldValidation]?, validations: [Document]?, values: [String]?, include: Bool?, sourceField: String?, sourceFields: [String]?, destinationField: String?, dataType: String?, defaultValue: [String: Any]?, constValue: [String: Any]?, concatStr: String?, functionName: String?, transformerName: String?, allParamFunctionName: String?, subSeparator: String?, indexField: String?, ignoreIfNotExists: Bool?, identifierType: String?, projectionQuery: Document?, enrichFromMaster: Bool?) {
+        public init(allParamFunctionName: String?, concatStr: String?, constValue: [String: Any]?, dataType: String?, defaultValue: [String: Any]?, destinationField: String?, enrichFromMaster: Bool?, fieldValidations: [FieldValidation]?, functionName: String?, identifierType: String?, ignoreIfNotExists: Bool?, include: Bool?, indexField: String?, mapping: [String: Any]?, optional: Bool?, projectionQuery: Document?, required: Bool?, send: Send?, sourceField: String?, sourceFields: [String]?, subSeparator: String?, transformerName: String?, validations: [Document]?, values: [String]?) {
             
             self.required = required
             
@@ -17967,7 +17967,7 @@ public extension PlatformClient {
             
         }
 
-        public init(required: Bool?, optional: Bool?, include: Bool?, sourceField: String?, sourceFields: [String]?, destinationField: String?, dataType: String?, defaultValue: [String: Any]?, constValue: [String: Any]?, concatStr: String?, functionName: String?, transformerName: String?, allParamFunctionName: String?, subSeparator: String?, indexField: String?, ignoreIfNotExists: Bool?, identifierType: String?, projectionQuery: Document?, enrichFromMaster: Bool?) {
+        public init(allParamFunctionName: String?, concatStr: String?, constValue: [String: Any]?, dataType: String?, defaultValue: [String: Any]?, destinationField: String?, enrichFromMaster: Bool?, functionName: String?, identifierType: String?, ignoreIfNotExists: Bool?, include: Bool?, indexField: String?, optional: Bool?, projectionQuery: Document?, required: Bool?, sourceField: String?, sourceFields: [String]?, subSeparator: String?, transformerName: String?) {
             
             self.required = required
             
@@ -18153,7 +18153,7 @@ public extension PlatformClient {
             
         }
 
-        public init(timestamp: String?, status: Int?, error: String?, exception: String?, message: String?, totalTimeTakenInMillis: Int?, httpStatus: String?, items: [JobConfigRawDTO]?, payload: [JobConfigRawDTO]?, traceId: String?, page: Page?) {
+        public init(error: String?, exception: String?, httpStatus: String?, items: [JobConfigRawDTO]?, message: String?, page: Page?, payload: [JobConfigRawDTO]?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
             
             self.timestamp = timestamp
             
@@ -18315,7 +18315,7 @@ public extension PlatformClient {
             
         }
 
-        public init(host: String?, port: Int?, username: String?, password: String?, unzip: Bool?, retries: Int?, interval: Int?, privateKeyPath: String?, strictHostKeyChecking: Bool?, localDir: String?, remoteDir: String?, passwordProtected: Bool?, zipFileRegex: String?, fileRegex: String?, zipFormat: String?, archiveConfig: ArchiveConfig?, readAllFiles: Bool?) {
+        public init(archiveConfig: ArchiveConfig?, fileRegex: String?, host: String?, interval: Int?, localDir: String?, password: String?, passwordProtected: Bool?, port: Int?, privateKeyPath: String?, readAllFiles: Bool?, remoteDir: String?, retries: Int?, strictHostKeyChecking: Bool?, unzip: Bool?, username: String?, zipFileRegex: String?, zipFormat: String?) {
             
             self.host = host
             
@@ -18453,7 +18453,7 @@ public extension PlatformClient {
             
         }
 
-        public init(raw: Bool?, processed: Bool?) {
+        public init(processed: Bool?, raw: Bool?) {
             
             self.raw = raw
             
@@ -18521,7 +18521,7 @@ public extension PlatformClient {
             
         }
 
-        public init(jobCode: String?, storeid: String?, storeAlias: String?, storeFileRegex: String?, storeFileName: String?, processConfig: ProcessConfig?, properties: [String: Any]?) {
+        public init(jobCode: String?, processConfig: ProcessConfig?, properties: [String: Any]?, storeid: String?, storeAlias: String?, storeFileName: String?, storeFileRegex: String?) {
             
             self.jobCode = jobCode
             
@@ -18603,7 +18603,7 @@ public extension PlatformClient {
             
         }
 
-        public init(includeTags: [String]?, excludeTags: [String]?, query: [String: Any]?) {
+        public init(excludeTags: [String]?, includeTags: [String]?, query: [String: Any]?) {
             
             self.includeTags = includeTags
             
@@ -18767,7 +18767,7 @@ public extension PlatformClient {
             
         }
 
-        public init(taskConfigs: [TaskConfig]?, taskConfigIds: [Int]?, taskConfigGroupIds: [Int]?) {
+        public init(taskConfigs: [TaskConfig]?, taskConfigGroupIds: [Int]?, taskConfigIds: [Int]?) {
             
             self.taskConfigs = taskConfigs
             
@@ -18857,7 +18857,7 @@ public extension PlatformClient {
             
         }
 
-        public init(timestamp: String?, status: Int?, error: String?, exception: String?, message: String?, totalTimeTakenInMillis: Int?, httpStatus: String?, items: [JobConfigDTO]?, payload: [JobConfigDTO]?, traceId: String?, page: Page?) {
+        public init(error: String?, exception: String?, httpStatus: String?, items: [JobConfigDTO]?, message: String?, page: Page?, payload: [JobConfigDTO]?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
             
             self.timestamp = timestamp
             
@@ -18995,7 +18995,7 @@ public extension PlatformClient {
             
         }
 
-        public init(timestamp: String?, status: Int?, error: String?, exception: String?, message: String?, totalTimeTakenInMillis: Int?, httpStatus: String?, items: JobConfigDTO?, payload: JobConfigDTO?, traceId: String?, page: Page?) {
+        public init(error: String?, exception: String?, httpStatus: String?, items: JobConfigDTO?, message: String?, page: Page?, payload: JobConfigDTO?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
             
             self.timestamp = timestamp
             
@@ -19121,7 +19121,7 @@ public extension PlatformClient {
             
         }
 
-        public init(code: String?, alias: String?, modifiedBy: String?, createdBy: String?, modifiedOn: String?, createdOn: String?, active: Bool?, type: String?) {
+        public init(active: Bool?, alias: String?, code: String?, createdBy: String?, createdOn: String?, modifiedBy: String?, modifiedOn: String?, type: String?) {
             
             self.code = code
             
@@ -19241,7 +19241,7 @@ public extension PlatformClient {
             
         }
 
-        public init(timestamp: String?, status: Int?, error: String?, exception: String?, message: String?, totalTimeTakenInMillis: Int?, httpStatus: String?, items: [JobConfigListDTO]?, payload: [JobConfigListDTO]?, traceId: String?, page: Page?) {
+        public init(error: String?, exception: String?, httpStatus: String?, items: [JobConfigListDTO]?, message: String?, page: Page?, payload: [JobConfigListDTO]?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
             
             self.timestamp = timestamp
             
