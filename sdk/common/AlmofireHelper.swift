@@ -1,6 +1,6 @@
 import Alamofire
 
-typealias OnResponse = (_ responseData: Data?, _ error: Swift.Error?, _ responseCode: Int?) -> Void
+public typealias OnResponse = (_ responseData: Data?, _ error: Swift.Error?, _ responseCode: Int?) -> Void
 
 class AlmofireHelper {
     static func request(_ path: String, query: [String: Any]? = nil, parameters: [String: Any]?, type rawType: String, headers: [(key: String, value: String)] = [], onResponse: @escaping OnResponse) {
