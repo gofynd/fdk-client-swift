@@ -18,7 +18,7 @@ class AlmofireHelper {
             finalHeaders.add(name: key, value: value)
         }
         
-        AF.request(urlString, method: HTTPMethod(rawValue: rawType), parameters: parameters, encoding: JSONEncoding.default, headers: finalHeaders).validate().responseJSON { response in
+        AF.request(urlString, method: HTTPMethod(rawValue: rawType), parameters: parameters, headers: finalHeaders).validate().responseJSON { response in
             print(response.request?.curlString ?? "No Request !!!")
             switch response.result {
             case .success(_):

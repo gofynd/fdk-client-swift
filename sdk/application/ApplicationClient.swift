@@ -4069,41 +4069,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get Blog by slug
-        * Description: Use this API to fetch a blog using `slug`
-        **/
-        public func getBlog(
-            slug: String,
-            
-            onResponse: @escaping (_ response: CustomBlog?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/blogs/\(slug)",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CustomBlog.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Get frequently asked questions
         * Description: Get frequently asked questions list. These will be helpful for users to using website.
         **/
@@ -4277,40 +4242,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get landing page
-        * Description: Use this API to fetch a landing page
-        **/
-        public func getLandingPage(
-            
-            onResponse: @escaping (_ response: LandingPage?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/landing-page",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(LandingPage.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Get legal information
         * Description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
         **/
@@ -4345,75 +4276,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get navigation
-        * Description: Use this API to fetch a navigation
-        **/
-        public func getNavigations(
-            
-            onResponse: @escaping (_ response: Navigation?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/navigations/",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(Navigation.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get Page by slug
-        * Description: Use this API to fetch a custom page using `slug`
-        **/
-        public func getPage(
-            slug: String,
-            
-            onResponse: @escaping (_ response: CustomPage?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/pages/\(slug)",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CustomPage.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Get seo of application
         * Description: Get seo of application
         **/
@@ -4438,41 +4300,6 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(Seo.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get slideshow by slug
-        * Description: Use this API to fetch a slideshow using `slug`
-        **/
-        public func getSlideshow(
-            slug: String,
-            
-            onResponse: @escaping (_ response: Slideshow?, _ error: FDKError?) -> Void
-        ) {
-             
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/slideshow/\(slug)",
-                query: nil,
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(Slideshow.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)

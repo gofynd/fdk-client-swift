@@ -6,7 +6,6 @@
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
-* [CompanyProfile](#CompanyProfile) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Inventory](#Inventory) -  
 
 ----
@@ -144,22 +143,6 @@
     * [updateSmsTemplateById](#updatesmstemplatebyid)
     * [deleteSmsTemplateById](#deletesmstemplatebyid)
     * [getSystemSystemTemplates](#getsystemsystemtemplates)
-    
-
-* [CompanyProfile](#CompanyProfile)
-  * Methods
-    * [cbsOnboardGet](#cbsonboardget)
-    * [cbsOnboardEdit](#cbsonboardedit)
-    * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
-    * [getBrand](#getbrand)
-    * [createBrand](#createbrand)
-    * [getCompanyBrands](#getcompanybrands)
-    * [createCompanyBrand](#createcompanybrand)
-    * [locationList](#locationlist)
-    * [createLocation](#createlocation)
-    * [editLocation](#editlocation)
-    * [getSingleLocation](#getsinglelocation)
     
 
 * [Inventory](#Inventory)
@@ -3455,7 +3438,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3514,7 +3509,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3573,7 +3580,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3633,7 +3652,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3693,7 +3724,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3754,7 +3797,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3813,7 +3868,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3872,7 +3939,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3931,7 +4010,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -3991,7 +4082,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4051,7 +4154,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4111,7 +4226,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4171,7 +4298,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4231,7 +4370,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4291,7 +4442,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4351,7 +4514,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4411,7 +4586,19 @@ Success
 
 
 
+Schema: `BlitzkriegApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
@@ -4480,7 +4667,19 @@ Success
 
 
 
+Schema: `AuthenticationApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
 
 
 
@@ -4529,7 +4728,19 @@ Schema: `UserSearchResponseSchema`
 
 
 
+Schema: `AuthenticationApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
 
 
 
@@ -4577,7 +4788,19 @@ Schema: `PlatformSchema`
 
 
 
+Schema: `AuthenticationApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
 
 
 
@@ -4625,7 +4848,19 @@ Schema: `PlatformSchema`
 
 
 
+Schema: `AuthenticationApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
 
 
 
@@ -4691,7 +4926,19 @@ success
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -4750,7 +4997,19 @@ success
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -4810,7 +5069,19 @@ success
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -4870,7 +5141,19 @@ success
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -4930,7 +5213,19 @@ success
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -4990,7 +5285,19 @@ success
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5050,7 +5357,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5110,7 +5429,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5170,7 +5501,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5229,7 +5572,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5277,7 +5632,19 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5326,7 +5693,19 @@ Schema: `GetFaqCategoryByIdOrSlugSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5374,7 +5753,19 @@ Schema: `CreateFaqCategorySchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5423,7 +5814,19 @@ Schema: `CreateFaqCategorySchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5472,7 +5875,19 @@ Schema: `CreateFaqCategorySchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5521,7 +5936,19 @@ Schema: `GetFaqSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5570,7 +5997,19 @@ Schema: `CreateFaqResponseSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5620,7 +6059,19 @@ Schema: `CreateFaqResponseSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5670,7 +6121,19 @@ Schema: `CreateFaqResponseSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5729,7 +6192,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5789,7 +6264,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5848,7 +6335,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5907,7 +6406,19 @@ Success
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -5955,7 +6466,19 @@ Schema: `ApplicationLegal`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6014,7 +6537,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6073,7 +6608,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6132,7 +6679,19 @@ default
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6180,7 +6739,19 @@ Schema: `Support`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6228,7 +6799,19 @@ Schema: `TagsSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6276,7 +6859,19 @@ Schema: `TagsSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6324,7 +6919,19 @@ Schema: `TagsSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6372,7 +6979,19 @@ Schema: `TagsSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6420,7 +7039,19 @@ Schema: `TagsSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -6468,7 +7099,19 @@ Schema: `TagsSchema`
 
 
 
+Schema: `ConvexApiError`
 
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
 
 
 
@@ -8324,583 +8967,6 @@ default
   "$ref": "#/components/examples/SystemSmsTemplates"
 }
 ```
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
-## CompanyProfile
-
-
-#### cbsOnboardGet
-Get company profile
-
-```swift
-companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### cbsOnboardEdit
-Edit company profile
-
-```swift
-companyprofile.cbsOnboardEdit(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCompanyMetrics
-Get company metrics
-
-```swift
-companyprofile.getCompanyMetrics(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
-
-*Success Response:*
-
-
-
-Metrics response object. See example below or refer `MetricsSerializer` for details
-
-
-Schema: `MetricsSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### editBrand
-Edit a brand.
-
-```swift
-companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getBrand
-Get a single brand.
-
-```swift
-companyprofile.getBrand(brandId: brandId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createBrand
-Create a Brand.
-
-```swift
-companyprofile.createBrand(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This API allows to create a brand associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCompanyBrands
-Get brands associated to a company
-
-```swift
-companyprofile.getCompanyBrands(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company. | 
-
-This API helps to get view brands associated to a particular company.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `CompanyBrandListSerializer` for details
-
-
-Schema: `CompanyBrandListSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createCompanyBrand
-Create a company brand mapping.
-
-```swift
-companyprofile.createCompanyBrand(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
-
-This API allows to create a company brand mapping, for a already existing brand in the system.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### locationList
-Get list of locations
-
-```swift
-companyprofile.locationList(companyId: companyId, storeType: storeType, q: q, stage: stage, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company whose locations are to fetched | 
-| storeType | string | Helps to sort the location list on the basis of location type. | 
-| q | string | Query that is to be searched. | 
-| stage | string | to filter companies on basis of verified or unverified companies. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-
-This API allows to view all the locations asscoiated to a company.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `LocationListSerializer` for details
-
-
-Schema: `LocationListSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createLocation
-Create a location asscoiated to a company.
-
-```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-
-This API allows to create a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### editLocation
-Edit a location asscoiated to a company.
-
-```swift
-companyprofile.editLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSingleLocation
-Get a single location.
-
-```swift
-companyprofile.getSingleLocation(companyId: companyId, locationId: locationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
-
-This API helps to get data associated to a particular location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
 
 
 
