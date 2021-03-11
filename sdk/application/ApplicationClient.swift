@@ -20,6 +20,8 @@ public class ApplicationClient {
 
     public let fileStorage: FileStorage
 
+    public let configuration: Configuration
+
     public let payment: Payment
 
     public let order: Order
@@ -51,6 +53,8 @@ public class ApplicationClient {
         share = Share(config: config)
         
         fileStorage = FileStorage(config: config)
+        
+        configuration = Configuration(config: config)
         
         payment = Payment(config: config)
         
@@ -4858,6 +4862,498 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(StartResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Configuration {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Get current application details
+        * Description: Get current application details.
+        **/
+        public func getApplication(
+            
+            onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/application",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(Application.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get application, owner and seller information
+        * Description: Get application information with owner and seller basic details
+        **/
+        public func getOwnerInfo(
+            
+            onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/about",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ApplicationAboutResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get basic application details
+        * Description: Get basic application details like name
+        **/
+        public func getBasicDetails(
+            
+            onResponse: @escaping (_ response: ApplicationDetailResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/detail",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ApplicationDetailResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get integration tokens
+        * Description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+        **/
+        public func getIntegrationTokens(
+            
+            onResponse: @escaping (_ response: TokensResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/token",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(TokensResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Check if a new app version is available
+        * Description: Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
+        **/
+        public func getAppVersion(
+            body: AppVersionRequest,
+            onResponse: @escaping (_ response: AppVersionResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/configuration/v1.0/version",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AppVersionResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get deployment meta stores
+        * Description: Get deployment meta stores.
+        **/
+        public func getOrderingStores(
+            
+            onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/ordering-store/stores",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OrderingStores.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getOrderingStores
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOrderingStoresPaginator(
+            
+            ) -> Paginator<OrderingStores> {
+            let pageSize = 20
+            let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOrderingStores(
+                        
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get features of application
+        * Description: Get features of application
+        **/
+        public func getFeatures(
+            
+            onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/feature",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AppFeatureResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get application information
+        * Description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+        **/
+        public func getContactInfo(
+            
+            onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/information",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ApplicationInformation.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get application enabled currencies
+        * Description: Get currency list for allowed currencies under current application
+        **/
+        public func getCurrencies(
+            
+            onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/currencies",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CurrenciesResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get currency by id
+        * Description: Get currency object with symbol and name information by id.
+        **/
+        public func getCurrencyById(
+            id: String,
+            
+            onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/currency/\(id)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(Currency.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of languages
+        * Description: Get list of supported languages under application.
+        **/
+        public func getLanguages(
+            
+            onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/languages",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LanguageResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+        * Description: Unset ordering store cookie.
+        **/
+        public func removeOrderingStoreCookie(
+            
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/application/current/ordering-store/select",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Staff List.
+        * Description: Get a staff list based on the user's session token passed in the header.
+        **/
+        public func getAppStaffs(
+            orderIncent: Bool?,
+            orderingStore: Int?,
+            user: String?,
+            
+            onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["order_incent"] = orderIncent
+            query["ordering_store"] = orderingStore
+            query["user"] = user
+             
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/staff",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AppStaffResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
