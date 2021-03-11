@@ -86,11 +86,10 @@ public class PlatformOAuthClient {
             return onToken(nil)
         }
         let headers = [
-            (key: "Content-Type", value: "application/x-www-form-urlencoded"),
-            (key: "Authorization", value: "Basic \(apiKey):\(apiSecret).asBase64")
+            (key: "Authorization", value: "Basic " + "\(apiKey):\(apiSecret)".asBase64)
         ]
         
-        AlmofireHelper.request(config.domain.appendAsPath(""), query: nil, parameters: grant, type: "POST", headers: headers) { (responseData, error, responseCode) in
+        AlmofireHelper.request(config.domain.appendAsPath(""), query: nil, parameters: grant, type: "POST", headers: headers, isJsonEncoding: false) { (responseData, error, responseCode) in
             if let _ = error, let data = responseData {
                 var err = Utility.decode(FDKError.self, from: data)
                 if err?.status == nil {
