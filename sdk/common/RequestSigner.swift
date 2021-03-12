@@ -53,12 +53,6 @@ class RequestSigner {
                                      reqHash]
         let finalSignatureData = [dateStr,
                                   signingData.joined(separator: "\n").sha256()]
-        print("responseData used for sign:--------\n\(reqData?.pretty ?? "")")
-        print("-----------")
-        print("Signature Data: -----------\n"+signingData.joined(separator: "\n"))
-        print("-----------")
-        print("Final data:---------\n"+finalSignatureData.joined(separator: "\n"))
-        print("-----------")
         let signature = finalSignatureData
             .joined(separator: "\n").hmac(algorithm: .SHA256, key: signingkey)
         finalHeaders.append((key: "x-fp-signature", value: "v1:\(signature)"))
