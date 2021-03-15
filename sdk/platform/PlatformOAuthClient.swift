@@ -89,7 +89,7 @@ public class PlatformOAuthClient {
             (key: "Authorization", value: "Basic " + "\(apiKey):\(apiSecret)".asBase64)
         ]
         
-        AlmofireHelper.request(config.domain.appendAsPath(""), query: nil, parameters: grant, type: "POST", headers: headers, isJsonEncoding: false) { (responseData, error, responseCode) in
+        AlmofireHelper.request(config.domain.appendAsPath("service/panel/authentication/v1.0/company/\(config.companyId)/oauth/token"), query: nil, parameters: grant, type: "POST", headers: headers, isJsonEncoding: false) { (responseData, error, responseCode) in
             if let _ = error, let data = responseData {
                 var err = Utility.decode(FDKError.self, from: data)
                 if err?.status == nil {

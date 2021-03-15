@@ -4,8 +4,8 @@
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
-* [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
+* [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [CompanyProfile](#CompanyProfile) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Inventory](#Inventory) -  
 
@@ -67,45 +67,6 @@
     * [updatePlatformConfig](#updateplatformconfig)
     
 
-* [Content](#Content)
-  * Methods
-    * [getAnnouncementsList](#getannouncementslist)
-    * [createAnnouncement](#createannouncement)
-    * [getAnnouncementById](#getannouncementbyid)
-    * [updateAnnouncement](#updateannouncement)
-    * [updateAnnouncementSchedule](#updateannouncementschedule)
-    * [deleteAnnouncement](#deleteannouncement)
-    * [updateComponent](#updatecomponent)
-    * [getComponentByID](#getcomponentbyid)
-    * [deleteComponent](#deletecomponent)
-    * [getComponents](#getcomponents)
-    * [getFaqCategories](#getfaqcategories)
-    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
-    * [createFaqCategory](#createfaqcategory)
-    * [updateFaqCategory](#updatefaqcategory)
-    * [deleteFaqCategory](#deletefaqcategory)
-    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
-    * [addFaqToFaqCategory](#addfaqtofaqcategory)
-    * [updateFaq](#updatefaq)
-    * [deleteFaq](#deletefaq)
-    * [createKeyValue](#createkeyvalue)
-    * [getKeyValueByID](#getkeyvaluebyid)
-    * [createLandingPage](#createlandingpage)
-    * [getLegalInformation](#getlegalinformation)
-    * [updateLegalInformation](#updatelegalinformation)
-    * [getSeoConfiguration](#getseoconfiguration)
-    * [updateSeoConfiguration](#updateseoconfiguration)
-    * [getSupportInformation](#getsupportinformation)
-    * [updateSupportInformation](#updatesupportinformation)
-    * [createTag](#createtag)
-    * [updateTag](#updatetag)
-    * [deleteAllTags](#deletealltags)
-    * [getTags](#gettags)
-    * [addTag](#addtag)
-    * [removeTag](#removetag)
-    * [editTag](#edittag)
-    
-
 * [Communication](#Communication)
   * Methods
     * [getCampaigns](#getcampaigns)
@@ -134,6 +95,7 @@
     * [triggerCampaignJob](#triggercampaignjob)
     * [getJobLogs](#getjoblogs)
     * [getCommunicationLogs](#getcommunicationlogs)
+    * [upsertPushtoken](#upsertpushtoken)
     * [getSmsProviders](#getsmsproviders)
     * [createSmsProvider](#createsmsprovider)
     * [getSmsProviderById](#getsmsproviderbyid)
@@ -146,20 +108,37 @@
     * [getSystemSystemTemplates](#getsystemsystemtemplates)
     
 
+* [Payment](#Payment)
+  * Methods
+    * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
+    * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
+    * [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
+    * [getPaymentModeRoutes](#getpaymentmoderoutes)
+    * [getAllPayouts](#getallpayouts)
+    * [savePayout](#savepayout)
+    * [updatePayout](#updatepayout)
+    * [activateAndDectivatePayout](#activateanddectivatepayout)
+    * [deletePayout](#deletepayout)
+    * [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
+    * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
+    * [getSubscriptionConfig](#getsubscriptionconfig)
+    * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
+    
+
 * [CompanyProfile](#CompanyProfile)
   * Methods
     * [cbsOnboardEdit](#cbsonboardedit)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [createCompanyBrand](#createcompanybrand)
     * [getCompanyBrands](#getcompanybrands)
     * [createLocation](#createlocation)
     * [locationList](#locationlist)
-    * [editLocation](#editlocation)
     * [getSingleLocation](#getsinglelocation)
+    * [editLocation](#editlocation)
     
 
 * [Inventory](#Inventory)
@@ -186,7 +165,7 @@
 Gets the list of company level tickets and/or ticket filters depending on query params
 
 ```swift
-lead.getTickets(companyId: companyId, items: items, filters: filters) { (response, error) in
+lead.getTickets(companyId: companyId, items: items, filters: filters, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -196,6 +175,8 @@ lead.getTickets(companyId: companyId, items: items, filters: filters) { (respons
 | companyId | string | Company ID for which the data will be returned | 
 | items | boolean | Decides that the reponse will contain the list of tickets | 
 | filters | boolean | Decides that the reponse will contain the ticket filters | 
+| pageNo | integer | The page number to navigate through the given set of results. | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 Gets the list of company level tickets and/or ticket filters
 
@@ -4894,2294 +4875,6 @@ Schema: `AuthenticationApiError`
 ---
 
 
-## Content
-
-
-#### getAnnouncementsList
-Get annoucements list
-
-```swift
-content.getAnnouncementsList(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get list of announcements
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `GetAnnouncementListSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/GetAnnouncementList"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createAnnouncement
-Create an annoucement
-
-```swift
-content.createAnnouncement(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Create an announcement
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/CreateAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAnnouncementById
-Get annoucement by id
-
-```swift
-content.getAnnouncementById(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Get announcement by id
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AdminAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/Announcement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAnnouncement
-Update an annoucement
-
-```swift
-content.updateAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Update an announcement
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/UpdateAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAnnouncementSchedule
-Update schedule or published status of an annoucement
-
-```swift
-content.updateAnnouncementSchedule(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Update schedule or published status of an announcement
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/PatchAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteAnnouncement
-Delete annoucement by id
-
-```swift
-content.deleteAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Delete announcement by id
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/DeleteAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateComponent
-Updates a component
-
-```swift
-content.updateComponent(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | ID of component to be fetched | 
-
-Updates a component for the given component ID
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComponentByID
-Get components by component ID
-
-```swift
-content.getComponentByID(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | ID of component to be fetched | 
-
-The endpoint fetches the component by component ID
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteComponent
-Delete a component from the page
-
-```swift
-content.deleteComponent(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | ID of component to be deleted | 
-
-It deletes a component from the page
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComponents
-Get components
-
-```swift
-content.getComponents(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-The endpoint fetches the components
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFaqCategories
-Get FAQ categories list
-
-```swift
-content.getFaqCategories(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get list of FAQ categories
-
-*Success Response:*
-
-
-
-Get FAQ Categories
-
-
-Schema: `GetFaqCategoriesSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFaqCategoryBySlugOrId
-Get FAQ category by slug or id
-
-```swift
-content.getFaqCategoryBySlugOrId(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Slug or Id of FAQ Category | 
-
-Get FAQ category by slug or id
-
-*Success Response:*
-
-
-
-Get FAQ Categories
-
-
-Schema: `GetFaqCategoryByIdOrSlugSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createFaqCategory
-Creates a FAQ category
-
-```swift
-content.createFaqCategory(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Add Faq Category
-
-*Success Response:*
-
-
-
-Create a FAQ Category
-
-
-Schema: `CreateFaqCategorySchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateFaqCategory
-Updates a FAQ category
-
-```swift
-content.updateFaqCategory(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
-
-Update Faq Category
-
-*Success Response:*
-
-
-
-Update a FAQ Category
-
-
-Schema: `CreateFaqCategorySchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteFaqCategory
-Deletes a FAQ category
-
-```swift
-content.deleteFaqCategory(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
-
-Delete Faq Category
-
-*Success Response:*
-
-
-
-Delete a FAQ Category
-
-
-Schema: `CreateFaqCategorySchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFaqsByCategoryIdOrSlug
-Get FAQs of a Faq Category id or slug
-
-```swift
-content.getFaqsByCategoryIdOrSlug(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Faq category ID or slug | 
-
-Get FAQs of a Faq Category `id` or `slug`
-
-*Success Response:*
-
-
-
-Get FAQs by slug/id of FAQ Category
-
-
-Schema: `GetFaqSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addFaqToFaqCategory
-Creates FAQs for category whose `id` is specified
-
-```swift
-content.addFaqToFaqCategory(companyId: companyId, applicationId: applicationId, categoryId: categoryId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-
-Creates FAQs for category whose `id` is specified
-
-*Success Response:*
-
-
-
-Create a FAQ for FAQ Category
-
-
-Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateFaq
-Updates FAQ
-
-```swift
-content.updateFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
-
-Updates FAQ
-
-*Success Response:*
-
-
-
-Update FAQ by id
-
-
-Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteFaq
-Delete FAQ
-
-```swift
-content.deleteFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
-
-Delete FAQ
-
-*Success Response:*
-
-
-
-Delete FAQ by id
-
-
-Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createKeyValue
-Create key values for templating
-
-```swift
-content.createKeyValue(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Use this to create key-values for templating.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `KeyValue`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/KeyValue"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getKeyValueByID
-Get KeyValue by id
-
-```swift
-content.getKeyValueByID(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | The `id` of a keyvalue. Use this parameter to retrieve a particular keyvalue | 
-
-Use this to fetch a keyvalue by `id`
-
-*Success Response:*
-
-
-
-A JSON object with keyvalue details
-
-
-Schema: `KeyValue`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/KeyValue"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createLandingPage
-Create landing-page
-
-```swift
-content.createLandingPage(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Use this to create landing-page.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `LandingPage`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/LandingPage"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLegalInformation
-Get legal information
-
-```swift
-content.getLegalInformation(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationLegal`
-
-
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/Legal"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateLegalInformation
-Save legal information
-
-```swift
-content.updateLegalInformation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationLegal`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSeoConfiguration
-Get seo of application
-
-```swift
-content.getSeoConfiguration(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get seo of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Seo`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Seo"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateSeoConfiguration
-Update seo of application
-
-```swift
-content.updateSeoConfiguration(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Update seo of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Seo`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Seo"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSupportInformation
-Get support information
-
-```swift
-content.getSupportInformation(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get contact details for customer support. Including emails and phone numbers
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Support`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Support"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateSupportInformation
-Update support data of application
-
-```swift
-content.updateSupportInformation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Update support data of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Support`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createTag
-Creates Tag
-
-```swift
-content.createTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Create tags
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateTag
-Updates a Tag
-
-```swift
-content.updateTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Update tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteAllTags
-Delete tags for application
-
-```swift
-content.deleteAllTags(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Delete tags for application
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getTags
-Get tags for application
-
-```swift
-content.getTags(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get tags for application
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addTag
-Adds a Tag
-
-```swift
-content.addTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Add tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### removeTag
-Removes a Tag
-
-```swift
-content.removeTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Remove a particular tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### editTag
-Edits a Tag by Id
-
-```swift
-content.editTag(companyId: companyId, applicationId: applicationId, tagId: tagId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| tagId | string | Tag ID | 
-
-Edits a particular tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
 ## Communication
 
 
@@ -7189,13 +4882,15 @@ Schema: `TagsSchema`
 Get campaigns
 
 ```swift
-communication.getCampaigns() { (response, error) in
+communication.getCampaigns(companyId: companyId, applicationId: applicationId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get campaigns
 
@@ -7234,13 +4929,15 @@ default
 Create campaign
 
 ```swift
-communication.createCampaign(body: body) { (response, error) in
+communication.createCampaign(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create campaign
 
@@ -7279,13 +4976,15 @@ default
 Get campaign by id
 
 ```swift
-communication.getCampaignById(id: id) { (response, error) in
+communication.getCampaignById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Campaign id | 
 
 Get campaign by id
@@ -7337,13 +5036,15 @@ Schema: `NotFound`
 Update campaign by id
 
 ```swift
-communication.updateCampaignById(id: id, body: body) { (response, error) in
+communication.updateCampaignById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Campaign id | 
 
 Update campaign by id
@@ -7395,13 +5096,15 @@ Schema: `NotFound`
 Get stats of campaign by id
 
 ```swift
-communication.getStatsOfCampaignById(id: id) { (response, error) in
+communication.getStatsOfCampaignById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Campaign id | 
 
 Get stats of campaign by id
@@ -7453,13 +5156,15 @@ Schema: `BadRequest`
 Get audiences
 
 ```swift
-communication.getAudiences() { (response, error) in
+communication.getAudiences(companyId: companyId, applicationId: applicationId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get audiences
 
@@ -7498,13 +5203,15 @@ default
 Create audience
 
 ```swift
-communication.createAudience(body: body) { (response, error) in
+communication.createAudience(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create audience
 
@@ -7543,13 +5250,15 @@ default
 Get bigquery headers
 
 ```swift
-communication.getBigqueryHeaders(body: body) { (response, error) in
+communication.getBigqueryHeaders(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get bigquery headers
 
@@ -7600,13 +5309,15 @@ Schema: `BadRequest`
 Get audience by id
 
 ```swift
-communication.getAudienceById(id: id) { (response, error) in
+communication.getAudienceById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Audience id | 
 
 Get audience by id
@@ -7658,13 +5369,15 @@ Schema: `NotFound`
 Update audience by id
 
 ```swift
-communication.updateAudienceById(id: id, body: body) { (response, error) in
+communication.updateAudienceById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Audience id | 
 
 Update audience by id
@@ -7716,13 +5429,15 @@ Schema: `NotFound`
 Get n sample records from csv
 
 ```swift
-communication.getNSampleRecordsFromCsv(body: body) { (response, error) in
+communication.getNSampleRecordsFromCsv(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get n sample records from csv
 
@@ -7820,13 +5535,15 @@ default
 Create email provider
 
 ```swift
-communication.createEmailProvider(body: body) { (response, error) in
+communication.createEmailProvider(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create email provider
 
@@ -7865,13 +5582,15 @@ default
 Get email provider by id
 
 ```swift
-communication.getEmailProviderById(id: id) { (response, error) in
+communication.getEmailProviderById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email provider id | 
 
 Get email provider by id
@@ -7911,13 +5630,15 @@ default
 Update email provider by id
 
 ```swift
-communication.updateEmailProviderById(id: id, body: body) { (response, error) in
+communication.updateEmailProviderById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email provider id | 
 
 Update email provider by id
@@ -7957,13 +5678,15 @@ default
 Get email templates
 
 ```swift
-communication.getEmailTemplates() { (response, error) in
+communication.getEmailTemplates(companyId: companyId, applicationId: applicationId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get email templates
 
@@ -8002,13 +5725,15 @@ default
 Create email template
 
 ```swift
-communication.createEmailTemplate(body: body) { (response, error) in
+communication.createEmailTemplate(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create email template
 
@@ -8047,13 +5772,15 @@ default
 Get system email templates
 
 ```swift
-communication.getSystemEmailTemplates() { (response, error) in
+communication.getSystemEmailTemplates(companyId: companyId, applicationId: applicationId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get system email templates
 
@@ -8092,13 +5819,15 @@ default
 Get email template by id
 
 ```swift
-communication.getEmailTemplateById(id: id) { (response, error) in
+communication.getEmailTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email template id | 
 
 Get email template by id
@@ -8138,13 +5867,15 @@ default
 Update email template by id
 
 ```swift
-communication.updateEmailTemplateById(id: id, body: body) { (response, error) in
+communication.updateEmailTemplateById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email template id | 
 
 Update email template by id
@@ -8184,13 +5915,15 @@ default
 Delete email template by id
 
 ```swift
-communication.deleteEmailTemplateById(id: id) { (response, error) in
+communication.deleteEmailTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email template id | 
 
 Delete email template by id
@@ -8347,13 +6080,15 @@ default
 Trigger campaign job
 
 ```swift
-communication.triggerCampaignJob(body: body) { (response, error) in
+communication.triggerCampaignJob(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Trigger campaign job
 
@@ -8482,17 +6217,92 @@ default
 ---
 
 
-#### getSmsProviders
-Get sms providers
+#### upsertPushtoken
+Upsert push token of a user
 
 ```swift
-communication.getSmsProviders() { (response, error) in
+communication.upsertPushtoken(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Upsert push token of a user
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PushtokenRes`
+
+
+*Examples:*
+
+
+create
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseCreate"
+}
+```
+
+update
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseUpdate"
+}
+```
+
+reset
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseReset"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsProviders
+Get sms providers
+
+```swift
+communication.getSmsProviders(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get sms providers
 
@@ -8531,13 +6341,15 @@ default
 Create sms provider
 
 ```swift
-communication.createSmsProvider(body: body) { (response, error) in
+communication.createSmsProvider(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create sms provider
 
@@ -8576,13 +6388,15 @@ default
 Get sms provider by id
 
 ```swift
-communication.getSmsProviderById(id: id) { (response, error) in
+communication.getSmsProviderById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms provider id | 
 
 Get sms provider by id
@@ -8622,13 +6436,15 @@ default
 Update sms provider by id
 
 ```swift
-communication.updateSmsProviderById(id: id, body: body) { (response, error) in
+communication.updateSmsProviderById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms provider id | 
 
 Update sms provider by id
@@ -8668,13 +6484,15 @@ default
 Get sms templates
 
 ```swift
-communication.getSmsTemplates() { (response, error) in
+communication.getSmsTemplates(companyId: companyId, applicationId: applicationId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get sms templates
 
@@ -8713,13 +6531,15 @@ default
 Create sms template
 
 ```swift
-communication.createSmsTemplate(body: body) { (response, error) in
+communication.createSmsTemplate(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create sms template
 
@@ -8758,13 +6578,15 @@ default
 Get sms template by id
 
 ```swift
-communication.getSmsTemplateById(id: id) { (response, error) in
+communication.getSmsTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms template id | 
 
 Get sms template by id
@@ -8816,13 +6638,15 @@ Schema: `NotFound`
 Update sms template by id
 
 ```swift
-communication.updateSmsTemplateById(id: id, body: body) { (response, error) in
+communication.updateSmsTemplateById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms template id | 
 
 Update sms template by id
@@ -8874,13 +6698,15 @@ Schema: `NotFound`
 Delete sms template by id
 
 ```swift
-communication.deleteSmsTemplateById(id: id) { (response, error) in
+communication.deleteSmsTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms template id | 
 
 Delete sms template by id
@@ -8955,13 +6781,15 @@ Schema: `NotFound`
 Get system sms templates
 
 ```swift
-communication.getSystemSystemTemplates() { (response, error) in
+communication.getSystemSystemTemplates(companyId: companyId, applicationId: applicationId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get system sms templates
 
@@ -8984,6 +6812,780 @@ default
   "$ref": "#/components/examples/SystemSmsTemplates"
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Payment
+
+
+#### getBrandPaymentGatewayConfig
+Get All Brand Payment Gateway Config Secret
+
+```swift
+payment.getBrandPaymentGatewayConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+
+Get All Brand Payment Gateway Config Secret
+
+*Success Response:*
+
+
+
+Refund Transfer Mode
+
+
+Schema: `PaymentGatewayConfigResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorCodeDescription`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorCodeDescription`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### saveBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
+
+```swift
+payment.saveBrandPaymentGatewayConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+
+Save Config Secret For Brand Payment Gateway
+
+*Success Response:*
+
+
+
+Save Config Secret For Brand Payment Gateway Success Response.
+
+
+Schema: `PaymentGatewayToBeReviewed`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
+
+```swift
+payment.updateBrandPaymentGatewayConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+
+Save Config Secret For Brand Payment Gateway
+
+*Success Response:*
+
+
+
+Save Config Secret For Brand Payment Gateway Success Response.
+
+
+Schema: `PaymentGatewayToBeReviewed`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPaymentModeRoutes
+Get All Valid Payment Options
+
+```swift
+payment.getPaymentModeRoutes(companyId: companyId, applicationId: applicationId, refresh: refresh, requestType: requestType) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+| refresh | boolean |  | 
+| requestType | string |  | 
+
+Use this API to get Get All Valid Payment Options for making payment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PaymentOptionsResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllPayouts
+Get All Payouts
+
+```swift
+payment.getAllPayouts(companyId: companyId, uniqueExternalId: uniqueExternalId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueExternalId | string | Fetch payouts using unique external id | 
+
+Get All Payouts
+
+*Success Response:*
+
+
+
+payouts response object
+
+
+Schema: `PayoutsResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### savePayout
+Save Payout
+
+```swift
+payment.savePayout(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Save Payout
+
+*Success Response:*
+
+
+
+save payout response object
+
+
+Schema: `PayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePayout
+Update Payout
+
+```swift
+payment.updatePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueTransferNo | string | Unique transfer id | 
+
+Update Payout
+
+*Success Response:*
+
+
+
+save payout response object
+
+
+Schema: `UpdatePayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### activateAndDectivatePayout
+Partial Update Payout
+
+```swift
+payment.activateAndDectivatePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueTransferNo | string | Unique transfer id | 
+
+Partial Update Payout
+
+*Success Response:*
+
+
+
+save payout response object
+
+
+Schema: `UpdatePayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deletePayout
+Delete Payout
+
+```swift
+payment.deletePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueTransferNo | string | Unique transfer id | 
+
+Delete Payout
+
+*Success Response:*
+
+
+
+delete payout response object
+
+
+Schema: `DeletePayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSubscriptionPaymentMethod
+List Subscription Payment Method
+
+```swift
+payment.getSubscriptionPaymentMethod(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Get all  Subscription  Payment Method
+
+*Success Response:*
+
+
+
+List Subscription Payment Method Response
+
+
+Schema: `SubscriptionPaymentMethodResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSubscriptionPaymentMethod
+Delete Subscription Payment Method
+
+```swift
+payment.deleteSubscriptionPaymentMethod(companyId: companyId, uniqueExternalId: uniqueExternalId, paymentMethodId: paymentMethodId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueExternalId | string |  | 
+| paymentMethodId | string |  | 
+
+Uses this api to Delete Subscription Payment Method
+
+*Success Response:*
+
+
+
+Delete Subscription Payment Method Response.
+
+
+Schema: `DeleteSubscriptionPaymentMethodResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSubscriptionConfig
+List Subscription Config
+
+```swift
+payment.getSubscriptionConfig(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Get all  Subscription Config details
+
+*Success Response:*
+
+
+
+List Subscription Config Response
+
+
+Schema: `SubscriptionConfigResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### saveSubscriptionSetupIntent
+Save Subscription Setup Intent
+
+```swift
+payment.saveSubscriptionSetupIntent(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Uses this api to Save Subscription Setup Intent
+
+*Success Response:*
+
+
+
+Save Subscription Setup Intent Response.
+
+
+Schema: `SaveSubscriptionSetupIntentResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -9144,11 +7746,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
+#### getBrand
+Get a single brand.
 
 ```swift
-companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
+companyprofile.getBrand(brandId: brandId) { (response, error) in
     // Use response
 }
 ```
@@ -9157,16 +7759,16 @@ companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
 | --------- | ----  | --- |
 | brandId | string | Id of the brand to be viewed. | 
 
-This API allows to edit meta of a brand.
+This API helps to get data associated to a particular brand.
 
 *Success Response:*
 
 
 
-Returns a success response
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
 
 
-Schema: `SuccessResponse`
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -9191,11 +7793,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
+#### editBrand
+Edit a brand.
 
 ```swift
-companyprofile.getBrand(brandId: brandId) { (response, error) in
+companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -9204,16 +7806,16 @@ companyprofile.getBrand(brandId: brandId) { (response, error) in
 | --------- | ----  | --- |
 | brandId | string | Id of the brand to be viewed. | 
 
-This API helps to get data associated to a particular brand.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
 
 
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
+Returns a success response
 
 
-Schema: `GetBrandResponseSerializer`
+Schema: `SuccessResponse`
 
 
 
@@ -9477,54 +8079,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editLocation
-Edit a location asscoiated to a company.
-
-```swift
-companyprofile.editLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSingleLocation
 Get a single location.
 
@@ -9549,6 +8103,54 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editLocation
+Edit a location asscoiated to a company.
+
+```swift
+companyprofile.editLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
