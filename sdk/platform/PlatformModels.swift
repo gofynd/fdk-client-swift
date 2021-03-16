@@ -2858,88 +2858,6238 @@ public extension PlatformClient {
     
     
     /*
-        Model: PaymentGatewayConfigResponse
+        Model: EditEmailRequestSchema
     */
 
-    struct PaymentGatewayConfigResponse: Codable {
+    struct EditEmailRequestSchema: Codable {
         
         
-        public var appId: String
-        
-        public var displayFields: [String]
-        
-        public var created: Bool
-        
-        public var excludedFields: [String]
-        
-        public var aggregators: [[String: Any]]?
-        
-        public var success: Bool
+        public var email: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case appId = "app_id"
-            
-            case displayFields = "display_fields"
-            
-            case created = "created"
-            
-            case excludedFields = "excluded_fields"
-            
-            case aggregators = "aggregators"
-            
-            case success = "success"
+            case email = "email"
             
         }
 
-        public init(aggregators: [[String: Any]]?, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
+        public init(email: String?) {
             
-            self.appId = appId
-            
-            self.displayFields = displayFields
-            
-            self.created = created
-            
-            self.excludedFields = excludedFields
-            
-            self.aggregators = aggregators
-            
-            self.success = success
+            self.email = email
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            appId = try container.decode(String.self, forKey: .appId)
-            
-            displayFields = try container.decode([String].self, forKey: .displayFields)
-            
-            created = try container.decode(Bool.self, forKey: .created)
-            
-            excludedFields = try container.decode([String].self, forKey: .excludedFields)
-            
-            aggregators = try? container.decode([[String: Any]].self, forKey: .aggregators)
-            
-            success = try container.decode(Bool.self, forKey: .success)
+            email = try? container.decode(String.self, forKey: .email)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(email, forKey: .email)
             
-            try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+        }
+        
+    }
+    
+    /*
+        Model: SendVerificationLinkMobileRequestSchema
+    */
+
+    struct SendVerificationLinkMobileRequestSchema: Codable {
+        
+        
+        public var verified: Bool?
+        
+        public var active: Bool?
+        
+        public var countryCode: String?
+        
+        public var phone: String?
+        
+        public var primary: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case verified = "verified"
+            
+            case active = "active"
+            
+            case countryCode = "country_code"
+            
+            case phone = "phone"
+            
+            case primary = "primary"
+            
+        }
+
+        public init(active: Bool?, countryCode: String?, phone: String?, primary: Bool?, verified: Bool?) {
+            
+            self.verified = verified
+            
+            self.active = active
+            
+            self.countryCode = countryCode
+            
+            self.phone = phone
+            
+            self.primary = primary
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            verified = try? container.decode(Bool.self, forKey: .verified)
+            
+            active = try? container.decode(Bool.self, forKey: .active)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+            phone = try? container.decode(String.self, forKey: .phone)
+            
+            primary = try? container.decode(Bool.self, forKey: .primary)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(verified, forKey: .verified)
+            
+            try? container.encodeIfPresent(active, forKey: .active)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
+            try? container.encodeIfPresent(primary, forKey: .primary)
+            
+        }
+        
+    }
+    
+    /*
+        Model: EditMobileRequestSchema
+    */
+
+    struct EditMobileRequestSchema: Codable {
+        
+        
+        public var countryCode: String?
+        
+        public var phone: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case countryCode = "country_code"
+            
+            case phone = "phone"
+            
+        }
+
+        public init(countryCode: String?, phone: String?) {
+            
+            self.countryCode = countryCode
+            
+            self.phone = phone
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+            phone = try? container.decode(String.self, forKey: .phone)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
+        }
+        
+    }
+    
+    /*
+        Model: EditProfileRequestSchema
+    */
+
+    struct EditProfileRequestSchema: Codable {
+        
+        
+        public var firstName: String?
+        
+        public var lastName: String?
+        
+        public var mobile: String?
+        
+        public var email: String?
+        
+        public var gender: String?
+        
+        public var dob: String?
+        
+        public var profilePicUrl: String?
+        
+        public var androidHash: String?
+        
+        public var sender: String?
+        
+        public var registerToken: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case firstName = "first_name"
+            
+            case lastName = "last_name"
+            
+            case mobile = "mobile"
+            
+            case email = "email"
+            
+            case gender = "gender"
+            
+            case dob = "dob"
+            
+            case profilePicUrl = "profile_pic_url"
+            
+            case androidHash = "androidHash"
+            
+            case sender = "sender"
+            
+            case registerToken = "register_token"
+            
+        }
+
+        public init(androidHash: String?, dob: String?, email: String?, firstName: String?, gender: String?, lastName: String?, mobile: String?, profilePicUrl: String?, registerToken: String?, sender: String?) {
+            
+            self.firstName = firstName
+            
+            self.lastName = lastName
+            
+            self.mobile = mobile
+            
+            self.email = email
+            
+            self.gender = gender
+            
+            self.dob = dob
+            
+            self.profilePicUrl = profilePicUrl
+            
+            self.androidHash = androidHash
+            
+            self.sender = sender
+            
+            self.registerToken = registerToken
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            firstName = try? container.decode(String.self, forKey: .firstName)
+            
+            lastName = try? container.decode(String.self, forKey: .lastName)
+            
+            mobile = try? container.decode(String.self, forKey: .mobile)
+            
+            email = try? container.decode(String.self, forKey: .email)
+            
+            gender = try? container.decode(String.self, forKey: .gender)
+            
+            dob = try? container.decode(String.self, forKey: .dob)
+            
+            profilePicUrl = try? container.decode(String.self, forKey: .profilePicUrl)
+            
+            androidHash = try? container.decode(String.self, forKey: .androidHash)
+            
+            sender = try? container.decode(String.self, forKey: .sender)
+            
+            registerToken = try? container.decode(String.self, forKey: .registerToken)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            try? container.encodeIfPresent(email, forKey: .email)
+            
+            try? container.encodeIfPresent(gender, forKey: .gender)
+            
+            try? container.encodeIfPresent(dob, forKey: .dob)
+            
+            try? container.encodeIfPresent(profilePicUrl, forKey: .profilePicUrl)
+            
+            try? container.encodeIfPresent(androidHash, forKey: .androidHash)
+            
+            try? container.encodeIfPresent(sender, forKey: .sender)
+            
+            try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SendEmailOtpRequestSchema
+    */
+
+    struct SendEmailOtpRequestSchema: Codable {
+        
+        
+        public var email: String?
+        
+        public var action: String?
+        
+        public var token: String?
+        
+        public var registerToken: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case email = "email"
+            
+            case action = "action"
+            
+            case token = "token"
+            
+            case registerToken = "register_token"
+            
+        }
+
+        public init(action: String?, email: String?, registerToken: String?, token: String?) {
+            
+            self.email = email
+            
+            self.action = action
+            
+            self.token = token
+            
+            self.registerToken = registerToken
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            email = try? container.decode(String.self, forKey: .email)
+            
+            action = try? container.decode(String.self, forKey: .action)
+            
+            token = try? container.decode(String.self, forKey: .token)
+            
+            registerToken = try? container.decode(String.self, forKey: .registerToken)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(email, forKey: .email)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(token, forKey: .token)
+            
+            try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+        }
+        
+    }
+    
+    /*
+        Model: VerifyOtpRequestSchema
+    */
+
+    struct VerifyOtpRequestSchema: Codable {
+        
+        
+        public var requestId: String?
+        
+        public var registerToken: String?
+        
+        public var otp: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case requestId = "request_id"
+            
+            case registerToken = "register_token"
+            
+            case otp = "otp"
+            
+        }
+
+        public init(otp: String?, registerToken: String?, requestId: String?) {
+            
+            self.requestId = requestId
+            
+            self.registerToken = registerToken
+            
+            self.otp = otp
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            requestId = try? container.decode(String.self, forKey: .requestId)
+            
+            registerToken = try? container.decode(String.self, forKey: .registerToken)
+            
+            otp = try? container.decode(String.self, forKey: .otp)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            
+            try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+            try? container.encodeIfPresent(otp, forKey: .otp)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SendMobileOtpRequestSchema
+    */
+
+    struct SendMobileOtpRequestSchema: Codable {
+        
+        
+        public var mobile: String?
+        
+        public var countryCode: String?
+        
+        public var action: String?
+        
+        public var token: String?
+        
+        public var androidHash: String?
+        
+        public var force: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case mobile = "mobile"
+            
+            case countryCode = "country_code"
+            
+            case action = "action"
+            
+            case token = "token"
+            
+            case androidHash = "androidHash"
+            
+            case force = "force"
+            
+        }
+
+        public init(action: String?, androidHash: String?, countryCode: String?, force: String?, mobile: String?, token: String?) {
+            
+            self.mobile = mobile
+            
+            self.countryCode = countryCode
+            
+            self.action = action
+            
+            self.token = token
+            
+            self.androidHash = androidHash
+            
+            self.force = force
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            mobile = try? container.decode(String.self, forKey: .mobile)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+            action = try? container.decode(String.self, forKey: .action)
+            
+            token = try? container.decode(String.self, forKey: .token)
+            
+            androidHash = try? container.decode(String.self, forKey: .androidHash)
+            
+            force = try? container.decode(String.self, forKey: .force)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(token, forKey: .token)
+            
+            try? container.encodeIfPresent(androidHash, forKey: .androidHash)
+            
+            try? container.encodeIfPresent(force, forKey: .force)
+            
+        }
+        
+    }
+    
+    /*
+        Model: UpdatePasswordRequestSchema
+    */
+
+    struct UpdatePasswordRequestSchema: Codable {
+        
+        
+        public var oldPassword: String?
+        
+        public var newPassword: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case oldPassword = "old_password"
+            
+            case newPassword = "new_password"
+            
+        }
+
+        public init(newPassword: String?, oldPassword: String?) {
+            
+            self.oldPassword = oldPassword
+            
+            self.newPassword = newPassword
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            oldPassword = try? container.decode(String.self, forKey: .oldPassword)
+            
+            newPassword = try? container.decode(String.self, forKey: .newPassword)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(oldPassword, forKey: .oldPassword)
+            
+            try? container.encodeIfPresent(newPassword, forKey: .newPassword)
+            
+        }
+        
+    }
+    
+    /*
+        Model: FormRegisterRequestSchema
+    */
+
+    struct FormRegisterRequestSchema: Codable {
+        
+        
+        public var firstName: String?
+        
+        public var lastName: String?
+        
+        public var gender: String?
+        
+        public var email: String?
+        
+        public var password: String?
+        
+        public var phone: [String: Any]?
+        
+        public var registerToken: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case firstName = "first_name"
+            
+            case lastName = "last_name"
+            
+            case gender = "gender"
+            
+            case email = "email"
+            
+            case password = "password"
+            
+            case phone = "phone"
+            
+            case registerToken = "register_token"
+            
+        }
+
+        public init(email: String?, firstName: String?, gender: String?, lastName: String?, password: String?, phone: [String: Any]?, registerToken: String?) {
+            
+            self.firstName = firstName
+            
+            self.lastName = lastName
+            
+            self.gender = gender
+            
+            self.email = email
+            
+            self.password = password
+            
+            self.phone = phone
+            
+            self.registerToken = registerToken
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            firstName = try? container.decode(String.self, forKey: .firstName)
+            
+            lastName = try? container.decode(String.self, forKey: .lastName)
+            
+            gender = try? container.decode(String.self, forKey: .gender)
+            
+            email = try? container.decode(String.self, forKey: .email)
+            
+            password = try? container.decode(String.self, forKey: .password)
+            
+            phone = try? container.decode([String: Any].self, forKey: .phone)
+            
+            registerToken = try? container.decode(String.self, forKey: .registerToken)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
+            try? container.encodeIfPresent(gender, forKey: .gender)
+            
+            try? container.encodeIfPresent(email, forKey: .email)
+            
+            try? container.encodeIfPresent(password, forKey: .password)
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
+            try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+        }
+        
+    }
+    
+    /*
+        Model: TokenRequestBodySchema
+    */
+
+    struct TokenRequestBodySchema: Codable {
+        
+        
+        public var token: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case token = "token"
+            
+        }
+
+        public init(token: String?) {
+            
+            self.token = token
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            token = try? container.decode(String.self, forKey: .token)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(token, forKey: .token)
+            
+        }
+        
+    }
+    
+    /*
+        Model: ForgotPasswordRequestSchema
+    */
+
+    struct ForgotPasswordRequestSchema: Codable {
+        
+        
+        public var code: String?
+        
+        public var password: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case code = "code"
+            
+            case password = "password"
+            
+        }
+
+        public init(code: String?, password: String?) {
+            
+            self.code = code
+            
+            self.password = password
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            code = try? container.decode(String.self, forKey: .code)
+            
+            password = try? container.decode(String.self, forKey: .password)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            try? container.encodeIfPresent(password, forKey: .password)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CodeRequestBodySchema
+    */
+
+    struct CodeRequestBodySchema: Codable {
+        
+        
+        public var code: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case code = "code"
+            
+        }
+
+        public init(code: String?) {
+            
+            self.code = code
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            code = try? container.decode(String.self, forKey: .code)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SendResetPasswordEmailRequestSchema
+    */
+
+    struct SendResetPasswordEmailRequestSchema: Codable {
+        
+        
+        public var email: String?
+        
+        public var gRecaptchaResponse: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case email = "email"
+            
+            case gRecaptchaResponse = "g-recaptcha-response"
+            
+        }
+
+        public init(email: String?, gRecaptchaResponse: String?) {
+            
+            self.email = email
+            
+            self.gRecaptchaResponse = gRecaptchaResponse
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            email = try? container.decode(String.self, forKey: .email)
+            
+            gRecaptchaResponse = try? container.decode(String.self, forKey: .gRecaptchaResponse)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(email, forKey: .email)
+            
+            try? container.encodeIfPresent(gRecaptchaResponse, forKey: .gRecaptchaResponse)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PasswordLoginRequestSchema
+    */
+
+    struct PasswordLoginRequestSchema: Codable {
+        
+        
+        public var gRecaptchaResponse: String?
+        
+        public var password: String?
+        
+        public var username: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case gRecaptchaResponse = "g-recaptcha-response"
+            
+            case password = "password"
+            
+            case username = "username"
+            
+        }
+
+        public init(gRecaptchaResponse: String?, password: String?, username: String?) {
+            
+            self.gRecaptchaResponse = gRecaptchaResponse
+            
+            self.password = password
+            
+            self.username = username
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            gRecaptchaResponse = try? container.decode(String.self, forKey: .gRecaptchaResponse)
+            
+            password = try? container.decode(String.self, forKey: .password)
+            
+            username = try? container.decode(String.self, forKey: .username)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(gRecaptchaResponse, forKey: .gRecaptchaResponse)
+            
+            try? container.encodeIfPresent(password, forKey: .password)
+            
+            try? container.encodeIfPresent(username, forKey: .username)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SendOtpRequestSchema
+    */
+
+    struct SendOtpRequestSchema: Codable {
+        
+        
+        public var countryCode: String?
+        
+        public var gRecaptchaResponse: String?
+        
+        public var mobile: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case countryCode = "country_code"
+            
+            case gRecaptchaResponse = "g-recaptcha-response"
+            
+            case mobile = "mobile"
+            
+        }
+
+        public init(countryCode: String?, gRecaptchaResponse: String?, mobile: String?) {
+            
+            self.countryCode = countryCode
+            
+            self.gRecaptchaResponse = gRecaptchaResponse
+            
+            self.mobile = mobile
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+            gRecaptchaResponse = try? container.decode(String.self, forKey: .gRecaptchaResponse)
+            
+            mobile = try? container.decode(String.self, forKey: .mobile)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            try? container.encodeIfPresent(gRecaptchaResponse, forKey: .gRecaptchaResponse)
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+        }
+        
+    }
+    
+    /*
+        Model: OAuthRequestSchema
+    */
+
+    struct OAuthRequestSchema: Codable {
+        
+        
+        public var isSignedIn: Bool?
+        
+        public var oauth2: [String: Any]?
+        
+        public var profile: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case isSignedIn = "is_signed_in"
+            
+            case oauth2 = "oauth2"
+            
+            case profile = "profile"
+            
+        }
+
+        public init(isSignedIn: Bool?, oauth2: [String: Any]?, profile: [String: Any]?) {
+            
+            self.isSignedIn = isSignedIn
+            
+            self.oauth2 = oauth2
+            
+            self.profile = profile
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            isSignedIn = try? container.decode(Bool.self, forKey: .isSignedIn)
+            
+            oauth2 = try? container.decode([String: Any].self, forKey: .oauth2)
+            
+            profile = try? container.decode([String: Any].self, forKey: .profile)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(isSignedIn, forKey: .isSignedIn)
+            
+            try? container.encodeIfPresent(oauth2, forKey: .oauth2)
+            
+            try? container.encodeIfPresent(profile, forKey: .profile)
+            
+        }
+        
+    }
+    
+    /*
+        Model: AuthSuccess
+    */
+
+    struct AuthSuccess: Codable {
+        
+        
+        public var registerToken: String?
+        
+        public var userExists: Bool?
+        
+        public var user: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case registerToken = "register_token"
+            
+            case userExists = "user_exists"
+            
+            case user = "user"
+            
+        }
+
+        public init(registerToken: String?, user: [String: Any]?, userExists: Bool?) {
+            
+            self.registerToken = registerToken
+            
+            self.userExists = userExists
+            
+            self.user = user
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            registerToken = try? container.decode(String.self, forKey: .registerToken)
+            
+            userExists = try? container.decode(Bool.self, forKey: .userExists)
+            
+            user = try? container.decode([String: Any].self, forKey: .user)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+            try? container.encodeIfPresent(userExists, forKey: .userExists)
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SendOtpResponse
+    */
+
+    struct SendOtpResponse: Codable {
+        
+        
+        public var resendTimer: Int?
+        
+        public var resendToken: String?
+        
+        public var success: Bool?
+        
+        public var requestId: String?
+        
+        public var message: String?
+        
+        public var mobile: String?
+        
+        public var countryCode: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case resendTimer = "resend_timer"
+            
+            case resendToken = "resend_token"
+            
+            case success = "success"
+            
+            case requestId = "request_id"
+            
+            case message = "message"
+            
+            case mobile = "mobile"
+            
+            case countryCode = "country_code"
+            
+        }
+
+        public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
+            
+            self.resendTimer = resendTimer
+            
+            self.resendToken = resendToken
+            
+            self.success = success
+            
+            self.requestId = requestId
+            
+            self.message = message
+            
+            self.mobile = mobile
+            
+            self.countryCode = countryCode
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            resendTimer = try? container.decode(Int.self, forKey: .resendTimer)
+            
+            resendToken = try? container.decode(String.self, forKey: .resendToken)
+            
+            success = try? container.decode(Bool.self, forKey: .success)
+            
+            requestId = try? container.decode(String.self, forKey: .requestId)
+            
+            message = try? container.decode(String.self, forKey: .message)
+            
+            mobile = try? container.decode(String.self, forKey: .mobile)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
+            
+            try? container.encodeIfPresent(resendToken, forKey: .resendToken)
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+        }
+        
+    }
+    
+    /*
+        Model: LoginSuccess
+    */
+
+    struct LoginSuccess: Codable {
+        
+        
+        public var user: UserSchema?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case user = "user"
+            
+        }
+
+        public init(user: UserSchema?) {
+            
+            self.user = user
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            user = try? container.decode(UserSchema.self, forKey: .user)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+        }
+        
+    }
+    
+    /*
+        Model: VerifyOtpSuccess
+    */
+
+    struct VerifyOtpSuccess: Codable {
+        
+        
+        public var user: UserSchema?
+        
+        public var userExists: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case user = "user"
+            
+            case userExists = "userExists"
+            
+        }
+
+        public init(user: UserSchema?, userExists: Bool?) {
+            
+            self.user = user
+            
+            self.userExists = userExists
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            user = try? container.decode(UserSchema.self, forKey: .user)
+            
+            userExists = try? container.decode(Bool.self, forKey: .userExists)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+            try? container.encodeIfPresent(userExists, forKey: .userExists)
+            
+        }
+        
+    }
+    
+    /*
+        Model: ResetPasswordSuccess
+    */
+
+    struct ResetPasswordSuccess: Codable {
+        
+        
+        public var status: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case status = "status"
+            
+        }
+
+        public init(status: String?) {
+            
+            self.status = status
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            status = try? container.decode(String.self, forKey: .status)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(status, forKey: .status)
+            
+        }
+        
+    }
+    
+    /*
+        Model: RegisterFormSuccess
+    */
+
+    struct RegisterFormSuccess: Codable {
+        
+        
+        public var resendTimer: Int?
+        
+        public var resendToken: String?
+        
+        public var success: Bool?
+        
+        public var requestId: String?
+        
+        public var message: String?
+        
+        public var mobile: String?
+        
+        public var countryCode: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case resendTimer = "resend_timer"
+            
+            case resendToken = "resend_token"
+            
+            case success = "success"
+            
+            case requestId = "request_id"
+            
+            case message = "message"
+            
+            case mobile = "mobile"
+            
+            case countryCode = "country_code"
+            
+        }
+
+        public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
+            
+            self.resendTimer = resendTimer
+            
+            self.resendToken = resendToken
+            
+            self.success = success
+            
+            self.requestId = requestId
+            
+            self.message = message
+            
+            self.mobile = mobile
+            
+            self.countryCode = countryCode
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            resendTimer = try? container.decode(Int.self, forKey: .resendTimer)
+            
+            resendToken = try? container.decode(String.self, forKey: .resendToken)
+            
+            success = try? container.decode(Bool.self, forKey: .success)
+            
+            requestId = try? container.decode(String.self, forKey: .requestId)
+            
+            message = try? container.decode(String.self, forKey: .message)
+            
+            mobile = try? container.decode(String.self, forKey: .mobile)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
+            
+            try? container.encodeIfPresent(resendToken, forKey: .resendToken)
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+        }
+        
+    }
+    
+    /*
+        Model: VerifyEmailSuccess
+    */
+
+    struct VerifyEmailSuccess: Codable {
+        
+        
+        public var message: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case message = "message"
+            
+        }
+
+        public init(message: String?) {
+            
+            self.message = message
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            message = try? container.decode(String.self, forKey: .message)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+        }
+        
+    }
+    
+    /*
+        Model: HasPasswordSuccess
+    */
+
+    struct HasPasswordSuccess: Codable {
+        
+        
+        public var result: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case result = "result"
+            
+        }
+
+        public init(result: Bool?) {
+            
+            self.result = result
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            result = try? container.decode(Bool.self, forKey: .result)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(result, forKey: .result)
+            
+        }
+        
+    }
+    
+    /*
+        Model: LogoutSuccess
+    */
+
+    struct LogoutSuccess: Codable {
+        
+        
+        public var logout: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case logout = "logout"
+            
+        }
+
+        public init(logout: Bool?) {
+            
+            self.logout = logout
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            logout = try? container.decode(Bool.self, forKey: .logout)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(logout, forKey: .logout)
+            
+        }
+        
+    }
+    
+    /*
+        Model: OtpSuccess
+    */
+
+    struct OtpSuccess: Codable {
+        
+        
+        public var resendTimer: Int?
+        
+        public var resendToken: String?
+        
+        public var success: Bool?
+        
+        public var requestId: String?
+        
+        public var message: String?
+        
+        public var mobile: String?
+        
+        public var countryCode: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case resendTimer = "resend_timer"
+            
+            case resendToken = "resend_token"
+            
+            case success = "success"
+            
+            case requestId = "request_id"
+            
+            case message = "message"
+            
+            case mobile = "mobile"
+            
+            case countryCode = "country_code"
+            
+        }
+
+        public init(countryCode: String?, message: String?, mobile: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
+            
+            self.resendTimer = resendTimer
+            
+            self.resendToken = resendToken
+            
+            self.success = success
+            
+            self.requestId = requestId
+            
+            self.message = message
+            
+            self.mobile = mobile
+            
+            self.countryCode = countryCode
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            resendTimer = try? container.decode(Int.self, forKey: .resendTimer)
+            
+            resendToken = try? container.decode(String.self, forKey: .resendToken)
+            
+            success = try? container.decode(Bool.self, forKey: .success)
+            
+            requestId = try? container.decode(String.self, forKey: .requestId)
+            
+            message = try? container.decode(String.self, forKey: .message)
+            
+            mobile = try? container.decode(String.self, forKey: .mobile)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
+            
+            try? container.encodeIfPresent(resendToken, forKey: .resendToken)
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+        }
+        
+    }
+    
+    /*
+        Model: EmailOtpSuccess
+    */
+
+    struct EmailOtpSuccess: Codable {
+        
+        
+        public var resendToken: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case resendToken = "resend_token"
+            
+        }
+
+        public init(resendToken: String?) {
+            
+            self.resendToken = resendToken
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            resendToken = try? container.decode(String.self, forKey: .resendToken)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(resendToken, forKey: .resendToken)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SessionListSuccess
+    */
+
+    struct SessionListSuccess: Codable {
+        
+        
+        public var sessions: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case sessions = "sessions"
+            
+        }
+
+        public init(sessions: [String]?) {
+            
+            self.sessions = sessions
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            sessions = try? container.decode([String].self, forKey: .sessions)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(sessions, forKey: .sessions)
+            
+        }
+        
+    }
+    
+    /*
+        Model: VerifyMobileOTPSuccess
+    */
+
+    struct VerifyMobileOTPSuccess: Codable {
+        
+        
+        public var user: UserSchema?
+        
+        public var verifyMobileLink: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case user = "user"
+            
+            case verifyMobileLink = "verify_mobile_link"
+            
+        }
+
+        public init(user: UserSchema?, verifyMobileLink: Bool?) {
+            
+            self.user = user
+            
+            self.verifyMobileLink = verifyMobileLink
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            user = try? container.decode(UserSchema.self, forKey: .user)
+            
+            verifyMobileLink = try? container.decode(Bool.self, forKey: .verifyMobileLink)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+            try? container.encodeIfPresent(verifyMobileLink, forKey: .verifyMobileLink)
+            
+        }
+        
+    }
+    
+    /*
+        Model: VerifyEmailOTPSuccess
+    */
+
+    struct VerifyEmailOTPSuccess: Codable {
+        
+        
+        public var user: UserSchema?
+        
+        public var verifyEmailLink: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case user = "user"
+            
+            case verifyEmailLink = "verify_email_link"
+            
+        }
+
+        public init(user: UserSchema?, verifyEmailLink: Bool?) {
+            
+            self.user = user
+            
+            self.verifyEmailLink = verifyEmailLink
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            user = try? container.decode(UserSchema.self, forKey: .user)
+            
+            verifyEmailLink = try? container.decode(Bool.self, forKey: .verifyEmailLink)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+            try? container.encodeIfPresent(verifyEmailLink, forKey: .verifyEmailLink)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SendMobileVerifyLinkSuccess
+    */
+
+    struct SendMobileVerifyLinkSuccess: Codable {
+        
+        
+        public var verifyMobileLink: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case verifyMobileLink = "verify_mobile_link"
+            
+        }
+
+        public init(verifyMobileLink: Bool?) {
+            
+            self.verifyMobileLink = verifyMobileLink
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            verifyMobileLink = try? container.decode(Bool.self, forKey: .verifyMobileLink)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(verifyMobileLink, forKey: .verifyMobileLink)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SendEmailVerifyLinkSuccess
+    */
+
+    struct SendEmailVerifyLinkSuccess: Codable {
+        
+        
+        public var verifyEmailLink: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case verifyEmailLink = "verify_email_link"
+            
+        }
+
+        public init(verifyEmailLink: Bool?) {
+            
+            self.verifyEmailLink = verifyEmailLink
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            verifyEmailLink = try? container.decode(Bool.self, forKey: .verifyEmailLink)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(verifyEmailLink, forKey: .verifyEmailLink)
+            
+        }
+        
+    }
+    
+    /*
+        Model: UserSearchResponseSchema
+    */
+
+    struct UserSearchResponseSchema: Codable {
+        
+        
+        public var users: [UserSchema]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case users = "users"
+            
+        }
+
+        public init(users: [UserSchema]?) {
+            
+            self.users = users
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            users = try? container.decode([UserSchema].self, forKey: .users)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(users, forKey: .users)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CustomerListResponseSchema
+    */
+
+    struct CustomerListResponseSchema: Codable {
+        
+        
+        public var items: [UserSchema]?
+        
+        public var page: PaginationSchema?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+            case page = "page"
+            
+        }
+
+        public init(items: [UserSchema]?, page: PaginationSchema?) {
+            
+            self.items = items
+            
+            self.page = page
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([UserSchema].self, forKey: .items)
+            
+            page = try? container.decode(PaginationSchema.self, forKey: .page)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PlatformSchema
+    */
+
+    struct PlatformSchema: Codable {
+        
+        
+        public var display: String?
+        
+        public var lookAndFeel: [String: Any]?
+        
+        public var updatedAt: String?
+        
+        public var active: Bool?
+        
+        public var forgotPassword: Bool?
+        
+        public var login: [String: Any]?
+        
+        public var skipCaptcha: Bool?
+        
+        public var name: String?
+        
+        public var meta: [String: Any]?
+        
+        public var id: String?
+        
+        public var social: [String: Any]?
+        
+        public var requiredFields: [String: Any]?
+        
+        public var registerRequiredFields: [String: Any]?
+        
+        public var skipLogin: Bool?
+        
+        public var flashCard: [String: Any]?
+        
+        public var subtext: String?
+        
+        public var socialTokens: [String: Any]?
+        
+        public var createdAt: String?
+        
+        public var register: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case display = "display"
+            
+            case lookAndFeel = "look_and_feel"
+            
+            case updatedAt = "updated_at"
+            
+            case active = "active"
+            
+            case forgotPassword = "forgot_password"
+            
+            case login = "login"
+            
+            case skipCaptcha = "skip_captcha"
+            
+            case name = "name"
+            
+            case meta = "meta"
+            
+            case id = "_id"
+            
+            case social = "social"
+            
+            case requiredFields = "required_fields"
+            
+            case registerRequiredFields = "register_required_fields"
+            
+            case skipLogin = "skip_login"
+            
+            case flashCard = "flash_card"
+            
+            case subtext = "subtext"
+            
+            case socialTokens = "social_tokens"
+            
+            case createdAt = "created_at"
+            
+            case register = "register"
+            
+        }
+
+        public init(active: Bool?, createdAt: String?, display: String?, flashCard: [String: Any]?, forgotPassword: Bool?, login: [String: Any]?, lookAndFeel: [String: Any]?, meta: [String: Any]?, name: String?, register: Bool?, registerRequiredFields: [String: Any]?, requiredFields: [String: Any]?, skipCaptcha: Bool?, skipLogin: Bool?, social: [String: Any]?, socialTokens: [String: Any]?, subtext: String?, updatedAt: String?, id: String?) {
+            
+            self.display = display
+            
+            self.lookAndFeel = lookAndFeel
+            
+            self.updatedAt = updatedAt
+            
+            self.active = active
+            
+            self.forgotPassword = forgotPassword
+            
+            self.login = login
+            
+            self.skipCaptcha = skipCaptcha
+            
+            self.name = name
+            
+            self.meta = meta
+            
+            self.id = id
+            
+            self.social = social
+            
+            self.requiredFields = requiredFields
+            
+            self.registerRequiredFields = registerRequiredFields
+            
+            self.skipLogin = skipLogin
+            
+            self.flashCard = flashCard
+            
+            self.subtext = subtext
+            
+            self.socialTokens = socialTokens
+            
+            self.createdAt = createdAt
+            
+            self.register = register
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            display = try? container.decode(String.self, forKey: .display)
+            
+            lookAndFeel = try? container.decode([String: Any].self, forKey: .lookAndFeel)
+            
+            updatedAt = try? container.decode(String.self, forKey: .updatedAt)
+            
+            active = try? container.decode(Bool.self, forKey: .active)
+            
+            forgotPassword = try? container.decode(Bool.self, forKey: .forgotPassword)
+            
+            login = try? container.decode([String: Any].self, forKey: .login)
+            
+            skipCaptcha = try? container.decode(Bool.self, forKey: .skipCaptcha)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            meta = try? container.decode([String: Any].self, forKey: .meta)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            social = try? container.decode([String: Any].self, forKey: .social)
+            
+            requiredFields = try? container.decode([String: Any].self, forKey: .requiredFields)
+            
+            registerRequiredFields = try? container.decode([String: Any].self, forKey: .registerRequiredFields)
+            
+            skipLogin = try? container.decode(Bool.self, forKey: .skipLogin)
+            
+            flashCard = try? container.decode([String: Any].self, forKey: .flashCard)
+            
+            subtext = try? container.decode(String.self, forKey: .subtext)
+            
+            socialTokens = try? container.decode([String: Any].self, forKey: .socialTokens)
+            
+            createdAt = try? container.decode(String.self, forKey: .createdAt)
+            
+            register = try? container.decode(Bool.self, forKey: .register)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(display, forKey: .display)
+            
+            try? container.encodeIfPresent(lookAndFeel, forKey: .lookAndFeel)
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            try? container.encodeIfPresent(active, forKey: .active)
+            
+            try? container.encodeIfPresent(forgotPassword, forKey: .forgotPassword)
+            
+            try? container.encodeIfPresent(login, forKey: .login)
+            
+            try? container.encodeIfPresent(skipCaptcha, forKey: .skipCaptcha)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(social, forKey: .social)
+            
+            try? container.encodeIfPresent(requiredFields, forKey: .requiredFields)
+            
+            try? container.encodeIfPresent(registerRequiredFields, forKey: .registerRequiredFields)
+            
+            try? container.encodeIfPresent(skipLogin, forKey: .skipLogin)
+            
+            try? container.encodeIfPresent(flashCard, forKey: .flashCard)
+            
+            try? container.encodeIfPresent(subtext, forKey: .subtext)
+            
+            try? container.encodeIfPresent(socialTokens, forKey: .socialTokens)
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            try? container.encodeIfPresent(register, forKey: .register)
+            
+        }
+        
+    }
+    
+    /*
+        Model: UserSchema
+    */
+
+    struct UserSchema: Codable {
+        
+        
+        public var firstName: String?
+        
+        public var lastName: String?
+        
+        public var phoneNumbers: [[String: Any]]?
+        
+        public var emails: [[String: Any]]?
+        
+        public var gender: String?
+        
+        public var active: Bool?
+        
+        public var profilePicUrl: String?
+        
+        public var username: String?
+        
+        public var accountType: String?
+        
+        public var uid: String?
+        
+        public var debug: [String: Any]?
+        
+        public var hasOldPasswordHash: Bool?
+        
+        public var id: String?
+        
+        public var createdAt: String?
+        
+        public var updatedAt: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case firstName = "first_name"
+            
+            case lastName = "last_name"
+            
+            case phoneNumbers = "phone_numbers"
+            
+            case emails = "emails"
+            
+            case gender = "gender"
+            
+            case active = "active"
+            
+            case profilePicUrl = "profile_pic_url"
+            
+            case username = "username"
+            
+            case accountType = "account_type"
+            
+            case uid = "uid"
+            
+            case debug = "debug"
+            
+            case hasOldPasswordHash = "has_old_password_hash"
+            
+            case id = "_id"
+            
+            case createdAt = "created_at"
+            
+            case updatedAt = "updated_at"
+            
+        }
+
+        public init(accountType: String?, active: Bool?, createdAt: String?, debug: [String: Any]?, emails: [[String: Any]]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, phoneNumbers: [[String: Any]]?, profilePicUrl: String?, uid: String?, updatedAt: String?, username: String?, id: String?) {
+            
+            self.firstName = firstName
+            
+            self.lastName = lastName
+            
+            self.phoneNumbers = phoneNumbers
+            
+            self.emails = emails
+            
+            self.gender = gender
+            
+            self.active = active
+            
+            self.profilePicUrl = profilePicUrl
+            
+            self.username = username
+            
+            self.accountType = accountType
+            
+            self.uid = uid
+            
+            self.debug = debug
+            
+            self.hasOldPasswordHash = hasOldPasswordHash
+            
+            self.id = id
+            
+            self.createdAt = createdAt
+            
+            self.updatedAt = updatedAt
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            firstName = try? container.decode(String.self, forKey: .firstName)
+            
+            lastName = try? container.decode(String.self, forKey: .lastName)
+            
+            phoneNumbers = try? container.decode([[String: Any]].self, forKey: .phoneNumbers)
+            
+            emails = try? container.decode([[String: Any]].self, forKey: .emails)
+            
+            gender = try? container.decode(String.self, forKey: .gender)
+            
+            active = try? container.decode(Bool.self, forKey: .active)
+            
+            profilePicUrl = try? container.decode(String.self, forKey: .profilePicUrl)
+            
+            username = try? container.decode(String.self, forKey: .username)
+            
+            accountType = try? container.decode(String.self, forKey: .accountType)
+            
+            uid = try? container.decode(String.self, forKey: .uid)
+            
+            debug = try? container.decode([String: Any].self, forKey: .debug)
+            
+            hasOldPasswordHash = try? container.decode(Bool.self, forKey: .hasOldPasswordHash)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            createdAt = try? container.decode(String.self, forKey: .createdAt)
+            
+            updatedAt = try? container.decode(String.self, forKey: .updatedAt)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
+            try? container.encodeIfPresent(phoneNumbers, forKey: .phoneNumbers)
+            
+            try? container.encodeIfPresent(emails, forKey: .emails)
+            
+            try? container.encodeIfPresent(gender, forKey: .gender)
+            
+            try? container.encodeIfPresent(active, forKey: .active)
+            
+            try? container.encodeIfPresent(profilePicUrl, forKey: .profilePicUrl)
+            
+            try? container.encodeIfPresent(username, forKey: .username)
+            
+            try? container.encodeIfPresent(accountType, forKey: .accountType)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            try? container.encodeIfPresent(debug, forKey: .debug)
+            
+            try? container.encodeIfPresent(hasOldPasswordHash, forKey: .hasOldPasswordHash)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+        }
+        
+    }
+    
+    
+    
+    /*
+        Model: ApplicationLegal
+    */
+
+    struct ApplicationLegal: Codable {
+        
+        
+        public var application: String?
+        
+        public var tnc: String?
+        
+        public var policy: String?
+        
+        public var faq: [[String: Any]]?
+        
+        public var id: String?
+        
+        public var updatedAt: String?
+        
+        public var createdAt: String?
+        
+        public var v: Double?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case application = "application"
+            
+            case tnc = "tnc"
+            
+            case policy = "policy"
+            
+            case faq = "faq"
+            
+            case id = "_id"
+            
+            case updatedAt = "updatedAt"
+            
+            case createdAt = "createdAt"
+            
+            case v = "__v"
+            
+        }
+
+        public init(application: String?, createdAt: String?, faq: [[String: Any]]?, policy: String?, tnc: String?, updatedAt: String?, id: String?, v: Double?) {
+            
+            self.application = application
+            
+            self.tnc = tnc
+            
+            self.policy = policy
+            
+            self.faq = faq
+            
+            self.id = id
+            
+            self.updatedAt = updatedAt
+            
+            self.createdAt = createdAt
+            
+            self.v = v
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            tnc = try? container.decode(String.self, forKey: .tnc)
+            
+            policy = try? container.decode(String.self, forKey: .policy)
+            
+            faq = try? container.decode([[String: Any]].self, forKey: .faq)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            updatedAt = try? container.decode(String.self, forKey: .updatedAt)
+            
+            createdAt = try? container.decode(String.self, forKey: .createdAt)
+            
+            v = try? container.decode(Double.self, forKey: .v)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(tnc, forKey: .tnc)
+            
+            try? container.encodeIfPresent(policy, forKey: .policy)
+            
+            try? container.encodeIfPresent(faq, forKey: .faq)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Seo
+    */
+
+    struct Seo: Codable {
+        
+        
+        public var app: String
+        
+        public var robotsTxt: String?
+        
+        public var sitemapEnabled: Bool?
+        
+        public var customMetaTags: [[String: Any]]?
+        
+        public var details: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case app = "app"
+            
+            case robotsTxt = "robots_txt"
+            
+            case sitemapEnabled = "sitemap_enabled"
+            
+            case customMetaTags = "custom_meta_tags"
+            
+            case details = "details"
+            
+        }
+
+        public init(app: String, customMetaTags: [[String: Any]]?, details: [String: Any]?, robotsTxt: String?, sitemapEnabled: Bool?) {
+            
+            self.app = app
+            
+            self.robotsTxt = robotsTxt
+            
+            self.sitemapEnabled = sitemapEnabled
+            
+            self.customMetaTags = customMetaTags
+            
+            self.details = details
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            app = try container.decode(String.self, forKey: .app)
+            
+            robotsTxt = try? container.decode(String.self, forKey: .robotsTxt)
+            
+            sitemapEnabled = try? container.decode(Bool.self, forKey: .sitemapEnabled)
+            
+            customMetaTags = try? container.decode([[String: Any]].self, forKey: .customMetaTags)
+            
+            details = try? container.decode([String: Any].self, forKey: .details)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(app, forKey: .app)
+            
+            try? container.encodeIfPresent(robotsTxt, forKey: .robotsTxt)
+            
+            try? container.encodeIfPresent(sitemapEnabled, forKey: .sitemapEnabled)
+            
+            try? container.encodeIfPresent(customMetaTags, forKey: .customMetaTags)
+            
+            try? container.encodeIfPresent(details, forKey: .details)
+            
+        }
+        
+    }
+    
+    /*
+        Model: StorefrontAnnouncement
+    */
+
+    struct StorefrontAnnouncement: Codable {
+        
+        
+        public var announcements: [String: Any]?
+        
+        public var refreshRate: Int?
+        
+        public var refreshPages: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case announcements = "announcements"
+            
+            case refreshRate = "refresh_rate"
+            
+            case refreshPages = "refresh_pages"
+            
+        }
+
+        public init(announcements: [String: Any]?, refreshPages: [String]?, refreshRate: Int?) {
+            
+            self.announcements = announcements
+            
+            self.refreshRate = refreshRate
+            
+            self.refreshPages = refreshPages
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            announcements = try? container.decode([String: Any].self, forKey: .announcements)
+            
+            refreshRate = try? container.decode(Int.self, forKey: .refreshRate)
+            
+            refreshPages = try? container.decode([String].self, forKey: .refreshPages)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(announcements, forKey: .announcements)
+            
+            try? container.encodeIfPresent(refreshRate, forKey: .refreshRate)
+            
+            try? container.encodeIfPresent(refreshPages, forKey: .refreshPages)
+            
+        }
+        
+    }
+    
+    /*
+        Model: AdminAnnouncementSchema
+    */
+
+    struct AdminAnnouncementSchema: Codable {
+        
+        
+        public var id: String?
+        
+        public var platform: [String]?
+        
+        public var title: String?
+        
+        public var announcement: String?
+        
+        public var pages: [[String: Any]]?
+        
+        public var editorMeta: [String: Any]?
+        
+        public var author: [String: Any]?
+        
+        public var createdAt: String?
+        
+        public var app: String?
+        
+        public var modifiedAt: String?
+        
+        public var schedule: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case platform = "platform"
+            
+            case title = "title"
+            
+            case announcement = "announcement"
+            
+            case pages = "pages"
+            
+            case editorMeta = "editor_meta"
+            
+            case author = "author"
+            
+            case createdAt = "created_at"
+            
+            case app = "app"
+            
+            case modifiedAt = "modified_at"
+            
+            case schedule = "_schedule"
+            
+        }
+
+        public init(announcement: String?, app: String?, author: [String: Any]?, createdAt: String?, editorMeta: [String: Any]?, modifiedAt: String?, pages: [[String: Any]]?, platform: [String]?, title: String?, id: String?, schedule: [String: Any]?) {
+            
+            self.id = id
+            
+            self.platform = platform
+            
+            self.title = title
+            
+            self.announcement = announcement
+            
+            self.pages = pages
+            
+            self.editorMeta = editorMeta
+            
+            self.author = author
+            
+            self.createdAt = createdAt
+            
+            self.app = app
+            
+            self.modifiedAt = modifiedAt
+            
+            self.schedule = schedule
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            platform = try? container.decode([String].self, forKey: .platform)
+            
+            title = try? container.decode(String.self, forKey: .title)
+            
+            announcement = try? container.decode(String.self, forKey: .announcement)
+            
+            pages = try? container.decode([[String: Any]].self, forKey: .pages)
+            
+            editorMeta = try? container.decode([String: Any].self, forKey: .editorMeta)
+            
+            author = try? container.decode([String: Any].self, forKey: .author)
+            
+            createdAt = try? container.decode(String.self, forKey: .createdAt)
+            
+            app = try? container.decode(String.self, forKey: .app)
+            
+            modifiedAt = try? container.decode(String.self, forKey: .modifiedAt)
+            
+            schedule = try? container.decode([String: Any].self, forKey: .schedule)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+            try? container.encodeIfPresent(announcement, forKey: .announcement)
+            
+            try? container.encodeIfPresent(pages, forKey: .pages)
+            
+            try? container.encodeIfPresent(editorMeta, forKey: .editorMeta)
+            
+            try? container.encodeIfPresent(author, forKey: .author)
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            try? container.encodeIfPresent(app, forKey: .app)
+            
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+        }
+        
+    }
+    
+    /*
+        Model: ScheduleSchema
+    */
+
+    struct ScheduleSchema: Codable {
+        
+        
+        public var schedule: [String: Any]?
+        
+        public var published: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case schedule = "schedule"
+            
+            case published = "published"
+            
+        }
+
+        public init(published: Bool?, schedule: [String: Any]?) {
+            
+            self.schedule = schedule
+            
+            self.published = published
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            schedule = try? container.decode([String: Any].self, forKey: .schedule)
+            
+            published = try? container.decode(Bool.self, forKey: .published)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+        }
+        
+    }
+    
+    /*
+        Model: BlogGetResponse
+    */
+
+    struct BlogGetResponse: Codable {
+        
+        
+        public var items: [[String: Any]]?
+        
+        public var page: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+            case page = "page"
+            
+        }
+
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
+            
+            self.items = items
+            
+            self.page = page
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
+            page = try? container.decode([String: Any].self, forKey: .page)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Content
+    */
+
+    struct Content: Codable {
+        
+        
+        public var type: String?
+        
+        public var value: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case type = "type"
+            
+            case value = "value"
+            
+        }
+
+        public init(type: String?, value: String?) {
+            
+            self.type = type
+            
+            self.value = value
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            type = try? container.decode(String.self, forKey: .type)
+            
+            value = try? container.decode(String.self, forKey: .value)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Author
+    */
+
+    struct Author: Codable {
+        
+        
+        public var designation: String?
+        
+        public var id: String?
+        
+        public var name: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case designation = "designation"
+            
+            case id = "id"
+            
+            case name = "name"
+            
+        }
+
+        public init(designation: String?, id: String?, name: String?) {
+            
+            self.designation = designation
+            
+            self.id = id
+            
+            self.name = name
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            designation = try? container.decode(String.self, forKey: .designation)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(designation, forKey: .designation)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+        }
+        
+    }
+    
+    /*
+        Model: BlogSchema
+    */
+
+    struct BlogSchema: Codable {
+        
+        
+        public var id: [[String: Any]]?
+        
+        public var schedule: String?
+        
+        public var application: String?
+        
+        public var archived: Bool?
+        
+        public var author: [String: Any]?
+        
+        public var content: [Content]?
+        
+        public var featureImage: [String: Any]?
+        
+        public var published: Bool?
+        
+        public var readingTime: String?
+        
+        public var slug: String?
+        
+        public var tags: [String]?
+        
+        public var title: String?
+        
+        public var createdAt: String?
+        
+        public var updatedAt: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case schedule = "_schedule"
+            
+            case application = "application"
+            
+            case archived = "archived"
+            
+            case author = "author"
+            
+            case content = "content"
+            
+            case featureImage = "feature_image"
+            
+            case published = "published"
+            
+            case readingTime = "reading_time"
+            
+            case slug = "slug"
+            
+            case tags = "tags"
+            
+            case title = "title"
+            
+            case createdAt = "created_at"
+            
+            case updatedAt = "updated_at"
+            
+        }
+
+        public init(application: String?, archived: Bool?, author: [String: Any]?, content: [Content]?, createdAt: String?, featureImage: [String: Any]?, published: Bool?, readingTime: String?, slug: String?, tags: [String]?, title: String?, updatedAt: String?, id: [[String: Any]]?, schedule: String?) {
+            
+            self.id = id
+            
+            self.schedule = schedule
+            
+            self.application = application
+            
+            self.archived = archived
+            
+            self.author = author
+            
+            self.content = content
+            
+            self.featureImage = featureImage
+            
+            self.published = published
+            
+            self.readingTime = readingTime
+            
+            self.slug = slug
+            
+            self.tags = tags
+            
+            self.title = title
+            
+            self.createdAt = createdAt
+            
+            self.updatedAt = updatedAt
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode([[String: Any]].self, forKey: .id)
+            
+            schedule = try? container.decode(String.self, forKey: .schedule)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            archived = try? container.decode(Bool.self, forKey: .archived)
+            
+            author = try? container.decode([String: Any].self, forKey: .author)
+            
+            content = try? container.decode([Content].self, forKey: .content)
+            
+            featureImage = try? container.decode([String: Any].self, forKey: .featureImage)
+            
+            published = try? container.decode(Bool.self, forKey: .published)
+            
+            readingTime = try? container.decode(String.self, forKey: .readingTime)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            tags = try? container.decode([String].self, forKey: .tags)
+            
+            title = try? container.decode(String.self, forKey: .title)
+            
+            createdAt = try? container.decode(String.self, forKey: .createdAt)
+            
+            updatedAt = try? container.decode(String.self, forKey: .updatedAt)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(archived, forKey: .archived)
+            
+            try? container.encodeIfPresent(author, forKey: .author)
+            
+            try? container.encodeIfPresent(content, forKey: .content)
+            
+            try? container.encodeIfPresent(featureImage, forKey: .featureImage)
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            try? container.encodeIfPresent(readingTime, forKey: .readingTime)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+        }
+        
+    }
+    
+    /*
+        Model: BlogRequest
+    */
+
+    struct BlogRequest: Codable {
+        
+        
+        public var schedule: String?
+        
+        public var application: String?
+        
+        public var author: [String: Any]?
+        
+        public var content: [Content]?
+        
+        public var featureImage: [String: Any]?
+        
+        public var published: Bool?
+        
+        public var readingTime: String?
+        
+        public var slug: String?
+        
+        public var tags: [String]?
+        
+        public var title: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case schedule = "_schedule"
+            
+            case application = "application"
+            
+            case author = "author"
+            
+            case content = "content"
+            
+            case featureImage = "feature_image"
+            
+            case published = "published"
+            
+            case readingTime = "reading_time"
+            
+            case slug = "slug"
+            
+            case tags = "tags"
+            
+            case title = "title"
+            
+        }
+
+        public init(application: String?, author: [String: Any]?, content: [Content]?, featureImage: [String: Any]?, published: Bool?, readingTime: String?, slug: String?, tags: [String]?, title: String?, schedule: String?) {
+            
+            self.schedule = schedule
+            
+            self.application = application
+            
+            self.author = author
+            
+            self.content = content
+            
+            self.featureImage = featureImage
+            
+            self.published = published
+            
+            self.readingTime = readingTime
+            
+            self.slug = slug
+            
+            self.tags = tags
+            
+            self.title = title
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            schedule = try? container.decode(String.self, forKey: .schedule)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            author = try? container.decode([String: Any].self, forKey: .author)
+            
+            content = try? container.decode([Content].self, forKey: .content)
+            
+            featureImage = try? container.decode([String: Any].self, forKey: .featureImage)
+            
+            published = try? container.decode(Bool.self, forKey: .published)
+            
+            readingTime = try? container.decode(String.self, forKey: .readingTime)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            tags = try? container.decode([String].self, forKey: .tags)
+            
+            title = try? container.decode(String.self, forKey: .title)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(author, forKey: .author)
+            
+            try? container.encodeIfPresent(content, forKey: .content)
+            
+            try? container.encodeIfPresent(featureImage, forKey: .featureImage)
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            try? container.encodeIfPresent(readingTime, forKey: .readingTime)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetAnnouncementListSchema
+    */
+
+    struct GetAnnouncementListSchema: Codable {
+        
+        
+        public var items: [AdminAnnouncementSchema]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+        }
+
+        public init(items: [AdminAnnouncementSchema]?) {
+            
+            self.items = items
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([AdminAnnouncementSchema].self, forKey: .items)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreateAnnouncementSchema
+    */
+
+    struct CreateAnnouncementSchema: Codable {
+        
+        
+        public var message: String?
+        
+        public var data: AdminAnnouncementSchema?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case message = "message"
+            
+            case data = "data"
+            
+        }
+
+        public init(data: AdminAnnouncementSchema?, message: String?) {
+            
+            self.message = message
+            
+            self.data = data
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            message = try? container.decode(String.self, forKey: .message)
+            
+            data = try? container.decode(AdminAnnouncementSchema.self, forKey: .data)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            try? container.encodeIfPresent(data, forKey: .data)
+            
+        }
+        
+    }
+    
+    /*
+        Model: FaqSchema
+    */
+
+    struct FaqSchema: Codable {
+        
+        
+        public var slug: String?
+        
+        public var application: String?
+        
+        public var v: Int?
+        
+        public var id: String?
+        
+        public var question: String?
+        
+        public var answer: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case slug = "slug"
+            
+            case application = "application"
+            
+            case v = "__v"
+            
+            case id = "_id"
+            
+            case question = "question"
+            
+            case answer = "answer"
+            
+        }
+
+        public init(answer: String?, application: String?, question: String?, slug: String?, id: String?, v: Int?) {
+            
+            self.slug = slug
+            
+            self.application = application
+            
+            self.v = v
+            
+            self.id = id
+            
+            self.question = question
+            
+            self.answer = answer
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            v = try? container.decode(Int.self, forKey: .v)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            question = try? container.decode(String.self, forKey: .question)
+            
+            answer = try? container.decode(String.self, forKey: .answer)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(question, forKey: .question)
+            
+            try? container.encodeIfPresent(answer, forKey: .answer)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreateFaqResponseSchema
+    */
+
+    struct CreateFaqResponseSchema: Codable {
+        
+        
+        public var faq: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case faq = "faq"
+            
+        }
+
+        public init(faq: [String: Any]?) {
+            
+            self.faq = faq
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            faq = try? container.decode([String: Any].self, forKey: .faq)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(faq, forKey: .faq)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreateFaqSchema
+    */
+
+    struct CreateFaqSchema: Codable {
+        
+        
+        public var faq: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case faq = "faq"
+            
+        }
+
+        public init(faq: [String: Any]?) {
+            
+            self.faq = faq
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            faq = try? container.decode([String: Any].self, forKey: .faq)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(faq, forKey: .faq)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetFaqSchema
+    */
+
+    struct GetFaqSchema: Codable {
+        
+        
+        public var faqs: [[String: Any]]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case faqs = "faqs"
+            
+        }
+
+        public init(faqs: [[String: Any]]?) {
+            
+            self.faqs = faqs
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            faqs = try? container.decode([[String: Any]].self, forKey: .faqs)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(faqs, forKey: .faqs)
+            
+        }
+        
+    }
+    
+    /*
+        Model: UpdateFaqCategoryRequestSchema
+    */
+
+    struct UpdateFaqCategoryRequestSchema: Codable {
+        
+        
+        public var category: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case category = "category"
+            
+        }
+
+        public init(category: [String: Any]?) {
+            
+            self.category = category
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            category = try? container.decode([String: Any].self, forKey: .category)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreateFaqCategoryRequestSchema
+    */
+
+    struct CreateFaqCategoryRequestSchema: Codable {
+        
+        
+        public var category: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case category = "category"
+            
+        }
+
+        public init(category: [String: Any]?) {
+            
+            self.category = category
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            category = try? container.decode([String: Any].self, forKey: .category)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreateFaqCategorySchema
+    */
+
+    struct CreateFaqCategorySchema: Codable {
+        
+        
+        public var category: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case category = "category"
+            
+        }
+
+        public init(category: [String: Any]?) {
+            
+            self.category = category
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            category = try? container.decode([String: Any].self, forKey: .category)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetFaqCategoriesSchema
+    */
+
+    struct GetFaqCategoriesSchema: Codable {
+        
+        
+        public var categories: [[String: Any]]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case categories = "categories"
+            
+        }
+
+        public init(categories: [[String: Any]]?) {
+            
+            self.categories = categories
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            categories = try? container.decode([[String: Any]].self, forKey: .categories)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(categories, forKey: .categories)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetFaqCategoryByIdOrSlugSchema
+    */
+
+    struct GetFaqCategoryByIdOrSlugSchema: Codable {
+        
+        
+        public var category: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case category = "category"
+            
+        }
+
+        public init(category: [String: Any]?) {
+            
+            self.category = category
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            category = try? container.decode([String: Any].self, forKey: .category)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Navigation
+    */
+
+    struct Navigation: Codable {
+        
+        
+        public var name: String?
+        
+        public var slug: String?
+        
+        public var orientation: String?
+        
+        public var createdBy: [String: Any]?
+        
+        public var dateMeta: [String: Any]?
+        
+        public var id: String?
+        
+        public var position: String?
+        
+        public var application: String?
+        
+        public var platform: String?
+        
+        public var navigation: NavigationRef?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case name = "name"
+            
+            case slug = "slug"
+            
+            case orientation = "orientation"
+            
+            case createdBy = "created_by"
+            
+            case dateMeta = "date_meta"
+            
+            case id = "_id"
+            
+            case position = "position"
+            
+            case application = "application"
+            
+            case platform = "platform"
+            
+            case navigation = "navigation"
+            
+        }
+
+        public init(application: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, name: String?, navigation: NavigationRef?, orientation: String?, platform: String?, position: String?, slug: String?, id: String?) {
+            
+            self.name = name
+            
+            self.slug = slug
+            
+            self.orientation = orientation
+            
+            self.createdBy = createdBy
+            
+            self.dateMeta = dateMeta
+            
+            self.id = id
+            
+            self.position = position
+            
+            self.application = application
+            
+            self.platform = platform
+            
+            self.navigation = navigation
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            orientation = try? container.decode(String.self, forKey: .orientation)
+            
+            createdBy = try? container.decode([String: Any].self, forKey: .createdBy)
+            
+            dateMeta = try? container.decode([String: Any].self, forKey: .dateMeta)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            position = try? container.decode(String.self, forKey: .position)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            platform = try? container.decode(String.self, forKey: .platform)
+            
+            navigation = try? container.decode(NavigationRef.self, forKey: .navigation)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(position, forKey: .position)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(navigation, forKey: .navigation)
+            
+        }
+        
+    }
+    
+    /*
+        Model: NavigationRef
+    */
+
+    struct NavigationRef: Codable {
+        
+        
+        public var acl: [[String: Any]]?
+        
+        public var localeLanguage: [String: Any]?
+        
+        public var image: String?
+        
+        public var type: String?
+        
+        public var action: [String: Any]?
+        
+        public var active: Bool?
+        
+        public var display: String?
+        
+        public var sortOrder: Int?
+        
+        public var subNavigation: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case acl = "acl"
+            
+            case localeLanguage = "_locale_language"
+            
+            case image = "image"
+            
+            case type = "type"
+            
+            case action = "action"
+            
+            case active = "active"
+            
+            case display = "display"
+            
+            case sortOrder = "sort_order"
+            
+            case subNavigation = "sub_navigation"
+            
+        }
+
+        public init(acl: [[String: Any]]?, action: [String: Any]?, active: Bool?, display: String?, image: String?, sortOrder: Int?, subNavigation: [String: Any]?, type: String?, localeLanguage: [String: Any]?) {
+            
+            self.acl = acl
+            
+            self.localeLanguage = localeLanguage
+            
+            self.image = image
+            
+            self.type = type
+            
+            self.action = action
+            
+            self.active = active
+            
+            self.display = display
+            
+            self.sortOrder = sortOrder
+            
+            self.subNavigation = subNavigation
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            acl = try? container.decode([[String: Any]].self, forKey: .acl)
+            
+            localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
+            
+            image = try? container.decode(String.self, forKey: .image)
+            
+            type = try? container.decode(String.self, forKey: .type)
+            
+            action = try? container.decode([String: Any].self, forKey: .action)
+            
+            active = try? container.decode(Bool.self, forKey: .active)
+            
+            display = try? container.decode(String.self, forKey: .display)
+            
+            sortOrder = try? container.decode(Int.self, forKey: .sortOrder)
+            
+            subNavigation = try? container.decode([String: Any].self, forKey: .subNavigation)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(acl, forKey: .acl)
+            
+            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            
+            try? container.encodeIfPresent(image, forKey: .image)
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(active, forKey: .active)
+            
+            try? container.encodeIfPresent(display, forKey: .display)
+            
+            try? container.encodeIfPresent(sortOrder, forKey: .sortOrder)
+            
+            try? container.encodeIfPresent(subNavigation, forKey: .subNavigation)
+            
+        }
+        
+    }
+    
+    /*
+        Model: LandingPage
+    */
+
+    struct LandingPage: Codable {
+        
+        
+        public var slug: String?
+        
+        public var action: [String: Any]?
+        
+        public var platform: [[String: Any]]?
+        
+        public var createdBy: [String: Any]?
+        
+        public var dateMeta: [String: Any]?
+        
+        public var id: String?
+        
+        public var application: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case slug = "slug"
+            
+            case action = "action"
+            
+            case platform = "platform"
+            
+            case createdBy = "created_by"
+            
+            case dateMeta = "date_meta"
+            
+            case id = "_id"
+            
+            case application = "application"
+            
+        }
+
+        public init(action: [String: Any]?, application: String?, createdBy: [String: Any]?, dateMeta: [String: Any]?, platform: [[String: Any]]?, slug: String?, id: String?) {
+            
+            self.slug = slug
+            
+            self.action = action
+            
+            self.platform = platform
+            
+            self.createdBy = createdBy
+            
+            self.dateMeta = dateMeta
+            
+            self.id = id
+            
+            self.application = application
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            action = try? container.decode([String: Any].self, forKey: .action)
+            
+            platform = try? container.decode([[String: Any]].self, forKey: .platform)
+            
+            createdBy = try? container.decode([String: Any].self, forKey: .createdBy)
+            
+            dateMeta = try? container.decode([String: Any].self, forKey: .dateMeta)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Slideshow
+    */
+
+    struct Slideshow: Codable {
+        
+        
+        public var id: String?
+        
+        public var slug: String?
+        
+        public var dateMeta: [String: Any]?
+        
+        public var application: String?
+        
+        public var name: String?
+        
+        public var platform: String?
+        
+        public var configuration: [String: Any]?
+        
+        public var media: [[String: Any]]?
+        
+        public var active: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case slug = "slug"
+            
+            case dateMeta = "date_meta"
+            
+            case application = "application"
+            
+            case name = "name"
+            
+            case platform = "platform"
+            
+            case configuration = "configuration"
+            
+            case media = "media"
+            
+            case active = "active"
+            
+        }
+
+        public init(active: Bool?, application: String?, configuration: [String: Any]?, dateMeta: [String: Any]?, media: [[String: Any]]?, name: String?, platform: String?, slug: String?, id: String?) {
+            
+            self.id = id
+            
+            self.slug = slug
+            
+            self.dateMeta = dateMeta
+            
+            self.application = application
+            
+            self.name = name
+            
+            self.platform = platform
+            
+            self.configuration = configuration
+            
+            self.media = media
+            
+            self.active = active
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            dateMeta = try? container.decode([String: Any].self, forKey: .dateMeta)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            platform = try? container.decode(String.self, forKey: .platform)
+            
+            configuration = try? container.decode([String: Any].self, forKey: .configuration)
+            
+            media = try? container.decode([[String: Any]].self, forKey: .media)
+            
+            active = try? container.decode(Bool.self, forKey: .active)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(configuration, forKey: .configuration)
+            
+            try? container.encodeIfPresent(media, forKey: .media)
+            
+            try? container.encodeIfPresent(active, forKey: .active)
+            
+        }
+        
+    }
+    
+    /*
+        Model: AnnouncementsResponseSchema
+    */
+
+    struct AnnouncementsResponseSchema: Codable {
+        
+        
+        public var announcements: [[String: Any]]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case announcements = "announcements"
+            
+        }
+
+        public init(announcements: [[String: Any]]?) {
+            
+            self.announcements = announcements
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            announcements = try? container.decode([[String: Any]].self, forKey: .announcements)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(announcements, forKey: .announcements)
+            
+        }
+        
+    }
+    
+    /*
+        Model: FaqResponseSchema
+    */
+
+    struct FaqResponseSchema: Codable {
+        
+        
+        public var faqs: [Faq]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case faqs = "faqs"
+            
+        }
+
+        public init(faqs: [Faq]?) {
+            
+            self.faqs = faqs
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            faqs = try? container.decode([Faq].self, forKey: .faqs)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(faqs, forKey: .faqs)
+            
+        }
+        
+    }
+    
+    /*
+        Model: UpdateHandpickedSchema
+    */
+
+    struct UpdateHandpickedSchema: Codable {
+        
+        
+        public var tag: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case tag = "tag"
+            
+        }
+
+        public init(tag: [String: Any]?) {
+            
+            self.tag = tag
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            tag = try? container.decode([String: Any].self, forKey: .tag)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(tag, forKey: .tag)
+            
+        }
+        
+    }
+    
+    /*
+        Model: RemoveHandpickedSchema
+    */
+
+    struct RemoveHandpickedSchema: Codable {
+        
+        
+        public var tags: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case tags = "tags"
+            
+        }
+
+        public init(tags: [String]?) {
+            
+            self.tags = tags
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            tags = try? container.decode([String].self, forKey: .tags)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+        }
+        
+    }
+    
+    /*
+        Model: TagsSchema
+    */
+
+    struct TagsSchema: Codable {
+        
+        
+        public var id: String?
+        
+        public var tags: [[String: Any]]?
+        
+        public var application: String?
+        
+        public var v: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case tags = "tags"
+            
+            case application = "application"
+            
+            case v = "__v"
+            
+        }
+
+        public init(application: String?, tags: [[String: Any]]?, id: String?, v: Int?) {
+            
+            self.id = id
+            
+            self.tags = tags
+            
+            self.application = application
+            
+            self.v = v
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            tags = try? container.decode([[String: Any]].self, forKey: .tags)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            v = try? container.decode(Int.self, forKey: .v)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreateTagRequestSchema
+    */
+
+    struct CreateTagRequestSchema: Codable {
+        
+        
+        public var tags: [[String: Any]]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case tags = "tags"
+            
+        }
+
+        public init(tags: [[String: Any]]?) {
+            
+            self.tags = tags
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            tags = try? container.decode([[String: Any]].self, forKey: .tags)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Faq
+    */
+
+    struct Faq: Codable {
+        
+        
+        public var id: String?
+        
+        public var question: String?
+        
+        public var answer: String?
+        
+        public var slug: String?
+        
+        public var application: String?
+        
+        public var v: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case question = "question"
+            
+            case answer = "answer"
+            
+            case slug = "slug"
+            
+            case application = "application"
+            
+            case v = "__v"
+            
+        }
+
+        public init(answer: String?, application: String?, question: String?, slug: String?, id: String?, v: Int?) {
+            
+            self.id = id
+            
+            self.question = question
+            
+            self.answer = answer
+            
+            self.slug = slug
+            
+            self.application = application
+            
+            self.v = v
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            question = try? container.decode(String.self, forKey: .question)
+            
+            answer = try? container.decode(String.self, forKey: .answer)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            v = try? container.decode(Int.self, forKey: .v)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(question, forKey: .question)
+            
+            try? container.encodeIfPresent(answer, forKey: .answer)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+        }
+        
+    }
+    
+    /*
+        Model: LandingPageGetResponse
+    */
+
+    struct LandingPageGetResponse: Codable {
+        
+        
+        public var items: [[String: Any]]?
+        
+        public var page: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+            case page = "page"
+            
+        }
+
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
+            
+            self.items = items
+            
+            self.page = page
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
+            page = try? container.decode([String: Any].self, forKey: .page)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    /*
+        Model: LandingPageSchema
+    */
+
+    struct LandingPageSchema: Codable {
+        
+        
+        public var slug: String?
+        
+        public var action: [String: Any]?
+        
+        public var platform: [String]?
+        
+        public var createdBy: [String: Any]?
+        
+        public var dateMeta: [String: Any]?
+        
+        public var id: String?
+        
+        public var application: String?
+        
+        public var archived: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case slug = "slug"
+            
+            case action = "action"
+            
+            case platform = "platform"
+            
+            case createdBy = "created_by"
+            
+            case dateMeta = "date_meta"
+            
+            case id = "_id"
+            
+            case application = "application"
+            
+            case archived = "archived"
+            
+        }
+
+        public init(action: [String: Any]?, application: String?, archived: Bool?, createdBy: [String: Any]?, dateMeta: [String: Any]?, platform: [String]?, slug: String?, id: String?) {
+            
+            self.slug = slug
+            
+            self.action = action
+            
+            self.platform = platform
+            
+            self.createdBy = createdBy
+            
+            self.dateMeta = dateMeta
+            
+            self.id = id
+            
+            self.application = application
+            
+            self.archived = archived
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            action = try? container.decode([String: Any].self, forKey: .action)
+            
+            platform = try? container.decode([String].self, forKey: .platform)
+            
+            createdBy = try? container.decode([String: Any].self, forKey: .createdBy)
+            
+            dateMeta = try? container.decode([String: Any].self, forKey: .dateMeta)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            archived = try? container.decode(Bool.self, forKey: .archived)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(archived, forKey: .archived)
+            
+        }
+        
+    }
+    
+    /*
+        Model: LandingPageRequest
+    */
+
+    struct LandingPageRequest: Codable {
+        
+        
+        public var slug: String?
+        
+        public var action: [String: Any]?
+        
+        public var platform: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case slug = "slug"
+            
+            case action = "action"
+            
+            case platform = "platform"
+            
+        }
+
+        public init(action: [String: Any]?, platform: [String]?, slug: String?) {
+            
+            self.slug = slug
+            
+            self.action = action
+            
+            self.platform = platform
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            action = try? container.decode([String: Any].self, forKey: .action)
+            
+            platform = try? container.decode([String].self, forKey: .platform)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+        }
+        
+    }
+    
+    /*
+        Model: DefaultNavigationResponse
+    */
+
+    struct DefaultNavigationResponse: Codable {
+        
+        
+        public var items: [[String: Any]]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+        }
+
+        public init(items: [[String: Any]]?) {
+            
+            self.items = items
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+        }
+        
+    }
+    
+    /*
+        Model: NavigationGetResponse
+    */
+
+    struct NavigationGetResponse: Codable {
+        
+        
+        public var items: [[String: Any]]?
+        
+        public var page: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+            case page = "page"
+            
+        }
+
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
+            
+            self.items = items
+            
+            self.page = page
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
+            page = try? container.decode([String: Any].self, forKey: .page)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    /*
+        Model: NavigationSchema
+    */
+
+    struct NavigationSchema: Codable {
+        
+        
+        public var id: String?
+        
+        public var application: String?
+        
+        public var archived: Bool?
+        
+        public var name: String?
+        
+        public var slug: String?
+        
+        public var platform: [String]?
+        
+        public var orientation: [String: Any]?
+        
+        public var navigation: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case application = "application"
+            
+            case archived = "archived"
+            
+            case name = "name"
+            
+            case slug = "slug"
+            
+            case platform = "platform"
+            
+            case orientation = "orientation"
+            
+            case navigation = "navigation"
+            
+        }
+
+        public init(application: String?, archived: Bool?, name: String?, navigation: [String: Any]?, orientation: [String: Any]?, platform: [String]?, slug: String?, id: String?) {
+            
+            self.id = id
+            
+            self.application = application
+            
+            self.archived = archived
+            
+            self.name = name
+            
+            self.slug = slug
+            
+            self.platform = platform
+            
+            self.orientation = orientation
+            
+            self.navigation = navigation
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            archived = try? container.decode(Bool.self, forKey: .archived)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            platform = try? container.decode([String].self, forKey: .platform)
+            
+            orientation = try? container.decode([String: Any].self, forKey: .orientation)
+            
+            navigation = try? container.decode([String: Any].self, forKey: .navigation)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(archived, forKey: .archived)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
+            try? container.encodeIfPresent(navigation, forKey: .navigation)
+            
+        }
+        
+    }
+    
+    /*
+        Model: NavigationRequest
+    */
+
+    struct NavigationRequest: Codable {
+        
+        
+        public var name: String?
+        
+        public var slug: String?
+        
+        public var platform: [String]?
+        
+        public var orientation: [String: Any]?
+        
+        public var navigation: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case name = "name"
+            
+            case slug = "slug"
+            
+            case platform = "platform"
+            
+            case orientation = "orientation"
+            
+            case navigation = "navigation"
+            
+        }
+
+        public init(name: String?, navigation: [String: Any]?, orientation: [String: Any]?, platform: [String]?, slug: String?) {
+            
+            self.name = name
+            
+            self.slug = slug
+            
+            self.platform = platform
+            
+            self.orientation = orientation
+            
+            self.navigation = navigation
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            platform = try? container.decode([String].self, forKey: .platform)
+            
+            orientation = try? container.decode([String: Any].self, forKey: .orientation)
+            
+            navigation = try? container.decode([String: Any].self, forKey: .navigation)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
+            try? container.encodeIfPresent(navigation, forKey: .navigation)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CustomPage
+    */
+
+    struct CustomPage: Codable {
+        
+        
+        public var data: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case data = "data"
+            
+        }
+
+        public init(data: [String: Any]?) {
+            
+            self.data = data
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            data = try? container.decode([String: Any].self, forKey: .data)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(data, forKey: .data)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CustomBlog
+    */
+
+    struct CustomBlog: Codable {
+        
+        
+        public var data: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case data = "data"
+            
+        }
+
+        public init(data: [String: Any]?) {
+            
+            self.data = data
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            data = try? container.decode([String: Any].self, forKey: .data)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(data, forKey: .data)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageGetResponse
+    */
+
+    struct PageGetResponse: Codable {
+        
+        
+        public var items: [[String: Any]]?
+        
+        public var page: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+            case page = "page"
+            
+        }
+
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
+            
+            self.items = items
+            
+            self.page = page
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
+            page = try? container.decode([String: Any].self, forKey: .page)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageSpec
+    */
+
+    struct PageSpec: Codable {
+        
+        
+        public var specifications: [[String: Any]]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case specifications = "specifications"
+            
+        }
+
+        public init(specifications: [[String: Any]]?) {
+            
+            self.specifications = specifications
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            specifications = try? container.decode([[String: Any]].self, forKey: .specifications)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(specifications, forKey: .specifications)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageSpecItem
+    */
+
+    struct PageSpecItem: Codable {
+        
+        
+        public var pageType: String?
+        
+        public var displayName: String?
+        
+        public var params: [String]?
+        
+        public var query: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case pageType = "page_type"
+            
+            case displayName = "display_name"
+            
+            case params = "params"
+            
+            case query = "query"
+            
+        }
+
+        public init(displayName: String?, pageType: String?, params: [String]?, query: [String]?) {
+            
+            self.pageType = pageType
+            
+            self.displayName = displayName
+            
+            self.params = params
+            
+            self.query = query
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            pageType = try? container.decode(String.self, forKey: .pageType)
+            
+            displayName = try? container.decode(String.self, forKey: .displayName)
+            
+            params = try? container.decode([String].self, forKey: .params)
+            
+            query = try? container.decode([String].self, forKey: .query)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(pageType, forKey: .pageType)
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            try? container.encodeIfPresent(params, forKey: .params)
+            
+            try? container.encodeIfPresent(query, forKey: .query)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageSchema
+    */
+
+    struct PageSchema: Codable {
+        
+        
+        public var id: [[String: Any]]?
+        
+        public var schedule: String?
+        
+        public var application: [[String: Any]]?
+        
+        public var componentIds: [String]?
+        
+        public var content: [PageContent]?
+        
+        public var createdBy: [String: Any]?
+        
+        public var dateMeta: [String: Any]?
+        
+        public var description: String?
+        
+        public var featureImage: [String: Any]?
+        
+        public var pageMeta: [PageMeta]?
+        
+        public var platform: String?
+        
+        public var published: Bool?
+        
+        public var slug: String?
+        
+        public var tags: [String]?
+        
+        public var title: String?
+        
+        public var type: String?
+        
+        public var visibility: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case schedule = "_schedule"
+            
+            case application = "application"
+            
+            case componentIds = "component_ids"
+            
+            case content = "content"
+            
+            case createdBy = "created_by"
+            
+            case dateMeta = "date_meta"
+            
+            case description = "description"
+            
+            case featureImage = "feature_image"
+            
+            case pageMeta = "page_meta"
+            
+            case platform = "platform"
+            
+            case published = "published"
+            
+            case slug = "slug"
+            
+            case tags = "tags"
+            
+            case title = "title"
+            
+            case type = "type"
+            
+            case visibility = "visibility"
+            
+        }
+
+        public init(application: [[String: Any]]?, componentIds: [String]?, content: [PageContent]?, createdBy: [String: Any]?, dateMeta: [String: Any]?, description: String?, featureImage: [String: Any]?, pageMeta: [PageMeta]?, platform: String?, published: Bool?, slug: String?, tags: [String]?, title: String?, type: String?, visibility: [String: Any]?, id: [[String: Any]]?, schedule: String?) {
+            
+            self.id = id
+            
+            self.schedule = schedule
+            
+            self.application = application
+            
+            self.componentIds = componentIds
+            
+            self.content = content
+            
+            self.createdBy = createdBy
+            
+            self.dateMeta = dateMeta
+            
+            self.description = description
+            
+            self.featureImage = featureImage
+            
+            self.pageMeta = pageMeta
+            
+            self.platform = platform
+            
+            self.published = published
+            
+            self.slug = slug
+            
+            self.tags = tags
+            
+            self.title = title
+            
+            self.type = type
+            
+            self.visibility = visibility
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode([[String: Any]].self, forKey: .id)
+            
+            schedule = try? container.decode(String.self, forKey: .schedule)
+            
+            application = try? container.decode([[String: Any]].self, forKey: .application)
+            
+            componentIds = try? container.decode([String].self, forKey: .componentIds)
+            
+            content = try? container.decode([PageContent].self, forKey: .content)
+            
+            createdBy = try? container.decode([String: Any].self, forKey: .createdBy)
+            
+            dateMeta = try? container.decode([String: Any].self, forKey: .dateMeta)
+            
+            description = try? container.decode(String.self, forKey: .description)
+            
+            featureImage = try? container.decode([String: Any].self, forKey: .featureImage)
+            
+            pageMeta = try? container.decode([PageMeta].self, forKey: .pageMeta)
+            
+            platform = try? container.decode(String.self, forKey: .platform)
+            
+            published = try? container.decode(Bool.self, forKey: .published)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            tags = try? container.decode([String].self, forKey: .tags)
+            
+            title = try? container.decode(String.self, forKey: .title)
+            
+            type = try? container.decode(String.self, forKey: .type)
+            
+            visibility = try? container.decode([String: Any].self, forKey: .visibility)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(componentIds, forKey: .componentIds)
+            
+            try? container.encodeIfPresent(content, forKey: .content)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            try? container.encodeIfPresent(featureImage, forKey: .featureImage)
+            
+            try? container.encodeIfPresent(pageMeta, forKey: .pageMeta)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            try? container.encodeIfPresent(visibility, forKey: .visibility)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreatedBy
+    */
+
+    struct CreatedBy: Codable {
+        
+        
+        public var id: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "id"
+            
+        }
+
+        public init(id: String?) {
+            
+            self.id = id
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+        }
+        
+    }
+    
+    /*
+        Model: DateMeta
+    */
+
+    struct DateMeta: Codable {
+        
+        
+        public var createdOn: String?
+        
+        public var modifiedOn: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case createdOn = "created_on"
+            
+            case modifiedOn = "modified_on"
+            
+        }
+
+        public init(createdOn: String?, modifiedOn: String?) {
+            
+            self.createdOn = createdOn
+            
+            self.modifiedOn = modifiedOn
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            createdOn = try? container.decode(String.self, forKey: .createdOn)
+            
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageContent
+    */
+
+    struct PageContent: Codable {
+        
+        
+        public var type: String?
+        
+        public var value: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case type = "type"
+            
+            case value = "value"
+            
+        }
+
+        public init(type: String?, value: [String: Any]?) {
+            
+            self.type = type
+            
+            self.value = value
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            type = try? container.decode(String.self, forKey: .type)
+            
+            value = try? container.decode([String: Any].self, forKey: .value)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageMeta
+    */
+
+    struct PageMeta: Codable {
+        
+        
+        public var key: String?
+        
+        public var value: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case key = "key"
+            
+            case value = "value"
+            
+        }
+
+        public init(key: String?, value: [String: Any]?) {
+            
+            self.key = key
+            
+            self.value = value
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            key = try? container.decode(String.self, forKey: .key)
+            
+            value = try? container.decode([String: Any].self, forKey: .value)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(key, forKey: .key)
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageRequest
+    */
+
+    struct PageRequest: Codable {
+        
+        
+        public var schedule: String?
+        
+        public var application: String?
+        
+        public var author: [String: Any]?
+        
+        public var content: [Content]?
+        
+        public var featureImage: [String: Any]?
+        
+        public var published: Bool?
+        
+        public var readingTime: String?
+        
+        public var slug: String?
+        
+        public var tags: [String]?
+        
+        public var title: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case schedule = "_schedule"
+            
+            case application = "application"
+            
+            case author = "author"
+            
+            case content = "content"
+            
+            case featureImage = "feature_image"
+            
+            case published = "published"
+            
+            case readingTime = "reading_time"
+            
+            case slug = "slug"
+            
+            case tags = "tags"
+            
+            case title = "title"
+            
+        }
+
+        public init(application: String?, author: [String: Any]?, content: [Content]?, featureImage: [String: Any]?, published: Bool?, readingTime: String?, slug: String?, tags: [String]?, title: String?, schedule: String?) {
+            
+            self.schedule = schedule
+            
+            self.application = application
+            
+            self.author = author
+            
+            self.content = content
+            
+            self.featureImage = featureImage
+            
+            self.published = published
+            
+            self.readingTime = readingTime
+            
+            self.slug = slug
+            
+            self.tags = tags
+            
+            self.title = title
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            schedule = try? container.decode(String.self, forKey: .schedule)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            author = try? container.decode([String: Any].self, forKey: .author)
+            
+            content = try? container.decode([Content].self, forKey: .content)
+            
+            featureImage = try? container.decode([String: Any].self, forKey: .featureImage)
+            
+            published = try? container.decode(Bool.self, forKey: .published)
+            
+            readingTime = try? container.decode(String.self, forKey: .readingTime)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            tags = try? container.decode([String].self, forKey: .tags)
+            
+            title = try? container.decode(String.self, forKey: .title)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(author, forKey: .author)
+            
+            try? container.encodeIfPresent(content, forKey: .content)
+            
+            try? container.encodeIfPresent(featureImage, forKey: .featureImage)
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            try? container.encodeIfPresent(readingTime, forKey: .readingTime)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PagePublishRequest
+    */
+
+    struct PagePublishRequest: Codable {
+        
+        
+        public var publish: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case publish = "publish"
+            
+        }
+
+        public init(publish: Bool?) {
+            
+            self.publish = publish
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            publish = try? container.decode(Bool.self, forKey: .publish)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(publish, forKey: .publish)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PageMetaSchema
+    */
+
+    struct PageMetaSchema: Codable {
+        
+        
+        public var systemPages: [[String: Any]]?
+        
+        public var customPages: [[String: Any]]?
+        
+        public var applicationId: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case systemPages = "system_pages"
+            
+            case customPages = "custom_pages"
+            
+            case applicationId = "application_id"
+            
+        }
+
+        public init(applicationId: String?, customPages: [[String: Any]]?, systemPages: [[String: Any]]?) {
+            
+            self.systemPages = systemPages
+            
+            self.customPages = customPages
+            
+            self.applicationId = applicationId
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            systemPages = try? container.decode([[String: Any]].self, forKey: .systemPages)
+            
+            customPages = try? container.decode([[String: Any]].self, forKey: .customPages)
+            
+            applicationId = try? container.decode(String.self, forKey: .applicationId)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(systemPages, forKey: .systemPages)
+            
+            try? container.encodeIfPresent(customPages, forKey: .customPages)
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SlideshowGetResponse
+    */
+
+    struct SlideshowGetResponse: Codable {
+        
+        
+        public var items: [[String: Any]]?
+        
+        public var page: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+            case page = "page"
+            
+        }
+
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
+            
+            self.items = items
+            
+            self.page = page
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
+            page = try? container.decode([String: Any].self, forKey: .page)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SlideshowSchema
+    */
+
+    struct SlideshowSchema: Codable {
+        
+        
+        public var id: String?
+        
+        public var slug: String?
+        
+        public var dateMeta: [String: Any]?
+        
+        public var application: String?
+        
+        public var platform: String?
+        
+        public var configuration: [String: Any]?
+        
+        public var media: [[String: Any]]?
+        
+        public var active: Bool?
+        
+        public var archived: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
+            
+            case slug = "slug"
+            
+            case dateMeta = "date_meta"
+            
+            case application = "application"
+            
+            case platform = "platform"
+            
+            case configuration = "configuration"
+            
+            case media = "media"
+            
+            case active = "active"
+            
+            case archived = "archived"
+            
+        }
+
+        public init(active: Bool?, application: String?, archived: Bool?, configuration: [String: Any]?, dateMeta: [String: Any]?, media: [[String: Any]]?, platform: String?, slug: String?, id: String?) {
+            
+            self.id = id
+            
+            self.slug = slug
+            
+            self.dateMeta = dateMeta
+            
+            self.application = application
+            
+            self.platform = platform
+            
+            self.configuration = configuration
+            
+            self.media = media
+            
+            self.active = active
+            
+            self.archived = archived
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            dateMeta = try? container.decode([String: Any].self, forKey: .dateMeta)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            platform = try? container.decode(String.self, forKey: .platform)
+            
+            configuration = try? container.decode([String: Any].self, forKey: .configuration)
+            
+            media = try? container.decode([[String: Any]].self, forKey: .media)
+            
+            active = try? container.decode(Bool.self, forKey: .active)
+            
+            archived = try? container.decode(Bool.self, forKey: .archived)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(configuration, forKey: .configuration)
+            
+            try? container.encodeIfPresent(media, forKey: .media)
+            
+            try? container.encodeIfPresent(active, forKey: .active)
+            
+            try? container.encodeIfPresent(archived, forKey: .archived)
+            
+        }
+        
+    }
+    
+    /*
+        Model: SlideshowRequest
+    */
+
+    struct SlideshowRequest: Codable {
+        
+        
+        public var slug: String?
+        
+        public var platform: String?
+        
+        public var configuration: [String: Any]?
+        
+        public var media: [[String: Any]]?
+        
+        public var active: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case slug = "slug"
+            
+            case platform = "platform"
+            
+            case configuration = "configuration"
+            
+            case media = "media"
+            
+            case active = "active"
+            
+        }
+
+        public init(active: Bool?, configuration: [String: Any]?, media: [[String: Any]]?, platform: String?, slug: String?) {
+            
+            self.slug = slug
+            
+            self.platform = platform
+            
+            self.configuration = configuration
+            
+            self.media = media
+            
+            self.active = active
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            slug = try? container.decode(String.self, forKey: .slug)
+            
+            platform = try? container.decode(String.self, forKey: .platform)
+            
+            configuration = try? container.decode([String: Any].self, forKey: .configuration)
+            
+            media = try? container.decode([[String: Any]].self, forKey: .media)
+            
+            active = try? container.decode(Bool.self, forKey: .active)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            try? container.encodeIfPresent(configuration, forKey: .configuration)
+            
+            try? container.encodeIfPresent(media, forKey: .media)
+            
+            try? container.encodeIfPresent(active, forKey: .active)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Support
+    */
+
+    struct Support: Codable {
+        
+        
+        public var created: Bool?
+        
+        public var id: String?
+        
+        public var configType: String?
+        
+        public var application: String?
+        
+        public var createdAt: String?
+        
+        public var updatedAt: String?
+        
+        public var contact: [String: Any]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case created = "created"
+            
+            case id = "_id"
+            
+            case configType = "config_type"
+            
+            case application = "application"
+            
+            case createdAt = "created_at"
+            
+            case updatedAt = "updated_at"
+            
+            case contact = "contact"
+            
+        }
+
+        public init(application: String?, configType: String?, contact: [String: Any]?, created: Bool?, createdAt: String?, updatedAt: String?, id: String?) {
+            
+            self.created = created
+            
+            self.id = id
+            
+            self.configType = configType
+            
+            self.application = application
+            
+            self.createdAt = createdAt
+            
+            self.updatedAt = updatedAt
+            
+            self.contact = contact
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            created = try? container.decode(Bool.self, forKey: .created)
+            
+            id = try? container.decode(String.self, forKey: .id)
+            
+            configType = try? container.decode(String.self, forKey: .configType)
+            
+            application = try? container.decode(String.self, forKey: .application)
+            
+            createdAt = try? container.decode(String.self, forKey: .createdAt)
+            
+            updatedAt = try? container.decode(String.self, forKey: .updatedAt)
+            
+            contact = try? container.decode([String: Any].self, forKey: .contact)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
             
             try? container.encodeIfPresent(created, forKey: .created)
             
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            try? container.encodeIfPresent(configType, forKey: .configType)
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            try? container.encodeIfPresent(contact, forKey: .contact)
+            
+        }
+        
+    }
+    
+    
+    
+    /*
+        Model: PaymentGatewayConfigResponse
+    */
+
+    struct PaymentGatewayConfigResponse: Codable {
+        
+        
+        public var excludedFields: [String]
+        
+        public var created: Bool
+        
+        public var success: Bool
+        
+        public var appId: String
+        
+        public var aggregators: [[String: Any]]?
+        
+        public var displayFields: [String]
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case excludedFields = "excluded_fields"
+            
+            case created = "created"
+            
+            case success = "success"
+            
+            case appId = "app_id"
+            
+            case aggregators = "aggregators"
+            
+            case displayFields = "display_fields"
+            
+        }
+
+        public init(aggregators: [[String: Any]]?, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
+            
+            self.excludedFields = excludedFields
+            
+            self.created = created
+            
+            self.success = success
+            
+            self.appId = appId
+            
+            self.aggregators = aggregators
+            
+            self.displayFields = displayFields
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            excludedFields = try container.decode([String].self, forKey: .excludedFields)
+            
+            created = try container.decode(Bool.self, forKey: .created)
+            
+            success = try container.decode(Bool.self, forKey: .success)
+            
+            appId = try container.decode(String.self, forKey: .appId)
+            
+            aggregators = try? container.decode([[String: Any]].self, forKey: .aggregators)
+            
+            displayFields = try container.decode([String].self, forKey: .displayFields)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
+            
+            try? container.encodeIfPresent(created, forKey: .created)
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             try? container.encodeIfPresent(aggregators, forKey: .aggregators)
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(displayFields, forKey: .displayFields)
             
         }
         
@@ -3010,72 +9160,72 @@ public extension PlatformClient {
     struct PaymentGatewayConfig: Codable {
         
         
-        public var merchantSalt: String
-        
         public var isActive: Bool?
         
         public var key: String
         
-        public var secret: String
-        
         public var configType: String
+        
+        public var merchantSalt: String
+        
+        public var secret: String
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case merchantSalt = "merchant_salt"
             
             case isActive = "is_active"
             
             case key = "key"
             
-            case secret = "secret"
-            
             case configType = "config_type"
+            
+            case merchantSalt = "merchant_salt"
+            
+            case secret = "secret"
             
         }
 
         public init(configType: String, isActive: Bool?, key: String, merchantSalt: String, secret: String) {
             
-            self.merchantSalt = merchantSalt
-            
             self.isActive = isActive
             
             self.key = key
             
-            self.secret = secret
-            
             self.configType = configType
+            
+            self.merchantSalt = merchantSalt
+            
+            self.secret = secret
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
-            
             isActive = try? container.decode(Bool.self, forKey: .isActive)
             
             key = try container.decode(String.self, forKey: .key)
             
-            secret = try container.decode(String.self, forKey: .secret)
-            
             configType = try container.decode(String.self, forKey: .configType)
+            
+            merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+            
+            secret = try container.decode(String.self, forKey: .secret)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             try? container.encodeIfPresent(key, forKey: .key)
             
-            try? container.encodeIfPresent(secret, forKey: .secret)
-            
             try? container.encodeIfPresent(configType, forKey: .configType)
+            
+            try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
+            
+            try? container.encodeIfPresent(secret, forKey: .secret)
             
         }
         
@@ -3088,52 +9238,52 @@ public extension PlatformClient {
     struct PaymentGatewayConfigRequest: Codable {
         
         
-        public var aggregatorName: PaymentGatewayConfig?
+        public var appId: String
         
         public var isActive: Bool?
         
-        public var appId: String
+        public var aggregatorName: PaymentGatewayConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case aggregatorName = "aggregator_name"
+            case appId = "app_id"
             
             case isActive = "is_active"
             
-            case appId = "app_id"
+            case aggregatorName = "aggregator_name"
             
         }
 
         public init(aggregatorName: PaymentGatewayConfig?, appId: String, isActive: Bool?) {
             
-            self.aggregatorName = aggregatorName
+            self.appId = appId
             
             self.isActive = isActive
             
-            self.appId = appId
+            self.aggregatorName = aggregatorName
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            aggregatorName = try? container.decode(PaymentGatewayConfig.self, forKey: .aggregatorName)
+            appId = try container.decode(String.self, forKey: .appId)
             
             isActive = try? container.decode(Bool.self, forKey: .isActive)
             
-            appId = try container.decode(String.self, forKey: .appId)
+            aggregatorName = try? container.decode(PaymentGatewayConfig.self, forKey: .aggregatorName)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
             
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
         }
         
@@ -3338,242 +9488,242 @@ public extension PlatformClient {
     struct PaymentModeList: Codable {
         
         
-        public var merchantCode: String?
+        public var cardBrand: String?
+        
+        public var cardToken: String?
+        
+        public var cardNumber: String?
+        
+        public var code: String?
+        
+        public var name: String?
+        
+        public var logoUrl: PaymentModeLogo?
+        
+        public var expYear: Int?
+        
+        public var cardReference: String?
+        
+        public var cardIssuer: String?
         
         public var cardName: String?
         
-        public var cardToken: String?
+        public var cardId: String?
+        
+        public var displayPriority: Int?
+        
+        public var displayName: String?
+        
+        public var cardType: String?
+        
+        public var merchantCode: String?
+        
+        public var nickname: String?
+        
+        public var cardBrandImage: String?
         
         public var cardFingerprint: String?
         
         public var expMonth: Int?
         
-        public var displayPriority: Int?
+        public var cardIsin: String?
         
         public var expired: Bool?
         
-        public var cardBrandImage: String?
-        
-        public var expYear: Int?
-        
-        public var cardIsin: String?
-        
-        public var cardBrand: String?
-        
-        public var displayName: String?
-        
-        public var cardNumber: String?
-        
-        public var cardIssuer: String?
-        
         public var aggregatorName: String
-        
-        public var cardReference: String?
-        
-        public var nickname: String?
-        
-        public var code: String?
-        
-        public var cardType: String?
-        
-        public var logoUrl: PaymentModeLogo?
-        
-        public var cardId: String?
-        
-        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case merchantCode = "merchant_code"
+            case cardBrand = "card_brand"
+            
+            case cardToken = "card_token"
+            
+            case cardNumber = "card_number"
+            
+            case code = "code"
+            
+            case name = "name"
+            
+            case logoUrl = "logo_url"
+            
+            case expYear = "exp_year"
+            
+            case cardReference = "card_reference"
+            
+            case cardIssuer = "card_issuer"
             
             case cardName = "card_name"
             
-            case cardToken = "card_token"
+            case cardId = "card_id"
+            
+            case displayPriority = "display_priority"
+            
+            case displayName = "display_name"
+            
+            case cardType = "card_type"
+            
+            case merchantCode = "merchant_code"
+            
+            case nickname = "nickname"
+            
+            case cardBrandImage = "card_brand_image"
             
             case cardFingerprint = "card_fingerprint"
             
             case expMonth = "exp_month"
             
-            case displayPriority = "display_priority"
+            case cardIsin = "card_isin"
             
             case expired = "expired"
             
-            case cardBrandImage = "card_brand_image"
-            
-            case expYear = "exp_year"
-            
-            case cardIsin = "card_isin"
-            
-            case cardBrand = "card_brand"
-            
-            case displayName = "display_name"
-            
-            case cardNumber = "card_number"
-            
-            case cardIssuer = "card_issuer"
-            
             case aggregatorName = "aggregator_name"
-            
-            case cardReference = "card_reference"
-            
-            case nickname = "nickname"
-            
-            case code = "code"
-            
-            case cardType = "card_type"
-            
-            case logoUrl = "logo_url"
-            
-            case cardId = "card_id"
-            
-            case name = "name"
             
         }
 
         public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, code: String?, displayName: String?, displayPriority: Int?, expired: Bool?, expMonth: Int?, expYear: Int?, logoUrl: PaymentModeLogo?, merchantCode: String?, name: String?, nickname: String?) {
             
-            self.merchantCode = merchantCode
+            self.cardBrand = cardBrand
+            
+            self.cardToken = cardToken
+            
+            self.cardNumber = cardNumber
+            
+            self.code = code
+            
+            self.name = name
+            
+            self.logoUrl = logoUrl
+            
+            self.expYear = expYear
+            
+            self.cardReference = cardReference
+            
+            self.cardIssuer = cardIssuer
             
             self.cardName = cardName
             
-            self.cardToken = cardToken
+            self.cardId = cardId
+            
+            self.displayPriority = displayPriority
+            
+            self.displayName = displayName
+            
+            self.cardType = cardType
+            
+            self.merchantCode = merchantCode
+            
+            self.nickname = nickname
+            
+            self.cardBrandImage = cardBrandImage
             
             self.cardFingerprint = cardFingerprint
             
             self.expMonth = expMonth
             
-            self.displayPriority = displayPriority
+            self.cardIsin = cardIsin
             
             self.expired = expired
             
-            self.cardBrandImage = cardBrandImage
-            
-            self.expYear = expYear
-            
-            self.cardIsin = cardIsin
-            
-            self.cardBrand = cardBrand
-            
-            self.displayName = displayName
-            
-            self.cardNumber = cardNumber
-            
-            self.cardIssuer = cardIssuer
-            
             self.aggregatorName = aggregatorName
-            
-            self.cardReference = cardReference
-            
-            self.nickname = nickname
-            
-            self.code = code
-            
-            self.cardType = cardType
-            
-            self.logoUrl = logoUrl
-            
-            self.cardId = cardId
-            
-            self.name = name
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            merchantCode = try? container.decode(String.self, forKey: .merchantCode)
+            cardBrand = try? container.decode(String.self, forKey: .cardBrand)
+            
+            cardToken = try? container.decode(String.self, forKey: .cardToken)
+            
+            cardNumber = try? container.decode(String.self, forKey: .cardNumber)
+            
+            code = try? container.decode(String.self, forKey: .code)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            logoUrl = try? container.decode(PaymentModeLogo.self, forKey: .logoUrl)
+            
+            expYear = try? container.decode(Int.self, forKey: .expYear)
+            
+            cardReference = try? container.decode(String.self, forKey: .cardReference)
+            
+            cardIssuer = try? container.decode(String.self, forKey: .cardIssuer)
             
             cardName = try? container.decode(String.self, forKey: .cardName)
             
-            cardToken = try? container.decode(String.self, forKey: .cardToken)
+            cardId = try? container.decode(String.self, forKey: .cardId)
+            
+            displayPriority = try? container.decode(Int.self, forKey: .displayPriority)
+            
+            displayName = try? container.decode(String.self, forKey: .displayName)
+            
+            cardType = try? container.decode(String.self, forKey: .cardType)
+            
+            merchantCode = try? container.decode(String.self, forKey: .merchantCode)
+            
+            nickname = try? container.decode(String.self, forKey: .nickname)
+            
+            cardBrandImage = try? container.decode(String.self, forKey: .cardBrandImage)
             
             cardFingerprint = try? container.decode(String.self, forKey: .cardFingerprint)
             
             expMonth = try? container.decode(Int.self, forKey: .expMonth)
             
-            displayPriority = try? container.decode(Int.self, forKey: .displayPriority)
+            cardIsin = try? container.decode(String.self, forKey: .cardIsin)
             
             expired = try? container.decode(Bool.self, forKey: .expired)
             
-            cardBrandImage = try? container.decode(String.self, forKey: .cardBrandImage)
-            
-            expYear = try? container.decode(Int.self, forKey: .expYear)
-            
-            cardIsin = try? container.decode(String.self, forKey: .cardIsin)
-            
-            cardBrand = try? container.decode(String.self, forKey: .cardBrand)
-            
-            displayName = try? container.decode(String.self, forKey: .displayName)
-            
-            cardNumber = try? container.decode(String.self, forKey: .cardNumber)
-            
-            cardIssuer = try? container.decode(String.self, forKey: .cardIssuer)
-            
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-            
-            cardReference = try? container.decode(String.self, forKey: .cardReference)
-            
-            nickname = try? container.decode(String.self, forKey: .nickname)
-            
-            code = try? container.decode(String.self, forKey: .code)
-            
-            cardType = try? container.decode(String.self, forKey: .cardType)
-            
-            logoUrl = try? container.decode(PaymentModeLogo.self, forKey: .logoUrl)
-            
-            cardId = try? container.decode(String.self, forKey: .cardId)
-            
-            name = try? container.decode(String.self, forKey: .name)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+            try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
+            
+            try? container.encodeIfPresent(cardToken, forKey: .cardToken)
+            
+            try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+            
+            try? container.encodeIfPresent(expYear, forKey: .expYear)
+            
+            try? container.encodeIfPresent(cardReference, forKey: .cardReference)
+            
+            try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
             
             try? container.encodeIfPresent(cardName, forKey: .cardName)
             
-            try? container.encodeIfPresent(cardToken, forKey: .cardToken)
+            try? container.encodeIfPresent(cardId, forKey: .cardId)
+            
+            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            try? container.encodeIfPresent(cardType, forKey: .cardType)
+            
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+            
+            try? container.encodeIfPresent(nickname, forKey: .nickname)
+            
+            try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
             
             try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
             
             try? container.encodeIfPresent(expMonth, forKey: .expMonth)
             
-            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+            try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
             
             try? container.encodeIfPresent(expired, forKey: .expired)
             
-            try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
-            
-            try? container.encodeIfPresent(expYear, forKey: .expYear)
-            
-            try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
-            
-            try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
-            
-            try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
-            
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-            
-            try? container.encodeIfPresent(cardReference, forKey: .cardReference)
-            
-            try? container.encodeIfPresent(nickname, forKey: .nickname)
-            
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            try? container.encodeIfPresent(cardType, forKey: .cardType)
-            
-            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
-            
-            try? container.encodeIfPresent(cardId, forKey: .cardId)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
             
         }
         
@@ -3586,92 +9736,92 @@ public extension PlatformClient {
     struct RootPaymentMode: Codable {
         
         
+        public var displayPriority: Int
+        
+        public var anonymousEnable: Bool?
+        
+        public var aggregatorName: String?
+        
         public var displayName: String
         
         public var list: [PaymentModeList]?
         
-        public var displayPriority: Int
-        
-        public var aggregatorName: String?
-        
-        public var anonymousEnable: Bool?
+        public var addCardEnabled: Bool?
         
         public var name: String
         
-        public var addCardEnabled: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case displayPriority = "display_priority"
+            
+            case anonymousEnable = "anonymous_enable"
+            
+            case aggregatorName = "aggregator_name"
             
             case displayName = "display_name"
             
             case list = "list"
             
-            case displayPriority = "display_priority"
-            
-            case aggregatorName = "aggregator_name"
-            
-            case anonymousEnable = "anonymous_enable"
+            case addCardEnabled = "add_card_enabled"
             
             case name = "name"
-            
-            case addCardEnabled = "add_card_enabled"
             
         }
 
         public init(addCardEnabled: Bool?, aggregatorName: String?, anonymousEnable: Bool?, displayName: String, displayPriority: Int, list: [PaymentModeList]?, name: String) {
             
+            self.displayPriority = displayPriority
+            
+            self.anonymousEnable = anonymousEnable
+            
+            self.aggregatorName = aggregatorName
+            
             self.displayName = displayName
             
             self.list = list
             
-            self.displayPriority = displayPriority
-            
-            self.aggregatorName = aggregatorName
-            
-            self.anonymousEnable = anonymousEnable
+            self.addCardEnabled = addCardEnabled
             
             self.name = name
-            
-            self.addCardEnabled = addCardEnabled
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
+            displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+            
+            anonymousEnable = try? container.decode(Bool.self, forKey: .anonymousEnable)
+            
+            aggregatorName = try? container.decode(String.self, forKey: .aggregatorName)
+            
             displayName = try container.decode(String.self, forKey: .displayName)
             
             list = try? container.decode([PaymentModeList].self, forKey: .list)
             
-            displayPriority = try container.decode(Int.self, forKey: .displayPriority)
-            
-            aggregatorName = try? container.decode(String.self, forKey: .aggregatorName)
-            
-            anonymousEnable = try? container.decode(Bool.self, forKey: .anonymousEnable)
+            addCardEnabled = try? container.decode(Bool.self, forKey: .addCardEnabled)
             
             name = try container.decode(String.self, forKey: .name)
-            
-            addCardEnabled = try? container.decode(Bool.self, forKey: .addCardEnabled)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
+            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+            
+            try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
+            
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             try? container.encodeIfPresent(list, forKey: .list)
             
-            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
-            
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-            
-            try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
+            try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
             
         }
         
@@ -3732,92 +9882,92 @@ public extension PlatformClient {
     struct PayoutsResponse: Codable {
         
         
-        public var isDefault: Bool
+        public var isActive: Bool
+        
+        public var transferType: String
         
         public var payoutsAggregators: [[String: Any]]
-        
-        public var isActive: Bool
         
         public var customers: [String: Any]
         
         public var uniqueTransferNo: [String: Any]
         
-        public var transferType: String
-        
         public var moreAttributes: [String: Any]
+        
+        public var isDefault: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case isDefault = "is_default"
+            case isActive = "is_active"
+            
+            case transferType = "transfer_type"
             
             case payoutsAggregators = "payouts_aggregators"
-            
-            case isActive = "is_active"
             
             case customers = "customers"
             
             case uniqueTransferNo = "unique_transfer_no"
             
-            case transferType = "transfer_type"
-            
             case moreAttributes = "more_attributes"
+            
+            case isDefault = "is_default"
             
         }
 
         public init(customers: [String: Any], isActive: Bool, isDefault: Bool, moreAttributes: [String: Any], payoutsAggregators: [[String: Any]], transferType: String, uniqueTransferNo: [String: Any]) {
             
-            self.isDefault = isDefault
+            self.isActive = isActive
+            
+            self.transferType = transferType
             
             self.payoutsAggregators = payoutsAggregators
-            
-            self.isActive = isActive
             
             self.customers = customers
             
             self.uniqueTransferNo = uniqueTransferNo
             
-            self.transferType = transferType
-            
             self.moreAttributes = moreAttributes
+            
+            self.isDefault = isDefault
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+            
+            transferType = try container.decode(String.self, forKey: .transferType)
             
             payoutsAggregators = try container.decode([[String: Any]].self, forKey: .payoutsAggregators)
-            
-            isActive = try container.decode(Bool.self, forKey: .isActive)
             
             customers = try container.decode([String: Any].self, forKey: .customers)
             
             uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
             
-            transferType = try container.decode(String.self, forKey: .transferType)
-            
             moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
+            
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            try? container.encodeIfPresent(transferType, forKey: .transferType)
             
             try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             try? container.encodeIfPresent(customers, forKey: .customers)
             
             try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
             
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
-            
             try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
+            
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
         }
         
@@ -3832,30 +9982,30 @@ public extension PlatformClient {
         
         public var isActive: Bool
         
-        public var aggregator: String
-        
         public var transferType: String
-        
-        public var bankDetails: [String: Any]
         
         public var uniqueExternalId: String
         
+        public var aggregator: String
+        
         public var users: [String: Any]
+        
+        public var bankDetails: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
             
             case isActive = "is_active"
             
-            case aggregator = "aggregator"
-            
             case transferType = "transfer_type"
-            
-            case bankDetails = "bank_details"
             
             case uniqueExternalId = "unique_external_id"
             
+            case aggregator = "aggregator"
+            
             case users = "users"
+            
+            case bankDetails = "bank_details"
             
         }
 
@@ -3863,15 +10013,15 @@ public extension PlatformClient {
             
             self.isActive = isActive
             
-            self.aggregator = aggregator
-            
             self.transferType = transferType
-            
-            self.bankDetails = bankDetails
             
             self.uniqueExternalId = uniqueExternalId
             
+            self.aggregator = aggregator
+            
             self.users = users
+            
+            self.bankDetails = bankDetails
             
         }
 
@@ -3880,15 +10030,15 @@ public extension PlatformClient {
             
             isActive = try container.decode(Bool.self, forKey: .isActive)
             
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-            
             transferType = try container.decode(String.self, forKey: .transferType)
-            
-            bankDetails = try container.decode([String: Any].self, forKey: .bankDetails)
             
             uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
             
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+            
             users = try container.decode([String: Any].self, forKey: .users)
+            
+            bankDetails = try container.decode([String: Any].self, forKey: .bankDetails)
             
         }
         
@@ -3897,15 +10047,15 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
             try? container.encodeIfPresent(transferType, forKey: .transferType)
-            
-            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
             
             try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
             
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            
             try? container.encodeIfPresent(users, forKey: .users)
+            
+            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
             
         }
         
@@ -3918,13 +10068,13 @@ public extension PlatformClient {
     struct PayoutResponse: Codable {
         
         
-        public var created: Bool
-        
-        public var paymentStatus: String
-        
         public var payouts: [String: Any]
         
         public var isActive: Bool
+        
+        public var transferType: String
+        
+        public var created: Bool
         
         public var aggregator: String
         
@@ -3932,22 +10082,22 @@ public extension PlatformClient {
         
         public var success: Bool
         
-        public var transferType: String
+        public var users: [String: Any]
         
         public var bankDetails: [String: Any]
         
-        public var users: [String: Any]
+        public var paymentStatus: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case created = "created"
-            
-            case paymentStatus = "payment_status"
-            
             case payouts = "payouts"
             
             case isActive = "is_active"
+            
+            case transferType = "transfer_type"
+            
+            case created = "created"
             
             case aggregator = "aggregator"
             
@@ -3955,23 +10105,23 @@ public extension PlatformClient {
             
             case success = "success"
             
-            case transferType = "transfer_type"
+            case users = "users"
             
             case bankDetails = "bank_details"
             
-            case users = "users"
+            case paymentStatus = "payment_status"
             
         }
 
         public init(aggregator: String, bankDetails: [String: Any], created: Bool, isActive: Bool, paymentStatus: String, payouts: [String: Any], success: Bool, transferType: String, uniqueTransferNo: String, users: [String: Any]) {
             
-            self.created = created
-            
-            self.paymentStatus = paymentStatus
-            
             self.payouts = payouts
             
             self.isActive = isActive
+            
+            self.transferType = transferType
+            
+            self.created = created
             
             self.aggregator = aggregator
             
@@ -3979,24 +10129,24 @@ public extension PlatformClient {
             
             self.success = success
             
-            self.transferType = transferType
+            self.users = users
             
             self.bankDetails = bankDetails
             
-            self.users = users
+            self.paymentStatus = paymentStatus
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            created = try container.decode(Bool.self, forKey: .created)
-            
-            paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
-            
             payouts = try container.decode([String: Any].self, forKey: .payouts)
             
             isActive = try container.decode(Bool.self, forKey: .isActive)
+            
+            transferType = try container.decode(String.self, forKey: .transferType)
+            
+            created = try container.decode(Bool.self, forKey: .created)
             
             aggregator = try container.decode(String.self, forKey: .aggregator)
             
@@ -4004,24 +10154,24 @@ public extension PlatformClient {
             
             success = try container.decode(Bool.self, forKey: .success)
             
-            transferType = try container.decode(String.self, forKey: .transferType)
+            users = try container.decode([String: Any].self, forKey: .users)
             
             bankDetails = try container.decode([String: Any].self, forKey: .bankDetails)
             
-            users = try container.decode([String: Any].self, forKey: .users)
+            paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(created, forKey: .created)
-            
-            try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
-            
             try? container.encodeIfPresent(payouts, forKey: .payouts)
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            try? container.encodeIfPresent(transferType, forKey: .transferType)
+            
+            try? container.encodeIfPresent(created, forKey: .created)
             
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
             
@@ -4029,11 +10179,11 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(success, forKey: .success)
             
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
+            try? container.encodeIfPresent(users, forKey: .users)
             
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
             
-            try? container.encodeIfPresent(users, forKey: .users)
+            try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
             
         }
         
@@ -4104,18 +10254,18 @@ public extension PlatformClient {
     struct UpdatePayoutRequest: Codable {
         
         
-        public var isActive: Bool
-        
         public var uniqueExternalId: String
+        
+        public var isActive: Bool
         
         public var isDefault: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case isActive = "is_active"
-            
             case uniqueExternalId = "unique_external_id"
+            
+            case isActive = "is_active"
             
             case isDefault = "is_default"
             
@@ -4123,9 +10273,9 @@ public extension PlatformClient {
 
         public init(isActive: Bool, isDefault: Bool, uniqueExternalId: String) {
             
-            self.isActive = isActive
-            
             self.uniqueExternalId = uniqueExternalId
+            
+            self.isActive = isActive
             
             self.isDefault = isDefault
             
@@ -4134,9 +10284,9 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-            
             uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+            
+            isActive = try container.decode(Bool.self, forKey: .isActive)
             
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
             
@@ -4145,9 +10295,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
             try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
@@ -4426,48 +10576,254 @@ public extension PlatformClient {
     
     
     /*
-        Model: BusinessCountryInfo
+        Model: CompanyAddress
     */
 
-    struct BusinessCountryInfo: Codable {
+    struct CompanyAddress: Codable {
         
+        
+        public var latitude: Double
+        
+        public var pincode: Int
+        
+        public var city: String
+        
+        public var address2: String?
         
         public var countryCode: String?
         
-        public var country: String?
+        public var landmark: String?
+        
+        public var longitude: Double
+        
+        public var address1: String
+        
+        public var country: String
+        
+        public var state: String
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case latitude = "latitude"
+            
+            case pincode = "pincode"
+            
+            case city = "city"
+            
+            case address2 = "address2"
+            
             case countryCode = "country_code"
+            
+            case landmark = "landmark"
+            
+            case longitude = "longitude"
+            
+            case address1 = "address1"
             
             case country = "country"
             
+            case state = "state"
+            
         }
 
-        public init(country: String?, countryCode: String?) {
+        public init(address1: String, address2: String?, city: String, country: String, countryCode: String?, landmark: String?, latitude: Double, longitude: Double, pincode: Int, state: String) {
+            
+            self.latitude = latitude
+            
+            self.pincode = pincode
+            
+            self.city = city
+            
+            self.address2 = address2
             
             self.countryCode = countryCode
             
+            self.landmark = landmark
+            
+            self.longitude = longitude
+            
+            self.address1 = address1
+            
             self.country = country
+            
+            self.state = state
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
+            latitude = try container.decode(Double.self, forKey: .latitude)
+            
+            pincode = try container.decode(Int.self, forKey: .pincode)
+            
+            city = try container.decode(String.self, forKey: .city)
+            
+            address2 = try? container.decode(String.self, forKey: .address2)
+            
             countryCode = try? container.decode(String.self, forKey: .countryCode)
             
-            country = try? container.decode(String.self, forKey: .country)
+            landmark = try? container.decode(String.self, forKey: .landmark)
+            
+            longitude = try container.decode(Double.self, forKey: .longitude)
+            
+            address1 = try container.decode(String.self, forKey: .address1)
+            
+            country = try container.decode(String.self, forKey: .country)
+            
+            state = try container.decode(String.self, forKey: .state)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+            
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            try? container.encodeIfPresent(city, forKey: .city)
+            
+            try? container.encodeIfPresent(address2, forKey: .address2)
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            
+            try? container.encodeIfPresent(address1, forKey: .address1)
+            
             try? container.encodeIfPresent(country, forKey: .country)
+            
+            try? container.encodeIfPresent(state, forKey: .state)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Document
+    */
+
+    struct Document: Codable {
+        
+        
+        public var value: String
+        
+        public var type: String
+        
+        public var url: String?
+        
+        public var verified: Bool?
+        
+        public var legalName: String
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case value = "value"
+            
+            case type = "type"
+            
+            case url = "url"
+            
+            case verified = "verified"
+            
+            case legalName = "legal_name"
+            
+        }
+
+        public init(legalName: String, type: String, url: String?, value: String, verified: Bool?) {
+            
+            self.value = value
+            
+            self.type = type
+            
+            self.url = url
+            
+            self.verified = verified
+            
+            self.legalName = legalName
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            value = try container.decode(String.self, forKey: .value)
+            
+            type = try container.decode(String.self, forKey: .type)
+            
+            url = try? container.decode(String.self, forKey: .url)
+            
+            verified = try? container.decode(Bool.self, forKey: .verified)
+            
+            legalName = try container.decode(String.self, forKey: .legalName)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            try? container.encodeIfPresent(url, forKey: .url)
+            
+            try? container.encodeIfPresent(verified, forKey: .verified)
+            
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            
+        }
+        
+    }
+    
+    /*
+        Model: BusinessCountryInfo
+    */
+
+    struct BusinessCountryInfo: Codable {
+        
+        
+        public var country: String?
+        
+        public var countryCode: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case country = "country"
+            
+            case countryCode = "country_code"
+            
+        }
+
+        public init(country: String?, countryCode: String?) {
+            
+            self.country = country
+            
+            self.countryCode = countryCode
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            country = try? container.decode(String.self, forKey: .country)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(country, forKey: .country)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
         }
         
@@ -4512,223 +10868,23 @@ public extension PlatformClient {
     }
     
     /*
-        Model: Document
-    */
-
-    struct Document: Codable {
-        
-        
-        public var url: String?
-        
-        public var value: String
-        
-        public var type: String
-        
-        public var verified: Bool?
-        
-        public var legalName: String
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case url = "url"
-            
-            case value = "value"
-            
-            case type = "type"
-            
-            case verified = "verified"
-            
-            case legalName = "legal_name"
-            
-        }
-
-        public init(legalName: String, type: String, url: String?, value: String, verified: Bool?) {
-            
-            self.url = url
-            
-            self.value = value
-            
-            self.type = type
-            
-            self.verified = verified
-            
-            self.legalName = legalName
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            url = try? container.decode(String.self, forKey: .url)
-            
-            value = try container.decode(String.self, forKey: .value)
-            
-            type = try container.decode(String.self, forKey: .type)
-            
-            verified = try? container.decode(Bool.self, forKey: .verified)
-            
-            legalName = try container.decode(String.self, forKey: .legalName)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(url, forKey: .url)
-            
-            try? container.encodeIfPresent(value, forKey: .value)
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            try? container.encodeIfPresent(verified, forKey: .verified)
-            
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
-            
-        }
-        
-    }
-    
-    /*
-        Model: CompanyAddress
-    */
-
-    struct CompanyAddress: Codable {
-        
-        
-        public var city: String
-        
-        public var country: String
-        
-        public var countryCode: String?
-        
-        public var state: String
-        
-        public var address1: String
-        
-        public var latitude: Double
-        
-        public var pincode: Int
-        
-        public var landmark: String?
-        
-        public var address2: String?
-        
-        public var longitude: Double
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case city = "city"
-            
-            case country = "country"
-            
-            case countryCode = "country_code"
-            
-            case state = "state"
-            
-            case address1 = "address1"
-            
-            case latitude = "latitude"
-            
-            case pincode = "pincode"
-            
-            case landmark = "landmark"
-            
-            case address2 = "address2"
-            
-            case longitude = "longitude"
-            
-        }
-
-        public init(address1: String, address2: String?, city: String, country: String, countryCode: String?, landmark: String?, latitude: Double, longitude: Double, pincode: Int, state: String) {
-            
-            self.city = city
-            
-            self.country = country
-            
-            self.countryCode = countryCode
-            
-            self.state = state
-            
-            self.address1 = address1
-            
-            self.latitude = latitude
-            
-            self.pincode = pincode
-            
-            self.landmark = landmark
-            
-            self.address2 = address2
-            
-            self.longitude = longitude
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            city = try container.decode(String.self, forKey: .city)
-            
-            country = try container.decode(String.self, forKey: .country)
-            
-            countryCode = try? container.decode(String.self, forKey: .countryCode)
-            
-            state = try container.decode(String.self, forKey: .state)
-            
-            address1 = try container.decode(String.self, forKey: .address1)
-            
-            latitude = try container.decode(Double.self, forKey: .latitude)
-            
-            pincode = try container.decode(Int.self, forKey: .pincode)
-            
-            landmark = try? container.decode(String.self, forKey: .landmark)
-            
-            address2 = try? container.decode(String.self, forKey: .address2)
-            
-            longitude = try container.decode(Double.self, forKey: .longitude)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(city, forKey: .city)
-            
-            try? container.encodeIfPresent(country, forKey: .country)
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            try? container.encodeIfPresent(state, forKey: .state)
-            
-            try? container.encodeIfPresent(address1, forKey: .address1)
-            
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
-            try? container.encodeIfPresent(address2, forKey: .address2)
-            
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
-            
-        }
-        
-    }
-    
-    /*
         Model: CompanyStoreSerializerRequest
     */
 
     struct CompanyStoreSerializerRequest: Codable {
         
         
+        public var address: CompanyAddress
+        
+        public var document: Document
+        
         public var businessCountryInfo: BusinessCountryInfo
         
         public var businessInfo: String?
         
-        public var referralInfo: ReferralInfo?
+        public var businessType: String
+        
+        public var notificationEmails: [String]?
         
         public var name: String
         
@@ -4736,26 +10892,26 @@ public extension PlatformClient {
         
         public var franchiseEnabled: Bool?
         
-        public var document: Document
-        
-        public var notificationEmails: [String]?
-        
-        public var address: CompanyAddress
-        
         public var brands: [Int]
         
-        public var businessType: String
+        public var referralInfo: ReferralInfo?
         
         public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case address = "address"
+            
+            case document = "document"
+            
             case businessCountryInfo = "business_country_info"
             
             case businessInfo = "business_info"
             
-            case referralInfo = "referral_info"
+            case businessType = "business_type"
+            
+            case notificationEmails = "notification_emails"
             
             case name = "name"
             
@@ -4763,15 +10919,9 @@ public extension PlatformClient {
             
             case franchiseEnabled = "franchise_enabled"
             
-            case document = "document"
-            
-            case notificationEmails = "notification_emails"
-            
-            case address = "address"
-            
             case brands = "brands"
             
-            case businessType = "business_type"
+            case referralInfo = "referral_info"
             
             case uid = "uid"
             
@@ -4779,11 +10929,17 @@ public extension PlatformClient {
 
         public init(address: CompanyAddress, brands: [Int], businessCountryInfo: BusinessCountryInfo, businessInfo: String?, businessType: String, document: Document, franchiseEnabled: Bool?, name: String, notificationEmails: [String]?, referralInfo: ReferralInfo?, uid: Int?, warnings: [String: Any]?) {
             
+            self.address = address
+            
+            self.document = document
+            
             self.businessCountryInfo = businessCountryInfo
             
             self.businessInfo = businessInfo
             
-            self.referralInfo = referralInfo
+            self.businessType = businessType
+            
+            self.notificationEmails = notificationEmails
             
             self.name = name
             
@@ -4791,15 +10947,9 @@ public extension PlatformClient {
             
             self.franchiseEnabled = franchiseEnabled
             
-            self.document = document
-            
-            self.notificationEmails = notificationEmails
-            
-            self.address = address
-            
             self.brands = brands
             
-            self.businessType = businessType
+            self.referralInfo = referralInfo
             
             self.uid = uid
             
@@ -4808,11 +10958,17 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
+            address = try container.decode(CompanyAddress.self, forKey: .address)
+            
+            document = try container.decode(Document.self, forKey: .document)
+            
             businessCountryInfo = try container.decode(BusinessCountryInfo.self, forKey: .businessCountryInfo)
             
             businessInfo = try? container.decode(String.self, forKey: .businessInfo)
             
-            referralInfo = try? container.decode(ReferralInfo.self, forKey: .referralInfo)
+            businessType = try container.decode(String.self, forKey: .businessType)
+            
+            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
             
             name = try container.decode(String.self, forKey: .name)
             
@@ -4820,15 +10976,9 @@ public extension PlatformClient {
             
             franchiseEnabled = try? container.decode(Bool.self, forKey: .franchiseEnabled)
             
-            document = try container.decode(Document.self, forKey: .document)
-            
-            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
-            
-            address = try container.decode(CompanyAddress.self, forKey: .address)
-            
             brands = try container.decode([Int].self, forKey: .brands)
             
-            businessType = try container.decode(String.self, forKey: .businessType)
+            referralInfo = try? container.decode(ReferralInfo.self, forKey: .referralInfo)
             
             uid = try? container.decode(Int.self, forKey: .uid)
             
@@ -4837,11 +10987,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
+            try? container.encodeIfPresent(address, forKey: .address)
+            
+            try? container.encodeIfPresent(document, forKey: .document)
+            
             try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
             
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
             
-            try? container.encodeIfPresent(referralInfo, forKey: .referralInfo)
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
             
             try? container.encodeIfPresent(name, forKey: .name)
             
@@ -4849,15 +11005,9 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
             
-            try? container.encodeIfPresent(document, forKey: .document)
-            
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
             try? container.encodeIfPresent(brands, forKey: .brands)
             
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            try? container.encodeIfPresent(referralInfo, forKey: .referralInfo)
             
             try? container.encodeIfPresent(uid, forKey: .uid)
             
@@ -4920,26 +11070,26 @@ public extension PlatformClient {
     struct ErrorResponse: Codable {
         
         
-        public var code: String?
+        public var meta: [String: Any]?
         
-        public var message: String?
+        public var code: String?
         
         public var status: Int?
         
-        public var meta: [String: Any]?
+        public var message: String?
         
         public var errors: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case code = "code"
+            case meta = "meta"
             
-            case message = "message"
+            case code = "code"
             
             case status = "status"
             
-            case meta = "meta"
+            case message = "message"
             
             case errors = "errors"
             
@@ -4947,13 +11097,13 @@ public extension PlatformClient {
 
         public init(code: String?, errors: [String: Any]?, message: String?, meta: [String: Any]?, status: Int?) {
             
-            self.code = code
+            self.meta = meta
             
-            self.message = message
+            self.code = code
             
             self.status = status
             
-            self.meta = meta
+            self.message = message
             
             self.errors = errors
             
@@ -4962,13 +11112,13 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            code = try? container.decode(String.self, forKey: .code)
+            meta = try? container.decode([String: Any].self, forKey: .meta)
             
-            message = try? container.decode(String.self, forKey: .message)
+            code = try? container.decode(String.self, forKey: .code)
             
             status = try? container.decode(Int.self, forKey: .status)
             
-            meta = try? container.decode([String: Any].self, forKey: .meta)
+            message = try? container.decode(String.self, forKey: .message)
             
             errors = try? container.decode([String: Any].self, forKey: .errors)
             
@@ -4977,15 +11127,201 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             try? container.encodeIfPresent(status, forKey: .status)
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             try? container.encodeIfPresent(errors, forKey: .errors)
+            
+        }
+        
+    }
+    
+    /*
+        Model: BusinessCountryInfo1
+    */
+
+    struct BusinessCountryInfo1: Codable {
+        
+        
+        public var country: String?
+        
+        public var countryCode: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case country = "country"
+            
+            case countryCode = "country_code"
+            
+        }
+
+        public init(country: String?, countryCode: String?) {
+            
+            self.country = country
+            
+            self.countryCode = countryCode
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            country = try? container.decode(String.self, forKey: .country)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(country, forKey: .country)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetAddressSerializer
+    */
+
+    struct GetAddressSerializer: Codable {
+        
+        
+        public var latitude: Double?
+        
+        public var pincode: Int?
+        
+        public var address2: String?
+        
+        public var city: String?
+        
+        public var countryCode: String?
+        
+        public var landmark: String?
+        
+        public var longitude: Double?
+        
+        public var address1: String?
+        
+        public var country: String?
+        
+        public var addressType: String?
+        
+        public var state: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case latitude = "latitude"
+            
+            case pincode = "pincode"
+            
+            case address2 = "address2"
+            
+            case city = "city"
+            
+            case countryCode = "country_code"
+            
+            case landmark = "landmark"
+            
+            case longitude = "longitude"
+            
+            case address1 = "address1"
+            
+            case country = "country"
+            
+            case addressType = "address_type"
+            
+            case state = "state"
+            
+        }
+
+        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
+            
+            self.latitude = latitude
+            
+            self.pincode = pincode
+            
+            self.address2 = address2
+            
+            self.city = city
+            
+            self.countryCode = countryCode
+            
+            self.landmark = landmark
+            
+            self.longitude = longitude
+            
+            self.address1 = address1
+            
+            self.country = country
+            
+            self.addressType = addressType
+            
+            self.state = state
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            latitude = try? container.decode(Double.self, forKey: .latitude)
+            
+            pincode = try? container.decode(Int.self, forKey: .pincode)
+            
+            address2 = try? container.decode(String.self, forKey: .address2)
+            
+            city = try? container.decode(String.self, forKey: .city)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+            landmark = try? container.decode(String.self, forKey: .landmark)
+            
+            longitude = try? container.decode(Double.self, forKey: .longitude)
+            
+            address1 = try? container.decode(String.self, forKey: .address1)
+            
+            country = try? container.decode(String.self, forKey: .country)
+            
+            addressType = try? container.decode(String.self, forKey: .addressType)
+            
+            state = try? container.decode(String.self, forKey: .state)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+            
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            try? container.encodeIfPresent(address2, forKey: .address2)
+            
+            try? container.encodeIfPresent(city, forKey: .city)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            
+            try? container.encodeIfPresent(address1, forKey: .address1)
+            
+            try? container.encodeIfPresent(country, forKey: .country)
+            
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
+            
+            try? container.encodeIfPresent(state, forKey: .state)
             
         }
         
@@ -4998,52 +11334,52 @@ public extension PlatformClient {
     struct UserSerializer: Codable {
         
         
+        public var userId: String?
+        
         public var contact: String?
         
         public var username: String?
         
-        public var userId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case userId = "user_id"
             
             case contact = "contact"
             
             case username = "username"
             
-            case userId = "user_id"
-            
         }
 
         public init(contact: String?, username: String?, userId: String?) {
             
+            self.userId = userId
+            
             self.contact = contact
             
             self.username = username
-            
-            self.userId = userId
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
+            userId = try? container.decode(String.self, forKey: .userId)
+            
             contact = try? container.decode(String.self, forKey: .contact)
             
             username = try? container.decode(String.self, forKey: .username)
-            
-            userId = try? container.decode(String.self, forKey: .userId)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
+            try? container.encodeIfPresent(userId, forKey: .userId)
+            
             try? container.encodeIfPresent(contact, forKey: .contact)
             
             try? container.encodeIfPresent(username, forKey: .username)
-            
-            try? container.encodeIfPresent(userId, forKey: .userId)
             
         }
         
@@ -5104,180 +11440,42 @@ public extension PlatformClient {
     struct ContactDetails: Codable {
         
         
-        public var phone: [PhoneNumber]?
-        
         public var emails: [String]?
+        
+        public var phone: [PhoneNumber]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case phone = "phone"
-            
             case emails = "emails"
+            
+            case phone = "phone"
             
         }
 
         public init(emails: [String]?, phone: [PhoneNumber]?) {
             
-            self.phone = phone
-            
             self.emails = emails
+            
+            self.phone = phone
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            phone = try? container.decode([PhoneNumber].self, forKey: .phone)
             
             emails = try? container.decode([String].self, forKey: .emails)
             
+            phone = try? container.decode([PhoneNumber].self, forKey: .phone)
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(phone, forKey: .phone)
             
             try? container.encodeIfPresent(emails, forKey: .emails)
             
-        }
-        
-    }
-    
-    /*
-        Model: GetAddressSerializer
-    */
-
-    struct GetAddressSerializer: Codable {
-        
-        
-        public var city: String?
-        
-        public var addressType: String?
-        
-        public var country: String?
-        
-        public var landmark: String?
-        
-        public var address1: String?
-        
-        public var state: String?
-        
-        public var latitude: Double?
-        
-        public var pincode: Int?
-        
-        public var countryCode: String?
-        
-        public var address2: String?
-        
-        public var longitude: Double?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case city = "city"
-            
-            case addressType = "address_type"
-            
-            case country = "country"
-            
-            case landmark = "landmark"
-            
-            case address1 = "address1"
-            
-            case state = "state"
-            
-            case latitude = "latitude"
-            
-            case pincode = "pincode"
-            
-            case countryCode = "country_code"
-            
-            case address2 = "address2"
-            
-            case longitude = "longitude"
-            
-        }
-
-        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
-            
-            self.city = city
-            
-            self.addressType = addressType
-            
-            self.country = country
-            
-            self.landmark = landmark
-            
-            self.address1 = address1
-            
-            self.state = state
-            
-            self.latitude = latitude
-            
-            self.pincode = pincode
-            
-            self.countryCode = countryCode
-            
-            self.address2 = address2
-            
-            self.longitude = longitude
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            city = try? container.decode(String.self, forKey: .city)
-            
-            addressType = try? container.decode(String.self, forKey: .addressType)
-            
-            country = try? container.decode(String.self, forKey: .country)
-            
-            landmark = try? container.decode(String.self, forKey: .landmark)
-            
-            address1 = try? container.decode(String.self, forKey: .address1)
-            
-            state = try? container.decode(String.self, forKey: .state)
-            
-            latitude = try? container.decode(Double.self, forKey: .latitude)
-            
-            pincode = try? container.decode(Int.self, forKey: .pincode)
-            
-            countryCode = try? container.decode(String.self, forKey: .countryCode)
-            
-            address2 = try? container.decode(String.self, forKey: .address2)
-            
-            longitude = try? container.decode(Double.self, forKey: .longitude)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(city, forKey: .city)
-            
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
-            
-            try? container.encodeIfPresent(country, forKey: .country)
-            
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
-            try? container.encodeIfPresent(address1, forKey: .address1)
-            
-            try? container.encodeIfPresent(state, forKey: .state)
-            
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            try? container.encodeIfPresent(address2, forKey: .address2)
-            
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(phone, forKey: .phone)
             
         }
         
@@ -5360,276 +11558,228 @@ public extension PlatformClient {
     }
     
     /*
-        Model: BusinessCountryInfo1
-    */
-
-    struct BusinessCountryInfo1: Codable {
-        
-        
-        public var countryCode: String?
-        
-        public var country: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case countryCode = "country_code"
-            
-            case country = "country"
-            
-        }
-
-        public init(country: String?, countryCode: String?) {
-            
-            self.countryCode = countryCode
-            
-            self.country = country
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            countryCode = try? container.decode(String.self, forKey: .countryCode)
-            
-            country = try? container.decode(String.self, forKey: .country)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            try? container.encodeIfPresent(country, forKey: .country)
-            
-        }
-        
-    }
-    
-    /*
         Model: GetCompanyProfileSerializerResponse
     */
 
     struct GetCompanyProfileSerializerResponse: Codable {
         
         
-        public var verifiedOn: String?
-        
-        public var companyType: String
-        
-        public var warnings: [String: Any]?
-        
-        public var createdBy: UserSerializer?
-        
-        public var modifiedBy: UserSerializer?
-        
-        public var franchiseEnabled: Bool?
-        
-        public var businessInfo: String?
-        
-        public var createdOn: String?
-        
-        public var contactDetails: ContactDetails?
-        
-        public var addresses: [GetAddressSerializer]?
-        
-        public var verifiedBy: UserSerializer?
+        public var businessCountryInfo: BusinessCountryInfo1?
         
         public var stage: String?
         
-        public var modifiedOn: String?
+        public var documents: [Document]?
         
-        public var businessDetails: BusinessDetails?
+        public var addresses: [GetAddressSerializer]?
         
-        public var uid: Int
-        
-        public var businessCountryInfo: BusinessCountryInfo1?
+        public var createdBy: UserSerializer?
         
         public var name: String?
         
-        public var documents: [Document]?
+        public var warnings: [String: Any]?
+        
+        public var createdOn: String?
+        
+        public var businessInfo: String?
+        
+        public var contactDetails: ContactDetails?
+        
+        public var verifiedOn: String?
+        
+        public var modifiedOn: String?
         
         public var notificationEmails: [String]?
         
+        public var companyType: String
+        
+        public var uid: Int
+        
+        public var verifiedBy: UserSerializer?
+        
         public var businessType: String
+        
+        public var franchiseEnabled: Bool?
+        
+        public var businessDetails: BusinessDetails?
+        
+        public var modifiedBy: UserSerializer?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case verifiedOn = "verified_on"
-            
-            case companyType = "company_type"
-            
-            case warnings = "warnings"
-            
-            case createdBy = "created_by"
-            
-            case modifiedBy = "modified_by"
-            
-            case franchiseEnabled = "franchise_enabled"
-            
-            case businessInfo = "business_info"
-            
-            case createdOn = "created_on"
-            
-            case contactDetails = "contact_details"
-            
-            case addresses = "addresses"
-            
-            case verifiedBy = "verified_by"
+            case businessCountryInfo = "business_country_info"
             
             case stage = "stage"
             
-            case modifiedOn = "modified_on"
+            case documents = "documents"
             
-            case businessDetails = "business_details"
+            case addresses = "addresses"
             
-            case uid = "uid"
-            
-            case businessCountryInfo = "business_country_info"
+            case createdBy = "created_by"
             
             case name = "name"
             
-            case documents = "documents"
+            case warnings = "warnings"
+            
+            case createdOn = "created_on"
+            
+            case businessInfo = "business_info"
+            
+            case contactDetails = "contact_details"
+            
+            case verifiedOn = "verified_on"
+            
+            case modifiedOn = "modified_on"
             
             case notificationEmails = "notification_emails"
             
+            case companyType = "company_type"
+            
+            case uid = "uid"
+            
+            case verifiedBy = "verified_by"
+            
             case businessType = "business_type"
+            
+            case franchiseEnabled = "franchise_enabled"
+            
+            case businessDetails = "business_details"
+            
+            case modifiedBy = "modified_by"
             
         }
 
         public init(addresses: [GetAddressSerializer]?, businessCountryInfo: BusinessCountryInfo1?, businessDetails: BusinessDetails?, businessInfo: String?, businessType: String, companyType: String, contactDetails: ContactDetails?, createdBy: UserSerializer?, createdOn: String?, documents: [Document]?, franchiseEnabled: Bool?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, notificationEmails: [String]?, stage: String?, uid: Int, verifiedBy: UserSerializer?, verifiedOn: String?, warnings: [String: Any]?) {
             
-            self.verifiedOn = verifiedOn
-            
-            self.companyType = companyType
-            
-            self.warnings = warnings
-            
-            self.createdBy = createdBy
-            
-            self.modifiedBy = modifiedBy
-            
-            self.franchiseEnabled = franchiseEnabled
-            
-            self.businessInfo = businessInfo
-            
-            self.createdOn = createdOn
-            
-            self.contactDetails = contactDetails
-            
-            self.addresses = addresses
-            
-            self.verifiedBy = verifiedBy
+            self.businessCountryInfo = businessCountryInfo
             
             self.stage = stage
             
-            self.modifiedOn = modifiedOn
+            self.documents = documents
             
-            self.businessDetails = businessDetails
+            self.addresses = addresses
             
-            self.uid = uid
-            
-            self.businessCountryInfo = businessCountryInfo
+            self.createdBy = createdBy
             
             self.name = name
             
-            self.documents = documents
+            self.warnings = warnings
+            
+            self.createdOn = createdOn
+            
+            self.businessInfo = businessInfo
+            
+            self.contactDetails = contactDetails
+            
+            self.verifiedOn = verifiedOn
+            
+            self.modifiedOn = modifiedOn
             
             self.notificationEmails = notificationEmails
             
+            self.companyType = companyType
+            
+            self.uid = uid
+            
+            self.verifiedBy = verifiedBy
+            
             self.businessType = businessType
+            
+            self.franchiseEnabled = franchiseEnabled
+            
+            self.businessDetails = businessDetails
+            
+            self.modifiedBy = modifiedBy
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
-            
-            companyType = try container.decode(String.self, forKey: .companyType)
-            
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
-            
-            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
-            
-            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
-            
-            franchiseEnabled = try? container.decode(Bool.self, forKey: .franchiseEnabled)
-            
-            businessInfo = try? container.decode(String.self, forKey: .businessInfo)
-            
-            createdOn = try? container.decode(String.self, forKey: .createdOn)
-            
-            contactDetails = try? container.decode(ContactDetails.self, forKey: .contactDetails)
-            
-            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
-            
-            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
+            businessCountryInfo = try? container.decode(BusinessCountryInfo1.self, forKey: .businessCountryInfo)
             
             stage = try? container.decode(String.self, forKey: .stage)
             
-            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
+            documents = try? container.decode([Document].self, forKey: .documents)
             
-            businessDetails = try? container.decode(BusinessDetails.self, forKey: .businessDetails)
+            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
             
-            uid = try container.decode(Int.self, forKey: .uid)
-            
-            businessCountryInfo = try? container.decode(BusinessCountryInfo1.self, forKey: .businessCountryInfo)
+            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
             
             name = try? container.decode(String.self, forKey: .name)
             
-            documents = try? container.decode([Document].self, forKey: .documents)
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
+            
+            createdOn = try? container.decode(String.self, forKey: .createdOn)
+            
+            businessInfo = try? container.decode(String.self, forKey: .businessInfo)
+            
+            contactDetails = try? container.decode(ContactDetails.self, forKey: .contactDetails)
+            
+            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
+            
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
             
             notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
             
+            companyType = try container.decode(String.self, forKey: .companyType)
+            
+            uid = try container.decode(Int.self, forKey: .uid)
+            
+            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
+            
             businessType = try container.decode(String.self, forKey: .businessType)
+            
+            franchiseEnabled = try? container.decode(Bool.self, forKey: .franchiseEnabled)
+            
+            businessDetails = try? container.decode(BusinessDetails.self, forKey: .businessDetails)
+            
+            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-            
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
-            
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
-            
-            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
-            
-            try? container.encodeIfPresent(addresses, forKey: .addresses)
-            
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
             
             try? container.encodeIfPresent(stage, forKey: .stage)
             
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(documents, forKey: .documents)
             
-            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
+            try? container.encodeIfPresent(addresses, forKey: .addresses)
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             try? container.encodeIfPresent(name, forKey: .name)
             
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+            
+            try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
+            
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
             
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            
             try? container.encodeIfPresent(businessType, forKey: .businessType)
+            
+            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
+            
+            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
         }
         
@@ -5642,42 +11792,42 @@ public extension PlatformClient {
     struct DocumentsObj: Codable {
         
         
-        public var pending: Int?
-        
         public var verified: Int?
+        
+        public var pending: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case pending = "pending"
-            
             case verified = "verified"
+            
+            case pending = "pending"
             
         }
 
         public init(pending: Int?, verified: Int?) {
             
-            self.pending = pending
-            
             self.verified = verified
+            
+            self.pending = pending
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            pending = try? container.decode(Int.self, forKey: .pending)
-            
             verified = try? container.decode(Int.self, forKey: .verified)
+            
+            pending = try? container.decode(Int.self, forKey: .pending)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(pending, forKey: .pending)
-            
             try? container.encodeIfPresent(verified, forKey: .verified)
+            
+            try? container.encodeIfPresent(pending, forKey: .pending)
             
         }
         
@@ -5692,34 +11842,34 @@ public extension PlatformClient {
         
         public var storeDocuments: DocumentsObj?
         
-        public var uid: Int?
+        public var product: DocumentsObj?
         
-        public var companyDocuments: DocumentsObj?
+        public var brand: DocumentsObj?
         
         public var stage: String?
         
-        public var product: DocumentsObj?
+        public var companyDocuments: DocumentsObj?
         
         public var store: DocumentsObj?
         
-        public var brand: DocumentsObj?
+        public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case storeDocuments = "store_documents"
             
-            case uid = "uid"
+            case product = "product"
             
-            case companyDocuments = "company_documents"
+            case brand = "brand"
             
             case stage = "stage"
             
-            case product = "product"
+            case companyDocuments = "company_documents"
             
             case store = "store"
             
-            case brand = "brand"
+            case uid = "uid"
             
         }
 
@@ -5727,17 +11877,17 @@ public extension PlatformClient {
             
             self.storeDocuments = storeDocuments
             
-            self.uid = uid
+            self.product = product
             
-            self.companyDocuments = companyDocuments
+            self.brand = brand
             
             self.stage = stage
             
-            self.product = product
+            self.companyDocuments = companyDocuments
             
             self.store = store
             
-            self.brand = brand
+            self.uid = uid
             
         }
 
@@ -5746,17 +11896,17 @@ public extension PlatformClient {
             
             storeDocuments = try? container.decode(DocumentsObj.self, forKey: .storeDocuments)
             
-            uid = try? container.decode(Int.self, forKey: .uid)
+            product = try? container.decode(DocumentsObj.self, forKey: .product)
             
-            companyDocuments = try? container.decode(DocumentsObj.self, forKey: .companyDocuments)
+            brand = try? container.decode(DocumentsObj.self, forKey: .brand)
             
             stage = try? container.decode(String.self, forKey: .stage)
             
-            product = try? container.decode(DocumentsObj.self, forKey: .product)
+            companyDocuments = try? container.decode(DocumentsObj.self, forKey: .companyDocuments)
             
             store = try? container.decode(DocumentsObj.self, forKey: .store)
             
-            brand = try? container.decode(DocumentsObj.self, forKey: .brand)
+            uid = try? container.decode(Int.self, forKey: .uid)
             
         }
         
@@ -5765,17 +11915,17 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(storeDocuments, forKey: .storeDocuments)
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(product, forKey: .product)
             
-            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
+            try? container.encodeIfPresent(brand, forKey: .brand)
             
             try? container.encodeIfPresent(stage, forKey: .stage)
             
-            try? container.encodeIfPresent(product, forKey: .product)
+            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
             
             try? container.encodeIfPresent(store, forKey: .store)
             
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
         }
         
@@ -5788,308 +11938,42 @@ public extension PlatformClient {
     struct BrandBannerSerializer: Codable {
         
         
-        public var portrait: String?
-        
         public var landscape: String?
+        
+        public var portrait: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case portrait = "portrait"
-            
             case landscape = "landscape"
+            
+            case portrait = "portrait"
             
         }
 
         public init(landscape: String?, portrait: String?) {
             
-            self.portrait = portrait
-            
             self.landscape = landscape
+            
+            self.portrait = portrait
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            portrait = try? container.decode(String.self, forKey: .portrait)
             
             landscape = try? container.decode(String.self, forKey: .landscape)
             
+            portrait = try? container.decode(String.self, forKey: .portrait)
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(portrait, forKey: .portrait)
             
             try? container.encodeIfPresent(landscape, forKey: .landscape)
             
-        }
-        
-    }
-    
-    /*
-        Model: UserSerializer1
-    */
-
-    struct UserSerializer1: Codable {
-        
-        
-        public var contact: String?
-        
-        public var username: String?
-        
-        public var userId: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case contact = "contact"
-            
-            case username = "username"
-            
-            case userId = "user_id"
-            
-        }
-
-        public init(contact: String?, username: String?, userId: String?) {
-            
-            self.contact = contact
-            
-            self.username = username
-            
-            self.userId = userId
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            contact = try? container.decode(String.self, forKey: .contact)
-            
-            username = try? container.decode(String.self, forKey: .username)
-            
-            userId = try? container.decode(String.self, forKey: .userId)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(contact, forKey: .contact)
-            
-            try? container.encodeIfPresent(username, forKey: .username)
-            
-            try? container.encodeIfPresent(userId, forKey: .userId)
-            
-        }
-        
-    }
-    
-    /*
-        Model: GetBrandResponseSerializer
-    */
-
-    struct GetBrandResponseSerializer: Codable {
-        
-        
-        public var synonyms: [String]?
-        
-        public var verifiedOn: String?
-        
-        public var banner: BrandBannerSerializer?
-        
-        public var createdOn: String?
-        
-        public var name: String
-        
-        public var slugKey: String?
-        
-        public var rejectReason: String?
-        
-        public var customJson: [String: Any]?
-        
-        public var createdBy: UserSerializer1?
-        
-        public var verifiedBy: UserSerializer1?
-        
-        public var warnings: [String: Any]?
-        
-        public var description: String?
-        
-        public var stage: String?
-        
-        public var modifiedBy: UserSerializer1?
-        
-        public var logo: String?
-        
-        public var modifiedOn: String?
-        
-        public var uid: Int?
-        
-        public var localeLanguage: [String: Any]?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case synonyms = "synonyms"
-            
-            case verifiedOn = "verified_on"
-            
-            case banner = "banner"
-            
-            case createdOn = "created_on"
-            
-            case name = "name"
-            
-            case slugKey = "slug_key"
-            
-            case rejectReason = "reject_reason"
-            
-            case customJson = "_custom_json"
-            
-            case createdBy = "created_by"
-            
-            case verifiedBy = "verified_by"
-            
-            case warnings = "warnings"
-            
-            case description = "description"
-            
-            case stage = "stage"
-            
-            case modifiedBy = "modified_by"
-            
-            case logo = "logo"
-            
-            case modifiedOn = "modified_on"
-            
-            case uid = "uid"
-            
-            case localeLanguage = "_locale_language"
-            
-        }
-
-        public init(banner: BrandBannerSerializer?, createdBy: UserSerializer1?, createdOn: String?, description: String?, logo: String?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, rejectReason: String?, slugKey: String?, stage: String?, synonyms: [String]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?, localeLanguage: [String: Any]?) {
-            
-            self.synonyms = synonyms
-            
-            self.verifiedOn = verifiedOn
-            
-            self.banner = banner
-            
-            self.createdOn = createdOn
-            
-            self.name = name
-            
-            self.slugKey = slugKey
-            
-            self.rejectReason = rejectReason
-            
-            self.customJson = customJson
-            
-            self.createdBy = createdBy
-            
-            self.verifiedBy = verifiedBy
-            
-            self.warnings = warnings
-            
-            self.description = description
-            
-            self.stage = stage
-            
-            self.modifiedBy = modifiedBy
-            
-            self.logo = logo
-            
-            self.modifiedOn = modifiedOn
-            
-            self.uid = uid
-            
-            self.localeLanguage = localeLanguage
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            synonyms = try? container.decode([String].self, forKey: .synonyms)
-            
-            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
-            
-            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
-            
-            createdOn = try? container.decode(String.self, forKey: .createdOn)
-            
-            name = try container.decode(String.self, forKey: .name)
-            
-            slugKey = try? container.decode(String.self, forKey: .slugKey)
-            
-            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
-            
-            customJson = try? container.decode([String: Any].self, forKey: .customJson)
-            
-            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
-            
-            verifiedBy = try? container.decode(UserSerializer1.self, forKey: .verifiedBy)
-            
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
-            
-            description = try? container.decode(String.self, forKey: .description)
-            
-            stage = try? container.decode(String.self, forKey: .stage)
-            
-            modifiedBy = try? container.decode(UserSerializer1.self, forKey: .modifiedBy)
-            
-            logo = try? container.decode(String.self, forKey: .logo)
-            
-            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
-            
-            uid = try? container.decode(Int.self, forKey: .uid)
-            
-            localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-            
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-            
-            try? container.encodeIfPresent(banner, forKey: .banner)
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
-            
-            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
-            
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-            
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            try? container.encodeIfPresent(logo, forKey: .logo)
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
             
         }
         
@@ -6102,122 +11986,446 @@ public extension PlatformClient {
     struct CreateUpdateBrandRequestSerializer: Codable {
         
         
-        public var synonyms: [String]?
-        
-        public var banner: BrandBannerSerializer?
-        
-        public var name: String
-        
-        public var customJson: [String: Any]?
+        public var localeLanguage: [String: Any]?
         
         public var brandTier: String?
         
-        public var companyId: Int?
-        
-        public var description: String?
+        public var customJson: [String: Any]?
         
         public var logo: String
         
-        public var uid: Int?
+        public var synonyms: [String]?
         
-        public var localeLanguage: [String: Any]?
+        public var description: String?
+        
+        public var name: String
+        
+        public var banner: BrandBannerSerializer?
+        
+        public var companyId: Int?
+        
+        public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case synonyms = "synonyms"
-            
-            case banner = "banner"
-            
-            case name = "name"
-            
-            case customJson = "_custom_json"
+            case localeLanguage = "_locale_language"
             
             case brandTier = "brand_tier"
             
-            case companyId = "company_id"
-            
-            case description = "description"
+            case customJson = "_custom_json"
             
             case logo = "logo"
             
-            case uid = "uid"
+            case synonyms = "synonyms"
             
-            case localeLanguage = "_locale_language"
+            case description = "description"
+            
+            case name = "name"
+            
+            case banner = "banner"
+            
+            case companyId = "company_id"
+            
+            case uid = "uid"
             
         }
 
         public init(banner: BrandBannerSerializer?, brandTier: String?, companyId: Int?, description: String?, logo: String, name: String, synonyms: [String]?, uid: Int?, customJson: [String: Any]?, localeLanguage: [String: Any]?) {
             
-            self.synonyms = synonyms
-            
-            self.banner = banner
-            
-            self.name = name
-            
-            self.customJson = customJson
+            self.localeLanguage = localeLanguage
             
             self.brandTier = brandTier
             
-            self.companyId = companyId
-            
-            self.description = description
+            self.customJson = customJson
             
             self.logo = logo
             
-            self.uid = uid
+            self.synonyms = synonyms
             
-            self.localeLanguage = localeLanguage
+            self.description = description
+            
+            self.name = name
+            
+            self.banner = banner
+            
+            self.companyId = companyId
+            
+            self.uid = uid
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            synonyms = try? container.decode([String].self, forKey: .synonyms)
-            
-            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
-            
-            name = try container.decode(String.self, forKey: .name)
-            
-            customJson = try? container.decode([String: Any].self, forKey: .customJson)
+            localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
             
             brandTier = try? container.decode(String.self, forKey: .brandTier)
             
-            companyId = try? container.decode(Int.self, forKey: .companyId)
-            
-            description = try? container.decode(String.self, forKey: .description)
+            customJson = try? container.decode([String: Any].self, forKey: .customJson)
             
             logo = try container.decode(String.self, forKey: .logo)
             
-            uid = try? container.decode(Int.self, forKey: .uid)
+            synonyms = try? container.decode([String].self, forKey: .synonyms)
             
-            localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
+            description = try? container.decode(String.self, forKey: .description)
+            
+            name = try container.decode(String.self, forKey: .name)
+            
+            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
+            
+            companyId = try? container.decode(Int.self, forKey: .companyId)
+            
+            uid = try? container.decode(Int.self, forKey: .uid)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-            
-            try? container.encodeIfPresent(banner, forKey: .banner)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
             
             try? container.encodeIfPresent(brandTier, forKey: .brandTier)
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             try? container.encodeIfPresent(logo, forKey: .logo)
             
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(banner, forKey: .banner)
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
             try? container.encodeIfPresent(uid, forKey: .uid)
             
+        }
+        
+    }
+    
+    /*
+        Model: UserSerializer1
+    */
+
+    struct UserSerializer1: Codable {
+        
+        
+        public var userId: String?
+        
+        public var contact: String?
+        
+        public var username: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case userId = "user_id"
+            
+            case contact = "contact"
+            
+            case username = "username"
+            
+        }
+
+        public init(contact: String?, username: String?, userId: String?) {
+            
+            self.userId = userId
+            
+            self.contact = contact
+            
+            self.username = username
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            userId = try? container.decode(String.self, forKey: .userId)
+            
+            contact = try? container.decode(String.self, forKey: .contact)
+            
+            username = try? container.decode(String.self, forKey: .username)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            try? container.encodeIfPresent(contact, forKey: .contact)
+            
+            try? container.encodeIfPresent(username, forKey: .username)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetBrandResponseSerializer
+    */
+
+    struct GetBrandResponseSerializer: Codable {
+        
+        
+        public var modifiedBy: UserSerializer1?
+        
+        public var localeLanguage: [String: Any]?
+        
+        public var customJson: [String: Any]?
+        
+        public var uid: Int?
+        
+        public var createdOn: String?
+        
+        public var stage: String?
+        
+        public var verifiedOn: String?
+        
+        public var logo: String?
+        
+        public var slugKey: String?
+        
+        public var modifiedOn: String?
+        
+        public var synonyms: [String]?
+        
+        public var createdBy: UserSerializer1?
+        
+        public var description: String?
+        
+        public var name: String
+        
+        public var warnings: [String: Any]?
+        
+        public var banner: BrandBannerSerializer?
+        
+        public var rejectReason: String?
+        
+        public var verifiedBy: UserSerializer1?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case modifiedBy = "modified_by"
+            
+            case localeLanguage = "_locale_language"
+            
+            case customJson = "_custom_json"
+            
+            case uid = "uid"
+            
+            case createdOn = "created_on"
+            
+            case stage = "stage"
+            
+            case verifiedOn = "verified_on"
+            
+            case logo = "logo"
+            
+            case slugKey = "slug_key"
+            
+            case modifiedOn = "modified_on"
+            
+            case synonyms = "synonyms"
+            
+            case createdBy = "created_by"
+            
+            case description = "description"
+            
+            case name = "name"
+            
+            case warnings = "warnings"
+            
+            case banner = "banner"
+            
+            case rejectReason = "reject_reason"
+            
+            case verifiedBy = "verified_by"
+            
+        }
+
+        public init(banner: BrandBannerSerializer?, createdBy: UserSerializer1?, createdOn: String?, description: String?, logo: String?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, rejectReason: String?, slugKey: String?, stage: String?, synonyms: [String]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?, localeLanguage: [String: Any]?) {
+            
+            self.modifiedBy = modifiedBy
+            
+            self.localeLanguage = localeLanguage
+            
+            self.customJson = customJson
+            
+            self.uid = uid
+            
+            self.createdOn = createdOn
+            
+            self.stage = stage
+            
+            self.verifiedOn = verifiedOn
+            
+            self.logo = logo
+            
+            self.slugKey = slugKey
+            
+            self.modifiedOn = modifiedOn
+            
+            self.synonyms = synonyms
+            
+            self.createdBy = createdBy
+            
+            self.description = description
+            
+            self.name = name
+            
+            self.warnings = warnings
+            
+            self.banner = banner
+            
+            self.rejectReason = rejectReason
+            
+            self.verifiedBy = verifiedBy
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            modifiedBy = try? container.decode(UserSerializer1.self, forKey: .modifiedBy)
+            
+            localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
+            
+            customJson = try? container.decode([String: Any].self, forKey: .customJson)
+            
+            uid = try? container.decode(Int.self, forKey: .uid)
+            
+            createdOn = try? container.decode(String.self, forKey: .createdOn)
+            
+            stage = try? container.decode(String.self, forKey: .stage)
+            
+            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
+            
+            logo = try? container.decode(String.self, forKey: .logo)
+            
+            slugKey = try? container.decode(String.self, forKey: .slugKey)
+            
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
+            
+            synonyms = try? container.decode([String].self, forKey: .synonyms)
+            
+            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
+            
+            description = try? container.decode(String.self, forKey: .description)
+            
+            name = try container.decode(String.self, forKey: .name)
+            
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
+            
+            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
+            
+            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
+            
+            verifiedBy = try? container.decode(UserSerializer1.self, forKey: .verifiedBy)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
             try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
+            
+            try? container.encodeIfPresent(banner, forKey: .banner)
+            
+            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
+            
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CompanyBrandPostRequestSerializer
+    */
+
+    struct CompanyBrandPostRequestSerializer: Codable {
+        
+        
+        public var brands: [Int]
+        
+        public var company: Int
+        
+        public var uid: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case brands = "brands"
+            
+            case company = "company"
+            
+            case uid = "uid"
+            
+        }
+
+        public init(brands: [Int], company: Int, uid: Int?) {
+            
+            self.brands = brands
+            
+            self.company = company
+            
+            self.uid = uid
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            brands = try container.decode([Int].self, forKey: .brands)
+            
+            company = try container.decode(Int.self, forKey: .company)
+            
+            uid = try? container.decode(Int.self, forKey: .uid)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(brands, forKey: .brands)
+            
+            try? container.encodeIfPresent(company, forKey: .company)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
         }
         
@@ -6272,212 +12480,138 @@ public extension PlatformClient {
     }
     
     /*
-        Model: CompanyBrandPostRequestSerializer
+        Model: GetAddressSerializer1
     */
 
-    struct CompanyBrandPostRequestSerializer: Codable {
+    struct GetAddressSerializer1: Codable {
         
         
-        public var company: Int
+        public var latitude: Double?
         
-        public var uid: Int?
+        public var pincode: Int?
         
-        public var brands: [Int]
+        public var address2: String?
+        
+        public var city: String?
+        
+        public var countryCode: String?
+        
+        public var landmark: String?
+        
+        public var longitude: Double?
+        
+        public var address1: String?
+        
+        public var country: String?
+        
+        public var addressType: String?
+        
+        public var state: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case company = "company"
+            case latitude = "latitude"
             
-            case uid = "uid"
+            case pincode = "pincode"
             
-            case brands = "brands"
+            case address2 = "address2"
+            
+            case city = "city"
+            
+            case countryCode = "country_code"
+            
+            case landmark = "landmark"
+            
+            case longitude = "longitude"
+            
+            case address1 = "address1"
+            
+            case country = "country"
+            
+            case addressType = "address_type"
+            
+            case state = "state"
             
         }
 
-        public init(brands: [Int], company: Int, uid: Int?) {
+        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
             
-            self.company = company
+            self.latitude = latitude
             
-            self.uid = uid
+            self.pincode = pincode
             
-            self.brands = brands
+            self.address2 = address2
+            
+            self.city = city
+            
+            self.countryCode = countryCode
+            
+            self.landmark = landmark
+            
+            self.longitude = longitude
+            
+            self.address1 = address1
+            
+            self.country = country
+            
+            self.addressType = addressType
+            
+            self.state = state
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            company = try container.decode(Int.self, forKey: .company)
+            latitude = try? container.decode(Double.self, forKey: .latitude)
             
-            uid = try? container.decode(Int.self, forKey: .uid)
+            pincode = try? container.decode(Int.self, forKey: .pincode)
             
-            brands = try container.decode([Int].self, forKey: .brands)
+            address2 = try? container.decode(String.self, forKey: .address2)
             
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
+            city = try? container.decode(String.self, forKey: .city)
             
-            try? container.encodeIfPresent(company, forKey: .company)
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            landmark = try? container.decode(String.self, forKey: .landmark)
             
-            try? container.encodeIfPresent(brands, forKey: .brands)
+            longitude = try? container.decode(Double.self, forKey: .longitude)
             
-        }
-        
-    }
-    
-    /*
-        Model: LocationListSerializer
-    */
-
-    struct LocationListSerializer: Codable {
-        
-        
-        public var items: [[String: Any]]?
-        
-        public var page: [String: Any]?
-        
-
-        public enum CodingKeys: String, CodingKey {
+            address1 = try? container.decode(String.self, forKey: .address1)
             
-            case items = "items"
+            country = try? container.decode(String.self, forKey: .country)
             
-            case page = "page"
+            addressType = try? container.decode(String.self, forKey: .addressType)
             
-        }
-
-        public init(items: [[String: Any]]?, page: [String: Any]?) {
-            
-            self.items = items
-            
-            self.page = page
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            items = try? container.decode([[String: Any]].self, forKey: .items)
-            
-            page = try? container.decode([String: Any].self, forKey: .page)
+            state = try? container.decode(String.self, forKey: .state)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
             
-        }
-        
-    }
-    
-    /*
-        Model: InvoiceCredSerializer
-    */
-
-    struct InvoiceCredSerializer: Codable {
-        
-        
-        public var password: String?
-        
-        public var username: String?
-        
-        public var enabled: Bool?
-        
-
-        public enum CodingKeys: String, CodingKey {
+            try? container.encodeIfPresent(address2, forKey: .address2)
             
-            case password = "password"
+            try? container.encodeIfPresent(city, forKey: .city)
             
-            case username = "username"
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
-            case enabled = "enabled"
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
             
-        }
-
-        public init(enabled: Bool?, password: String?, username: String?) {
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
-            self.password = password
+            try? container.encodeIfPresent(address1, forKey: .address1)
             
-            self.username = username
+            try? container.encodeIfPresent(country, forKey: .country)
             
-            self.enabled = enabled
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
             
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            password = try? container.decode(String.self, forKey: .password)
-            
-            username = try? container.decode(String.self, forKey: .username)
-            
-            enabled = try? container.decode(Bool.self, forKey: .enabled)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(password, forKey: .password)
-            
-            try? container.encodeIfPresent(username, forKey: .username)
-            
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-            
-        }
-        
-    }
-    
-    /*
-        Model: InvoiceDetailsSerializer
-    */
-
-    struct InvoiceDetailsSerializer: Codable {
-        
-        
-        public var eInvoice: InvoiceCredSerializer?
-        
-        public var eWaybill: InvoiceCredSerializer?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case eInvoice = "e_invoice"
-            
-            case eWaybill = "e_waybill"
-            
-        }
-
-        public init(eInvoice: InvoiceCredSerializer?, eWaybill: InvoiceCredSerializer?) {
-            
-            self.eInvoice = eInvoice
-            
-            self.eWaybill = eWaybill
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            eInvoice = try? container.decode(InvoiceCredSerializer.self, forKey: .eInvoice)
-            
-            eWaybill = try? container.decode(InvoiceCredSerializer.self, forKey: .eWaybill)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
-            
-            try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
+            try? container.encodeIfPresent(state, forKey: .state)
             
         }
         
@@ -6538,18 +12672,16 @@ public extension PlatformClient {
     struct LocationDayWiseSerializer: Codable {
         
         
-        public var closing: LocationTimingSerializer?
-        
         public var weekday: String
         
         public var opening: LocationTimingSerializer?
         
         public var open: Bool
         
+        public var closing: LocationTimingSerializer?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case closing = "closing"
             
             case weekday = "weekday"
             
@@ -6557,11 +12689,11 @@ public extension PlatformClient {
             
             case open = "open"
             
+            case closing = "closing"
+            
         }
 
         public init(closing: LocationTimingSerializer?, open: Bool, opening: LocationTimingSerializer?, weekday: String) {
-            
-            self.closing = closing
             
             self.weekday = weekday
             
@@ -6569,12 +12701,12 @@ public extension PlatformClient {
             
             self.open = open
             
+            self.closing = closing
+            
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            closing = try? container.decode(LocationTimingSerializer.self, forKey: .closing)
             
             weekday = try container.decode(String.self, forKey: .weekday)
             
@@ -6582,12 +12714,12 @@ public extension PlatformClient {
             
             open = try container.decode(Bool.self, forKey: .open)
             
+            closing = try? container.decode(LocationTimingSerializer.self, forKey: .closing)
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(closing, forKey: .closing)
             
             try? container.encodeIfPresent(weekday, forKey: .weekday)
             
@@ -6595,201 +12727,7 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(open, forKey: .open)
             
-        }
-        
-    }
-    
-    /*
-        Model: GetAddressSerializer1
-    */
-
-    struct GetAddressSerializer1: Codable {
-        
-        
-        public var city: String?
-        
-        public var addressType: String?
-        
-        public var country: String?
-        
-        public var landmark: String?
-        
-        public var address1: String?
-        
-        public var state: String?
-        
-        public var latitude: Double?
-        
-        public var pincode: Int?
-        
-        public var countryCode: String?
-        
-        public var address2: String?
-        
-        public var longitude: Double?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case city = "city"
-            
-            case addressType = "address_type"
-            
-            case country = "country"
-            
-            case landmark = "landmark"
-            
-            case address1 = "address1"
-            
-            case state = "state"
-            
-            case latitude = "latitude"
-            
-            case pincode = "pincode"
-            
-            case countryCode = "country_code"
-            
-            case address2 = "address2"
-            
-            case longitude = "longitude"
-            
-        }
-
-        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
-            
-            self.city = city
-            
-            self.addressType = addressType
-            
-            self.country = country
-            
-            self.landmark = landmark
-            
-            self.address1 = address1
-            
-            self.state = state
-            
-            self.latitude = latitude
-            
-            self.pincode = pincode
-            
-            self.countryCode = countryCode
-            
-            self.address2 = address2
-            
-            self.longitude = longitude
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            city = try? container.decode(String.self, forKey: .city)
-            
-            addressType = try? container.decode(String.self, forKey: .addressType)
-            
-            country = try? container.decode(String.self, forKey: .country)
-            
-            landmark = try? container.decode(String.self, forKey: .landmark)
-            
-            address1 = try? container.decode(String.self, forKey: .address1)
-            
-            state = try? container.decode(String.self, forKey: .state)
-            
-            latitude = try? container.decode(Double.self, forKey: .latitude)
-            
-            pincode = try? container.decode(Int.self, forKey: .pincode)
-            
-            countryCode = try? container.decode(String.self, forKey: .countryCode)
-            
-            address2 = try? container.decode(String.self, forKey: .address2)
-            
-            longitude = try? container.decode(Double.self, forKey: .longitude)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(city, forKey: .city)
-            
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
-            
-            try? container.encodeIfPresent(country, forKey: .country)
-            
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
-            try? container.encodeIfPresent(address1, forKey: .address1)
-            
-            try? container.encodeIfPresent(state, forKey: .state)
-            
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            try? container.encodeIfPresent(address2, forKey: .address2)
-            
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
-            
-        }
-        
-    }
-    
-    /*
-        Model: LocationManagerSerializer
-    */
-
-    struct LocationManagerSerializer: Codable {
-        
-        
-        public var mobileNo: PhoneNumber
-        
-        public var name: String?
-        
-        public var email: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case mobileNo = "mobile_no"
-            
-            case name = "name"
-            
-            case email = "email"
-            
-        }
-
-        public init(email: String?, mobileNo: PhoneNumber, name: String?) {
-            
-            self.mobileNo = mobileNo
-            
-            self.name = name
-            
-            self.email = email
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            mobileNo = try container.decode(PhoneNumber.self, forKey: .mobileNo)
-            
-            name = try? container.decode(String.self, forKey: .name)
-            
-            email = try? container.decode(String.self, forKey: .email)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(closing, forKey: .closing)
             
         }
         
@@ -6844,35 +12782,187 @@ public extension PlatformClient {
     }
     
     /*
+        Model: LocationManagerSerializer
+    */
+
+    struct LocationManagerSerializer: Codable {
+        
+        
+        public var name: String?
+        
+        public var mobileNo: PhoneNumber
+        
+        public var email: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case name = "name"
+            
+            case mobileNo = "mobile_no"
+            
+            case email = "email"
+            
+        }
+
+        public init(email: String?, mobileNo: PhoneNumber, name: String?) {
+            
+            self.name = name
+            
+            self.mobileNo = mobileNo
+            
+            self.email = email
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            mobileNo = try container.decode(PhoneNumber.self, forKey: .mobileNo)
+            
+            email = try? container.decode(String.self, forKey: .email)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
+            
+            try? container.encodeIfPresent(email, forKey: .email)
+            
+        }
+        
+    }
+    
+    /*
+        Model: InvoiceCredSerializer
+    */
+
+    struct InvoiceCredSerializer: Codable {
+        
+        
+        public var enabled: Bool?
+        
+        public var password: String?
+        
+        public var username: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case enabled = "enabled"
+            
+            case password = "password"
+            
+            case username = "username"
+            
+        }
+
+        public init(enabled: Bool?, password: String?, username: String?) {
+            
+            self.enabled = enabled
+            
+            self.password = password
+            
+            self.username = username
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            enabled = try? container.decode(Bool.self, forKey: .enabled)
+            
+            password = try? container.decode(String.self, forKey: .password)
+            
+            username = try? container.decode(String.self, forKey: .username)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            
+            try? container.encodeIfPresent(password, forKey: .password)
+            
+            try? container.encodeIfPresent(username, forKey: .username)
+            
+        }
+        
+    }
+    
+    /*
+        Model: InvoiceDetailsSerializer
+    */
+
+    struct InvoiceDetailsSerializer: Codable {
+        
+        
+        public var eInvoice: InvoiceCredSerializer?
+        
+        public var eWaybill: InvoiceCredSerializer?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case eInvoice = "e_invoice"
+            
+            case eWaybill = "e_waybill"
+            
+        }
+
+        public init(eInvoice: InvoiceCredSerializer?, eWaybill: InvoiceCredSerializer?) {
+            
+            self.eInvoice = eInvoice
+            
+            self.eWaybill = eWaybill
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            eInvoice = try? container.decode(InvoiceCredSerializer.self, forKey: .eInvoice)
+            
+            eWaybill = try? container.decode(InvoiceCredSerializer.self, forKey: .eWaybill)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
+            
+            try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
+            
+        }
+        
+    }
+    
+    /*
         Model: LocationSerializer
     */
 
     struct LocationSerializer: Codable {
         
         
-        public var company: Int
-        
-        public var code: String
-        
-        public var name: String
-        
-        public var customJson: [String: Any]?
-        
-        public var warnings: [String: Any]?
-        
-        public var gstCredentials: InvoiceDetailsSerializer?
-        
-        public var displayName: String
+        public var address: GetAddressSerializer1
         
         public var timing: [LocationDayWiseSerializer]?
         
-        public var stage: String?
+        public var displayName: String
         
-        public var documents: [Document]?
+        public var customJson: [String: Any]?
         
-        public var notificationEmails: [String]?
+        public var productReturnConfig: ProductReturnConfigSerializer?
         
-        public var address: GetAddressSerializer1
+        public var code: String
         
         public var storeType: String?
         
@@ -6880,36 +12970,36 @@ public extension PlatformClient {
         
         public var manager: LocationManagerSerializer?
         
-        public var productReturnConfig: ProductReturnConfigSerializer?
+        public var stage: String?
+        
+        public var documents: [Document]?
+        
+        public var notificationEmails: [String]?
+        
+        public var name: String
+        
+        public var warnings: [String: Any]?
+        
+        public var gstCredentials: InvoiceDetailsSerializer?
+        
+        public var company: Int
         
         public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case company = "company"
-            
-            case code = "code"
-            
-            case name = "name"
-            
-            case customJson = "_custom_json"
-            
-            case warnings = "warnings"
-            
-            case gstCredentials = "gst_credentials"
-            
-            case displayName = "display_name"
+            case address = "address"
             
             case timing = "timing"
             
-            case stage = "stage"
+            case displayName = "display_name"
             
-            case documents = "documents"
+            case customJson = "_custom_json"
             
-            case notificationEmails = "notification_emails"
+            case productReturnConfig = "product_return_config"
             
-            case address = "address"
+            case code = "code"
             
             case storeType = "store_type"
             
@@ -6917,7 +13007,19 @@ public extension PlatformClient {
             
             case manager = "manager"
             
-            case productReturnConfig = "product_return_config"
+            case stage = "stage"
+            
+            case documents = "documents"
+            
+            case notificationEmails = "notification_emails"
+            
+            case name = "name"
+            
+            case warnings = "warnings"
+            
+            case gstCredentials = "gst_credentials"
+            
+            case company = "company"
             
             case uid = "uid"
             
@@ -6925,29 +13027,17 @@ public extension PlatformClient {
 
         public init(address: GetAddressSerializer1, code: String, company: Int, contactNumbers: [PhoneNumber]?, displayName: String, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, manager: LocationManagerSerializer?, name: String, notificationEmails: [String]?, productReturnConfig: ProductReturnConfigSerializer?, stage: String?, storeType: String?, timing: [LocationDayWiseSerializer]?, uid: Int?, warnings: [String: Any]?, customJson: [String: Any]?) {
             
-            self.company = company
-            
-            self.code = code
-            
-            self.name = name
-            
-            self.customJson = customJson
-            
-            self.warnings = warnings
-            
-            self.gstCredentials = gstCredentials
-            
-            self.displayName = displayName
+            self.address = address
             
             self.timing = timing
             
-            self.stage = stage
+            self.displayName = displayName
             
-            self.documents = documents
+            self.customJson = customJson
             
-            self.notificationEmails = notificationEmails
+            self.productReturnConfig = productReturnConfig
             
-            self.address = address
+            self.code = code
             
             self.storeType = storeType
             
@@ -6955,7 +13045,19 @@ public extension PlatformClient {
             
             self.manager = manager
             
-            self.productReturnConfig = productReturnConfig
+            self.stage = stage
+            
+            self.documents = documents
+            
+            self.notificationEmails = notificationEmails
+            
+            self.name = name
+            
+            self.warnings = warnings
+            
+            self.gstCredentials = gstCredentials
+            
+            self.company = company
             
             self.uid = uid
             
@@ -6964,29 +13066,17 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            company = try container.decode(Int.self, forKey: .company)
-            
-            code = try container.decode(String.self, forKey: .code)
-            
-            name = try container.decode(String.self, forKey: .name)
-            
-            customJson = try? container.decode([String: Any].self, forKey: .customJson)
-            
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
-            
-            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
-            
-            displayName = try container.decode(String.self, forKey: .displayName)
+            address = try container.decode(GetAddressSerializer1.self, forKey: .address)
             
             timing = try? container.decode([LocationDayWiseSerializer].self, forKey: .timing)
             
-            stage = try? container.decode(String.self, forKey: .stage)
+            displayName = try container.decode(String.self, forKey: .displayName)
             
-            documents = try? container.decode([Document].self, forKey: .documents)
+            customJson = try? container.decode([String: Any].self, forKey: .customJson)
             
-            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
+            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
             
-            address = try container.decode(GetAddressSerializer1.self, forKey: .address)
+            code = try container.decode(String.self, forKey: .code)
             
             storeType = try? container.decode(String.self, forKey: .storeType)
             
@@ -6994,7 +13084,19 @@ public extension PlatformClient {
             
             manager = try? container.decode(LocationManagerSerializer.self, forKey: .manager)
             
-            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
+            stage = try? container.decode(String.self, forKey: .stage)
+            
+            documents = try? container.decode([Document].self, forKey: .documents)
+            
+            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
+            
+            name = try container.decode(String.self, forKey: .name)
+            
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
+            
+            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
+            
+            company = try container.decode(Int.self, forKey: .company)
             
             uid = try? container.decode(Int.self, forKey: .uid)
             
@@ -7003,29 +13105,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(company, forKey: .company)
-            
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-            
-            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(address, forKey: .address)
             
             try? container.encodeIfPresent(timing, forKey: .timing)
             
-            try? container.encodeIfPresent(stage, forKey: .stage)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
             
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             try? container.encodeIfPresent(storeType, forKey: .storeType)
             
@@ -7033,7 +13123,19 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(manager, forKey: .manager)
             
-            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            try? container.encodeIfPresent(documents, forKey: .documents)
+            
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
+            
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
+            
+            try? container.encodeIfPresent(company, forKey: .company)
             
             try? container.encodeIfPresent(uid, forKey: .uid)
             
@@ -7042,158 +13144,48 @@ public extension PlatformClient {
     }
     
     /*
-        Model: GetCompanySerializer
+        Model: LocationListSerializer
     */
 
-    struct GetCompanySerializer: Codable {
+    struct LocationListSerializer: Codable {
         
         
-        public var verifiedOn: String?
+        public var items: [[String: Any]]?
         
-        public var businessType: String?
-        
-        public var createdOn: String?
-        
-        public var name: String?
-        
-        public var companyType: String?
-        
-        public var rejectReason: String?
-        
-        public var addresses: [GetAddressSerializer]?
-        
-        public var createdBy: UserSerializer?
-        
-        public var verifiedBy: UserSerializer?
-        
-        public var stage: String?
-        
-        public var modifiedBy: UserSerializer?
-        
-        public var modifiedOn: String?
-        
-        public var uid: Int?
+        public var page: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case verifiedOn = "verified_on"
+            case items = "items"
             
-            case businessType = "business_type"
-            
-            case createdOn = "created_on"
-            
-            case name = "name"
-            
-            case companyType = "company_type"
-            
-            case rejectReason = "reject_reason"
-            
-            case addresses = "addresses"
-            
-            case createdBy = "created_by"
-            
-            case verifiedBy = "verified_by"
-            
-            case stage = "stage"
-            
-            case modifiedBy = "modified_by"
-            
-            case modifiedOn = "modified_on"
-            
-            case uid = "uid"
+            case page = "page"
             
         }
 
-        public init(addresses: [GetAddressSerializer]?, businessType: String?, companyType: String?, createdBy: UserSerializer?, createdOn: String?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, rejectReason: String?, stage: String?, uid: Int?, verifiedBy: UserSerializer?, verifiedOn: String?) {
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
             
-            self.verifiedOn = verifiedOn
+            self.items = items
             
-            self.businessType = businessType
-            
-            self.createdOn = createdOn
-            
-            self.name = name
-            
-            self.companyType = companyType
-            
-            self.rejectReason = rejectReason
-            
-            self.addresses = addresses
-            
-            self.createdBy = createdBy
-            
-            self.verifiedBy = verifiedBy
-            
-            self.stage = stage
-            
-            self.modifiedBy = modifiedBy
-            
-            self.modifiedOn = modifiedOn
-            
-            self.uid = uid
+            self.page = page
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
+            items = try? container.decode([[String: Any]].self, forKey: .items)
             
-            businessType = try? container.decode(String.self, forKey: .businessType)
-            
-            createdOn = try? container.decode(String.self, forKey: .createdOn)
-            
-            name = try? container.decode(String.self, forKey: .name)
-            
-            companyType = try? container.decode(String.self, forKey: .companyType)
-            
-            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
-            
-            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
-            
-            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
-            
-            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
-            
-            stage = try? container.decode(String.self, forKey: .stage)
-            
-            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
-            
-            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
-            
-            uid = try? container.decode(Int.self, forKey: .uid)
+            page = try? container.decode([String: Any].self, forKey: .page)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            try? container.encodeIfPresent(items, forKey: .items)
             
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
-            
-            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
-            
-            try? container.encodeIfPresent(addresses, forKey: .addresses)
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(page, forKey: .page)
             
         }
         
@@ -7248,278 +13240,436 @@ public extension PlatformClient {
     }
     
     /*
-        Model: GetLocationSerializer
+        Model: GetCompanySerializer
     */
 
-    struct GetLocationSerializer: Codable {
+    struct GetCompanySerializer: Codable {
         
         
-        public var verifiedOn: String?
+        public var modifiedBy: UserSerializer?
         
-        public var customJson: [String: Any]?
-        
-        public var warnings: [String: Any]?
-        
-        public var gstCredentials: InvoiceDetailsSerializer?
-        
-        public var createdBy: UserSerializer1?
-        
-        public var displayName: String
-        
-        public var modifiedBy: UserSerializer1?
-        
-        public var manager: LocationManagerSerializer?
-        
-        public var contactNumbers: [PhoneNumber]?
-        
-        public var createdOn: String?
-        
-        public var address: GetAddressSerializer
-        
-        public var productReturnConfig: ProductReturnConfigSerializer?
-        
-        public var company: GetCompanySerializer?
-        
-        public var verifiedBy: UserSerializer1?
-        
-        public var stage: String?
-        
-        public var storeType: String?
-        
-        public var modifiedOn: String?
-        
-        public var phoneNumber: String
+        public var companyType: String?
         
         public var uid: Int?
         
-        public var integrationType: LocationIntegrationType?
+        public var createdOn: String?
         
-        public var code: String
+        public var businessType: String?
         
-        public var name: String
+        public var stage: String?
         
-        public var timing: [LocationDayWiseSerializer]?
+        public var verifiedOn: String?
         
-        public var notificationEmails: [String]?
+        public var addresses: [GetAddressSerializer]?
         
-        public var documents: [Document]?
+        public var modifiedOn: String?
+        
+        public var createdBy: UserSerializer?
+        
+        public var name: String?
+        
+        public var rejectReason: String?
+        
+        public var verifiedBy: UserSerializer?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case verifiedOn = "verified_on"
-            
-            case customJson = "_custom_json"
-            
-            case warnings = "warnings"
-            
-            case gstCredentials = "gst_credentials"
-            
-            case createdBy = "created_by"
-            
-            case displayName = "display_name"
-            
             case modifiedBy = "modified_by"
             
-            case manager = "manager"
-            
-            case contactNumbers = "contact_numbers"
-            
-            case createdOn = "created_on"
-            
-            case address = "address"
-            
-            case productReturnConfig = "product_return_config"
-            
-            case company = "company"
-            
-            case verifiedBy = "verified_by"
-            
-            case stage = "stage"
-            
-            case storeType = "store_type"
-            
-            case modifiedOn = "modified_on"
-            
-            case phoneNumber = "phone_number"
+            case companyType = "company_type"
             
             case uid = "uid"
             
-            case integrationType = "integration_type"
+            case createdOn = "created_on"
             
-            case code = "code"
+            case businessType = "business_type"
+            
+            case stage = "stage"
+            
+            case verifiedOn = "verified_on"
+            
+            case addresses = "addresses"
+            
+            case modifiedOn = "modified_on"
+            
+            case createdBy = "created_by"
             
             case name = "name"
             
-            case timing = "timing"
+            case rejectReason = "reject_reason"
             
-            case notificationEmails = "notification_emails"
-            
-            case documents = "documents"
+            case verifiedBy = "verified_by"
             
         }
 
-        public init(address: GetAddressSerializer, code: String, company: GetCompanySerializer?, contactNumbers: [PhoneNumber]?, createdBy: UserSerializer1?, createdOn: String?, displayName: String, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, integrationType: LocationIntegrationType?, manager: LocationManagerSerializer?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, notificationEmails: [String]?, phoneNumber: String, productReturnConfig: ProductReturnConfigSerializer?, stage: String?, storeType: String?, timing: [LocationDayWiseSerializer]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?) {
-            
-            self.verifiedOn = verifiedOn
-            
-            self.customJson = customJson
-            
-            self.warnings = warnings
-            
-            self.gstCredentials = gstCredentials
-            
-            self.createdBy = createdBy
-            
-            self.displayName = displayName
+        public init(addresses: [GetAddressSerializer]?, businessType: String?, companyType: String?, createdBy: UserSerializer?, createdOn: String?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, rejectReason: String?, stage: String?, uid: Int?, verifiedBy: UserSerializer?, verifiedOn: String?) {
             
             self.modifiedBy = modifiedBy
             
-            self.manager = manager
-            
-            self.contactNumbers = contactNumbers
-            
-            self.createdOn = createdOn
-            
-            self.address = address
-            
-            self.productReturnConfig = productReturnConfig
-            
-            self.company = company
-            
-            self.verifiedBy = verifiedBy
-            
-            self.stage = stage
-            
-            self.storeType = storeType
-            
-            self.modifiedOn = modifiedOn
-            
-            self.phoneNumber = phoneNumber
+            self.companyType = companyType
             
             self.uid = uid
             
-            self.integrationType = integrationType
+            self.createdOn = createdOn
             
-            self.code = code
+            self.businessType = businessType
+            
+            self.stage = stage
+            
+            self.verifiedOn = verifiedOn
+            
+            self.addresses = addresses
+            
+            self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
             
             self.name = name
             
-            self.timing = timing
+            self.rejectReason = rejectReason
             
-            self.notificationEmails = notificationEmails
-            
-            self.documents = documents
+            self.verifiedBy = verifiedBy
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
+            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
             
-            customJson = try? container.decode([String: Any].self, forKey: .customJson)
-            
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
-            
-            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
-            
-            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
-            
-            displayName = try container.decode(String.self, forKey: .displayName)
-            
-            modifiedBy = try? container.decode(UserSerializer1.self, forKey: .modifiedBy)
-            
-            manager = try? container.decode(LocationManagerSerializer.self, forKey: .manager)
-            
-            contactNumbers = try? container.decode([PhoneNumber].self, forKey: .contactNumbers)
-            
-            createdOn = try? container.decode(String.self, forKey: .createdOn)
-            
-            address = try container.decode(GetAddressSerializer.self, forKey: .address)
-            
-            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
-            
-            company = try? container.decode(GetCompanySerializer.self, forKey: .company)
-            
-            verifiedBy = try? container.decode(UserSerializer1.self, forKey: .verifiedBy)
-            
-            stage = try? container.decode(String.self, forKey: .stage)
-            
-            storeType = try? container.decode(String.self, forKey: .storeType)
-            
-            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
-            
-            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            companyType = try? container.decode(String.self, forKey: .companyType)
             
             uid = try? container.decode(Int.self, forKey: .uid)
             
-            integrationType = try? container.decode(LocationIntegrationType.self, forKey: .integrationType)
+            createdOn = try? container.decode(String.self, forKey: .createdOn)
             
-            code = try container.decode(String.self, forKey: .code)
+            businessType = try? container.decode(String.self, forKey: .businessType)
             
-            name = try container.decode(String.self, forKey: .name)
+            stage = try? container.decode(String.self, forKey: .stage)
             
-            timing = try? container.decode([LocationDayWiseSerializer].self, forKey: .timing)
+            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
             
-            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
+            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
             
-            documents = try? container.decode([Document].self, forKey: .documents)
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
+            
+            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
+            
+            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-            
-            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
-            try? container.encodeIfPresent(manager, forKey: .manager)
-            
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
-            
-            try? container.encodeIfPresent(company, forKey: .company)
-            
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
             
             try? container.encodeIfPresent(uid, forKey: .uid)
             
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            
+            try? container.encodeIfPresent(addresses, forKey: .addresses)
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             try? container.encodeIfPresent(name, forKey: .name)
             
+            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
+            
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetLocationSerializer
+    */
+
+    struct GetLocationSerializer: Codable {
+        
+        
+        public var timing: [LocationDayWiseSerializer]?
+        
+        public var integrationType: LocationIntegrationType?
+        
+        public var productReturnConfig: ProductReturnConfigSerializer?
+        
+        public var code: String
+        
+        public var stage: String?
+        
+        public var documents: [Document]?
+        
+        public var createdBy: UserSerializer1?
+        
+        public var name: String
+        
+        public var warnings: [String: Any]?
+        
+        public var address: GetAddressSerializer
+        
+        public var customJson: [String: Any]?
+        
+        public var createdOn: String?
+        
+        public var contactNumbers: [PhoneNumber]?
+        
+        public var verifiedOn: String?
+        
+        public var modifiedOn: String?
+        
+        public var notificationEmails: [String]?
+        
+        public var gstCredentials: InvoiceDetailsSerializer?
+        
+        public var uid: Int?
+        
+        public var manager: LocationManagerSerializer?
+        
+        public var verifiedBy: UserSerializer1?
+        
+        public var modifiedBy: UserSerializer1?
+        
+        public var displayName: String
+        
+        public var storeType: String?
+        
+        public var phoneNumber: String
+        
+        public var company: GetCompanySerializer?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case timing = "timing"
+            
+            case integrationType = "integration_type"
+            
+            case productReturnConfig = "product_return_config"
+            
+            case code = "code"
+            
+            case stage = "stage"
+            
+            case documents = "documents"
+            
+            case createdBy = "created_by"
+            
+            case name = "name"
+            
+            case warnings = "warnings"
+            
+            case address = "address"
+            
+            case customJson = "_custom_json"
+            
+            case createdOn = "created_on"
+            
+            case contactNumbers = "contact_numbers"
+            
+            case verifiedOn = "verified_on"
+            
+            case modifiedOn = "modified_on"
+            
+            case notificationEmails = "notification_emails"
+            
+            case gstCredentials = "gst_credentials"
+            
+            case uid = "uid"
+            
+            case manager = "manager"
+            
+            case verifiedBy = "verified_by"
+            
+            case modifiedBy = "modified_by"
+            
+            case displayName = "display_name"
+            
+            case storeType = "store_type"
+            
+            case phoneNumber = "phone_number"
+            
+            case company = "company"
+            
+        }
+
+        public init(address: GetAddressSerializer, code: String, company: GetCompanySerializer?, contactNumbers: [PhoneNumber]?, createdBy: UserSerializer1?, createdOn: String?, displayName: String, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, integrationType: LocationIntegrationType?, manager: LocationManagerSerializer?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, notificationEmails: [String]?, phoneNumber: String, productReturnConfig: ProductReturnConfigSerializer?, stage: String?, storeType: String?, timing: [LocationDayWiseSerializer]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?) {
+            
+            self.timing = timing
+            
+            self.integrationType = integrationType
+            
+            self.productReturnConfig = productReturnConfig
+            
+            self.code = code
+            
+            self.stage = stage
+            
+            self.documents = documents
+            
+            self.createdBy = createdBy
+            
+            self.name = name
+            
+            self.warnings = warnings
+            
+            self.address = address
+            
+            self.customJson = customJson
+            
+            self.createdOn = createdOn
+            
+            self.contactNumbers = contactNumbers
+            
+            self.verifiedOn = verifiedOn
+            
+            self.modifiedOn = modifiedOn
+            
+            self.notificationEmails = notificationEmails
+            
+            self.gstCredentials = gstCredentials
+            
+            self.uid = uid
+            
+            self.manager = manager
+            
+            self.verifiedBy = verifiedBy
+            
+            self.modifiedBy = modifiedBy
+            
+            self.displayName = displayName
+            
+            self.storeType = storeType
+            
+            self.phoneNumber = phoneNumber
+            
+            self.company = company
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            timing = try? container.decode([LocationDayWiseSerializer].self, forKey: .timing)
+            
+            integrationType = try? container.decode(LocationIntegrationType.self, forKey: .integrationType)
+            
+            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
+            
+            code = try container.decode(String.self, forKey: .code)
+            
+            stage = try? container.decode(String.self, forKey: .stage)
+            
+            documents = try? container.decode([Document].self, forKey: .documents)
+            
+            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
+            
+            name = try container.decode(String.self, forKey: .name)
+            
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
+            
+            address = try container.decode(GetAddressSerializer.self, forKey: .address)
+            
+            customJson = try? container.decode([String: Any].self, forKey: .customJson)
+            
+            createdOn = try? container.decode(String.self, forKey: .createdOn)
+            
+            contactNumbers = try? container.decode([PhoneNumber].self, forKey: .contactNumbers)
+            
+            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
+            
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
+            
+            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
+            
+            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
+            
+            uid = try? container.decode(Int.self, forKey: .uid)
+            
+            manager = try? container.decode(LocationManagerSerializer.self, forKey: .manager)
+            
+            verifiedBy = try? container.decode(UserSerializer1.self, forKey: .verifiedBy)
+            
+            modifiedBy = try? container.decode(UserSerializer1.self, forKey: .modifiedBy)
+            
+            displayName = try container.decode(String.self, forKey: .displayName)
+            
+            storeType = try? container.decode(String.self, forKey: .storeType)
+            
+            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            
+            company = try? container.decode(GetCompanySerializer.self, forKey: .company)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
             try? container.encodeIfPresent(timing, forKey: .timing)
+            
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+            
+            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            try? container.encodeIfPresent(documents, forKey: .documents)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
+            
+            try? container.encodeIfPresent(address, forKey: .address)
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+            
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
             
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            try? container.encodeIfPresent(manager, forKey: .manager)
+            
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
+            
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            
+            try? container.encodeIfPresent(company, forKey: .company)
             
         }
         
@@ -7660,13 +13810,13 @@ public extension PlatformClient {
     struct JobConfigDTO: Codable {
         
         
-        public var companyName: String?
-        
         public var integration: String
         
-        public var companyId: Int
-        
         public var integrationData: [String: Any]?
+        
+        public var companyName: String?
+        
+        public var companyId: Int
         
         public var taskDetails: TaskDTO?
         
@@ -7679,13 +13829,13 @@ public extension PlatformClient {
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyName = "companyName"
-            
             case integration = "integration"
             
-            case companyId = "companyId"
-            
             case integrationData = "integration_data"
+            
+            case companyName = "company_name"
+            
+            case companyId = "company_id"
             
             case taskDetails = "task_details"
             
@@ -7699,13 +13849,13 @@ public extension PlatformClient {
 
         public init(alias: String?, companyId: Int, companyName: String?, integration: String, integrationData: [String: Any]?, jobCode: String?, taskDetails: TaskDTO?, thresholdDetails: DataTresholdDTO?) {
             
-            self.companyName = companyName
-            
             self.integration = integration
             
-            self.companyId = companyId
-            
             self.integrationData = integrationData
+            
+            self.companyName = companyName
+            
+            self.companyId = companyId
             
             self.taskDetails = taskDetails
             
@@ -7720,13 +13870,13 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            companyName = try? container.decode(String.self, forKey: .companyName)
-            
             integration = try container.decode(String.self, forKey: .integration)
             
-            companyId = try container.decode(Int.self, forKey: .companyId)
-            
             integrationData = try? container.decode([String: Any].self, forKey: .integrationData)
+            
+            companyName = try? container.decode(String.self, forKey: .companyName)
+            
+            companyId = try container.decode(Int.self, forKey: .companyId)
             
             taskDetails = try? container.decode(TaskDTO.self, forKey: .taskDetails)
             
@@ -7741,13 +13891,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(companyName, forKey: .companyName)
-            
             try? container.encodeIfPresent(integration, forKey: .integration)
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             try? container.encodeIfPresent(integrationData, forKey: .integrationData)
+            
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             try? container.encodeIfPresent(taskDetails, forKey: .taskDetails)
             
@@ -8885,7 +15035,7 @@ public extension PlatformClient {
             
             case attachmentMandate = "attachment_mandate"
             
-            case filterFilesAfterExtraction = "filterFiles_after_extraction"
+            case filterFilesAfterExtraction = "filter_files_after_extraction"
             
             case archiveConfig = "archive_config"
             
@@ -8899,7 +15049,7 @@ public extension PlatformClient {
             
         }
 
-        public init(archiveConfig: ArchiveConfig?, attachmentMandate: Bool?, attachmentRegex: String?, bodyContentRegex: String?, contentType: String?, downloadableLink: Bool?, filterFilesAfterExtraction: Bool?, filterBasedOnRecepients: Bool?, folderNameHierarchies: [String]?, host: String?, localDir: String?, password: String?, passwordProtected: Bool?, pcol: String?, properties: [String: Any]?, readAllUnreadMails: Bool?, readFromContent: Bool?, recepient: String?, senderAddress: String?, subjectLineRegex: String?, unzip: Bool?, username: String?, zipFormat: String?) {
+        public init(archiveConfig: ArchiveConfig?, attachmentMandate: Bool?, attachmentRegex: String?, bodyContentRegex: String?, contentType: String?, downloadableLink: Bool?, filterBasedOnRecepients: Bool?, filterFilesAfterExtraction: Bool?, folderNameHierarchies: [String]?, host: String?, localDir: String?, password: String?, passwordProtected: Bool?, pcol: String?, properties: [String: Any]?, readAllUnreadMails: Bool?, readFromContent: Bool?, recepient: String?, senderAddress: String?, subjectLineRegex: String?, unzip: Bool?, username: String?, zipFormat: String?) {
             
             self.recepient = recepient
             
@@ -9222,54 +15372,6 @@ public extension PlatformClient {
     }
     
     /*
-        Model: FieldValidation
-    */
-
-    struct FieldValidation: Codable {
-        
-        
-        public var strict: Bool?
-        
-        public var name: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case strict = "strict"
-            
-            case name = "name"
-            
-        }
-
-        public init(name: String?, strict: Bool?) {
-            
-            self.strict = strict
-            
-            self.name = name
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            strict = try? container.decode(Bool.self, forKey: .strict)
-            
-            name = try? container.decode(String.self, forKey: .name)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(strict, forKey: .strict)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-        }
-        
-    }
-    
-    /*
         Model: FileConfig
     */
 
@@ -9464,9 +15566,9 @@ public extension PlatformClient {
     struct GoogleSpreadSheetConfig: Codable {
         
         
-        public var sheetId: String?
-        
         public var range: String?
+        
+        public var sheetId: String?
         
         public var clientSecretLocation: String?
         
@@ -9479,9 +15581,9 @@ public extension PlatformClient {
 
         public enum CodingKeys: String, CodingKey {
             
-            case sheetId = "sheetId"
-            
             case range = "range"
+            
+            case sheetId = "sheet_id"
             
             case clientSecretLocation = "client_secret_location"
             
@@ -9495,9 +15597,9 @@ public extension PlatformClient {
 
         public init(archiveConfig: ArchiveConfig?, clientSecretLocation: String?, credStorageDirectory: String?, localDir: String?, range: String?, sheetId: String?) {
             
-            self.sheetId = sheetId
-            
             self.range = range
+            
+            self.sheetId = sheetId
             
             self.clientSecretLocation = clientSecretLocation
             
@@ -9512,9 +15614,9 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            sheetId = try? container.decode(String.self, forKey: .sheetId)
-            
             range = try? container.decode(String.self, forKey: .range)
+            
+            sheetId = try? container.decode(String.self, forKey: .sheetId)
             
             clientSecretLocation = try? container.decode(String.self, forKey: .clientSecretLocation)
             
@@ -9529,9 +15631,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(sheetId, forKey: .sheetId)
-            
             try? container.encodeIfPresent(range, forKey: .range)
+            
+            try? container.encodeIfPresent(sheetId, forKey: .sheetId)
             
             try? container.encodeIfPresent(clientSecretLocation, forKey: .clientSecretLocation)
             
@@ -9660,12 +15762,6 @@ public extension PlatformClient {
     struct JobConfig: Codable {
         
         
-        public var syncInterval: Int?
-        
-        public var brandRemoteNames: [String]?
-        
-        public var companyNames: [String]?
-        
         public var id: Int?
         
         public var jobCode: String?
@@ -9727,12 +15823,6 @@ public extension PlatformClient {
 
         public enum CodingKeys: String, CodingKey {
             
-            case syncInterval = "syncInterval"
-            
-            case brandRemoteNames = "brandRemoteNames"
-            
-            case companyNames = "companyNames"
-            
             case id = "_id"
             
             case jobCode = "job_code"
@@ -9793,13 +15883,7 @@ public extension PlatformClient {
             
         }
 
-        public init(aggregatorTypes: [String]?, alias: String?, audit: Audit?, brandRemoteNames: [String]?, catalogMasterConfig: CatalogMasterConfig?, companyNames: [String]?, companyConfig: [CompanyConfig]?, companyIds: [Int]?, cronExpression: String?, dbConnectionProfile: DBConnectionProfile?, deleteQuantityThreshold: Int?, dependentJobCodes: [String]?, disable: Bool?, immediateFirstRun: Bool?, integrationType: String?, jobCode: String?, minPrice: Double?, openTags: [String: Any]?, params: [String: Any]?, periodThreshold: Int?, periodThresholdType: String?, priority: String?, processConfig: ProcessConfig?, properties: [String: Any]?, storeConfig: [StoreConfig]?, storeFilter: StoreFilter?, syncInterval: Int?, syncDelay: Int?, taskType: String?, taxIdentifiers: [String]?, version: Int?, id: Int?) {
-            
-            self.syncInterval = syncInterval
-            
-            self.brandRemoteNames = brandRemoteNames
-            
-            self.companyNames = companyNames
+        public init(aggregatorTypes: [String]?, alias: String?, audit: Audit?, catalogMasterConfig: CatalogMasterConfig?, companyConfig: [CompanyConfig]?, companyIds: [Int]?, cronExpression: String?, dbConnectionProfile: DBConnectionProfile?, deleteQuantityThreshold: Int?, dependentJobCodes: [String]?, disable: Bool?, immediateFirstRun: Bool?, integrationType: String?, jobCode: String?, minPrice: Double?, openTags: [String: Any]?, params: [String: Any]?, periodThreshold: Int?, periodThresholdType: String?, priority: String?, processConfig: ProcessConfig?, properties: [String: Any]?, storeConfig: [StoreConfig]?, storeFilter: StoreFilter?, syncDelay: Int?, taskType: String?, taxIdentifiers: [String]?, version: Int?, id: Int?) {
             
             self.id = id
             
@@ -9864,12 +15948,6 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            syncInterval = try? container.decode(Int.self, forKey: .syncInterval)
-            
-            brandRemoteNames = try? container.decode([String].self, forKey: .brandRemoteNames)
-            
-            companyNames = try? container.decode([String].self, forKey: .companyNames)
-            
             id = try? container.decode(Int.self, forKey: .id)
             
             jobCode = try? container.decode(String.self, forKey: .jobCode)
@@ -9932,12 +16010,6 @@ public extension PlatformClient {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(syncInterval, forKey: .syncInterval)
-            
-            try? container.encodeIfPresent(brandRemoteNames, forKey: .brandRemoteNames)
-            
-            try? container.encodeIfPresent(companyNames, forKey: .companyNames)
             
             try? container.encodeIfPresent(id, forKey: .id)
             
@@ -10008,9 +16080,9 @@ public extension PlatformClient {
     struct JobConfigRawDTO: Codable {
         
         
-        public var companyName: String
-        
         public var integration: String
+        
+        public var companyName: String
         
         public var companyId: Int
         
@@ -10019,11 +16091,11 @@ public extension PlatformClient {
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyName = "companyName"
-            
             case integration = "integration"
             
-            case companyId = "companyId"
+            case companyName = "company_name"
+            
+            case companyId = "company_id"
             
             case data = "data"
             
@@ -10031,9 +16103,9 @@ public extension PlatformClient {
 
         public init(companyId: Int, companyName: String, data: JobConfig?, integration: String) {
             
-            self.companyName = companyName
-            
             self.integration = integration
+            
+            self.companyName = companyName
             
             self.companyId = companyId
             
@@ -10044,9 +16116,9 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            companyName = try container.decode(String.self, forKey: .companyName)
-            
             integration = try container.decode(String.self, forKey: .integration)
+            
+            companyName = try container.decode(String.self, forKey: .companyName)
             
             companyId = try container.decode(Int.self, forKey: .companyId)
             
@@ -10057,9 +16129,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(companyName, forKey: .companyName)
-            
             try? container.encodeIfPresent(integration, forKey: .integration)
+            
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
             
@@ -10250,7 +16322,7 @@ public extension PlatformClient {
         
         public var propBeanConfigs: [PropBeanConfig]?
         
-        public var aggregatePipeLine: [Document]?
+        public var aggregatePipeline: [Document]?
         
         public var skipSave: Bool?
         
@@ -10265,13 +16337,13 @@ public extension PlatformClient {
             
             case propBeanConfigs = "prop_bean_configs"
             
-            case aggregatePipeLine = "aggregate_pipeLine"
+            case aggregatePipeline = "aggregate_pipeline"
             
             case skipSave = "skip_save"
             
         }
 
-        public init(aggregatePipeLine: [Document]?, collectionName: String?, findQuery: Document?, projectionQuery: Document?, propBeanConfigs: [PropBeanConfig]?, skipSave: Bool?) {
+        public init(aggregatePipeline: [Document]?, collectionName: String?, findQuery: Document?, projectionQuery: Document?, propBeanConfigs: [PropBeanConfig]?, skipSave: Bool?) {
             
             self.collectionName = collectionName
             
@@ -10281,7 +16353,7 @@ public extension PlatformClient {
             
             self.propBeanConfigs = propBeanConfigs
             
-            self.aggregatePipeLine = aggregatePipeLine
+            self.aggregatePipeline = aggregatePipeline
             
             self.skipSave = skipSave
             
@@ -10298,7 +16370,7 @@ public extension PlatformClient {
             
             propBeanConfigs = try? container.decode([PropBeanConfig].self, forKey: .propBeanConfigs)
             
-            aggregatePipeLine = try? container.decode([Document].self, forKey: .aggregatePipeLine)
+            aggregatePipeline = try? container.decode([Document].self, forKey: .aggregatePipeline)
             
             skipSave = try? container.decode(Bool.self, forKey: .skipSave)
             
@@ -10315,7 +16387,7 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(propBeanConfigs, forKey: .propBeanConfigs)
             
-            try? container.encodeIfPresent(aggregatePipeLine, forKey: .aggregatePipeLine)
+            try? container.encodeIfPresent(aggregatePipeline, forKey: .aggregatePipeline)
             
             try? container.encodeIfPresent(skipSave, forKey: .skipSave)
             
@@ -10644,8 +16716,6 @@ public extension PlatformClient {
         
         public var send: Send?
         
-        public var fieldValidations: [FieldValidation]?
-        
         public var validations: [Document]?
         
         public var values: [String]?
@@ -10695,8 +16765,6 @@ public extension PlatformClient {
             
             case send = "send"
             
-            case fieldValidations = "fieldValidations"
-            
             case validations = "validations"
             
             case values = "values"
@@ -10737,7 +16805,7 @@ public extension PlatformClient {
             
         }
 
-        public init(allParamFunctionName: String?, concatStr: String?, constValue: [String: Any]?, dataType: String?, defaultValue: [String: Any]?, destinationField: String?, enrichFromMaster: Bool?, fieldValidations: [FieldValidation]?, functionName: String?, identifierType: String?, ignoreIfNotExists: Bool?, include: Bool?, indexField: String?, mapping: [String: Any]?, optional: Bool?, projectionQuery: Document?, required: Bool?, send: Send?, sourceField: String?, sourceFields: [String]?, subSeparator: String?, transformerName: String?, validations: [Document]?, values: [String]?) {
+        public init(allParamFunctionName: String?, concatStr: String?, constValue: [String: Any]?, dataType: String?, defaultValue: [String: Any]?, destinationField: String?, enrichFromMaster: Bool?, functionName: String?, identifierType: String?, ignoreIfNotExists: Bool?, include: Bool?, indexField: String?, mapping: [String: Any]?, optional: Bool?, projectionQuery: Document?, required: Bool?, send: Send?, sourceField: String?, sourceFields: [String]?, subSeparator: String?, transformerName: String?, validations: [Document]?, values: [String]?) {
             
             self.required = required
             
@@ -10746,8 +16814,6 @@ public extension PlatformClient {
             self.optional = optional
             
             self.send = send
-            
-            self.fieldValidations = fieldValidations
             
             self.validations = validations
             
@@ -10800,8 +16866,6 @@ public extension PlatformClient {
             
             send = try? container.decode(Send.self, forKey: .send)
             
-            fieldValidations = try? container.decode([FieldValidation].self, forKey: .fieldValidations)
-            
             validations = try? container.decode([Document].self, forKey: .validations)
             
             values = try? container.decode([String].self, forKey: .values)
@@ -10852,8 +16916,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(optional, forKey: .optional)
             
             try? container.encodeIfPresent(send, forKey: .send)
-            
-            try? container.encodeIfPresent(fieldValidations, forKey: .fieldValidations)
             
             try? container.encodeIfPresent(validations, forKey: .validations)
             
@@ -11673,9 +17735,9 @@ public extension PlatformClient {
             
             case name = "name"
             
-            case taskConfigId = "taskConfigId"
+            case taskConfigId = "task_config_id"
             
-            case taskParams = "taskParams"
+            case taskParams = "task_params"
             
         }
 
@@ -12336,6 +18398,1906 @@ public extension PlatformClient {
             try? container.encodeIfPresent(traceId, forKey: .traceId)
             
             try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    
+    
+    /*
+        Model: Action
+    */
+
+    struct Action: Codable {
+        
+        
+        public var when: String?
+        
+        public var txnMode: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case when = "when"
+            
+            case txnMode = "txn_mode"
+            
+        }
+
+        public init(txnMode: String?, when: String?) {
+            
+            self.when = when
+            
+            self.txnMode = txnMode
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            when = try? container.decode(String.self, forKey: .when)
+            
+            txnMode = try? container.decode(String.self, forKey: .txnMode)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(when, forKey: .when)
+            
+            try? container.encodeIfPresent(txnMode, forKey: .txnMode)
+            
+        }
+        
+    }
+    
+    /*
+        Model: BulkBundleRestriction
+    */
+
+    struct BulkBundleRestriction: Codable {
+        
+        
+        public var multiStoreAllowed: Bool
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case multiStoreAllowed = "multi_store_allowed"
+            
+        }
+
+        public init(multiStoreAllowed: Bool) {
+            
+            self.multiStoreAllowed = multiStoreAllowed
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            multiStoreAllowed = try container.decode(Bool.self, forKey: .multiStoreAllowed)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(multiStoreAllowed, forKey: .multiStoreAllowed)
+            
+        }
+        
+    }
+    
+    /*
+        Model: UsesRemaining
+    */
+
+    struct UsesRemaining: Codable {
+        
+        
+        public var app: Int?
+        
+        public var total: Int?
+        
+        public var user: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case app = "app"
+            
+            case total = "total"
+            
+            case user = "user"
+            
+        }
+
+        public init(app: Int?, total: Int?, user: Int?) {
+            
+            self.app = app
+            
+            self.total = total
+            
+            self.user = user
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            app = try? container.decode(Int.self, forKey: .app)
+            
+            total = try? container.decode(Int.self, forKey: .total)
+            
+            user = try? container.decode(Int.self, forKey: .user)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(app, forKey: .app)
+            
+            try? container.encodeIfPresent(total, forKey: .total)
+            
+            try? container.encodeIfPresent(user, forKey: .user)
+            
+        }
+        
+    }
+    
+    /*
+        Model: UsesRestriction
+    */
+
+    struct UsesRestriction: Codable {
+        
+        
+        public var maximum: UsesRemaining?
+        
+        public var remaining: UsesRemaining?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case maximum = "maximum"
+            
+            case remaining = "remaining"
+            
+        }
+
+        public init(maximum: UsesRemaining?, remaining: UsesRemaining?) {
+            
+            self.maximum = maximum
+            
+            self.remaining = remaining
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            maximum = try? container.decode(UsesRemaining.self, forKey: .maximum)
+            
+            remaining = try? container.decode(UsesRemaining.self, forKey: .remaining)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(maximum, forKey: .maximum)
+            
+            try? container.encodeIfPresent(remaining, forKey: .remaining)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PaymentAllowValue
+    */
+
+    struct PaymentAllowValue: Codable {
+        
+        
+        public var max: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case max = "max"
+            
+        }
+
+        public init(max: Int?) {
+            
+            self.max = max
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            max = try? container.decode(Int.self, forKey: .max)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(max, forKey: .max)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PaymentModes
+    */
+
+    struct PaymentModes: Codable {
+        
+        
+        public var networks: [String]?
+        
+        public var uses: PaymentAllowValue?
+        
+        public var types: [String]?
+        
+        public var codes: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case networks = "networks"
+            
+            case uses = "uses"
+            
+            case types = "types"
+            
+            case codes = "codes"
+            
+        }
+
+        public init(codes: [String]?, networks: [String]?, types: [String]?, uses: PaymentAllowValue?) {
+            
+            self.networks = networks
+            
+            self.uses = uses
+            
+            self.types = types
+            
+            self.codes = codes
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            networks = try? container.decode([String].self, forKey: .networks)
+            
+            uses = try? container.decode(PaymentAllowValue.self, forKey: .uses)
+            
+            types = try? container.decode([String].self, forKey: .types)
+            
+            codes = try? container.decode([String].self, forKey: .codes)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(networks, forKey: .networks)
+            
+            try? container.encodeIfPresent(uses, forKey: .uses)
+            
+            try? container.encodeIfPresent(types, forKey: .types)
+            
+            try? container.encodeIfPresent(codes, forKey: .codes)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PaymentCodes
+    */
+
+    struct PaymentCodes: Codable {
+        
+        
+        public var pl: PaymentModes?
+        
+        public var ps: PaymentModes?
+        
+        public var upi: PaymentModes?
+        
+        public var wl: PaymentModes?
+        
+        public var qr: PaymentModes?
+        
+        public var card: PaymentModes?
+        
+        public var nb: PaymentModes?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case pl = "PL"
+            
+            case ps = "PS"
+            
+            case upi = "UPI"
+            
+            case wl = "WL"
+            
+            case qr = "QR"
+            
+            case card = "CARD"
+            
+            case nb = "NB"
+            
+        }
+
+        public init(card: PaymentModes?, nb: PaymentModes?, pl: PaymentModes?, ps: PaymentModes?, qr: PaymentModes?, upi: PaymentModes?, wl: PaymentModes?) {
+            
+            self.pl = pl
+            
+            self.ps = ps
+            
+            self.upi = upi
+            
+            self.wl = wl
+            
+            self.qr = qr
+            
+            self.card = card
+            
+            self.nb = nb
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            pl = try? container.decode(PaymentModes.self, forKey: .pl)
+            
+            ps = try? container.decode(PaymentModes.self, forKey: .ps)
+            
+            upi = try? container.decode(PaymentModes.self, forKey: .upi)
+            
+            wl = try? container.decode(PaymentModes.self, forKey: .wl)
+            
+            qr = try? container.decode(PaymentModes.self, forKey: .qr)
+            
+            card = try? container.decode(PaymentModes.self, forKey: .card)
+            
+            nb = try? container.decode(PaymentModes.self, forKey: .nb)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(pl, forKey: .pl)
+            
+            try? container.encodeIfPresent(ps, forKey: .ps)
+            
+            try? container.encodeIfPresent(upi, forKey: .upi)
+            
+            try? container.encodeIfPresent(wl, forKey: .wl)
+            
+            try? container.encodeIfPresent(qr, forKey: .qr)
+            
+            try? container.encodeIfPresent(card, forKey: .card)
+            
+            try? container.encodeIfPresent(nb, forKey: .nb)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PriceRange
+    */
+
+    struct PriceRange: Codable {
+        
+        
+        public var max: Int?
+        
+        public var min: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case max = "max"
+            
+            case min = "min"
+            
+        }
+
+        public init(max: Int?, min: Int?) {
+            
+            self.max = max
+            
+            self.min = min
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            max = try? container.decode(Int.self, forKey: .max)
+            
+            min = try? container.decode(Int.self, forKey: .min)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(max, forKey: .max)
+            
+            try? container.encodeIfPresent(min, forKey: .min)
+            
+        }
+        
+    }
+    
+    /*
+        Model: PostOrder
+    */
+
+    struct PostOrder: Codable {
+        
+        
+        public var cancellationAllowed: Bool?
+        
+        public var returnAllowed: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case cancellationAllowed = "cancellation_allowed"
+            
+            case returnAllowed = "return_allowed"
+            
+        }
+
+        public init(cancellationAllowed: Bool?, returnAllowed: Bool?) {
+            
+            self.cancellationAllowed = cancellationAllowed
+            
+            self.returnAllowed = returnAllowed
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            cancellationAllowed = try? container.decode(Bool.self, forKey: .cancellationAllowed)
+            
+            returnAllowed = try? container.decode(Bool.self, forKey: .returnAllowed)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(cancellationAllowed, forKey: .cancellationAllowed)
+            
+            try? container.encodeIfPresent(returnAllowed, forKey: .returnAllowed)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Restrictions
+    */
+
+    struct Restrictions: Codable {
+        
+        
+        public var platforms: [String]?
+        
+        public var bulkBundle: BulkBundleRestriction?
+        
+        public var uses: UsesRestriction?
+        
+        public var orderingStores: [Int]?
+        
+        public var payments: PaymentCodes?
+        
+        public var priceRange: PriceRange?
+        
+        public var postOrder: PostOrder?
+        
+        public var couponAllowed: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case platforms = "platforms"
+            
+            case bulkBundle = "bulk_bundle"
+            
+            case uses = "uses"
+            
+            case orderingStores = "ordering_stores"
+            
+            case payments = "payments"
+            
+            case priceRange = "price_range"
+            
+            case postOrder = "post_order"
+            
+            case couponAllowed = "coupon_allowed"
+            
+        }
+
+        public init(bulkBundle: BulkBundleRestriction?, couponAllowed: Bool?, orderingStores: [Int]?, payments: PaymentCodes?, platforms: [String]?, postOrder: PostOrder?, priceRange: PriceRange?, uses: UsesRestriction?) {
+            
+            self.platforms = platforms
+            
+            self.bulkBundle = bulkBundle
+            
+            self.uses = uses
+            
+            self.orderingStores = orderingStores
+            
+            self.payments = payments
+            
+            self.priceRange = priceRange
+            
+            self.postOrder = postOrder
+            
+            self.couponAllowed = couponAllowed
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            platforms = try? container.decode([String].self, forKey: .platforms)
+            
+            bulkBundle = try? container.decode(BulkBundleRestriction.self, forKey: .bulkBundle)
+            
+            uses = try? container.decode(UsesRestriction.self, forKey: .uses)
+            
+            orderingStores = try? container.decode([Int].self, forKey: .orderingStores)
+            
+            payments = try? container.decode(PaymentCodes.self, forKey: .payments)
+            
+            priceRange = try? container.decode(PriceRange.self, forKey: .priceRange)
+            
+            postOrder = try? container.decode(PostOrder.self, forKey: .postOrder)
+            
+            couponAllowed = try? container.decode(Bool.self, forKey: .couponAllowed)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(platforms, forKey: .platforms)
+            
+            try? container.encodeIfPresent(bulkBundle, forKey: .bulkBundle)
+            
+            try? container.encodeIfPresent(uses, forKey: .uses)
+            
+            try? container.encodeIfPresent(orderingStores, forKey: .orderingStores)
+            
+            try? container.encodeIfPresent(payments, forKey: .payments)
+            
+            try? container.encodeIfPresent(priceRange, forKey: .priceRange)
+            
+            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
+            
+            try? container.encodeIfPresent(couponAllowed, forKey: .couponAllowed)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Identifier
+    */
+
+    struct Identifier: Codable {
+        
+        
+        public var userId: [String]?
+        
+        public var companyId: [Int]?
+        
+        public var brandId: [Int]?
+        
+        public var storeId: [Int]?
+        
+        public var collectionId: [String]?
+        
+        public var categoryId: [Int]?
+        
+        public var itemId: [Int]?
+        
+        public var articleId: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case userId = "user_id"
+            
+            case companyId = "company_id"
+            
+            case brandId = "brand_id"
+            
+            case storeId = "store_id"
+            
+            case collectionId = "collection_id"
+            
+            case categoryId = "category_id"
+            
+            case itemId = "item_id"
+            
+            case articleId = "article_id"
+            
+        }
+
+        public init(articleId: [String]?, brandId: [Int]?, categoryId: [Int]?, collectionId: [String]?, companyId: [Int]?, itemId: [Int]?, storeId: [Int]?, userId: [String]?) {
+            
+            self.userId = userId
+            
+            self.companyId = companyId
+            
+            self.brandId = brandId
+            
+            self.storeId = storeId
+            
+            self.collectionId = collectionId
+            
+            self.categoryId = categoryId
+            
+            self.itemId = itemId
+            
+            self.articleId = articleId
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            userId = try? container.decode([String].self, forKey: .userId)
+            
+            companyId = try? container.decode([Int].self, forKey: .companyId)
+            
+            brandId = try? container.decode([Int].self, forKey: .brandId)
+            
+            storeId = try? container.decode([Int].self, forKey: .storeId)
+            
+            collectionId = try? container.decode([String].self, forKey: .collectionId)
+            
+            categoryId = try? container.decode([Int].self, forKey: .categoryId)
+            
+            itemId = try? container.decode([Int].self, forKey: .itemId)
+            
+            articleId = try? container.decode([String].self, forKey: .articleId)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
+            
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            
+            try? container.encodeIfPresent(collectionId, forKey: .collectionId)
+            
+            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
+            
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            
+            try? container.encodeIfPresent(articleId, forKey: .articleId)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Ownership
+    */
+
+    struct Ownership: Codable {
+        
+        
+        public var payableCategory: String
+        
+        public var payableBy: String
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case payableCategory = "payable_category"
+            
+            case payableBy = "payable_by"
+            
+        }
+
+        public init(payableBy: String, payableCategory: String) {
+            
+            self.payableCategory = payableCategory
+            
+            self.payableBy = payableBy
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            payableCategory = try container.decode(String.self, forKey: .payableCategory)
+            
+            payableBy = try container.decode(String.self, forKey: .payableBy)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(payableCategory, forKey: .payableCategory)
+            
+            try? container.encodeIfPresent(payableBy, forKey: .payableBy)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Validity
+    */
+
+    struct Validity: Codable {
+        
+        
+        public var priority: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case priority = "priority"
+            
+        }
+
+        public init(priority: Int?) {
+            
+            self.priority = priority
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            priority = try? container.decode(Int.self, forKey: .priority)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(priority, forKey: .priority)
+            
+        }
+        
+    }
+    
+    /*
+        Model: RuleDefinition
+    */
+
+    struct RuleDefinition: Codable {
+        
+        
+        public var applicableOn: String
+        
+        public var calculateOn: String
+        
+        public var scope: [String]?
+        
+        public var type: String
+        
+        public var autoApply: Bool?
+        
+        public var currencyCode: String?
+        
+        public var valueType: String
+        
+        public var isExact: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case applicableOn = "applicable_on"
+            
+            case calculateOn = "calculate_on"
+            
+            case scope = "scope"
+            
+            case type = "type"
+            
+            case autoApply = "auto_apply"
+            
+            case currencyCode = "currency_code"
+            
+            case valueType = "value_type"
+            
+            case isExact = "is_exact"
+            
+        }
+
+        public init(applicableOn: String, autoApply: Bool?, calculateOn: String, currencyCode: String?, isExact: Bool?, scope: [String]?, type: String, valueType: String) {
+            
+            self.applicableOn = applicableOn
+            
+            self.calculateOn = calculateOn
+            
+            self.scope = scope
+            
+            self.type = type
+            
+            self.autoApply = autoApply
+            
+            self.currencyCode = currencyCode
+            
+            self.valueType = valueType
+            
+            self.isExact = isExact
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            applicableOn = try container.decode(String.self, forKey: .applicableOn)
+            
+            calculateOn = try container.decode(String.self, forKey: .calculateOn)
+            
+            scope = try? container.decode([String].self, forKey: .scope)
+            
+            type = try container.decode(String.self, forKey: .type)
+            
+            autoApply = try? container.decode(Bool.self, forKey: .autoApply)
+            
+            currencyCode = try? container.decode(String.self, forKey: .currencyCode)
+            
+            valueType = try container.decode(String.self, forKey: .valueType)
+            
+            isExact = try? container.decode(Bool.self, forKey: .isExact)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
+            
+            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
+            
+            try? container.encodeIfPresent(scope, forKey: .scope)
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            try? container.encodeIfPresent(autoApply, forKey: .autoApply)
+            
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            
+            try? container.encodeIfPresent(valueType, forKey: .valueType)
+            
+            try? container.encodeIfPresent(isExact, forKey: .isExact)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Rule
+    */
+
+    struct Rule: Codable {
+        
+        
+        public var max: Double?
+        
+        public var min: Double?
+        
+        public var value: Double?
+        
+        public var key: Double?
+        
+        public var discountQty: Double?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case max = "max"
+            
+            case min = "min"
+            
+            case value = "value"
+            
+            case key = "key"
+            
+            case discountQty = "discount_qty"
+            
+        }
+
+        public init(discountQty: Double?, key: Double?, max: Double?, min: Double?, value: Double?) {
+            
+            self.max = max
+            
+            self.min = min
+            
+            self.value = value
+            
+            self.key = key
+            
+            self.discountQty = discountQty
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            max = try? container.decode(Double.self, forKey: .max)
+            
+            min = try? container.decode(Double.self, forKey: .min)
+            
+            value = try? container.decode(Double.self, forKey: .value)
+            
+            key = try? container.decode(Double.self, forKey: .key)
+            
+            discountQty = try? container.decode(Double.self, forKey: .discountQty)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(max, forKey: .max)
+            
+            try? container.encodeIfPresent(min, forKey: .min)
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+            try? container.encodeIfPresent(key, forKey: .key)
+            
+            try? container.encodeIfPresent(discountQty, forKey: .discountQty)
+            
+        }
+        
+    }
+    
+    /*
+        Model: State
+    */
+
+    struct State: Codable {
+        
+        
+        public var isDisplay: Bool?
+        
+        public var isPublic: Bool?
+        
+        public var isArchived: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case isDisplay = "is_display"
+            
+            case isPublic = "is_public"
+            
+            case isArchived = "is_archived"
+            
+        }
+
+        public init(isArchived: Bool?, isDisplay: Bool?, isPublic: Bool?) {
+            
+            self.isDisplay = isDisplay
+            
+            self.isPublic = isPublic
+            
+            self.isArchived = isArchived
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            isDisplay = try? container.decode(Bool.self, forKey: .isDisplay)
+            
+            isPublic = try? container.decode(Bool.self, forKey: .isPublic)
+            
+            isArchived = try? container.decode(Bool.self, forKey: .isArchived)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
+            
+            try? container.encodeIfPresent(isPublic, forKey: .isPublic)
+            
+            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Schedule
+    */
+
+    struct Schedule: Codable {
+        
+        
+        public var cron: String?
+        
+        public var duration: Int?
+        
+        public var start: String?
+        
+        public var nextSchedule: [[String: Any]]?
+        
+        public var end: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case cron = "cron"
+            
+            case duration = "duration"
+            
+            case start = "start"
+            
+            case nextSchedule = "next_schedule"
+            
+            case end = "end"
+            
+        }
+
+        public init(cron: String?, duration: Int?, end: String?, nextSchedule: [[String: Any]]?, start: String?) {
+            
+            self.cron = cron
+            
+            self.duration = duration
+            
+            self.start = start
+            
+            self.nextSchedule = nextSchedule
+            
+            self.end = end
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            cron = try? container.decode(String.self, forKey: .cron)
+            
+            duration = try? container.decode(Int.self, forKey: .duration)
+            
+            start = try? container.decode(String.self, forKey: .start)
+            
+            nextSchedule = try? container.decode([[String: Any]].self, forKey: .nextSchedule)
+            
+            end = try? container.decode(String.self, forKey: .end)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(cron, forKey: .cron)
+            
+            try? container.encodeIfPresent(duration, forKey: .duration)
+            
+            try? container.encodeIfPresent(start, forKey: .start)
+            
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+            
+            try? container.encodeIfPresent(end, forKey: .end)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Validation
+    */
+
+    struct Validation: Codable {
+        
+        
+        public var userRegisteredAfter: String?
+        
+        public var appId: [String]?
+        
+        public var anonymous: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case userRegisteredAfter = "user_registered_after"
+            
+            case appId = "app_id"
+            
+            case anonymous = "anonymous"
+            
+        }
+
+        public init(anonymous: Bool?, appId: [String]?, userRegisteredAfter: String?) {
+            
+            self.userRegisteredAfter = userRegisteredAfter
+            
+            self.appId = appId
+            
+            self.anonymous = anonymous
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            userRegisteredAfter = try? container.decode(String.self, forKey: .userRegisteredAfter)
+            
+            appId = try? container.decode([String].self, forKey: .appId)
+            
+            anonymous = try? container.decode(Bool.self, forKey: .anonymous)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(userRegisteredAfter, forKey: .userRegisteredAfter)
+            
+            try? container.encodeIfPresent(appId, forKey: .appId)
+            
+            try? container.encodeIfPresent(anonymous, forKey: .anonymous)
+            
+        }
+        
+    }
+    
+    /*
+        Model: DisplayMetaDict
+    */
+
+    struct DisplayMetaDict: Codable {
+        
+        
+        public var title: String?
+        
+        public var subtitle: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case title = "title"
+            
+            case subtitle = "subtitle"
+            
+        }
+
+        public init(subtitle: String?, title: String?) {
+            
+            self.title = title
+            
+            self.subtitle = subtitle
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            title = try? container.decode(String.self, forKey: .title)
+            
+            subtitle = try? container.decode(String.self, forKey: .subtitle)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            
+        }
+        
+    }
+    
+    /*
+        Model: DisplayMeta
+    */
+
+    struct DisplayMeta: Codable {
+        
+        
+        public var apply: DisplayMetaDict?
+        
+        public var title: String?
+        
+        public var remove: DisplayMetaDict?
+        
+        public var subtitle: String?
+        
+        public var description: String?
+        
+        public var auto: DisplayMetaDict?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case apply = "apply"
+            
+            case title = "title"
+            
+            case remove = "remove"
+            
+            case subtitle = "subtitle"
+            
+            case description = "description"
+            
+            case auto = "auto"
+            
+        }
+
+        public init(apply: DisplayMetaDict?, auto: DisplayMetaDict?, description: String?, remove: DisplayMetaDict?, subtitle: String?, title: String?) {
+            
+            self.apply = apply
+            
+            self.title = title
+            
+            self.remove = remove
+            
+            self.subtitle = subtitle
+            
+            self.description = description
+            
+            self.auto = auto
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            apply = try? container.decode(DisplayMetaDict.self, forKey: .apply)
+            
+            title = try? container.decode(String.self, forKey: .title)
+            
+            remove = try? container.decode(DisplayMetaDict.self, forKey: .remove)
+            
+            subtitle = try? container.decode(String.self, forKey: .subtitle)
+            
+            description = try? container.decode(String.self, forKey: .description)
+            
+            auto = try? container.decode(DisplayMetaDict.self, forKey: .auto)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(apply, forKey: .apply)
+            
+            try? container.encodeIfPresent(title, forKey: .title)
+            
+            try? container.encodeIfPresent(remove, forKey: .remove)
+            
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            try? container.encodeIfPresent(auto, forKey: .auto)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CouponAdd
+    */
+
+    struct CouponAdd: Codable {
+        
+        
+        public var action: Action?
+        
+        public var typeSlug: String
+        
+        public var restrictions: Restrictions?
+        
+        public var identifiers: Identifier
+        
+        public var ownership: Ownership
+        
+        public var tags: [String]?
+        
+        public var validity: Validity
+        
+        public var code: String
+        
+        public var ruleDefinition: RuleDefinition
+        
+        public var rule: [Rule]
+        
+        public var state: State?
+        
+        public var schedule: Schedule?
+        
+        public var author: Author?
+        
+        public var validation: Validation?
+        
+        public var dateMeta: DateMeta?
+        
+        public var displayMeta: DisplayMeta
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case action = "action"
+            
+            case typeSlug = "type_slug"
+            
+            case restrictions = "restrictions"
+            
+            case identifiers = "identifiers"
+            
+            case ownership = "ownership"
+            
+            case tags = "tags"
+            
+            case validity = "validity"
+            
+            case code = "code"
+            
+            case ruleDefinition = "rule_definition"
+            
+            case rule = "rule"
+            
+            case state = "state"
+            
+            case schedule = "_schedule"
+            
+            case author = "author"
+            
+            case validation = "validation"
+            
+            case dateMeta = "date_meta"
+            
+            case displayMeta = "display_meta"
+            
+        }
+
+        public init(action: Action?, author: Author?, code: String, dateMeta: DateMeta?, displayMeta: DisplayMeta, identifiers: Identifier, ownership: Ownership, restrictions: Restrictions?, rule: [Rule], ruleDefinition: RuleDefinition, state: State?, tags: [String]?, typeSlug: String, validation: Validation?, validity: Validity, schedule: Schedule?) {
+            
+            self.action = action
+            
+            self.typeSlug = typeSlug
+            
+            self.restrictions = restrictions
+            
+            self.identifiers = identifiers
+            
+            self.ownership = ownership
+            
+            self.tags = tags
+            
+            self.validity = validity
+            
+            self.code = code
+            
+            self.ruleDefinition = ruleDefinition
+            
+            self.rule = rule
+            
+            self.state = state
+            
+            self.schedule = schedule
+            
+            self.author = author
+            
+            self.validation = validation
+            
+            self.dateMeta = dateMeta
+            
+            self.displayMeta = displayMeta
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            action = try? container.decode(Action.self, forKey: .action)
+            
+            typeSlug = try container.decode(String.self, forKey: .typeSlug)
+            
+            restrictions = try? container.decode(Restrictions.self, forKey: .restrictions)
+            
+            identifiers = try container.decode(Identifier.self, forKey: .identifiers)
+            
+            ownership = try container.decode(Ownership.self, forKey: .ownership)
+            
+            tags = try? container.decode([String].self, forKey: .tags)
+            
+            validity = try container.decode(Validity.self, forKey: .validity)
+            
+            code = try container.decode(String.self, forKey: .code)
+            
+            ruleDefinition = try container.decode(RuleDefinition.self, forKey: .ruleDefinition)
+            
+            rule = try container.decode([Rule].self, forKey: .rule)
+            
+            state = try? container.decode(State.self, forKey: .state)
+            
+            schedule = try? container.decode(Schedule.self, forKey: .schedule)
+            
+            author = try? container.decode(Author.self, forKey: .author)
+            
+            validation = try? container.decode(Validation.self, forKey: .validation)
+            
+            dateMeta = try? container.decode(DateMeta.self, forKey: .dateMeta)
+            
+            displayMeta = try container.decode(DisplayMeta.self, forKey: .displayMeta)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(typeSlug, forKey: .typeSlug)
+            
+            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
+            
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            
+            try? container.encodeIfPresent(ownership, forKey: .ownership)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            try? container.encodeIfPresent(validity, forKey: .validity)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            try? container.encodeIfPresent(ruleDefinition, forKey: .ruleDefinition)
+            
+            try? container.encodeIfPresent(rule, forKey: .rule)
+            
+            try? container.encodeIfPresent(state, forKey: .state)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(author, forKey: .author)
+            
+            try? container.encodeIfPresent(validation, forKey: .validation)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(displayMeta, forKey: .displayMeta)
+            
+        }
+        
+    }
+    
+    /*
+        Model: Pagination
+    */
+
+    struct Pagination: Codable {
+        
+        
+        public var size: Int?
+        
+        public var hasNext: Bool?
+        
+        public var current: Int?
+        
+        public var itemTotal: Int?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case size = "size"
+            
+            case hasNext = "has_next"
+            
+            case current = "current"
+            
+            case itemTotal = "item_total"
+            
+        }
+
+        public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?) {
+            
+            self.size = size
+            
+            self.hasNext = hasNext
+            
+            self.current = current
+            
+            self.itemTotal = itemTotal
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            size = try? container.decode(Int.self, forKey: .size)
+            
+            hasNext = try? container.decode(Bool.self, forKey: .hasNext)
+            
+            current = try? container.decode(Int.self, forKey: .current)
+            
+            itemTotal = try? container.decode(Int.self, forKey: .itemTotal)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(size, forKey: .size)
+            
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            
+            try? container.encodeIfPresent(current, forKey: .current)
+            
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CouponsResponse
+    */
+
+    struct CouponsResponse: Codable {
+        
+        
+        public var items: CouponAdd?
+        
+        public var page: Pagination?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+            case page = "page"
+            
+        }
+
+        public init(items: CouponAdd?, page: Pagination?) {
+            
+            self.items = items
+            
+            self.page = page
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            items = try? container.decode(CouponAdd.self, forKey: .items)
+            
+            page = try? container.decode(Pagination.self, forKey: .page)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+        }
+        
+    }
+    
+    /*
+        Model: OperationErrorResponse
+    */
+
+    struct OperationErrorResponse: Codable {
+        
+        
+        public var success: Bool?
+        
+        public var message: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case success = "success"
+            
+            case message = "message"
+            
+        }
+
+        public init(message: String?, success: Bool?) {
+            
+            self.success = success
+            
+            self.message = message
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            success = try? container.decode(Bool.self, forKey: .success)
+            
+            message = try? container.decode(String.self, forKey: .message)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CouponUpdate
+    */
+
+    struct CouponUpdate: Codable {
+        
+        
+        public var action: Action?
+        
+        public var typeSlug: String
+        
+        public var restrictions: Restrictions?
+        
+        public var identifiers: Identifier
+        
+        public var ownership: Ownership
+        
+        public var tags: [String]?
+        
+        public var validity: Validity
+        
+        public var code: String
+        
+        public var ruleDefinition: RuleDefinition
+        
+        public var rule: [Rule]
+        
+        public var state: State?
+        
+        public var schedule: Schedule?
+        
+        public var author: Author?
+        
+        public var validation: Validation?
+        
+        public var dateMeta: DateMeta?
+        
+        public var displayMeta: DisplayMeta
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case action = "action"
+            
+            case typeSlug = "type_slug"
+            
+            case restrictions = "restrictions"
+            
+            case identifiers = "identifiers"
+            
+            case ownership = "ownership"
+            
+            case tags = "tags"
+            
+            case validity = "validity"
+            
+            case code = "code"
+            
+            case ruleDefinition = "rule_definition"
+            
+            case rule = "rule"
+            
+            case state = "state"
+            
+            case schedule = "_schedule"
+            
+            case author = "author"
+            
+            case validation = "validation"
+            
+            case dateMeta = "date_meta"
+            
+            case displayMeta = "display_meta"
+            
+        }
+
+        public init(action: Action?, author: Author?, code: String, dateMeta: DateMeta?, displayMeta: DisplayMeta, identifiers: Identifier, ownership: Ownership, restrictions: Restrictions?, rule: [Rule], ruleDefinition: RuleDefinition, state: State?, tags: [String]?, typeSlug: String, validation: Validation?, validity: Validity, schedule: Schedule?) {
+            
+            self.action = action
+            
+            self.typeSlug = typeSlug
+            
+            self.restrictions = restrictions
+            
+            self.identifiers = identifiers
+            
+            self.ownership = ownership
+            
+            self.tags = tags
+            
+            self.validity = validity
+            
+            self.code = code
+            
+            self.ruleDefinition = ruleDefinition
+            
+            self.rule = rule
+            
+            self.state = state
+            
+            self.schedule = schedule
+            
+            self.author = author
+            
+            self.validation = validation
+            
+            self.dateMeta = dateMeta
+            
+            self.displayMeta = displayMeta
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            action = try? container.decode(Action.self, forKey: .action)
+            
+            typeSlug = try container.decode(String.self, forKey: .typeSlug)
+            
+            restrictions = try? container.decode(Restrictions.self, forKey: .restrictions)
+            
+            identifiers = try container.decode(Identifier.self, forKey: .identifiers)
+            
+            ownership = try container.decode(Ownership.self, forKey: .ownership)
+            
+            tags = try? container.decode([String].self, forKey: .tags)
+            
+            validity = try container.decode(Validity.self, forKey: .validity)
+            
+            code = try container.decode(String.self, forKey: .code)
+            
+            ruleDefinition = try container.decode(RuleDefinition.self, forKey: .ruleDefinition)
+            
+            rule = try container.decode([Rule].self, forKey: .rule)
+            
+            state = try? container.decode(State.self, forKey: .state)
+            
+            schedule = try? container.decode(Schedule.self, forKey: .schedule)
+            
+            author = try? container.decode(Author.self, forKey: .author)
+            
+            validation = try? container.decode(Validation.self, forKey: .validation)
+            
+            dateMeta = try? container.decode(DateMeta.self, forKey: .dateMeta)
+            
+            displayMeta = try container.decode(DisplayMeta.self, forKey: .displayMeta)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            try? container.encodeIfPresent(typeSlug, forKey: .typeSlug)
+            
+            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
+            
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            
+            try? container.encodeIfPresent(ownership, forKey: .ownership)
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            try? container.encodeIfPresent(validity, forKey: .validity)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            try? container.encodeIfPresent(ruleDefinition, forKey: .ruleDefinition)
+            
+            try? container.encodeIfPresent(rule, forKey: .rule)
+            
+            try? container.encodeIfPresent(state, forKey: .state)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(author, forKey: .author)
+            
+            try? container.encodeIfPresent(validation, forKey: .validation)
+            
+            try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            try? container.encodeIfPresent(displayMeta, forKey: .displayMeta)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CouponPartialUpdate
+    */
+
+    struct CouponPartialUpdate: Codable {
+        
+        
+        public var schedule: Schedule?
+        
+        public var archive: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case schedule = "schedule"
+            
+            case archive = "archive"
+            
+        }
+
+        public init(archive: Bool?, schedule: Schedule?) {
+            
+            self.schedule = schedule
+            
+            self.archive = archive
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            schedule = try? container.decode(Schedule.self, forKey: .schedule)
+            
+            archive = try? container.decode(Bool.self, forKey: .archive)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            try? container.encodeIfPresent(archive, forKey: .archive)
             
         }
         

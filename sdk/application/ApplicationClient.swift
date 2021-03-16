@@ -10,6 +10,8 @@ public class ApplicationClient {
 
     public let theme: Theme
 
+    public let user: User
+
     public let content: Content
 
     public let communication: Communication
@@ -17,8 +19,6 @@ public class ApplicationClient {
     public let share: Share
 
     public let fileStorage: FileStorage
-
-    public let configuration: Configuration
 
     public let payment: Payment
 
@@ -42,6 +42,8 @@ public class ApplicationClient {
         
         theme = Theme(config: config)
         
+        user = User(config: config)
+        
         content = Content(config: config)
         
         communication = Communication(config: config)
@@ -49,8 +51,6 @@ public class ApplicationClient {
         share = Share(config: config)
         
         fileStorage = FileStorage(config: config)
-        
-        configuration = Configuration(config: config)
         
         payment = Payment(config: config)
         
@@ -293,7 +293,7 @@ public class ApplicationClient {
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
                     }
                     paginator.onNext?(response, error)
@@ -624,7 +624,7 @@ public class ApplicationClient {
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page?.nextId
                         
                     }
@@ -757,7 +757,7 @@ public class ApplicationClient {
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page?.nextId
                         
                     }
@@ -850,7 +850,7 @@ public class ApplicationClient {
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
                     }
                     paginator.onNext?(response, error)
@@ -1057,7 +1057,7 @@ public class ApplicationClient {
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page?.nextId
                         
                     }
@@ -1218,7 +1218,7 @@ public class ApplicationClient {
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page?.nextId
                         
                     }
@@ -1334,7 +1334,7 @@ public class ApplicationClient {
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page?.nextId
                         
                     }
@@ -1719,7 +1719,7 @@ public class ApplicationClient {
                         longitude: longitude
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
                     }
                     paginator.onNext?(response, error)
@@ -1997,6 +1997,7 @@ public class ApplicationClient {
             i: Bool?,
             b: Bool?,
             p: Bool?,
+            uid: Int?,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2004,6 +2005,7 @@ public class ApplicationClient {
             query["i"] = i
             query["b"] = b
             query["p"] = p
+            query["uid"] = uid
             
              
             
@@ -2378,8 +2380,10 @@ public class ApplicationClient {
             paymentIdentifier: String?,
             aggregatorName: String?,
             merchantCode: String?,
+            action: String?,
+            type: String?,
             
-            onResponse: @escaping (_ response: PaymentOptions?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ValidateCouponPaymentMode?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -2388,6 +2392,8 @@ public class ApplicationClient {
             query["payment_identifier"] = paymentIdentifier
             query["aggregator_name"] = aggregatorName
             query["merchant_code"] = merchantCode
+            query["action"] = action
+            query["type"] = type
             
              
             
@@ -2406,7 +2412,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentOptions.self, from: data)
+                        let response = Utility.decode(ValidateCouponPaymentMode.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -2423,7 +2429,7 @@ public class ApplicationClient {
         public func selectPaymentMode(
             uid: String?,
             body: UpdateCartPaymentRequest,
-            onResponse: @escaping (_ response: PaymentOptions?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -2445,7 +2451,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentOptions.self, from: data)
+                        let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -3045,6 +3051,1250 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ThemesSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class User {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Login/Register with Facebook
+        * Description: Used to login or register with Facebook
+        **/
+        public func loginWithFacebook(
+            body: OAuthRequestSchema,
+            onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/facebook-token",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AuthSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Login/Register with Google
+        * Description: Used to login or register with Google
+        **/
+        public func loginWithGoogle(
+            body: OAuthRequestSchema,
+            onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/google-token",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AuthSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Login/Register with Google for android
+        * Description: Used to login or register with Google for android
+        **/
+        public func loginWithGoogleAndroid(
+            body: OAuthRequestSchema,
+            onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/google-android",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AuthSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Login/Register with Google for ios
+        * Description: Used to login or register with google for ios
+        **/
+        public func loginWithGoogleIOS(
+            body: OAuthRequestSchema,
+            onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/google-ios",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AuthSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Login/Register with OTP
+        * Description: Used to login or register with OTP
+        **/
+        public func loginWithOTP(
+            platform: String?,
+            body: SendOtpRequestSchema,
+            onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/otp",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SendOtpResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Login/Register with password
+        * Description: Used to login or register with email & password
+        **/
+        public func loginWithEmailAndPassword(
+            body: PasswordLoginRequestSchema,
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/password",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Reset Password
+        * Description: Used to reset account password
+        **/
+        public func sendResetPasswordEmail(
+            platform: String?,
+            body: SendResetPasswordEmailRequestSchema,
+            onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/password/reset",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResetPasswordSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: 
+        * Description: 
+        **/
+        public func forgotPassword(
+            body: ForgotPasswordRequestSchema,
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/userauthentication/v1.0/login/password/reset/forgot",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: 
+        * Description: Send code incase of reset password
+        **/
+        public func sendResetToken(
+            body: CodeRequestBodySchema,
+            onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/password/reset/token",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResetPasswordSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Login/Register with token
+        * Description: Login/Register with token
+        **/
+        public func loginWithToken(
+            body: TokenRequestBodySchema,
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/token",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Registration Form
+        * Description: Register using form
+        **/
+        public func registerWithForm(
+            platform: String?,
+            body: FormRegisterRequestSchema,
+            onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/register/form",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(RegisterFormSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Verify email
+        * Description: Used to verify email
+        **/
+        public func verifyEmail(
+            body: CodeRequestBodySchema,
+            onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/verify/email",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VerifyEmailSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Verify mobile
+        * Description: Verify mobile
+        **/
+        public func verifyMobile(
+            body: CodeRequestBodySchema,
+            onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/verify/mobile",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VerifyEmailSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Check if user has password
+        * Description: Checks if user is using password or not
+        **/
+        public func hasPassword(
+            
+            onResponse: @escaping (_ response: HasPasswordSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/user/authentication/v1.0/has-password",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(HasPasswordSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update user password
+        * Description: Used to update user password
+        **/
+        public func updatePassword(
+            body: UpdatePasswordRequestSchema,
+            onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/password",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VerifyEmailSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Logout user
+        * Description: Used to log out user
+        **/
+        public func logout(
+            
+            onResponse: @escaping (_ response: LogoutSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/user/authentication/v1.0/logout",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LogoutSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Send OTP on mobile
+        * Description: Used to send otp to mobile
+        **/
+        public func sendOTPOnMobile(
+            platform: String?,
+            body: SendMobileOtpRequestSchema,
+            onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/otp/mobile/send",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OtpSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Verify OTP on mobile
+        * Description: Used to verify otp sent to mobile
+        **/
+        public func verifyMobileOTP(
+            platform: String?,
+            body: VerifyOtpRequestSchema,
+            onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/otp/mobile/verify",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VerifyOtpSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Send OTP on email
+        * Description: Used to send otp to email
+        **/
+        public func sendOTPOnEmail(
+            platform: String?,
+            body: SendEmailOtpRequestSchema,
+            onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/otp/email/send",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(EmailOtpSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Verify OTP on email
+        * Description: Used to verify otp sent to email
+        **/
+        public func verifyEmailOTP(
+            platform: String?,
+            body: VerifyOtpRequestSchema,
+            onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/otp/email/verify",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VerifyOtpSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get logged in user
+        * Description: Used to get logged in user details
+        **/
+        public func getLoggedInUser(
+            
+            onResponse: @escaping (_ response: UserSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/user/authentication/v1.0/session",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(UserSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of sessions
+        * Description: Lists all active sessions
+        **/
+        public func getListOfActiveSessions(
+            
+            onResponse: @escaping (_ response: SessionListSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/user/authentication/v1.0/sessions",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SessionListSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get platform config
+        * Description: Used to get platform config
+        **/
+        public func getPlatformConfig(
+            name: String?,
+            
+            onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["name"] = name
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/user/platform/v1.0/config",
+                query: query,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(PlatformSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Edit Profile Details
+        * Description: Used to update profile
+        **/
+        public func updateProfile(
+            platform: String?,
+            body: EditProfileRequestSchema,
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/profile/v1.0/detail",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Add mobile number to profile
+        * Description: Used to add new mobile number to profile
+        **/
+        public func addMobileNumber(
+            platform: String?,
+            body: EditMobileRequestSchema,
+            onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/user/profile/v1.0/mobile",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VerifyMobileOTPSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Delete mobile number from profile
+        * Description: Used to delete mobile number from profile
+        **/
+        public func deleteMobileNumber(
+            platform: String?,
+            active: Bool,
+            primary: Bool,
+            verified: Bool,
+            countryCode: String,
+            phone: String,
+            
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            query["active"] = active
+            query["primary"] = primary
+            query["verified"] = verified
+            query["country_code"] = countryCode
+            query["phone"] = phone
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/application/user/profile/v1.0/mobile",
+                query: query,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Set mobile as primary
+        * Description: Used to set a mobile number as primary
+        **/
+        public func setMobileNumberAsPrimary(
+            body: SendVerificationLinkMobileRequestSchema,
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/profile/v1.0/mobile/primary",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Send verification link to mobile
+        * Description: Used to send verification link to a mobile number
+        **/
+        public func sendVerificationLinkToMobile(
+            platform: String?,
+            body: SendVerificationLinkMobileRequestSchema,
+            onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/profile/v1.0/mobile/link/send",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SendMobileVerifyLinkSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Add email to profile
+        * Description: Used to add new email to profile
+        **/
+        public func addEmail(
+            platform: String?,
+            body: EditEmailRequestSchema,
+            onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/user/profile/v1.0/email",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VerifyEmailOTPSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Delete email from profile
+        * Description: Used to delete email from profile
+        **/
+        public func deleteEmail(
+            platform: String?,
+            active: Bool,
+            primary: Bool,
+            verified: Bool,
+            email: String,
+            
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            query["active"] = active
+            query["primary"] = primary
+            query["verified"] = verified
+            query["email"] = email
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/application/user/profile/v1.0/email",
+                query: query,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Set email as primary
+        * Description: Used to set an email as primart
+        **/
+        public func setEmailAsPrimary(
+            body: EditEmailRequestSchema,
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/profile/v1.0/email/primary",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Send verification link to email
+        * Description: Used to sent verification to an email
+        **/
+        public func sendVerificationLinkToEmail(
+            platform: String?,
+            body: EditEmailRequestSchema,
+            onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["platform"] = platform
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/profile/v1.0/email/link/send",
+                query: query,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SendEmailVerifyLinkSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -4156,561 +5406,6 @@ This operation will return the url for the uploaded file.
     
     
     
-    public class Configuration {
-        
-        var config: ApplicationConfig
-
-        init(config: ApplicationConfig) {
-            self.config = config;
-        }
-        
-        /**
-        *
-        * Summary: Get current application details
-        * Description: Get current application details.
-        **/
-        public func getApplication(
-            
-            onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/application",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(Application.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get application, owner and seller information
-        * Description: Get application information with owner and seller basic details
-        **/
-        public func getOwnerInfo(
-            
-            onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/about",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ApplicationAboutResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get basic application details
-        * Description: Get basic application details like name
-        **/
-        public func getBasicDetails(
-            
-            onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/detail",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ApplicationDetail.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get integration tokens
-        * Description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
-        **/
-        public func getIntegrationTokens(
-            
-            onResponse: @escaping (_ response: TokensResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/token",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(TokensResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Check if a new app version is available
-        * Description: Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
-        **/
-        public func getAppVersion(
-            body: AppVersionRequest,
-            onResponse: @escaping (_ response: AppVersionResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/configuration/v1.0/version",
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(AppVersionResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get deployment meta stores
-        * Description: Get deployment meta stores.
-        **/
-        public func getOrderingStores(
-            pageNo: Int?,
-            pageSize: Int?,
-            q: String?,
-            
-            onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
-            query["q"] = q
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/ordering-store/stores",
-                query: query,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(OrderingStores.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getOrderingStores
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getOrderingStoresPaginator(
-            pageSize: Int?,
-            q: String?
-            
-            ) -> Paginator<OrderingStores> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getOrderingStores(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        /**
-        *
-        * Summary: Get features of application
-        * Description: Get features of application
-        **/
-        public func getFeatures(
-            
-            onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/feature",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(AppFeatureResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get application information
-        * Description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
-        **/
-        public func getContactInfo(
-            
-            onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/information",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ApplicationInformation.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get application enabled currencies
-        * Description: Get currency list for allowed currencies under current application
-        **/
-        public func getCurrencies(
-            
-            onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/currencies",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CurrenciesResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get currency by id
-        * Description: Get currency object with symbol and name information by id.
-        **/
-        public func getCurrencyById(
-            id: String,
-            
-            onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/currency/\(id)",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(Currency.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get list of languages
-        * Description: Get list of supported languages under application.
-        **/
-        public func getLanguages(
-            
-            onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/languages",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(LanguageResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
-        * Description: Unset ordering store cookie.
-        **/
-        public func removeOrderingStoreCookie(
-            
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/application/current/ordering-store/select",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get Staff List.
-        * Description: Get a staff list based on the user's session token passed in the header.
-        **/
-        public func getAppStaffs(
-            orderIncent: Bool?,
-            orderingStore: Int?,
-            user: String?,
-            
-            onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            query["order_incent"] = orderIncent
-            query["ordering_store"] = orderingStore
-            query["user"] = user
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/configuration/v1.0/staff",
-                query: query,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(AppStaffResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-    }
-    
-    
-    
     public class Payment {
         
         var config: ApplicationConfig
@@ -5072,7 +5767,7 @@ This operation will return the url for the uploaded file.
             checkoutMode: String,
             refresh: Bool?,
             assignCardId: String?,
-            deliveryAddress: String?,
+            userDetails: String?,
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5083,7 +5778,7 @@ This operation will return the url for the uploaded file.
             query["checkout_mode"] = checkoutMode
             query["refresh"] = refresh
             query["assign_card_id"] = assignCardId
-            query["delivery_address"] = deliveryAddress
+            query["user_details"] = userDetails
             
              
             
@@ -5124,7 +5819,7 @@ This operation will return the url for the uploaded file.
             refresh: Bool?,
             assignCardId: String?,
             orderType: String,
-            deliveryAddress: String?,
+            userDetails: String?,
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5136,7 +5831,7 @@ This operation will return the url for the uploaded file.
             query["refresh"] = refresh
             query["assign_card_id"] = assignCardId
             query["order_type"] = orderType
-            query["delivery_address"] = deliveryAddress
+            query["user_details"] = userDetails
             
              
             
@@ -7749,6 +8444,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             i: Bool?,
             b: Bool?,
             p: Bool?,
+            uid: Int?,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
@@ -7756,6 +8452,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["i"] = i
             query["b"] = b
             query["p"] = p
+            query["uid"] = uid
             
              
             
@@ -8130,8 +8827,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             paymentIdentifier: String?,
             aggregatorName: String?,
             merchantCode: String?,
+            action: String?,
+            type: String?,
             
-            onResponse: @escaping (_ response: PaymentOptions?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ValidateCouponPaymentMode?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -8140,6 +8839,8 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["payment_identifier"] = paymentIdentifier
             query["aggregator_name"] = aggregatorName
             query["merchant_code"] = merchantCode
+            query["action"] = action
+            query["type"] = type
             
              
             
@@ -8158,7 +8859,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentOptions.self, from: data)
+                        let response = Utility.decode(ValidateCouponPaymentMode.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -8175,7 +8876,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         public func selectPaymentMode(
             uid: String?,
             body: UpdateCartPaymentRequest,
-            onResponse: @escaping (_ response: PaymentOptions?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
@@ -8197,7 +8898,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentOptions.self, from: data)
+                        let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
