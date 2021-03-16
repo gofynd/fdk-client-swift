@@ -10,6 +10,10 @@ public class PlatformClient {
 
     public let payment: Payment
 
+    public let companyProfile: CompanyProfile
+
+    public let inventory: Inventory
+
     public init(config: PlatformConfig) {
         self.config = config
         
@@ -18,6 +22,10 @@ public class PlatformClient {
         theme = Theme(config: config)
         
         payment = Payment(config: config)
+        
+        companyProfile = CompanyProfile(config: config)
+        
+        inventory = Inventory(config: config)
         
     }
     
@@ -610,6 +618,690 @@ public class PlatformClient {
     }
     
     
+    
+    public class CompanyProfile {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        /**
+        *
+        * Summary: Edit company profile
+        * Description: This API allows to edit the company profile of the seller account.
+        **/
+        public func updateCompany(
+            body: CompanyStoreSerializerRequest,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "patch",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get company profile
+        * Description: This API allows to view the company profile of the seller account.
+        **/
+        public func cbsOnboardGet(
+            
+            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get company metrics
+        * Description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+        **/
+        public func getCompanyMetrics(
+            
+            onResponse: @escaping (_ response: MetricsSerializer?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/metrics",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(MetricsSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get a single brand.
+        * Description: This API helps to get data associated to a particular brand.
+        **/
+        public func getBrand(
+            brandId: String,
+            
+            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Edit a brand.
+        * Description: This API allows to edit meta of a brand.
+        **/
+        public func editBrand(
+            brandId: String,
+            body: CreateUpdateBrandRequestSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Create a Brand.
+        * Description: This API allows to create a brand associated to a company.
+        **/
+        public func createBrand(
+            body: CreateUpdateBrandRequestSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get brands associated to a company
+        * Description: This API helps to get view brands associated to a particular company.
+        **/
+        public func getBrands(
+            
+            onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CompanyBrandListSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Create a company brand mapping.
+        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
+        **/
+        public func createBrand(
+            body: CompanyBrandPostRequestSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get list of locations
+        * Description: This API allows to view all the locations asscoiated to a company.
+        **/
+        public func getLocations(
+            storeType: String?,
+            q: String?,
+            stage: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["store_type"] = storeType
+            query["q"] = q
+            query["stage"] = stage
+            query["page_no"] = pageNo
+            query["page_size"] = pageSize
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LocationListSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Create a location asscoiated to a company.
+        * Description: This API allows to create a location associated to a company.
+        **/
+        public func createLocation(
+            body: LocationSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get details of a specific location.
+        * Description: This API helps to get data associated to a specific location.
+        **/
+        public func getLocationDetail(
+            locationId: String,
+            
+            onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetLocationSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
+        **/
+        public func updateLocation(
+            locationId: String,
+            body: LocationSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+    }
+    
+    
+    
+    public class Inventory {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Job Configs For A Company
+        * Description: REST Endpoint that returns all job configs for a company
+        **/
+        public func getJobsByCompany(
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigRawDTO?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["page_no"] = pageNo
+            query["page_size"] = pageSize
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/v1.0/company/\(companyId)/jobs",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeListJobConfigRawDTO.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Updates An Existing Job Config
+        * Description: REST Endpoint that updates a job config
+        **/
+        public func updateJob(
+            xUserData: String?,
+            body: JobConfigDTO,
+            onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/v1.0/company/\(companyId)/jobs",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeString.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Creates A New Job Config
+        * Description: REST Endpoint that creates a new job config
+        **/
+        public func createJob(
+            xUserData: String?,
+            body: JobConfigDTO,
+            onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/v1.0/company/\(companyId)/jobs",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeString.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Job Configs By Company And Integration
+        * Description: REST Endpoint that returns all job configs by company And integration
+        **/
+        public func getJobByCompanyAndIntegration(
+            integrationId: String,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigDTO?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["page_no"] = pageNo
+            query["page_size"] = pageSize
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/v1.0/company/\(companyId)/jobs/integration/\(integrationId)",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeListJobConfigDTO.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Job Configs Defaults
+        * Description: REST Endpoint that returns default fields job configs by company And integration
+        **/
+        public func getJobConfigDefaults(
+            
+            onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/v1.0/company/\(companyId)/jobs/defaults",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeJobConfigDTO.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Job Config By Code
+        * Description: REST Endpoint that returns job config by code
+        **/
+        public func getJobByCode(
+            code: String,
+            
+            onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/v1.0/company/\(companyId)/jobs/code/\(code)",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeJobConfigDTO.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Job Codes By Company And Integration
+        * Description: REST Endpoint that returns all job codes by company And integration
+        **/
+        public func getJobCodesByCompanyAndIntegration(
+            integrationId: String,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigListDTO?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["page_no"] = pageNo
+            query["page_size"] = pageSize
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/v1.0/company/\(companyId)/jobs/code/integration/\(integrationId)",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeListJobConfigListDTO.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+    }
+    
+    
 
     public func application(id: String) -> Application {
         return Application(applicationId: id, config: config)
@@ -627,6 +1319,10 @@ public class PlatformClient {
         
         public let payment: Payment
         
+        public let companyProfile: CompanyProfile
+        
+        public let inventory: Inventory
+        
         
         public init(applicationId: String, config: PlatformConfig) {
             self.config = config
@@ -639,6 +1335,10 @@ public class PlatformClient {
             theme = Theme(config: config, applicationId: applicationId)
             
             payment = Payment(config: config, applicationId: applicationId)
+            
+            companyProfile = CompanyProfile(config: config, applicationId: applicationId)
+            
+            inventory = Inventory(config: config, applicationId: applicationId)
             
         }
 
@@ -1848,6 +2548,55 @@ public class PlatformClient {
                 });
             }
             
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+            
+        public class CompanyProfile {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+            
+        public class Inventory {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
             
             
             

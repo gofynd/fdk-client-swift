@@ -87,12 +87,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductDetail?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -124,12 +127,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["store_id"] = storeId
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/sizes/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -164,12 +170,15 @@ public class ApplicationClient {
             var query: [String: Any] = [:] 
             query["pincode"] = pincode
             query["store_id"] = storeId
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/price/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -206,12 +215,15 @@ public class ApplicationClient {
             query["pincode"] = pincode
             query["page_no"] = pageNo
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/sellers/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -303,12 +315,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["slug"] = slug
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/compare/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -338,12 +353,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductCompareResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/similar/compare/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -373,12 +391,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductFrequentlyComparedSimilarResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/similar/compared-frequently/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -409,12 +430,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SimilarProductByTypeResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/similar/\(similarType)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -444,12 +468,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductVariantsResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/variants/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -488,12 +515,15 @@ public class ApplicationClient {
             query["sku_code"] = skuCode
             query["ean"] = ean
             query["upc"] = upc
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/stock-status/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -528,12 +558,15 @@ public class ApplicationClient {
             query["timestamp"] = timestamp
             query["page_size"] = pageSize
             query["page_id"] = pageId
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/stock-status/poll/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -628,12 +661,15 @@ public class ApplicationClient {
             query["page_size"] = pageSize
             query["page_no"] = pageNo
             query["page_type"] = pageType
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -748,12 +784,15 @@ public class ApplicationClient {
             query["department"] = department
             query["page_no"] = pageNo
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/brands/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -832,12 +871,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: BrandDetailResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/brands/\(slug)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -868,12 +910,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["department"] = department
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/categories/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -903,12 +948,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CategoryMetaResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/categories/\(slug)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -943,12 +991,15 @@ public class ApplicationClient {
             query["sort_on"] = sortOn
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/home/listing/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1027,12 +1078,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/departments/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1063,12 +1117,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["q"] = q
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/auto-complete/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1101,12 +1158,15 @@ public class ApplicationClient {
             var query: [String: Any] = [:] 
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/collections/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1190,12 +1250,15 @@ public class ApplicationClient {
             query["sort_on"] = sortOn
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1293,12 +1356,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/collections/\(slug)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1328,12 +1394,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetFollowListingResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1400,12 +1469,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1436,12 +1508,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1472,12 +1547,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: FollowerCountResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/count/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1508,12 +1586,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["collection_type"] = collectionType
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/follow/ids/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1554,12 +1635,15 @@ public class ApplicationClient {
             query["range"] = range
             query["latitude"] = latitude
             query["longitude"] = longitude
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/locations/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1675,12 +1759,15 @@ public class ApplicationClient {
             query["i"] = i
             query["b"] = b
             query["assign_card_id"] = assignCardId
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1711,12 +1798,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "head",
                 url: "/service/application/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1749,12 +1839,15 @@ public class ApplicationClient {
             var query: [String: Any] = [:] 
             query["i"] = i
             query["b"] = b
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1789,12 +1882,15 @@ public class ApplicationClient {
             query["uid"] = uid
             query["i"] = i
             query["b"] = b
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1825,12 +1921,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/basic",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1861,12 +1960,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/coupon",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1902,12 +2004,15 @@ public class ApplicationClient {
             query["i"] = i
             query["b"] = b
             query["p"] = p
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/coupon",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1938,12 +2043,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/application/cart/v1.0/coupon",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1980,12 +2088,15 @@ public class ApplicationClient {
             query["article_id"] = articleId
             query["uid"] = uid
             query["slug"] = slug
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/bulk-price",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2024,12 +2135,15 @@ public class ApplicationClient {
             query["checkout_mode"] = checkoutMode
             query["tags"] = tags
             query["is_default"] = isDefault
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/address",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2058,12 +2172,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/address",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2103,12 +2220,15 @@ public class ApplicationClient {
             query["checkout_mode"] = checkoutMode
             query["tags"] = tags
             query["is_default"] = isDefault
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/address/\(id)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2138,12 +2258,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/address/\(id)",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2173,12 +2296,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/application/cart/v1.0/address/\(id)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2213,12 +2339,15 @@ public class ApplicationClient {
             query["uid"] = uid
             query["i"] = i
             query["b"] = b
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/select-address",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2259,12 +2388,15 @@ public class ApplicationClient {
             query["payment_identifier"] = paymentIdentifier
             query["aggregator_name"] = aggregatorName
             query["merchant_code"] = merchantCode
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/payment",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2295,12 +2427,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/payment",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2337,12 +2472,15 @@ public class ApplicationClient {
             query["uid"] = uid
             query["address_id"] = addressId
             query["area_code"] = areaCode
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/shipment",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2371,12 +2509,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/checkout",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2407,12 +2548,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/meta",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2441,12 +2585,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/share-cart",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2476,12 +2623,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/share-cart/\(token)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2512,12 +2662,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/share-cart/\(token)/\(action)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2559,12 +2712,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/lead/v1.0/ticket/\(id)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2594,12 +2750,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/lead/v1.0/ticket/\(ticketId)/history",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2628,12 +2787,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/lead/v1.0/ticket/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2663,12 +2825,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/lead/v1.0/form/\(slug)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2698,12 +2863,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SubmitCustomFormResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/lead/v1.0/form/\(slug)/submit",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2733,12 +2901,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/lead/v1.0/video/room/\(uniqueName)/participants",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2768,12 +2939,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/lead/v1.0/video/room/\(uniqueName)/token",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2814,12 +2988,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/theme/v1.0/applied-theme",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2849,12 +3026,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/theme/v1.0/\(themeId)/preview",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2895,12 +3075,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: AnnouncementsResponseSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/announcements",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2930,12 +3113,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CustomBlog?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/blogs/\(slug)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2964,12 +3150,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: FaqResponseSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/faq",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2998,12 +3187,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/faq/categories",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3033,12 +3225,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/faq/\(idOrSlug)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3068,12 +3263,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetFaqCategoryByIdOrSlugSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/faq/category/\(idOrSlug)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3103,12 +3301,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/faq/category/\(idOrSlug)/faqs",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3137,12 +3338,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: LandingPage?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/landing-page",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3171,12 +3375,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/legal",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3205,12 +3412,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: Navigation?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/navigations/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3240,12 +3450,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CustomPage?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/pages/\(slug)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3274,12 +3487,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: Seo?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/seo",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3309,12 +3525,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: Slideshow?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/slideshow/\(slug)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3343,12 +3562,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/support",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3377,12 +3599,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/tags",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3423,12 +3648,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CommunicationConsent?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/communication/v1.0/consent",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3457,12 +3685,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CommunicationConsentRes?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/communication/v1.0/consent",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3491,12 +3722,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: PushtokenRes?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/communication/v1.0/pn-token",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3537,12 +3771,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/share/v1.0/qr/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3572,12 +3809,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/share/v1.0/qr/products/\(slug)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3607,12 +3847,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/share/v1.0/qr/collection/\(slug)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3643,12 +3886,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["url"] = url
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/share/v1.0/qr/url/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3677,12 +3923,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/share/v1.0/links/short-link/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3712,12 +3961,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/share/v1.0/links/short-link/\(hash)/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3747,12 +3999,15 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/share/v1.0/links/short-link/\(hash)/original/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3813,12 +4068,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3867,12 +4125,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3913,12 +4174,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/application",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3947,12 +4211,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/about",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3981,12 +4248,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/detail",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4015,12 +4285,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: TokensResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/token",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4049,12 +4322,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: AppVersionResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/configuration/v1.0/version",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4089,12 +4365,15 @@ This operation will return the url for the uploaded file.
             query["page_no"] = pageNo
             query["page_size"] = pageSize
             query["q"] = q
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/ordering-store/stores",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4172,12 +4451,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/feature",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4206,12 +4488,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/information",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4240,12 +4525,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/currencies",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4275,12 +4563,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/currency/\(id)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4309,12 +4600,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/languages",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4343,12 +4637,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/application/current/ordering-store/select",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4383,12 +4680,15 @@ This operation will return the url for the uploaded file.
             query["order_incent"] = orderIncent
             query["ordering_store"] = orderingStore
             query["user"] = user
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/staff",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4432,12 +4732,16 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["refresh"] = refresh
-             
+            
+            var headers: [(key: String, value: String)] = [] 
+            headers.append((key: "x-api-token", value: xApiToken))
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/config/aggregators/key",
                 query: query,
+                extraHeaders:  headers,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4466,12 +4770,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: AttachCardsResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/card/attach",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4502,12 +4809,15 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["refresh"] = refresh
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/card/aggregator",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4538,12 +4848,15 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["force_refresh"] = forceRefresh
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/cards",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4572,12 +4885,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: DeleteCardsResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/card/remove",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4606,12 +4922,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/payment/customer/validation",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4640,12 +4959,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ChargeCustomerResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/payment/confirm/charge",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4674,12 +4996,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/payment/request",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4708,12 +5033,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/payment/confirm/polling",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4756,12 +5084,15 @@ This operation will return the url for the uploaded file.
             query["refresh"] = refresh
             query["assign_card_id"] = assignCardId
             query["delivery_address"] = deliveryAddress
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/payment/options",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4806,12 +5137,15 @@ This operation will return the url for the uploaded file.
             query["assign_card_id"] = assignCardId
             query["order_type"] = orderType
             query["delivery_address"] = deliveryAddress
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/payment/options/pos",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4842,12 +5176,15 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["order_id"] = orderId
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/refund/beneficiary/user",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4878,12 +5215,15 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["ifsc_code"] = ifscCode
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/ifsc-code/verify",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4914,12 +5254,15 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["order_id"] = orderId
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/refund/beneficiaries/order",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4948,12 +5291,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: AddBeneficiaryViaOtpVerificationResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/refund/verification/bank",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4982,12 +5328,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/refund/account",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5016,12 +5365,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: WalletOtpResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/refund/verification/wallet",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5050,12 +5402,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/payment/v1.0/refund/beneficiary/default",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5104,12 +5459,15 @@ This operation will return the url for the uploaded file.
             query["page_size"] = pageSize
             query["from_date"] = fromDate
             query["to_date"] = toDate
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/v1.0/orders",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5139,12 +5497,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/v1.0/orders/\(orderId)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5174,12 +5535,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ShipmentById?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/v1.0/orders/shipments/\(shipmentId)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5209,12 +5573,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ShipmentReasons?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/v1.0/orders/shipments/\(shipmentId)/reasons",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5244,12 +5611,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/v1.0/orders/shipments/\(shipmentId)/status",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5279,12 +5649,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ShipmentTrack?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/v1.0/orders/shipments/\(shipmentId)/track",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5325,12 +5698,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: CatalogueOrderResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/rewards/v1.0/catalogue/offer/order/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5359,12 +5735,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: OrderDiscountResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/rewards/v1.0/user/offers/order-discount/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5393,12 +5772,15 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/rewards/v1.0/user/points",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5432,12 +5814,15 @@ The list of points history is paginated.
             var query: [String: Any] = [:] 
             query["pageID"] = pageId
             query["pageSize"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/rewards/v1.0/user/points/history/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5508,12 +5893,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/rewards/v1.0/user/referral/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5542,12 +5930,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: RedeemReferralCodeResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/rewards/v1.0/user/referral/redeem/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5588,12 +5979,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XInsertResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/feedback/v1.0/abuse",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5622,12 +6016,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/feedback/v1.0/abuse",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5664,12 +6061,15 @@ The list of points history is paginated.
             query["id"] = id
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/abuse/entity/\(entityType)/entityId/\(entityId)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5764,12 +6164,15 @@ The list of points history is paginated.
             var query: [String: Any] = [:] 
             query["page_no"] = pageNo
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/attributes",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5841,12 +6244,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XInsertResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/feedback/v1.0/attributes",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5876,12 +6282,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: Attribute?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/attributes/\(slug)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5911,12 +6320,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/feedback/v1.0/attributes/\(slug)",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5945,12 +6357,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XInsertResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/feedback/v1.0/comment",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -5979,12 +6394,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/feedback/v1.0/comment",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6024,12 +6442,15 @@ The list of points history is paginated.
             query["user_id"] = userId
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/comment/entity/\(entityType)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6128,12 +6549,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: CheckEligibilityResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/config/entity/\(entityType)/entityId/\(entityId)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6162,12 +6586,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/application/feedback/v1.0/media/",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6196,12 +6623,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XInsertResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/feedback/v1.0/media/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6230,12 +6660,15 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/feedback/v1.0/media/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6272,12 +6705,15 @@ The list of points history is paginated.
             query["id"] = id
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/media/entity/\(entityType)/entityId/\(entityId)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6377,12 +6813,15 @@ It gives following response data: review count, rating average. review metrics /
             query["id"] = id
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/rating/summary/entity/\(entityType)/entityId/\(entityId)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6474,12 +6913,15 @@ attributes rating, entity rating, title, description, media resources and templa
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/feedback/v1.0/review/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6509,12 +6951,15 @@ attributes rating, entity rating, title, description, media resources and templa
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/feedback/v1.0/review/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6563,12 +7008,15 @@ attributes rating, entity rating, title, description, media resources and templa
             query["sort"] = sort
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/review/entity/\(entityType)/entityId/\(entityId)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6701,12 +7149,15 @@ attributes rating, entity rating, title, description, media resources and templa
             query["template_id"] = templateId
             query["entity_id"] = entityId
             query["entity_type"] = entityType
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/template/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6736,12 +7187,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: XInsertResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/feedback/v1.0/template/qna/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6770,12 +7224,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/feedback/v1.0/template/qna/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6814,12 +7271,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["show_answer"] = showAnswer
             query["page_id"] = pageId
             query["page_size"] = pageSize
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/template/qna/entity/\(entityType)/entityId/\(entityId)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6920,12 +7380,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             var query: [String: Any] = [:] 
             query["id"] = id
             query["ref_type"] = refType
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/vote/",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6954,12 +7417,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: XInsertResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/feedback/v1.0/vote/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6988,12 +7454,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: XUpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/feedback/v1.0/vote/",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7042,12 +7511,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["i"] = i
             query["b"] = b
             query["assign_card_id"] = assignCardId
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7078,12 +7550,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "head",
                 url: "/service/application/pos/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7116,12 +7591,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             var query: [String: Any] = [:] 
             query["i"] = i
             query["b"] = b
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7156,12 +7634,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["uid"] = uid
             query["i"] = i
             query["b"] = b
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/detail",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7192,12 +7673,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/basic",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7228,12 +7712,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/coupon",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7269,12 +7756,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["i"] = i
             query["b"] = b
             query["p"] = p
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/coupon",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7305,12 +7795,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/application/pos/cart/v1.0/coupon",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7347,12 +7840,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["article_id"] = articleId
             query["uid"] = uid
             query["slug"] = slug
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/bulk-price",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7391,12 +7887,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["checkout_mode"] = checkoutMode
             query["tags"] = tags
             query["is_default"] = isDefault
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/address",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7425,12 +7924,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/address",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7470,12 +7972,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["checkout_mode"] = checkoutMode
             query["tags"] = tags
             query["is_default"] = isDefault
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/address/\(id)",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7505,12 +8010,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/address/\(id)",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7540,12 +8048,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/application/pos/cart/v1.0/address/\(id)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7580,12 +8091,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["uid"] = uid
             query["i"] = i
             query["b"] = b
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/select-address",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7626,12 +8140,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["payment_identifier"] = paymentIdentifier
             query["aggregator_name"] = aggregatorName
             query["merchant_code"] = merchantCode
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/payment",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7662,12 +8179,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/payment",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7710,12 +8230,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["address_id"] = addressId
             query["area_code"] = areaCode
             query["order_type"] = orderType
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/shipment",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7754,12 +8277,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             query["uid"] = uid
             query["address_id"] = addressId
             query["order_type"] = orderType
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/shipment",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7790,12 +8316,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/checkout",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7826,12 +8355,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/meta",
                 query: query,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7864,12 +8396,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             var query: [String: Any] = [:] 
             query["area_code"] = areaCode
             query["uid"] = uid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/available-delivery-mode",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7900,12 +8435,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["store_uid"] = storeUid
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/store-address",
                 query: query,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7934,12 +8472,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/share-cart",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -7969,12 +8510,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/share-cart/\(token)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -8005,12 +8549,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/share-cart/\(token)/\(action)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -8051,12 +8598,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: GetTatProductResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/application/logistics/v1.0",
                 query: nil,
+                extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -8086,12 +8636,15 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: GetPincodeCityResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/logistics/v1.0/pincode/\(pincode)",
                 query: nil,
+                extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
