@@ -12,6 +12,8 @@ public class PlatformClient {
 
     public let payment: Payment
 
+    public let order: Order
+
     public let companyProfile: CompanyProfile
 
     public let inventory: Inventory
@@ -28,6 +30,8 @@ public class PlatformClient {
         user = User(config: config)
         
         payment = Payment(config: config)
+        
+        order = Order(config: config)
         
         companyProfile = CompanyProfile(config: config)
         
@@ -634,6 +638,284 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SaveSubscriptionSetupIntentResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+    }
+    
+    
+    
+    public class Order {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        /**
+        *
+        * Summary: Update status of Shipment
+        * Description: Update Shipment Status
+        **/
+        public func shipmentStatusUpdate(
+            body: UpdateShipmentStatusBody,
+            onResponse: @escaping (_ response: UpdateShipmentStatusResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order/v1.0/company/\(companyId)/actions/status",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(UpdateShipmentStatusResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Activity Status
+        * Description: Get Activity Status
+        **/
+        public func activityStatus(
+            bagId: String,
+            
+            onResponse: @escaping (_ response: GetActivityStatus?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["bag_id"] = bagId
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/actions/activity/status",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetActivityStatus.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Update Store Process-Shipment
+        * Description: Update Store Process-Shipment
+        **/
+        public func storeProcessShipmentUpdate(
+            body: UpdateProcessShipmenstRequestBody,
+            onResponse: @escaping (_ response: UpdateProcessShipmenstRequestResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order/v1.0/company/\(companyId)/actions/store/process-shipments",
+                query: nil,
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(UpdateProcessShipmenstRequestResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Orders for company based on Company Id
+        * Description: Get Orders
+        **/
+        public func getOrdersByCompanyId(
+            pageNo: String?,
+            pageSize: String?,
+            fromDate: String?,
+            toDate: String?,
+            q: String?,
+            stage: String?,
+            salesChannels: String?,
+            orderId: String?,
+            stores: String?,
+            status: String?,
+            shortenUrls: Bool?,
+            filterType: String?,
+            
+            onResponse: @escaping (_ response: OrderListing?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["page_no"] = pageNo
+            query["page_size"] = pageSize
+            query["from_date"] = fromDate
+            query["to_date"] = toDate
+            query["q"] = q
+            query["stage"] = stage
+            query["sales_channels"] = salesChannels
+            query["order_id"] = orderId
+            query["stores"] = stores
+            query["status"] = status
+            query["shorten_urls"] = shortenUrls
+            query["filter_type"] = filterType
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/orders",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OrderListing.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get Ping
+        * Description: Get Ping
+        **/
+        public func getPing(
+            
+            onResponse: @escaping (_ response: GetPingResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/ping",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetPingResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Voice Callback
+        * Description: Voice Callback
+        **/
+        public func voiceCallback(
+            
+            onResponse: @escaping (_ response: GetVoiceCallbackResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/voice/callback",
+                query: nil,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetVoiceCallbackResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Get Voice Click to Call
+        * Description: Voice Click to Call
+        **/
+        public func voiceClickToCall(
+            caller: String,
+            receiver: String,
+            
+            onResponse: @escaping (_ response: GetClickToCallResponse?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["caller"] = caller
+            query["receiver"] = receiver
+             
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/voice/click-to-call",
+                query: query,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetClickToCallResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1364,6 +1646,8 @@ public class PlatformClient {
         
         public let payment: Payment
         
+        public let order: Order
+        
         public let companyProfile: CompanyProfile
         
         public let inventory: Inventory
@@ -1384,6 +1668,8 @@ public class PlatformClient {
             user = User(config: config, applicationId: applicationId)
             
             payment = Payment(config: config, applicationId: applicationId)
+            
+            order = Order(config: config, applicationId: applicationId)
             
             companyProfile = CompanyProfile(config: config, applicationId: applicationId)
             
@@ -2759,6 +3045,163 @@ public class PlatformClient {
             
             
             
+            
+            
+            
+        }
+        
+        
+            
+        public class Order {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Track Shipment by shipment id, for application based on application Id
+            * Description: Shipment Track
+            **/
+            public func trackShipmentPlatform(
+                shipmentId: String,
+                
+                onResponse: @escaping (_ response: PlatformShipmentTrack?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/track",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PlatformShipmentTrack.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Track Order by order id, for application based on application Id
+            * Description: Order Track
+            **/
+            public func trackOrder(
+                orderId: String,
+                
+                onResponse: @escaping (_ response: PlatformOrderTrack?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/track",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PlatformOrderTrack.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get all failed orders application wise
+            * Description: Failed Orders
+            **/
+            public func failedOrders(
+                
+                onResponse: @escaping (_ response: FailedOrders?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/failed",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(FailedOrders.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Reprocess order by order id
+            * Description: Order Reprocess
+            **/
+            public func reprocessOrder(
+                orderId: String,
+                
+                onResponse: @escaping (_ response: UpdateOrderReprocessResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/reprocess",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UpdateOrderReprocessResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
             
             
             

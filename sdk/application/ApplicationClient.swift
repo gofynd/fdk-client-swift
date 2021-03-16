@@ -6142,7 +6142,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/v1.0/orders",
+                url: "/service/application/order/v1.0/orders",
                 query: query,
                 extraHeaders:  [],
                 body: nil,
@@ -6180,7 +6180,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/v1.0/orders/\(orderId)",
+                url: "/service/application/order/v1.0/orders/\(orderId)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6218,7 +6218,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/v1.0/orders/shipments/\(shipmentId)",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6256,7 +6256,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/v1.0/orders/shipments/\(shipmentId)/reasons",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/reasons",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6294,7 +6294,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/v1.0/orders/shipments/\(shipmentId)/status",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/status",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -6332,7 +6332,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/v1.0/orders/shipments/\(shipmentId)/track",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/track",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
