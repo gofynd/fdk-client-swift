@@ -8,6 +8,7 @@
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Cart](#Cart) - Cart APIs 
 
@@ -177,6 +178,14 @@
     * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    
+
+* [Share](#Share)
+  * Methods
+    * [createShortLink](#createshortlink)
+    * [getShortLinks](#getshortlinks)
+    * [getShortLinkByHash](#getshortlinkbyhash)
+    * [updateShortLinkById](#updateshortlinkbyid)
     
 
 * [Inventory](#Inventory)
@@ -12314,6 +12323,164 @@ Bad request. See the error object in the response body for specific reason
 
 
 Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Share
+
+
+#### createShortLink
+Create short link
+
+```swift
+share.createShortLink(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Create short link
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShortLinks
+Get short links
+
+```swift
+share.getShortLinks(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, createdBy: createdBy, active: active, q: q) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+| createdBy | string | Short link creator | 
+| active | string | Short link active status | 
+| q | string | Search text for original and short url | 
+
+Get short links
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkList`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShortLinkByHash
+Get short link by hash
+
+```swift
+share.getShortLinkByHash(companyId: companyId, applicationId: applicationId, hash: hash) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| hash | string | Hash of short url | 
+
+Get short link by hash
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShortLinkById
+Update short link by id
+
+```swift
+share.updateShortLinkById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Short link document identifier | 
+
+Update short link by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
 
 
 

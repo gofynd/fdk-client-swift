@@ -18,6 +18,8 @@ public class PlatformClient {
 
     public let companyProfile: CompanyProfile
 
+    public let share: Share
+
     public let inventory: Inventory
 
     public let cart: Cart
@@ -38,6 +40,8 @@ public class PlatformClient {
         order = Order(config: config)
         
         companyProfile = CompanyProfile(config: config)
+        
+        share = Share(config: config)
         
         inventory = Inventory(config: config)
         
@@ -1424,6 +1428,23 @@ public class PlatformClient {
     
     
     
+    public class Share {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
+    
     public class Inventory {        
         var config: PlatformConfig
         var companyId: String
@@ -1727,6 +1748,8 @@ public class PlatformClient {
         
         public let companyProfile: CompanyProfile
         
+        public let share: Share
+        
         public let inventory: Inventory
         
         public let cart: Cart
@@ -1751,6 +1774,8 @@ public class PlatformClient {
             order = Order(config: config, applicationId: applicationId)
             
             companyProfile = CompanyProfile(config: config, applicationId: applicationId)
+            
+            share = Share(config: config, applicationId: applicationId)
             
             inventory = Inventory(config: config, applicationId: applicationId)
             
@@ -5278,6 +5303,165 @@ public class PlatformClient {
             
             
             
+        }
+        
+        
+            
+        public class Share {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            /**
+            *
+            * Summary: Create short link
+            * Description: Create short link
+            **/
+            public func createShortLink(
+                body: ShortLinkReq,
+                onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link",
+                    query: nil,
+                    body: body.dictionary,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ShortLinkRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get short links
+            * Description: Get short links
+            **/
+            public func getShortLinks(
+                pageNo: String?,
+                pageSize: String?,
+                createdBy: String?,
+                active: String?,
+                q: String?,
+                
+                onResponse: @escaping (_ response: ShortLinkList?, _ error: FDKError?) -> Void
+            ) {
+                var query: [String: Any] = [:] 
+                query["page_no"] = pageNo
+                query["page_size"] = pageSize
+                query["created_by"] = createdBy
+                query["active"] = active
+                query["q"] = q
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link",
+                    query: query,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ShortLinkList.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get short link by hash
+            * Description: Get short link by hash
+            **/
+            public func getShortLinkByHash(
+                hash: String,
+                
+                onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/shortLink/\(hash)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ShortLinkRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update short link by id
+            * Description: Update short link by id
+            **/
+            public func updateShortLinkById(
+                id: String,
+                
+                onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/services/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/shortLink/\(id)",
+                    query: nil,
+                    body: nil,
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ShortLinkRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
         }
         
         

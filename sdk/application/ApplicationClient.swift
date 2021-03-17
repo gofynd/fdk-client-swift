@@ -1463,10 +1463,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        * Summary: UnFollow a Product
+        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: Int,
             
@@ -1478,7 +1478,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1502,10 +1502,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: Int,
             
@@ -1517,7 +1517,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -7066,8 +7066,8 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["pageID"] = pageId
-            query["pageSize"] = pageSize
+            query["page_id"] = pageId
+            query["page_size"] = pageSize
             
              
             
@@ -7114,21 +7114,23 @@ The list of points history is paginated.
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getUserPointsHistoryPaginator(
+            pageSize: Int?
             
             ) -> Paginator<PointsHistoryResponse> {
-            let pageSize = 20
-            let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "number")
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getUserPointsHistory(
                         
-                        pageId: nil
+                        pageId: paginator.pageId
                         ,
-                        pageSize: nil
+                        pageSize: paginator.pageSize
                         
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        paginator.pageId = response.page?.nextId
+                        
                     }
                     paginator.onNext?(response, error)
                 }
