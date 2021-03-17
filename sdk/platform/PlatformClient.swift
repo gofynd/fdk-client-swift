@@ -12,6 +12,8 @@ public class PlatformClient {
 
     public let content: Content
 
+    public let communication: Communication
+
     public let payment: Payment
 
     public let order: Order
@@ -34,6 +36,8 @@ public class PlatformClient {
         user = User(config: config)
         
         content = Content(config: config)
+        
+        communication = Communication(config: config)
         
         payment = Payment(config: config)
         
@@ -74,17 +78,32 @@ public class PlatformClient {
             onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["items"] = items
-            query["filters"] = filters
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = items {
+                query["items"] = value
+            }
+            
+            if let value = filters {
+                query["filters"] = value
+            }
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -111,13 +130,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -146,13 +168,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -180,13 +205,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -216,13 +244,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -250,13 +281,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -404,6 +438,55 @@ public class PlatformClient {
     
     
     
+    public class Communication {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
     public class Payment {        
         var config: PlatformConfig
         var companyId: String
@@ -429,14 +512,20 @@ public class PlatformClient {
             onResponse: @escaping (_ response: PayoutsResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["unique_external_id"] = uniqueExternalId
+            
+            if let value = uniqueExternalId {
+                query["unique_external_id"] = value
+            }
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -463,13 +552,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: PayoutResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -497,13 +589,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -531,13 +626,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "patch",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -565,13 +663,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: DeletePayoutResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -598,13 +699,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SubscriptionPaymentMethodResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/methods",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -635,13 +739,16 @@ public class PlatformClient {
             var query: [String: Any] = [:] 
             query["unique_external_id"] = uniqueExternalId
             query["payment_method_id"] = paymentMethodId
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/methods",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -668,13 +775,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SubscriptionConfigResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/configs",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -701,13 +811,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SaveSubscriptionSetupIntentResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/setup/intent",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -747,13 +860,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: UpdateShipmentStatusResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/order/v1.0/company/\(companyId)/actions/status",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -782,13 +898,16 @@ public class PlatformClient {
         ) {
             var query: [String: Any] = [:] 
             query["bag_id"] = bagId
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/actions/activity/status",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -815,13 +934,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: UpdateProcessShipmenstRequestResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/order/v1.0/company/\(companyId)/actions/store/process-shipments",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -860,25 +982,64 @@ public class PlatformClient {
             onResponse: @escaping (_ response: OrderListing?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
-            query["from_date"] = fromDate
-            query["to_date"] = toDate
-            query["q"] = q
-            query["stage"] = stage
-            query["sales_channels"] = salesChannels
-            query["order_id"] = orderId
-            query["stores"] = stores
-            query["status"] = status
-            query["shorten_urls"] = shortenUrls
-            query["filter_type"] = filterType
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
+            if let value = fromDate {
+                query["from_date"] = value
+            }
+            
+            if let value = toDate {
+                query["to_date"] = value
+            }
+            
+            if let value = q {
+                query["q"] = value
+            }
+            
+            if let value = stage {
+                query["stage"] = value
+            }
+            
+            if let value = salesChannels {
+                query["sales_channels"] = value
+            }
+            
+            if let value = orderId {
+                query["order_id"] = value
+            }
+            
+            if let value = stores {
+                query["stores"] = value
+            }
+            
+            if let value = status {
+                query["status"] = value
+            }
+            
+            if let value = shortenUrls {
+                query["shorten_urls"] = value
+            }
+            
+            if let value = filterType {
+                query["filter_type"] = value
+            }
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/orders",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -909,13 +1070,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: GetPingResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/ping",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -942,13 +1106,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: GetVoiceCallbackResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/voice/callback",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -979,13 +1146,16 @@ public class PlatformClient {
             var query: [String: Any] = [:] 
             query["caller"] = caller
             query["receiver"] = receiver
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/voice/click-to-call",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1025,13 +1195,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "patch",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1058,13 +1231,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1091,13 +1267,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: MetricsSerializer?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/metrics",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1125,13 +1304,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1159,13 +1341,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1192,13 +1377,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1225,13 +1413,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1258,13 +1449,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1291,13 +1485,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1329,18 +1526,36 @@ public class PlatformClient {
             onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["store_type"] = storeType
-            query["q"] = q
-            query["stage"] = stage
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = storeType {
+                query["store_type"] = value
+            }
+            
+            if let value = q {
+                query["q"] = value
+            }
+            
+            if let value = stage {
+                query["stage"] = value
+            }
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1368,13 +1583,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1402,13 +1620,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1467,15 +1688,24 @@ public class PlatformClient {
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigRawDTO?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1503,13 +1733,20 @@ public class PlatformClient {
             onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
         ) {
              
-             
+            
+            var headers: [(key: String, value: String)] = [] 
+            
+            if let value = xUserData {
+                headers.append((key: "x-user-data", value: value))
+            }
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
                 url: "/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
+                headers: headers,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1537,13 +1774,20 @@ public class PlatformClient {
             onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
         ) {
              
-             
+            
+            var headers: [(key: String, value: String)] = [] 
+            
+            if let value = xUserData {
+                headers.append((key: "x-user-data", value: value))
+            }
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
+                headers: headers,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1573,15 +1817,24 @@ public class PlatformClient {
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigDTO?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs/integration/\(integrationId)",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1608,13 +1861,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs/defaults",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1642,13 +1898,16 @@ public class PlatformClient {
             onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
         ) {
              
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs/code/\(code)",
                 query: nil,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1678,15 +1937,24 @@ public class PlatformClient {
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigListDTO?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
              
+            
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs/code/integration/\(integrationId)",
                 query: query,
                 body: nil,
+                headers: [],
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1742,6 +2010,8 @@ public class PlatformClient {
         
         public let content: Content
         
+        public let communication: Communication
+        
         public let payment: Payment
         
         public let order: Order
@@ -1768,6 +2038,8 @@ public class PlatformClient {
             user = User(config: config, applicationId: applicationId)
             
             content = Content(config: config, applicationId: applicationId)
+            
+            communication = Communication(config: config, applicationId: applicationId)
             
             payment = Payment(config: config, applicationId: applicationId)
             
@@ -1811,15 +2083,24 @@ public class PlatformClient {
                 onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
             ) {
                 var query: [String: Any] = [:] 
-                query["items"] = items
-                query["filters"] = filters
+                
+                if let value = items {
+                    query["items"] = value
+                }
+                
+                if let value = filters {
+                    query["filters"] = value
+                }
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -1850,12 +2131,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -1884,12 +2168,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -1920,12 +2207,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)/history",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -1954,12 +2244,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(ticketId)/history",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -1988,12 +2281,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2022,12 +2318,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2055,12 +2354,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2088,12 +2390,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2122,12 +2427,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room/\(uniqueName)/token",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2156,12 +2464,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room/\(uniqueName)/participants",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2189,12 +2500,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2222,12 +2536,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/video/room",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2271,15 +2588,24 @@ public class PlatformClient {
                 onResponse: @escaping (_ response: ThemesListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 var query: [String: Any] = [:] 
-                query["page_size"] = pageSize
-                query["page_no"] = pageNo
+                
+                if let value = pageSize {
+                    query["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    query["page_no"] = value
+                }
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/library",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2307,12 +2633,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/library",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2340,12 +2669,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/apply",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2374,12 +2706,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/upgradable",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2408,12 +2743,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/upgrade",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2442,15 +2780,24 @@ public class PlatformClient {
                 onResponse: @escaping (_ response: ThemesListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 var query: [String: Any] = [:] 
-                query["page_size"] = pageSize
-                query["page_no"] = pageNo
+                
+                if let value = pageSize {
+                    query["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    query["page_no"] = value
+                }
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/public/library",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2478,12 +2825,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2511,12 +2861,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2544,12 +2897,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/fonts",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2578,12 +2934,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2612,12 +2971,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2646,12 +3008,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2680,12 +3045,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/preview",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2714,12 +3082,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/publish",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2748,12 +3119,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/unpublish",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2782,12 +3156,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/archive",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2816,12 +3193,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/unarchive",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2866,16 +3246,28 @@ public class PlatformClient {
                 onResponse: @escaping (_ response: CustomerListResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 var query: [String: Any] = [:] 
-                query["q"] = q
-                query["page_size"] = pageSize
-                query["page_no"] = pageNo
+                
+                if let value = q {
+                    query["q"] = value
+                }
+                
+                if let value = pageSize {
+                    query["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    query["page_no"] = value
+                }
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/list",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2898,19 +3290,25 @@ public class PlatformClient {
             * Description: Search users
             **/
             public func searchUsers(
-                query: String?,
+                q: String?,
                 
                 onResponse: @escaping (_ response: UserSearchResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 var query: [String: Any] = [:] 
-                query["query"] = query
+                
+                if let value = q {
+                    query["q"] = value
+                }
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/search",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2938,12 +3336,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/platform/config",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -2971,12 +3372,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/platform/config",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3019,12 +3423,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3052,12 +3459,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3086,12 +3496,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3120,12 +3533,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3154,12 +3570,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3188,12 +3607,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3221,12 +3643,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3254,12 +3679,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3288,12 +3716,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3322,12 +3753,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3356,12 +3790,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(slug)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3389,12 +3826,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/categories",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3423,12 +3863,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(idOrSlug)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3456,12 +3899,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3490,12 +3936,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3524,12 +3973,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3558,12 +4010,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(idOrSlug)/faqs",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3592,12 +4047,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faqs",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3627,12 +4085,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faq/\(faqId)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3662,12 +4123,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faq/\(faqId)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3696,12 +4160,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/\(idOrSlug)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3729,12 +4196,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3762,12 +4232,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3796,12 +4269,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landingPage/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3830,12 +4306,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landingPage/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3863,12 +4342,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/legal",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3896,12 +4378,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/legal",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3931,12 +4416,15 @@ public class PlatformClient {
                 var query: [String: Any] = [:] 
                 query["device_platform"] = devicePlatform
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3964,12 +4452,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -3997,12 +4488,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/default",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4033,12 +4527,15 @@ public class PlatformClient {
                 var query: [String: Any] = [:] 
                 query["device_platform"] = devicePlatform
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(slug)",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4067,12 +4564,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4101,12 +4601,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4134,12 +4637,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/meta",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4167,12 +4673,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/spec",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4200,12 +4709,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4233,12 +4745,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4266,12 +4781,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/preview/",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4300,12 +4818,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/publish/\(slug)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4334,12 +4855,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4368,12 +4892,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4402,12 +4929,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/\(slug)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4435,12 +4965,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4468,12 +5001,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4503,12 +5039,15 @@ public class PlatformClient {
                 var query: [String: Any] = [:] 
                 query["device_platform"] = devicePlatform
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4536,12 +5075,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4572,12 +5114,15 @@ public class PlatformClient {
                 var query: [String: Any] = [:] 
                 query["device_platform"] = devicePlatform
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(slug)",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4606,12 +5151,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4640,12 +5188,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4673,12 +5224,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/support",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4706,12 +5260,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/support",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4739,12 +5296,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4772,12 +5332,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4805,12 +5368,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4838,12 +5404,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4871,12 +5440,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/add",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4904,12 +5476,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/remove/handpicked",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4938,12 +5513,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/remove/handpicked/\(tagId)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -4953,6 +5531,1332 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(TagsSchema.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+        }
+        
+        
+            
+        public class Communication {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            /**
+            *
+            * Summary: Get campaigns
+            * Description: Get campaigns
+            **/
+            public func getCampaigns(
+                
+                onResponse: @escaping (_ response: Campaigns?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaigns.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create campaign
+            * Description: Create campaign
+            **/
+            public func createCampaign(
+                body: CampaignReq,
+                onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaign.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get campaign by id
+            * Description: Get campaign by id
+            **/
+            public func getCampaignById(
+                id: String,
+                
+                onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaign.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update campaign by id
+            * Description: Update campaign by id
+            **/
+            public func updateCampaignById(
+                id: String,
+                body: CampaignReq,
+                onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Campaign.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get stats of campaign by id
+            * Description: Get stats of campaign by id
+            **/
+            public func getStatsOfCampaignById(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetStats?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/getStats/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetStats.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get audiences
+            * Description: Get audiences
+            **/
+            public func getAudiences(
+                
+                onResponse: @escaping (_ response: Audiences?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audiences.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create audience
+            * Description: Create audience
+            **/
+            public func createAudience(
+                body: AudienceReq,
+                onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audience.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get bigquery headers
+            * Description: Get bigquery headers
+            **/
+            public func getBigqueryHeaders(
+                body: BigqueryHeadersReq,
+                onResponse: @escaping (_ response: BigqueryHeadersRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigquery-headers",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(BigqueryHeadersRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get audience by id
+            * Description: Get audience by id
+            **/
+            public func getAudienceById(
+                id: String,
+                
+                onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audience.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update audience by id
+            * Description: Update audience by id
+            **/
+            public func updateAudienceById(
+                id: String,
+                body: AudienceReq,
+                onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Audience.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get n sample records from csv
+            * Description: Get n sample records from csv
+            **/
+            public func getNSampleRecordsFromCsv(
+                body: GetNRecordsCsvReq,
+                onResponse: @escaping (_ response: GetNRecordsCsvRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/get-n-records",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetNRecordsCsvRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email providers
+            * Description: Get email providers
+            **/
+            public func getEmailProviders(
+                
+                onResponse: @escaping (_ response: EmailProviders?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProviders.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create email provider
+            * Description: Create email provider
+            **/
+            public func createEmailProvider(
+                body: EmailProviderReq,
+                onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email provider by id
+            * Description: Get email provider by id
+            **/
+            public func getEmailProviderById(
+                id: String,
+                
+                onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update email provider by id
+            * Description: Update email provider by id
+            **/
+            public func updateEmailProviderById(
+                id: String,
+                body: EmailProviderReq,
+                onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email templates
+            * Description: Get email templates
+            **/
+            public func getEmailTemplates(
+                
+                onResponse: @escaping (_ response: EmailTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplates.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create email template
+            * Description: Create email template
+            **/
+            public func createEmailTemplate(
+                body: EmailTemplateReq,
+                onResponse: @escaping (_ response: EmailTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get system email templates
+            * Description: Get system email templates
+            **/
+            public func getSystemEmailTemplates(
+                
+                onResponse: @escaping (_ response: SystemEmailTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/system-templates",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SystemEmailTemplates.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get email template by id
+            * Description: Get email template by id
+            **/
+            public func getEmailTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: EmailTemplate?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplate.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update email template by id
+            * Description: Update email template by id
+            **/
+            public func updateEmailTemplateById(
+                id: String,
+                body: EmailTemplateReq,
+                onResponse: @escaping (_ response: EmailTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Delete email template by id
+            * Description: Delete email template by id
+            **/
+            public func deleteEmailTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: EmailTemplateDeleteSuccessRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EmailTemplateDeleteSuccessRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get event subscriptions
+            * Description: Get event subscriptions
+            **/
+            public func getEventSubscriptions(
+                
+                onResponse: @escaping (_ response: EventSubscriptions?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(EventSubscriptions.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get jobs
+            * Description: Get jobs
+            **/
+            public func getJobs(
+                
+                onResponse: @escaping (_ response: Jobs?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/jobs",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Jobs.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Trigger campaign job
+            * Description: Trigger campaign job
+            **/
+            public func triggerCampaignJob(
+                body: TriggerJobRequest,
+                onResponse: @escaping (_ response: TriggerJobResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/trigger-job",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(TriggerJobResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get job logs
+            * Description: Get job logs
+            **/
+            public func getJobLogs(
+                
+                onResponse: @escaping (_ response: JobLogs?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/logs",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(JobLogs.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get communication logs
+            * Description: Get communication logs
+            **/
+            public func getCommunicationLogs(
+                
+                onResponse: @escaping (_ response: Logs?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/log",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Logs.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms providers
+            * Description: Get sms providers
+            **/
+            public func getSmsProviders(
+                
+                onResponse: @escaping (_ response: SmsProviders?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProviders.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create sms provider
+            * Description: Create sms provider
+            **/
+            public func createSmsProvider(
+                body: SmsProviderReq,
+                onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms provider by id
+            * Description: Get sms provider by id
+            **/
+            public func getSmsProviderById(
+                id: String,
+                
+                onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update sms provider by id
+            * Description: Update sms provider by id
+            **/
+            public func updateSmsProviderById(
+                id: String,
+                body: SmsProviderReq,
+                onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms templates
+            * Description: Get sms templates
+            **/
+            public func getSmsTemplates(
+                
+                onResponse: @escaping (_ response: SmsTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplates.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Create sms template
+            * Description: Create sms template
+            **/
+            public func createSmsTemplate(
+                body: SmsTemplateReq,
+                onResponse: @escaping (_ response: SmsTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get sms template by id
+            * Description: Get sms template by id
+            **/
+            public func getSmsTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: SmsTemplate?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplate.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Update sms template by id
+            * Description: Update sms template by id
+            **/
+            public func updateSmsTemplateById(
+                id: String,
+                body: SmsTemplateReq,
+                onResponse: @escaping (_ response: SmsTemplateRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Delete sms template by id
+            * Description: Delete sms template by id
+            **/
+            public func deleteSmsTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: SmsTemplateDeleteSuccessRes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SmsTemplateDeleteSuccessRes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            /**
+            *
+            * Summary: Get system sms templates
+            * Description: Get system sms templates
+            **/
+            public func getSystemSystemTemplates(
+                
+                onResponse: @escaping (_ response: SystemSmsTemplates?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/system-templates",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SystemSmsTemplates.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)
@@ -4986,12 +6890,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5019,12 +6926,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5052,12 +6962,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5089,12 +7002,15 @@ public class PlatformClient {
                 query["refresh"] = refresh
                 query["request_type"] = requestType
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5151,12 +7067,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/track",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5185,12 +7104,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/track",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5218,12 +7140,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/failed",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5252,12 +7177,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/reprocess",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5330,12 +7258,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5367,18 +7298,36 @@ public class PlatformClient {
                 onResponse: @escaping (_ response: ShortLinkList?, _ error: FDKError?) -> Void
             ) {
                 var query: [String: Any] = [:] 
-                query["page_no"] = pageNo
-                query["page_size"] = pageSize
-                query["created_by"] = createdBy
-                query["active"] = active
-                query["q"] = q
+                
+                if let value = pageNo {
+                    query["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    query["page_size"] = value
+                }
+                
+                if let value = createdBy {
+                    query["created_by"] = value
+                }
+                
+                if let value = active {
+                    query["active"] = value
+                }
+                
+                if let value = q {
+                    query["q"] = value
+                }
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5407,12 +7356,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/shortLink/\(hash)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5441,12 +7393,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
                     url: "/services/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/shortLink/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5518,21 +7473,48 @@ public class PlatformClient {
                 onResponse: @escaping (_ response: CouponsResponse?, _ error: FDKError?) -> Void
             ) {
                 var query: [String: Any] = [:] 
-                query["page_no"] = pageNo
-                query["page_size"] = pageSize
-                query["is_archived"] = isArchived
-                query["title"] = title
-                query["is_public"] = isPublic
-                query["is_display"] = isDisplay
-                query["type_slug"] = typeSlug
-                query["code"] = code
+                
+                if let value = pageNo {
+                    query["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    query["page_size"] = value
+                }
+                
+                if let value = isArchived {
+                    query["is_archived"] = value
+                }
+                
+                if let value = title {
+                    query["title"] = value
+                }
+                
+                if let value = isPublic {
+                    query["is_public"] = value
+                }
+                
+                if let value = isDisplay {
+                    query["is_display"] = value
+                }
+                
+                if let value = typeSlug {
+                    query["type_slug"] = value
+                }
+                
+                if let value = code {
+                    query["code"] = value
+                }
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon",
                     query: query,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5560,12 +7542,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5594,12 +7579,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
                     query: nil,
                     body: nil,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5628,12 +7616,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -5662,12 +7653,15 @@ public class PlatformClient {
             ) {
                  
                  
+                 
+                
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
                     query: nil,
                     body: body.dictionary,
+                    headers: [],
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)

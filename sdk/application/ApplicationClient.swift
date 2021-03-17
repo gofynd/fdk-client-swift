@@ -130,7 +130,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductSizes?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["store_id"] = storeId
+            
+            if let value = storeId {
+                query["store_id"] = value
+            }
             
              
             
@@ -172,8 +175,14 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductSizePriceResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["pincode"] = pincode
-            query["store_id"] = storeId
+            
+            if let value = pincode {
+                query["pincode"] = value
+            }
+            
+            if let value = storeId {
+                query["store_id"] = value
+            }
             
              
             
@@ -216,9 +225,18 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductSizeSellersResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["pincode"] = pincode
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = pincode {
+                query["pincode"] = value
+            }
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -319,6 +337,7 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["slug"] = slug
+            
             
              
             
@@ -514,11 +533,26 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductStockStatusResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["item_id"] = itemId
-            query["alu"] = alu
-            query["sku_code"] = skuCode
-            query["ean"] = ean
-            query["upc"] = upc
+            
+            if let value = itemId {
+                query["item_id"] = value
+            }
+            
+            if let value = alu {
+                query["alu"] = value
+            }
+            
+            if let value = skuCode {
+                query["sku_code"] = value
+            }
+            
+            if let value = ean {
+                query["ean"] = value
+            }
+            
+            if let value = upc {
+                query["upc"] = value
+            }
             
              
             
@@ -560,8 +594,15 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["timestamp"] = timestamp
-            query["page_size"] = pageSize
-            query["page_id"] = pageId
+            
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
             
              
             
@@ -657,14 +698,38 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["q"] = q
-            query["f"] = f
-            query["filters"] = filters
-            query["sort_on"] = sortOn
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
-            query["page_no"] = pageNo
-            query["page_type"] = pageType
+            
+            if let value = q {
+                query["q"] = value
+            }
+            
+            if let value = f {
+                query["f"] = value
+            }
+            
+            if let value = filters {
+                query["filters"] = value
+            }
+            
+            if let value = sortOn {
+                query["sort_on"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageType {
+                query["page_type"] = value
+            }
             
              
             
@@ -785,9 +850,18 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["department"] = department
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = department {
+                query["department"] = value
+            }
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -913,7 +987,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["department"] = department
+            
+            if let value = department {
+                query["department"] = value
+            }
             
              
             
@@ -992,9 +1069,18 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: HomeListingResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["sort_on"] = sortOn
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = sortOn {
+                query["sort_on"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -1122,6 +1208,7 @@ public class ApplicationClient {
             var query: [String: Any] = [:] 
             query["q"] = q
             
+            
              
             
             ApplicationAPIClient.execute(
@@ -1160,8 +1247,14 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -1249,11 +1342,26 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["f"] = f
-            query["filters"] = filters
-            query["sort_on"] = sortOn
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = f {
+                query["f"] = value
+            }
+            
+            if let value = filters {
+                query["filters"] = value
+            }
+            
+            if let value = sortOn {
+                query["sort_on"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -1589,7 +1697,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: FollowIdsResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["collection_type"] = collectionType
+            
+            if let value = collectionType {
+                query["collection_type"] = value
+            }
             
              
             
@@ -1633,12 +1744,30 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
-            query["q"] = q
-            query["range"] = range
-            query["latitude"] = latitude
-            query["longitude"] = longitude
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
+            if let value = q {
+                query["q"] = value
+            }
+            
+            if let value = range {
+                query["range"] = value
+            }
+            
+            if let value = latitude {
+                query["latitude"] = value
+            }
+            
+            if let value = longitude {
+                query["longitude"] = value
+            }
             
              
             
@@ -1759,10 +1888,22 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["i"] = i
-            query["b"] = b
-            query["assign_card_id"] = assignCardId
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
+            
+            if let value = assignCardId {
+                query["assign_card_id"] = value
+            }
             
              
             
@@ -1801,7 +1942,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -1841,8 +1985,14 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["i"] = i
-            query["b"] = b
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
             
              
             
@@ -1883,9 +2033,18 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["i"] = i
-            query["b"] = b
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
             
              
             
@@ -1924,7 +2083,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -1963,7 +2125,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -2006,10 +2171,22 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["i"] = i
-            query["b"] = b
-            query["p"] = p
-            query["uid"] = uid
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
+            
+            if let value = p {
+                query["p"] = value
+            }
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -2048,7 +2225,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -2090,10 +2270,22 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["item_id"] = itemId
-            query["article_id"] = articleId
-            query["uid"] = uid
-            query["slug"] = slug
+            
+            if let value = itemId {
+                query["item_id"] = value
+            }
+            
+            if let value = articleId {
+                query["article_id"] = value
+            }
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = slug {
+                query["slug"] = value
+            }
             
              
             
@@ -2136,11 +2328,26 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["mobile_no"] = mobileNo
-            query["checkout_mode"] = checkoutMode
-            query["tags"] = tags
-            query["is_default"] = isDefault
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = mobileNo {
+                query["mobile_no"] = value
+            }
+            
+            if let value = checkoutMode {
+                query["checkout_mode"] = value
+            }
+            
+            if let value = tags {
+                query["tags"] = value
+            }
+            
+            if let value = isDefault {
+                query["is_default"] = value
+            }
             
              
             
@@ -2221,11 +2428,26 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["mobile_no"] = mobileNo
-            query["checkout_mode"] = checkoutMode
-            query["tags"] = tags
-            query["is_default"] = isDefault
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = mobileNo {
+                query["mobile_no"] = value
+            }
+            
+            if let value = checkoutMode {
+                query["checkout_mode"] = value
+            }
+            
+            if let value = tags {
+                query["tags"] = value
+            }
+            
+            if let value = isDefault {
+                query["is_default"] = value
+            }
             
              
             
@@ -2342,9 +2564,18 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["i"] = i
-            query["b"] = b
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
             
              
             
@@ -2390,14 +2621,38 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ValidateCouponPaymentMode?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["address_id"] = addressId
-            query["payment_mode"] = paymentMode
-            query["payment_identifier"] = paymentIdentifier
-            query["aggregator_name"] = aggregatorName
-            query["merchant_code"] = merchantCode
-            query["action"] = action
-            query["type"] = type
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = addressId {
+                query["address_id"] = value
+            }
+            
+            if let value = paymentMode {
+                query["payment_mode"] = value
+            }
+            
+            if let value = paymentIdentifier {
+                query["payment_identifier"] = value
+            }
+            
+            if let value = aggregatorName {
+                query["aggregator_name"] = value
+            }
+            
+            if let value = merchantCode {
+                query["merchant_code"] = value
+            }
+            
+            if let value = action {
+                query["action"] = value
+            }
+            
+            if let value = type {
+                query["type"] = value
+            }
             
              
             
@@ -2436,7 +2691,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -2478,10 +2736,22 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["p"] = p
-            query["uid"] = uid
-            query["address_id"] = addressId
-            query["area_code"] = areaCode
+            
+            if let value = p {
+                query["p"] = value
+            }
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = addressId {
+                query["address_id"] = value
+            }
+            
+            if let value = areaCode {
+                query["area_code"] = value
+            }
             
              
             
@@ -2557,7 +2827,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -3234,7 +3507,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3310,7 +3586,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3460,7 +3739,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3684,7 +3966,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3723,7 +4008,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3762,7 +4050,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3801,7 +4092,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3914,7 +4208,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["name"] = name
+            
+            if let value = name {
+                query["name"] = value
+            }
             
              
             
@@ -3953,7 +4250,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -3992,7 +4292,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -4036,12 +4339,20 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             query["active"] = active
+            
             query["primary"] = primary
+            
             query["verified"] = verified
+            
             query["country_code"] = countryCode
+            
             query["phone"] = phone
+            
             
              
             
@@ -4117,7 +4428,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -4156,7 +4470,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -4199,11 +4516,18 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             query["active"] = active
+            
             query["primary"] = primary
+            
             query["verified"] = verified
+            
             query["email"] = email
+            
             
              
             
@@ -4279,7 +4603,10 @@ public class ApplicationClient {
             onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["platform"] = platform
+            
+            if let value = platform {
+                query["platform"] = value
+            }
             
              
             
@@ -4971,7 +5298,7 @@ public class ApplicationClient {
         * Summary: Upsert push token of a user
         * Description: Upsert push token of a user
         **/
-        public func upsertPushtoken(
+        public func upsertAppPushtoken(
             body: PushtokenReq,
             onResponse: @escaping (_ response: PushtokenRes?, _ error: FDKError?) -> Void
         ) {
@@ -5140,6 +5467,7 @@ public class ApplicationClient {
         ) {
             var query: [String: Any] = [:] 
             query["url"] = url
+            
             
              
             
@@ -5579,9 +5907,18 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
-            query["q"] = q
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
+            if let value = q {
+                query["q"] = value
+            }
             
              
             
@@ -5851,7 +6188,7 @@ This operation will return the url for the uploaded file.
         **/
         public func getOrderingStoreCookie(
             body: OrderingStoreSelectRequest,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -5872,7 +6209,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -5888,7 +6225,7 @@ This operation will return the url for the uploaded file.
         **/
         public func removeOrderingStoreCookie(
             
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -5909,7 +6246,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -5931,9 +6268,18 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["order_incent"] = orderIncent
-            query["ordering_store"] = orderingStore
-            query["user"] = user
+            
+            if let value = orderIncent {
+                query["order_incent"] = value
+            }
+            
+            if let value = orderingStore {
+                query["ordering_store"] = value
+            }
+            
+            if let value = user {
+                query["user"] = value
+            }
             
              
             
@@ -5985,7 +6331,10 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["refresh"] = refresh
+            
+            if let value = refresh {
+                query["refresh"] = value
+            }
             
             var headers: [(key: String, value: String)] = [] 
             headers.append((key: "x-api-token", value: xApiToken))
@@ -6062,7 +6411,10 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["refresh"] = refresh
+            
+            if let value = refresh {
+                query["refresh"] = value
+            }
             
              
             
@@ -6101,7 +6453,10 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["force_refresh"] = forceRefresh
+            
+            if let value = forceRefresh {
+                query["force_refresh"] = value
+            }
             
              
             
@@ -6332,12 +6687,25 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["amount"] = amount
+            
             query["cart_id"] = cartId
+            
             query["pincode"] = pincode
+            
             query["checkout_mode"] = checkoutMode
-            query["refresh"] = refresh
-            query["assign_card_id"] = assignCardId
-            query["user_details"] = userDetails
+            
+            
+            if let value = refresh {
+                query["refresh"] = value
+            }
+            
+            if let value = assignCardId {
+                query["assign_card_id"] = value
+            }
+            
+            if let value = userDetails {
+                query["user_details"] = value
+            }
             
              
             
@@ -6384,13 +6752,27 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["amount"] = amount
+            
             query["cart_id"] = cartId
+            
             query["pincode"] = pincode
+            
             query["checkout_mode"] = checkoutMode
-            query["refresh"] = refresh
-            query["assign_card_id"] = assignCardId
+            
+            
+            if let value = refresh {
+                query["refresh"] = value
+            }
+            
+            if let value = assignCardId {
+                query["assign_card_id"] = value
+            }
             query["order_type"] = orderType
-            query["user_details"] = userDetails
+            
+            
+            if let value = userDetails {
+                query["user_details"] = value
+            }
             
              
             
@@ -6431,6 +6813,7 @@ This operation will return the url for the uploaded file.
             var query: [String: Any] = [:] 
             query["order_id"] = orderId
             
+            
              
             
             ApplicationAPIClient.execute(
@@ -6468,7 +6851,10 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["ifsc_code"] = ifscCode
+            
+            if let value = ifscCode {
+                query["ifsc_code"] = value
+            }
             
              
             
@@ -6508,6 +6894,7 @@ This operation will return the url for the uploaded file.
         ) {
             var query: [String: Any] = [:] 
             query["order_id"] = orderId
+            
             
              
             
@@ -6709,10 +7096,22 @@ This operation will return the url for the uploaded file.
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
-            query["from_date"] = fromDate
-            query["to_date"] = toDate
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
+            
+            if let value = fromDate {
+                query["from_date"] = value
+            }
+            
+            if let value = toDate {
+                query["to_date"] = value
+            }
             
              
             
@@ -7066,8 +7465,14 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -7314,9 +7719,18 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["id"] = id
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = id {
+                query["id"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -7418,8 +7832,14 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["page_no"] = pageNo
-            query["page_size"] = pageSize
+            
+            if let value = pageNo {
+                query["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -7693,11 +8113,26 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["id"] = id
-            query["entity_id"] = entityId
-            query["user_id"] = userId
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = id {
+                query["id"] = value
+            }
+            
+            if let value = entityId {
+                query["entity_id"] = value
+            }
+            
+            if let value = userId {
+                query["user_id"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -7958,9 +8393,18 @@ The list of points history is paginated.
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["id"] = id
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = id {
+                query["id"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -8066,9 +8510,18 @@ It gives following response data: review count, rating average. review metrics /
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["id"] = id
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = id {
+                query["id"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -8255,15 +8708,42 @@ attributes rating, entity rating, title, description, media resources and templa
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["id"] = id
-            query["user_id"] = userId
-            query["media"] = media
-            query["rating"] = rating
-            query["attribute_rating"] = attributeRating
-            query["facets"] = facets
-            query["sort"] = sort
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = id {
+                query["id"] = value
+            }
+            
+            if let value = userId {
+                query["user_id"] = value
+            }
+            
+            if let value = media {
+                query["media"] = value
+            }
+            
+            if let value = rating {
+                query["rating"] = value
+            }
+            
+            if let value = attributeRating {
+                query["attribute_rating"] = value
+            }
+            
+            if let value = facets {
+                query["facets"] = value
+            }
+            
+            if let value = sort {
+                query["sort"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -8402,9 +8882,18 @@ attributes rating, entity rating, title, description, media resources and templa
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["template_id"] = templateId
-            query["entity_id"] = entityId
-            query["entity_type"] = entityType
+            
+            if let value = templateId {
+                query["template_id"] = value
+            }
+            
+            if let value = entityId {
+                query["entity_id"] = value
+            }
+            
+            if let value = entityType {
+                query["entity_type"] = value
+            }
             
              
             
@@ -8523,10 +9012,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["id"] = id
-            query["show_answer"] = showAnswer
-            query["page_id"] = pageId
-            query["page_size"] = pageSize
+            
+            if let value = id {
+                query["id"] = value
+            }
+            
+            if let value = showAnswer {
+                query["show_answer"] = value
+            }
+            
+            if let value = pageId {
+                query["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                query["page_size"] = value
+            }
             
              
             
@@ -8634,8 +9135,14 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["id"] = id
-            query["ref_type"] = refType
+            
+            if let value = id {
+                query["id"] = value
+            }
+            
+            if let value = refType {
+                query["ref_type"] = value
+            }
             
              
             
@@ -8763,10 +9270,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["i"] = i
-            query["b"] = b
-            query["assign_card_id"] = assignCardId
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
+            
+            if let value = assignCardId {
+                query["assign_card_id"] = value
+            }
             
              
             
@@ -8805,7 +9324,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -8845,8 +9367,14 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["i"] = i
-            query["b"] = b
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
             
              
             
@@ -8887,9 +9415,18 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["i"] = i
-            query["b"] = b
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
             
              
             
@@ -8928,7 +9465,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -8967,7 +9507,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -9010,10 +9553,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["i"] = i
-            query["b"] = b
-            query["p"] = p
-            query["uid"] = uid
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
+            
+            if let value = p {
+                query["p"] = value
+            }
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -9052,7 +9607,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -9094,10 +9652,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["item_id"] = itemId
-            query["article_id"] = articleId
-            query["uid"] = uid
-            query["slug"] = slug
+            
+            if let value = itemId {
+                query["item_id"] = value
+            }
+            
+            if let value = articleId {
+                query["article_id"] = value
+            }
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = slug {
+                query["slug"] = value
+            }
             
              
             
@@ -9140,11 +9710,26 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["mobile_no"] = mobileNo
-            query["checkout_mode"] = checkoutMode
-            query["tags"] = tags
-            query["is_default"] = isDefault
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = mobileNo {
+                query["mobile_no"] = value
+            }
+            
+            if let value = checkoutMode {
+                query["checkout_mode"] = value
+            }
+            
+            if let value = tags {
+                query["tags"] = value
+            }
+            
+            if let value = isDefault {
+                query["is_default"] = value
+            }
             
              
             
@@ -9225,11 +9810,26 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["mobile_no"] = mobileNo
-            query["checkout_mode"] = checkoutMode
-            query["tags"] = tags
-            query["is_default"] = isDefault
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = mobileNo {
+                query["mobile_no"] = value
+            }
+            
+            if let value = checkoutMode {
+                query["checkout_mode"] = value
+            }
+            
+            if let value = tags {
+                query["tags"] = value
+            }
+            
+            if let value = isDefault {
+                query["is_default"] = value
+            }
             
              
             
@@ -9346,9 +9946,18 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["i"] = i
-            query["b"] = b
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = b {
+                query["b"] = value
+            }
             
              
             
@@ -9394,14 +10003,38 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: ValidateCouponPaymentMode?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
-            query["address_id"] = addressId
-            query["payment_mode"] = paymentMode
-            query["payment_identifier"] = paymentIdentifier
-            query["aggregator_name"] = aggregatorName
-            query["merchant_code"] = merchantCode
-            query["action"] = action
-            query["type"] = type
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = addressId {
+                query["address_id"] = value
+            }
+            
+            if let value = paymentMode {
+                query["payment_mode"] = value
+            }
+            
+            if let value = paymentIdentifier {
+                query["payment_identifier"] = value
+            }
+            
+            if let value = aggregatorName {
+                query["aggregator_name"] = value
+            }
+            
+            if let value = merchantCode {
+                query["merchant_code"] = value
+            }
+            
+            if let value = action {
+                query["action"] = value
+            }
+            
+            if let value = type {
+                query["type"] = value
+            }
             
              
             
@@ -9440,7 +10073,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -9485,13 +10121,34 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["pick_at_store_uid"] = pickAtStoreUid
-            query["ordering_store_id"] = orderingStoreId
-            query["p"] = p
-            query["uid"] = uid
-            query["address_id"] = addressId
-            query["area_code"] = areaCode
-            query["order_type"] = orderType
+            
+            if let value = pickAtStoreUid {
+                query["pick_at_store_uid"] = value
+            }
+            
+            if let value = orderingStoreId {
+                query["ordering_store_id"] = value
+            }
+            
+            if let value = p {
+                query["p"] = value
+            }
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = addressId {
+                query["address_id"] = value
+            }
+            
+            if let value = areaCode {
+                query["area_code"] = value
+            }
+            
+            if let value = orderType {
+                query["order_type"] = value
+            }
             
              
             
@@ -9534,11 +10191,26 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["i"] = i
-            query["p"] = p
-            query["uid"] = uid
-            query["address_id"] = addressId
-            query["order_type"] = orderType
+            
+            if let value = i {
+                query["i"] = value
+            }
+            
+            if let value = p {
+                query["p"] = value
+            }
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = addressId {
+                query["address_id"] = value
+            }
+            
+            if let value = orderType {
+                query["order_type"] = value
+            }
             
              
             
@@ -9577,7 +10249,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -9616,7 +10291,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
-            query["uid"] = uid
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -9657,7 +10335,11 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["area_code"] = areaCode
-            query["uid"] = uid
+            
+            
+            if let value = uid {
+                query["uid"] = value
+            }
             
              
             
@@ -9697,6 +10379,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         ) {
             var query: [String: Any] = [:] 
             query["store_uid"] = storeUid
+            
             
              
             
