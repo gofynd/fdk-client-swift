@@ -9,6 +9,7 @@
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* [Assets](#Assets) - File Storage 
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Cart](#Cart) - Cart APIs 
@@ -219,6 +220,16 @@
     * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    
+
+* [Assets](#Assets)
+  * Methods
+    * [companyCopyFiles](#companycopyfiles)
+    * [appCopyFiles](#appcopyfiles)
+    * [getSignUrls](#getsignurls)
+    * [companyBrowse](#companybrowse)
+    * [appBrowse](#appbrowse)
+    * [proxy](#proxy)
     
 
 * [Share](#Share)
@@ -14260,6 +14271,290 @@ Schema: `ErrorResponse`
 ---
 
 
+## Assets
+
+
+#### companyCopyFiles
+Copy Files
+
+```swift
+assets.companyCopyFiles(sync: sync, companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| sync | boolean | sync | 
+| companyId | integer | company_id | 
+
+Copy Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BulkResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### appCopyFiles
+Copy Files
+
+```swift
+assets.appCopyFiles(sync: sync, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| sync | boolean | sync | 
+| companyId | integer | company_id | 
+| applicationId | integer | application_id | 
+
+Copy Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BulkResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSignUrls
+Explain here
+
+```swift
+assets.getSignUrls(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+
+Describe here
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SignUrlResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### companyBrowse
+Browse Files
+
+```swift
+assets.companyBrowse(namespace: namespace, companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| namespace | string | bucket name | 
+| companyId | integer | company_id | 
+
+Browse Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BrowseResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### appBrowse
+Browse Files
+
+```swift
+assets.appBrowse(namespace: namespace, companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| namespace | string | bucket name | 
+| companyId | integer | company_id | 
+| applicationId | integer | application_id | 
+
+Browse Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BrowseResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### proxy
+Proxy
+
+```swift
+assets.proxy(companyId: companyId, url: url) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| url | string | url | 
+
+Proxy
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `String`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Share
 
 
@@ -15010,7 +15305,7 @@ Create new coupon
 Coupon Created successfully
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 
@@ -15122,7 +15417,7 @@ Update coupon with id sent in `id`
 Coupon updated successfully
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 
@@ -15171,7 +15466,7 @@ Update archive/unarchive and change schedule for coupon
 Coupon updated successfully
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 *Examples:*

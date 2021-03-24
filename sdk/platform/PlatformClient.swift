@@ -20,6 +20,8 @@ public class PlatformClient {
 
     public let companyProfile: CompanyProfile
 
+    public let assets: Assets
+
     public let share: Share
 
     public let inventory: Inventory
@@ -44,6 +46,8 @@ public class PlatformClient {
         order = Order(config: config)
         
         companyProfile = CompanyProfile(config: config)
+        
+        assets = Assets(config: config)
         
         share = Share(config: config)
         
@@ -1649,6 +1653,173 @@ public class PlatformClient {
     
     
     
+    public class Assets {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        /**
+        *
+        * Summary: Copy Files
+        * Description: Copy Files
+        **/
+        public func companyCopyFiles(
+            sync: Bool?,
+            body: BulkRequest,
+            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            
+            if let value = sync {
+                query["sync"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/assets/v1.0/uploads/company/\(companyId)/copy/",
+                query: query,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(BulkResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Explain here
+        * Description: Describe here
+        **/
+        public func getSignUrls(
+            body: SignUrlRequest,
+            onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/assets/v1.0/company/\(companyId)/sign-urls/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SignUrlResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        /**
+        *
+        * Summary: Browse Files
+        * Description: Browse Files
+        **/
+        public func companyBrowse(
+            namespace: String,
+            
+            onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/browse/",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(BrowseResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Proxy
+        * Description: Proxy
+        **/
+        public func proxy(
+            url: String,
+            
+            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            query["url"] = url
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/assets/v1.0/company/\(companyId)/proxy/",
+                query: query,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(String.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+    }
+    
+    
+    
     public class Share {        
         var config: PlatformConfig
         var companyId: String
@@ -2018,6 +2189,8 @@ public class PlatformClient {
         
         public let companyProfile: CompanyProfile
         
+        public let assets: Assets
+        
         public let share: Share
         
         public let inventory: Inventory
@@ -2046,6 +2219,8 @@ public class PlatformClient {
             order = Order(config: config, applicationId: applicationId)
             
             companyProfile = CompanyProfile(config: config, applicationId: applicationId)
+            
+            assets = Assets(config: config, applicationId: applicationId)
             
             share = Share(config: config, applicationId: applicationId)
             
@@ -7235,6 +7410,103 @@ public class PlatformClient {
         
         
             
+        public class Assets {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Copy Files
+            * Description: Copy Files
+            **/
+            public func appCopyFiles(
+                sync: Bool?,
+                body: BulkRequest,
+                onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+            ) {
+                var query: [String: Any] = [:] 
+                
+                if let value = sync {
+                    query["sync"] = value
+                }
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/application/assets/v1.0/uploads/company/\(companyId)/application/\(applicationId)/copy/",
+                    query: query,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(BulkResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Browse Files
+            * Description: Browse Files
+            **/
+            public func appBrowse(
+                namespace: String,
+                
+                onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/application/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(BrowseResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+        }
+        
+        
+            
         public class Share {        
             var config: PlatformConfig
             var companyId: String
@@ -7538,7 +7810,7 @@ public class PlatformClient {
             **/
             public func createCoupon(
                 body: CouponAdd,
-                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -7559,7 +7831,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)
@@ -7612,7 +7884,7 @@ public class PlatformClient {
             public func updateCoupon(
                 id: String,
                 body: CouponUpdate,
-                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -7633,7 +7905,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)
@@ -7649,7 +7921,7 @@ public class PlatformClient {
             public func updateCouponPartially(
                 id: String,
                 body: CouponPartialUpdate,
-                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -7670,7 +7942,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)

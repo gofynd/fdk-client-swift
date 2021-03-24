@@ -2320,7 +2320,7 @@ public class ApplicationClient {
         **/
         public func getAddresses(
             uid: Int?,
-            mobileNo: Int?,
+            mobileNo: String?,
             checkoutMode: String?,
             tags: Int?,
             isDefault: Bool?,
@@ -2420,7 +2420,7 @@ public class ApplicationClient {
         public func getAddressById(
             id: Int,
             uid: Int?,
-            mobileNo: Int?,
+            mobileNo: String?,
             checkoutMode: String?,
             tags: Int?,
             isDefault: Bool?,
@@ -9702,7 +9702,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         **/
         public func getAddresses(
             uid: Int?,
-            mobileNo: Int?,
+            mobileNo: String?,
             checkoutMode: String?,
             tags: Int?,
             isDefault: Bool?,
@@ -9802,7 +9802,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         public func getAddressById(
             id: Int,
             uid: Int?,
-            mobileNo: Int?,
+            mobileNo: String?,
             checkoutMode: String?,
             tags: Int?,
             isDefault: Bool?,
@@ -10245,7 +10245,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         **/
         public func checkoutCart(
             uid: Int?,
-            body: CartCheckoutRequest,
+            body: CartPosCheckoutRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
             var query: [String: Any] = [:] 
