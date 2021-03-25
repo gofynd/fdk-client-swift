@@ -2,265 +2,57 @@
         
         
         /*
-            Model: Media
-            Used By: Catalog
-        */
-        struct Media: Codable {
-            
-            public var type: String?
-            
-            public var url: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case type = "type"
-                
-                case url = "url"
-                
-            }
-
-            public init(type: String?, url: String?) {
-                
-                self.type = type
-                
-                self.url = url
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                type = try? container.decode(String.self, forKey: .type)
-                
-                url = try? container.decode(String.self, forKey: .url)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(type, forKey: .type)
-                
-                try? container.encodeIfPresent(url, forKey: .url)
-                
-            }
-            
-        }
-        
-        /*
-            Model: ProductListingActionPage
-            Used By: Catalog
-        */
-        struct ProductListingActionPage: Codable {
-            
-            public var query: [String: Any]?
-            
-            public var type: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case query = "query"
-                
-                case type = "type"
-                
-            }
-
-            public init(query: [String: Any]?, type: String?) {
-                
-                self.query = query
-                
-                self.type = type
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                query = try? container.decode([String: Any].self, forKey: .query)
-                
-                type = try? container.decode(String.self, forKey: .type)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(query, forKey: .query)
-                
-                try? container.encodeIfPresent(type, forKey: .type)
-                
-            }
-            
-        }
-        
-        /*
-            Model: ProductListingAction
-            Used By: Catalog
-        */
-        struct ProductListingAction: Codable {
-            
-            public var type: String?
-            
-            public var page: ProductListingActionPage?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case type = "type"
-                
-                case page = "page"
-                
-            }
-
-            public init(page: ProductListingActionPage?, type: String?) {
-                
-                self.type = type
-                
-                self.page = page
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                type = try? container.decode(String.self, forKey: .type)
-                
-                page = try? container.decode(ProductListingActionPage.self, forKey: .page)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(type, forKey: .type)
-                
-                try? container.encodeIfPresent(page, forKey: .page)
-                
-            }
-            
-        }
-        
-        /*
-            Model: ProductBrand
-            Used By: Catalog
-        */
-        struct ProductBrand: Codable {
-            
-            public var uid: Int?
-            
-            public var logo: Media?
-            
-            public var action: ProductListingAction?
-            
-            public var name: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case uid = "uid"
-                
-                case logo = "logo"
-                
-                case action = "action"
-                
-                case name = "name"
-                
-            }
-
-            public init(action: ProductListingAction?, logo: Media?, name: String?, uid: Int?) {
-                
-                self.uid = uid
-                
-                self.logo = logo
-                
-                self.action = action
-                
-                self.name = name
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                logo = try? container.decode(Media.self, forKey: .logo)
-                
-                action = try? container.decode(ProductListingAction.self, forKey: .action)
-                
-                name = try? container.decode(String.self, forKey: .name)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(logo, forKey: .logo)
-                
-                try? container.encodeIfPresent(action, forKey: .action)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
-                
-            }
-            
-        }
-        
-        /*
             Model: ProductDetailAttribute
             Used By: Catalog
         */
         struct ProductDetailAttribute: Codable {
             
-            public var value: String?
-            
             public var type: String?
             
             public var key: String?
             
+            public var value: String?
+            
 
             public enum CodingKeys: String, CodingKey {
-                
-                case value = "value"
                 
                 case type = "type"
                 
                 case key = "key"
                 
+                case value = "value"
+                
             }
 
             public init(key: String?, type: String?, value: String?) {
                 
-                self.value = value
-                
                 self.type = type
                 
                 self.key = key
+                
+                self.value = value
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                value = try? container.decode(String.self, forKey: .value)
-                
                 type = try? container.decode(String.self, forKey: .type)
                 
                 key = try? container.decode(String.self, forKey: .key)
+                
+                value = try? container.decode(String.self, forKey: .value)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(value, forKey: .value)
-                
                 try? container.encodeIfPresent(type, forKey: .type)
                 
                 try? container.encodeIfPresent(key, forKey: .key)
+                
+                try? container.encodeIfPresent(value, forKey: .value)
                 
             }
             
@@ -314,247 +106,455 @@
         }
         
         /*
-            Model: ProductDetail
+            Model: Media
             Used By: Catalog
         */
-        struct ProductDetail: Codable {
-            
-            public var slug: String
+        struct Media: Codable {
             
             public var type: String?
             
-            public var uid: Int?
-            
-            public var medias: [Media]?
-            
-            public var name: String?
-            
-            public var teaserTag: String?
-            
-            public var hasVariant: Bool?
-            
-            public var productOnlineDate: String?
-            
-            public var categories: [ProductBrand]?
-            
-            public var attributes: [String: Any]?
-            
-            public var ratingCount: Int?
-            
-            public var itemType: String?
-            
-            public var color: String?
-            
-            public var imageNature: String?
-            
-            public var highlights: [String]?
-            
-            public var groupedAttributes: [ProductDetailGroupedAttribute]?
-            
-            public var tryouts: [String]?
-            
-            public var brand: ProductBrand?
-            
-            public var shortDescription: String?
-            
-            public var description: String?
-            
-            public var similars: [String]?
-            
-            public var rating: Double?
+            public var url: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case slug = "slug"
-                
                 case type = "type"
                 
-                case uid = "uid"
-                
-                case medias = "medias"
-                
-                case name = "name"
-                
-                case teaserTag = "teaser_tag"
-                
-                case hasVariant = "has_variant"
-                
-                case productOnlineDate = "product_online_date"
-                
-                case categories = "categories"
-                
-                case attributes = "attributes"
-                
-                case ratingCount = "rating_count"
-                
-                case itemType = "item_type"
-                
-                case color = "color"
-                
-                case imageNature = "image_nature"
-                
-                case highlights = "highlights"
-                
-                case groupedAttributes = "grouped_attributes"
-                
-                case tryouts = "tryouts"
-                
-                case brand = "brand"
-                
-                case shortDescription = "short_description"
-                
-                case description = "description"
-                
-                case similars = "similars"
-                
-                case rating = "rating"
+                case url = "url"
                 
             }
 
-            public init(attributes: [String: Any]?, brand: ProductBrand?, categories: [ProductBrand]?, color: String?, description: String?, groupedAttributes: [ProductDetailGroupedAttribute]?, hasVariant: Bool?, highlights: [String]?, imageNature: String?, itemType: String?, medias: [Media]?, name: String?, productOnlineDate: String?, rating: Double?, ratingCount: Int?, shortDescription: String?, similars: [String]?, slug: String, teaserTag: String?, tryouts: [String]?, type: String?, uid: Int?) {
-                
-                self.slug = slug
+            public init(type: String?, url: String?) {
                 
                 self.type = type
                 
-                self.uid = uid
-                
-                self.medias = medias
-                
-                self.name = name
-                
-                self.teaserTag = teaserTag
-                
-                self.hasVariant = hasVariant
-                
-                self.productOnlineDate = productOnlineDate
-                
-                self.categories = categories
-                
-                self.attributes = attributes
-                
-                self.ratingCount = ratingCount
-                
-                self.itemType = itemType
-                
-                self.color = color
-                
-                self.imageNature = imageNature
-                
-                self.highlights = highlights
-                
-                self.groupedAttributes = groupedAttributes
-                
-                self.tryouts = tryouts
-                
-                self.brand = brand
-                
-                self.shortDescription = shortDescription
-                
-                self.description = description
-                
-                self.similars = similars
-                
-                self.rating = rating
+                self.url = url
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                slug = try container.decode(String.self, forKey: .slug)
-                
                 type = try? container.decode(String.self, forKey: .type)
                 
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                medias = try? container.decode([Media].self, forKey: .medias)
-                
-                name = try? container.decode(String.self, forKey: .name)
-                
-                teaserTag = try? container.decode(String.self, forKey: .teaserTag)
-                
-                hasVariant = try? container.decode(Bool.self, forKey: .hasVariant)
-                
-                productOnlineDate = try? container.decode(String.self, forKey: .productOnlineDate)
-                
-                categories = try? container.decode([ProductBrand].self, forKey: .categories)
-                
-                attributes = try? container.decode([String: Any].self, forKey: .attributes)
-                
-                ratingCount = try? container.decode(Int.self, forKey: .ratingCount)
-                
-                itemType = try? container.decode(String.self, forKey: .itemType)
-                
-                color = try? container.decode(String.self, forKey: .color)
-                
-                imageNature = try? container.decode(String.self, forKey: .imageNature)
-                
-                highlights = try? container.decode([String].self, forKey: .highlights)
-                
-                groupedAttributes = try? container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
-                
-                tryouts = try? container.decode([String].self, forKey: .tryouts)
-                
-                brand = try? container.decode(ProductBrand.self, forKey: .brand)
-                
-                shortDescription = try? container.decode(String.self, forKey: .shortDescription)
-                
-                description = try? container.decode(String.self, forKey: .description)
-                
-                similars = try? container.decode([String].self, forKey: .similars)
-                
-                rating = try? container.decode(Double.self, forKey: .rating)
+                url = try? container.decode(String.self, forKey: .url)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(slug, forKey: .slug)
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+                try? container.encodeIfPresent(url, forKey: .url)
+                
+            }
+            
+        }
+        
+        /*
+            Model: ProductListingActionPage
+            Used By: Catalog
+        */
+        struct ProductListingActionPage: Codable {
+            
+            public var type: String?
+            
+            public var query: [String: Any]?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case type = "type"
+                
+                case query = "query"
+                
+            }
+
+            public init(query: [String: Any]?, type: String?) {
+                
+                self.type = type
+                
+                self.query = query
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                type = try? container.decode(String.self, forKey: .type)
+                
+                query = try? container.decode([String: Any].self, forKey: .query)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
                 
                 try? container.encodeIfPresent(type, forKey: .type)
                 
-                try? container.encodeIfPresent(uid, forKey: .uid)
+                try? container.encodeIfPresent(query, forKey: .query)
                 
-                try? container.encodeIfPresent(medias, forKey: .medias)
+            }
+            
+        }
+        
+        /*
+            Model: ProductListingAction
+            Used By: Catalog
+        */
+        struct ProductListingAction: Codable {
+            
+            public var page: ProductListingActionPage?
+            
+            public var type: String?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case page = "page"
+                
+                case type = "type"
+                
+            }
+
+            public init(page: ProductListingActionPage?, type: String?) {
+                
+                self.page = page
+                
+                self.type = type
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                page = try? container.decode(ProductListingActionPage.self, forKey: .page)
+                
+                type = try? container.decode(String.self, forKey: .type)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(page, forKey: .page)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+            }
+            
+        }
+        
+        /*
+            Model: ProductBrand
+            Used By: Catalog
+        */
+        struct ProductBrand: Codable {
+            
+            public var name: String?
+            
+            public var action: ProductListingAction?
+            
+            public var uid: Int?
+            
+            public var logo: Media?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case name = "name"
+                
+                case action = "action"
+                
+                case uid = "uid"
+                
+                case logo = "logo"
+                
+            }
+
+            public init(action: ProductListingAction?, logo: Media?, name: String?, uid: Int?) {
+                
+                self.name = name
+                
+                self.action = action
+                
+                self.uid = uid
+                
+                self.logo = logo
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                name = try? container.decode(String.self, forKey: .name)
+                
+                action = try? container.decode(ProductListingAction.self, forKey: .action)
+                
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+                logo = try? container.decode(Media.self, forKey: .logo)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
                 
                 try? container.encodeIfPresent(name, forKey: .name)
                 
-                try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
+                try? container.encodeIfPresent(action, forKey: .action)
+                
+                try? container.encodeIfPresent(uid, forKey: .uid)
+                
+                try? container.encodeIfPresent(logo, forKey: .logo)
+                
+            }
+            
+        }
+        
+        /*
+            Model: ProductDetail
+            Used By: Catalog
+        */
+        struct ProductDetail: Codable {
+            
+            public var highlights: [String]?
+            
+            public var name: String?
+            
+            public var hasVariant: Bool?
+            
+            public var similars: [String]?
+            
+            public var uid: Int?
+            
+            public var color: String?
+            
+            public var shortDescription: String?
+            
+            public var rating: Double?
+            
+            public var groupedAttributes: [ProductDetailGroupedAttribute]?
+            
+            public var ratingCount: Int?
+            
+            public var itemType: String?
+            
+            public var teaserTag: String?
+            
+            public var medias: [Media]?
+            
+            public var description: String?
+            
+            public var imageNature: String?
+            
+            public var brand: ProductBrand?
+            
+            public var type: String?
+            
+            public var slug: String
+            
+            public var tryouts: [String]?
+            
+            public var categories: [ProductBrand]?
+            
+            public var attributes: [String: Any]?
+            
+            public var productOnlineDate: String?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case highlights = "highlights"
+                
+                case name = "name"
+                
+                case hasVariant = "has_variant"
+                
+                case similars = "similars"
+                
+                case uid = "uid"
+                
+                case color = "color"
+                
+                case shortDescription = "short_description"
+                
+                case rating = "rating"
+                
+                case groupedAttributes = "grouped_attributes"
+                
+                case ratingCount = "rating_count"
+                
+                case itemType = "item_type"
+                
+                case teaserTag = "teaser_tag"
+                
+                case medias = "medias"
+                
+                case description = "description"
+                
+                case imageNature = "image_nature"
+                
+                case brand = "brand"
+                
+                case type = "type"
+                
+                case slug = "slug"
+                
+                case tryouts = "tryouts"
+                
+                case categories = "categories"
+                
+                case attributes = "attributes"
+                
+                case productOnlineDate = "product_online_date"
+                
+            }
+
+            public init(attributes: [String: Any]?, brand: ProductBrand?, categories: [ProductBrand]?, color: String?, description: String?, groupedAttributes: [ProductDetailGroupedAttribute]?, hasVariant: Bool?, highlights: [String]?, imageNature: String?, itemType: String?, medias: [Media]?, name: String?, productOnlineDate: String?, rating: Double?, ratingCount: Int?, shortDescription: String?, similars: [String]?, slug: String, teaserTag: String?, tryouts: [String]?, type: String?, uid: Int?) {
+                
+                self.highlights = highlights
+                
+                self.name = name
+                
+                self.hasVariant = hasVariant
+                
+                self.similars = similars
+                
+                self.uid = uid
+                
+                self.color = color
+                
+                self.shortDescription = shortDescription
+                
+                self.rating = rating
+                
+                self.groupedAttributes = groupedAttributes
+                
+                self.ratingCount = ratingCount
+                
+                self.itemType = itemType
+                
+                self.teaserTag = teaserTag
+                
+                self.medias = medias
+                
+                self.description = description
+                
+                self.imageNature = imageNature
+                
+                self.brand = brand
+                
+                self.type = type
+                
+                self.slug = slug
+                
+                self.tryouts = tryouts
+                
+                self.categories = categories
+                
+                self.attributes = attributes
+                
+                self.productOnlineDate = productOnlineDate
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                highlights = try? container.decode([String].self, forKey: .highlights)
+                
+                name = try? container.decode(String.self, forKey: .name)
+                
+                hasVariant = try? container.decode(Bool.self, forKey: .hasVariant)
+                
+                similars = try? container.decode([String].self, forKey: .similars)
+                
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+                color = try? container.decode(String.self, forKey: .color)
+                
+                shortDescription = try? container.decode(String.self, forKey: .shortDescription)
+                
+                rating = try? container.decode(Double.self, forKey: .rating)
+                
+                groupedAttributes = try? container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
+                
+                ratingCount = try? container.decode(Int.self, forKey: .ratingCount)
+                
+                itemType = try? container.decode(String.self, forKey: .itemType)
+                
+                teaserTag = try? container.decode(String.self, forKey: .teaserTag)
+                
+                medias = try? container.decode([Media].self, forKey: .medias)
+                
+                description = try? container.decode(String.self, forKey: .description)
+                
+                imageNature = try? container.decode(String.self, forKey: .imageNature)
+                
+                brand = try? container.decode(ProductBrand.self, forKey: .brand)
+                
+                type = try? container.decode(String.self, forKey: .type)
+                
+                slug = try container.decode(String.self, forKey: .slug)
+                
+                tryouts = try? container.decode([String].self, forKey: .tryouts)
+                
+                categories = try? container.decode([ProductBrand].self, forKey: .categories)
+                
+                attributes = try? container.decode([String: Any].self, forKey: .attributes)
+                
+                productOnlineDate = try? container.decode(String.self, forKey: .productOnlineDate)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(highlights, forKey: .highlights)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
                 
-                try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
+                try? container.encodeIfPresent(similars, forKey: .similars)
                 
-                try? container.encodeIfPresent(categories, forKey: .categories)
+                try? container.encodeIfPresent(uid, forKey: .uid)
                 
-                try? container.encodeIfPresent(attributes, forKey: .attributes)
+                try? container.encodeIfPresent(color, forKey: .color)
+                
+                try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+                
+                try? container.encodeIfPresent(rating, forKey: .rating)
+                
+                try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
                 
                 try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
                 
                 try? container.encodeIfPresent(itemType, forKey: .itemType)
                 
-                try? container.encodeIfPresent(color, forKey: .color)
+                try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
                 
-                try? container.encodeIfPresent(imageNature, forKey: .imageNature)
-                
-                try? container.encodeIfPresent(highlights, forKey: .highlights)
-                
-                try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
-                
-                try? container.encodeIfPresent(tryouts, forKey: .tryouts)
-                
-                try? container.encodeIfPresent(brand, forKey: .brand)
-                
-                try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+                try? container.encodeIfPresent(medias, forKey: .medias)
                 
                 try? container.encodeIfPresent(description, forKey: .description)
                 
-                try? container.encodeIfPresent(similars, forKey: .similars)
+                try? container.encodeIfPresent(imageNature, forKey: .imageNature)
                 
-                try? container.encodeIfPresent(rating, forKey: .rating)
+                try? container.encodeIfPresent(brand, forKey: .brand)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+                try? container.encodeIfPresent(slug, forKey: .slug)
+                
+                try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+                
+                try? container.encodeIfPresent(categories, forKey: .categories)
+                
+                try? container.encodeIfPresent(attributes, forKey: .attributes)
+                
+                try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
                 
             }
             
@@ -598,67 +598,37 @@
         }
         
         /*
-            Model: ProductSize
+            Model: ProductSizeStores
             Used By: Catalog
         */
-        struct ProductSize: Codable {
+        struct ProductSizeStores: Codable {
             
-            public var value: String?
-            
-            public var quantity: Int?
-            
-            public var isAvailable: Bool?
-            
-            public var display: String?
+            public var count: Int?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case value = "value"
-                
-                case quantity = "quantity"
-                
-                case isAvailable = "is_available"
-                
-                case display = "display"
+                case count = "count"
                 
             }
 
-            public init(display: String?, isAvailable: Bool?, quantity: Int?, value: String?) {
+            public init(count: Int?) {
                 
-                self.value = value
-                
-                self.quantity = quantity
-                
-                self.isAvailable = isAvailable
-                
-                self.display = display
+                self.count = count
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                value = try? container.decode(String.self, forKey: .value)
-                
-                quantity = try? container.decode(Int.self, forKey: .quantity)
-                
-                isAvailable = try? container.decode(Bool.self, forKey: .isAvailable)
-                
-                display = try? container.decode(String.self, forKey: .display)
+                count = try? container.decode(Int.self, forKey: .count)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(value, forKey: .value)
-                
-                try? container.encodeIfPresent(quantity, forKey: .quantity)
-                
-                try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
-                
-                try? container.encodeIfPresent(display, forKey: .display)
+                try? container.encodeIfPresent(count, forKey: .count)
                 
             }
             
@@ -670,62 +640,62 @@
         */
         struct Price: Codable {
             
-            public var min: Double?
-            
             public var max: Double?
             
-            public var currencySymbol: String?
+            public var min: Double?
             
             public var currencyCode: String?
+            
+            public var currencySymbol: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case min = "min"
-                
                 case max = "max"
                 
-                case currencySymbol = "currency_symbol"
+                case min = "min"
                 
                 case currencyCode = "currency_code"
+                
+                case currencySymbol = "currency_symbol"
                 
             }
 
             public init(currencyCode: String?, currencySymbol: String?, max: Double?, min: Double?) {
                 
-                self.min = min
-                
                 self.max = max
                 
-                self.currencySymbol = currencySymbol
+                self.min = min
                 
                 self.currencyCode = currencyCode
+                
+                self.currencySymbol = currencySymbol
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                min = try? container.decode(Double.self, forKey: .min)
-                
                 max = try? container.decode(Double.self, forKey: .max)
                 
-                currencySymbol = try? container.decode(String.self, forKey: .currencySymbol)
+                min = try? container.decode(Double.self, forKey: .min)
                 
                 currencyCode = try? container.decode(String.self, forKey: .currencyCode)
+                
+                currencySymbol = try? container.decode(String.self, forKey: .currencySymbol)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(min, forKey: .min)
-                
                 try? container.encodeIfPresent(max, forKey: .max)
                 
-                try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+                try? container.encodeIfPresent(min, forKey: .min)
                 
                 try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+                
+                try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
                 
             }
             
@@ -779,37 +749,67 @@
         }
         
         /*
-            Model: ProductSizeStores
+            Model: ProductSize
             Used By: Catalog
         */
-        struct ProductSizeStores: Codable {
+        struct ProductSize: Codable {
             
-            public var count: Int?
+            public var quantity: Int?
+            
+            public var display: String?
+            
+            public var isAvailable: Bool?
+            
+            public var value: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case count = "count"
+                case quantity = "quantity"
+                
+                case display = "display"
+                
+                case isAvailable = "is_available"
+                
+                case value = "value"
                 
             }
 
-            public init(count: Int?) {
+            public init(display: String?, isAvailable: Bool?, quantity: Int?, value: String?) {
                 
-                self.count = count
+                self.quantity = quantity
+                
+                self.display = display
+                
+                self.isAvailable = isAvailable
+                
+                self.value = value
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                count = try? container.decode(Int.self, forKey: .count)
+                quantity = try? container.decode(Int.self, forKey: .quantity)
+                
+                display = try? container.decode(String.self, forKey: .display)
+                
+                isAvailable = try? container.decode(Bool.self, forKey: .isAvailable)
+                
+                value = try? container.decode(String.self, forKey: .value)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(count, forKey: .count)
+                try? container.encodeIfPresent(quantity, forKey: .quantity)
+                
+                try? container.encodeIfPresent(display, forKey: .display)
+                
+                try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+                
+                try? container.encodeIfPresent(value, forKey: .value)
                 
             }
             
@@ -821,243 +821,82 @@
         */
         struct ProductSizes: Codable {
             
-            public var sellable: Bool?
+            public var stores: ProductSizeStores?
+            
+            public var price: ProductListingPrice?
             
             public var discount: String?
             
             public var sizes: [ProductSize]?
             
-            public var price: ProductListingPrice?
+            public var sellable: Bool?
             
             public var sizeChart: [String: Any]?
-            
-            public var stores: ProductSizeStores?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case sellable = "sellable"
+                case stores = "stores"
+                
+                case price = "price"
                 
                 case discount = "discount"
                 
                 case sizes = "sizes"
                 
-                case price = "price"
+                case sellable = "sellable"
                 
                 case sizeChart = "size_chart"
-                
-                case stores = "stores"
                 
             }
 
             public init(discount: String?, price: ProductListingPrice?, sellable: Bool?, sizes: [ProductSize]?, sizeChart: [String: Any]?, stores: ProductSizeStores?) {
                 
-                self.sellable = sellable
+                self.stores = stores
+                
+                self.price = price
                 
                 self.discount = discount
                 
                 self.sizes = sizes
                 
-                self.price = price
+                self.sellable = sellable
                 
                 self.sizeChart = sizeChart
-                
-                self.stores = stores
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                sellable = try? container.decode(Bool.self, forKey: .sellable)
+                stores = try? container.decode(ProductSizeStores.self, forKey: .stores)
+                
+                price = try? container.decode(ProductListingPrice.self, forKey: .price)
                 
                 discount = try? container.decode(String.self, forKey: .discount)
                 
                 sizes = try? container.decode([ProductSize].self, forKey: .sizes)
                 
-                price = try? container.decode(ProductListingPrice.self, forKey: .price)
+                sellable = try? container.decode(Bool.self, forKey: .sellable)
                 
                 sizeChart = try? container.decode([String: Any].self, forKey: .sizeChart)
-                
-                stores = try? container.decode(ProductSizeStores.self, forKey: .stores)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(sellable, forKey: .sellable)
+                try? container.encodeIfPresent(stores, forKey: .stores)
+                
+                try? container.encodeIfPresent(price, forKey: .price)
                 
                 try? container.encodeIfPresent(discount, forKey: .discount)
                 
                 try? container.encodeIfPresent(sizes, forKey: .sizes)
                 
-                try? container.encodeIfPresent(price, forKey: .price)
+                try? container.encodeIfPresent(sellable, forKey: .sellable)
                 
                 try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
-                
-                try? container.encodeIfPresent(stores, forKey: .stores)
-                
-            }
-            
-        }
-        
-        /*
-            Model: Seller
-            Used By: Catalog
-        */
-        struct Seller: Codable {
-            
-            public var uid: Int?
-            
-            public var name: String?
-            
-            public var count: Int?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case uid = "uid"
-                
-                case name = "name"
-                
-                case count = "count"
-                
-            }
-
-            public init(count: Int?, name: String?, uid: Int?) {
-                
-                self.uid = uid
-                
-                self.name = name
-                
-                self.count = count
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                name = try? container.decode(String.self, forKey: .name)
-                
-                count = try? container.decode(Int.self, forKey: .count)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
-                
-                try? container.encodeIfPresent(count, forKey: .count)
-                
-            }
-            
-        }
-        
-        /*
-            Model: Store
-            Used By: Catalog
-        */
-        struct Store: Codable {
-            
-            public var uid: Int?
-            
-            public var name: String?
-            
-            public var count: Int?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case uid = "uid"
-                
-                case name = "name"
-                
-                case count = "count"
-                
-            }
-
-            public init(count: Int?, name: String?, uid: Int?) {
-                
-                self.uid = uid
-                
-                self.name = name
-                
-                self.count = count
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                name = try? container.decode(String.self, forKey: .name)
-                
-                count = try? container.decode(Int.self, forKey: .count)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
-                
-                try? container.encodeIfPresent(count, forKey: .count)
-                
-            }
-            
-        }
-        
-        /*
-            Model: ArticleAssignment
-            Used By: Catalog
-        */
-        struct ArticleAssignment: Codable {
-            
-            public var strategy: String?
-            
-            public var level: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case strategy = "strategy"
-                
-                case level = "level"
-                
-            }
-
-            public init(level: String?, strategy: String?) {
-                
-                self.strategy = strategy
-                
-                self.level = level
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                strategy = try? container.decode(String.self, forKey: .strategy)
-                
-                level = try? container.decode(String.self, forKey: .level)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(strategy, forKey: .strategy)
-                
-                try? container.encodeIfPresent(level, forKey: .level)
                 
             }
             
@@ -1121,28 +960,181 @@
         }
         
         /*
+            Model: Store
+            Used By: Catalog
+        */
+        struct Store: Codable {
+            
+            public var name: String?
+            
+            public var count: Int?
+            
+            public var uid: Int?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case name = "name"
+                
+                case count = "count"
+                
+                case uid = "uid"
+                
+            }
+
+            public init(count: Int?, name: String?, uid: Int?) {
+                
+                self.name = name
+                
+                self.count = count
+                
+                self.uid = uid
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                name = try? container.decode(String.self, forKey: .name)
+                
+                count = try? container.decode(Int.self, forKey: .count)
+                
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(count, forKey: .count)
+                
+                try? container.encodeIfPresent(uid, forKey: .uid)
+                
+            }
+            
+        }
+        
+        /*
+            Model: ArticleAssignment
+            Used By: Catalog
+        */
+        struct ArticleAssignment: Codable {
+            
+            public var level: String?
+            
+            public var strategy: String?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case level = "level"
+                
+                case strategy = "strategy"
+                
+            }
+
+            public init(level: String?, strategy: String?) {
+                
+                self.level = level
+                
+                self.strategy = strategy
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                level = try? container.decode(String.self, forKey: .level)
+                
+                strategy = try? container.decode(String.self, forKey: .strategy)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(level, forKey: .level)
+                
+                try? container.encodeIfPresent(strategy, forKey: .strategy)
+                
+            }
+            
+        }
+        
+        /*
+            Model: Seller
+            Used By: Catalog
+        */
+        struct Seller: Codable {
+            
+            public var name: String?
+            
+            public var count: Int?
+            
+            public var uid: Int?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case name = "name"
+                
+                case count = "count"
+                
+                case uid = "uid"
+                
+            }
+
+            public init(count: Int?, name: String?, uid: Int?) {
+                
+                self.name = name
+                
+                self.count = count
+                
+                self.uid = uid
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                name = try? container.decode(String.self, forKey: .name)
+                
+                count = try? container.decode(Int.self, forKey: .count)
+                
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(count, forKey: .count)
+                
+                try? container.encodeIfPresent(uid, forKey: .uid)
+                
+            }
+            
+        }
+        
+        /*
             Model: ProductSizePriceResponse
             Used By: Catalog
         */
         struct ProductSizePriceResponse: Codable {
             
+            public var pricePerPrice: ProductStockPrice?
+            
             public var pincode: Int?
             
-            public var specialBadge: String?
+            public var sellerCount: Int?
             
-            public var seller: Seller?
+            public var price: ProductStockPrice?
             
             public var store: Store?
-            
-            public var quantity: Int?
-            
-            public var itemType: String?
-            
-            public var articleAssignment: ArticleAssignment?
-            
-            public var set: [String: Any]?
-            
-            public var pricePerPrice: ProductStockPrice?
             
             public var discount: String?
             
@@ -1150,32 +1142,32 @@
             
             public var longLat: [Double]?
             
-            public var sellerCount: Int?
-            
-            public var price: ProductStockPrice?
-            
             public var articleId: String?
+            
+            public var itemType: String?
+            
+            public var specialBadge: String?
+            
+            public var set: [String: Any]?
+            
+            public var articleAssignment: ArticleAssignment?
+            
+            public var seller: Seller?
+            
+            public var quantity: Int?
             
 
             public enum CodingKeys: String, CodingKey {
                 
+                case pricePerPrice = "price_per_price"
+                
                 case pincode = "pincode"
                 
-                case specialBadge = "special_badge"
+                case sellerCount = "seller_count"
                 
-                case seller = "seller"
+                case price = "price"
                 
                 case store = "store"
-                
-                case quantity = "quantity"
-                
-                case itemType = "item_type"
-                
-                case articleAssignment = "article_assignment"
-                
-                case set = "set"
-                
-                case pricePerPrice = "price_per_price"
                 
                 case discount = "discount"
                 
@@ -1183,33 +1175,33 @@
                 
                 case longLat = "long_lat"
                 
-                case sellerCount = "seller_count"
-                
-                case price = "price"
-                
                 case articleId = "article_id"
+                
+                case itemType = "item_type"
+                
+                case specialBadge = "special_badge"
+                
+                case set = "set"
+                
+                case articleAssignment = "article_assignment"
+                
+                case seller = "seller"
+                
+                case quantity = "quantity"
                 
             }
 
             public init(articleAssignment: ArticleAssignment?, articleId: String?, discount: String?, itemType: String?, longLat: [Double]?, pincode: Int?, price: ProductStockPrice?, pricePerPrice: ProductStockPrice?, quantity: Int?, seller: Seller?, sellerCount: Int?, set: [String: Any]?, specialBadge: String?, store: Store?, strategyWiseListing: [[String: Any]]?) {
                 
+                self.pricePerPrice = pricePerPrice
+                
                 self.pincode = pincode
                 
-                self.specialBadge = specialBadge
+                self.sellerCount = sellerCount
                 
-                self.seller = seller
+                self.price = price
                 
                 self.store = store
-                
-                self.quantity = quantity
-                
-                self.itemType = itemType
-                
-                self.articleAssignment = articleAssignment
-                
-                self.set = set
-                
-                self.pricePerPrice = pricePerPrice
                 
                 self.discount = discount
                 
@@ -1217,34 +1209,34 @@
                 
                 self.longLat = longLat
                 
-                self.sellerCount = sellerCount
-                
-                self.price = price
-                
                 self.articleId = articleId
+                
+                self.itemType = itemType
+                
+                self.specialBadge = specialBadge
+                
+                self.set = set
+                
+                self.articleAssignment = articleAssignment
+                
+                self.seller = seller
+                
+                self.quantity = quantity
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                pricePerPrice = try? container.decode(ProductStockPrice.self, forKey: .pricePerPrice)
+                
                 pincode = try? container.decode(Int.self, forKey: .pincode)
                 
-                specialBadge = try? container.decode(String.self, forKey: .specialBadge)
+                sellerCount = try? container.decode(Int.self, forKey: .sellerCount)
                 
-                seller = try? container.decode(Seller.self, forKey: .seller)
+                price = try? container.decode(ProductStockPrice.self, forKey: .price)
                 
                 store = try? container.decode(Store.self, forKey: .store)
-                
-                quantity = try? container.decode(Int.self, forKey: .quantity)
-                
-                itemType = try? container.decode(String.self, forKey: .itemType)
-                
-                articleAssignment = try? container.decode(ArticleAssignment.self, forKey: .articleAssignment)
-                
-                set = try? container.decode([String: Any].self, forKey: .set)
-                
-                pricePerPrice = try? container.decode(ProductStockPrice.self, forKey: .pricePerPrice)
                 
                 discount = try? container.decode(String.self, forKey: .discount)
                 
@@ -1252,34 +1244,34 @@
                 
                 longLat = try? container.decode([Double].self, forKey: .longLat)
                 
-                sellerCount = try? container.decode(Int.self, forKey: .sellerCount)
-                
-                price = try? container.decode(ProductStockPrice.self, forKey: .price)
-                
                 articleId = try? container.decode(String.self, forKey: .articleId)
+                
+                itemType = try? container.decode(String.self, forKey: .itemType)
+                
+                specialBadge = try? container.decode(String.self, forKey: .specialBadge)
+                
+                set = try? container.decode([String: Any].self, forKey: .set)
+                
+                articleAssignment = try? container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                
+                seller = try? container.decode(Seller.self, forKey: .seller)
+                
+                quantity = try? container.decode(Int.self, forKey: .quantity)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(pricePerPrice, forKey: .pricePerPrice)
+                
                 try? container.encodeIfPresent(pincode, forKey: .pincode)
                 
-                try? container.encodeIfPresent(specialBadge, forKey: .specialBadge)
+                try? container.encodeIfPresent(sellerCount, forKey: .sellerCount)
                 
-                try? container.encodeIfPresent(seller, forKey: .seller)
+                try? container.encodeIfPresent(price, forKey: .price)
                 
                 try? container.encodeIfPresent(store, forKey: .store)
-                
-                try? container.encodeIfPresent(quantity, forKey: .quantity)
-                
-                try? container.encodeIfPresent(itemType, forKey: .itemType)
-                
-                try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-                
-                try? container.encodeIfPresent(set, forKey: .set)
-                
-                try? container.encodeIfPresent(pricePerPrice, forKey: .pricePerPrice)
                 
                 try? container.encodeIfPresent(discount, forKey: .discount)
                 
@@ -1287,68 +1279,19 @@
                 
                 try? container.encodeIfPresent(longLat, forKey: .longLat)
                 
-                try? container.encodeIfPresent(sellerCount, forKey: .sellerCount)
-                
-                try? container.encodeIfPresent(price, forKey: .price)
-                
                 try? container.encodeIfPresent(articleId, forKey: .articleId)
                 
-            }
-            
-        }
-        
-        /*
-            Model: ProductSizeSellerFilter
-            Used By: Catalog
-        */
-        struct ProductSizeSellerFilter: Codable {
-            
-            public var value: String?
-            
-            public var isSelected: Bool?
-            
-            public var name: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
+                try? container.encodeIfPresent(itemType, forKey: .itemType)
                 
-                case value = "value"
+                try? container.encodeIfPresent(specialBadge, forKey: .specialBadge)
                 
-                case isSelected = "is_selected"
+                try? container.encodeIfPresent(set, forKey: .set)
                 
-                case name = "name"
+                try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
                 
-            }
-
-            public init(isSelected: Bool?, name: String?, value: String?) {
+                try? container.encodeIfPresent(seller, forKey: .seller)
                 
-                self.value = value
-                
-                self.isSelected = isSelected
-                
-                self.name = name
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                value = try? container.decode(String.self, forKey: .value)
-                
-                isSelected = try? container.decode(Bool.self, forKey: .isSelected)
-                
-                name = try? container.decode(String.self, forKey: .name)
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(value, forKey: .value)
-                
-                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encodeIfPresent(quantity, forKey: .quantity)
                 
             }
             
@@ -1360,9 +1303,11 @@
         */
         struct Page: Codable {
             
-            public var hasNext: Bool?
-            
             public var current: Int?
+            
+            public var nextId: String?
+            
+            public var hasPrevious: Bool?
             
             public var size: Int?
             
@@ -1370,16 +1315,16 @@
             
             public var itemTotal: Int?
             
-            public var nextId: String?
-            
-            public var hasPrevious: Bool?
+            public var hasNext: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case hasNext = "has_next"
-                
                 case current = "current"
+                
+                case nextId = "next_id"
+                
+                case hasPrevious = "has_previous"
                 
                 case size = "size"
                 
@@ -1387,17 +1332,17 @@
                 
                 case itemTotal = "item_total"
                 
-                case nextId = "next_id"
-                
-                case hasPrevious = "has_previous"
+                case hasNext = "has_next"
                 
             }
 
             public init(current: Int?, hasNext: Bool?, hasPrevious: Bool?, itemTotal: Int?, nextId: String?, size: Int?, type: String?) {
                 
-                self.hasNext = hasNext
-                
                 self.current = current
+                
+                self.nextId = nextId
+                
+                self.hasPrevious = hasPrevious
                 
                 self.size = size
                 
@@ -1405,18 +1350,18 @@
                 
                 self.itemTotal = itemTotal
                 
-                self.nextId = nextId
-                
-                self.hasPrevious = hasPrevious
+                self.hasNext = hasNext
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                hasNext = try? container.decode(Bool.self, forKey: .hasNext)
-                
                 current = try? container.decode(Int.self, forKey: .current)
+                
+                nextId = try? container.decode(String.self, forKey: .nextId)
+                
+                hasPrevious = try? container.decode(Bool.self, forKey: .hasPrevious)
                 
                 size = try? container.decode(Int.self, forKey: .size)
                 
@@ -1424,18 +1369,18 @@
                 
                 itemTotal = try? container.decode(Int.self, forKey: .itemTotal)
                 
-                nextId = try? container.decode(String.self, forKey: .nextId)
-                
-                hasPrevious = try? container.decode(Bool.self, forKey: .hasPrevious)
+                hasNext = try? container.decode(Bool.self, forKey: .hasNext)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-                
                 try? container.encodeIfPresent(current, forKey: .current)
+                
+                try? container.encodeIfPresent(nextId, forKey: .nextId)
+                
+                try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
                 
                 try? container.encodeIfPresent(size, forKey: .size)
                 
@@ -1443,9 +1388,64 @@
                 
                 try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
                 
-                try? container.encodeIfPresent(nextId, forKey: .nextId)
+                try? container.encodeIfPresent(hasNext, forKey: .hasNext)
                 
-                try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+            }
+            
+        }
+        
+        /*
+            Model: ProductSizeSellerFilter
+            Used By: Catalog
+        */
+        struct ProductSizeSellerFilter: Codable {
+            
+            public var name: String?
+            
+            public var isSelected: Bool?
+            
+            public var value: String?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case name = "name"
+                
+                case isSelected = "is_selected"
+                
+                case value = "value"
+                
+            }
+
+            public init(isSelected: Bool?, name: String?, value: String?) {
+                
+                self.name = name
+                
+                self.isSelected = isSelected
+                
+                self.value = value
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                name = try? container.decode(String.self, forKey: .name)
+                
+                isSelected = try? container.decode(Bool.self, forKey: .isSelected)
+                
+                value = try? container.decode(String.self, forKey: .value)
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+                
+                try? container.encodeIfPresent(value, forKey: .value)
                 
             }
             
@@ -1457,18 +1457,18 @@
         */
         struct ProductSizeSellersResponse: Codable {
             
-            public var sortOn: [ProductSizeSellerFilter]?
-            
             public var page: Page
+            
+            public var sortOn: [ProductSizeSellerFilter]?
             
             public var items: [ProductSizePriceResponse]?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case sortOn = "sort_on"
-                
                 case page = "page"
+                
+                case sortOn = "sort_on"
                 
                 case items = "items"
                 
@@ -1476,9 +1476,9 @@
 
             public init(items: [ProductSizePriceResponse]?, page: Page, sortOn: [ProductSizeSellerFilter]?) {
                 
-                self.sortOn = sortOn
-                
                 self.page = page
+                
+                self.sortOn = sortOn
                 
                 self.items = items
                 
@@ -1487,9 +1487,9 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                sortOn = try? container.decode([ProductSizeSellerFilter].self, forKey: .sortOn)
-                
                 page = try container.decode(Page.self, forKey: .page)
+                
+                sortOn = try? container.decode([ProductSizeSellerFilter].self, forKey: .sortOn)
                 
                 items = try? container.decode([ProductSizePriceResponse].self, forKey: .items)
                 
@@ -1498,9 +1498,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-                
                 try? container.encodeIfPresent(page, forKey: .page)
+                
+                try? container.encodeIfPresent(sortOn, forKey: .sortOn)
                 
                 try? container.encodeIfPresent(items, forKey: .items)
                 
@@ -1514,18 +1514,18 @@
         */
         struct AttributeDetail: Codable {
             
-            public var key: String?
-            
             public var description: String?
+            
+            public var key: String?
             
             public var display: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case key = "key"
-                
                 case description = "description"
+                
+                case key = "key"
                 
                 case display = "display"
                 
@@ -1533,9 +1533,9 @@
 
             public init(description: String?, display: String?, key: String?) {
                 
-                self.key = key
-                
                 self.description = description
+                
+                self.key = key
                 
                 self.display = display
                 
@@ -1544,9 +1544,9 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                key = try? container.decode(String.self, forKey: .key)
-                
                 description = try? container.decode(String.self, forKey: .description)
+                
+                key = try? container.decode(String.self, forKey: .key)
                 
                 display = try? container.decode(String.self, forKey: .display)
                 
@@ -1555,9 +1555,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(key, forKey: .key)
-                
                 try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(key, forKey: .key)
                 
                 try? container.encodeIfPresent(display, forKey: .display)
                 
@@ -1618,16 +1618,18 @@
         */
         struct ProductCompareResponse: Codable {
             
+            public var items: [ProductDetail]?
+            
             public var subtitle: String?
             
             public var attributesMetadata: [AttributeDetail]?
             
             public var title: String?
             
-            public var items: [ProductDetail]?
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
                 
                 case subtitle = "subtitle"
                 
@@ -1635,11 +1637,11 @@
                 
                 case title = "title"
                 
-                case items = "items"
-                
             }
 
             public init(attributesMetadata: [AttributeDetail]?, items: [ProductDetail]?, subtitle: String?, title: String?) {
+                
+                self.items = items
                 
                 self.subtitle = subtitle
                 
@@ -1647,12 +1649,12 @@
                 
                 self.title = title
                 
-                self.items = items
-                
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                items = try? container.decode([ProductDetail].self, forKey: .items)
                 
                 subtitle = try? container.decode(String.self, forKey: .subtitle)
                 
@@ -1660,20 +1662,18 @@
                 
                 title = try? container.decode(String.self, forKey: .title)
                 
-                items = try? container.decode([ProductDetail].self, forKey: .items)
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(items, forKey: .items)
                 
                 try? container.encodeIfPresent(subtitle, forKey: .subtitle)
                 
                 try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
                 
                 try? container.encodeIfPresent(title, forKey: .title)
-                
-                try? container.encodeIfPresent(items, forKey: .items)
                 
             }
             
@@ -1722,52 +1722,52 @@
         */
         struct ProductSimilarItem: Codable {
             
+            public var items: [ProductDetail]?
+            
             public var subtitle: String?
             
             public var title: String?
             
-            public var items: [ProductDetail]?
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
                 
                 case subtitle = "subtitle"
                 
                 case title = "title"
                 
-                case items = "items"
-                
             }
 
             public init(items: [ProductDetail]?, subtitle: String?, title: String?) {
                 
+                self.items = items
+                
                 self.subtitle = subtitle
                 
                 self.title = title
-                
-                self.items = items
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                items = try? container.decode([ProductDetail].self, forKey: .items)
+                
                 subtitle = try? container.decode(String.self, forKey: .subtitle)
                 
                 title = try? container.decode(String.self, forKey: .title)
-                
-                items = try? container.decode([ProductDetail].self, forKey: .items)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(items, forKey: .items)
+                
                 try? container.encodeIfPresent(subtitle, forKey: .subtitle)
                 
                 try? container.encodeIfPresent(title, forKey: .title)
-                
-                try? container.encodeIfPresent(items, forKey: .items)
                 
             }
             
@@ -1816,112 +1816,112 @@
         */
         struct ProductVariantItemResponse: Codable {
             
-            public var value: String?
+            public var colorName: String?
             
             public var action: ProductListingAction?
             
-            public var slug: String?
-            
-            public var color: String?
+            public var name: String?
             
             public var isAvailable: Bool?
             
             public var uid: Int?
             
+            public var slug: String?
+            
             public var medias: [Media]?
             
-            public var colorName: String?
+            public var color: String?
             
-            public var name: String?
+            public var value: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case value = "value"
+                case colorName = "color_name"
                 
                 case action = "action"
                 
-                case slug = "slug"
-                
-                case color = "color"
+                case name = "name"
                 
                 case isAvailable = "is_available"
                 
                 case uid = "uid"
                 
+                case slug = "slug"
+                
                 case medias = "medias"
                 
-                case colorName = "color_name"
+                case color = "color"
                 
-                case name = "name"
+                case value = "value"
                 
             }
 
             public init(action: ProductListingAction?, color: String?, colorName: String?, isAvailable: Bool?, medias: [Media]?, name: String?, slug: String?, uid: Int?, value: String?) {
                 
-                self.value = value
+                self.colorName = colorName
                 
                 self.action = action
                 
-                self.slug = slug
-                
-                self.color = color
+                self.name = name
                 
                 self.isAvailable = isAvailable
                 
                 self.uid = uid
                 
+                self.slug = slug
+                
                 self.medias = medias
                 
-                self.colorName = colorName
+                self.color = color
                 
-                self.name = name
+                self.value = value
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                value = try? container.decode(String.self, forKey: .value)
+                colorName = try? container.decode(String.self, forKey: .colorName)
                 
                 action = try? container.decode(ProductListingAction.self, forKey: .action)
                 
-                slug = try? container.decode(String.self, forKey: .slug)
-                
-                color = try? container.decode(String.self, forKey: .color)
+                name = try? container.decode(String.self, forKey: .name)
                 
                 isAvailable = try? container.decode(Bool.self, forKey: .isAvailable)
                 
                 uid = try? container.decode(Int.self, forKey: .uid)
                 
+                slug = try? container.decode(String.self, forKey: .slug)
+                
                 medias = try? container.decode([Media].self, forKey: .medias)
                 
-                colorName = try? container.decode(String.self, forKey: .colorName)
+                color = try? container.decode(String.self, forKey: .color)
                 
-                name = try? container.decode(String.self, forKey: .name)
+                value = try? container.decode(String.self, forKey: .value)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(value, forKey: .value)
+                try? container.encodeIfPresent(colorName, forKey: .colorName)
                 
                 try? container.encodeIfPresent(action, forKey: .action)
                 
-                try? container.encodeIfPresent(slug, forKey: .slug)
-                
-                try? container.encodeIfPresent(color, forKey: .color)
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
                 
                 try? container.encodeIfPresent(uid, forKey: .uid)
                 
+                try? container.encodeIfPresent(slug, forKey: .slug)
+                
                 try? container.encodeIfPresent(medias, forKey: .medias)
                 
-                try? container.encodeIfPresent(colorName, forKey: .colorName)
+                try? container.encodeIfPresent(color, forKey: .color)
                 
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encodeIfPresent(value, forKey: .value)
                 
             }
             
@@ -1933,52 +1933,52 @@
         */
         struct ProductVariantResponse: Codable {
             
-            public var header: String?
-            
             public var items: [ProductVariantItemResponse]?
             
             public var displayType: String?
             
+            public var header: String?
+            
 
             public enum CodingKeys: String, CodingKey {
-                
-                case header = "header"
                 
                 case items = "items"
                 
                 case displayType = "display_type"
                 
+                case header = "header"
+                
             }
 
             public init(displayType: String?, header: String?, items: [ProductVariantItemResponse]?) {
                 
-                self.header = header
-                
                 self.items = items
                 
                 self.displayType = displayType
+                
+                self.header = header
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                header = try? container.decode(String.self, forKey: .header)
-                
                 items = try? container.decode([ProductVariantItemResponse].self, forKey: .items)
                 
                 displayType = try? container.decode(String.self, forKey: .displayType)
+                
+                header = try? container.decode(String.self, forKey: .header)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(header, forKey: .header)
-                
                 try? container.encodeIfPresent(items, forKey: .items)
                 
                 try? container.encodeIfPresent(displayType, forKey: .displayType)
+                
+                try? container.encodeIfPresent(header, forKey: .header)
                 
             }
             
@@ -2027,22 +2027,22 @@
         */
         struct StoreDetail: Codable {
             
+            public var name: String?
+            
             public var id: Int?
             
             public var city: String?
-            
-            public var name: String?
             
             public var code: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
+                case name = "name"
+                
                 case id = "id"
                 
                 case city = "city"
-                
-                case name = "name"
                 
                 case code = "code"
                 
@@ -2050,11 +2050,11 @@
 
             public init(city: String?, code: String?, id: Int?, name: String?) {
                 
+                self.name = name
+                
                 self.id = id
                 
                 self.city = city
-                
-                self.name = name
                 
                 self.code = code
                 
@@ -2063,11 +2063,11 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                name = try? container.decode(String.self, forKey: .name)
+                
                 id = try? container.decode(Int.self, forKey: .id)
                 
                 city = try? container.decode(String.self, forKey: .city)
-                
-                name = try? container.decode(String.self, forKey: .name)
                 
                 code = try? container.decode(String.self, forKey: .code)
                 
@@ -2076,11 +2076,11 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(name, forKey: .name)
+                
                 try? container.encodeIfPresent(id, forKey: .id)
                 
                 try? container.encodeIfPresent(city, forKey: .city)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(code, forKey: .code)
                 
@@ -2094,42 +2094,42 @@
         */
         struct CompanyDetail: Codable {
             
-            public var id: Int?
-            
             public var name: String?
+            
+            public var id: Int?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case id = "id"
-                
                 case name = "name"
+                
+                case id = "id"
                 
             }
 
             public init(id: Int?, name: String?) {
                 
-                self.id = id
-                
                 self.name = name
+                
+                self.id = id
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                id = try? container.decode(Int.self, forKey: .id)
-                
                 name = try? container.decode(String.self, forKey: .name)
+                
+                id = try? container.decode(Int.self, forKey: .id)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(id, forKey: .id)
-                
                 try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
                 
             }
             
@@ -2141,11 +2141,11 @@
         */
         struct ProductStockStatusItem: Codable {
             
+            public var identifier: [String: Any]?
+            
+            public var price: ProductStockPrice?
+            
             public var store: StoreDetail?
-            
-            public var seller: Seller?
-            
-            public var quantity: Int?
             
             public var itemId: Int?
             
@@ -2155,18 +2155,18 @@
             
             public var company: CompanyDetail?
             
-            public var price: ProductStockPrice?
+            public var seller: Seller?
             
-            public var identifier: [String: Any]?
+            public var quantity: Int?
             
 
             public enum CodingKeys: String, CodingKey {
                 
+                case identifier = "identifier"
+                
+                case price = "price"
+                
                 case store = "store"
-                
-                case seller = "seller"
-                
-                case quantity = "quantity"
                 
                 case itemId = "item_id"
                 
@@ -2176,19 +2176,19 @@
                 
                 case company = "company"
                 
-                case price = "price"
+                case seller = "seller"
                 
-                case identifier = "identifier"
+                case quantity = "quantity"
                 
             }
 
             public init(company: CompanyDetail?, identifier: [String: Any]?, itemId: Int?, price: ProductStockPrice?, quantity: Int?, seller: Seller?, size: String?, store: StoreDetail?, uid: String?) {
                 
+                self.identifier = identifier
+                
+                self.price = price
+                
                 self.store = store
-                
-                self.seller = seller
-                
-                self.quantity = quantity
                 
                 self.itemId = itemId
                 
@@ -2198,20 +2198,20 @@
                 
                 self.company = company
                 
-                self.price = price
+                self.seller = seller
                 
-                self.identifier = identifier
+                self.quantity = quantity
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                identifier = try? container.decode([String: Any].self, forKey: .identifier)
+                
+                price = try? container.decode(ProductStockPrice.self, forKey: .price)
+                
                 store = try? container.decode(StoreDetail.self, forKey: .store)
-                
-                seller = try? container.decode(Seller.self, forKey: .seller)
-                
-                quantity = try? container.decode(Int.self, forKey: .quantity)
                 
                 itemId = try? container.decode(Int.self, forKey: .itemId)
                 
@@ -2221,20 +2221,20 @@
                 
                 company = try? container.decode(CompanyDetail.self, forKey: .company)
                 
-                price = try? container.decode(ProductStockPrice.self, forKey: .price)
+                seller = try? container.decode(Seller.self, forKey: .seller)
                 
-                identifier = try? container.decode([String: Any].self, forKey: .identifier)
+                quantity = try? container.decode(Int.self, forKey: .quantity)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(identifier, forKey: .identifier)
+                
+                try? container.encodeIfPresent(price, forKey: .price)
+                
                 try? container.encodeIfPresent(store, forKey: .store)
-                
-                try? container.encodeIfPresent(seller, forKey: .seller)
-                
-                try? container.encodeIfPresent(quantity, forKey: .quantity)
                 
                 try? container.encodeIfPresent(itemId, forKey: .itemId)
                 
@@ -2244,9 +2244,9 @@
                 
                 try? container.encodeIfPresent(company, forKey: .company)
                 
-                try? container.encodeIfPresent(price, forKey: .price)
+                try? container.encodeIfPresent(seller, forKey: .seller)
                 
-                try? container.encodeIfPresent(identifier, forKey: .identifier)
+                try? container.encodeIfPresent(quantity, forKey: .quantity)
                 
             }
             
@@ -2342,52 +2342,52 @@
         */
         struct ProductSortOn: Codable {
             
-            public var value: String?
+            public var name: String?
             
             public var isSelected: Bool?
             
-            public var name: String?
+            public var value: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case value = "value"
+                case name = "name"
                 
                 case isSelected = "is_selected"
                 
-                case name = "name"
+                case value = "value"
                 
             }
 
             public init(isSelected: Bool?, name: String?, value: String?) {
                 
-                self.value = value
+                self.name = name
                 
                 self.isSelected = isSelected
                 
-                self.name = name
+                self.value = value
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                value = try? container.decode(String.self, forKey: .value)
+                name = try? container.decode(String.self, forKey: .name)
                 
                 isSelected = try? container.decode(Bool.self, forKey: .isSelected)
                 
-                name = try? container.decode(String.self, forKey: .name)
+                value = try? container.decode(String.self, forKey: .value)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(value, forKey: .value)
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(isSelected, forKey: .isSelected)
                 
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encodeIfPresent(value, forKey: .value)
                 
             }
             
@@ -2399,142 +2399,142 @@
         */
         struct ProductFiltersValue: Codable {
             
-            public var value: String
-            
-            public var selectedMin: Int?
+            public var display: String
             
             public var count: Int?
             
-            public var display: String
-            
             public var currencySymbol: String?
-            
-            public var min: Int?
-            
-            public var isSelected: Bool
-            
-            public var max: Int?
-            
-            public var selectedMax: Int?
             
             public var queryFormat: String?
             
             public var displayFormat: String?
             
+            public var max: Int?
+            
+            public var selectedMin: Int?
+            
+            public var isSelected: Bool
+            
+            public var min: Int?
+            
             public var currencyCode: String?
+            
+            public var selectedMax: Int?
+            
+            public var value: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case value = "value"
-                
-                case selectedMin = "selected_min"
+                case display = "display"
                 
                 case count = "count"
                 
-                case display = "display"
-                
                 case currencySymbol = "currency_symbol"
-                
-                case min = "min"
-                
-                case isSelected = "is_selected"
-                
-                case max = "max"
-                
-                case selectedMax = "selected_max"
                 
                 case queryFormat = "query_format"
                 
                 case displayFormat = "display_format"
                 
+                case max = "max"
+                
+                case selectedMin = "selected_min"
+                
+                case isSelected = "is_selected"
+                
+                case min = "min"
+                
                 case currencyCode = "currency_code"
+                
+                case selectedMax = "selected_max"
+                
+                case value = "value"
                 
             }
 
             public init(count: Int?, currencyCode: String?, currencySymbol: String?, display: String, displayFormat: String?, isSelected: Bool, max: Int?, min: Int?, queryFormat: String?, selectedMax: Int?, selectedMin: Int?, value: String) {
                 
-                self.value = value
-                
-                self.selectedMin = selectedMin
+                self.display = display
                 
                 self.count = count
                 
-                self.display = display
-                
                 self.currencySymbol = currencySymbol
-                
-                self.min = min
-                
-                self.isSelected = isSelected
-                
-                self.max = max
-                
-                self.selectedMax = selectedMax
                 
                 self.queryFormat = queryFormat
                 
                 self.displayFormat = displayFormat
                 
+                self.max = max
+                
+                self.selectedMin = selectedMin
+                
+                self.isSelected = isSelected
+                
+                self.min = min
+                
                 self.currencyCode = currencyCode
+                
+                self.selectedMax = selectedMax
+                
+                self.value = value
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                value = try container.decode(String.self, forKey: .value)
-                
-                selectedMin = try? container.decode(Int.self, forKey: .selectedMin)
+                display = try container.decode(String.self, forKey: .display)
                 
                 count = try? container.decode(Int.self, forKey: .count)
                 
-                display = try container.decode(String.self, forKey: .display)
-                
                 currencySymbol = try? container.decode(String.self, forKey: .currencySymbol)
-                
-                min = try? container.decode(Int.self, forKey: .min)
-                
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
-                
-                max = try? container.decode(Int.self, forKey: .max)
-                
-                selectedMax = try? container.decode(Int.self, forKey: .selectedMax)
                 
                 queryFormat = try? container.decode(String.self, forKey: .queryFormat)
                 
                 displayFormat = try? container.decode(String.self, forKey: .displayFormat)
                 
+                max = try? container.decode(Int.self, forKey: .max)
+                
+                selectedMin = try? container.decode(Int.self, forKey: .selectedMin)
+                
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                
+                min = try? container.decode(Int.self, forKey: .min)
+                
                 currencyCode = try? container.decode(String.self, forKey: .currencyCode)
+                
+                selectedMax = try? container.decode(Int.self, forKey: .selectedMax)
+                
+                value = try container.decode(String.self, forKey: .value)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(value, forKey: .value)
-                
-                try? container.encodeIfPresent(selectedMin, forKey: .selectedMin)
+                try? container.encodeIfPresent(display, forKey: .display)
                 
                 try? container.encodeIfPresent(count, forKey: .count)
                 
-                try? container.encodeIfPresent(display, forKey: .display)
-                
                 try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-                
-                try? container.encodeIfPresent(min, forKey: .min)
-                
-                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-                
-                try? container.encodeIfPresent(max, forKey: .max)
-                
-                try? container.encodeIfPresent(selectedMax, forKey: .selectedMax)
                 
                 try? container.encodeIfPresent(queryFormat, forKey: .queryFormat)
                 
                 try? container.encodeIfPresent(displayFormat, forKey: .displayFormat)
                 
+                try? container.encodeIfPresent(max, forKey: .max)
+                
+                try? container.encodeIfPresent(selectedMin, forKey: .selectedMin)
+                
+                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+                
+                try? container.encodeIfPresent(min, forKey: .min)
+                
                 try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+                
+                try? container.encodeIfPresent(selectedMax, forKey: .selectedMax)
+                
+                try? container.encodeIfPresent(value, forKey: .value)
                 
             }
             
@@ -2546,22 +2546,22 @@
         */
         struct ProductFiltersKey: Codable {
             
+            public var name: String
+            
             public var logo: String?
             
             public var kind: String?
-            
-            public var name: String
             
             public var display: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
+                case name = "name"
+                
                 case logo = "logo"
                 
                 case kind = "kind"
-                
-                case name = "name"
                 
                 case display = "display"
                 
@@ -2569,11 +2569,11 @@
 
             public init(display: String, kind: String?, logo: String?, name: String) {
                 
+                self.name = name
+                
                 self.logo = logo
                 
                 self.kind = kind
-                
-                self.name = name
                 
                 self.display = display
                 
@@ -2582,11 +2582,11 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                name = try container.decode(String.self, forKey: .name)
+                
                 logo = try? container.decode(String.self, forKey: .logo)
                 
                 kind = try? container.decode(String.self, forKey: .kind)
-                
-                name = try container.decode(String.self, forKey: .name)
                 
                 display = try container.decode(String.self, forKey: .display)
                 
@@ -2595,11 +2595,11 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(name, forKey: .name)
+                
                 try? container.encodeIfPresent(logo, forKey: .logo)
                 
                 try? container.encodeIfPresent(kind, forKey: .kind)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(display, forKey: .display)
                 
@@ -2660,272 +2660,272 @@
         */
         struct ProductListingDetail: Codable {
             
-            public var sellable: Bool?
-            
-            public var slug: String
-            
-            public var type: String?
-            
-            public var uid: Int?
-            
-            public var medias: [Media]?
+            public var highlights: [String]?
             
             public var name: String?
             
-            public var teaserTag: String?
-            
             public var hasVariant: Bool?
             
-            public var productOnlineDate: String?
+            public var similars: [String]?
             
-            public var categories: [ProductBrand]?
+            public var uid: Int?
             
-            public var attributes: [String: Any]?
+            public var color: String?
+            
+            public var shortDescription: String?
+            
+            public var rating: Double?
+            
+            public var groupedAttributes: [ProductDetailGroupedAttribute]?
             
             public var ratingCount: Int?
             
             public var itemType: String?
             
-            public var color: String?
+            public var sellable: Bool?
             
-            public var imageNature: String?
-            
-            public var highlights: [String]?
-            
-            public var groupedAttributes: [ProductDetailGroupedAttribute]?
-            
-            public var price: ProductListingPrice?
-            
-            public var tryouts: [String]?
-            
-            public var brand: ProductBrand?
-            
-            public var shortDescription: String?
+            public var teaserTag: String?
             
             public var discount: String?
             
+            public var medias: [Media]?
+            
             public var description: String?
             
-            public var similars: [String]?
+            public var imageNature: String?
             
-            public var rating: Double?
+            public var price: ProductListingPrice?
+            
+            public var brand: ProductBrand?
+            
+            public var type: String?
+            
+            public var slug: String
+            
+            public var tryouts: [String]?
+            
+            public var categories: [ProductBrand]?
+            
+            public var attributes: [String: Any]?
+            
+            public var productOnlineDate: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case sellable = "sellable"
-                
-                case slug = "slug"
-                
-                case type = "type"
-                
-                case uid = "uid"
-                
-                case medias = "medias"
+                case highlights = "highlights"
                 
                 case name = "name"
                 
-                case teaserTag = "teaser_tag"
-                
                 case hasVariant = "has_variant"
                 
-                case productOnlineDate = "product_online_date"
+                case similars = "similars"
                 
-                case categories = "categories"
+                case uid = "uid"
                 
-                case attributes = "attributes"
+                case color = "color"
+                
+                case shortDescription = "short_description"
+                
+                case rating = "rating"
+                
+                case groupedAttributes = "grouped_attributes"
                 
                 case ratingCount = "rating_count"
                 
                 case itemType = "item_type"
                 
-                case color = "color"
+                case sellable = "sellable"
                 
-                case imageNature = "image_nature"
-                
-                case highlights = "highlights"
-                
-                case groupedAttributes = "grouped_attributes"
-                
-                case price = "price"
-                
-                case tryouts = "tryouts"
-                
-                case brand = "brand"
-                
-                case shortDescription = "short_description"
+                case teaserTag = "teaser_tag"
                 
                 case discount = "discount"
                 
+                case medias = "medias"
+                
                 case description = "description"
                 
-                case similars = "similars"
+                case imageNature = "image_nature"
                 
-                case rating = "rating"
+                case price = "price"
+                
+                case brand = "brand"
+                
+                case type = "type"
+                
+                case slug = "slug"
+                
+                case tryouts = "tryouts"
+                
+                case categories = "categories"
+                
+                case attributes = "attributes"
+                
+                case productOnlineDate = "product_online_date"
                 
             }
 
             public init(attributes: [String: Any]?, brand: ProductBrand?, categories: [ProductBrand]?, color: String?, description: String?, discount: String?, groupedAttributes: [ProductDetailGroupedAttribute]?, hasVariant: Bool?, highlights: [String]?, imageNature: String?, itemType: String?, medias: [Media]?, name: String?, price: ProductListingPrice?, productOnlineDate: String?, rating: Double?, ratingCount: Int?, sellable: Bool?, shortDescription: String?, similars: [String]?, slug: String, teaserTag: String?, tryouts: [String]?, type: String?, uid: Int?) {
                 
-                self.sellable = sellable
-                
-                self.slug = slug
-                
-                self.type = type
-                
-                self.uid = uid
-                
-                self.medias = medias
+                self.highlights = highlights
                 
                 self.name = name
                 
-                self.teaserTag = teaserTag
-                
                 self.hasVariant = hasVariant
                 
-                self.productOnlineDate = productOnlineDate
+                self.similars = similars
                 
-                self.categories = categories
+                self.uid = uid
                 
-                self.attributes = attributes
+                self.color = color
+                
+                self.shortDescription = shortDescription
+                
+                self.rating = rating
+                
+                self.groupedAttributes = groupedAttributes
                 
                 self.ratingCount = ratingCount
                 
                 self.itemType = itemType
                 
-                self.color = color
+                self.sellable = sellable
                 
-                self.imageNature = imageNature
-                
-                self.highlights = highlights
-                
-                self.groupedAttributes = groupedAttributes
-                
-                self.price = price
-                
-                self.tryouts = tryouts
-                
-                self.brand = brand
-                
-                self.shortDescription = shortDescription
+                self.teaserTag = teaserTag
                 
                 self.discount = discount
                 
+                self.medias = medias
+                
                 self.description = description
                 
-                self.similars = similars
+                self.imageNature = imageNature
                 
-                self.rating = rating
+                self.price = price
+                
+                self.brand = brand
+                
+                self.type = type
+                
+                self.slug = slug
+                
+                self.tryouts = tryouts
+                
+                self.categories = categories
+                
+                self.attributes = attributes
+                
+                self.productOnlineDate = productOnlineDate
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                sellable = try? container.decode(Bool.self, forKey: .sellable)
-                
-                slug = try container.decode(String.self, forKey: .slug)
-                
-                type = try? container.decode(String.self, forKey: .type)
-                
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                medias = try? container.decode([Media].self, forKey: .medias)
+                highlights = try? container.decode([String].self, forKey: .highlights)
                 
                 name = try? container.decode(String.self, forKey: .name)
                 
-                teaserTag = try? container.decode(String.self, forKey: .teaserTag)
-                
                 hasVariant = try? container.decode(Bool.self, forKey: .hasVariant)
                 
-                productOnlineDate = try? container.decode(String.self, forKey: .productOnlineDate)
+                similars = try? container.decode([String].self, forKey: .similars)
                 
-                categories = try? container.decode([ProductBrand].self, forKey: .categories)
+                uid = try? container.decode(Int.self, forKey: .uid)
                 
-                attributes = try? container.decode([String: Any].self, forKey: .attributes)
+                color = try? container.decode(String.self, forKey: .color)
+                
+                shortDescription = try? container.decode(String.self, forKey: .shortDescription)
+                
+                rating = try? container.decode(Double.self, forKey: .rating)
+                
+                groupedAttributes = try? container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
                 
                 ratingCount = try? container.decode(Int.self, forKey: .ratingCount)
                 
                 itemType = try? container.decode(String.self, forKey: .itemType)
                 
-                color = try? container.decode(String.self, forKey: .color)
+                sellable = try? container.decode(Bool.self, forKey: .sellable)
                 
-                imageNature = try? container.decode(String.self, forKey: .imageNature)
-                
-                highlights = try? container.decode([String].self, forKey: .highlights)
-                
-                groupedAttributes = try? container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
-                
-                price = try? container.decode(ProductListingPrice.self, forKey: .price)
-                
-                tryouts = try? container.decode([String].self, forKey: .tryouts)
-                
-                brand = try? container.decode(ProductBrand.self, forKey: .brand)
-                
-                shortDescription = try? container.decode(String.self, forKey: .shortDescription)
+                teaserTag = try? container.decode(String.self, forKey: .teaserTag)
                 
                 discount = try? container.decode(String.self, forKey: .discount)
                 
+                medias = try? container.decode([Media].self, forKey: .medias)
+                
                 description = try? container.decode(String.self, forKey: .description)
                 
-                similars = try? container.decode([String].self, forKey: .similars)
+                imageNature = try? container.decode(String.self, forKey: .imageNature)
                 
-                rating = try? container.decode(Double.self, forKey: .rating)
+                price = try? container.decode(ProductListingPrice.self, forKey: .price)
+                
+                brand = try? container.decode(ProductBrand.self, forKey: .brand)
+                
+                type = try? container.decode(String.self, forKey: .type)
+                
+                slug = try container.decode(String.self, forKey: .slug)
+                
+                tryouts = try? container.decode([String].self, forKey: .tryouts)
+                
+                categories = try? container.decode([ProductBrand].self, forKey: .categories)
+                
+                attributes = try? container.decode([String: Any].self, forKey: .attributes)
+                
+                productOnlineDate = try? container.decode(String.self, forKey: .productOnlineDate)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(sellable, forKey: .sellable)
-                
-                try? container.encodeIfPresent(slug, forKey: .slug)
-                
-                try? container.encodeIfPresent(type, forKey: .type)
-                
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(medias, forKey: .medias)
+                try? container.encodeIfPresent(highlights, forKey: .highlights)
                 
                 try? container.encodeIfPresent(name, forKey: .name)
                 
-                try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
-                
                 try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
                 
-                try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
+                try? container.encodeIfPresent(similars, forKey: .similars)
                 
-                try? container.encodeIfPresent(categories, forKey: .categories)
+                try? container.encodeIfPresent(uid, forKey: .uid)
                 
-                try? container.encodeIfPresent(attributes, forKey: .attributes)
+                try? container.encodeIfPresent(color, forKey: .color)
+                
+                try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+                
+                try? container.encodeIfPresent(rating, forKey: .rating)
+                
+                try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
                 
                 try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
                 
                 try? container.encodeIfPresent(itemType, forKey: .itemType)
                 
-                try? container.encodeIfPresent(color, forKey: .color)
+                try? container.encodeIfPresent(sellable, forKey: .sellable)
                 
-                try? container.encodeIfPresent(imageNature, forKey: .imageNature)
-                
-                try? container.encodeIfPresent(highlights, forKey: .highlights)
-                
-                try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
-                
-                try? container.encodeIfPresent(price, forKey: .price)
-                
-                try? container.encodeIfPresent(tryouts, forKey: .tryouts)
-                
-                try? container.encodeIfPresent(brand, forKey: .brand)
-                
-                try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+                try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
                 
                 try? container.encodeIfPresent(discount, forKey: .discount)
                 
+                try? container.encodeIfPresent(medias, forKey: .medias)
+                
                 try? container.encodeIfPresent(description, forKey: .description)
                 
-                try? container.encodeIfPresent(similars, forKey: .similars)
+                try? container.encodeIfPresent(imageNature, forKey: .imageNature)
                 
-                try? container.encodeIfPresent(rating, forKey: .rating)
+                try? container.encodeIfPresent(price, forKey: .price)
+                
+                try? container.encodeIfPresent(brand, forKey: .brand)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+                try? container.encodeIfPresent(slug, forKey: .slug)
+                
+                try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+                
+                try? container.encodeIfPresent(categories, forKey: .categories)
+                
+                try? container.encodeIfPresent(attributes, forKey: .attributes)
+                
+                try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
                 
             }
             
@@ -2937,9 +2937,9 @@
         */
         struct ProductListingResponse: Codable {
             
-            public var sortOn: [ProductSortOn]?
-            
             public var page: Page
+            
+            public var sortOn: [ProductSortOn]?
             
             public var filters: [ProductFilters]?
             
@@ -2948,9 +2948,9 @@
 
             public enum CodingKeys: String, CodingKey {
                 
-                case sortOn = "sort_on"
-                
                 case page = "page"
+                
+                case sortOn = "sort_on"
                 
                 case filters = "filters"
                 
@@ -2960,9 +2960,9 @@
 
             public init(filters: [ProductFilters]?, items: [ProductListingDetail]?, page: Page, sortOn: [ProductSortOn]?) {
                 
-                self.sortOn = sortOn
-                
                 self.page = page
+                
+                self.sortOn = sortOn
                 
                 self.filters = filters
                 
@@ -2973,9 +2973,9 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                sortOn = try? container.decode([ProductSortOn].self, forKey: .sortOn)
-                
                 page = try container.decode(Page.self, forKey: .page)
+                
+                sortOn = try? container.decode([ProductSortOn].self, forKey: .sortOn)
                 
                 filters = try? container.decode([ProductFilters].self, forKey: .filters)
                 
@@ -2986,9 +2986,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-                
                 try? container.encodeIfPresent(page, forKey: .page)
+                
+                try? container.encodeIfPresent(sortOn, forKey: .sortOn)
                 
                 try? container.encodeIfPresent(filters, forKey: .filters)
                 
@@ -3004,42 +3004,42 @@
         */
         struct ImageUrls: Codable {
             
-            public var landscape: Media?
-            
             public var portrait: Media?
+            
+            public var landscape: Media?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case landscape = "landscape"
-                
                 case portrait = "portrait"
+                
+                case landscape = "landscape"
                 
             }
 
             public init(landscape: Media?, portrait: Media?) {
                 
-                self.landscape = landscape
-                
                 self.portrait = portrait
+                
+                self.landscape = landscape
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                landscape = try? container.decode(Media.self, forKey: .landscape)
-                
                 portrait = try? container.decode(Media.self, forKey: .portrait)
+                
+                landscape = try? container.decode(Media.self, forKey: .landscape)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(landscape, forKey: .landscape)
-                
                 try? container.encodeIfPresent(portrait, forKey: .portrait)
+                
+                try? container.encodeIfPresent(landscape, forKey: .landscape)
                 
             }
             
@@ -3053,38 +3053,38 @@
             
             public var action: ProductListingAction?
             
-            public var slug: String?
-            
-            public var uid: Int?
-            
-            public var logo: Media?
-            
             public var discount: String?
-            
-            public var banners: ImageUrls?
             
             public var departments: [String]?
             
             public var name: String?
+            
+            public var uid: Int?
+            
+            public var slug: String?
+            
+            public var logo: Media?
+            
+            public var banners: ImageUrls?
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case action = "action"
                 
-                case slug = "slug"
-                
-                case uid = "uid"
-                
-                case logo = "logo"
-                
                 case discount = "discount"
-                
-                case banners = "banners"
                 
                 case departments = "departments"
                 
                 case name = "name"
+                
+                case uid = "uid"
+                
+                case slug = "slug"
+                
+                case logo = "logo"
+                
+                case banners = "banners"
                 
             }
 
@@ -3092,19 +3092,19 @@
                 
                 self.action = action
                 
-                self.slug = slug
-                
-                self.uid = uid
-                
-                self.logo = logo
-                
                 self.discount = discount
-                
-                self.banners = banners
                 
                 self.departments = departments
                 
                 self.name = name
+                
+                self.uid = uid
+                
+                self.slug = slug
+                
+                self.logo = logo
+                
+                self.banners = banners
                 
             }
 
@@ -3113,19 +3113,19 @@
                 
                 action = try? container.decode(ProductListingAction.self, forKey: .action)
                 
-                slug = try? container.decode(String.self, forKey: .slug)
-                
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                logo = try? container.decode(Media.self, forKey: .logo)
-                
                 discount = try? container.decode(String.self, forKey: .discount)
-                
-                banners = try? container.decode(ImageUrls.self, forKey: .banners)
                 
                 departments = try? container.decode([String].self, forKey: .departments)
                 
                 name = try? container.decode(String.self, forKey: .name)
+                
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+                slug = try? container.decode(String.self, forKey: .slug)
+                
+                logo = try? container.decode(Media.self, forKey: .logo)
+                
+                banners = try? container.decode(ImageUrls.self, forKey: .banners)
                 
             }
             
@@ -3134,19 +3134,19 @@
                 
                 try? container.encodeIfPresent(action, forKey: .action)
                 
-                try? container.encodeIfPresent(slug, forKey: .slug)
-                
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(logo, forKey: .logo)
-                
                 try? container.encodeIfPresent(discount, forKey: .discount)
-                
-                try? container.encodeIfPresent(banners, forKey: .banners)
                 
                 try? container.encodeIfPresent(departments, forKey: .departments)
                 
                 try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(uid, forKey: .uid)
+                
+                try? container.encodeIfPresent(slug, forKey: .slug)
+                
+                try? container.encodeIfPresent(logo, forKey: .logo)
+                
+                try? container.encodeIfPresent(banners, forKey: .banners)
                 
             }
             
@@ -3205,62 +3205,62 @@
         */
         struct BrandDetailResponse: Codable {
             
-            public var uid: Int?
-            
-            public var logo: Media?
-            
             public var name: String?
             
             public var banners: ImageUrls?
             
+            public var uid: Int?
+            
+            public var logo: Media?
+            
 
             public enum CodingKeys: String, CodingKey {
-                
-                case uid = "uid"
-                
-                case logo = "logo"
                 
                 case name = "name"
                 
                 case banners = "banners"
                 
+                case uid = "uid"
+                
+                case logo = "logo"
+                
             }
 
             public init(banners: ImageUrls?, logo: Media?, name: String?, uid: Int?) {
                 
-                self.uid = uid
-                
-                self.logo = logo
-                
                 self.name = name
                 
                 self.banners = banners
+                
+                self.uid = uid
+                
+                self.logo = logo
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                logo = try? container.decode(Media.self, forKey: .logo)
-                
                 name = try? container.decode(String.self, forKey: .name)
                 
                 banners = try? container.decode(ImageUrls.self, forKey: .banners)
+                
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+                logo = try? container.decode(Media.self, forKey: .logo)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(logo, forKey: .logo)
-                
                 try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(banners, forKey: .banners)
+                
+                try? container.encodeIfPresent(uid, forKey: .uid)
+                
+                try? container.encodeIfPresent(logo, forKey: .logo)
                 
             }
             
@@ -3274,30 +3274,30 @@
             
             public var action: ProductListingAction?
             
-            public var slug: String?
-            
             public var childs: [[String: Any]]?
+            
+            public var name: String?
             
             public var uid: Int?
             
-            public var banners: ImageUrls?
+            public var slug: String?
             
-            public var name: String?
+            public var banners: ImageUrls?
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case action = "action"
                 
-                case slug = "slug"
-                
                 case childs = "childs"
+                
+                case name = "name"
                 
                 case uid = "uid"
                 
-                case banners = "banners"
+                case slug = "slug"
                 
-                case name = "name"
+                case banners = "banners"
                 
             }
 
@@ -3305,15 +3305,15 @@
                 
                 self.action = action
                 
-                self.slug = slug
-                
                 self.childs = childs
+                
+                self.name = name
                 
                 self.uid = uid
                 
-                self.banners = banners
+                self.slug = slug
                 
-                self.name = name
+                self.banners = banners
                 
             }
 
@@ -3322,15 +3322,15 @@
                 
                 action = try? container.decode(ProductListingAction.self, forKey: .action)
                 
-                slug = try? container.decode(String.self, forKey: .slug)
-                
                 childs = try? container.decode([[String: Any]].self, forKey: .childs)
+                
+                name = try? container.decode(String.self, forKey: .name)
                 
                 uid = try? container.decode(Int.self, forKey: .uid)
                 
-                banners = try? container.decode(ImageUrls.self, forKey: .banners)
+                slug = try? container.decode(String.self, forKey: .slug)
                 
-                name = try? container.decode(String.self, forKey: .name)
+                banners = try? container.decode(ImageUrls.self, forKey: .banners)
                 
             }
             
@@ -3339,15 +3339,15 @@
                 
                 try? container.encodeIfPresent(action, forKey: .action)
                 
-                try? container.encodeIfPresent(slug, forKey: .slug)
-                
                 try? container.encodeIfPresent(childs, forKey: .childs)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(uid, forKey: .uid)
                 
-                try? container.encodeIfPresent(banners, forKey: .banners)
+                try? container.encodeIfPresent(slug, forKey: .slug)
                 
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encodeIfPresent(banners, forKey: .banners)
                 
             }
             
@@ -3500,62 +3500,62 @@
         */
         struct CategoryMetaResponse: Codable {
             
-            public var uid: Int?
-            
-            public var logo: Media?
-            
             public var name: String?
             
             public var banners: ImageUrls?
             
+            public var uid: Int?
+            
+            public var logo: Media?
+            
 
             public enum CodingKeys: String, CodingKey {
-                
-                case uid = "uid"
-                
-                case logo = "logo"
                 
                 case name = "name"
                 
                 case banners = "banners"
                 
+                case uid = "uid"
+                
+                case logo = "logo"
+                
             }
 
             public init(banners: ImageUrls?, logo: Media?, name: String?, uid: Int?) {
                 
-                self.uid = uid
-                
-                self.logo = logo
-                
                 self.name = name
                 
                 self.banners = banners
+                
+                self.uid = uid
+                
+                self.logo = logo
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                logo = try? container.decode(Media.self, forKey: .logo)
-                
                 name = try? container.decode(String.self, forKey: .name)
                 
                 banners = try? container.decode(ImageUrls.self, forKey: .banners)
+                
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+                logo = try? container.decode(Media.self, forKey: .logo)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(logo, forKey: .logo)
-                
                 try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(banners, forKey: .banners)
+                
+                try? container.encodeIfPresent(uid, forKey: .uid)
+                
+                try? container.encodeIfPresent(logo, forKey: .logo)
                 
             }
             
@@ -3624,72 +3624,72 @@
         */
         struct Department: Codable {
             
-            public var slug: String?
-            
-            public var uid: Int?
-            
-            public var logo: Media?
+            public var name: String?
             
             public var priorityOrder: Int?
             
-            public var name: String?
+            public var uid: Int?
+            
+            public var slug: String?
+            
+            public var logo: Media?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case slug = "slug"
-                
-                case uid = "uid"
-                
-                case logo = "logo"
+                case name = "name"
                 
                 case priorityOrder = "priority_order"
                 
-                case name = "name"
+                case uid = "uid"
+                
+                case slug = "slug"
+                
+                case logo = "logo"
                 
             }
 
             public init(logo: Media?, name: String?, priorityOrder: Int?, slug: String?, uid: Int?) {
                 
-                self.slug = slug
-                
-                self.uid = uid
-                
-                self.logo = logo
+                self.name = name
                 
                 self.priorityOrder = priorityOrder
                 
-                self.name = name
+                self.uid = uid
+                
+                self.slug = slug
+                
+                self.logo = logo
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                slug = try? container.decode(String.self, forKey: .slug)
-                
-                uid = try? container.decode(Int.self, forKey: .uid)
-                
-                logo = try? container.decode(Media.self, forKey: .logo)
+                name = try? container.decode(String.self, forKey: .name)
                 
                 priorityOrder = try? container.decode(Int.self, forKey: .priorityOrder)
                 
-                name = try? container.decode(String.self, forKey: .name)
+                uid = try? container.decode(Int.self, forKey: .uid)
+                
+                slug = try? container.decode(String.self, forKey: .slug)
+                
+                logo = try? container.decode(Media.self, forKey: .logo)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(slug, forKey: .slug)
-                
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(logo, forKey: .logo)
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
                 
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encodeIfPresent(uid, forKey: .uid)
+                
+                try? container.encodeIfPresent(slug, forKey: .slug)
+                
+                try? container.encodeIfPresent(logo, forKey: .logo)
                 
             }
             
@@ -3738,22 +3738,22 @@
         */
         struct AutocompleteItem: Codable {
             
-            public var type: String?
-            
             public var logo: Media?
             
             public var action: [String: Any]?
+            
+            public var type: String?
             
             public var display: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case type = "type"
-                
                 case logo = "logo"
                 
                 case action = "action"
+                
+                case type = "type"
                 
                 case display = "display"
                 
@@ -3761,11 +3761,11 @@
 
             public init(action: [String: Any]?, display: String?, logo: Media?, type: String?) {
                 
-                self.type = type
-                
                 self.logo = logo
                 
                 self.action = action
+                
+                self.type = type
                 
                 self.display = display
                 
@@ -3774,11 +3774,11 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                type = try? container.decode(String.self, forKey: .type)
-                
                 logo = try? container.decode(Media.self, forKey: .logo)
                 
                 action = try? container.decode([String: Any].self, forKey: .action)
+                
+                type = try? container.decode(String.self, forKey: .type)
                 
                 display = try? container.decode(String.self, forKey: .display)
                 
@@ -3787,11 +3787,11 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(type, forKey: .type)
-                
                 try? container.encodeIfPresent(logo, forKey: .logo)
                 
                 try? container.encodeIfPresent(action, forKey: .action)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
                 
                 try? container.encodeIfPresent(display, forKey: .display)
                 
@@ -3837,23 +3837,23 @@
         }
         
         /*
-            Model: CollectionListingFilterType
+            Model: CollectionListingFilterTag
             Used By: Catalog
         */
-        struct CollectionListingFilterType: Codable {
-            
-            public var isSelected: Bool?
+        struct CollectionListingFilterTag: Codable {
             
             public var name: String?
+            
+            public var isSelected: Bool?
             
             public var display: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case isSelected = "is_selected"
-                
                 case name = "name"
+                
+                case isSelected = "is_selected"
                 
                 case display = "display"
                 
@@ -3861,9 +3861,9 @@
 
             public init(display: String?, isSelected: Bool?, name: String?) {
                 
-                self.isSelected = isSelected
-                
                 self.name = name
+                
+                self.isSelected = isSelected
                 
                 self.display = display
                 
@@ -3872,9 +3872,9 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                isSelected = try? container.decode(Bool.self, forKey: .isSelected)
-                
                 name = try? container.decode(String.self, forKey: .name)
+                
+                isSelected = try? container.decode(Bool.self, forKey: .isSelected)
                 
                 display = try? container.decode(String.self, forKey: .display)
                 
@@ -3883,9 +3883,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-                
                 try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
                 
                 try? container.encodeIfPresent(display, forKey: .display)
                 
@@ -3894,23 +3894,23 @@
         }
         
         /*
-            Model: CollectionListingFilterTag
+            Model: CollectionListingFilterType
             Used By: Catalog
         */
-        struct CollectionListingFilterTag: Codable {
-            
-            public var isSelected: Bool?
+        struct CollectionListingFilterType: Codable {
             
             public var name: String?
+            
+            public var isSelected: Bool?
             
             public var display: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case isSelected = "is_selected"
-                
                 case name = "name"
+                
+                case isSelected = "is_selected"
                 
                 case display = "display"
                 
@@ -3918,9 +3918,9 @@
 
             public init(display: String?, isSelected: Bool?, name: String?) {
                 
-                self.isSelected = isSelected
-                
                 self.name = name
+                
+                self.isSelected = isSelected
                 
                 self.display = display
                 
@@ -3929,9 +3929,9 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                isSelected = try? container.decode(Bool.self, forKey: .isSelected)
-                
                 name = try? container.decode(String.self, forKey: .name)
+                
+                isSelected = try? container.decode(Bool.self, forKey: .isSelected)
                 
                 display = try? container.decode(String.self, forKey: .display)
                 
@@ -3940,9 +3940,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-                
                 try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(isSelected, forKey: .isSelected)
                 
                 try? container.encodeIfPresent(display, forKey: .display)
                 
@@ -3956,42 +3956,42 @@
         */
         struct CollectionListingFilter: Codable {
             
-            public var type: [CollectionListingFilterType]?
-            
             public var tags: [CollectionListingFilterTag]?
+            
+            public var type: [CollectionListingFilterType]?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case type = "type"
-                
                 case tags = "tags"
+                
+                case type = "type"
                 
             }
 
             public init(tags: [CollectionListingFilterTag]?, type: [CollectionListingFilterType]?) {
                 
-                self.type = type
-                
                 self.tags = tags
+                
+                self.type = type
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                type = try? container.decode([CollectionListingFilterType].self, forKey: .type)
-                
                 tags = try? container.decode([CollectionListingFilterTag].self, forKey: .tags)
+                
+                type = try? container.decode([CollectionListingFilterType].self, forKey: .type)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(type, forKey: .type)
-                
                 try? container.encodeIfPresent(tags, forKey: .tags)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
                 
             }
             
@@ -4003,212 +4003,212 @@
         */
         struct GetCollectionDetailNest: Codable {
             
-            public var schedule: [String: Any]?
-            
             public var tag: [String]?
-            
-            public var slug: String?
-            
-            public var type: String?
-            
-            public var uid: String?
-            
-            public var banners: ImageUrls?
-            
-            public var meta: [String: Any]?
             
             public var name: String?
             
-            public var visibleFacetsKeys: [String]?
+            public var uid: String?
             
-            public var query: [String: Any]?
+            public var meta: [String: Any]?
             
             public var logo: Media?
             
-            public var action: ProductListingAction?
-            
             public var isActive: Bool?
             
-            public var cron: [String: Any]?
+            public var action: ProductListingAction?
             
             public var badge: [String: Any]?
             
-            public var allowFacets: Bool?
+            public var allowSort: Bool?
             
             public var appId: String?
             
-            public var allowSort: Bool?
+            public var query: [String: Any]?
+            
+            public var allowFacets: Bool?
             
             public var description: String?
+            
+            public var banners: ImageUrls?
+            
+            public var cron: [String: Any]?
+            
+            public var type: String?
+            
+            public var visibleFacetsKeys: [String]?
+            
+            public var slug: String?
+            
+            public var schedule: [String: Any]?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case schedule = "_schedule"
-                
                 case tag = "tag"
-                
-                case slug = "slug"
-                
-                case type = "type"
-                
-                case uid = "uid"
-                
-                case banners = "banners"
-                
-                case meta = "meta"
                 
                 case name = "name"
                 
-                case visibleFacetsKeys = "visible_facets_keys"
+                case uid = "uid"
                 
-                case query = "query"
+                case meta = "meta"
                 
                 case logo = "logo"
                 
-                case action = "action"
-                
                 case isActive = "is_active"
                 
-                case cron = "cron"
+                case action = "action"
                 
                 case badge = "badge"
                 
-                case allowFacets = "allow_facets"
+                case allowSort = "allow_sort"
                 
                 case appId = "app_id"
                 
-                case allowSort = "allow_sort"
+                case query = "query"
+                
+                case allowFacets = "allow_facets"
                 
                 case description = "description"
+                
+                case banners = "banners"
+                
+                case cron = "cron"
+                
+                case type = "type"
+                
+                case visibleFacetsKeys = "visible_facets_keys"
+                
+                case slug = "slug"
+                
+                case schedule = "_schedule"
                 
             }
 
             public init(action: ProductListingAction?, allowFacets: Bool?, allowSort: Bool?, appId: String?, badge: [String: Any]?, banners: ImageUrls?, cron: [String: Any]?, description: String?, isActive: Bool?, logo: Media?, meta: [String: Any]?, name: String?, query: [String: Any]?, slug: String?, tag: [String]?, type: String?, uid: String?, visibleFacetsKeys: [String]?, schedule: [String: Any]?) {
                 
-                self.schedule = schedule
-                
                 self.tag = tag
-                
-                self.slug = slug
-                
-                self.type = type
-                
-                self.uid = uid
-                
-                self.banners = banners
-                
-                self.meta = meta
                 
                 self.name = name
                 
-                self.visibleFacetsKeys = visibleFacetsKeys
+                self.uid = uid
                 
-                self.query = query
+                self.meta = meta
                 
                 self.logo = logo
                 
-                self.action = action
-                
                 self.isActive = isActive
                 
-                self.cron = cron
+                self.action = action
                 
                 self.badge = badge
                 
-                self.allowFacets = allowFacets
+                self.allowSort = allowSort
                 
                 self.appId = appId
                 
-                self.allowSort = allowSort
+                self.query = query
+                
+                self.allowFacets = allowFacets
                 
                 self.description = description
+                
+                self.banners = banners
+                
+                self.cron = cron
+                
+                self.type = type
+                
+                self.visibleFacetsKeys = visibleFacetsKeys
+                
+                self.slug = slug
+                
+                self.schedule = schedule
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                schedule = try? container.decode([String: Any].self, forKey: .schedule)
-                
                 tag = try? container.decode([String].self, forKey: .tag)
-                
-                slug = try? container.decode(String.self, forKey: .slug)
-                
-                type = try? container.decode(String.self, forKey: .type)
-                
-                uid = try? container.decode(String.self, forKey: .uid)
-                
-                banners = try? container.decode(ImageUrls.self, forKey: .banners)
-                
-                meta = try? container.decode([String: Any].self, forKey: .meta)
                 
                 name = try? container.decode(String.self, forKey: .name)
                 
-                visibleFacetsKeys = try? container.decode([String].self, forKey: .visibleFacetsKeys)
+                uid = try? container.decode(String.self, forKey: .uid)
                 
-                query = try? container.decode([String: Any].self, forKey: .query)
+                meta = try? container.decode([String: Any].self, forKey: .meta)
                 
                 logo = try? container.decode(Media.self, forKey: .logo)
                 
-                action = try? container.decode(ProductListingAction.self, forKey: .action)
-                
                 isActive = try? container.decode(Bool.self, forKey: .isActive)
                 
-                cron = try? container.decode([String: Any].self, forKey: .cron)
+                action = try? container.decode(ProductListingAction.self, forKey: .action)
                 
                 badge = try? container.decode([String: Any].self, forKey: .badge)
                 
-                allowFacets = try? container.decode(Bool.self, forKey: .allowFacets)
+                allowSort = try? container.decode(Bool.self, forKey: .allowSort)
                 
                 appId = try? container.decode(String.self, forKey: .appId)
                 
-                allowSort = try? container.decode(Bool.self, forKey: .allowSort)
+                query = try? container.decode([String: Any].self, forKey: .query)
+                
+                allowFacets = try? container.decode(Bool.self, forKey: .allowFacets)
                 
                 description = try? container.decode(String.self, forKey: .description)
+                
+                banners = try? container.decode(ImageUrls.self, forKey: .banners)
+                
+                cron = try? container.decode([String: Any].self, forKey: .cron)
+                
+                type = try? container.decode(String.self, forKey: .type)
+                
+                visibleFacetsKeys = try? container.decode([String].self, forKey: .visibleFacetsKeys)
+                
+                slug = try? container.decode(String.self, forKey: .slug)
+                
+                schedule = try? container.decode([String: Any].self, forKey: .schedule)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(schedule, forKey: .schedule)
-                
                 try? container.encodeIfPresent(tag, forKey: .tag)
-                
-                try? container.encodeIfPresent(slug, forKey: .slug)
-                
-                try? container.encodeIfPresent(type, forKey: .type)
-                
-                try? container.encodeIfPresent(uid, forKey: .uid)
-                
-                try? container.encodeIfPresent(banners, forKey: .banners)
-                
-                try? container.encodeIfPresent(meta, forKey: .meta)
                 
                 try? container.encodeIfPresent(name, forKey: .name)
                 
-                try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+                try? container.encodeIfPresent(uid, forKey: .uid)
                 
-                try? container.encodeIfPresent(query, forKey: .query)
+                try? container.encodeIfPresent(meta, forKey: .meta)
                 
                 try? container.encodeIfPresent(logo, forKey: .logo)
                 
-                try? container.encodeIfPresent(action, forKey: .action)
-                
                 try? container.encodeIfPresent(isActive, forKey: .isActive)
                 
-                try? container.encodeIfPresent(cron, forKey: .cron)
+                try? container.encodeIfPresent(action, forKey: .action)
                 
                 try? container.encodeIfPresent(badge, forKey: .badge)
                 
-                try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+                try? container.encodeIfPresent(allowSort, forKey: .allowSort)
                 
                 try? container.encodeIfPresent(appId, forKey: .appId)
                 
-                try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+                try? container.encodeIfPresent(query, forKey: .query)
+                
+                try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
                 
                 try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(banners, forKey: .banners)
+                
+                try? container.encodeIfPresent(cron, forKey: .cron)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+                try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+                
+                try? container.encodeIfPresent(slug, forKey: .slug)
+                
+                try? container.encodeIfPresent(schedule, forKey: .schedule)
                 
             }
             
@@ -4277,192 +4277,192 @@
         */
         struct CollectionDetailResponse: Codable {
             
-            public var schedule: [String: Any]?
+            public var appId: String?
             
             public var tag: [String]?
             
+            public var isActive: Bool?
+            
+            public var meta: [String: Any]?
+            
             public var badge: [String: Any]?
-            
-            public var allowFacets: Bool?
-            
-            public var slug: String?
             
             public var query: [String: Any]?
             
-            public var type: String?
-            
-            public var logo: Media?
-            
-            public var isActive: Bool?
-            
-            public var appId: String?
-            
             public var allowSort: Bool?
             
-            public var description: String?
-            
-            public var banners: ImageUrls?
-            
-            public var meta: [String: Any]?
+            public var allowFacets: Bool?
             
             public var cron: [String: Any]?
             
             public var name: String?
             
+            public var type: String?
+            
             public var visibleFacetsKeys: [String]?
+            
+            public var slug: String?
+            
+            public var logo: Media?
+            
+            public var schedule: [String: Any]?
+            
+            public var description: String?
+            
+            public var banners: ImageUrls?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case schedule = "_schedule"
+                case appId = "app_id"
                 
                 case tag = "tag"
                 
+                case isActive = "is_active"
+                
+                case meta = "meta"
+                
                 case badge = "badge"
-                
-                case allowFacets = "allow_facets"
-                
-                case slug = "slug"
                 
                 case query = "query"
                 
-                case type = "type"
-                
-                case logo = "logo"
-                
-                case isActive = "is_active"
-                
-                case appId = "app_id"
-                
                 case allowSort = "allow_sort"
                 
-                case description = "description"
-                
-                case banners = "banners"
-                
-                case meta = "meta"
+                case allowFacets = "allow_facets"
                 
                 case cron = "cron"
                 
                 case name = "name"
                 
+                case type = "type"
+                
                 case visibleFacetsKeys = "visible_facets_keys"
+                
+                case slug = "slug"
+                
+                case logo = "logo"
+                
+                case schedule = "_schedule"
+                
+                case description = "description"
+                
+                case banners = "banners"
                 
             }
 
             public init(allowFacets: Bool?, allowSort: Bool?, appId: String?, badge: [String: Any]?, banners: ImageUrls?, cron: [String: Any]?, description: String?, isActive: Bool?, logo: Media?, meta: [String: Any]?, name: String?, query: [String: Any]?, slug: String?, tag: [String]?, type: String?, visibleFacetsKeys: [String]?, schedule: [String: Any]?) {
                 
-                self.schedule = schedule
+                self.appId = appId
                 
                 self.tag = tag
                 
+                self.isActive = isActive
+                
+                self.meta = meta
+                
                 self.badge = badge
-                
-                self.allowFacets = allowFacets
-                
-                self.slug = slug
                 
                 self.query = query
                 
-                self.type = type
-                
-                self.logo = logo
-                
-                self.isActive = isActive
-                
-                self.appId = appId
-                
                 self.allowSort = allowSort
                 
-                self.description = description
-                
-                self.banners = banners
-                
-                self.meta = meta
+                self.allowFacets = allowFacets
                 
                 self.cron = cron
                 
                 self.name = name
                 
+                self.type = type
+                
                 self.visibleFacetsKeys = visibleFacetsKeys
+                
+                self.slug = slug
+                
+                self.logo = logo
+                
+                self.schedule = schedule
+                
+                self.description = description
+                
+                self.banners = banners
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                schedule = try? container.decode([String: Any].self, forKey: .schedule)
+                appId = try? container.decode(String.self, forKey: .appId)
                 
                 tag = try? container.decode([String].self, forKey: .tag)
                 
+                isActive = try? container.decode(Bool.self, forKey: .isActive)
+                
+                meta = try? container.decode([String: Any].self, forKey: .meta)
+                
                 badge = try? container.decode([String: Any].self, forKey: .badge)
-                
-                allowFacets = try? container.decode(Bool.self, forKey: .allowFacets)
-                
-                slug = try? container.decode(String.self, forKey: .slug)
                 
                 query = try? container.decode([String: Any].self, forKey: .query)
                 
-                type = try? container.decode(String.self, forKey: .type)
-                
-                logo = try? container.decode(Media.self, forKey: .logo)
-                
-                isActive = try? container.decode(Bool.self, forKey: .isActive)
-                
-                appId = try? container.decode(String.self, forKey: .appId)
-                
                 allowSort = try? container.decode(Bool.self, forKey: .allowSort)
                 
-                description = try? container.decode(String.self, forKey: .description)
-                
-                banners = try? container.decode(ImageUrls.self, forKey: .banners)
-                
-                meta = try? container.decode([String: Any].self, forKey: .meta)
+                allowFacets = try? container.decode(Bool.self, forKey: .allowFacets)
                 
                 cron = try? container.decode([String: Any].self, forKey: .cron)
                 
                 name = try? container.decode(String.self, forKey: .name)
                 
+                type = try? container.decode(String.self, forKey: .type)
+                
                 visibleFacetsKeys = try? container.decode([String].self, forKey: .visibleFacetsKeys)
+                
+                slug = try? container.decode(String.self, forKey: .slug)
+                
+                logo = try? container.decode(Media.self, forKey: .logo)
+                
+                schedule = try? container.decode([String: Any].self, forKey: .schedule)
+                
+                description = try? container.decode(String.self, forKey: .description)
+                
+                banners = try? container.decode(ImageUrls.self, forKey: .banners)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(schedule, forKey: .schedule)
+                try? container.encodeIfPresent(appId, forKey: .appId)
                 
                 try? container.encodeIfPresent(tag, forKey: .tag)
                 
+                try? container.encodeIfPresent(isActive, forKey: .isActive)
+                
+                try? container.encodeIfPresent(meta, forKey: .meta)
+                
                 try? container.encodeIfPresent(badge, forKey: .badge)
-                
-                try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
-                
-                try? container.encodeIfPresent(slug, forKey: .slug)
                 
                 try? container.encodeIfPresent(query, forKey: .query)
                 
-                try? container.encodeIfPresent(type, forKey: .type)
-                
-                try? container.encodeIfPresent(logo, forKey: .logo)
-                
-                try? container.encodeIfPresent(isActive, forKey: .isActive)
-                
-                try? container.encodeIfPresent(appId, forKey: .appId)
-                
                 try? container.encodeIfPresent(allowSort, forKey: .allowSort)
                 
-                try? container.encodeIfPresent(description, forKey: .description)
-                
-                try? container.encodeIfPresent(banners, forKey: .banners)
-                
-                try? container.encodeIfPresent(meta, forKey: .meta)
+                try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
                 
                 try? container.encodeIfPresent(cron, forKey: .cron)
                 
                 try? container.encodeIfPresent(name, forKey: .name)
                 
+                try? container.encodeIfPresent(type, forKey: .type)
+                
                 try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+                
+                try? container.encodeIfPresent(slug, forKey: .slug)
+                
+                try? container.encodeIfPresent(logo, forKey: .logo)
+                
+                try? container.encodeIfPresent(schedule, forKey: .schedule)
+                
+                try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(banners, forKey: .banners)
                 
             }
             
@@ -4521,42 +4521,42 @@
         */
         struct FollowPostResponse: Codable {
             
-            public var id: String
-            
             public var message: String
+            
+            public var id: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case id = "id"
-                
                 case message = "message"
+                
+                case id = "id"
                 
             }
 
             public init(id: String, message: String) {
                 
-                self.id = id
-                
                 self.message = message
+                
+                self.id = id
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                id = try container.decode(String.self, forKey: .id)
-                
                 message = try container.decode(String.self, forKey: .message)
+                
+                id = try container.decode(String.self, forKey: .id)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(id, forKey: .id)
-                
                 try? container.encodeIfPresent(message, forKey: .message)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
                 
             }
             
@@ -4746,122 +4746,122 @@
         */
         struct Store1: Codable {
             
+            public var country: String?
+            
             public var pincode: Int?
             
-            public var storeEmail: String?
-            
             public var storeCode: String?
+            
+            public var name: String?
+            
+            public var latLong: LatLong?
             
             public var city: String?
             
             public var uid: Int?
             
-            public var latLong: LatLong?
+            public var address: String?
             
             public var state: String?
             
-            public var address: String?
-            
-            public var country: String?
-            
-            public var name: String?
+            public var storeEmail: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
+                case country = "country"
+                
                 case pincode = "pincode"
                 
-                case storeEmail = "store_email"
-                
                 case storeCode = "store_code"
+                
+                case name = "name"
+                
+                case latLong = "lat_long"
                 
                 case city = "city"
                 
                 case uid = "uid"
                 
-                case latLong = "lat_long"
+                case address = "address"
                 
                 case state = "state"
                 
-                case address = "address"
-                
-                case country = "country"
-                
-                case name = "name"
+                case storeEmail = "store_email"
                 
             }
 
             public init(address: String?, city: String?, country: String?, latLong: LatLong?, name: String?, pincode: Int?, state: String?, storeCode: String?, storeEmail: String?, uid: Int?) {
                 
+                self.country = country
+                
                 self.pincode = pincode
                 
-                self.storeEmail = storeEmail
-                
                 self.storeCode = storeCode
+                
+                self.name = name
+                
+                self.latLong = latLong
                 
                 self.city = city
                 
                 self.uid = uid
                 
-                self.latLong = latLong
+                self.address = address
                 
                 self.state = state
                 
-                self.address = address
-                
-                self.country = country
-                
-                self.name = name
+                self.storeEmail = storeEmail
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                country = try? container.decode(String.self, forKey: .country)
+                
                 pincode = try? container.decode(Int.self, forKey: .pincode)
                 
-                storeEmail = try? container.decode(String.self, forKey: .storeEmail)
-                
                 storeCode = try? container.decode(String.self, forKey: .storeCode)
+                
+                name = try? container.decode(String.self, forKey: .name)
+                
+                latLong = try? container.decode(LatLong.self, forKey: .latLong)
                 
                 city = try? container.decode(String.self, forKey: .city)
                 
                 uid = try? container.decode(Int.self, forKey: .uid)
                 
-                latLong = try? container.decode(LatLong.self, forKey: .latLong)
+                address = try? container.decode(String.self, forKey: .address)
                 
                 state = try? container.decode(String.self, forKey: .state)
                 
-                address = try? container.decode(String.self, forKey: .address)
-                
-                country = try? container.decode(String.self, forKey: .country)
-                
-                name = try? container.decode(String.self, forKey: .name)
+                storeEmail = try? container.decode(String.self, forKey: .storeEmail)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(country, forKey: .country)
+                
                 try? container.encodeIfPresent(pincode, forKey: .pincode)
                 
-                try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
-                
                 try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(latLong, forKey: .latLong)
                 
                 try? container.encodeIfPresent(city, forKey: .city)
                 
                 try? container.encodeIfPresent(uid, forKey: .uid)
                 
-                try? container.encodeIfPresent(latLong, forKey: .latLong)
+                try? container.encodeIfPresent(address, forKey: .address)
                 
                 try? container.encodeIfPresent(state, forKey: .state)
                 
-                try? container.encodeIfPresent(address, forKey: .address)
-                
-                try? container.encodeIfPresent(country, forKey: .country)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
                 
             }
             
@@ -23731,15 +23731,9 @@
         */
         struct AggregatorConfigDetail: Codable {
             
-            public var secret: String
-            
-            public var api: String?
-            
-            public var merchantId: String?
-            
-            public var key: String
-            
             public var pin: String?
+            
+            public var verifyApi: String?
             
             public var merchantKey: String?
             
@@ -23747,22 +23741,22 @@
             
             public var userId: String?
             
+            public var api: String?
+            
+            public var key: String
+            
+            public var merchantId: String?
+            
             public var sdk: Bool?
             
-            public var verifyApi: String?
+            public var secret: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case secret = "secret"
-                
-                case api = "api"
-                
-                case merchantId = "merchant_id"
-                
-                case key = "key"
-                
                 case pin = "pin"
+                
+                case verifyApi = "verify_api"
                 
                 case merchantKey = "merchant_key"
                 
@@ -23770,23 +23764,23 @@
                 
                 case userId = "user_id"
                 
+                case api = "api"
+                
+                case key = "key"
+                
+                case merchantId = "merchant_id"
+                
                 case sdk = "sdk"
                 
-                case verifyApi = "verify_api"
+                case secret = "secret"
                 
             }
 
             public init(api: String?, configType: String, key: String, merchantId: String?, merchantKey: String?, pin: String?, sdk: Bool?, secret: String, userId: String?, verifyApi: String?) {
                 
-                self.secret = secret
-                
-                self.api = api
-                
-                self.merchantId = merchantId
-                
-                self.key = key
-                
                 self.pin = pin
+                
+                self.verifyApi = verifyApi
                 
                 self.merchantKey = merchantKey
                 
@@ -23794,24 +23788,24 @@
                 
                 self.userId = userId
                 
+                self.api = api
+                
+                self.key = key
+                
+                self.merchantId = merchantId
+                
                 self.sdk = sdk
                 
-                self.verifyApi = verifyApi
+                self.secret = secret
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                secret = try container.decode(String.self, forKey: .secret)
-                
-                api = try? container.decode(String.self, forKey: .api)
-                
-                merchantId = try? container.decode(String.self, forKey: .merchantId)
-                
-                key = try container.decode(String.self, forKey: .key)
-                
                 pin = try? container.decode(String.self, forKey: .pin)
+                
+                verifyApi = try? container.decode(String.self, forKey: .verifyApi)
                 
                 merchantKey = try? container.decode(String.self, forKey: .merchantKey)
                 
@@ -23819,24 +23813,24 @@
                 
                 userId = try? container.decode(String.self, forKey: .userId)
                 
+                api = try? container.decode(String.self, forKey: .api)
+                
+                key = try container.decode(String.self, forKey: .key)
+                
+                merchantId = try? container.decode(String.self, forKey: .merchantId)
+                
                 sdk = try? container.decode(Bool.self, forKey: .sdk)
                 
-                verifyApi = try? container.decode(String.self, forKey: .verifyApi)
+                secret = try container.decode(String.self, forKey: .secret)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(secret, forKey: .secret)
-                
-                try? container.encodeIfPresent(api, forKey: .api)
-                
-                try? container.encodeIfPresent(merchantId, forKey: .merchantId)
-                
-                try? container.encodeIfPresent(key, forKey: .key)
-                
                 try? container.encodeIfPresent(pin, forKey: .pin)
+                
+                try? container.encodeIfPresent(verifyApi, forKey: .verifyApi)
                 
                 try? container.encodeIfPresent(merchantKey, forKey: .merchantKey)
                 
@@ -23844,9 +23838,15 @@
                 
                 try? container.encodeIfPresent(userId, forKey: .userId)
                 
+                try? container.encodeIfPresent(api, forKey: .api)
+                
+                try? container.encodeIfPresent(key, forKey: .key)
+                
+                try? container.encodeIfPresent(merchantId, forKey: .merchantId)
+                
                 try? container.encodeIfPresent(sdk, forKey: .sdk)
                 
-                try? container.encodeIfPresent(verifyApi, forKey: .verifyApi)
+                try? container.encodeIfPresent(secret, forKey: .secret)
                 
             }
             
@@ -23860,46 +23860,46 @@
             
             public var juspay: AggregatorConfigDetail?
             
-            public var payumoney: AggregatorConfigDetail?
-            
-            public var simpl: AggregatorConfigDetail?
-            
             public var mswipe: AggregatorConfigDetail?
             
             public var ccavenue: AggregatorConfigDetail?
             
-            public var env: String
-            
-            public var stripe: AggregatorConfigDetail?
-            
-            public var rupifi: AggregatorConfigDetail?
-            
             public var success: Bool
             
             public var razorpay: AggregatorConfigDetail?
+            
+            public var rupifi: AggregatorConfigDetail?
+            
+            public var stripe: AggregatorConfigDetail?
+            
+            public var payumoney: AggregatorConfigDetail?
+            
+            public var simpl: AggregatorConfigDetail?
+            
+            public var env: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case juspay = "juspay"
                 
-                case payumoney = "payumoney"
-                
-                case simpl = "simpl"
-                
                 case mswipe = "mswipe"
                 
                 case ccavenue = "ccavenue"
                 
-                case env = "env"
-                
-                case stripe = "stripe"
-                
-                case rupifi = "rupifi"
-                
                 case success = "success"
                 
                 case razorpay = "razorpay"
+                
+                case rupifi = "rupifi"
+                
+                case stripe = "stripe"
+                
+                case payumoney = "payumoney"
+                
+                case simpl = "simpl"
+                
+                case env = "env"
                 
             }
 
@@ -23907,23 +23907,23 @@
                 
                 self.juspay = juspay
                 
-                self.payumoney = payumoney
-                
-                self.simpl = simpl
-                
                 self.mswipe = mswipe
                 
                 self.ccavenue = ccavenue
                 
-                self.env = env
-                
-                self.stripe = stripe
-                
-                self.rupifi = rupifi
-                
                 self.success = success
                 
                 self.razorpay = razorpay
+                
+                self.rupifi = rupifi
+                
+                self.stripe = stripe
+                
+                self.payumoney = payumoney
+                
+                self.simpl = simpl
+                
+                self.env = env
                 
             }
 
@@ -23932,23 +23932,23 @@
                 
                 juspay = try? container.decode(AggregatorConfigDetail.self, forKey: .juspay)
                 
-                payumoney = try? container.decode(AggregatorConfigDetail.self, forKey: .payumoney)
-                
-                simpl = try? container.decode(AggregatorConfigDetail.self, forKey: .simpl)
-                
                 mswipe = try? container.decode(AggregatorConfigDetail.self, forKey: .mswipe)
                 
                 ccavenue = try? container.decode(AggregatorConfigDetail.self, forKey: .ccavenue)
                 
-                env = try container.decode(String.self, forKey: .env)
-                
-                stripe = try? container.decode(AggregatorConfigDetail.self, forKey: .stripe)
-                
-                rupifi = try? container.decode(AggregatorConfigDetail.self, forKey: .rupifi)
-                
                 success = try container.decode(Bool.self, forKey: .success)
                 
                 razorpay = try? container.decode(AggregatorConfigDetail.self, forKey: .razorpay)
+                
+                rupifi = try? container.decode(AggregatorConfigDetail.self, forKey: .rupifi)
+                
+                stripe = try? container.decode(AggregatorConfigDetail.self, forKey: .stripe)
+                
+                payumoney = try? container.decode(AggregatorConfigDetail.self, forKey: .payumoney)
+                
+                simpl = try? container.decode(AggregatorConfigDetail.self, forKey: .simpl)
+                
+                env = try container.decode(String.self, forKey: .env)
                 
             }
             
@@ -23957,23 +23957,23 @@
                 
                 try? container.encodeIfPresent(juspay, forKey: .juspay)
                 
-                try? container.encodeIfPresent(payumoney, forKey: .payumoney)
-                
-                try? container.encodeIfPresent(simpl, forKey: .simpl)
-                
                 try? container.encodeIfPresent(mswipe, forKey: .mswipe)
                 
                 try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
                 
-                try? container.encodeIfPresent(env, forKey: .env)
-                
-                try? container.encodeIfPresent(stripe, forKey: .stripe)
-                
-                try? container.encodeIfPresent(rupifi, forKey: .rupifi)
-                
                 try? container.encodeIfPresent(success, forKey: .success)
                 
                 try? container.encodeIfPresent(razorpay, forKey: .razorpay)
+                
+                try? container.encodeIfPresent(rupifi, forKey: .rupifi)
+                
+                try? container.encodeIfPresent(stripe, forKey: .stripe)
+                
+                try? container.encodeIfPresent(payumoney, forKey: .payumoney)
+                
+                try? container.encodeIfPresent(simpl, forKey: .simpl)
+                
+                try? container.encodeIfPresent(env, forKey: .env)
                 
             }
             
@@ -24079,42 +24079,42 @@
         */
         struct AttachCardRequest: Codable {
             
-            public var refresh: Bool?
-            
             public var cardId: String
+            
+            public var refresh: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case refresh = "refresh"
-                
                 case cardId = "card_id"
+                
+                case refresh = "refresh"
                 
             }
 
             public init(cardId: String, refresh: Bool?) {
                 
-                self.refresh = refresh
-                
                 self.cardId = cardId
+                
+                self.refresh = refresh
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                refresh = try? container.decode(Bool.self, forKey: .refresh)
-                
                 cardId = try container.decode(String.self, forKey: .cardId)
+                
+                refresh = try? container.decode(Bool.self, forKey: .refresh)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(refresh, forKey: .refresh)
-                
                 try? container.encodeIfPresent(cardId, forKey: .cardId)
+                
+                try? container.encodeIfPresent(refresh, forKey: .refresh)
                 
             }
             
@@ -24183,52 +24183,52 @@
         */
         struct CardPaymentGateway: Codable {
             
-            public var aggregator: String
-            
             public var api: String?
             
             public var customerId: String?
             
+            public var aggregator: String
+            
 
             public enum CodingKeys: String, CodingKey {
-                
-                case aggregator = "aggregator"
                 
                 case api = "api"
                 
                 case customerId = "customer_id"
                 
+                case aggregator = "aggregator"
+                
             }
 
             public init(aggregator: String, api: String?, customerId: String?) {
                 
-                self.aggregator = aggregator
-                
                 self.api = api
                 
                 self.customerId = customerId
+                
+                self.aggregator = aggregator
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
                 api = try? container.decode(String.self, forKey: .api)
                 
                 customerId = try? container.decode(String.self, forKey: .customerId)
+                
+                aggregator = try container.decode(String.self, forKey: .aggregator)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-                
                 try? container.encodeIfPresent(api, forKey: .api)
                 
                 try? container.encodeIfPresent(customerId, forKey: .customerId)
+                
+                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
             }
             
@@ -24297,182 +24297,182 @@
         */
         struct Card: Codable {
             
+            public var cardNumber: String?
+            
+            public var cardFingerprint: String?
+            
+            public var cardReference: String?
+            
+            public var cardBrandImage: String?
+            
             public var cardBrand: String?
+            
+            public var cardName: String?
+            
+            public var expYear: Int?
+            
+            public var cardIssuer: String?
             
             public var expired: Bool?
             
             public var cardType: String?
             
-            public var cardToken: String?
-            
             public var cardId: String?
-            
-            public var cardName: String?
-            
-            public var cardFingerprint: String?
-            
-            public var cardIssuer: String?
-            
-            public var expMonth: Int?
-            
-            public var cardBrandImage: String?
             
             public var nickname: String?
             
-            public var cardIsin: String?
-            
             public var aggregatorName: String
             
-            public var expYear: Int?
+            public var cardToken: String?
             
-            public var cardReference: String?
+            public var cardIsin: String?
             
-            public var cardNumber: String?
+            public var expMonth: Int?
             
 
             public enum CodingKeys: String, CodingKey {
                 
+                case cardNumber = "card_number"
+                
+                case cardFingerprint = "card_fingerprint"
+                
+                case cardReference = "card_reference"
+                
+                case cardBrandImage = "card_brand_image"
+                
                 case cardBrand = "card_brand"
+                
+                case cardName = "card_name"
+                
+                case expYear = "exp_year"
+                
+                case cardIssuer = "card_issuer"
                 
                 case expired = "expired"
                 
                 case cardType = "card_type"
                 
-                case cardToken = "card_token"
-                
                 case cardId = "card_id"
-                
-                case cardName = "card_name"
-                
-                case cardFingerprint = "card_fingerprint"
-                
-                case cardIssuer = "card_issuer"
-                
-                case expMonth = "exp_month"
-                
-                case cardBrandImage = "card_brand_image"
                 
                 case nickname = "nickname"
                 
-                case cardIsin = "card_isin"
-                
                 case aggregatorName = "aggregator_name"
                 
-                case expYear = "exp_year"
+                case cardToken = "card_token"
                 
-                case cardReference = "card_reference"
+                case cardIsin = "card_isin"
                 
-                case cardNumber = "card_number"
+                case expMonth = "exp_month"
                 
             }
 
             public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, expired: Bool?, expMonth: Int?, expYear: Int?, nickname: String?) {
                 
+                self.cardNumber = cardNumber
+                
+                self.cardFingerprint = cardFingerprint
+                
+                self.cardReference = cardReference
+                
+                self.cardBrandImage = cardBrandImage
+                
                 self.cardBrand = cardBrand
+                
+                self.cardName = cardName
+                
+                self.expYear = expYear
+                
+                self.cardIssuer = cardIssuer
                 
                 self.expired = expired
                 
                 self.cardType = cardType
                 
-                self.cardToken = cardToken
-                
                 self.cardId = cardId
-                
-                self.cardName = cardName
-                
-                self.cardFingerprint = cardFingerprint
-                
-                self.cardIssuer = cardIssuer
-                
-                self.expMonth = expMonth
-                
-                self.cardBrandImage = cardBrandImage
                 
                 self.nickname = nickname
                 
-                self.cardIsin = cardIsin
-                
                 self.aggregatorName = aggregatorName
                 
-                self.expYear = expYear
+                self.cardToken = cardToken
                 
-                self.cardReference = cardReference
+                self.cardIsin = cardIsin
                 
-                self.cardNumber = cardNumber
+                self.expMonth = expMonth
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                cardNumber = try? container.decode(String.self, forKey: .cardNumber)
+                
+                cardFingerprint = try? container.decode(String.self, forKey: .cardFingerprint)
+                
+                cardReference = try? container.decode(String.self, forKey: .cardReference)
+                
+                cardBrandImage = try? container.decode(String.self, forKey: .cardBrandImage)
+                
                 cardBrand = try? container.decode(String.self, forKey: .cardBrand)
+                
+                cardName = try? container.decode(String.self, forKey: .cardName)
+                
+                expYear = try? container.decode(Int.self, forKey: .expYear)
+                
+                cardIssuer = try? container.decode(String.self, forKey: .cardIssuer)
                 
                 expired = try? container.decode(Bool.self, forKey: .expired)
                 
                 cardType = try? container.decode(String.self, forKey: .cardType)
                 
-                cardToken = try? container.decode(String.self, forKey: .cardToken)
-                
                 cardId = try? container.decode(String.self, forKey: .cardId)
-                
-                cardName = try? container.decode(String.self, forKey: .cardName)
-                
-                cardFingerprint = try? container.decode(String.self, forKey: .cardFingerprint)
-                
-                cardIssuer = try? container.decode(String.self, forKey: .cardIssuer)
-                
-                expMonth = try? container.decode(Int.self, forKey: .expMonth)
-                
-                cardBrandImage = try? container.decode(String.self, forKey: .cardBrandImage)
                 
                 nickname = try? container.decode(String.self, forKey: .nickname)
                 
-                cardIsin = try? container.decode(String.self, forKey: .cardIsin)
-                
                 aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
                 
-                expYear = try? container.decode(Int.self, forKey: .expYear)
+                cardToken = try? container.decode(String.self, forKey: .cardToken)
                 
-                cardReference = try? container.decode(String.self, forKey: .cardReference)
+                cardIsin = try? container.decode(String.self, forKey: .cardIsin)
                 
-                cardNumber = try? container.decode(String.self, forKey: .cardNumber)
+                expMonth = try? container.decode(Int.self, forKey: .expMonth)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
+                
+                try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
+                
+                try? container.encodeIfPresent(cardReference, forKey: .cardReference)
+                
+                try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
+                
                 try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
+                
+                try? container.encodeIfPresent(cardName, forKey: .cardName)
+                
+                try? container.encodeIfPresent(expYear, forKey: .expYear)
+                
+                try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
                 
                 try? container.encodeIfPresent(expired, forKey: .expired)
                 
                 try? container.encodeIfPresent(cardType, forKey: .cardType)
                 
-                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
-                
                 try? container.encodeIfPresent(cardId, forKey: .cardId)
-                
-                try? container.encodeIfPresent(cardName, forKey: .cardName)
-                
-                try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
-                
-                try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
-                
-                try? container.encodeIfPresent(expMonth, forKey: .expMonth)
-                
-                try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
                 
                 try? container.encodeIfPresent(nickname, forKey: .nickname)
                 
-                try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
-                
                 try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
                 
-                try? container.encodeIfPresent(expYear, forKey: .expYear)
+                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
                 
-                try? container.encodeIfPresent(cardReference, forKey: .cardReference)
+                try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
                 
-                try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
+                try? container.encodeIfPresent(expMonth, forKey: .expMonth)
                 
             }
             
@@ -24625,72 +24625,72 @@
         */
         struct ValidateCustomerRequest: Codable {
             
-            public var merchantParams: [String: Any]
+            public var phoneNumber: String
             
-            public var aggregator: String
+            public var merchantParams: [String: Any]
             
             public var payload: String
             
-            public var transactionAmountInPaise: Int
+            public var aggregator: String
             
-            public var phoneNumber: String
+            public var transactionAmountInPaise: Int
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case merchantParams = "merchant_params"
+                case phoneNumber = "phone_number"
                 
-                case aggregator = "aggregator"
+                case merchantParams = "merchant_params"
                 
                 case payload = "payload"
                 
-                case transactionAmountInPaise = "transaction_amount_in_paise"
+                case aggregator = "aggregator"
                 
-                case phoneNumber = "phone_number"
+                case transactionAmountInPaise = "transaction_amount_in_paise"
                 
             }
 
             public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
                 
-                self.merchantParams = merchantParams
+                self.phoneNumber = phoneNumber
                 
-                self.aggregator = aggregator
+                self.merchantParams = merchantParams
                 
                 self.payload = payload
                 
-                self.transactionAmountInPaise = transactionAmountInPaise
+                self.aggregator = aggregator
                 
-                self.phoneNumber = phoneNumber
+                self.transactionAmountInPaise = transactionAmountInPaise
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
-                aggregator = try container.decode(String.self, forKey: .aggregator)
+                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
                 
                 payload = try container.decode(String.self, forKey: .payload)
                 
-                transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+                aggregator = try container.decode(String.self, forKey: .aggregator)
                 
-                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+                transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
+                try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
                 
-                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+                try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
                 
                 try? container.encodeIfPresent(payload, forKey: .payload)
                 
-                try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
-                try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+                try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
                 
             }
             
@@ -24759,20 +24759,18 @@
         */
         struct ChargeCustomerRequest: Codable {
             
-            public var orderId: String
-            
             public var amount: Int
             
             public var aggregator: String
             
             public var transactionToken: String?
             
+            public var orderId: String
+            
             public var verified: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
-                
-                case orderId = "order_id"
                 
                 case amount = "amount"
                 
@@ -24780,19 +24778,21 @@
                 
                 case transactionToken = "transaction_token"
                 
+                case orderId = "order_id"
+                
                 case verified = "verified"
                 
             }
 
             public init(aggregator: String, amount: Int, orderId: String, transactionToken: String?, verified: Bool?) {
                 
-                self.orderId = orderId
-                
                 self.amount = amount
                 
                 self.aggregator = aggregator
                 
                 self.transactionToken = transactionToken
+                
+                self.orderId = orderId
                 
                 self.verified = verified
                 
@@ -24801,13 +24801,13 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                orderId = try container.decode(String.self, forKey: .orderId)
-                
                 amount = try container.decode(Int.self, forKey: .amount)
                 
                 aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 transactionToken = try? container.decode(String.self, forKey: .transactionToken)
+                
+                orderId = try container.decode(String.self, forKey: .orderId)
                 
                 verified = try? container.decode(Bool.self, forKey: .verified)
                 
@@ -24816,13 +24816,13 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
-                
                 try? container.encodeIfPresent(amount, forKey: .amount)
                 
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
                 try? container.encodeIfPresent(transactionToken, forKey: .transactionToken)
+                
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
                 try? container.encodeIfPresent(verified, forKey: .verified)
                 
@@ -24836,11 +24836,11 @@
         */
         struct ChargeCustomerResponse: Codable {
             
-            public var orderId: String
-            
             public var message: String
             
             public var cartId: String?
+            
+            public var status: String
             
             public var deliveryAddressId: String?
             
@@ -24848,16 +24848,16 @@
             
             public var success: Bool
             
-            public var status: String
+            public var orderId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case orderId = "order_id"
-                
                 case message = "message"
                 
                 case cartId = "cart_id"
+                
+                case status = "status"
                 
                 case deliveryAddressId = "delivery_address_id"
                 
@@ -24865,17 +24865,17 @@
                 
                 case success = "success"
                 
-                case status = "status"
+                case orderId = "order_id"
                 
             }
 
             public init(aggregator: String, cartId: String?, deliveryAddressId: String?, message: String, orderId: String, status: String, success: Bool) {
                 
-                self.orderId = orderId
-                
                 self.message = message
                 
                 self.cartId = cartId
+                
+                self.status = status
                 
                 self.deliveryAddressId = deliveryAddressId
                 
@@ -24883,18 +24883,18 @@
                 
                 self.success = success
                 
-                self.status = status
+                self.orderId = orderId
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                orderId = try container.decode(String.self, forKey: .orderId)
-                
                 message = try container.decode(String.self, forKey: .message)
                 
                 cartId = try? container.decode(String.self, forKey: .cartId)
+                
+                status = try container.decode(String.self, forKey: .status)
                 
                 deliveryAddressId = try? container.decode(String.self, forKey: .deliveryAddressId)
                 
@@ -24902,18 +24902,18 @@
                 
                 success = try container.decode(Bool.self, forKey: .success)
                 
-                status = try container.decode(String.self, forKey: .status)
+                orderId = try container.decode(String.self, forKey: .orderId)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
-                
                 try? container.encodeIfPresent(message, forKey: .message)
                 
                 try? container.encodeIfPresent(cartId, forKey: .cartId)
+                
+                try? container.encodeIfPresent(status, forKey: .status)
                 
                 try? container.encodeIfPresent(deliveryAddressId, forKey: .deliveryAddressId)
                 
@@ -24921,7 +24921,7 @@
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(status, forKey: .status)
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
             }
             
@@ -24933,112 +24933,112 @@
         */
         struct PaymentInitializationRequest: Codable {
             
-            public var timeout: Int
-            
-            public var merchantOrderId: String
-            
-            public var pollingUrl: String
-            
-            public var aggregatorOrderId: String
+            public var method: String
             
             public var aggregator: String
             
             public var razorpayPaymentId: String
             
+            public var pollingUrl: String
+            
+            public var timeout: Int
+            
+            public var aggregatorOrderId: String
+            
             public var customerId: String
             
-            public var method: String
-            
             public var virtualId: String?
+            
+            public var merchantOrderId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case timeout = "timeout"
-                
-                case merchantOrderId = "merchant_order_id"
-                
-                case pollingUrl = "polling_url"
-                
-                case aggregatorOrderId = "aggregator_order_id"
+                case method = "method"
                 
                 case aggregator = "aggregator"
                 
                 case razorpayPaymentId = "razorpay_payment_id"
                 
+                case pollingUrl = "polling_url"
+                
+                case timeout = "timeout"
+                
+                case aggregatorOrderId = "aggregator_order_id"
+                
                 case customerId = "customer_id"
                 
-                case method = "method"
-                
                 case virtualId = "virtual_id"
+                
+                case merchantOrderId = "merchant_order_id"
                 
             }
 
             public init(aggregator: String, aggregatorOrderId: String, customerId: String, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String, timeout: Int, virtualId: String?) {
                 
-                self.timeout = timeout
-                
-                self.merchantOrderId = merchantOrderId
-                
-                self.pollingUrl = pollingUrl
-                
-                self.aggregatorOrderId = aggregatorOrderId
+                self.method = method
                 
                 self.aggregator = aggregator
                 
                 self.razorpayPaymentId = razorpayPaymentId
                 
+                self.pollingUrl = pollingUrl
+                
+                self.timeout = timeout
+                
+                self.aggregatorOrderId = aggregatorOrderId
+                
                 self.customerId = customerId
                 
-                self.method = method
-                
                 self.virtualId = virtualId
+                
+                self.merchantOrderId = merchantOrderId
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                timeout = try container.decode(Int.self, forKey: .timeout)
-                
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-                
-                pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
-                
-                aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+                method = try container.decode(String.self, forKey: .method)
                 
                 aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
                 
+                pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
+                
+                timeout = try container.decode(Int.self, forKey: .timeout)
+                
+                aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+                
                 customerId = try container.decode(String.self, forKey: .customerId)
                 
-                method = try container.decode(String.self, forKey: .method)
-                
                 virtualId = try? container.decode(String.self, forKey: .virtualId)
+                
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(timeout, forKey: .timeout)
-                
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-                
-                try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
-                
-                try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
+                try? container.encodeIfPresent(method, forKey: .method)
                 
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
                 try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
                 
+                try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
+                
+                try? container.encodeIfPresent(timeout, forKey: .timeout)
+                
+                try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
+                
                 try? container.encodeIfPresent(customerId, forKey: .customerId)
                 
-                try? container.encodeIfPresent(method, forKey: .method)
-                
                 try? container.encodeIfPresent(virtualId, forKey: .virtualId)
+                
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
                 
             }
             
@@ -25050,152 +25050,172 @@
         */
         struct PaymentInitializationResponse: Codable {
             
-            public var orderId: String
-            
-            public var customerId: String
-            
-            public var vpa: String
-            
-            public var message: String?
-            
-            public var email: String
-            
-            public var merchantOrderId: String
-            
-            public var amount: Int
-            
-            public var currency: String
-            
-            public var aggregator: String
-            
-            public var success: Bool
-            
-            public var status: String
+            public var currency: String?
             
             public var method: String
             
-            public var contact: String
+            public var amount: Int?
+            
+            public var status: String?
+            
+            public var aggregator: String
+            
+            public var razorpayPaymentId: String?
+            
+            public var success: Bool
+            
+            public var bqrImage: String?
+            
+            public var pollingUrl: String
+            
+            public var vpa: String?
+            
+            public var aggregatorOrderId: String?
+            
+            public var customerId: String?
+            
+            public var virtualId: String?
+            
+            public var timeout: Int?
+            
+            public var merchantOrderId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case orderId = "order_id"
-                
-                case customerId = "customer_id"
-                
-                case vpa = "vpa"
-                
-                case message = "message"
-                
-                case email = "email"
-                
-                case merchantOrderId = "merchant_order_id"
-                
-                case amount = "amount"
-                
                 case currency = "currency"
-                
-                case aggregator = "aggregator"
-                
-                case success = "success"
-                
-                case status = "status"
                 
                 case method = "method"
                 
-                case contact = "contact"
+                case amount = "amount"
+                
+                case status = "status"
+                
+                case aggregator = "aggregator"
+                
+                case razorpayPaymentId = "razorpay_payment_id"
+                
+                case success = "success"
+                
+                case bqrImage = "bqr_image"
+                
+                case pollingUrl = "polling_url"
+                
+                case vpa = "vpa"
+                
+                case aggregatorOrderId = "aggregator_order_id"
+                
+                case customerId = "customer_id"
+                
+                case virtualId = "virtual_id"
+                
+                case timeout = "timeout"
+                
+                case merchantOrderId = "merchant_order_id"
                 
             }
 
-            public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, message: String?, method: String, orderId: String, status: String, success: Bool, vpa: String) {
-                
-                self.orderId = orderId
-                
-                self.customerId = customerId
-                
-                self.vpa = vpa
-                
-                self.message = message
-                
-                self.email = email
-                
-                self.merchantOrderId = merchantOrderId
-                
-                self.amount = amount
+            public init(aggregator: String, aggregatorOrderId: String?, amount: Int?, bqrImage: String?, currency: String?, customerId: String?, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String?, status: String?, success: Bool, timeout: Int?, virtualId: String?, vpa: String?) {
                 
                 self.currency = currency
                 
-                self.aggregator = aggregator
+                self.method = method
                 
-                self.success = success
+                self.amount = amount
                 
                 self.status = status
                 
-                self.method = method
+                self.aggregator = aggregator
                 
-                self.contact = contact
+                self.razorpayPaymentId = razorpayPaymentId
+                
+                self.success = success
+                
+                self.bqrImage = bqrImage
+                
+                self.pollingUrl = pollingUrl
+                
+                self.vpa = vpa
+                
+                self.aggregatorOrderId = aggregatorOrderId
+                
+                self.customerId = customerId
+                
+                self.virtualId = virtualId
+                
+                self.timeout = timeout
+                
+                self.merchantOrderId = merchantOrderId
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                orderId = try container.decode(String.self, forKey: .orderId)
-                
-                customerId = try container.decode(String.self, forKey: .customerId)
-                
-                vpa = try container.decode(String.self, forKey: .vpa)
-                
-                message = try? container.decode(String.self, forKey: .message)
-                
-                email = try container.decode(String.self, forKey: .email)
-                
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-                
-                amount = try container.decode(Int.self, forKey: .amount)
-                
-                currency = try container.decode(String.self, forKey: .currency)
-                
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                status = try container.decode(String.self, forKey: .status)
+                currency = try? container.decode(String.self, forKey: .currency)
                 
                 method = try container.decode(String.self, forKey: .method)
                 
-                contact = try container.decode(String.self, forKey: .contact)
+                amount = try? container.decode(Int.self, forKey: .amount)
+                
+                status = try? container.decode(String.self, forKey: .status)
+                
+                aggregator = try container.decode(String.self, forKey: .aggregator)
+                
+                razorpayPaymentId = try? container.decode(String.self, forKey: .razorpayPaymentId)
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                bqrImage = try? container.decode(String.self, forKey: .bqrImage)
+                
+                pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
+                
+                vpa = try? container.decode(String.self, forKey: .vpa)
+                
+                aggregatorOrderId = try? container.decode(String.self, forKey: .aggregatorOrderId)
+                
+                customerId = try? container.decode(String.self, forKey: .customerId)
+                
+                virtualId = try? container.decode(String.self, forKey: .virtualId)
+                
+                timeout = try? container.decode(Int.self, forKey: .timeout)
+                
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
-                
-                try? container.encodeIfPresent(customerId, forKey: .customerId)
-                
-                try? container.encodeIfPresent(vpa, forKey: .vpa)
-                
-                try? container.encodeIfPresent(message, forKey: .message)
-                
-                try? container.encodeIfPresent(email, forKey: .email)
-                
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-                
-                try? container.encodeIfPresent(amount, forKey: .amount)
-                
                 try? container.encodeIfPresent(currency, forKey: .currency)
-                
-                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-                
-                try? container.encodeIfPresent(success, forKey: .success)
-                
-                try? container.encodeIfPresent(status, forKey: .status)
                 
                 try? container.encodeIfPresent(method, forKey: .method)
                 
-                try? container.encodeIfPresent(contact, forKey: .contact)
+                try? container.encodeIfPresent(amount, forKey: .amount)
+                
+                try? container.encodeIfPresent(status, forKey: .status)
+                
+                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+                
+                try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+                
+                try? container.encodeIfPresent(success, forKey: .success)
+                
+                try? container.encodeIfPresent(bqrImage, forKey: .bqrImage)
+                
+                try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
+                
+                try? container.encodeIfPresent(vpa, forKey: .vpa)
+                
+                try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
+                
+                try? container.encodeIfPresent(customerId, forKey: .customerId)
+                
+                try? container.encodeIfPresent(virtualId, forKey: .virtualId)
+                
+                try? container.encodeIfPresent(timeout, forKey: .timeout)
+                
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
                 
             }
             
@@ -25207,50 +25227,50 @@
         */
         struct PaymentStatusUpdateRequest: Codable {
             
-            public var orderId: String
+            public var currency: String
+            
+            public var method: String
+            
+            public var amount: Int
+            
+            public var status: String
+            
+            public var aggregator: String
             
             public var vpa: String
             
             public var email: String
             
-            public var merchantOrderId: String
-            
-            public var amount: Int
-            
-            public var currency: String
-            
-            public var aggregator: String
-            
             public var customerId: String
             
-            public var status: String
+            public var orderId: String
             
-            public var method: String
+            public var merchantOrderId: String
             
             public var contact: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case orderId = "order_id"
+                case currency = "currency"
+                
+                case method = "method"
+                
+                case amount = "amount"
+                
+                case status = "status"
+                
+                case aggregator = "aggregator"
                 
                 case vpa = "vpa"
                 
                 case email = "email"
                 
-                case merchantOrderId = "merchant_order_id"
-                
-                case amount = "amount"
-                
-                case currency = "currency"
-                
-                case aggregator = "aggregator"
-                
                 case customerId = "customer_id"
                 
-                case status = "status"
+                case orderId = "order_id"
                 
-                case method = "method"
+                case merchantOrderId = "merchant_order_id"
                 
                 case contact = "contact"
                 
@@ -25258,25 +25278,25 @@
 
             public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String) {
                 
-                self.orderId = orderId
+                self.currency = currency
+                
+                self.method = method
+                
+                self.amount = amount
+                
+                self.status = status
+                
+                self.aggregator = aggregator
                 
                 self.vpa = vpa
                 
                 self.email = email
                 
-                self.merchantOrderId = merchantOrderId
-                
-                self.amount = amount
-                
-                self.currency = currency
-                
-                self.aggregator = aggregator
-                
                 self.customerId = customerId
                 
-                self.status = status
+                self.orderId = orderId
                 
-                self.method = method
+                self.merchantOrderId = merchantOrderId
                 
                 self.contact = contact
                 
@@ -25285,25 +25305,25 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                orderId = try container.decode(String.self, forKey: .orderId)
+                currency = try container.decode(String.self, forKey: .currency)
+                
+                method = try container.decode(String.self, forKey: .method)
+                
+                amount = try container.decode(Int.self, forKey: .amount)
+                
+                status = try container.decode(String.self, forKey: .status)
+                
+                aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 vpa = try container.decode(String.self, forKey: .vpa)
                 
                 email = try container.decode(String.self, forKey: .email)
                 
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-                
-                amount = try container.decode(Int.self, forKey: .amount)
-                
-                currency = try container.decode(String.self, forKey: .currency)
-                
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
                 customerId = try container.decode(String.self, forKey: .customerId)
                 
-                status = try container.decode(String.self, forKey: .status)
+                orderId = try container.decode(String.self, forKey: .orderId)
                 
-                method = try container.decode(String.self, forKey: .method)
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
                 contact = try container.decode(String.self, forKey: .contact)
                 
@@ -25312,25 +25332,25 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
+                try? container.encodeIfPresent(currency, forKey: .currency)
+                
+                try? container.encodeIfPresent(method, forKey: .method)
+                
+                try? container.encodeIfPresent(amount, forKey: .amount)
+                
+                try? container.encodeIfPresent(status, forKey: .status)
+                
+                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
                 try? container.encodeIfPresent(vpa, forKey: .vpa)
                 
                 try? container.encodeIfPresent(email, forKey: .email)
                 
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-                
-                try? container.encodeIfPresent(amount, forKey: .amount)
-                
-                try? container.encodeIfPresent(currency, forKey: .currency)
-                
-                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-                
                 try? container.encodeIfPresent(customerId, forKey: .customerId)
                 
-                try? container.encodeIfPresent(status, forKey: .status)
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
-                try? container.encodeIfPresent(method, forKey: .method)
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
                 
                 try? container.encodeIfPresent(contact, forKey: .contact)
                 
@@ -25346,18 +25366,18 @@
             
             public var status: String
             
-            public var retry: Bool
-            
             public var aggregatorName: String
+            
+            public var retry: Bool
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case status = "status"
                 
-                case retry = "retry"
-                
                 case aggregatorName = "aggregator_name"
+                
+                case retry = "retry"
                 
             }
 
@@ -25365,9 +25385,9 @@
                 
                 self.status = status
                 
-                self.retry = retry
-                
                 self.aggregatorName = aggregatorName
+                
+                self.retry = retry
                 
             }
 
@@ -25376,9 +25396,9 @@
                 
                 status = try container.decode(String.self, forKey: .status)
                 
-                retry = try container.decode(Bool.self, forKey: .retry)
-                
                 aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                
+                retry = try container.decode(Bool.self, forKey: .retry)
                 
             }
             
@@ -25387,9 +25407,9 @@
                 
                 try? container.encodeIfPresent(status, forKey: .status)
                 
-                try? container.encodeIfPresent(retry, forKey: .retry)
-                
                 try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+                
+                try? container.encodeIfPresent(retry, forKey: .retry)
                 
             }
             
@@ -25401,52 +25421,52 @@
         */
         struct AggregatorRoute: Codable {
             
+            public var paymentFlow: String?
+            
             public var data: [String: Any]?
             
             public var apiLink: String?
             
-            public var paymentFlow: String?
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case paymentFlow = "payment_flow"
                 
                 case data = "data"
                 
                 case apiLink = "api_link"
                 
-                case paymentFlow = "payment_flow"
-                
             }
 
             public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?) {
                 
+                self.paymentFlow = paymentFlow
+                
                 self.data = data
                 
                 self.apiLink = apiLink
-                
-                self.paymentFlow = paymentFlow
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
+                paymentFlow = try? container.decode(String.self, forKey: .paymentFlow)
+                
                 data = try? container.decode([String: Any].self, forKey: .data)
                 
                 apiLink = try? container.decode(String.self, forKey: .apiLink)
-                
-                paymentFlow = try? container.decode(String.self, forKey: .paymentFlow)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
+                
                 try? container.encodeIfPresent(data, forKey: .data)
                 
                 try? container.encodeIfPresent(apiLink, forKey: .apiLink)
-                
-                try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
                 
             }
             
@@ -25458,46 +25478,46 @@
         */
         struct PaymentFlow: Codable {
             
-            public var fynd: AggregatorRoute?
+            public var razorpay: AggregatorRoute?
             
             public var rupifi: AggregatorRoute?
             
-            public var razorpay: AggregatorRoute?
+            public var bqrRazorpay: AggregatorRoute?
+            
+            public var simpl: AggregatorRoute?
             
             public var juspay: AggregatorRoute?
             
             public var upiRazorpay: AggregatorRoute?
             
-            public var bqrRazorpay: AggregatorRoute?
-            
-            public var ccavenue: AggregatorRoute?
-            
             public var payubiz: AggregatorRoute?
             
-            public var simpl: AggregatorRoute?
+            public var fynd: AggregatorRoute?
+            
+            public var ccavenue: AggregatorRoute?
             
             public var stripe: AggregatorRoute?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case fynd = "Fynd"
+                case razorpay = "Razorpay"
                 
                 case rupifi = "Rupifi"
                 
-                case razorpay = "Razorpay"
+                case bqrRazorpay = "BQR_Razorpay"
+                
+                case simpl = "Simpl"
                 
                 case juspay = "Juspay"
                 
                 case upiRazorpay = "UPI_Razorpay"
                 
-                case bqrRazorpay = "BQR_Razorpay"
-                
-                case ccavenue = "Ccavenue"
-                
                 case payubiz = "Payubiz"
                 
-                case simpl = "Simpl"
+                case fynd = "Fynd"
+                
+                case ccavenue = "Ccavenue"
                 
                 case stripe = "Stripe"
                 
@@ -25505,23 +25525,23 @@
 
             public init(bqrRazorpay: AggregatorRoute?, ccavenue: AggregatorRoute?, fynd: AggregatorRoute?, juspay: AggregatorRoute?, payubiz: AggregatorRoute?, razorpay: AggregatorRoute?, rupifi: AggregatorRoute?, simpl: AggregatorRoute?, stripe: AggregatorRoute?, upiRazorpay: AggregatorRoute?) {
                 
-                self.fynd = fynd
+                self.razorpay = razorpay
                 
                 self.rupifi = rupifi
                 
-                self.razorpay = razorpay
+                self.bqrRazorpay = bqrRazorpay
+                
+                self.simpl = simpl
                 
                 self.juspay = juspay
                 
                 self.upiRazorpay = upiRazorpay
                 
-                self.bqrRazorpay = bqrRazorpay
-                
-                self.ccavenue = ccavenue
-                
                 self.payubiz = payubiz
                 
-                self.simpl = simpl
+                self.fynd = fynd
+                
+                self.ccavenue = ccavenue
                 
                 self.stripe = stripe
                 
@@ -25530,23 +25550,23 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                fynd = try? container.decode(AggregatorRoute.self, forKey: .fynd)
+                razorpay = try? container.decode(AggregatorRoute.self, forKey: .razorpay)
                 
                 rupifi = try? container.decode(AggregatorRoute.self, forKey: .rupifi)
                 
-                razorpay = try? container.decode(AggregatorRoute.self, forKey: .razorpay)
+                bqrRazorpay = try? container.decode(AggregatorRoute.self, forKey: .bqrRazorpay)
+                
+                simpl = try? container.decode(AggregatorRoute.self, forKey: .simpl)
                 
                 juspay = try? container.decode(AggregatorRoute.self, forKey: .juspay)
                 
                 upiRazorpay = try? container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
                 
-                bqrRazorpay = try? container.decode(AggregatorRoute.self, forKey: .bqrRazorpay)
-                
-                ccavenue = try? container.decode(AggregatorRoute.self, forKey: .ccavenue)
-                
                 payubiz = try? container.decode(AggregatorRoute.self, forKey: .payubiz)
                 
-                simpl = try? container.decode(AggregatorRoute.self, forKey: .simpl)
+                fynd = try? container.decode(AggregatorRoute.self, forKey: .fynd)
+                
+                ccavenue = try? container.decode(AggregatorRoute.self, forKey: .ccavenue)
                 
                 stripe = try? container.decode(AggregatorRoute.self, forKey: .stripe)
                 
@@ -25555,23 +25575,23 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(fynd, forKey: .fynd)
+                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
                 
                 try? container.encodeIfPresent(rupifi, forKey: .rupifi)
                 
-                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
+                try? container.encodeIfPresent(bqrRazorpay, forKey: .bqrRazorpay)
+                
+                try? container.encodeIfPresent(simpl, forKey: .simpl)
                 
                 try? container.encodeIfPresent(juspay, forKey: .juspay)
                 
                 try? container.encodeIfPresent(upiRazorpay, forKey: .upiRazorpay)
                 
-                try? container.encodeIfPresent(bqrRazorpay, forKey: .bqrRazorpay)
-                
-                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
-                
                 try? container.encodeIfPresent(payubiz, forKey: .payubiz)
                 
-                try? container.encodeIfPresent(simpl, forKey: .simpl)
+                try? container.encodeIfPresent(fynd, forKey: .fynd)
+                
+                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
                 
                 try? container.encodeIfPresent(stripe, forKey: .stripe)
                 
@@ -25632,242 +25652,292 @@
         */
         struct PaymentModeList: Codable {
             
-            public var merchantCode: String?
-            
-            public var code: String?
-            
-            public var cardFingerprint: String?
-            
-            public var cardId: String?
+            public var displayName: String?
             
             public var displayPriority: Int?
             
+            public var cardName: String?
+            
+            public var cardType: String?
+            
+            public var nickname: String?
+            
             public var aggregatorName: String
+            
+            public var cardIsin: String?
+            
+            public var code: String?
             
             public var cardReference: String?
             
             public var cardBrandImage: String?
             
-            public var name: String?
-            
-            public var cardNumber: String?
-            
-            public var cardBrand: String?
-            
-            public var expired: Bool?
-            
-            public var cardToken: String?
-            
-            public var logoUrl: PaymentModeLogo?
-            
-            public var expMonth: Int?
-            
-            public var nickname: String?
-            
-            public var displayName: String?
-            
-            public var cardType: String?
-            
-            public var cardName: String?
+            public var timeout: Int?
             
             public var cardIssuer: String?
             
-            public var cardIsin: String?
+            public var expired: Bool?
+            
+            public var merchantCode: String?
+            
+            public var expMonth: Int?
+            
+            public var intentFlow: String?
+            
+            public var name: String?
+            
+            public var fyndVpa: String?
+            
+            public var cardBrand: String?
             
             public var expYear: Int?
+            
+            public var cardNumber: String?
+            
+            public var cardFingerprint: String?
+            
+            public var cardToken: String?
+            
+            public var intentAppErrorList: [String]?
+            
+            public var logoUrl: PaymentModeLogo?
+            
+            public var retryCount: Int?
+            
+            public var cardId: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case merchantCode = "merchant_code"
-                
-                case code = "code"
-                
-                case cardFingerprint = "card_fingerprint"
-                
-                case cardId = "card_id"
+                case displayName = "display_name"
                 
                 case displayPriority = "display_priority"
                 
+                case cardName = "card_name"
+                
+                case cardType = "card_type"
+                
+                case nickname = "nickname"
+                
                 case aggregatorName = "aggregator_name"
+                
+                case cardIsin = "card_isin"
+                
+                case code = "code"
                 
                 case cardReference = "card_reference"
                 
                 case cardBrandImage = "card_brand_image"
                 
-                case name = "name"
-                
-                case cardNumber = "card_number"
-                
-                case cardBrand = "card_brand"
-                
-                case expired = "expired"
-                
-                case cardToken = "card_token"
-                
-                case logoUrl = "logo_url"
-                
-                case expMonth = "exp_month"
-                
-                case nickname = "nickname"
-                
-                case displayName = "display_name"
-                
-                case cardType = "card_type"
-                
-                case cardName = "card_name"
+                case timeout = "timeout"
                 
                 case cardIssuer = "card_issuer"
                 
-                case cardIsin = "card_isin"
+                case expired = "expired"
+                
+                case merchantCode = "merchant_code"
+                
+                case expMonth = "exp_month"
+                
+                case intentFlow = "intent_flow"
+                
+                case name = "name"
+                
+                case fyndVpa = "fynd_vpa"
+                
+                case cardBrand = "card_brand"
                 
                 case expYear = "exp_year"
                 
+                case cardNumber = "card_number"
+                
+                case cardFingerprint = "card_fingerprint"
+                
+                case cardToken = "card_token"
+                
+                case intentAppErrorList = "intent_app_error_list"
+                
+                case logoUrl = "logo_url"
+                
+                case retryCount = "retry_count"
+                
+                case cardId = "card_id"
+                
             }
 
-            public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, code: String?, displayName: String?, displayPriority: Int?, expired: Bool?, expMonth: Int?, expYear: Int?, logoUrl: PaymentModeLogo?, merchantCode: String?, name: String?, nickname: String?) {
+            public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, code: String?, displayName: String?, displayPriority: Int?, expired: Bool?, expMonth: Int?, expYear: Int?, fyndVpa: String?, intentAppErrorList: [String]?, intentFlow: String?, logoUrl: PaymentModeLogo?, merchantCode: String?, name: String?, nickname: String?, retryCount: Int?, timeout: Int?) {
                 
-                self.merchantCode = merchantCode
-                
-                self.code = code
-                
-                self.cardFingerprint = cardFingerprint
-                
-                self.cardId = cardId
+                self.displayName = displayName
                 
                 self.displayPriority = displayPriority
                 
+                self.cardName = cardName
+                
+                self.cardType = cardType
+                
+                self.nickname = nickname
+                
                 self.aggregatorName = aggregatorName
+                
+                self.cardIsin = cardIsin
+                
+                self.code = code
                 
                 self.cardReference = cardReference
                 
                 self.cardBrandImage = cardBrandImage
                 
-                self.name = name
-                
-                self.cardNumber = cardNumber
-                
-                self.cardBrand = cardBrand
-                
-                self.expired = expired
-                
-                self.cardToken = cardToken
-                
-                self.logoUrl = logoUrl
-                
-                self.expMonth = expMonth
-                
-                self.nickname = nickname
-                
-                self.displayName = displayName
-                
-                self.cardType = cardType
-                
-                self.cardName = cardName
+                self.timeout = timeout
                 
                 self.cardIssuer = cardIssuer
                 
-                self.cardIsin = cardIsin
+                self.expired = expired
+                
+                self.merchantCode = merchantCode
+                
+                self.expMonth = expMonth
+                
+                self.intentFlow = intentFlow
+                
+                self.name = name
+                
+                self.fyndVpa = fyndVpa
+                
+                self.cardBrand = cardBrand
                 
                 self.expYear = expYear
+                
+                self.cardNumber = cardNumber
+                
+                self.cardFingerprint = cardFingerprint
+                
+                self.cardToken = cardToken
+                
+                self.intentAppErrorList = intentAppErrorList
+                
+                self.logoUrl = logoUrl
+                
+                self.retryCount = retryCount
+                
+                self.cardId = cardId
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                merchantCode = try? container.decode(String.self, forKey: .merchantCode)
-                
-                code = try? container.decode(String.self, forKey: .code)
-                
-                cardFingerprint = try? container.decode(String.self, forKey: .cardFingerprint)
-                
-                cardId = try? container.decode(String.self, forKey: .cardId)
+                displayName = try? container.decode(String.self, forKey: .displayName)
                 
                 displayPriority = try? container.decode(Int.self, forKey: .displayPriority)
                 
+                cardName = try? container.decode(String.self, forKey: .cardName)
+                
+                cardType = try? container.decode(String.self, forKey: .cardType)
+                
+                nickname = try? container.decode(String.self, forKey: .nickname)
+                
                 aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                
+                cardIsin = try? container.decode(String.self, forKey: .cardIsin)
+                
+                code = try? container.decode(String.self, forKey: .code)
                 
                 cardReference = try? container.decode(String.self, forKey: .cardReference)
                 
                 cardBrandImage = try? container.decode(String.self, forKey: .cardBrandImage)
                 
-                name = try? container.decode(String.self, forKey: .name)
-                
-                cardNumber = try? container.decode(String.self, forKey: .cardNumber)
-                
-                cardBrand = try? container.decode(String.self, forKey: .cardBrand)
-                
-                expired = try? container.decode(Bool.self, forKey: .expired)
-                
-                cardToken = try? container.decode(String.self, forKey: .cardToken)
-                
-                logoUrl = try? container.decode(PaymentModeLogo.self, forKey: .logoUrl)
-                
-                expMonth = try? container.decode(Int.self, forKey: .expMonth)
-                
-                nickname = try? container.decode(String.self, forKey: .nickname)
-                
-                displayName = try? container.decode(String.self, forKey: .displayName)
-                
-                cardType = try? container.decode(String.self, forKey: .cardType)
-                
-                cardName = try? container.decode(String.self, forKey: .cardName)
+                timeout = try? container.decode(Int.self, forKey: .timeout)
                 
                 cardIssuer = try? container.decode(String.self, forKey: .cardIssuer)
                 
-                cardIsin = try? container.decode(String.self, forKey: .cardIsin)
+                expired = try? container.decode(Bool.self, forKey: .expired)
+                
+                merchantCode = try? container.decode(String.self, forKey: .merchantCode)
+                
+                expMonth = try? container.decode(Int.self, forKey: .expMonth)
+                
+                intentFlow = try? container.decode(String.self, forKey: .intentFlow)
+                
+                name = try? container.decode(String.self, forKey: .name)
+                
+                fyndVpa = try? container.decode(String.self, forKey: .fyndVpa)
+                
+                cardBrand = try? container.decode(String.self, forKey: .cardBrand)
                 
                 expYear = try? container.decode(Int.self, forKey: .expYear)
+                
+                cardNumber = try? container.decode(String.self, forKey: .cardNumber)
+                
+                cardFingerprint = try? container.decode(String.self, forKey: .cardFingerprint)
+                
+                cardToken = try? container.decode(String.self, forKey: .cardToken)
+                
+                intentAppErrorList = try? container.decode([String].self, forKey: .intentAppErrorList)
+                
+                logoUrl = try? container.decode(PaymentModeLogo.self, forKey: .logoUrl)
+                
+                retryCount = try? container.decode(Int.self, forKey: .retryCount)
+                
+                cardId = try? container.decode(String.self, forKey: .cardId)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-                
-                try? container.encodeIfPresent(code, forKey: .code)
-                
-                try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
-                
-                try? container.encodeIfPresent(cardId, forKey: .cardId)
+                try? container.encodeIfPresent(displayName, forKey: .displayName)
                 
                 try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
                 
+                try? container.encodeIfPresent(cardName, forKey: .cardName)
+                
+                try? container.encodeIfPresent(cardType, forKey: .cardType)
+                
+                try? container.encodeIfPresent(nickname, forKey: .nickname)
+                
                 try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+                
+                try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
+                
+                try? container.encodeIfPresent(code, forKey: .code)
                 
                 try? container.encodeIfPresent(cardReference, forKey: .cardReference)
                 
                 try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
                 
-                try? container.encodeIfPresent(name, forKey: .name)
-                
-                try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
-                
-                try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
-                
-                try? container.encodeIfPresent(expired, forKey: .expired)
-                
-                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
-                
-                try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
-                
-                try? container.encodeIfPresent(expMonth, forKey: .expMonth)
-                
-                try? container.encodeIfPresent(nickname, forKey: .nickname)
-                
-                try? container.encodeIfPresent(displayName, forKey: .displayName)
-                
-                try? container.encodeIfPresent(cardType, forKey: .cardType)
-                
-                try? container.encodeIfPresent(cardName, forKey: .cardName)
+                try? container.encodeIfPresent(timeout, forKey: .timeout)
                 
                 try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
                 
-                try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
+                try? container.encodeIfPresent(expired, forKey: .expired)
+                
+                try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+                
+                try? container.encodeIfPresent(expMonth, forKey: .expMonth)
+                
+                try? container.encodeIfPresent(intentFlow, forKey: .intentFlow)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(fyndVpa, forKey: .fyndVpa)
+                
+                try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
                 
                 try? container.encodeIfPresent(expYear, forKey: .expYear)
+                
+                try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
+                
+                try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
+                
+                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
+                
+                try? container.encodeIfPresent(intentAppErrorList, forKey: .intentAppErrorList)
+                
+                try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+                
+                try? container.encodeIfPresent(retryCount, forKey: .retryCount)
+                
+                try? container.encodeIfPresent(cardId, forKey: .cardId)
                 
             }
             
@@ -25881,34 +25951,34 @@
             
             public var displayName: String
             
+            public var name: String
+            
             public var displayPriority: Int
             
-            public var addCardEnabled: Bool?
+            public var anonymousEnable: Bool?
             
-            public var name: String
+            public var addCardEnabled: Bool?
             
             public var aggregatorName: String?
             
             public var list: [PaymentModeList]?
-            
-            public var anonymousEnable: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case displayName = "display_name"
                 
+                case name = "name"
+                
                 case displayPriority = "display_priority"
                 
-                case addCardEnabled = "add_card_enabled"
+                case anonymousEnable = "anonymous_enable"
                 
-                case name = "name"
+                case addCardEnabled = "add_card_enabled"
                 
                 case aggregatorName = "aggregator_name"
                 
                 case list = "list"
-                
-                case anonymousEnable = "anonymous_enable"
                 
             }
 
@@ -25916,17 +25986,17 @@
                 
                 self.displayName = displayName
                 
+                self.name = name
+                
                 self.displayPriority = displayPriority
                 
-                self.addCardEnabled = addCardEnabled
+                self.anonymousEnable = anonymousEnable
                 
-                self.name = name
+                self.addCardEnabled = addCardEnabled
                 
                 self.aggregatorName = aggregatorName
                 
                 self.list = list
-                
-                self.anonymousEnable = anonymousEnable
                 
             }
 
@@ -25935,17 +26005,17 @@
                 
                 displayName = try container.decode(String.self, forKey: .displayName)
                 
+                name = try container.decode(String.self, forKey: .name)
+                
                 displayPriority = try container.decode(Int.self, forKey: .displayPriority)
                 
-                addCardEnabled = try? container.decode(Bool.self, forKey: .addCardEnabled)
+                anonymousEnable = try? container.decode(Bool.self, forKey: .anonymousEnable)
                 
-                name = try container.decode(String.self, forKey: .name)
+                addCardEnabled = try? container.decode(Bool.self, forKey: .addCardEnabled)
                 
                 aggregatorName = try? container.decode(String.self, forKey: .aggregatorName)
                 
                 list = try? container.decode([PaymentModeList].self, forKey: .list)
-                
-                anonymousEnable = try? container.decode(Bool.self, forKey: .anonymousEnable)
                 
             }
             
@@ -25954,17 +26024,17 @@
                 
                 try? container.encodeIfPresent(displayName, forKey: .displayName)
                 
+                try? container.encodeIfPresent(name, forKey: .name)
+                
                 try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
                 
-                try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
+                try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
                 
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
                 
                 try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
                 
                 try? container.encodeIfPresent(list, forKey: .list)
-                
-                try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
                 
             }
             
@@ -26070,212 +26140,212 @@
         */
         struct OrderBeneficiaryDetails: Codable {
             
-            public var isActive: Bool
-            
-            public var beneficiaryId: String
-            
-            public var address: String
-            
-            public var transferMode: String
-            
-            public var accountNo: String
-            
-            public var email: String
-            
-            public var modifiedOn: String
-            
-            public var mobile: Bool?
-            
-            public var comment: Bool?
-            
-            public var accountHolder: String
+            public var displayName: String
             
             public var subtitle: String
             
-            public var ifscCode: String
-            
-            public var title: String
-            
             public var delightsUserName: String
             
-            public var displayName: String
+            public var address: String
             
-            public var createdOn: String
-            
-            public var id: Int
+            public var email: String
             
             public var branchName: Bool?
             
+            public var comment: Bool?
+            
+            public var title: String
+            
+            public var createdOn: String
+            
+            public var accountNo: String
+            
+            public var beneficiaryId: String
+            
             public var bankName: String
+            
+            public var transferMode: String
+            
+            public var id: Int
+            
+            public var ifscCode: String
+            
+            public var modifiedOn: String
+            
+            public var isActive: Bool
+            
+            public var mobile: Bool?
+            
+            public var accountHolder: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case isActive = "is_active"
-                
-                case beneficiaryId = "beneficiary_id"
-                
-                case address = "address"
-                
-                case transferMode = "transfer_mode"
-                
-                case accountNo = "account_no"
-                
-                case email = "email"
-                
-                case modifiedOn = "modified_on"
-                
-                case mobile = "mobile"
-                
-                case comment = "comment"
-                
-                case accountHolder = "account_holder"
+                case displayName = "display_name"
                 
                 case subtitle = "subtitle"
                 
-                case ifscCode = "ifsc_code"
-                
-                case title = "title"
-                
                 case delightsUserName = "delights_user_name"
                 
-                case displayName = "display_name"
+                case address = "address"
                 
-                case createdOn = "created_on"
-                
-                case id = "id"
+                case email = "email"
                 
                 case branchName = "branch_name"
                 
+                case comment = "comment"
+                
+                case title = "title"
+                
+                case createdOn = "created_on"
+                
+                case accountNo = "account_no"
+                
+                case beneficiaryId = "beneficiary_id"
+                
                 case bankName = "bank_name"
+                
+                case transferMode = "transfer_mode"
+                
+                case id = "id"
+                
+                case ifscCode = "ifsc_code"
+                
+                case modifiedOn = "modified_on"
+                
+                case isActive = "is_active"
+                
+                case mobile = "mobile"
+                
+                case accountHolder = "account_holder"
                 
             }
 
             public init(accountHolder: String, accountNo: String, address: String, bankName: String, beneficiaryId: String, branchName: Bool?, comment: Bool?, createdOn: String, delightsUserName: String, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, mobile: Bool?, modifiedOn: String, subtitle: String, title: String, transferMode: String) {
                 
-                self.isActive = isActive
-                
-                self.beneficiaryId = beneficiaryId
-                
-                self.address = address
-                
-                self.transferMode = transferMode
-                
-                self.accountNo = accountNo
-                
-                self.email = email
-                
-                self.modifiedOn = modifiedOn
-                
-                self.mobile = mobile
-                
-                self.comment = comment
-                
-                self.accountHolder = accountHolder
+                self.displayName = displayName
                 
                 self.subtitle = subtitle
                 
-                self.ifscCode = ifscCode
-                
-                self.title = title
-                
                 self.delightsUserName = delightsUserName
                 
-                self.displayName = displayName
+                self.address = address
                 
-                self.createdOn = createdOn
-                
-                self.id = id
+                self.email = email
                 
                 self.branchName = branchName
                 
+                self.comment = comment
+                
+                self.title = title
+                
+                self.createdOn = createdOn
+                
+                self.accountNo = accountNo
+                
+                self.beneficiaryId = beneficiaryId
+                
                 self.bankName = bankName
+                
+                self.transferMode = transferMode
+                
+                self.id = id
+                
+                self.ifscCode = ifscCode
+                
+                self.modifiedOn = modifiedOn
+                
+                self.isActive = isActive
+                
+                self.mobile = mobile
+                
+                self.accountHolder = accountHolder
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
-                
-                address = try container.decode(String.self, forKey: .address)
-                
-                transferMode = try container.decode(String.self, forKey: .transferMode)
-                
-                accountNo = try container.decode(String.self, forKey: .accountNo)
-                
-                email = try container.decode(String.self, forKey: .email)
-                
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                mobile = try? container.decode(Bool.self, forKey: .mobile)
-                
-                comment = try? container.decode(Bool.self, forKey: .comment)
-                
-                accountHolder = try container.decode(String.self, forKey: .accountHolder)
+                displayName = try container.decode(String.self, forKey: .displayName)
                 
                 subtitle = try container.decode(String.self, forKey: .subtitle)
                 
-                ifscCode = try container.decode(String.self, forKey: .ifscCode)
-                
-                title = try container.decode(String.self, forKey: .title)
-                
                 delightsUserName = try container.decode(String.self, forKey: .delightsUserName)
                 
-                displayName = try container.decode(String.self, forKey: .displayName)
+                address = try container.decode(String.self, forKey: .address)
                 
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-                
-                id = try container.decode(Int.self, forKey: .id)
+                email = try container.decode(String.self, forKey: .email)
                 
                 branchName = try? container.decode(Bool.self, forKey: .branchName)
                 
+                comment = try? container.decode(Bool.self, forKey: .comment)
+                
+                title = try container.decode(String.self, forKey: .title)
+                
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+                accountNo = try container.decode(String.self, forKey: .accountNo)
+                
+                beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
+                
                 bankName = try container.decode(String.self, forKey: .bankName)
+                
+                transferMode = try container.decode(String.self, forKey: .transferMode)
+                
+                id = try container.decode(Int.self, forKey: .id)
+                
+                ifscCode = try container.decode(String.self, forKey: .ifscCode)
+                
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                mobile = try? container.decode(Bool.self, forKey: .mobile)
+                
+                accountHolder = try container.decode(String.self, forKey: .accountHolder)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(isActive, forKey: .isActive)
-                
-                try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
-                
-                try? container.encodeIfPresent(address, forKey: .address)
-                
-                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-                
-                try? container.encodeIfPresent(accountNo, forKey: .accountNo)
-                
-                try? container.encodeIfPresent(email, forKey: .email)
-                
-                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-                
-                try? container.encodeIfPresent(mobile, forKey: .mobile)
-                
-                try? container.encodeIfPresent(comment, forKey: .comment)
-                
-                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+                try? container.encodeIfPresent(displayName, forKey: .displayName)
                 
                 try? container.encodeIfPresent(subtitle, forKey: .subtitle)
                 
-                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-                
-                try? container.encodeIfPresent(title, forKey: .title)
-                
                 try? container.encodeIfPresent(delightsUserName, forKey: .delightsUserName)
                 
-                try? container.encodeIfPresent(displayName, forKey: .displayName)
+                try? container.encodeIfPresent(address, forKey: .address)
                 
-                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-                
-                try? container.encodeIfPresent(id, forKey: .id)
+                try? container.encodeIfPresent(email, forKey: .email)
                 
                 try? container.encodeIfPresent(branchName, forKey: .branchName)
                 
+                try? container.encodeIfPresent(comment, forKey: .comment)
+                
+                try? container.encodeIfPresent(title, forKey: .title)
+                
+                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+                
+                try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+                
+                try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
+                
                 try? container.encodeIfPresent(bankName, forKey: .bankName)
+                
+                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
+                
+                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+                
+                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+                
+                try? container.encodeIfPresent(isActive, forKey: .isActive)
+                
+                try? container.encodeIfPresent(mobile, forKey: .mobile)
+                
+                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
                 
             }
             
@@ -26381,18 +26451,18 @@
         */
         struct IfscCodeResponse: Codable {
             
-            public var branchName: String
-            
             public var bankName: String
+            
+            public var branchName: String
             
             public var success: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case branchName = "branch_name"
-                
                 case bankName = "bank_name"
+                
+                case branchName = "branch_name"
                 
                 case success = "success"
                 
@@ -26400,9 +26470,9 @@
 
             public init(bankName: String, branchName: String, success: Bool?) {
                 
-                self.branchName = branchName
-                
                 self.bankName = bankName
+                
+                self.branchName = branchName
                 
                 self.success = success
                 
@@ -26411,9 +26481,9 @@
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                branchName = try container.decode(String.self, forKey: .branchName)
-                
                 bankName = try container.decode(String.self, forKey: .bankName)
+                
+                branchName = try container.decode(String.self, forKey: .branchName)
                 
                 success = try? container.decode(Bool.self, forKey: .success)
                 
@@ -26422,9 +26492,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(branchName, forKey: .branchName)
-                
                 try? container.encodeIfPresent(bankName, forKey: .bankName)
+                
+                try? container.encodeIfPresent(branchName, forKey: .branchName)
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
@@ -26656,112 +26726,112 @@
         */
         struct BankDetails: Codable {
             
-            public var accountHolder: String
-            
-            public var branchName: String
-            
-            public var ifscCode: String
-            
-            public var bankName: String
-            
             public var accountNo: String
             
-            public var email: String
+            public var comment: String?
+            
+            public var bankName: String
             
             public var mobile: String
             
             public var address: String
             
-            public var comment: String?
+            public var email: String
+            
+            public var branchName: String
+            
+            public var accountHolder: String
+            
+            public var ifscCode: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case accountHolder = "account_holder"
-                
-                case branchName = "branch_name"
-                
-                case ifscCode = "ifsc_code"
-                
-                case bankName = "bank_name"
-                
                 case accountNo = "account_no"
                 
-                case email = "email"
+                case comment = "comment"
+                
+                case bankName = "bank_name"
                 
                 case mobile = "mobile"
                 
                 case address = "address"
                 
-                case comment = "comment"
+                case email = "email"
+                
+                case branchName = "branch_name"
+                
+                case accountHolder = "account_holder"
+                
+                case ifscCode = "ifsc_code"
                 
             }
 
             public init(accountHolder: String, accountNo: String, address: String, bankName: String, branchName: String, comment: String?, email: String, ifscCode: String, mobile: String) {
                 
-                self.accountHolder = accountHolder
-                
-                self.branchName = branchName
-                
-                self.ifscCode = ifscCode
-                
-                self.bankName = bankName
-                
                 self.accountNo = accountNo
                 
-                self.email = email
+                self.comment = comment
+                
+                self.bankName = bankName
                 
                 self.mobile = mobile
                 
                 self.address = address
                 
-                self.comment = comment
+                self.email = email
+                
+                self.branchName = branchName
+                
+                self.accountHolder = accountHolder
+                
+                self.ifscCode = ifscCode
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                accountHolder = try container.decode(String.self, forKey: .accountHolder)
-                
-                branchName = try container.decode(String.self, forKey: .branchName)
-                
-                ifscCode = try container.decode(String.self, forKey: .ifscCode)
-                
-                bankName = try container.decode(String.self, forKey: .bankName)
-                
                 accountNo = try container.decode(String.self, forKey: .accountNo)
                 
-                email = try container.decode(String.self, forKey: .email)
+                comment = try? container.decode(String.self, forKey: .comment)
+                
+                bankName = try container.decode(String.self, forKey: .bankName)
                 
                 mobile = try container.decode(String.self, forKey: .mobile)
                 
                 address = try container.decode(String.self, forKey: .address)
                 
-                comment = try? container.decode(String.self, forKey: .comment)
+                email = try container.decode(String.self, forKey: .email)
+                
+                branchName = try container.decode(String.self, forKey: .branchName)
+                
+                accountHolder = try container.decode(String.self, forKey: .accountHolder)
+                
+                ifscCode = try container.decode(String.self, forKey: .ifscCode)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-                
-                try? container.encodeIfPresent(branchName, forKey: .branchName)
-                
-                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-                
-                try? container.encodeIfPresent(bankName, forKey: .bankName)
-                
                 try? container.encodeIfPresent(accountNo, forKey: .accountNo)
                 
-                try? container.encodeIfPresent(email, forKey: .email)
+                try? container.encodeIfPresent(comment, forKey: .comment)
+                
+                try? container.encodeIfPresent(bankName, forKey: .bankName)
                 
                 try? container.encodeIfPresent(mobile, forKey: .mobile)
                 
                 try? container.encodeIfPresent(address, forKey: .address)
                 
-                try? container.encodeIfPresent(comment, forKey: .comment)
+                try? container.encodeIfPresent(email, forKey: .email)
+                
+                try? container.encodeIfPresent(branchName, forKey: .branchName)
+                
+                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+                
+                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
                 
             }
             
@@ -26773,72 +26843,72 @@
         */
         struct AddBeneficiaryDetailsRequest: Codable {
             
-            public var orderId: String
+            public var shipmentId: String
             
             public var delights: Bool
             
             public var details: BankDetails
             
-            public var shipmentId: String
-            
             public var transferMode: String
+            
+            public var orderId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case orderId = "order_id"
+                case shipmentId = "shipment_id"
                 
                 case delights = "delights"
                 
                 case details = "details"
                 
-                case shipmentId = "shipment_id"
-                
                 case transferMode = "transfer_mode"
+                
+                case orderId = "order_id"
                 
             }
 
             public init(delights: Bool, details: BankDetails, orderId: String, shipmentId: String, transferMode: String) {
                 
-                self.orderId = orderId
+                self.shipmentId = shipmentId
                 
                 self.delights = delights
                 
                 self.details = details
                 
-                self.shipmentId = shipmentId
-                
                 self.transferMode = transferMode
+                
+                self.orderId = orderId
                 
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
-                orderId = try container.decode(String.self, forKey: .orderId)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 delights = try container.decode(Bool.self, forKey: .delights)
                 
                 details = try container.decode(BankDetails.self, forKey: .details)
                 
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-                
                 transferMode = try container.decode(String.self, forKey: .transferMode)
+                
+                orderId = try container.decode(String.self, forKey: .orderId)
                 
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
+                try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
                 
                 try? container.encodeIfPresent(delights, forKey: .delights)
                 
                 try? container.encodeIfPresent(details, forKey: .details)
                 
-                try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-                
                 try? container.encodeIfPresent(transferMode, forKey: .transferMode)
+                
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
             }
             

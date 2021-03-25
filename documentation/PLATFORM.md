@@ -13,6 +13,7 @@
 * [Assets](#Assets) - File Storage 
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
+* [Configuration](#Configuration) - Application configuration apis 
 
 ----
 ----
@@ -261,6 +262,52 @@
     * [getJobConfigDefaults](#getjobconfigdefaults)
     * [getJobByCode](#getjobbycode)
     * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
+    
+
+* [Configuration](#Configuration)
+  * Methods
+    * [getBuildConfig](#getbuildconfig)
+    * [updateBuildConfig](#updatebuildconfig)
+    * [getPreviousVersions](#getpreviousversions)
+    * [getAppFeatures](#getappfeatures)
+    * [updateAppFeatures](#updateappfeatures)
+    * [getAppBasicDetails](#getappbasicdetails)
+    * [updateAppBasicDetails](#updateappbasicdetails)
+    * [getAppContactInfo](#getappcontactinfo)
+    * [updateAppContactInfo](#updateappcontactinfo)
+    * [getAppApiTokens](#getappapitokens)
+    * [updateAppApiTokens](#updateappapitokens)
+    * [getAppCompanies](#getappcompanies)
+    * [getAppStores](#getappstores)
+    * [getInventoryConfig](#getinventoryconfig)
+    * [updateInventoryConfig](#updateinventoryconfig)
+    * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
+    * [getAppCurrencyConfig](#getappcurrencyconfig)
+    * [updateAppCurrencyConfig](#updateappcurrencyconfig)
+    * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
+    * [updateOrderingStoreConfig](#updateorderingstoreconfig)
+    * [getDomains](#getdomains)
+    * [addDomain](#adddomain)
+    * [removeDomainById](#removedomainbyid)
+    * [changeDomainType](#changedomaintype)
+    * [getDomainStatus](#getdomainstatus)
+    * [createApplication](#createapplication)
+    * [getApplications](#getapplications)
+    * [getApplicationById](#getapplicationbyid)
+    * [getCurrencies](#getcurrencies)
+    * [getDomainAvailibility](#getdomainavailibility)
+    * [getIntegrationById](#getintegrationbyid)
+    * [getAvailableOptIns](#getavailableoptins)
+    * [getSelectedOptIns](#getselectedoptins)
+    * [getIntegrationLevelConfig](#getintegrationlevelconfig)
+    * [getIntegrationByLevelId](#getintegrationbylevelid)
+    * [getLevelActiveIntegrations](#getlevelactiveintegrations)
+    * [getBrandsByCompany](#getbrandsbycompany)
+    * [getCompanyByBrands](#getcompanybybrands)
+    * [getStoreByBrands](#getstorebybrands)
+    * [getOtherSellerApplications](#getothersellerapplications)
+    * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
+    * [optOutFromApplication](#optoutfromapplication)
     
 
 
@@ -15667,6 +15714,1775 @@ Internal Server Error
 
 
 Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Configuration
+
+
+#### getBuildConfig
+Get latest build config
+
+```swift
+configuration.getBuildConfig(companyId: companyId, applicationId: applicationId, platformType: platformType) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Get latest build config
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MobileAppConfiguration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateBuildConfig
+Update build config for next build
+
+```swift
+configuration.updateBuildConfig(companyId: companyId, applicationId: applicationId, platformType: platformType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Update build config for next build
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MobileAppConfiguration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPreviousVersions
+Get previous versions
+
+```swift
+configuration.getPreviousVersions(companyId: companyId, applicationId: applicationId, platformType: platformType) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Get previous versions
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BuildVersionHistory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppFeatures
+Get features of application
+
+```swift
+configuration.getAppFeatures(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get features of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppFeatureResponse`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppFeatures
+Update features of application
+
+```swift
+configuration.updateAppFeatures(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Update features of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppFeature`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppBasicDetails
+Get basic application details
+
+```swift
+configuration.getAppBasicDetails(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get basic application details like name
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppBasicDetails
+Add or update application's basic details
+
+```swift
+configuration.updateAppBasicDetails(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add or update application's basic details
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppContactInfo
+Get application information
+
+```swift
+configuration.getAppContactInfo(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInformation`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppContactInfo
+Get application information
+
+```swift
+configuration.updateAppContactInfo(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Save Application Current Information. This includes information about social links, address and contact information of an application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInformation`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppApiTokens
+Get social tokens
+
+```swift
+configuration.getAppApiTokens(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get social tokens.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TokenResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppApiTokens
+Add social tokens
+
+```swift
+configuration.updateAppApiTokens(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add social tokens.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TokenResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppCompanies
+Application inventory enabled companies
+
+```swift
+configuration.getAppCompanies(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Application inventory enabled companies.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CompaniesResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppStores
+Application inventory enabled stores
+
+```swift
+configuration.getAppStores(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Application inventory enabled stores.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoresResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInventoryConfig
+Get application configuration
+
+```swift
+configuration.getInventoryConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateInventoryConfig
+Update application configuration
+
+```swift
+configuration.updateInventoryConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Update application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### partiallyUpdateInventoryConfig
+Partially update application configuration
+
+```swift
+configuration.partiallyUpdateInventoryConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Partially update application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppCurrencyConfig
+Get application enabled currency list
+
+```swift
+configuration.getAppCurrencyConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application enabled currency list
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppSupportedCurrency`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppCurrencyConfig
+Add initial application supported currency
+
+```swift
+configuration.updateAppCurrencyConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add initial application supported currency for various features and data. Default INR will be enabled.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppSupportedCurrency`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderingStoresByFilter
+Get ordering store by filter
+
+```swift
+configuration.getOrderingStoresByFilter(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get ordering store by filter
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderingStores`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateOrderingStoreConfig
+Add/Update ordering store config
+
+```swift
+configuration.updateOrderingStoreConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add/Update ordering store config.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DeploymentMeta`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomains
+Get attached domain list
+
+```swift
+configuration.getDomains(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get attached domain list.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addDomain
+Add new domain to application
+
+```swift
+configuration.addDomain(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add new domain to application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Domain`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `BadRequest`
+
+
+*Examples:*
+
+
+Maximum domain limit reached
+```json
+{
+  "value": {
+    "message": "Maximum 4 domains can be added to application. Please remove existing one to add new"
+  }
+}
+```
+
+Failed to verify domain record
+```json
+{
+  "value": {
+    "message": "Failed to verify domain records"
+  }
+}
+```
+
+Domain already registered
+```json
+{
+  "value": {
+    "message": "Domain already linked to application"
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeDomainById
+Remove attached domain
+
+```swift
+configuration.removeDomainById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| id | string | Domain _id | 
+
+Remove attached domain.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Invalid request or Missing params
+
+
+Schema: `BadRequest`
+
+
+*Examples:*
+
+
+Primary or Shortlink or Default domain deletiion
+```json
+{
+  "value": {
+    "message": "Primary domain deletion not allowed"
+  }
+}
+```
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### changeDomainType
+Change domain type
+
+```swift
+configuration.changeDomainType(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Change a domain to Primary or Shortlink domain
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainsResponse`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomainStatus
+Get domain connected status.
+
+```swift
+configuration.getDomainStatus(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainStatusResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createApplication
+Create application
+
+```swift
+configuration.createApplication(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Create new application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAppResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplications
+Get list of application under company
+
+```swift
+configuration.getApplications(companyId: companyId, companyId: companyId, pageNo: pageNo, pageSize: pageSize, query: query) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| companyId | integer |  | 
+| pageNo | integer |  | 
+| pageSize | integer |  | 
+| query | object | Url encoded object used as mongodb query | 
+
+Get list of application under company
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationById
+Get application data from id
+
+```swift
+configuration.getApplicationById(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application data from id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Application`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCurrencies
+Get all currencies
+
+```swift
+configuration.getCurrencies(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Get all currencies
+
+*Success Response:*
+
+
+
+Currencies Success response
+
+
+Schema: `CurrenciesResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomainAvailibility
+Check domain availibility before linking to application
+
+```swift
+configuration.getDomainAvailibility(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainSuggestionsResponse`
+
+
+*Examples:*
+
+
+Suggestions for fynd domains
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "name": "test.hostx1.de",
+        "is_available": false
+      },
+      {
+        "name": "testhive.hostx1.de",
+        "is_available": true
+      }
+    ]
+  }
+}
+```
+
+Suggestions for custom domains
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "name": "test25.in",
+        "unsupported": false,
+        "is_available": false
+      },
+      {
+        "name": "try25.in",
+        "unsupported": false,
+        "is_available": true,
+        "price": 14.99,
+        "currency": "USD"
+      }
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationById
+Get integration data
+
+```swift
+configuration.getIntegrationById(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | integer | Integration id | 
+
+Get integration data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Integration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAvailableOptIns
+Get all available integration opt-ins
+
+```swift
+configuration.getAvailableOptIns(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get all available integration opt-ins
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetIntegrationsOptInsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSelectedOptIns
+Get company/store level integration opt-ins
+
+```swift
+configuration.getSelectedOptIns(companyId: companyId, level: level, uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get company/store level integration opt-ins
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetIntegrationsOptInsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationLevelConfig
+Get integration level config
+
+```swift
+configuration.getIntegrationLevelConfig(companyId: companyId, id: id, level: level) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+
+Get integration level config
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `IntegrationConfigResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationByLevelId
+Get level data for integration
+
+```swift
+configuration.getIntegrationByLevelId(companyId: companyId, id: id, level: level, uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+
+Get level data for integration
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `IntegrationLevel`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLevelActiveIntegrations
+Check store has active integration
+
+```swift
+configuration.getLevelActiveIntegrations(companyId: companyId, id: id, level: level, uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+
+API checks if a store is already opted in any other integrations
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OptedStoreIntegration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrandsByCompany
+Get brands by company
+
+```swift
+configuration.getBrandsByCompany(companyId: companyId, companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| companyId | integer | Company uid | 
+
+Get brands by company
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BrandsByCompanyResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCompanyByBrands
+Get company by brand uids
+
+```swift
+configuration.getCompanyByBrands(companyId: companyId, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get company by brand uids
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CompanyByBrandsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStoreByBrands
+Get stores by brand uids
+
+```swift
+configuration.getStoreByBrands(companyId: companyId, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get stores by brand uids
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoreByBrandsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOtherSellerApplications
+Get other seller applications
+
+```swift
+configuration.getOtherSellerApplications(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Get other seller applications who has opted current company as inventory
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OtherSellerApplications`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOtherSellerApplicationById
+Get other seller applications
+
+```swift
+configuration.getOtherSellerApplicationById(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Application Id | 
+
+Get other seller application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OptedApplicationResponse`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### optOutFromApplication
+Opt out company or store from other seller application
+
+```swift
+configuration.optOutFromApplication(companyId: companyId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Application Id | 
+
+Opt out company or store from other seller application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Invalid params or Not configured inventory
+
+
+Schema: `BadRequest`
+
+
+*Examples:*
+
+
+Missing parameter
+```json
+{
+  "value": {
+    "message": "Invalid opt out request data. Either of `store` and `company` fields are missing"
+  }
+}
+```
+
+Company other than current company sent for opt out
+```json
+{
+  "value": {
+    "message": "Invalid company id"
+  }
+}
+```
+
+Store other than current company sent for opt out
+```json
+{
+  "value": {
+    "message": "Invalid store ids"
+  }
+}
+```
+
+Inventory not configured for sent application id
+```json
+{
+  "value": {
+    "message": "Inventory is not configured"
+  }
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
 
 
 
