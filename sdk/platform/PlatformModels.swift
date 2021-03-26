@@ -17582,6 +17582,44 @@ public extension PlatformClient {
     
     
     /*
+        Model: ReferralInfo
+    */
+
+    struct ReferralInfo: Codable {
+        
+        
+        public var referralCode: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case referralCode = "referral_code"
+            
+        }
+
+        public init(referralCode: String?) {
+            
+            self.referralCode = referralCode
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            referralCode = try? container.decode(String.self, forKey: .referralCode)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(referralCode, forKey: .referralCode)
+            
+        }
+        
+    }
+    
+    /*
         Model: BusinessCountryInfo
     */
 
@@ -17630,6 +17668,84 @@ public extension PlatformClient {
     }
     
     /*
+        Model: Document
+    */
+
+    struct Document: Codable {
+        
+        
+        public var verified: Bool?
+        
+        public var url: String?
+        
+        public var legalName: String
+        
+        public var value: String
+        
+        public var type: String
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case verified = "verified"
+            
+            case url = "url"
+            
+            case legalName = "legal_name"
+            
+            case value = "value"
+            
+            case type = "type"
+            
+        }
+
+        public init(legalName: String, type: String, url: String?, value: String, verified: Bool?) {
+            
+            self.verified = verified
+            
+            self.url = url
+            
+            self.legalName = legalName
+            
+            self.value = value
+            
+            self.type = type
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            verified = try? container.decode(Bool.self, forKey: .verified)
+            
+            url = try? container.decode(String.self, forKey: .url)
+            
+            legalName = try container.decode(String.self, forKey: .legalName)
+            
+            value = try container.decode(String.self, forKey: .value)
+            
+            type = try container.decode(String.self, forKey: .type)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(verified, forKey: .verified)
+            
+            try? container.encodeIfPresent(url, forKey: .url)
+            
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+        }
+        
+    }
+    
+    /*
         Model: CompanyAddress
     */
 
@@ -17638,46 +17754,46 @@ public extension PlatformClient {
         
         public var countryCode: String?
         
-        public var address2: String?
-        
-        public var landmark: String?
-        
-        public var city: String
+        public var longitude: Double
         
         public var address1: String
         
-        public var latitude: Double
-        
-        public var longitude: Double
+        public var city: String
         
         public var pincode: Int
         
-        public var state: String
+        public var address2: String?
         
         public var country: String
+        
+        public var state: String
+        
+        public var landmark: String?
+        
+        public var latitude: Double
         
 
         public enum CodingKeys: String, CodingKey {
             
             case countryCode = "country_code"
             
-            case address2 = "address2"
-            
-            case landmark = "landmark"
-            
-            case city = "city"
+            case longitude = "longitude"
             
             case address1 = "address1"
             
-            case latitude = "latitude"
-            
-            case longitude = "longitude"
+            case city = "city"
             
             case pincode = "pincode"
             
-            case state = "state"
+            case address2 = "address2"
             
             case country = "country"
+            
+            case state = "state"
+            
+            case landmark = "landmark"
+            
+            case latitude = "latitude"
             
         }
 
@@ -17685,23 +17801,23 @@ public extension PlatformClient {
             
             self.countryCode = countryCode
             
-            self.address2 = address2
-            
-            self.landmark = landmark
-            
-            self.city = city
+            self.longitude = longitude
             
             self.address1 = address1
             
-            self.latitude = latitude
-            
-            self.longitude = longitude
+            self.city = city
             
             self.pincode = pincode
             
-            self.state = state
+            self.address2 = address2
             
             self.country = country
+            
+            self.state = state
+            
+            self.landmark = landmark
+            
+            self.latitude = latitude
             
         }
 
@@ -17710,23 +17826,23 @@ public extension PlatformClient {
             
             countryCode = try? container.decode(String.self, forKey: .countryCode)
             
-            address2 = try? container.decode(String.self, forKey: .address2)
-            
-            landmark = try? container.decode(String.self, forKey: .landmark)
-            
-            city = try container.decode(String.self, forKey: .city)
+            longitude = try container.decode(Double.self, forKey: .longitude)
             
             address1 = try container.decode(String.self, forKey: .address1)
             
-            latitude = try container.decode(Double.self, forKey: .latitude)
-            
-            longitude = try container.decode(Double.self, forKey: .longitude)
+            city = try container.decode(String.self, forKey: .city)
             
             pincode = try container.decode(Int.self, forKey: .pincode)
             
-            state = try container.decode(String.self, forKey: .state)
+            address2 = try? container.decode(String.self, forKey: .address2)
             
             country = try container.decode(String.self, forKey: .country)
+            
+            state = try container.decode(String.self, forKey: .state)
+            
+            landmark = try? container.decode(String.self, forKey: .landmark)
+            
+            latitude = try container.decode(Double.self, forKey: .latitude)
             
         }
         
@@ -17735,139 +17851,23 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
-            try? container.encodeIfPresent(address2, forKey: .address2)
-            
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             try? container.encodeIfPresent(address1, forKey: .address1)
             
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(city, forKey: .city)
             
             try? container.encodeIfPresent(pincode, forKey: .pincode)
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(address2, forKey: .address2)
             
             try? container.encodeIfPresent(country, forKey: .country)
             
-        }
-        
-    }
-    
-    /*
-        Model: ReferralInfo
-    */
-
-    struct ReferralInfo: Codable {
-        
-        
-        public var referralCode: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
+            try? container.encodeIfPresent(state, forKey: .state)
             
-            case referralCode = "referral_code"
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
             
-        }
-
-        public init(referralCode: String?) {
-            
-            self.referralCode = referralCode
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            referralCode = try? container.decode(String.self, forKey: .referralCode)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(referralCode, forKey: .referralCode)
-            
-        }
-        
-    }
-    
-    /*
-        Model: Document
-    */
-
-    struct Document: Codable {
-        
-        
-        public var value: String
-        
-        public var verified: Bool?
-        
-        public var type: String
-        
-        public var legalName: String
-        
-        public var url: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case value = "value"
-            
-            case verified = "verified"
-            
-            case type = "type"
-            
-            case legalName = "legal_name"
-            
-            case url = "url"
-            
-        }
-
-        public init(legalName: String, type: String, url: String?, value: String, verified: Bool?) {
-            
-            self.value = value
-            
-            self.verified = verified
-            
-            self.type = type
-            
-            self.legalName = legalName
-            
-            self.url = url
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            value = try container.decode(String.self, forKey: .value)
-            
-            verified = try? container.decode(Bool.self, forKey: .verified)
-            
-            type = try container.decode(String.self, forKey: .type)
-            
-            legalName = try container.decode(String.self, forKey: .legalName)
-            
-            url = try? container.decode(String.self, forKey: .url)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(value, forKey: .value)
-            
-            try? container.encodeIfPresent(verified, forKey: .verified)
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
-            
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
             
         }
         
@@ -17880,142 +17880,142 @@ public extension PlatformClient {
     struct CompanyStoreSerializerRequest: Codable {
         
         
-        public var name: String
-        
-        public var businessCountryInfo: BusinessCountryInfo
-        
-        public var brands: [Int]
+        public var franchiseEnabled: Bool?
         
         public var notificationEmails: [String]?
         
-        public var address: CompanyAddress
-        
-        public var warnings: [String: Any]?
-        
-        public var businessType: String
-        
         public var uid: Int?
         
-        public var franchiseEnabled: Bool?
+        public var name: String
+        
+        public var businessType: String
         
         public var referralInfo: ReferralInfo?
         
         public var businessInfo: String?
         
+        public var businessCountryInfo: BusinessCountryInfo
+        
         public var document: Document
+        
+        public var warnings: [String: Any]?
+        
+        public var brands: [Int]
+        
+        public var address: CompanyAddress
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
-            
-            case businessCountryInfo = "business_country_info"
-            
-            case brands = "brands"
+            case franchiseEnabled = "franchise_enabled"
             
             case notificationEmails = "notification_emails"
             
-            case address = "address"
-            
-            case warnings = "warnings"
-            
-            case businessType = "business_type"
-            
             case uid = "uid"
             
-            case franchiseEnabled = "franchise_enabled"
+            case name = "name"
+            
+            case businessType = "business_type"
             
             case referralInfo = "referral_info"
             
             case businessInfo = "business_info"
             
+            case businessCountryInfo = "business_country_info"
+            
             case document = "document"
+            
+            case warnings = "warnings"
+            
+            case brands = "brands"
+            
+            case address = "address"
             
         }
 
         public init(address: CompanyAddress, brands: [Int], businessCountryInfo: BusinessCountryInfo, businessInfo: String?, businessType: String, document: Document, franchiseEnabled: Bool?, name: String, notificationEmails: [String]?, referralInfo: ReferralInfo?, uid: Int?, warnings: [String: Any]?) {
             
-            self.name = name
-            
-            self.businessCountryInfo = businessCountryInfo
-            
-            self.brands = brands
+            self.franchiseEnabled = franchiseEnabled
             
             self.notificationEmails = notificationEmails
             
-            self.address = address
-            
-            self.warnings = warnings
-            
-            self.businessType = businessType
-            
             self.uid = uid
             
-            self.franchiseEnabled = franchiseEnabled
+            self.name = name
+            
+            self.businessType = businessType
             
             self.referralInfo = referralInfo
             
             self.businessInfo = businessInfo
             
+            self.businessCountryInfo = businessCountryInfo
+            
             self.document = document
+            
+            self.warnings = warnings
+            
+            self.brands = brands
+            
+            self.address = address
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            name = try container.decode(String.self, forKey: .name)
-            
-            businessCountryInfo = try container.decode(BusinessCountryInfo.self, forKey: .businessCountryInfo)
-            
-            brands = try container.decode([Int].self, forKey: .brands)
+            franchiseEnabled = try? container.decode(Bool.self, forKey: .franchiseEnabled)
             
             notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
             
-            address = try container.decode(CompanyAddress.self, forKey: .address)
-            
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
-            
-            businessType = try container.decode(String.self, forKey: .businessType)
-            
             uid = try? container.decode(Int.self, forKey: .uid)
             
-            franchiseEnabled = try? container.decode(Bool.self, forKey: .franchiseEnabled)
+            name = try container.decode(String.self, forKey: .name)
+            
+            businessType = try container.decode(String.self, forKey: .businessType)
             
             referralInfo = try? container.decode(ReferralInfo.self, forKey: .referralInfo)
             
             businessInfo = try? container.decode(String.self, forKey: .businessInfo)
             
+            businessCountryInfo = try container.decode(BusinessCountryInfo.self, forKey: .businessCountryInfo)
+            
             document = try container.decode(Document.self, forKey: .document)
+            
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
+            
+            brands = try container.decode([Int].self, forKey: .brands)
+            
+            address = try container.decode(CompanyAddress.self, forKey: .address)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
-            
-            try? container.encodeIfPresent(brands, forKey: .brands)
+            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
             
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
             
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-            
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
             
-            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
             
             try? container.encodeIfPresent(referralInfo, forKey: .referralInfo)
             
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
             
+            try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
+            
             try? container.encodeIfPresent(document, forKey: .document)
+            
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
+            
+            try? container.encodeIfPresent(brands, forKey: .brands)
+            
+            try? container.encodeIfPresent(address, forKey: .address)
             
         }
         
@@ -18076,102 +18076,156 @@ public extension PlatformClient {
     struct ErrorResponse: Codable {
         
         
-        public var status: Int?
-        
         public var meta: [String: Any]?
-        
-        public var code: String?
         
         public var message: String?
         
         public var errors: [String: Any]?
         
+        public var status: Int?
+        
+        public var code: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
-            
             case meta = "meta"
-            
-            case code = "code"
             
             case message = "message"
             
             case errors = "errors"
             
+            case status = "status"
+            
+            case code = "code"
+            
         }
 
         public init(code: String?, errors: [String: Any]?, message: String?, meta: [String: Any]?, status: Int?) {
             
-            self.status = status
-            
             self.meta = meta
-            
-            self.code = code
             
             self.message = message
             
             self.errors = errors
+            
+            self.status = status
+            
+            self.code = code
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            status = try? container.decode(Int.self, forKey: .status)
-            
             meta = try? container.decode([String: Any].self, forKey: .meta)
-            
-            code = try? container.decode(String.self, forKey: .code)
             
             message = try? container.decode(String.self, forKey: .message)
             
             errors = try? container.decode([String: Any].self, forKey: .errors)
+            
+            status = try? container.decode(Int.self, forKey: .status)
+            
+            code = try? container.decode(String.self, forKey: .code)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(status, forKey: .status)
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            try? container.encodeIfPresent(code, forKey: .code)
             
             try? container.encodeIfPresent(message, forKey: .message)
             
             try? container.encodeIfPresent(errors, forKey: .errors)
+            
+            try? container.encodeIfPresent(status, forKey: .status)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
         }
         
     }
     
     /*
-        Model: BusinessCountryInfo1
+        Model: GetAddressSerializer
     */
 
-    struct BusinessCountryInfo1: Codable {
+    struct GetAddressSerializer: Codable {
         
         
         public var countryCode: String?
         
+        public var longitude: Double?
+        
+        public var address1: String?
+        
+        public var city: String?
+        
+        public var pincode: Int?
+        
+        public var address2: String?
+        
         public var country: String?
+        
+        public var addressType: String?
+        
+        public var state: String?
+        
+        public var landmark: String?
+        
+        public var latitude: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case countryCode = "country_code"
             
+            case longitude = "longitude"
+            
+            case address1 = "address1"
+            
+            case city = "city"
+            
+            case pincode = "pincode"
+            
+            case address2 = "address2"
+            
             case country = "country"
+            
+            case addressType = "address_type"
+            
+            case state = "state"
+            
+            case landmark = "landmark"
+            
+            case latitude = "latitude"
             
         }
 
-        public init(country: String?, countryCode: String?) {
+        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
             
             self.countryCode = countryCode
             
+            self.longitude = longitude
+            
+            self.address1 = address1
+            
+            self.city = city
+            
+            self.pincode = pincode
+            
+            self.address2 = address2
+            
             self.country = country
+            
+            self.addressType = addressType
+            
+            self.state = state
+            
+            self.landmark = landmark
+            
+            self.latitude = latitude
             
         }
 
@@ -18180,7 +18234,25 @@ public extension PlatformClient {
             
             countryCode = try? container.decode(String.self, forKey: .countryCode)
             
+            longitude = try? container.decode(Double.self, forKey: .longitude)
+            
+            address1 = try? container.decode(String.self, forKey: .address1)
+            
+            city = try? container.decode(String.self, forKey: .city)
+            
+            pincode = try? container.decode(Int.self, forKey: .pincode)
+            
+            address2 = try? container.decode(String.self, forKey: .address2)
+            
             country = try? container.decode(String.self, forKey: .country)
+            
+            addressType = try? container.decode(String.self, forKey: .addressType)
+            
+            state = try? container.decode(String.self, forKey: .state)
+            
+            landmark = try? container.decode(String.self, forKey: .landmark)
+            
+            latitude = try? container.decode(Double.self, forKey: .latitude)
             
         }
         
@@ -18189,7 +18261,25 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            
+            try? container.encodeIfPresent(address1, forKey: .address1)
+            
+            try? container.encodeIfPresent(city, forKey: .city)
+            
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            try? container.encodeIfPresent(address2, forKey: .address2)
+            
             try? container.encodeIfPresent(country, forKey: .country)
+            
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
+            
+            try? container.encodeIfPresent(state, forKey: .state)
+            
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
             
         }
         
@@ -18330,144 +18420,6 @@ public extension PlatformClient {
     }
     
     /*
-        Model: GetAddressSerializer
-    */
-
-    struct GetAddressSerializer: Codable {
-        
-        
-        public var countryCode: String?
-        
-        public var address2: String?
-        
-        public var landmark: String?
-        
-        public var address1: String?
-        
-        public var city: String?
-        
-        public var latitude: Double?
-        
-        public var longitude: Double?
-        
-        public var addressType: String?
-        
-        public var pincode: Int?
-        
-        public var state: String?
-        
-        public var country: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case countryCode = "country_code"
-            
-            case address2 = "address2"
-            
-            case landmark = "landmark"
-            
-            case address1 = "address1"
-            
-            case city = "city"
-            
-            case latitude = "latitude"
-            
-            case longitude = "longitude"
-            
-            case addressType = "address_type"
-            
-            case pincode = "pincode"
-            
-            case state = "state"
-            
-            case country = "country"
-            
-        }
-
-        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
-            
-            self.countryCode = countryCode
-            
-            self.address2 = address2
-            
-            self.landmark = landmark
-            
-            self.address1 = address1
-            
-            self.city = city
-            
-            self.latitude = latitude
-            
-            self.longitude = longitude
-            
-            self.addressType = addressType
-            
-            self.pincode = pincode
-            
-            self.state = state
-            
-            self.country = country
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            countryCode = try? container.decode(String.self, forKey: .countryCode)
-            
-            address2 = try? container.decode(String.self, forKey: .address2)
-            
-            landmark = try? container.decode(String.self, forKey: .landmark)
-            
-            address1 = try? container.decode(String.self, forKey: .address1)
-            
-            city = try? container.decode(String.self, forKey: .city)
-            
-            latitude = try? container.decode(Double.self, forKey: .latitude)
-            
-            longitude = try? container.decode(Double.self, forKey: .longitude)
-            
-            addressType = try? container.decode(String.self, forKey: .addressType)
-            
-            pincode = try? container.decode(Int.self, forKey: .pincode)
-            
-            state = try? container.decode(String.self, forKey: .state)
-            
-            country = try? container.decode(String.self, forKey: .country)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            try? container.encodeIfPresent(address2, forKey: .address2)
-            
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
-            try? container.encodeIfPresent(address1, forKey: .address1)
-            
-            try? container.encodeIfPresent(city, forKey: .city)
-            
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
-            
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
-            
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
-            try? container.encodeIfPresent(state, forKey: .state)
-            
-            try? container.encodeIfPresent(country, forKey: .country)
-            
-        }
-        
-    }
-    
-    /*
         Model: PhoneNumber
     */
 
@@ -18522,42 +18474,90 @@ public extension PlatformClient {
     struct ContactDetails: Codable {
         
         
-        public var phone: [PhoneNumber]?
-        
         public var emails: [String]?
+        
+        public var phone: [PhoneNumber]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case phone = "phone"
-            
             case emails = "emails"
+            
+            case phone = "phone"
             
         }
 
         public init(emails: [String]?, phone: [PhoneNumber]?) {
             
-            self.phone = phone
-            
             self.emails = emails
+            
+            self.phone = phone
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            phone = try? container.decode([PhoneNumber].self, forKey: .phone)
-            
             emails = try? container.decode([String].self, forKey: .emails)
+            
+            phone = try? container.decode([PhoneNumber].self, forKey: .phone)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
+            try? container.encodeIfPresent(emails, forKey: .emails)
+            
             try? container.encodeIfPresent(phone, forKey: .phone)
             
-            try? container.encodeIfPresent(emails, forKey: .emails)
+        }
+        
+    }
+    
+    /*
+        Model: BusinessCountryInfo1
+    */
+
+    struct BusinessCountryInfo1: Codable {
+        
+        
+        public var countryCode: String?
+        
+        public var country: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case countryCode = "country_code"
+            
+            case country = "country"
+            
+        }
+
+        public init(country: String?, countryCode: String?) {
+            
+            self.countryCode = countryCode
+            
+            self.country = country
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+            country = try? container.decode(String.self, forKey: .country)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            try? container.encodeIfPresent(country, forKey: .country)
             
         }
         
@@ -18570,222 +18570,222 @@ public extension PlatformClient {
     struct GetCompanyProfileSerializerResponse: Codable {
         
         
-        public var modifiedOn: String?
-        
-        public var businessCountryInfo: BusinessCountryInfo1?
+        public var verifiedOn: String?
         
         public var stage: String?
         
-        public var verifiedBy: UserSerializer?
+        public var addresses: [GetAddressSerializer]?
         
-        public var businessInfo: String?
-        
-        public var verifiedOn: String?
-        
-        public var businessDetails: BusinessDetails?
-        
-        public var notificationEmails: [String]?
-        
-        public var createdBy: UserSerializer?
-        
-        public var uid: Int
+        public var modifiedOn: String?
         
         public var documents: [Document]?
         
-        public var warnings: [String: Any]?
+        public var modifiedBy: UserSerializer?
+        
+        public var businessInfo: String?
+        
+        public var createdBy: UserSerializer?
+        
+        public var businessDetails: BusinessDetails?
+        
+        public var verifiedBy: UserSerializer?
+        
+        public var franchiseEnabled: Bool?
+        
+        public var contactDetails: ContactDetails?
+        
+        public var businessCountryInfo: BusinessCountryInfo1?
+        
+        public var companyType: String
+        
+        public var notificationEmails: [String]?
+        
+        public var uid: Int
         
         public var name: String?
         
         public var businessType: String
         
-        public var addresses: [GetAddressSerializer]?
-        
-        public var companyType: String
-        
-        public var modifiedBy: UserSerializer?
+        public var warnings: [String: Any]?
         
         public var createdOn: String?
-        
-        public var contactDetails: ContactDetails?
-        
-        public var franchiseEnabled: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case modifiedOn = "modified_on"
-            
-            case businessCountryInfo = "business_country_info"
+            case verifiedOn = "verified_on"
             
             case stage = "stage"
             
-            case verifiedBy = "verified_by"
+            case addresses = "addresses"
             
-            case businessInfo = "business_info"
-            
-            case verifiedOn = "verified_on"
-            
-            case businessDetails = "business_details"
-            
-            case notificationEmails = "notification_emails"
-            
-            case createdBy = "created_by"
-            
-            case uid = "uid"
+            case modifiedOn = "modified_on"
             
             case documents = "documents"
             
-            case warnings = "warnings"
+            case modifiedBy = "modified_by"
+            
+            case businessInfo = "business_info"
+            
+            case createdBy = "created_by"
+            
+            case businessDetails = "business_details"
+            
+            case verifiedBy = "verified_by"
+            
+            case franchiseEnabled = "franchise_enabled"
+            
+            case contactDetails = "contact_details"
+            
+            case businessCountryInfo = "business_country_info"
+            
+            case companyType = "company_type"
+            
+            case notificationEmails = "notification_emails"
+            
+            case uid = "uid"
             
             case name = "name"
             
             case businessType = "business_type"
             
-            case addresses = "addresses"
-            
-            case companyType = "company_type"
-            
-            case modifiedBy = "modified_by"
+            case warnings = "warnings"
             
             case createdOn = "created_on"
-            
-            case contactDetails = "contact_details"
-            
-            case franchiseEnabled = "franchise_enabled"
             
         }
 
         public init(addresses: [GetAddressSerializer]?, businessCountryInfo: BusinessCountryInfo1?, businessDetails: BusinessDetails?, businessInfo: String?, businessType: String, companyType: String, contactDetails: ContactDetails?, createdBy: UserSerializer?, createdOn: String?, documents: [Document]?, franchiseEnabled: Bool?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, notificationEmails: [String]?, stage: String?, uid: Int, verifiedBy: UserSerializer?, verifiedOn: String?, warnings: [String: Any]?) {
             
-            self.modifiedOn = modifiedOn
-            
-            self.businessCountryInfo = businessCountryInfo
+            self.verifiedOn = verifiedOn
             
             self.stage = stage
             
-            self.verifiedBy = verifiedBy
+            self.addresses = addresses
             
-            self.businessInfo = businessInfo
-            
-            self.verifiedOn = verifiedOn
-            
-            self.businessDetails = businessDetails
-            
-            self.notificationEmails = notificationEmails
-            
-            self.createdBy = createdBy
-            
-            self.uid = uid
+            self.modifiedOn = modifiedOn
             
             self.documents = documents
             
-            self.warnings = warnings
+            self.modifiedBy = modifiedBy
+            
+            self.businessInfo = businessInfo
+            
+            self.createdBy = createdBy
+            
+            self.businessDetails = businessDetails
+            
+            self.verifiedBy = verifiedBy
+            
+            self.franchiseEnabled = franchiseEnabled
+            
+            self.contactDetails = contactDetails
+            
+            self.businessCountryInfo = businessCountryInfo
+            
+            self.companyType = companyType
+            
+            self.notificationEmails = notificationEmails
+            
+            self.uid = uid
             
             self.name = name
             
             self.businessType = businessType
             
-            self.addresses = addresses
-            
-            self.companyType = companyType
-            
-            self.modifiedBy = modifiedBy
+            self.warnings = warnings
             
             self.createdOn = createdOn
-            
-            self.contactDetails = contactDetails
-            
-            self.franchiseEnabled = franchiseEnabled
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
-            
-            businessCountryInfo = try? container.decode(BusinessCountryInfo1.self, forKey: .businessCountryInfo)
+            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
             
             stage = try? container.decode(String.self, forKey: .stage)
             
-            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
+            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
             
-            businessInfo = try? container.decode(String.self, forKey: .businessInfo)
-            
-            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
-            
-            businessDetails = try? container.decode(BusinessDetails.self, forKey: .businessDetails)
-            
-            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
-            
-            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
-            
-            uid = try container.decode(Int.self, forKey: .uid)
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
             
             documents = try? container.decode([Document].self, forKey: .documents)
             
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
+            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
+            
+            businessInfo = try? container.decode(String.self, forKey: .businessInfo)
+            
+            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
+            
+            businessDetails = try? container.decode(BusinessDetails.self, forKey: .businessDetails)
+            
+            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
+            
+            franchiseEnabled = try? container.decode(Bool.self, forKey: .franchiseEnabled)
+            
+            contactDetails = try? container.decode(ContactDetails.self, forKey: .contactDetails)
+            
+            businessCountryInfo = try? container.decode(BusinessCountryInfo1.self, forKey: .businessCountryInfo)
+            
+            companyType = try container.decode(String.self, forKey: .companyType)
+            
+            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
+            
+            uid = try container.decode(Int.self, forKey: .uid)
             
             name = try? container.decode(String.self, forKey: .name)
             
             businessType = try container.decode(String.self, forKey: .businessType)
             
-            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
-            
-            companyType = try container.decode(String.self, forKey: .companyType)
-            
-            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
             
             createdOn = try? container.decode(String.self, forKey: .createdOn)
-            
-            contactDetails = try? container.decode(ContactDetails.self, forKey: .contactDetails)
-            
-            franchiseEnabled = try? container.decode(Bool.self, forKey: .franchiseEnabled)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
             
             try? container.encodeIfPresent(stage, forKey: .stage)
             
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            try? container.encodeIfPresent(addresses, forKey: .addresses)
             
-            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
-            
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-            
-            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
-            
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             try? container.encodeIfPresent(documents, forKey: .documents)
             
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
+            
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            
+            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
+            
+            try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
+            
+            try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
+            
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
+            
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             try? container.encodeIfPresent(name, forKey: .name)
             
             try? container.encodeIfPresent(businessType, forKey: .businessType)
             
-            try? container.encodeIfPresent(addresses, forKey: .addresses)
-            
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
             
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
-            
-            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
             
         }
         
@@ -18798,42 +18798,42 @@ public extension PlatformClient {
     struct DocumentsObj: Codable {
         
         
-        public var verified: Int?
-        
         public var pending: Int?
+        
+        public var verified: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case verified = "verified"
-            
             case pending = "pending"
+            
+            case verified = "verified"
             
         }
 
         public init(pending: Int?, verified: Int?) {
             
-            self.verified = verified
-            
             self.pending = pending
+            
+            self.verified = verified
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            verified = try? container.decode(Int.self, forKey: .verified)
-            
             pending = try? container.decode(Int.self, forKey: .pending)
+            
+            verified = try? container.decode(Int.self, forKey: .verified)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(verified, forKey: .verified)
-            
             try? container.encodeIfPresent(pending, forKey: .pending)
+            
+            try? container.encodeIfPresent(verified, forKey: .verified)
             
         }
         
@@ -18846,92 +18846,92 @@ public extension PlatformClient {
     struct MetricsSerializer: Codable {
         
         
+        public var stage: String?
+        
+        public var uid: Int?
+        
+        public var store: DocumentsObj?
+        
+        public var product: DocumentsObj?
+        
         public var brand: DocumentsObj?
         
         public var companyDocuments: DocumentsObj?
         
-        public var uid: Int?
-        
-        public var stage: String?
-        
-        public var store: DocumentsObj?
-        
         public var storeDocuments: DocumentsObj?
-        
-        public var product: DocumentsObj?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case stage = "stage"
+            
+            case uid = "uid"
+            
+            case store = "store"
+            
+            case product = "product"
             
             case brand = "brand"
             
             case companyDocuments = "company_documents"
             
-            case uid = "uid"
-            
-            case stage = "stage"
-            
-            case store = "store"
-            
             case storeDocuments = "store_documents"
-            
-            case product = "product"
             
         }
 
         public init(brand: DocumentsObj?, companyDocuments: DocumentsObj?, product: DocumentsObj?, stage: String?, store: DocumentsObj?, storeDocuments: DocumentsObj?, uid: Int?) {
             
+            self.stage = stage
+            
+            self.uid = uid
+            
+            self.store = store
+            
+            self.product = product
+            
             self.brand = brand
             
             self.companyDocuments = companyDocuments
             
-            self.uid = uid
-            
-            self.stage = stage
-            
-            self.store = store
-            
             self.storeDocuments = storeDocuments
-            
-            self.product = product
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
+            stage = try? container.decode(String.self, forKey: .stage)
+            
+            uid = try? container.decode(Int.self, forKey: .uid)
+            
+            store = try? container.decode(DocumentsObj.self, forKey: .store)
+            
+            product = try? container.decode(DocumentsObj.self, forKey: .product)
+            
             brand = try? container.decode(DocumentsObj.self, forKey: .brand)
             
             companyDocuments = try? container.decode(DocumentsObj.self, forKey: .companyDocuments)
             
-            uid = try? container.decode(Int.self, forKey: .uid)
-            
-            stage = try? container.decode(String.self, forKey: .stage)
-            
-            store = try? container.decode(DocumentsObj.self, forKey: .store)
-            
             storeDocuments = try? container.decode(DocumentsObj.self, forKey: .storeDocuments)
-            
-            product = try? container.decode(DocumentsObj.self, forKey: .product)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            try? container.encodeIfPresent(store, forKey: .store)
+            
+            try? container.encodeIfPresent(product, forKey: .product)
+            
             try? container.encodeIfPresent(brand, forKey: .brand)
             
             try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            try? container.encodeIfPresent(store, forKey: .store)
-            
             try? container.encodeIfPresent(storeDocuments, forKey: .storeDocuments)
-            
-            try? container.encodeIfPresent(product, forKey: .product)
             
         }
         
@@ -18944,42 +18944,42 @@ public extension PlatformClient {
     struct BrandBannerSerializer: Codable {
         
         
-        public var portrait: String?
-        
         public var landscape: String?
+        
+        public var portrait: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case portrait = "portrait"
-            
             case landscape = "landscape"
+            
+            case portrait = "portrait"
             
         }
 
         public init(landscape: String?, portrait: String?) {
             
-            self.portrait = portrait
-            
             self.landscape = landscape
+            
+            self.portrait = portrait
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            portrait = try? container.decode(String.self, forKey: .portrait)
-            
             landscape = try? container.decode(String.self, forKey: .landscape)
+            
+            portrait = try? container.decode(String.self, forKey: .portrait)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(portrait, forKey: .portrait)
-            
             try? container.encodeIfPresent(landscape, forKey: .landscape)
+            
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
             
         }
         
@@ -18992,122 +18992,122 @@ public extension PlatformClient {
     struct CreateUpdateBrandRequestSerializer: Codable {
         
         
-        public var banner: BrandBannerSerializer?
-        
-        public var name: String
-        
-        public var synonyms: [String]?
+        public var description: String?
         
         public var logo: String
         
-        public var description: String?
+        public var brandTier: String?
         
         public var uid: Int?
         
+        public var name: String
+        
         public var localeLanguage: [String: Any]?
         
-        public var brandTier: String?
-        
-        public var companyId: Int?
+        public var synonyms: [String]?
         
         public var customJson: [String: Any]?
+        
+        public var banner: BrandBannerSerializer?
+        
+        public var companyId: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case banner = "banner"
-            
-            case name = "name"
-            
-            case synonyms = "synonyms"
+            case description = "description"
             
             case logo = "logo"
             
-            case description = "description"
+            case brandTier = "brand_tier"
             
             case uid = "uid"
             
+            case name = "name"
+            
             case localeLanguage = "_locale_language"
             
-            case brandTier = "brand_tier"
-            
-            case companyId = "company_id"
+            case synonyms = "synonyms"
             
             case customJson = "_custom_json"
+            
+            case banner = "banner"
+            
+            case companyId = "company_id"
             
         }
 
         public init(banner: BrandBannerSerializer?, brandTier: String?, companyId: Int?, description: String?, logo: String, name: String, synonyms: [String]?, uid: Int?, customJson: [String: Any]?, localeLanguage: [String: Any]?) {
             
-            self.banner = banner
-            
-            self.name = name
-            
-            self.synonyms = synonyms
+            self.description = description
             
             self.logo = logo
             
-            self.description = description
+            self.brandTier = brandTier
             
             self.uid = uid
             
+            self.name = name
+            
             self.localeLanguage = localeLanguage
             
-            self.brandTier = brandTier
-            
-            self.companyId = companyId
+            self.synonyms = synonyms
             
             self.customJson = customJson
+            
+            self.banner = banner
+            
+            self.companyId = companyId
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
-            
-            name = try container.decode(String.self, forKey: .name)
-            
-            synonyms = try? container.decode([String].self, forKey: .synonyms)
+            description = try? container.decode(String.self, forKey: .description)
             
             logo = try container.decode(String.self, forKey: .logo)
             
-            description = try? container.decode(String.self, forKey: .description)
+            brandTier = try? container.decode(String.self, forKey: .brandTier)
             
             uid = try? container.decode(Int.self, forKey: .uid)
             
+            name = try container.decode(String.self, forKey: .name)
+            
             localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
             
-            brandTier = try? container.decode(String.self, forKey: .brandTier)
-            
-            companyId = try? container.decode(Int.self, forKey: .companyId)
+            synonyms = try? container.decode([String].self, forKey: .synonyms)
             
             customJson = try? container.decode([String: Any].self, forKey: .customJson)
+            
+            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
+            
+            companyId = try? container.decode(Int.self, forKey: .companyId)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(banner, forKey: .banner)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             try? container.encodeIfPresent(logo, forKey: .logo)
             
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(brandTier, forKey: .brandTier)
             
             try? container.encodeIfPresent(uid, forKey: .uid)
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
             try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
             
-            try? container.encodeIfPresent(brandTier, forKey: .brandTier)
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            try? container.encodeIfPresent(banner, forKey: .banner)
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
         }
         
@@ -19178,250 +19178,202 @@ public extension PlatformClient {
     struct GetBrandResponseSerializer: Codable {
         
         
-        public var slugKey: String?
-        
-        public var banner: BrandBannerSerializer?
-        
-        public var name: String
-        
-        public var modifiedOn: String?
-        
-        public var synonyms: [String]?
-        
-        public var createdBy: UserSerializer1?
+        public var verifiedOn: String?
         
         public var logo: String?
         
-        public var description: String?
-        
-        public var warnings: [String: Any]?
-        
-        public var uid: Int?
-        
-        public var localeLanguage: [String: Any]?
+        public var verifiedBy: UserSerializer1?
         
         public var stage: String?
         
-        public var rejectReason: String?
-        
-        public var verifiedBy: UserSerializer1?
-        
-        public var verifiedOn: String?
-        
-        public var createdOn: String?
-        
         public var modifiedBy: UserSerializer1?
         
+        public var uid: Int?
+        
+        public var name: String
+        
+        public var description: String?
+        
+        public var localeLanguage: [String: Any]?
+        
+        public var slugKey: String?
+        
+        public var modifiedOn: String?
+        
+        public var createdBy: UserSerializer1?
+        
+        public var synonyms: [String]?
+        
         public var customJson: [String: Any]?
+        
+        public var warnings: [String: Any]?
+        
+        public var rejectReason: String?
+        
+        public var banner: BrandBannerSerializer?
+        
+        public var createdOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case slugKey = "slug_key"
-            
-            case banner = "banner"
-            
-            case name = "name"
-            
-            case modifiedOn = "modified_on"
-            
-            case synonyms = "synonyms"
-            
-            case createdBy = "created_by"
+            case verifiedOn = "verified_on"
             
             case logo = "logo"
             
-            case description = "description"
-            
-            case warnings = "warnings"
-            
-            case uid = "uid"
-            
-            case localeLanguage = "_locale_language"
+            case verifiedBy = "verified_by"
             
             case stage = "stage"
             
-            case rejectReason = "reject_reason"
-            
-            case verifiedBy = "verified_by"
-            
-            case verifiedOn = "verified_on"
-            
-            case createdOn = "created_on"
-            
             case modifiedBy = "modified_by"
             
+            case uid = "uid"
+            
+            case name = "name"
+            
+            case description = "description"
+            
+            case localeLanguage = "_locale_language"
+            
+            case slugKey = "slug_key"
+            
+            case modifiedOn = "modified_on"
+            
+            case createdBy = "created_by"
+            
+            case synonyms = "synonyms"
+            
             case customJson = "_custom_json"
+            
+            case warnings = "warnings"
+            
+            case rejectReason = "reject_reason"
+            
+            case banner = "banner"
+            
+            case createdOn = "created_on"
             
         }
 
         public init(banner: BrandBannerSerializer?, createdBy: UserSerializer1?, createdOn: String?, description: String?, logo: String?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, rejectReason: String?, slugKey: String?, stage: String?, synonyms: [String]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?, localeLanguage: [String: Any]?) {
             
-            self.slugKey = slugKey
-            
-            self.banner = banner
-            
-            self.name = name
-            
-            self.modifiedOn = modifiedOn
-            
-            self.synonyms = synonyms
-            
-            self.createdBy = createdBy
+            self.verifiedOn = verifiedOn
             
             self.logo = logo
             
-            self.description = description
-            
-            self.warnings = warnings
-            
-            self.uid = uid
-            
-            self.localeLanguage = localeLanguage
+            self.verifiedBy = verifiedBy
             
             self.stage = stage
             
-            self.rejectReason = rejectReason
-            
-            self.verifiedBy = verifiedBy
-            
-            self.verifiedOn = verifiedOn
-            
-            self.createdOn = createdOn
-            
             self.modifiedBy = modifiedBy
+            
+            self.uid = uid
+            
+            self.name = name
+            
+            self.description = description
+            
+            self.localeLanguage = localeLanguage
+            
+            self.slugKey = slugKey
+            
+            self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
+            
+            self.synonyms = synonyms
             
             self.customJson = customJson
             
+            self.warnings = warnings
+            
+            self.rejectReason = rejectReason
+            
+            self.banner = banner
+            
+            self.createdOn = createdOn
+            
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            slugKey = try? container.decode(String.self, forKey: .slugKey)
-            
-            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
-            
-            name = try container.decode(String.self, forKey: .name)
-            
-            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
-            
-            synonyms = try? container.decode([String].self, forKey: .synonyms)
-            
-            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
-            
-            logo = try? container.decode(String.self, forKey: .logo)
-            
-            description = try? container.decode(String.self, forKey: .description)
-            
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
-            
-            uid = try? container.decode(Int.self, forKey: .uid)
-            
-            localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
-            
-            stage = try? container.decode(String.self, forKey: .stage)
-            
-            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
-            
-            verifiedBy = try? container.decode(UserSerializer1.self, forKey: .verifiedBy)
             
             verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
             
-            createdOn = try? container.decode(String.self, forKey: .createdOn)
+            logo = try? container.decode(String.self, forKey: .logo)
+            
+            verifiedBy = try? container.decode(UserSerializer1.self, forKey: .verifiedBy)
+            
+            stage = try? container.decode(String.self, forKey: .stage)
             
             modifiedBy = try? container.decode(UserSerializer1.self, forKey: .modifiedBy)
             
+            uid = try? container.decode(Int.self, forKey: .uid)
+            
+            name = try container.decode(String.self, forKey: .name)
+            
+            description = try? container.decode(String.self, forKey: .description)
+            
+            localeLanguage = try? container.decode([String: Any].self, forKey: .localeLanguage)
+            
+            slugKey = try? container.decode(String.self, forKey: .slugKey)
+            
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
+            
+            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
+            
+            synonyms = try? container.decode([String].self, forKey: .synonyms)
+            
             customJson = try? container.decode([String: Any].self, forKey: .customJson)
+            
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
+            
+            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
+            
+            banner = try? container.decode(BrandBannerSerializer.self, forKey: .banner)
+            
+            createdOn = try? container.decode(String.self, forKey: .createdOn)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
-            
-            try? container.encodeIfPresent(banner, forKey: .banner)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            try? container.encodeIfPresent(logo, forKey: .logo)
-            
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
-            
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
             
             try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
             
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
             
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
             
-        }
-        
-    }
-    
-    /*
-        Model: CompanyBrandListSerializer
-    */
-
-    struct CompanyBrandListSerializer: Codable {
-        
-        
-        public var items: [[String: Any]]?
-        
-        public var page: [String: Any]?
-        
-
-        public enum CodingKeys: String, CodingKey {
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
             
-            case items = "items"
+            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
             
-            case page = "page"
+            try? container.encodeIfPresent(banner, forKey: .banner)
             
-        }
-
-        public init(items: [[String: Any]]?, page: [String: Any]?) {
-            
-            self.items = items
-            
-            self.page = page
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            items = try? container.decode([[String: Any]].self, forKey: .items)
-            
-            page = try? container.decode([String: Any].self, forKey: .page)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(items, forKey: .items)
-            
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
         }
         
@@ -19434,18 +19386,18 @@ public extension PlatformClient {
     struct CompanyBrandPostRequestSerializer: Codable {
         
         
-        public var company: Int
-        
         public var brands: [Int]
+        
+        public var company: Int
         
         public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case company = "company"
-            
             case brands = "brands"
+            
+            case company = "company"
             
             case uid = "uid"
             
@@ -19453,9 +19405,9 @@ public extension PlatformClient {
 
         public init(brands: [Int], company: Int, uid: Int?) {
             
-            self.company = company
-            
             self.brands = brands
+            
+            self.company = company
             
             self.uid = uid
             
@@ -19464,9 +19416,9 @@ public extension PlatformClient {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            company = try container.decode(Int.self, forKey: .company)
-            
             brands = try container.decode([Int].self, forKey: .brands)
+            
+            company = try container.decode(Int.self, forKey: .company)
             
             uid = try? container.decode(Int.self, forKey: .uid)
             
@@ -19475,9 +19427,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(company, forKey: .company)
-            
             try? container.encodeIfPresent(brands, forKey: .brands)
+            
+            try? container.encodeIfPresent(company, forKey: .company)
             
             try? container.encodeIfPresent(uid, forKey: .uid)
             
@@ -19486,340 +19438,106 @@ public extension PlatformClient {
     }
     
     /*
-        Model: LocationListSerializer
+        Model: CompanyBrandListSerializer
     */
 
-    struct LocationListSerializer: Codable {
+    struct CompanyBrandListSerializer: Codable {
         
-        
-        public var items: [[String: Any]]?
         
         public var page: [String: Any]?
+        
+        public var items: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
-            
             case page = "page"
+            
+            case items = "items"
             
         }
 
         public init(items: [[String: Any]]?, page: [String: Any]?) {
             
-            self.items = items
-            
             self.page = page
+            
+            self.items = items
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            items = try? container.decode([[String: Any]].self, forKey: .items)
             
             page = try? container.decode([String: Any].self, forKey: .page)
             
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(items, forKey: .items)
             
             try? container.encodeIfPresent(page, forKey: .page)
             
-        }
-        
-    }
-    
-    /*
-        Model: ProductReturnConfigSerializer
-    */
-
-    struct ProductReturnConfigSerializer: Codable {
-        
-        
-        public var storeUid: Int?
-        
-        public var onSameStore: Bool?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case storeUid = "store_uid"
-            
-            case onSameStore = "on_same_store"
-            
-        }
-
-        public init(onSameStore: Bool?, storeUid: Int?) {
-            
-            self.storeUid = storeUid
-            
-            self.onSameStore = onSameStore
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            storeUid = try? container.decode(Int.self, forKey: .storeUid)
-            
-            onSameStore = try? container.decode(Bool.self, forKey: .onSameStore)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(storeUid, forKey: .storeUid)
-            
-            try? container.encodeIfPresent(onSameStore, forKey: .onSameStore)
+            try? container.encodeIfPresent(items, forKey: .items)
             
         }
         
     }
     
     /*
-        Model: InvoiceCredSerializer
+        Model: LocationManagerSerializer
     */
 
-    struct InvoiceCredSerializer: Codable {
+    struct LocationManagerSerializer: Codable {
         
         
-        public var password: String?
+        public var email: String?
         
-        public var enabled: Bool?
+        public var mobileNo: PhoneNumber
         
-        public var username: String?
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case password = "password"
+            case email = "email"
             
-            case enabled = "enabled"
+            case mobileNo = "mobile_no"
             
-            case username = "username"
+            case name = "name"
             
         }
 
-        public init(enabled: Bool?, password: String?, username: String?) {
+        public init(email: String?, mobileNo: PhoneNumber, name: String?) {
             
-            self.password = password
+            self.email = email
             
-            self.enabled = enabled
+            self.mobileNo = mobileNo
             
-            self.username = username
+            self.name = name
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            password = try? container.decode(String.self, forKey: .password)
+            email = try? container.decode(String.self, forKey: .email)
             
-            enabled = try? container.decode(Bool.self, forKey: .enabled)
+            mobileNo = try container.decode(PhoneNumber.self, forKey: .mobileNo)
             
-            username = try? container.decode(String.self, forKey: .username)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(password, forKey: .password)
-            
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-            
-            try? container.encodeIfPresent(username, forKey: .username)
-            
-        }
-        
-    }
-    
-    /*
-        Model: InvoiceDetailsSerializer
-    */
-
-    struct InvoiceDetailsSerializer: Codable {
-        
-        
-        public var eWaybill: InvoiceCredSerializer?
-        
-        public var eInvoice: InvoiceCredSerializer?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case eWaybill = "e_waybill"
-            
-            case eInvoice = "e_invoice"
-            
-        }
-
-        public init(eInvoice: InvoiceCredSerializer?, eWaybill: InvoiceCredSerializer?) {
-            
-            self.eWaybill = eWaybill
-            
-            self.eInvoice = eInvoice
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            eWaybill = try? container.decode(InvoiceCredSerializer.self, forKey: .eWaybill)
-            
-            eInvoice = try? container.decode(InvoiceCredSerializer.self, forKey: .eInvoice)
+            name = try? container.decode(String.self, forKey: .name)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
+            try? container.encodeIfPresent(email, forKey: .email)
             
-            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
+            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
             
-        }
-        
-    }
-    
-    /*
-        Model: GetAddressSerializer1
-    */
-
-    struct GetAddressSerializer1: Codable {
-        
-        
-        public var countryCode: String?
-        
-        public var address2: String?
-        
-        public var landmark: String?
-        
-        public var address1: String?
-        
-        public var city: String?
-        
-        public var latitude: Double?
-        
-        public var longitude: Double?
-        
-        public var addressType: String?
-        
-        public var pincode: Int?
-        
-        public var state: String?
-        
-        public var country: String?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case countryCode = "country_code"
-            
-            case address2 = "address2"
-            
-            case landmark = "landmark"
-            
-            case address1 = "address1"
-            
-            case city = "city"
-            
-            case latitude = "latitude"
-            
-            case longitude = "longitude"
-            
-            case addressType = "address_type"
-            
-            case pincode = "pincode"
-            
-            case state = "state"
-            
-            case country = "country"
-            
-        }
-
-        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
-            
-            self.countryCode = countryCode
-            
-            self.address2 = address2
-            
-            self.landmark = landmark
-            
-            self.address1 = address1
-            
-            self.city = city
-            
-            self.latitude = latitude
-            
-            self.longitude = longitude
-            
-            self.addressType = addressType
-            
-            self.pincode = pincode
-            
-            self.state = state
-            
-            self.country = country
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            countryCode = try? container.decode(String.self, forKey: .countryCode)
-            
-            address2 = try? container.decode(String.self, forKey: .address2)
-            
-            landmark = try? container.decode(String.self, forKey: .landmark)
-            
-            address1 = try? container.decode(String.self, forKey: .address1)
-            
-            city = try? container.decode(String.self, forKey: .city)
-            
-            latitude = try? container.decode(Double.self, forKey: .latitude)
-            
-            longitude = try? container.decode(Double.self, forKey: .longitude)
-            
-            addressType = try? container.decode(String.self, forKey: .addressType)
-            
-            pincode = try? container.decode(Int.self, forKey: .pincode)
-            
-            state = try? container.decode(String.self, forKey: .state)
-            
-            country = try? container.decode(String.self, forKey: .country)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            try? container.encodeIfPresent(address2, forKey: .address2)
-            
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
-            try? container.encodeIfPresent(address1, forKey: .address1)
-            
-            try? container.encodeIfPresent(city, forKey: .city)
-            
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
-            
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
-            
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
-            try? container.encodeIfPresent(state, forKey: .state)
-            
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(name, forKey: .name)
             
         }
         
@@ -19882,22 +19600,22 @@ public extension PlatformClient {
         
         public var closing: LocationTimingSerializer?
         
-        public var weekday: String
+        public var opening: LocationTimingSerializer?
         
         public var open: Bool
         
-        public var opening: LocationTimingSerializer?
+        public var weekday: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case closing = "closing"
             
-            case weekday = "weekday"
+            case opening = "opening"
             
             case open = "open"
             
-            case opening = "opening"
+            case weekday = "weekday"
             
         }
 
@@ -19905,11 +19623,11 @@ public extension PlatformClient {
             
             self.closing = closing
             
-            self.weekday = weekday
+            self.opening = opening
             
             self.open = open
             
-            self.opening = opening
+            self.weekday = weekday
             
         }
 
@@ -19918,11 +19636,11 @@ public extension PlatformClient {
             
             closing = try? container.decode(LocationTimingSerializer.self, forKey: .closing)
             
-            weekday = try container.decode(String.self, forKey: .weekday)
+            opening = try? container.decode(LocationTimingSerializer.self, forKey: .opening)
             
             open = try container.decode(Bool.self, forKey: .open)
             
-            opening = try? container.decode(LocationTimingSerializer.self, forKey: .opening)
+            weekday = try container.decode(String.self, forKey: .weekday)
             
         }
         
@@ -19931,69 +19649,303 @@ public extension PlatformClient {
             
             try? container.encodeIfPresent(closing, forKey: .closing)
             
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
+            try? container.encodeIfPresent(opening, forKey: .opening)
             
             try? container.encodeIfPresent(open, forKey: .open)
             
-            try? container.encodeIfPresent(opening, forKey: .opening)
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
             
         }
         
     }
     
     /*
-        Model: LocationManagerSerializer
+        Model: InvoiceCredSerializer
     */
 
-    struct LocationManagerSerializer: Codable {
+    struct InvoiceCredSerializer: Codable {
         
         
-        public var email: String?
+        public var username: String?
         
-        public var name: String?
+        public var password: String?
         
-        public var mobileNo: PhoneNumber
+        public var enabled: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case email = "email"
+            case username = "username"
             
-            case name = "name"
+            case password = "password"
             
-            case mobileNo = "mobile_no"
+            case enabled = "enabled"
             
         }
 
-        public init(email: String?, mobileNo: PhoneNumber, name: String?) {
+        public init(enabled: Bool?, password: String?, username: String?) {
             
-            self.email = email
+            self.username = username
             
-            self.name = name
+            self.password = password
             
-            self.mobileNo = mobileNo
+            self.enabled = enabled
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            email = try? container.decode(String.self, forKey: .email)
+            username = try? container.decode(String.self, forKey: .username)
             
-            name = try? container.decode(String.self, forKey: .name)
+            password = try? container.decode(String.self, forKey: .password)
             
-            mobileNo = try container.decode(PhoneNumber.self, forKey: .mobileNo)
+            enabled = try? container.decode(Bool.self, forKey: .enabled)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(username, forKey: .username)
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(password, forKey: .password)
             
-            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            
+        }
+        
+    }
+    
+    /*
+        Model: InvoiceDetailsSerializer
+    */
+
+    struct InvoiceDetailsSerializer: Codable {
+        
+        
+        public var eWaybill: InvoiceCredSerializer?
+        
+        public var eInvoice: InvoiceCredSerializer?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case eWaybill = "e_waybill"
+            
+            case eInvoice = "e_invoice"
+            
+        }
+
+        public init(eInvoice: InvoiceCredSerializer?, eWaybill: InvoiceCredSerializer?) {
+            
+            self.eWaybill = eWaybill
+            
+            self.eInvoice = eInvoice
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            eWaybill = try? container.decode(InvoiceCredSerializer.self, forKey: .eWaybill)
+            
+            eInvoice = try? container.decode(InvoiceCredSerializer.self, forKey: .eInvoice)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
+            
+            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
+            
+        }
+        
+    }
+    
+    /*
+        Model: ProductReturnConfigSerializer
+    */
+
+    struct ProductReturnConfigSerializer: Codable {
+        
+        
+        public var storeUid: Int?
+        
+        public var onSameStore: Bool?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case storeUid = "store_uid"
+            
+            case onSameStore = "on_same_store"
+            
+        }
+
+        public init(onSameStore: Bool?, storeUid: Int?) {
+            
+            self.storeUid = storeUid
+            
+            self.onSameStore = onSameStore
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            storeUid = try? container.decode(Int.self, forKey: .storeUid)
+            
+            onSameStore = try? container.decode(Bool.self, forKey: .onSameStore)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(storeUid, forKey: .storeUid)
+            
+            try? container.encodeIfPresent(onSameStore, forKey: .onSameStore)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetAddressSerializer1
+    */
+
+    struct GetAddressSerializer1: Codable {
+        
+        
+        public var countryCode: String?
+        
+        public var longitude: Double?
+        
+        public var address1: String?
+        
+        public var city: String?
+        
+        public var pincode: Int?
+        
+        public var address2: String?
+        
+        public var country: String?
+        
+        public var addressType: String?
+        
+        public var state: String?
+        
+        public var landmark: String?
+        
+        public var latitude: Double?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case countryCode = "country_code"
+            
+            case longitude = "longitude"
+            
+            case address1 = "address1"
+            
+            case city = "city"
+            
+            case pincode = "pincode"
+            
+            case address2 = "address2"
+            
+            case country = "country"
+            
+            case addressType = "address_type"
+            
+            case state = "state"
+            
+            case landmark = "landmark"
+            
+            case latitude = "latitude"
+            
+        }
+
+        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
+            
+            self.countryCode = countryCode
+            
+            self.longitude = longitude
+            
+            self.address1 = address1
+            
+            self.city = city
+            
+            self.pincode = pincode
+            
+            self.address2 = address2
+            
+            self.country = country
+            
+            self.addressType = addressType
+            
+            self.state = state
+            
+            self.landmark = landmark
+            
+            self.latitude = latitude
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            countryCode = try? container.decode(String.self, forKey: .countryCode)
+            
+            longitude = try? container.decode(Double.self, forKey: .longitude)
+            
+            address1 = try? container.decode(String.self, forKey: .address1)
+            
+            city = try? container.decode(String.self, forKey: .city)
+            
+            pincode = try? container.decode(Int.self, forKey: .pincode)
+            
+            address2 = try? container.decode(String.self, forKey: .address2)
+            
+            country = try? container.decode(String.self, forKey: .country)
+            
+            addressType = try? container.decode(String.self, forKey: .addressType)
+            
+            state = try? container.decode(String.self, forKey: .state)
+            
+            landmark = try? container.decode(String.self, forKey: .landmark)
+            
+            latitude = try? container.decode(Double.self, forKey: .latitude)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            
+            try? container.encodeIfPresent(address1, forKey: .address1)
+            
+            try? container.encodeIfPresent(city, forKey: .city)
+            
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            try? container.encodeIfPresent(address2, forKey: .address2)
+            
+            try? container.encodeIfPresent(country, forKey: .country)
+            
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
+            
+            try? container.encodeIfPresent(state, forKey: .state)
+            
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
             
         }
         
@@ -20006,192 +19958,398 @@ public extension PlatformClient {
     struct LocationSerializer: Codable {
         
         
-        public var productReturnConfig: ProductReturnConfigSerializer?
+        public var stage: String?
+        
+        public var manager: LocationManagerSerializer?
+        
+        public var uid: Int?
         
         public var name: String
+        
+        public var notificationEmails: [String]?
+        
+        public var timing: [LocationDayWiseSerializer]?
+        
+        public var gstCredentials: InvoiceDetailsSerializer?
+        
+        public var code: String
+        
+        public var storeType: String?
+        
+        public var company: Int
         
         public var displayName: String
         
         public var contactNumbers: [PhoneNumber]?
         
-        public var notificationEmails: [String]?
+        public var documents: [Document]?
         
-        public var gstCredentials: InvoiceDetailsSerializer?
-        
-        public var address: GetAddressSerializer1
-        
-        public var timing: [LocationDayWiseSerializer]?
+        public var customJson: [String: Any]?
         
         public var warnings: [String: Any]?
         
-        public var uid: Int?
+        public var productReturnConfig: ProductReturnConfigSerializer?
         
-        public var storeType: String?
-        
-        public var documents: [Document]?
-        
-        public var stage: String?
-        
-        public var code: String
-        
-        public var manager: LocationManagerSerializer?
-        
-        public var company: Int
-        
-        public var customJson: [String: Any]?
+        public var address: GetAddressSerializer1
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case productReturnConfig = "product_return_config"
+            case stage = "stage"
+            
+            case manager = "manager"
+            
+            case uid = "uid"
             
             case name = "name"
+            
+            case notificationEmails = "notification_emails"
+            
+            case timing = "timing"
+            
+            case gstCredentials = "gst_credentials"
+            
+            case code = "code"
+            
+            case storeType = "store_type"
+            
+            case company = "company"
             
             case displayName = "display_name"
             
             case contactNumbers = "contact_numbers"
             
-            case notificationEmails = "notification_emails"
+            case documents = "documents"
             
-            case gstCredentials = "gst_credentials"
-            
-            case address = "address"
-            
-            case timing = "timing"
+            case customJson = "_custom_json"
             
             case warnings = "warnings"
             
-            case uid = "uid"
+            case productReturnConfig = "product_return_config"
             
-            case storeType = "store_type"
-            
-            case documents = "documents"
-            
-            case stage = "stage"
-            
-            case code = "code"
-            
-            case manager = "manager"
-            
-            case company = "company"
-            
-            case customJson = "_custom_json"
+            case address = "address"
             
         }
 
         public init(address: GetAddressSerializer1, code: String, company: Int, contactNumbers: [PhoneNumber]?, displayName: String, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, manager: LocationManagerSerializer?, name: String, notificationEmails: [String]?, productReturnConfig: ProductReturnConfigSerializer?, stage: String?, storeType: String?, timing: [LocationDayWiseSerializer]?, uid: Int?, warnings: [String: Any]?, customJson: [String: Any]?) {
             
-            self.productReturnConfig = productReturnConfig
+            self.stage = stage
+            
+            self.manager = manager
+            
+            self.uid = uid
             
             self.name = name
+            
+            self.notificationEmails = notificationEmails
+            
+            self.timing = timing
+            
+            self.gstCredentials = gstCredentials
+            
+            self.code = code
+            
+            self.storeType = storeType
+            
+            self.company = company
             
             self.displayName = displayName
             
             self.contactNumbers = contactNumbers
             
-            self.notificationEmails = notificationEmails
+            self.documents = documents
             
-            self.gstCredentials = gstCredentials
-            
-            self.address = address
-            
-            self.timing = timing
+            self.customJson = customJson
             
             self.warnings = warnings
             
-            self.uid = uid
+            self.productReturnConfig = productReturnConfig
             
-            self.storeType = storeType
-            
-            self.documents = documents
-            
-            self.stage = stage
-            
-            self.code = code
-            
-            self.manager = manager
-            
-            self.company = company
-            
-            self.customJson = customJson
+            self.address = address
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
+            stage = try? container.decode(String.self, forKey: .stage)
+            
+            manager = try? container.decode(LocationManagerSerializer.self, forKey: .manager)
+            
+            uid = try? container.decode(Int.self, forKey: .uid)
             
             name = try container.decode(String.self, forKey: .name)
+            
+            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
+            
+            timing = try? container.decode([LocationDayWiseSerializer].self, forKey: .timing)
+            
+            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
+            
+            code = try container.decode(String.self, forKey: .code)
+            
+            storeType = try? container.decode(String.self, forKey: .storeType)
+            
+            company = try container.decode(Int.self, forKey: .company)
             
             displayName = try container.decode(String.self, forKey: .displayName)
             
             contactNumbers = try? container.decode([PhoneNumber].self, forKey: .contactNumbers)
             
-            notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
+            documents = try? container.decode([Document].self, forKey: .documents)
             
-            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
-            
-            address = try container.decode(GetAddressSerializer1.self, forKey: .address)
-            
-            timing = try? container.decode([LocationDayWiseSerializer].self, forKey: .timing)
+            customJson = try? container.decode([String: Any].self, forKey: .customJson)
             
             warnings = try? container.decode([String: Any].self, forKey: .warnings)
             
-            uid = try? container.decode(Int.self, forKey: .uid)
+            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
             
-            storeType = try? container.decode(String.self, forKey: .storeType)
-            
-            documents = try? container.decode([Document].self, forKey: .documents)
-            
-            stage = try? container.decode(String.self, forKey: .stage)
-            
-            code = try container.decode(String.self, forKey: .code)
-            
-            manager = try? container.decode(LocationManagerSerializer.self, forKey: .manager)
-            
-            company = try container.decode(Int.self, forKey: .company)
-            
-            customJson = try? container.decode([String: Any].self, forKey: .customJson)
+            address = try container.decode(GetAddressSerializer1.self, forKey: .address)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+            try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            try? container.encodeIfPresent(manager, forKey: .manager)
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            
+            try? container.encodeIfPresent(timing, forKey: .timing)
+            
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
+            
+            try? container.encodeIfPresent(company, forKey: .company)
             
             try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
             
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(documents, forKey: .documents)
             
-            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            try? container.encodeIfPresent(timing, forKey: .timing)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             try? container.encodeIfPresent(warnings, forKey: .warnings)
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
             
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
+            try? container.encodeIfPresent(address, forKey: .address)
             
-            try? container.encodeIfPresent(documents, forKey: .documents)
+        }
+        
+    }
+    
+    /*
+        Model: LocationListSerializer
+    */
+
+    struct LocationListSerializer: Codable {
+        
+        
+        public var page: [String: Any]?
+        
+        public var items: [[String: Any]]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case page = "page"
+            
+            case items = "items"
+            
+        }
+
+        public init(items: [[String: Any]]?, page: [String: Any]?) {
+            
+            self.page = page
+            
+            self.items = items
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            page = try? container.decode([String: Any].self, forKey: .page)
+            
+            items = try? container.decode([[String: Any]].self, forKey: .items)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+        }
+        
+    }
+    
+    /*
+        Model: GetCompanySerializer
+    */
+
+    struct GetCompanySerializer: Codable {
+        
+        
+        public var verifiedOn: String?
+        
+        public var stage: String?
+        
+        public var verifiedBy: UserSerializer?
+        
+        public var modifiedBy: UserSerializer?
+        
+        public var uid: Int?
+        
+        public var name: String?
+        
+        public var businessType: String?
+        
+        public var addresses: [GetAddressSerializer]?
+        
+        public var modifiedOn: String?
+        
+        public var createdBy: UserSerializer?
+        
+        public var companyType: String?
+        
+        public var rejectReason: String?
+        
+        public var createdOn: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case verifiedOn = "verified_on"
+            
+            case stage = "stage"
+            
+            case verifiedBy = "verified_by"
+            
+            case modifiedBy = "modified_by"
+            
+            case uid = "uid"
+            
+            case name = "name"
+            
+            case businessType = "business_type"
+            
+            case addresses = "addresses"
+            
+            case modifiedOn = "modified_on"
+            
+            case createdBy = "created_by"
+            
+            case companyType = "company_type"
+            
+            case rejectReason = "reject_reason"
+            
+            case createdOn = "created_on"
+            
+        }
+
+        public init(addresses: [GetAddressSerializer]?, businessType: String?, companyType: String?, createdBy: UserSerializer?, createdOn: String?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, rejectReason: String?, stage: String?, uid: Int?, verifiedBy: UserSerializer?, verifiedOn: String?) {
+            
+            self.verifiedOn = verifiedOn
+            
+            self.stage = stage
+            
+            self.verifiedBy = verifiedBy
+            
+            self.modifiedBy = modifiedBy
+            
+            self.uid = uid
+            
+            self.name = name
+            
+            self.businessType = businessType
+            
+            self.addresses = addresses
+            
+            self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
+            
+            self.companyType = companyType
+            
+            self.rejectReason = rejectReason
+            
+            self.createdOn = createdOn
+            
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
+            
+            stage = try? container.decode(String.self, forKey: .stage)
+            
+            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
+            
+            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
+            
+            uid = try? container.decode(Int.self, forKey: .uid)
+            
+            name = try? container.decode(String.self, forKey: .name)
+            
+            businessType = try? container.decode(String.self, forKey: .businessType)
+            
+            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
+            
+            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
+            
+            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
+            
+            companyType = try? container.decode(String.self, forKey: .companyType)
+            
+            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
+            
+            createdOn = try? container.decode(String.self, forKey: .createdOn)
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
             
             try? container.encodeIfPresent(stage, forKey: .stage)
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
             
-            try? container.encodeIfPresent(manager, forKey: .manager)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            
+            try? container.encodeIfPresent(addresses, forKey: .addresses)
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
+            
+            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
         }
         
@@ -20246,436 +20404,278 @@ public extension PlatformClient {
     }
     
     /*
-        Model: GetCompanySerializer
-    */
-
-    struct GetCompanySerializer: Codable {
-        
-        
-        public var name: String?
-        
-        public var modifiedOn: String?
-        
-        public var createdBy: UserSerializer?
-        
-        public var businessType: String?
-        
-        public var uid: Int?
-        
-        public var addresses: [GetAddressSerializer]?
-        
-        public var stage: String?
-        
-        public var rejectReason: String?
-        
-        public var companyType: String?
-        
-        public var verifiedBy: UserSerializer?
-        
-        public var verifiedOn: String?
-        
-        public var createdOn: String?
-        
-        public var modifiedBy: UserSerializer?
-        
-
-        public enum CodingKeys: String, CodingKey {
-            
-            case name = "name"
-            
-            case modifiedOn = "modified_on"
-            
-            case createdBy = "created_by"
-            
-            case businessType = "business_type"
-            
-            case uid = "uid"
-            
-            case addresses = "addresses"
-            
-            case stage = "stage"
-            
-            case rejectReason = "reject_reason"
-            
-            case companyType = "company_type"
-            
-            case verifiedBy = "verified_by"
-            
-            case verifiedOn = "verified_on"
-            
-            case createdOn = "created_on"
-            
-            case modifiedBy = "modified_by"
-            
-        }
-
-        public init(addresses: [GetAddressSerializer]?, businessType: String?, companyType: String?, createdBy: UserSerializer?, createdOn: String?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, rejectReason: String?, stage: String?, uid: Int?, verifiedBy: UserSerializer?, verifiedOn: String?) {
-            
-            self.name = name
-            
-            self.modifiedOn = modifiedOn
-            
-            self.createdBy = createdBy
-            
-            self.businessType = businessType
-            
-            self.uid = uid
-            
-            self.addresses = addresses
-            
-            self.stage = stage
-            
-            self.rejectReason = rejectReason
-            
-            self.companyType = companyType
-            
-            self.verifiedBy = verifiedBy
-            
-            self.verifiedOn = verifiedOn
-            
-            self.createdOn = createdOn
-            
-            self.modifiedBy = modifiedBy
-            
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            name = try? container.decode(String.self, forKey: .name)
-            
-            modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
-            
-            createdBy = try? container.decode(UserSerializer.self, forKey: .createdBy)
-            
-            businessType = try? container.decode(String.self, forKey: .businessType)
-            
-            uid = try? container.decode(Int.self, forKey: .uid)
-            
-            addresses = try? container.decode([GetAddressSerializer].self, forKey: .addresses)
-            
-            stage = try? container.decode(String.self, forKey: .stage)
-            
-            rejectReason = try? container.decode(String.self, forKey: .rejectReason)
-            
-            companyType = try? container.decode(String.self, forKey: .companyType)
-            
-            verifiedBy = try? container.decode(UserSerializer.self, forKey: .verifiedBy)
-            
-            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
-            
-            createdOn = try? container.decode(String.self, forKey: .createdOn)
-            
-            modifiedBy = try? container.decode(UserSerializer.self, forKey: .modifiedBy)
-            
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            try? container.encodeIfPresent(addresses, forKey: .addresses)
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
-            
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
-            
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
-            
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-        }
-        
-    }
-    
-    /*
         Model: GetLocationSerializer
     */
 
     struct GetLocationSerializer: Codable {
         
         
-        public var displayName: String
+        public var verifiedOn: String?
+        
+        public var stage: String?
         
         public var modifiedOn: String?
         
-        public var gstCredentials: InvoiceDetailsSerializer?
-        
-        public var address: GetAddressSerializer
-        
-        public var timing: [LocationDayWiseSerializer]?
+        public var code: String
         
         public var storeType: String?
         
-        public var stage: String?
+        public var documents: [Document]?
+        
+        public var customJson: [String: Any]?
+        
+        public var modifiedBy: UserSerializer1?
+        
+        public var phoneNumber: String
+        
+        public var createdBy: UserSerializer1?
+        
+        public var displayName: String
+        
+        public var company: GetCompanySerializer?
+        
+        public var contactNumbers: [PhoneNumber]?
+        
+        public var productReturnConfig: ProductReturnConfigSerializer?
+        
+        public var address: GetAddressSerializer
         
         public var verifiedBy: UserSerializer1?
         
         public var manager: LocationManagerSerializer?
         
-        public var verifiedOn: String?
-        
         public var integrationType: LocationIntegrationType?
         
         public var notificationEmails: [String]?
         
-        public var createdBy: UserSerializer1?
-        
         public var uid: Int?
-        
-        public var documents: [Document]?
-        
-        public var code: String
-        
-        public var warnings: [String: Any]?
-        
-        public var productReturnConfig: ProductReturnConfigSerializer?
         
         public var name: String
         
-        public var phoneNumber: String
+        public var timing: [LocationDayWiseSerializer]?
         
-        public var modifiedBy: UserSerializer1?
+        public var gstCredentials: InvoiceDetailsSerializer?
+        
+        public var warnings: [String: Any]?
         
         public var createdOn: String?
-        
-        public var customJson: [String: Any]?
-        
-        public var contactNumbers: [PhoneNumber]?
-        
-        public var company: GetCompanySerializer?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case displayName = "display_name"
+            case verifiedOn = "verified_on"
+            
+            case stage = "stage"
             
             case modifiedOn = "modified_on"
             
-            case gstCredentials = "gst_credentials"
-            
-            case address = "address"
-            
-            case timing = "timing"
+            case code = "code"
             
             case storeType = "store_type"
             
-            case stage = "stage"
+            case documents = "documents"
+            
+            case customJson = "_custom_json"
+            
+            case modifiedBy = "modified_by"
+            
+            case phoneNumber = "phone_number"
+            
+            case createdBy = "created_by"
+            
+            case displayName = "display_name"
+            
+            case company = "company"
+            
+            case contactNumbers = "contact_numbers"
+            
+            case productReturnConfig = "product_return_config"
+            
+            case address = "address"
             
             case verifiedBy = "verified_by"
             
             case manager = "manager"
             
-            case verifiedOn = "verified_on"
-            
             case integrationType = "integration_type"
             
             case notificationEmails = "notification_emails"
             
-            case createdBy = "created_by"
-            
             case uid = "uid"
-            
-            case documents = "documents"
-            
-            case code = "code"
-            
-            case warnings = "warnings"
-            
-            case productReturnConfig = "product_return_config"
             
             case name = "name"
             
-            case phoneNumber = "phone_number"
+            case timing = "timing"
             
-            case modifiedBy = "modified_by"
+            case gstCredentials = "gst_credentials"
+            
+            case warnings = "warnings"
             
             case createdOn = "created_on"
-            
-            case customJson = "_custom_json"
-            
-            case contactNumbers = "contact_numbers"
-            
-            case company = "company"
             
         }
 
         public init(address: GetAddressSerializer, code: String, company: GetCompanySerializer?, contactNumbers: [PhoneNumber]?, createdBy: UserSerializer1?, createdOn: String?, displayName: String, documents: [Document]?, gstCredentials: InvoiceDetailsSerializer?, integrationType: LocationIntegrationType?, manager: LocationManagerSerializer?, modifiedBy: UserSerializer1?, modifiedOn: String?, name: String, notificationEmails: [String]?, phoneNumber: String, productReturnConfig: ProductReturnConfigSerializer?, stage: String?, storeType: String?, timing: [LocationDayWiseSerializer]?, uid: Int?, verifiedBy: UserSerializer1?, verifiedOn: String?, warnings: [String: Any]?, customJson: [String: Any]?) {
             
-            self.displayName = displayName
+            self.verifiedOn = verifiedOn
+            
+            self.stage = stage
             
             self.modifiedOn = modifiedOn
             
-            self.gstCredentials = gstCredentials
-            
-            self.address = address
-            
-            self.timing = timing
+            self.code = code
             
             self.storeType = storeType
             
-            self.stage = stage
+            self.documents = documents
+            
+            self.customJson = customJson
+            
+            self.modifiedBy = modifiedBy
+            
+            self.phoneNumber = phoneNumber
+            
+            self.createdBy = createdBy
+            
+            self.displayName = displayName
+            
+            self.company = company
+            
+            self.contactNumbers = contactNumbers
+            
+            self.productReturnConfig = productReturnConfig
+            
+            self.address = address
             
             self.verifiedBy = verifiedBy
             
             self.manager = manager
             
-            self.verifiedOn = verifiedOn
-            
             self.integrationType = integrationType
             
             self.notificationEmails = notificationEmails
             
-            self.createdBy = createdBy
-            
             self.uid = uid
-            
-            self.documents = documents
-            
-            self.code = code
-            
-            self.warnings = warnings
-            
-            self.productReturnConfig = productReturnConfig
             
             self.name = name
             
-            self.phoneNumber = phoneNumber
+            self.timing = timing
             
-            self.modifiedBy = modifiedBy
+            self.gstCredentials = gstCredentials
+            
+            self.warnings = warnings
             
             self.createdOn = createdOn
-            
-            self.customJson = customJson
-            
-            self.contactNumbers = contactNumbers
-            
-            self.company = company
             
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            displayName = try container.decode(String.self, forKey: .displayName)
+            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
+            
+            stage = try? container.decode(String.self, forKey: .stage)
             
             modifiedOn = try? container.decode(String.self, forKey: .modifiedOn)
             
-            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
-            
-            address = try container.decode(GetAddressSerializer.self, forKey: .address)
-            
-            timing = try? container.decode([LocationDayWiseSerializer].self, forKey: .timing)
+            code = try container.decode(String.self, forKey: .code)
             
             storeType = try? container.decode(String.self, forKey: .storeType)
             
-            stage = try? container.decode(String.self, forKey: .stage)
+            documents = try? container.decode([Document].self, forKey: .documents)
+            
+            customJson = try? container.decode([String: Any].self, forKey: .customJson)
+            
+            modifiedBy = try? container.decode(UserSerializer1.self, forKey: .modifiedBy)
+            
+            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            
+            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
+            
+            displayName = try container.decode(String.self, forKey: .displayName)
+            
+            company = try? container.decode(GetCompanySerializer.self, forKey: .company)
+            
+            contactNumbers = try? container.decode([PhoneNumber].self, forKey: .contactNumbers)
+            
+            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
+            
+            address = try container.decode(GetAddressSerializer.self, forKey: .address)
             
             verifiedBy = try? container.decode(UserSerializer1.self, forKey: .verifiedBy)
             
             manager = try? container.decode(LocationManagerSerializer.self, forKey: .manager)
             
-            verifiedOn = try? container.decode(String.self, forKey: .verifiedOn)
-            
             integrationType = try? container.decode(LocationIntegrationType.self, forKey: .integrationType)
             
             notificationEmails = try? container.decode([String].self, forKey: .notificationEmails)
             
-            createdBy = try? container.decode(UserSerializer1.self, forKey: .createdBy)
-            
             uid = try? container.decode(Int.self, forKey: .uid)
-            
-            documents = try? container.decode([Document].self, forKey: .documents)
-            
-            code = try container.decode(String.self, forKey: .code)
-            
-            warnings = try? container.decode([String: Any].self, forKey: .warnings)
-            
-            productReturnConfig = try? container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
             
             name = try container.decode(String.self, forKey: .name)
             
-            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            timing = try? container.decode([LocationDayWiseSerializer].self, forKey: .timing)
             
-            modifiedBy = try? container.decode(UserSerializer1.self, forKey: .modifiedBy)
+            gstCredentials = try? container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
+            
+            warnings = try? container.decode([String: Any].self, forKey: .warnings)
             
             createdOn = try? container.decode(String.self, forKey: .createdOn)
-            
-            customJson = try? container.decode([String: Any].self, forKey: .customJson)
-            
-            contactNumbers = try? container.decode([PhoneNumber].self, forKey: .contactNumbers)
-            
-            company = try? container.decode(GetCompanySerializer.self, forKey: .company)
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
             
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
-            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            try? container.encodeIfPresent(timing, forKey: .timing)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             try? container.encodeIfPresent(storeType, forKey: .storeType)
             
-            try? container.encodeIfPresent(stage, forKey: .stage)
+            try? container.encodeIfPresent(documents, forKey: .documents)
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            try? container.encodeIfPresent(company, forKey: .company)
+            
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+            
+            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+            
+            try? container.encodeIfPresent(address, forKey: .address)
             
             try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
             
             try? container.encodeIfPresent(manager, forKey: .manager)
             
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-            
             try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
             
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            try? container.encodeIfPresent(documents, forKey: .documents)
-            
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-            
-            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
             
             try? container.encodeIfPresent(name, forKey: .name)
             
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            try? container.encodeIfPresent(timing, forKey: .timing)
             
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
+            
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
             
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
-            
-            try? container.encodeIfPresent(company, forKey: .company)
             
         }
         
