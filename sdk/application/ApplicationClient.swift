@@ -2605,83 +2605,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get Cart Payment for valid coupon
-        * Description: Validate coupon for selected payment mode
-        **/
-        public func getPaymentModes(
-            uid: String?,
-            addressId: String?,
-            paymentMode: String?,
-            paymentIdentifier: String?,
-            aggregatorName: String?,
-            merchantCode: String?,
-            action: String?,
-            type: String?,
-            
-            onResponse: @escaping (_ response: ValidateCouponPaymentMode?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            
-            if let value = uid {
-                query["uid"] = value
-            }
-            
-            if let value = addressId {
-                query["address_id"] = value
-            }
-            
-            if let value = paymentMode {
-                query["payment_mode"] = value
-            }
-            
-            if let value = paymentIdentifier {
-                query["payment_identifier"] = value
-            }
-            
-            if let value = aggregatorName {
-                query["aggregator_name"] = value
-            }
-            
-            if let value = merchantCode {
-                query["merchant_code"] = value
-            }
-            
-            if let value = action {
-                query["action"] = value
-            }
-            
-            if let value = type {
-                query["type"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/cart/v1.0/payment",
-                query: query,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ValidateCouponPaymentMode.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Update Cart Payment
         * Description: Update Cart Payment for Your Account
         **/
@@ -2714,6 +2637,73 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(CartResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Cart Payment for valid coupon
+        * Description: Validate coupon for selected payment mode
+        **/
+        public func validateCouponForPayment(
+            uid: String?,
+            addressId: String?,
+            paymentMode: String?,
+            paymentIdentifier: String?,
+            aggregatorName: String?,
+            merchantCode: String?,
+            
+            onResponse: @escaping (_ response: PaymentUpdate?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = addressId {
+                query["address_id"] = value
+            }
+            
+            if let value = paymentMode {
+                query["payment_mode"] = value
+            }
+            
+            if let value = paymentIdentifier {
+                query["payment_identifier"] = value
+            }
+            
+            if let value = aggregatorName {
+                query["aggregator_name"] = value
+            }
+            
+            if let value = merchantCode {
+                query["merchant_code"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/cart/v1.0/payment/validate/",
+                query: query,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(PaymentUpdate.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -9987,83 +9977,6 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         
         /**
         *
-        * Summary: Get Cart Payment for valid coupon
-        * Description: Validate coupon for selected payment mode
-        **/
-        public func getPaymentModes(
-            uid: String?,
-            addressId: String?,
-            paymentMode: String?,
-            paymentIdentifier: String?,
-            aggregatorName: String?,
-            merchantCode: String?,
-            action: String?,
-            type: String?,
-            
-            onResponse: @escaping (_ response: ValidateCouponPaymentMode?, _ error: FDKError?) -> Void
-        ) {
-            var query: [String: Any] = [:] 
-            
-            if let value = uid {
-                query["uid"] = value
-            }
-            
-            if let value = addressId {
-                query["address_id"] = value
-            }
-            
-            if let value = paymentMode {
-                query["payment_mode"] = value
-            }
-            
-            if let value = paymentIdentifier {
-                query["payment_identifier"] = value
-            }
-            
-            if let value = aggregatorName {
-                query["aggregator_name"] = value
-            }
-            
-            if let value = merchantCode {
-                query["merchant_code"] = value
-            }
-            
-            if let value = action {
-                query["action"] = value
-            }
-            
-            if let value = type {
-                query["type"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/payment",
-                query: query,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ValidateCouponPaymentMode.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Update Cart Payment
         * Description: Update Cart Payment for Your Account
         **/
@@ -10096,6 +10009,73 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(CartResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Cart Payment for valid coupon
+        * Description: Validate coupon for selected payment mode
+        **/
+        public func validateCouponForPayment(
+            uid: String?,
+            addressId: String?,
+            paymentMode: String?,
+            paymentIdentifier: String?,
+            aggregatorName: String?,
+            merchantCode: String?,
+            
+            onResponse: @escaping (_ response: PaymentUpdate?, _ error: FDKError?) -> Void
+        ) {
+            var query: [String: Any] = [:] 
+            
+            if let value = uid {
+                query["uid"] = value
+            }
+            
+            if let value = addressId {
+                query["address_id"] = value
+            }
+            
+            if let value = paymentMode {
+                query["payment_mode"] = value
+            }
+            
+            if let value = paymentIdentifier {
+                query["payment_identifier"] = value
+            }
+            
+            if let value = aggregatorName {
+                query["aggregator_name"] = value
+            }
+            
+            if let value = merchantCode {
+                query["merchant_code"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/pos/cart/v1.0/payment/validate/",
+                query: query,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(PaymentUpdate.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)

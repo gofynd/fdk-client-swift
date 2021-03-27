@@ -73,8 +73,8 @@
     * [updateAddress](#updateaddress)
     * [removeAddress](#removeaddress)
     * [selectAddress](#selectaddress)
-    * [getPaymentModes](#getpaymentmodes)
     * [selectPaymentMode](#selectpaymentmode)
+    * [validateCouponForPayment](#validatecouponforpayment)
     * [getShipments](#getshipments)
     * [checkoutCart](#checkoutcart)
     * [updateCartMeta](#updatecartmeta)
@@ -285,8 +285,8 @@
     * [updateAddress](#updateaddress)
     * [removeAddress](#removeaddress)
     * [selectAddress](#selectaddress)
-    * [getPaymentModes](#getpaymentmodes)
     * [selectPaymentMode](#selectpaymentmode)
+    * [validateCouponForPayment](#validatecouponforpayment)
     * [getShipments](#getshipments)
     * [updateShipments](#updateshipments)
     * [checkoutCart](#checkoutcart)
@@ -3331,48 +3331,6 @@ Pincode Not Serviciable
 ---
 
 
-#### getPaymentModes
-Get Cart Payment for valid coupon
-
-```swift
-cart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode, action: action, type: type) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
-| addressId | string |  | 
-| paymentMode | string |  | 
-| paymentIdentifier | string |  | 
-| aggregatorName | string |  | 
-| merchantCode | string |  | 
-| action | string |  | 
-| type | string |  | 
-
-Validate coupon for selected payment mode
-
-*Success Response:*
-
-
-
-Cart response with payment options
-
-
-Schema: `ValidateCouponPaymentMode`
-
-
-
-
-
-
-
-
-
----
-
-
 #### selectPaymentMode
 Update Cart Payment
 
@@ -3396,6 +3354,46 @@ Cart response with payment options
 
 
 Schema: `CartResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateCouponForPayment
+Get Cart Payment for valid coupon
+
+```swift
+cart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| uid | string |  | 
+| addressId | string |  | 
+| paymentMode | string |  | 
+| paymentIdentifier | string |  | 
+| aggregatorName | string |  | 
+| merchantCode | string |  | 
+
+Validate coupon for selected payment mode
+
+*Success Response:*
+
+
+
+Cart Affiliates.
+
+
+Schema: `PaymentUpdate`
 
 
 
@@ -14943,48 +14941,6 @@ Pincode Not Serviciable
 ---
 
 
-#### getPaymentModes
-Get Cart Payment for valid coupon
-
-```swift
-poscart.getPaymentModes(uid: uid, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode, action: action, type: type) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
-| addressId | string |  | 
-| paymentMode | string |  | 
-| paymentIdentifier | string |  | 
-| aggregatorName | string |  | 
-| merchantCode | string |  | 
-| action | string |  | 
-| type | string |  | 
-
-Validate coupon for selected payment mode
-
-*Success Response:*
-
-
-
-Cart response with payment options
-
-
-Schema: `ValidateCouponPaymentMode`
-
-
-
-
-
-
-
-
-
----
-
-
 #### selectPaymentMode
 Update Cart Payment
 
@@ -15008,6 +14964,46 @@ Cart response with payment options
 
 
 Schema: `CartResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateCouponForPayment
+Get Cart Payment for valid coupon
+
+```swift
+poscart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| uid | string |  | 
+| addressId | string |  | 
+| paymentMode | string |  | 
+| paymentIdentifier | string |  | 
+| aggregatorName | string |  | 
+| merchantCode | string |  | 
+
+Validate coupon for selected payment mode
+
+*Success Response:*
+
+
+
+Cart Affiliates.
+
+
+Schema: `PaymentUpdate`
 
 
 

@@ -14,6 +14,7 @@
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Configuration](#Configuration) - Application configuration apis 
+* [Analytics](#Analytics) - Perceptor analytics 
 
 ----
 ----
@@ -221,18 +222,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
+    * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
-    * [createBrand](#createbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createBrand](#createbrand)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
+    * [createLocation](#createlocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [Assets](#Assets)
@@ -308,6 +309,22 @@
     * [getOtherSellerApplications](#getothersellerapplications)
     * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
     * [optOutFromApplication](#optoutfromapplication)
+    
+
+* [Analytics](#Analytics)
+  * Methods
+    * [getStatiscticsGroups](#getstatiscticsgroups)
+    * [getStatiscticsGroupComponents](#getstatiscticsgroupcomponents)
+    * [getComponentStatsCSV](#getcomponentstatscsv)
+    * [getComponentStatsPDF](#getcomponentstatspdf)
+    * [getComponentStats](#getcomponentstats)
+    * [getAbandonCartList](#getabandoncartlist)
+    * [getAbandonCartsCSV](#getabandoncartscsv)
+    * [getAbandonCartDetail](#getabandoncartdetail)
+    * [createExportJob](#createexportjob)
+    * [getExportJobStatus](#getexportjobstatus)
+    * [getLogsList](#getlogslist)
+    * [searchLogs](#searchlogs)
     
 
 
@@ -14244,53 +14261,6 @@ Schema: `ApefaceApiError`
 ## CompanyProfile
 
 
-#### updateCompany
-Edit company profile
-
-```swift
-companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardGet
 Get company profile
 
@@ -14338,11 +14308,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getCompanyMetrics
-Get company metrics
+#### updateCompany
+Edit company profile
 
 ```swift
-companyprofile.getCompanyMetrics(companyId: companyId) { (response, error) in
+companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -14351,16 +14321,16 @@ companyprofile.getCompanyMetrics(companyId: companyId) { (response, error) in
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 
-This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+This API allows to edit the company profile of the seller account.
 
 *Success Response:*
 
 
 
-Metrics response object. See example below or refer `MetricsSerializer` for details
+Returns a success message
 
 
-Schema: `MetricsSerializer`
+Schema: `SuccessResponse`
 
 
 
@@ -14385,30 +14355,29 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
+#### getCompanyMetrics
+Get company metrics
 
 ```swift
-companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (response, error) in
+companyprofile.getCompanyMetrics(companyId: companyId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 
-This API allows to edit meta of a brand.
+This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
 
 *Success Response:*
 
 
 
-Returns a success response
+Metrics response object. See example below or refer `MetricsSerializer` for details
 
 
-Schema: `SuccessResponse`
+Schema: `MetricsSerializer`
 
 
 
@@ -14481,20 +14450,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBrand
-Create a Brand.
+#### editBrand
+Edit a brand.
 
 ```swift
-companyprofile.createBrand(companyId: companyId, body: body) { (response, error) in
+companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company. | 
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
 
-This API allows to create a brand associated to a company.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
@@ -14529,7 +14499,7 @@ Schema: `ErrorResponse`
 
 
 #### createBrand
-Create a company brand mapping.
+Create a Brand.
 
 ```swift
 companyprofile.createBrand(companyId: companyId, body: body) { (response, error) in
@@ -14539,9 +14509,9 @@ companyprofile.createBrand(companyId: companyId, body: body) { (response, error)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a brand associated to a company.
 
 *Success Response:*
 
@@ -14622,20 +14592,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createBrand
+Create a company brand mapping.
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+companyprofile.createBrand(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -14721,11 +14691,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```swift
-companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -14733,9 +14703,8 @@ companyprofile.updateLocation(companyId: companyId, locationId: locationId, body
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
 
-This API allows to edit a location associated to a company.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -14793,6 +14762,54 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```swift
+companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -17482,6 +17499,461 @@ Not found
 
 
 Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Analytics
+
+
+#### getStatiscticsGroups
+Get statistics groups
+
+```swift
+analytics.getStatiscticsGroups(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Get statistics groups
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatsGroups`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStatiscticsGroupComponents
+Get statistics group components
+
+```swift
+analytics.getStatiscticsGroupComponents(companyId: companyId, applicationId: applicationId, groupName: groupName) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| groupName | string | Group name | 
+
+Get statistics group components
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatsGroupComponents`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentStatsCSV
+Get component statistics csv
+
+```swift
+analytics.getComponentStatsCSV(companyId: companyId, applicationId: applicationId, componentName: componentName) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| componentName | string | Component name | 
+
+Get component statistics csv
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `String`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentStatsPDF
+Get component statistics pdf
+
+```swift
+analytics.getComponentStatsPDF(companyId: companyId, applicationId: applicationId, componentName: componentName) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| componentName | string | Component name | 
+
+Get component statistics pdf
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `String`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentStats
+Get component statistics
+
+```swift
+analytics.getComponentStats(companyId: companyId, applicationId: applicationId, componentName: componentName) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| componentName | string | Component name | 
+
+Get component statistics
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatsRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAbandonCartList
+Get abandon carts list
+
+```swift
+analytics.getAbandonCartList(companyId: companyId, applicationId: applicationId, from: from, to: to, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| from | string | From date | 
+| to | string | To date | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+
+Get abandon carts list
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AbandonCartsList`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAbandonCartsCSV
+Get abandon carts csv
+
+```swift
+analytics.getAbandonCartsCSV(companyId: companyId, applicationId: applicationId, from: from, to: to) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| from | string | From date | 
+| to | string | To date | 
+
+Get abandon carts csv
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `String`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAbandonCartDetail
+Get abandon carts details
+
+```swift
+analytics.getAbandonCartDetail(companyId: companyId, applicationId: applicationId, cartId: cartId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| cartId | string | Cart Id | 
+
+Get abandon cart details
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AbandonCartDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createExportJob
+Create data export job in required format
+
+```swift
+analytics.createExportJob(companyId: companyId, exportType: exportType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| exportType | string | Export type / format | 
+
+Create data export job in required format
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ExportJobRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getExportJobStatus
+Get data export job status
+
+```swift
+analytics.getExportJobStatus(companyId: companyId, exportType: exportType, jobId: jobId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| exportType | string | Export type / format | 
+| jobId | string | Export job id | 
+
+Get data export job status
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ExportJobStatusRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLogsList
+Get logs list
+
+```swift
+analytics.getLogsList(companyId: companyId, logType: logType, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| logType | string | Log type | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+
+Get logs list
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetLogsListRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### searchLogs
+Search logs
+
+```swift
+analytics.searchLogs(companyId: companyId, pageNo: pageNo, pageSize: pageSize, logType: logType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+| logType | string | Log type | 
+
+Search logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SearchLogRes`
 
 
 
