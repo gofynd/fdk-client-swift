@@ -129,10 +129,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductSizes?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = storeId {
-                query["store_id"] = value
+                xQuery["store_id"] = value
             }
             
              
@@ -141,7 +141,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/sizes/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -174,14 +174,14 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductSizePriceResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pincode {
-                query["pincode"] = value
+                xQuery["pincode"] = value
             }
             
             if let value = storeId {
-                query["store_id"] = value
+                xQuery["store_id"] = value
             }
             
              
@@ -190,7 +190,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/price/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -224,18 +224,18 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductSizeSellersResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pincode {
-                query["pincode"] = value
+                xQuery["pincode"] = value
             }
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -244,7 +244,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/sellers/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -335,8 +335,8 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductsComparisonResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["slug"] = slug
+            var xQuery: [String: Any] = [:] 
+            xQuery["slug"] = slug
             
             
              
@@ -345,7 +345,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/compare/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -532,26 +532,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductStockStatusResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = itemId {
-                query["item_id"] = value
+                xQuery["item_id"] = value
             }
             
             if let value = alu {
-                query["alu"] = value
+                xQuery["alu"] = value
             }
             
             if let value = skuCode {
-                query["sku_code"] = value
+                xQuery["sku_code"] = value
             }
             
             if let value = ean {
-                query["ean"] = value
+                xQuery["ean"] = value
             }
             
             if let value = upc {
-                query["upc"] = value
+                xQuery["upc"] = value
             }
             
              
@@ -560,7 +560,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/stock-status/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -592,16 +592,16 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductStockPolling?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["timestamp"] = timestamp
+            var xQuery: [String: Any] = [:] 
+            xQuery["timestamp"] = timestamp
             
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
              
@@ -610,7 +610,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/stock-status/poll/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -697,38 +697,38 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = q {
-                query["q"] = value
+                xQuery["q"] = value
             }
             
             if let value = f {
-                query["f"] = value
+                xQuery["f"] = value
             }
             
             if let value = filters {
-                query["filters"] = value
+                xQuery["filters"] = value
             }
             
             if let value = sortOn {
-                query["sort_on"] = value
+                xQuery["sort_on"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageType {
-                query["page_type"] = value
+                xQuery["page_type"] = value
             }
             
              
@@ -737,7 +737,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/products/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -849,18 +849,18 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = department {
-                query["department"] = value
+                xQuery["department"] = value
             }
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -869,7 +869,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/brands/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -986,10 +986,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = department {
-                query["department"] = value
+                xQuery["department"] = value
             }
             
              
@@ -998,7 +998,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/categories/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1068,18 +1068,18 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: HomeListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = sortOn {
-                query["sort_on"] = value
+                xQuery["sort_on"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -1088,7 +1088,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/home/listing/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1205,8 +1205,8 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: AutoCompleteResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["q"] = q
+            var xQuery: [String: Any] = [:] 
+            xQuery["q"] = q
             
             
              
@@ -1215,7 +1215,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/auto-complete/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1246,14 +1246,14 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -1262,7 +1262,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/collections/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1341,26 +1341,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = f {
-                query["f"] = value
+                xQuery["f"] = value
             }
             
             if let value = filters {
-                query["filters"] = value
+                xQuery["filters"] = value
             }
             
             if let value = sortOn {
-                query["sort_on"] = value
+                xQuery["sort_on"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -1369,7 +1369,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1696,10 +1696,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: FollowIdsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = collectionType {
-                query["collection_type"] = value
+                xQuery["collection_type"] = value
             }
             
              
@@ -1708,7 +1708,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/follow/ids/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1743,30 +1743,30 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
             if let value = q {
-                query["q"] = value
+                xQuery["q"] = value
             }
             
             if let value = range {
-                query["range"] = value
+                xQuery["range"] = value
             }
             
             if let value = latitude {
-                query["latitude"] = value
+                xQuery["latitude"] = value
             }
             
             if let value = longitude {
-                query["longitude"] = value
+                xQuery["longitude"] = value
             }
             
              
@@ -1775,7 +1775,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/catalog/v1.0/locations/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1887,22 +1887,22 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
             if let value = assignCardId {
-                query["assign_card_id"] = value
+                xQuery["assign_card_id"] = value
             }
             
              
@@ -1911,7 +1911,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1941,10 +1941,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -1953,7 +1953,7 @@ public class ApplicationClient {
                 config: config,
                 method: "head",
                 url: "/service/application/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -1984,14 +1984,14 @@ public class ApplicationClient {
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
              
@@ -2000,7 +2000,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2032,18 +2032,18 @@ public class ApplicationClient {
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
              
@@ -2052,7 +2052,7 @@ public class ApplicationClient {
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2082,10 +2082,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -2094,7 +2094,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/basic",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2124,10 +2124,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -2136,7 +2136,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/coupon",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2170,22 +2170,22 @@ public class ApplicationClient {
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
             if let value = p {
-                query["p"] = value
+                xQuery["p"] = value
             }
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -2194,7 +2194,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/coupon",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2224,10 +2224,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -2236,7 +2236,7 @@ public class ApplicationClient {
                 config: config,
                 method: "delete",
                 url: "/service/application/cart/v1.0/coupon",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2269,22 +2269,22 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = itemId {
-                query["item_id"] = value
+                xQuery["item_id"] = value
             }
             
             if let value = articleId {
-                query["article_id"] = value
+                xQuery["article_id"] = value
             }
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = slug {
-                query["slug"] = value
+                xQuery["slug"] = value
             }
             
              
@@ -2293,7 +2293,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/bulk-price",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2327,26 +2327,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = mobileNo {
-                query["mobile_no"] = value
+                xQuery["mobile_no"] = value
             }
             
             if let value = checkoutMode {
-                query["checkout_mode"] = value
+                xQuery["checkout_mode"] = value
             }
             
             if let value = tags {
-                query["tags"] = value
+                xQuery["tags"] = value
             }
             
             if let value = isDefault {
-                query["is_default"] = value
+                xQuery["is_default"] = value
             }
             
              
@@ -2355,7 +2355,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/address",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2427,26 +2427,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = mobileNo {
-                query["mobile_no"] = value
+                xQuery["mobile_no"] = value
             }
             
             if let value = checkoutMode {
-                query["checkout_mode"] = value
+                xQuery["checkout_mode"] = value
             }
             
             if let value = tags {
-                query["tags"] = value
+                xQuery["tags"] = value
             }
             
             if let value = isDefault {
-                query["is_default"] = value
+                xQuery["is_default"] = value
             }
             
              
@@ -2455,7 +2455,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/address/\(id)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2563,18 +2563,18 @@ public class ApplicationClient {
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
              
@@ -2583,7 +2583,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/cart/v1.0/select-address",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2613,10 +2613,10 @@ public class ApplicationClient {
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -2625,7 +2625,7 @@ public class ApplicationClient {
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/payment",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -2660,30 +2660,30 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: PaymentUpdate?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = addressId {
-                query["address_id"] = value
+                xQuery["address_id"] = value
             }
             
             if let value = paymentMode {
-                query["payment_mode"] = value
+                xQuery["payment_mode"] = value
             }
             
             if let value = paymentIdentifier {
-                query["payment_identifier"] = value
+                xQuery["payment_identifier"] = value
             }
             
             if let value = aggregatorName {
-                query["aggregator_name"] = value
+                xQuery["aggregator_name"] = value
             }
             
             if let value = merchantCode {
-                query["merchant_code"] = value
+                xQuery["merchant_code"] = value
             }
             
              
@@ -2692,7 +2692,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/payment/validate/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2725,22 +2725,22 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = p {
-                query["p"] = value
+                xQuery["p"] = value
             }
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = addressId {
-                query["address_id"] = value
+                xQuery["address_id"] = value
             }
             
             if let value = areaCode {
-                query["area_code"] = value
+                xQuery["area_code"] = value
             }
             
              
@@ -2749,7 +2749,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/cart/v1.0/shipment",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -2816,10 +2816,10 @@ public class ApplicationClient {
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -2828,7 +2828,7 @@ public class ApplicationClient {
                 config: config,
                 method: "put",
                 url: "/service/application/cart/v1.0/meta",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -3496,10 +3496,10 @@ public class ApplicationClient {
             body: SendOtpRequestSchema,
             onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -3508,7 +3508,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/login/otp",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -3575,10 +3575,10 @@ public class ApplicationClient {
             body: SendResetPasswordEmailRequestSchema,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -3587,7 +3587,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/login/password/reset",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -3728,10 +3728,10 @@ public class ApplicationClient {
             body: FormRegisterRequestSchema,
             onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -3740,7 +3740,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/register/form",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -3955,10 +3955,10 @@ public class ApplicationClient {
             body: SendMobileOtpRequestSchema,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -3967,7 +3967,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/otp/mobile/send",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -3997,10 +3997,10 @@ public class ApplicationClient {
             body: VerifyOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4009,7 +4009,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/otp/mobile/verify",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -4039,10 +4039,10 @@ public class ApplicationClient {
             body: SendEmailOtpRequestSchema,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4051,7 +4051,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/otp/email/send",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -4081,10 +4081,10 @@ public class ApplicationClient {
             body: VerifyOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4093,7 +4093,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/otp/email/verify",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -4197,10 +4197,10 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = name {
-                query["name"] = value
+                xQuery["name"] = value
             }
             
              
@@ -4209,7 +4209,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/user/platform/v1.0/config",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -4239,10 +4239,10 @@ public class ApplicationClient {
             body: EditProfileRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4251,7 +4251,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/profile/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -4281,10 +4281,10 @@ public class ApplicationClient {
             body: EditMobileRequestSchema,
             onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4293,7 +4293,7 @@ public class ApplicationClient {
                 config: config,
                 method: "put",
                 url: "/service/application/user/profile/v1.0/mobile",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -4328,20 +4328,20 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
-            query["active"] = active
+            xQuery["active"] = active
             
-            query["primary"] = primary
+            xQuery["primary"] = primary
             
-            query["verified"] = verified
+            xQuery["verified"] = verified
             
-            query["country_code"] = countryCode
+            xQuery["country_code"] = countryCode
             
-            query["phone"] = phone
+            xQuery["phone"] = phone
             
             
              
@@ -4350,7 +4350,7 @@ public class ApplicationClient {
                 config: config,
                 method: "delete",
                 url: "/service/application/user/profile/v1.0/mobile",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -4417,10 +4417,10 @@ public class ApplicationClient {
             body: SendVerificationLinkMobileRequestSchema,
             onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4429,7 +4429,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/profile/v1.0/mobile/link/send",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -4459,10 +4459,10 @@ public class ApplicationClient {
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4471,7 +4471,7 @@ public class ApplicationClient {
                 config: config,
                 method: "put",
                 url: "/service/application/user/profile/v1.0/email",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -4505,18 +4505,18 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
-            query["active"] = active
+            xQuery["active"] = active
             
-            query["primary"] = primary
+            xQuery["primary"] = primary
             
-            query["verified"] = verified
+            xQuery["verified"] = verified
             
-            query["email"] = email
+            xQuery["email"] = email
             
             
              
@@ -4525,7 +4525,7 @@ public class ApplicationClient {
                 config: config,
                 method: "delete",
                 url: "/service/application/user/profile/v1.0/email",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -4592,10 +4592,10 @@ public class ApplicationClient {
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = platform {
-                query["platform"] = value
+                xQuery["platform"] = value
             }
             
              
@@ -4604,7 +4604,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/user/profile/v1.0/email/link/send",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -5455,8 +5455,8 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["url"] = url
+            var xQuery: [String: Any] = [:] 
+            xQuery["url"] = url
             
             
              
@@ -5465,7 +5465,7 @@ public class ApplicationClient {
                 config: config,
                 method: "post",
                 url: "/service/application/share/v1.0/qr/url/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -5896,18 +5896,18 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
             if let value = q {
-                query["q"] = value
+                xQuery["q"] = value
             }
             
              
@@ -5916,7 +5916,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/ordering-store/stores",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6257,18 +6257,18 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = orderIncent {
-                query["order_incent"] = value
+                xQuery["order_incent"] = value
             }
             
             if let value = orderingStore {
-                query["ordering_store"] = value
+                xQuery["ordering_store"] = value
             }
             
             if let value = user {
-                query["user"] = value
+                xQuery["user"] = value
             }
             
              
@@ -6277,7 +6277,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/configuration/v1.0/staff",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6320,21 +6320,21 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = refresh {
-                query["refresh"] = value
+                xQuery["refresh"] = value
             }
             
-            var headers: [(key: String, value: String)] = [] 
-            headers.append((key: "x-api-token", value: xApiToken))
+            var xHeaders: [(key: String, value: String)] = [] 
+            xHeaders.append((key: "x-api-token", value: xApiToken))
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/config/aggregators/key",
-                query: query,
-                extraHeaders:  headers,
+                query: xQuery,
+                extraHeaders:  xHeaders,
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -6400,10 +6400,10 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = refresh {
-                query["refresh"] = value
+                xQuery["refresh"] = value
             }
             
              
@@ -6412,7 +6412,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/card/aggregator",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6442,10 +6442,10 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = forceRefresh {
-                query["force_refresh"] = value
+                xQuery["force_refresh"] = value
             }
             
              
@@ -6454,7 +6454,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/cards",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6675,26 +6675,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["amount"] = amount
+            var xQuery: [String: Any] = [:] 
+            xQuery["amount"] = amount
             
-            query["cart_id"] = cartId
+            xQuery["cart_id"] = cartId
             
-            query["pincode"] = pincode
+            xQuery["pincode"] = pincode
             
-            query["checkout_mode"] = checkoutMode
+            xQuery["checkout_mode"] = checkoutMode
             
             
             if let value = refresh {
-                query["refresh"] = value
+                xQuery["refresh"] = value
             }
             
             if let value = assignCardId {
-                query["assign_card_id"] = value
+                xQuery["assign_card_id"] = value
             }
             
             if let value = userDetails {
-                query["user_details"] = value
+                xQuery["user_details"] = value
             }
             
              
@@ -6703,7 +6703,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/payment/options",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6740,28 +6740,28 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["amount"] = amount
+            var xQuery: [String: Any] = [:] 
+            xQuery["amount"] = amount
             
-            query["cart_id"] = cartId
+            xQuery["cart_id"] = cartId
             
-            query["pincode"] = pincode
+            xQuery["pincode"] = pincode
             
-            query["checkout_mode"] = checkoutMode
+            xQuery["checkout_mode"] = checkoutMode
             
             
             if let value = refresh {
-                query["refresh"] = value
+                xQuery["refresh"] = value
             }
             
             if let value = assignCardId {
-                query["assign_card_id"] = value
+                xQuery["assign_card_id"] = value
             }
-            query["order_type"] = orderType
+            xQuery["order_type"] = orderType
             
             
             if let value = userDetails {
-                query["user_details"] = value
+                xQuery["user_details"] = value
             }
             
              
@@ -6770,7 +6770,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/payment/options/pos",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6800,8 +6800,8 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["order_id"] = orderId
+            var xQuery: [String: Any] = [:] 
+            xQuery["order_id"] = orderId
             
             
              
@@ -6810,7 +6810,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/refund/beneficiary/user",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6840,10 +6840,10 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = ifscCode {
-                query["ifsc_code"] = value
+                xQuery["ifsc_code"] = value
             }
             
              
@@ -6852,7 +6852,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/ifsc-code/verify",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -6882,8 +6882,8 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["order_id"] = orderId
+            var xQuery: [String: Any] = [:] 
+            xQuery["order_id"] = orderId
             
             
              
@@ -6892,7 +6892,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/payment/v1.0/refund/beneficiaries/order",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -7085,22 +7085,22 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
             if let value = fromDate {
-                query["from_date"] = value
+                xQuery["from_date"] = value
             }
             
             if let value = toDate {
-                query["to_date"] = value
+                xQuery["to_date"] = value
             }
             
              
@@ -7109,7 +7109,7 @@ This operation will return the url for the uploaded file.
                 config: config,
                 method: "get",
                 url: "/service/application/order/v1.0/orders",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -7454,14 +7454,14 @@ The list of points history is paginated.
             
             onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -7470,7 +7470,7 @@ The list of points history is paginated.
                 config: config,
                 method: "get",
                 url: "/service/application/rewards/v1.0/user/points/history/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -7708,18 +7708,18 @@ The list of points history is paginated.
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = id {
-                query["id"] = value
+                xQuery["id"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -7728,7 +7728,7 @@ The list of points history is paginated.
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/abuse/entity/\(entityType)/entityId/\(entityId)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -7821,14 +7821,14 @@ The list of points history is paginated.
             
             onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -7837,7 +7837,7 @@ The list of points history is paginated.
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/attributes",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -8102,26 +8102,26 @@ The list of points history is paginated.
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = id {
-                query["id"] = value
+                xQuery["id"] = value
             }
             
             if let value = entityId {
-                query["entity_id"] = value
+                xQuery["entity_id"] = value
             }
             
             if let value = userId {
-                query["user_id"] = value
+                xQuery["user_id"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -8130,7 +8130,7 @@ The list of points history is paginated.
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/comment/entity/\(entityType)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -8382,18 +8382,18 @@ The list of points history is paginated.
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = id {
-                query["id"] = value
+                xQuery["id"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -8402,7 +8402,7 @@ The list of points history is paginated.
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/media/entity/\(entityType)/entityId/\(entityId)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -8499,18 +8499,18 @@ It gives following response data: review count, rating average. review metrics /
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = id {
-                query["id"] = value
+                xQuery["id"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -8519,7 +8519,7 @@ It gives following response data: review count, rating average. review metrics /
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/rating/summary/entity/\(entityType)/entityId/\(entityId)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -8697,42 +8697,42 @@ attributes rating, entity rating, title, description, media resources and templa
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = id {
-                query["id"] = value
+                xQuery["id"] = value
             }
             
             if let value = userId {
-                query["user_id"] = value
+                xQuery["user_id"] = value
             }
             
             if let value = media {
-                query["media"] = value
+                xQuery["media"] = value
             }
             
             if let value = rating {
-                query["rating"] = value
+                xQuery["rating"] = value
             }
             
             if let value = attributeRating {
-                query["attribute_rating"] = value
+                xQuery["attribute_rating"] = value
             }
             
             if let value = facets {
-                query["facets"] = value
+                xQuery["facets"] = value
             }
             
             if let value = sort {
-                query["sort"] = value
+                xQuery["sort"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -8741,7 +8741,7 @@ attributes rating, entity rating, title, description, media resources and templa
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/review/entity/\(entityType)/entityId/\(entityId)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -8871,18 +8871,18 @@ attributes rating, entity rating, title, description, media resources and templa
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = templateId {
-                query["template_id"] = value
+                xQuery["template_id"] = value
             }
             
             if let value = entityId {
-                query["entity_id"] = value
+                xQuery["entity_id"] = value
             }
             
             if let value = entityType {
-                query["entity_type"] = value
+                xQuery["entity_type"] = value
             }
             
              
@@ -8891,7 +8891,7 @@ attributes rating, entity rating, title, description, media resources and templa
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/template/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9001,22 +9001,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = id {
-                query["id"] = value
+                xQuery["id"] = value
             }
             
             if let value = showAnswer {
-                query["show_answer"] = value
+                xQuery["show_answer"] = value
             }
             
             if let value = pageId {
-                query["page_id"] = value
+                xQuery["page_id"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -9025,7 +9025,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/template/qna/entity/\(entityType)/entityId/\(entityId)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9124,14 +9124,14 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = id {
-                query["id"] = value
+                xQuery["id"] = value
             }
             
             if let value = refType {
-                query["ref_type"] = value
+                xQuery["ref_type"] = value
             }
             
              
@@ -9140,7 +9140,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/vote/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9259,22 +9259,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
             if let value = assignCardId {
-                query["assign_card_id"] = value
+                xQuery["assign_card_id"] = value
             }
             
              
@@ -9283,7 +9283,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9313,10 +9313,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -9325,7 +9325,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "head",
                 url: "/service/application/pos/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9356,14 +9356,14 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
              
@@ -9372,7 +9372,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9404,18 +9404,18 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
              
@@ -9424,7 +9424,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/detail",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9454,10 +9454,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -9466,7 +9466,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/basic",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9496,10 +9496,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -9508,7 +9508,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/coupon",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9542,22 +9542,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
             if let value = p {
-                query["p"] = value
+                xQuery["p"] = value
             }
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -9566,7 +9566,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/coupon",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9596,10 +9596,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -9608,7 +9608,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "delete",
                 url: "/service/application/pos/cart/v1.0/coupon",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9641,22 +9641,22 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = itemId {
-                query["item_id"] = value
+                xQuery["item_id"] = value
             }
             
             if let value = articleId {
-                query["article_id"] = value
+                xQuery["article_id"] = value
             }
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = slug {
-                query["slug"] = value
+                xQuery["slug"] = value
             }
             
              
@@ -9665,7 +9665,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/bulk-price",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9699,26 +9699,26 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = mobileNo {
-                query["mobile_no"] = value
+                xQuery["mobile_no"] = value
             }
             
             if let value = checkoutMode {
-                query["checkout_mode"] = value
+                xQuery["checkout_mode"] = value
             }
             
             if let value = tags {
-                query["tags"] = value
+                xQuery["tags"] = value
             }
             
             if let value = isDefault {
-                query["is_default"] = value
+                xQuery["is_default"] = value
             }
             
              
@@ -9727,7 +9727,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/address",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9799,26 +9799,26 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = mobileNo {
-                query["mobile_no"] = value
+                xQuery["mobile_no"] = value
             }
             
             if let value = checkoutMode {
-                query["checkout_mode"] = value
+                xQuery["checkout_mode"] = value
             }
             
             if let value = tags {
-                query["tags"] = value
+                xQuery["tags"] = value
             }
             
             if let value = isDefault {
-                query["is_default"] = value
+                xQuery["is_default"] = value
             }
             
              
@@ -9827,7 +9827,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/address/\(id)",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -9935,18 +9935,18 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = b {
-                query["b"] = value
+                xQuery["b"] = value
             }
             
              
@@ -9955,7 +9955,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/select-address",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9985,10 +9985,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -9997,7 +9997,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/payment",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -10032,30 +10032,30 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: PaymentUpdate?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = addressId {
-                query["address_id"] = value
+                xQuery["address_id"] = value
             }
             
             if let value = paymentMode {
-                query["payment_mode"] = value
+                xQuery["payment_mode"] = value
             }
             
             if let value = paymentIdentifier {
-                query["payment_identifier"] = value
+                xQuery["payment_identifier"] = value
             }
             
             if let value = aggregatorName {
-                query["aggregator_name"] = value
+                xQuery["aggregator_name"] = value
             }
             
             if let value = merchantCode {
-                query["merchant_code"] = value
+                xQuery["merchant_code"] = value
             }
             
              
@@ -10064,7 +10064,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/payment/validate/",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -10100,34 +10100,34 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pickAtStoreUid {
-                query["pick_at_store_uid"] = value
+                xQuery["pick_at_store_uid"] = value
             }
             
             if let value = orderingStoreId {
-                query["ordering_store_id"] = value
+                xQuery["ordering_store_id"] = value
             }
             
             if let value = p {
-                query["p"] = value
+                xQuery["p"] = value
             }
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = addressId {
-                query["address_id"] = value
+                xQuery["address_id"] = value
             }
             
             if let value = areaCode {
-                query["area_code"] = value
+                xQuery["area_code"] = value
             }
             
             if let value = orderType {
-                query["order_type"] = value
+                xQuery["order_type"] = value
             }
             
              
@@ -10136,7 +10136,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/shipment",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -10170,26 +10170,26 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: UpdateCartShipmentRequest,
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = i {
-                query["i"] = value
+                xQuery["i"] = value
             }
             
             if let value = p {
-                query["p"] = value
+                xQuery["p"] = value
             }
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
             if let value = addressId {
-                query["address_id"] = value
+                xQuery["address_id"] = value
             }
             
             if let value = orderType {
-                query["order_type"] = value
+                xQuery["order_type"] = value
             }
             
              
@@ -10198,7 +10198,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/shipment",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -10228,10 +10228,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: CartPosCheckoutRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -10240,7 +10240,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "post",
                 url: "/service/application/pos/cart/v1.0/checkout",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -10270,10 +10270,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -10282,7 +10282,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "put",
                 url: "/service/application/pos/cart/v1.0/meta",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -10313,12 +10313,12 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["area_code"] = areaCode
+            var xQuery: [String: Any] = [:] 
+            xQuery["area_code"] = areaCode
             
             
             if let value = uid {
-                query["uid"] = value
+                xQuery["uid"] = value
             }
             
              
@@ -10327,7 +10327,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/available-delivery-mode",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -10357,8 +10357,8 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             
             onResponse: @escaping (_ response: StoreDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["store_uid"] = storeUid
+            var xQuery: [String: Any] = [:] 
+            xQuery["store_uid"] = storeUid
             
             
              
@@ -10367,7 +10367,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                 config: config,
                 method: "get",
                 url: "/service/application/pos/cart/v1.0/store-address",
-                query: query,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in

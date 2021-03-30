@@ -398,8 +398,15 @@ extension URLRequest {
             }
         }
         
-        HTTPCookieStorage.shared.cookies(for: url)?.forEach { cookie in
-            command.append("-H 'Cookie: \(cookie.name )=\(cookie.value)'")
+        if let cookies = HTTPCookieStorage.shared.cookies(for: url) {
+            command.append("-H 'Cookie: ")
+            for (index, cookie) in cookies.enumerated() {
+                if index == cookies.count - 1 {
+                    command.append("\(cookie.name )=\(cookie.value)'")
+                } else {
+                    command.append("\(cookie.name )=\(cookie.value)';")
+                }
+            }
         }
         
         if let data = httpBody, let body = String(data: data, encoding: .utf8) {

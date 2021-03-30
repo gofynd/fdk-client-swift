@@ -93,38 +93,38 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = items {
-                query["items"] = value
+                xQuery["items"] = value
             }
             
             if let value = filters {
-                query["filters"] = value
+                xQuery["filters"] = value
             }
             
             if let value = q {
-                query["q"] = value
+                xQuery["q"] = value
             }
             
             if let value = status {
-                query["status"] = value
+                xQuery["status"] = value
             }
             
             if let value = priority {
-                query["priority"] = value
+                xQuery["priority"] = value
             }
             
             if let value = category {
-                query["category"] = value
+                xQuery["category"] = value
             }
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -133,7 +133,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -151,6 +151,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -189,6 +191,8 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
         * Summary: Retreives ticket details of a company level ticket with ticket ID
@@ -225,6 +229,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -265,6 +271,8 @@ public class PlatformClient {
         
         
         
+        
+        
         /**
         *
         * Summary: Create history for specific company level ticket
@@ -302,6 +310,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Gets history list for specific company level ticket
@@ -338,6 +348,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -516,6 +528,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get invoice by id
@@ -553,6 +567,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get subscription customer detail
@@ -589,6 +605,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Upsert subscription customer detail
@@ -624,6 +642,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -662,6 +682,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get subscription subscription limits
@@ -697,6 +719,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -734,6 +758,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Cancel subscription
@@ -769,6 +795,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
@@ -846,10 +874,10 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: PayoutsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = uniqueExternalId {
-                query["unique_external_id"] = value
+                xQuery["unique_external_id"] = value
             }
             
              
@@ -858,7 +886,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -876,6 +904,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -912,6 +942,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -950,6 +982,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Partial Update Payout
@@ -986,6 +1020,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -1024,6 +1060,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: List Subscription Payment Method
@@ -1060,6 +1098,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Delete Subscription Payment Method
@@ -1071,9 +1111,9 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: DeleteSubscriptionPaymentMethodResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["unique_external_id"] = uniqueExternalId
-            query["payment_method_id"] = paymentMethodId
+            var xQuery: [String: Any] = [:] 
+            xQuery["unique_external_id"] = uniqueExternalId
+            xQuery["payment_method_id"] = paymentMethodId
             
              
             
@@ -1081,7 +1121,7 @@ public class PlatformClient {
                 config: config,
                 method: "delete",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/methods",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -1099,6 +1139,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -1136,6 +1178,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Save Subscription Setup Intent
@@ -1171,6 +1215,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
@@ -1221,6 +1267,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get Activity Status
@@ -1231,8 +1279,8 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetActivityStatus?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["bag_id"] = bagId
+            var xQuery: [String: Any] = [:] 
+            xQuery["bag_id"] = bagId
             
              
             
@@ -1240,7 +1288,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/actions/activity/status",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -1258,6 +1306,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -1295,6 +1345,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get Orders for company based on Company Id
@@ -1316,54 +1368,54 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OrderListing?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
             if let value = fromDate {
-                query["from_date"] = value
+                xQuery["from_date"] = value
             }
             
             if let value = toDate {
-                query["to_date"] = value
+                xQuery["to_date"] = value
             }
             
             if let value = q {
-                query["q"] = value
+                xQuery["q"] = value
             }
             
             if let value = stage {
-                query["stage"] = value
+                xQuery["stage"] = value
             }
             
             if let value = salesChannels {
-                query["sales_channels"] = value
+                xQuery["sales_channels"] = value
             }
             
             if let value = orderId {
-                query["order_id"] = value
+                xQuery["order_id"] = value
             }
             
             if let value = stores {
-                query["stores"] = value
+                xQuery["stores"] = value
             }
             
             if let value = status {
-                query["status"] = value
+                xQuery["status"] = value
             }
             
             if let value = shortenUrls {
-                query["shorten_urls"] = value
+                xQuery["shorten_urls"] = value
             }
             
             if let value = filterType {
-                query["filter_type"] = value
+                xQuery["filter_type"] = value
             }
             
              
@@ -1372,7 +1424,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/orders",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -1390,6 +1442,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1431,6 +1485,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get Voice Callback
@@ -1467,6 +1523,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get Voice Click to Call
@@ -1478,9 +1536,9 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetClickToCallResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["caller"] = caller
-            query["receiver"] = receiver
+            var xQuery: [String: Any] = [:] 
+            xQuery["caller"] = caller
+            xQuery["receiver"] = receiver
             
              
             
@@ -1488,7 +1546,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/order/v1.0/company/\(companyId)/voice/click-to-call",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -1506,6 +1564,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
@@ -1556,6 +1616,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Edit company profile
@@ -1592,6 +1654,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get company metrics
@@ -1627,6 +1691,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -1665,6 +1731,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Edit a brand.
@@ -1702,6 +1770,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Create a Brand.
@@ -1738,41 +1808,7 @@ public class PlatformClient {
             });
         }
         
-        /**
-        *
-        * Summary: Get brands associated to a company
-        * Description: This API helps to get view brands associated to a particular company.
-        **/
-        public func getBrands(
-            
-            onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CompanyBrandListSerializer.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
+        
         
         /**
         *
@@ -1810,49 +1846,26 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
-        * Summary: Get list of locations
-        * Description: This API allows to view all the locations asscoiated to a company.
+        * Summary: Get brands associated to a company
+        * Description: This API helps to get view brands associated to a particular company.
         **/
-        public func getLocations(
-            storeType: String?,
-            q: String?,
-            stage: String?,
-            pageNo: Int?,
-            pageSize: Int?,
+        public func getBrands(
             
-            onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            
-            if let value = storeType {
-                query["store_type"] = value
-            }
-            
-            if let value = q {
-                query["q"] = value
-            }
-            
-            if let value = stage {
-                query["stage"] = value
-            }
-            
-            if let value = pageNo {
-                query["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                query["page_size"] = value
-            }
+             
             
              
             
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
-                query: query,
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                query: nil,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -1863,13 +1876,15 @@ public class PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(LocationListSerializer.self, from: data)
+                        let response = Utility.decode(CompanyBrandListSerializer.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -1906,6 +1921,71 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        /**
+        *
+        * Summary: Get list of locations
+        * Description: This API allows to view all the locations asscoiated to a company.
+        **/
+        public func getLocations(
+            storeType: String?,
+            q: String?,
+            stage: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = storeType {
+                xQuery["store_type"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = stage {
+                xQuery["stage"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LocationListSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
         
         /**
         *
@@ -1944,6 +2024,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Edit a location asscoiated to a company.
@@ -1980,6 +2062,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
@@ -2004,10 +2088,10 @@ public class PlatformClient {
             body: BulkRequest,
             onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = sync {
-                query["sync"] = value
+                xQuery["sync"] = value
             }
             
              
@@ -2016,7 +2100,7 @@ public class PlatformClient {
                 config: config,
                 method: "post",
                 url: "/service/application/assets/v1.0/uploads/company/\(companyId)/copy/",
-                query: query,
+                query: xQuery,
                 body: body.dictionary,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2034,6 +2118,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         /**
@@ -2071,6 +2157,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -2110,6 +2198,8 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
         * Summary: Proxy
@@ -2120,8 +2210,8 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["url"] = url
+            var xQuery: [String: Any] = [:] 
+            xQuery["url"] = url
             
              
             
@@ -2129,7 +2219,7 @@ public class PlatformClient {
                 config: config,
                 method: "post",
                 url: "/service/application/assets/v1.0/company/\(companyId)/proxy/",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2147,6 +2237,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
@@ -2189,14 +2281,14 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigRawDTO?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -2205,7 +2297,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2224,6 +2316,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Updates An Existing Job Config
@@ -2236,10 +2330,10 @@ public class PlatformClient {
         ) {
              
             
-            var headers: [(key: String, value: String)] = [] 
+            var xHeaders: [(key: String, value: String)] = [] 
             
             if let value = xUserData {
-                headers.append((key: "x-user-data", value: value))
+                xHeaders.append((key: "x-user-data", value: value))
             }
             
             PlatformAPIClient.execute(
@@ -2248,7 +2342,7 @@ public class PlatformClient {
                 url: "/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
-                headers: headers,
+                headers: xHeaders,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2264,6 +2358,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -2277,10 +2373,10 @@ public class PlatformClient {
         ) {
              
             
-            var headers: [(key: String, value: String)] = [] 
+            var xHeaders: [(key: String, value: String)] = [] 
             
             if let value = xUserData {
-                headers.append((key: "x-user-data", value: value))
+                xHeaders.append((key: "x-user-data", value: value))
             }
             
             PlatformAPIClient.execute(
@@ -2289,7 +2385,7 @@ public class PlatformClient {
                 url: "/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
-                headers: headers,
+                headers: xHeaders,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2306,6 +2402,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get Job Configs By Company And Integration
@@ -2318,14 +2416,14 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigDTO?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -2334,7 +2432,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs/integration/\(integrationId)",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2352,6 +2450,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -2388,6 +2488,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -2426,6 +2528,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get Job Codes By Company And Integration
@@ -2438,14 +2542,14 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigListDTO?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -2454,7 +2558,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/v1.0/company/\(companyId)/jobs/code/integration/\(integrationId)",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2472,6 +2576,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
@@ -2547,6 +2653,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get list of application under company
@@ -2559,18 +2667,18 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ApplicationsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
             if let value = q {
-                query["q"] = value
+                xQuery["q"] = value
             }
             
              
@@ -2579,7 +2687,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/application",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2597,6 +2705,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         /**
@@ -2635,6 +2745,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Check domain availibility before linking to application
@@ -2670,6 +2782,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -2708,6 +2822,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get all available integration opt-ins
@@ -2719,14 +2835,14 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetIntegrationsOptInsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -2735,7 +2851,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integration-opt-in/available",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2754,6 +2870,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get company/store level integration opt-ins
@@ -2767,14 +2885,14 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetIntegrationsOptInsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -2783,7 +2901,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/selected/\(level)/\(uid)",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2801,6 +2919,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -2839,6 +2959,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -2879,6 +3001,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Check store has active integration
@@ -2918,6 +3042,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get brands by company
@@ -2927,8 +3053,8 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: BrandsByCompanyResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["company_id"] = companyId
+            var xQuery: [String: Any] = [:] 
+            xQuery["company_id"] = companyId
             
              
             
@@ -2936,7 +3062,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/brands-by-companies",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -2955,6 +3081,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get company by brand uids
@@ -2966,14 +3094,14 @@ public class PlatformClient {
             body: CompanyByBrandsRequest,
             onResponse: @escaping (_ response: CompanyByBrandsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -2982,7 +3110,7 @@ public class PlatformClient {
                 config: config,
                 method: "post",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/companies-by-brands",
-                query: query,
+                query: xQuery,
                 body: body.dictionary,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -3001,6 +3129,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get stores by brand uids
@@ -3012,14 +3142,14 @@ public class PlatformClient {
             body: StoreByBrandsRequest,
             onResponse: @escaping (_ response: StoreByBrandsResponse?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -3028,7 +3158,7 @@ public class PlatformClient {
                 config: config,
                 method: "post",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/stores-by-brands",
-                query: query,
+                query: xQuery,
                 body: body.dictionary,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -3046,6 +3176,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -3082,6 +3214,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         /**
         *
@@ -3120,6 +3254,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Opt out company or store from other seller application
@@ -3156,6 +3292,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
@@ -3215,6 +3353,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get data export job status
@@ -3226,8 +3366,8 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ExportJobStatusRes?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
-            query["job_id"] = jobId
+            var xQuery: [String: Any] = [:] 
+            xQuery["job_id"] = jobId
             
              
             
@@ -3235,7 +3375,7 @@ public class PlatformClient {
                 config: config,
                 method: "get",
                 url: "/service/platform/analytics/v1.0/company/\(companyId)/export/\(exportType)",
-                query: query,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -3254,6 +3394,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Get logs list
@@ -3266,14 +3408,14 @@ public class PlatformClient {
             body: GetLogsListReq,
             onResponse: @escaping (_ response: GetLogsListRes?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -3282,7 +3424,7 @@ public class PlatformClient {
                 config: config,
                 method: "post",
                 url: "/service/platform/analytics/v1.0/company/\(companyId)/logs/\(logType)",
-                query: query,
+                query: xQuery,
                 body: body.dictionary,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -3301,6 +3443,8 @@ public class PlatformClient {
             });
         }
         
+        
+        
         /**
         *
         * Summary: Search logs
@@ -3313,14 +3457,14 @@ public class PlatformClient {
             body: SearchLogReq,
             onResponse: @escaping (_ response: SearchLogRes?, _ error: FDKError?) -> Void
         ) {
-            var query: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:] 
             
             if let value = pageNo {
-                query["page_no"] = value
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
-                query["page_size"] = value
+                xQuery["page_size"] = value
             }
             
              
@@ -3329,7 +3473,7 @@ public class PlatformClient {
                 config: config,
                 method: "post",
                 url: "/service/platform/analytics/v1.0/company/\(companyId)/logs/\(logType)/search",
-                query: query,
+                query: xQuery,
                 body: body.dictionary,
                 headers: [],
                 onResponse: { (responseData, error, responseCode) in
@@ -3347,15 +3491,17 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
     }
     
     
 
-    public func application(id: String) -> Application {
-        return Application(applicationId: id, config: config)
+    public func applicationClient(id: String) -> ApplicationClient {
+        return ApplicationClient(applicationId: id, config: config)
     }
 
-    public class Application {
+    public class ApplicationClient {
         var config: PlatformConfig
         var companyId: String
         var applicationId: String
@@ -3457,30 +3603,30 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
+                var xQuery: [String: Any] = [:] 
                 
                 if let value = items {
-                    query["items"] = value
+                    xQuery["items"] = value
                 }
                 
                 if let value = filters {
-                    query["filters"] = value
+                    xQuery["filters"] = value
                 }
                 
                 if let value = q {
-                    query["q"] = value
+                    xQuery["q"] = value
                 }
                 
                 if let value = status {
-                    query["status"] = value
+                    xQuery["status"] = value
                 }
                 
                 if let value = priority {
-                    query["priority"] = value
+                    xQuery["priority"] = value
                 }
                 
                 if let value = category {
-                    query["category"] = value
+                    xQuery["category"] = value
                 }
                  
                  
@@ -3489,7 +3635,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -3507,6 +3653,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
@@ -3547,6 +3695,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Edits ticket details of a application level ticket
@@ -3583,6 +3733,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
@@ -3623,6 +3775,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Gets history list for specific application level ticket
@@ -3659,6 +3813,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -3697,6 +3853,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Edit the given custom form
@@ -3734,6 +3892,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get list of custom form
@@ -3770,6 +3930,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Creates a new custom form
@@ -3805,6 +3967,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -3843,6 +4007,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get participants of a specific Video Room using it's unique name
@@ -3880,6 +4046,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Open a video room.
@@ -3916,6 +4084,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Close the video room and force all participants to leave.
@@ -3951,6 +4121,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
         }
         
         
@@ -3978,14 +4150,14 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: ThemesListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
+                var xQuery: [String: Any] = [:] 
                 
                 if let value = pageSize {
-                    query["page_size"] = value
+                    xQuery["page_size"] = value
                 }
                 
                 if let value = pageNo {
-                    query["page_no"] = value
+                    xQuery["page_no"] = value
                 }
                  
                  
@@ -3994,7 +4166,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/library",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -4012,6 +4184,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4049,6 +4223,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Apply theme
@@ -4084,6 +4260,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4122,6 +4300,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Upgrades theme
@@ -4159,6 +4339,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Gets public themes
@@ -4170,14 +4352,14 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: ThemesListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
+                var xQuery: [String: Any] = [:] 
                 
                 if let value = pageSize {
-                    query["page_size"] = value
+                    xQuery["page_size"] = value
                 }
                 
                 if let value = pageNo {
-                    query["page_no"] = value
+                    xQuery["page_no"] = value
                 }
                  
                  
@@ -4186,7 +4368,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/public/library",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -4204,6 +4386,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4241,6 +4425,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get applied theme
@@ -4277,6 +4463,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Gets fonts
@@ -4312,6 +4500,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4350,6 +4540,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update theme
@@ -4386,6 +4578,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4424,6 +4618,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Gets theme for preview
@@ -4460,6 +4656,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4498,6 +4696,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Unpublish theme
@@ -4534,6 +4734,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4572,6 +4774,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Unarchive theme
@@ -4608,6 +4812,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
         }
         
         
@@ -4636,18 +4842,18 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: CustomerListResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
+                var xQuery: [String: Any] = [:] 
                 
                 if let value = q {
-                    query["q"] = value
+                    xQuery["q"] = value
                 }
                 
                 if let value = pageSize {
-                    query["page_size"] = value
+                    xQuery["page_size"] = value
                 }
                 
                 if let value = pageNo {
-                    query["page_no"] = value
+                    xQuery["page_no"] = value
                 }
                  
                  
@@ -4656,7 +4862,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/list",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -4675,6 +4881,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Search users
@@ -4685,10 +4893,10 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: UserSearchResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
+                var xQuery: [String: Any] = [:] 
                 
                 if let value = q {
-                    query["q"] = value
+                    xQuery["q"] = value
                 }
                  
                  
@@ -4697,7 +4905,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/search",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -4715,6 +4923,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4752,6 +4962,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update platform config
@@ -4787,6 +4999,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
         }
         
         
@@ -4839,6 +5053,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create an annoucement
@@ -4874,6 +5090,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4912,6 +5130,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update an annoucement
@@ -4948,6 +5168,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -4986,6 +5208,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Delete annoucement by id
@@ -5023,6 +5247,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create blog
@@ -5059,6 +5285,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get blogs
@@ -5094,6 +5322,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5132,6 +5362,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Delete blogs
@@ -5168,6 +5400,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5206,6 +5440,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get FAQ categories list
@@ -5241,6 +5477,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5279,6 +5517,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Creates a FAQ category
@@ -5314,6 +5554,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5352,6 +5594,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Deletes a FAQ category
@@ -5388,6 +5632,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5426,6 +5672,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Creates FAQs for category whose `id` is specified
@@ -5462,6 +5710,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5501,6 +5751,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Delete FAQ
@@ -5539,6 +5791,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get frequently asked question
@@ -5576,6 +5830,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get landing-pages
@@ -5612,6 +5868,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create landing-page
@@ -5647,6 +5905,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5685,6 +5945,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Delete landing-page
@@ -5722,6 +5984,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get legal information
@@ -5757,6 +6021,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5794,6 +6060,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get navigations
@@ -5804,8 +6072,8 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
-                query["device_platform"] = devicePlatform
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                  
                  
                 
@@ -5813,7 +6081,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -5831,6 +6099,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5868,6 +6138,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get default navigations
@@ -5904,6 +6176,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get navigation by slug
@@ -5915,8 +6189,8 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
-                query["device_platform"] = devicePlatform
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                  
                  
                 
@@ -5924,7 +6198,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(slug)",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -5942,6 +6216,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -5980,6 +6256,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Delete navigation
@@ -6017,6 +6295,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get page meta
@@ -6052,6 +6332,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6089,6 +6371,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create page
@@ -6124,6 +6408,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6161,6 +6447,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create page preview
@@ -6196,6 +6484,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6234,6 +6524,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update page
@@ -6270,6 +6562,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6308,6 +6602,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get pages by component Id
@@ -6345,6 +6641,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get seo of application
@@ -6380,6 +6678,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6417,6 +6717,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get slideshows
@@ -6427,8 +6729,8 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
-                query["device_platform"] = devicePlatform
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                  
                  
                 
@@ -6436,7 +6738,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -6454,6 +6756,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6491,6 +6795,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get slideshow by slug
@@ -6502,8 +6808,8 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
-                query["device_platform"] = devicePlatform
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                  
                  
                 
@@ -6511,7 +6817,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(slug)",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -6529,6 +6835,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6567,6 +6875,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Delete slideshow
@@ -6604,6 +6914,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get support information
@@ -6639,6 +6951,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6676,6 +6990,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Creates Tag
@@ -6711,6 +7027,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6748,6 +7066,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Delete tags for application
@@ -6783,6 +7103,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6820,6 +7142,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Adds a Tag
@@ -6855,6 +7179,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -6892,6 +7218,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Edits a Tag by Id
@@ -6928,6 +7256,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
         }
         
         
@@ -7003,6 +7333,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create campaign
@@ -7038,6 +7370,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7076,6 +7410,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update campaign by id
@@ -7112,6 +7448,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7150,6 +7488,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get audiences
@@ -7185,6 +7525,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7222,6 +7564,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get bigquery headers
@@ -7257,6 +7601,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7295,6 +7641,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update audience by id
@@ -7332,6 +7680,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get n sample records from csv
@@ -7367,6 +7717,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7404,6 +7756,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create email provider
@@ -7439,6 +7793,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7477,6 +7833,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update email provider by id
@@ -7514,6 +7872,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get email templates
@@ -7549,6 +7909,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7586,6 +7948,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get system email templates
@@ -7621,6 +7985,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7659,6 +8025,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update email template by id
@@ -7695,6 +8063,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7733,6 +8103,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get event subscriptions
@@ -7768,6 +8140,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7805,6 +8179,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Trigger campaign job
@@ -7840,6 +8216,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7877,6 +8255,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get communication logs
@@ -7912,6 +8292,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -7949,6 +8331,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create sms provider
@@ -7984,6 +8368,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -8022,6 +8408,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update sms provider by id
@@ -8059,6 +8447,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get sms templates
@@ -8095,6 +8485,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Create sms template
@@ -8130,6 +8522,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -8168,6 +8562,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update sms template by id
@@ -8204,6 +8600,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -8242,6 +8640,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get system sms templates
@@ -8277,6 +8677,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
         }
         
         
@@ -8329,6 +8731,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Save Config Secret For Brand Payment Gateway
@@ -8364,6 +8768,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -8401,6 +8807,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get All Valid Payment Options
@@ -8412,9 +8820,9 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
-                query["refresh"] = refresh
-                query["request_type"] = requestType
+                var xQuery: [String: Any] = [:] 
+                xQuery["refresh"] = refresh
+                xQuery["request_type"] = requestType
                  
                  
                 
@@ -8422,7 +8830,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -8440,6 +8848,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
@@ -8506,6 +8916,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Track Order by order id, for application based on application Id
@@ -8543,6 +8955,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get all failed orders application wise
@@ -8578,6 +8992,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -8615,6 +9031,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
@@ -8672,10 +9090,10 @@ public class PlatformClient {
                 body: BulkRequest,
                 onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
+                var xQuery: [String: Any] = [:] 
                 
                 if let value = sync {
-                    query["sync"] = value
+                    xQuery["sync"] = value
                 }
                  
                  
@@ -8684,7 +9102,7 @@ public class PlatformClient {
                     config: config,
                     method: "post",
                     url: "/service/application/assets/v1.0/uploads/company/\(companyId)/application/\(applicationId)/copy/",
-                    query: query,
+                    query: xQuery,
                     body: body.dictionary,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -8702,6 +9120,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
@@ -8741,6 +9161,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
         }
         
@@ -8794,6 +9216,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get short links
@@ -8808,26 +9232,26 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: ShortLinkList?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
+                var xQuery: [String: Any] = [:] 
                 
                 if let value = pageNo {
-                    query["page_no"] = value
+                    xQuery["page_no"] = value
                 }
                 
                 if let value = pageSize {
-                    query["page_size"] = value
+                    xQuery["page_size"] = value
                 }
                 
                 if let value = createdBy {
-                    query["created_by"] = value
+                    xQuery["created_by"] = value
                 }
                 
                 if let value = active {
-                    query["active"] = value
+                    xQuery["active"] = value
                 }
                 
                 if let value = q {
-                    query["q"] = value
+                    xQuery["q"] = value
                 }
                  
                  
@@ -8836,7 +9260,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -8854,6 +9278,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -8892,6 +9318,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update short link by id
@@ -8928,6 +9356,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
         }
         
         
@@ -9003,6 +9433,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Update build config for next build
@@ -9039,6 +9471,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9077,6 +9511,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get features of application
@@ -9112,6 +9548,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9149,6 +9587,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get basic application details
@@ -9184,6 +9624,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9221,6 +9663,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get application information
@@ -9256,6 +9700,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9293,6 +9739,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get social tokens
@@ -9328,6 +9776,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9365,6 +9815,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Application inventory enabled companies
@@ -9400,6 +9852,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9437,6 +9891,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get application configuration
@@ -9472,6 +9928,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9509,6 +9967,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Partially update application configuration
@@ -9544,6 +10004,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9581,6 +10043,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Add initial application supported currency
@@ -9616,6 +10080,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9653,6 +10119,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Add/Update ordering store config
@@ -9688,6 +10156,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9725,6 +10195,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Add new domain to application
@@ -9760,6 +10232,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9798,6 +10272,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Change domain type
@@ -9833,6 +10309,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -9872,6 +10350,8 @@ public class PlatformClient {
             
             
             
+            
+            
             /**
             *
             * Summary: Get application data from id
@@ -9907,6 +10387,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
@@ -9973,6 +10455,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get statistics group components
@@ -10009,6 +10493,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -10047,6 +10533,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get component statistics pdf
@@ -10083,6 +10571,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -10121,6 +10611,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get abandon carts list
@@ -10134,16 +10626,16 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: AbandonCartsList?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
-                query["from"] = from
-                query["to"] = to
+                var xQuery: [String: Any] = [:] 
+                xQuery["from"] = from
+                xQuery["to"] = to
                 
                 if let value = pageNo {
-                    query["page_no"] = value
+                    xQuery["page_no"] = value
                 }
                 
                 if let value = pageSize {
-                    query["page_size"] = value
+                    xQuery["page_size"] = value
                 }
                  
                  
@@ -10152,7 +10644,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/abandon-cart",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -10171,6 +10663,8 @@ public class PlatformClient {
                 });
             }
             
+            
+            
             /**
             *
             * Summary: Get abandon carts csv
@@ -10182,9 +10676,9 @@ public class PlatformClient {
                 
                 onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
             ) {
-                var query: [String: Any] = [:] 
-                query["from"] = from
-                query["to"] = to
+                var xQuery: [String: Any] = [:] 
+                xQuery["from"] = from
+                xQuery["to"] = to
                  
                  
                 
@@ -10192,7 +10686,7 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/abandon-cart.csv",
-                    query: query,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -10210,6 +10704,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             /**
             *
@@ -10247,6 +10743,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
