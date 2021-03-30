@@ -399,14 +399,19 @@ extension URLRequest {
         }
         
         if let cookies = HTTPCookieStorage.shared.cookies(for: url) {
-            command.append("-H 'Cookie: ")
+            var cookiesString = [String]()
             for (index, cookie) in cookies.enumerated() {
+                if index == 0 {
+                    cookiesString.append("-H 'Cookie: ")
+                }
                 if index == cookies.count - 1 {
-                    command.append("\(cookie.name )=\(cookie.value)'")
+                    cookiesString.append("\(cookie.name )=\(cookie.value)'")
                 } else {
-                    command.append("\(cookie.name )=\(cookie.value)';")
+                    cookiesString.append("\(cookie.name )=\(cookie.value); ")
                 }
             }
+            let strCookie = cookiesString.joined()
+            command.append(strCookie)
         }
         
         if let data = httpBody, let body = String(data: data, encoding: .utf8) {

@@ -14,6 +14,7 @@
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Configuration](#Configuration) - Application configuration apis 
+* [Marketplaces](#Marketplaces) - Marketplaces 
 * [Analytics](#Analytics) - Perceptor analytics 
 
 ----
@@ -222,18 +223,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createLocation](#createlocation)
     * [getLocations](#getlocations)
-    * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     
 
 * [Assets](#Assets)
@@ -309,6 +310,29 @@
     * [getOtherSellerApplications](#getothersellerapplications)
     * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
     * [optOutFromApplication](#optoutfromapplication)
+    
+
+* [Marketplaces](#Marketplaces)
+  * Methods
+    * [getAvailableChannels](#getavailablechannels)
+    * [getChannels](#getchannels)
+    * [getChannel](#getchannel)
+    * [registerMyntraChannel](#registermyntrachannel)
+    * [updateMyntraChannelCredentials](#updatemyntrachannelcredentials)
+    * [registerAmazonChannel](#registeramazonchannel)
+    * [updateAmazonChannelCredentials](#updateamazonchannelcredentials)
+    * [registerFlipkartChannel](#registerflipkartchannel)
+    * [updateFlipkartChannelCredentials](#updateflipkartchannelcredentials)
+    * [registerTatacliqChannel](#registertatacliqchannel)
+    * [updateTatacliqChannelCredentials](#updatetatacliqchannelcredentials)
+    * [registerAjioChannel](#registerajiochannel)
+    * [updateAjioChannelCredentials](#updateajiochannelcredentials)
+    * [updateChannelInventoryConfig](#updatechannelinventoryconfig)
+    * [getChannelLocationConfig](#getchannellocationconfig)
+    * [updateChannelLocationConfig](#updatechannellocationconfig)
+    * [getChannelStatus](#getchannelstatus)
+    * [updateChannelStatus](#updatechannelstatus)
+    * [triggerChannelInventoryUpdates](#triggerchannelinventoryupdates)
     
 
 * [Analytics](#Analytics)
@@ -3519,7 +3543,7 @@ Default
 Close the video room and force all participants to leave.
 
 ```swift
-lead.closeVideoRoom(companyId: companyId, applicationId: applicationId) { (response, error) in
+lead.closeVideoRoom(companyId: companyId, applicationId: applicationId, uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3528,6 +3552,7 @@ lead.closeVideoRoom(companyId: companyId, applicationId: applicationId) { (respo
 | --------- | ----  | --- |
 | companyId | string | Company ID of the application | 
 | applicationId | string | Application ID for video room | 
+| uniqueName | string | Unique name of Video Room | 
 
 Close the video room and force all participants to leave.
 
@@ -14261,11 +14286,11 @@ Schema: `ApefaceApiError`
 ## CompanyProfile
 
 
-#### cbsOnboardGet
-Get company profile
+#### updateCompany
+Edit company profile
 
 ```swift
-companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
+companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -14274,16 +14299,16 @@ companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 
-This API allows to view the company profile of the seller account.
+This API allows to edit the company profile of the seller account.
 
 *Success Response:*
 
 
 
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+Returns a success message
 
 
-Schema: `GetCompanyProfileSerializerResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -14308,11 +14333,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCompany
-Edit company profile
+#### cbsOnboardGet
+Get company profile
 
 ```swift
-companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
+companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
     // Use response
 }
 ```
@@ -14321,16 +14346,16 @@ companyprofile.updateCompany(companyId: companyId, body: body) { (response, erro
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 
-This API allows to edit the company profile of the seller account.
+This API allows to view the company profile of the seller account.
 
 *Success Response:*
 
 
 
-Returns a success message
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
 
 
-Schema: `SuccessResponse`
+Schema: `GetCompanyProfileSerializerResponse`
 
 
 
@@ -14402,54 +14427,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```swift
-companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -14474,6 +14451,54 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrand
+Get a single brand.
+
+```swift
+companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -14738,54 +14763,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getLocationDetail
-Get details of a specific location.
-
-```swift
-companyprofile.getLocationDetail(companyId: companyId, locationId: locationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
-
-This API helps to get data associated to a specific location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateLocation
 Edit a location asscoiated to a company.
 
@@ -14810,6 +14787,54 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocationDetail
+Get details of a specific location.
+
+```swift
+companyprofile.getLocationDetail(companyId: companyId, locationId: locationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 
@@ -16484,7 +16509,7 @@ Schema: `DeploymentMeta`
 Invalid/Missing params
 
 
-Schema: `BadRequest`
+Schema: `InvalidPayloadRequest`
 
 
 
@@ -16568,7 +16593,7 @@ Schema: `Domain`
 Invalid/Missing params
 
 
-Schema: `BadRequest`
+Schema: `InvalidPayloadRequest`
 
 
 *Examples:*
@@ -16648,7 +16673,7 @@ Schema: `SuccessMessageResponse`
 Invalid request or Missing params
 
 
-Schema: `BadRequest`
+Schema: `InvalidPayloadRequest`
 
 
 *Examples:*
@@ -17446,7 +17471,7 @@ Schema: `SuccessMessageResponse`
 Invalid params or Not configured inventory
 
 
-Schema: `BadRequest`
+Schema: `InvalidPayloadRequest`
 
 
 *Examples:*
@@ -17499,6 +17524,691 @@ Not found
 
 
 Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Marketplaces
+
+
+#### getAvailableChannels
+Get available marketplace channels
+
+```swift
+marketplaces.getAvailableChannels(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Get available marketplace channels
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AllChannels`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getChannels
+Get all registered marketplace channels for a seller
+
+```swift
+marketplaces.getChannels(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Get all registered marketplace channels for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `RegisteredChannels`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getChannel
+Get registered marketplace channel for a seller
+
+```swift
+marketplaces.getChannel(companyId: companyId, channel: channel) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| channel | string | Name of marketplace channel | 
+
+Get registered marketplace channel for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerMyntraChannel
+Create Myntra marketplace channel for a seller
+
+```swift
+marketplaces.registerMyntraChannel(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Create Myntra marketplace channel for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateMyntraChannelCredentials
+Update Myntra marketplace channel credentials for a seller
+
+```swift
+marketplaces.updateMyntraChannelCredentials(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Update Myntra marketplace channel credentials for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerAmazonChannel
+Create Amazon marketplace channel for a seller
+
+```swift
+marketplaces.registerAmazonChannel(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Create Amazon marketplace channel for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAmazonChannelCredentials
+Update Amazon marketplace channel credentials for a seller
+
+```swift
+marketplaces.updateAmazonChannelCredentials(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Update Amazon marketplace channel credentials for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerFlipkartChannel
+Create Flipkart / Flipkart Assured marketplace channel for a seller
+
+```swift
+marketplaces.registerFlipkartChannel(companyId: companyId, flipkartChannel: flipkartChannel, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| flipkartChannel | string | Name of marketplace channel | 
+
+Create Flipkart / Flipkart Assured marketplace channel for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateFlipkartChannelCredentials
+Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
+
+```swift
+marketplaces.updateFlipkartChannelCredentials(companyId: companyId, flipkartChannel: flipkartChannel, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| flipkartChannel | string | Name of marketplace channel | 
+
+Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerTatacliqChannel
+Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
+
+```swift
+marketplaces.registerTatacliqChannel(companyId: companyId, tatacliqChannel: tatacliqChannel, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| tatacliqChannel | string | Name of marketplace channel | 
+
+Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTatacliqChannelCredentials
+Update Tatacliq / Tatacliq Luxury Assured marketplace channel credentials for a seller
+
+```swift
+marketplaces.updateTatacliqChannelCredentials(companyId: companyId, tatacliqChannel: tatacliqChannel, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| tatacliqChannel | string | Name of marketplace channel | 
+
+Update Tatacliq / Tatacliq Luxury marketplace channel credentials for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerAjioChannel
+Create Ajio marketplace channel for a seller
+
+```swift
+marketplaces.registerAjioChannel(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Create Ajio marketplace channel for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAjioChannelCredentials
+Update Ajio marketplace channel credentials for a seller
+
+```swift
+marketplaces.updateAjioChannelCredentials(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+
+Update Ajio marketplace channel credentials for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateChannelInventoryConfig
+Update inventory sync configuration of marketplace channel for a seller
+
+```swift
+marketplaces.updateChannelInventoryConfig(companyId: companyId, channel: channel, validateCred: validateCred, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| channel | string | Name of marketplace channel | 
+| validateCred | string | Validate marketplace cred while saving inventory config | 
+
+Update inventory sync configuration of marketplace channel for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MkpResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getChannelLocationConfig
+Get marketplace channel location config for a seller
+
+```swift
+marketplaces.getChannelLocationConfig(companyId: companyId, channel: channel) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| channel | string | Name of marketplace channel | 
+
+Get marketplace channel location config for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoreMapping`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateChannelLocationConfig
+update marketplace channel location config for a seller
+
+```swift
+marketplaces.updateChannelLocationConfig(companyId: companyId, channel: channel, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| channel | string | Name of marketplace channel | 
+
+update marketplace channel location config for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoreMapping`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getChannelStatus
+Get marketplace channel active status for a seller
+
+```swift
+marketplaces.getChannelStatus(companyId: companyId, channel: channel) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| channel | string | Name of marketplace channel | 
+
+Get marketplace channel active status for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatusPayload`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateChannelStatus
+Update marketplace channel active status for a seller
+
+```swift
+marketplaces.updateChannelStatus(companyId: companyId, channel: channel, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| channel | string | Name of marketplace channel | 
+
+Update marketplace channel active status for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatusResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### triggerChannelInventoryUpdates
+Trigger marketplace channel inventory updates for a seller
+
+```swift
+marketplaces.triggerChannelInventoryUpdates(companyId: companyId, channel: channel, updateType: updateType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| channel | string | Name of marketplace channel | 
+| updateType | string | Inventory update type | 
+
+Trigger marketplace channel inventory updates for a seller
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SyncResp`
 
 
 

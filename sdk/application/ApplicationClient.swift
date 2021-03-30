@@ -1571,10 +1571,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        * Summary: UnFollow a Product
+        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: Int,
             
@@ -1586,7 +1586,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1610,10 +1610,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: Int,
             
@@ -1625,7 +1625,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -3017,7 +3017,7 @@ public class ApplicationClient {
         * Summary: Create history for specific Ticket
         * Description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
         **/
-        public func createHistoryForTicket(
+        public func createHistory(
             ticketId: String,
             body: TicketHistoryPayload,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
@@ -6185,7 +6185,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/application/current/ordering-store/select",
+                url: "/service/application/configuration/v1.0/ordering-store/select",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -6222,7 +6222,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
-                url: "/application/current/ordering-store/select",
+                url: "/service/application/configuration/v1.0/ordering-store/select",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
