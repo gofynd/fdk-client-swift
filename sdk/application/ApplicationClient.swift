@@ -5612,63 +5612,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-        * Description: Uploads an arbitrarily sized buffer or blob.
-
-It has three Major Steps:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
-It returns the storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
-        **/
-        public func completeUpload(
-            namespace: String,
-            companyId: Int,
-            body: StartResponse,
-            onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete/",
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CompleteResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
         * Description: Uploads an arbitrarily sized buffer or blob.
 
@@ -5692,7 +5635,6 @@ This operation will return the url for the uploaded file.
         **/
         public func startUpload(
             namespace: String,
-            companyId: Int,
             body: StartRequest,
             onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5703,7 +5645,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start/",
+                url: "/service/application/assets/v1.0/namespaces/\(namespace)/upload/start/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -5716,6 +5658,62 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(StartResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+        * Description: Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
+        **/
+        public func completeUpload(
+            namespace: String,
+            body: StartResponse,
+            onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/assets/v1.0/namespaces/\(namespace)/upload/complete/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CompleteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
