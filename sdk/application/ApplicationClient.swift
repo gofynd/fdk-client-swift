@@ -8,9 +8,13 @@ public class ApplicationClient {
 
     public let fileStorage: FileStorage
 
+    public let order: Order
+
     public let feedback: Feedback
 
     public let posCart: PosCart
+
+    public let logistic: Logistic
 
     public init(config: ApplicationConfig) {
         
@@ -20,9 +24,13 @@ public class ApplicationClient {
         
         fileStorage = FileStorage(config: config)
         
+        order = Order(config: config)
+        
         feedback = Feedback(config: config)
         
         posCart = PosCart(config: config)
+        
+        logistic = Logistic(config: config)
         
     }
 
@@ -1189,15 +1197,15 @@ public class ApplicationClient {
         * Description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
         **/
         public func getCollections(
-            pageId: String?,
+            pageNo: String?,
             pageSize: Int?,
             
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
-            if let value = pageId {
-                xQuery["page_id"] = value
+            if let value = pageNo {
+                xQuery["page_no"] = value
             }
             
             if let value = pageSize {
@@ -1253,19 +1261,18 @@ public class ApplicationClient {
             
             ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getCollections(
                         
-                        pageId: paginator.pageId
+                        pageNo: paginator.pageNo
                         ,
                         pageSize: paginator.pageSize
                         
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
-                        paginator.pageId = response.page.nextId
-                        
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
                     }
                     paginator.onNext?(response, error)
                 }
@@ -3026,6 +3033,303 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(CompleteResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Order {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Get Orders for application based on application Id
+        * Description: Get Orders
+        **/
+        public func getOrders(
+            pageNo: String?,
+            pageSize: String?,
+            fromDate: String?,
+            toDate: String?,
+            
+            onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+            
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/orders",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OrderList.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Order by order id for application based on application Id
+        * Description: Get Order By Fynd Order Id
+        **/
+        public func getOrderById(
+            orderId: String,
+            
+            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/orders/\(orderId)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OrderById.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Shipment by shipment id and order id for application based on application Id
+        * Description: Get Shipment
+        **/
+        public func getShipmentById(
+            shipmentId: String,
+            
+            onResponse: @escaping (_ response: ShipmentById?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ShipmentById.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Shipment reasons by shipment id and order id for application based on application Id
+        * Description: Get Shipment Reasons
+        **/
+        public func getShipmentReasons(
+            shipmentId: String,
+            
+            onResponse: @escaping (_ response: ShipmentReasons?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/reasons",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ShipmentReasons.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update Shipment status by shipment id and order id for application based on application Id
+        * Description: Update Shipment Status
+        **/
+        public func updateShipmentStatus(
+            shipmentId: String,
+            body: ShipmentStatusUpdateBody,
+            onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/status",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Track Shipment by shipment id and order id for application based on application Id
+        * Description: Shipment Track
+        **/
+        public func trackShipment(
+            shipmentId: String,
+            
+            onResponse: @escaping (_ response: ShipmentTrack?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/track",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ShipmentTrack.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get POS Order by order id for application based on application Id
+        * Description: Get Order By Fynd Order Id
+        **/
+        public func getPosOrderById(
+            orderId: String,
+            
+            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/pos-order/\(orderId)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OrderById.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -5919,6 +6223,93 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SharedCartResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Logistic {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Get Tat Product
+        * Description: Get Tat Product
+        **/
+        public func getTatProduct(
+            body: GetTatProductReqBody,
+            onResponse: @escaping (_ response: GetTatProductResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/logistics/v1.0",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetTatProductResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get City from Pincode
+        * Description: Get City from Pincode
+        **/
+        public func getPincodeCity(
+            pincode: String,
+            
+            onResponse: @escaping (_ response: GetPincodeCityResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/logistics/v1.0/pincode/\(pincode)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetPincodeCityResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)

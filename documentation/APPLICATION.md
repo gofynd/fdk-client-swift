@@ -4,8 +4,10 @@
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
 * [FileStorage](#FileStorage) - File Storage 
+* [Order](#Order) - Handles Platform websites OMS 
 * [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
+* [Logistic](#Logistic) - Handles Platform websites OMS 
 
 ----
 ----
@@ -78,6 +80,17 @@
     * [completeUpload](#completeupload)
     
 
+* [Order](#Order)
+  * Methods
+    * [getOrders](#getorders)
+    * [getOrderById](#getorderbyid)
+    * [getShipmentById](#getshipmentbyid)
+    * [getShipmentReasons](#getshipmentreasons)
+    * [updateShipmentStatus](#updateshipmentstatus)
+    * [trackShipment](#trackshipment)
+    * [getPosOrderById](#getposorderbyid)
+    
+
 * [Feedback](#Feedback)
   * Methods
     * [createAbuseReport](#createabusereport)
@@ -136,6 +149,12 @@
     * [getCartShareLink](#getcartsharelink)
     * [getCartSharedItems](#getcartshareditems)
     * [updateCartWithSharedItems](#updatecartwithshareditems)
+    
+
+* [Logistic](#Logistic)
+  * Methods
+    * [getTatProduct](#gettatproduct)
+    * [getPincodeCity](#getpincodecity)
     
 
 
@@ -1069,14 +1088,14 @@ Schema: `ErrorResponse`
 List all the collections
 
 ```swift
-catalog.getCollections(pageId: pageId, pageSize: pageSize) { (response, error) in
+catalog.getCollections(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageNo | string | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
@@ -4930,6 +4949,429 @@ Failed
 
 
 Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Order
+
+
+#### getOrders
+Get Orders for application based on application Id
+
+```swift
+order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderList`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderById
+Get Order by order id for application based on application Id
+
+```swift
+order.getOrderById(orderId: orderId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| orderId | string | Order Id | 
+
+Get Order By Fynd Order Id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderById`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentById
+Get Shipment by shipment id and order id for application based on application Id
+
+```swift
+order.getShipmentById(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Get Shipment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentById`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentReasons
+Get Shipment reasons by shipment id and order id for application based on application Id
+
+```swift
+order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Get Shipment Reasons
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentReasons`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipmentStatus
+Update Shipment status by shipment id and order id for application based on application Id
+
+```swift
+order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Update Shipment Status
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentStatusUpdate`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### trackShipment
+Track Shipment by shipment id and order id for application based on application Id
+
+```swift
+order.trackShipment(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Shipment Track
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentTrack`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPosOrderById
+Get POS Order by order id for application based on application Id
+
+```swift
+order.getPosOrderById(orderId: orderId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| orderId | string | Order Id | 
+
+Get Order By Fynd Order Id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderById`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
 
 
 
@@ -10256,6 +10698,130 @@ Cart Merged/Replaced
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Logistic
+
+
+#### getTatProduct
+Get Tat Product
+
+```swift
+logistic.getTatProduct(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get Tat Product
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetTatProductResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPincodeCity
+Get City from Pincode
+
+```swift
+logistic.getPincodeCity(pincode: pincode) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pincode | string | Pincode | 
+
+Get City from Pincode
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetPincodeCityResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
 
 
 
