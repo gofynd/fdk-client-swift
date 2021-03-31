@@ -223,8 +223,8 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
+    * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
     * [editBrand](#editbrand)
     * [getBrand](#getbrand)
@@ -14286,11 +14286,11 @@ Schema: `ApefaceApiError`
 ## CompanyProfile
 
 
-#### updateCompany
-Edit company profile
+#### cbsOnboardGet
+Get company profile
 
 ```swift
-companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
+companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
     // Use response
 }
 ```
@@ -14299,16 +14299,16 @@ companyprofile.updateCompany(companyId: companyId, body: body) { (response, erro
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 
-This API allows to edit the company profile of the seller account.
+This API allows to view the company profile of the seller account.
 
 *Success Response:*
 
 
 
-Returns a success message
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
 
 
-Schema: `SuccessResponse`
+Schema: `GetCompanyProfileSerializerResponse`
 
 
 
@@ -14333,11 +14333,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### cbsOnboardGet
-Get company profile
+#### updateCompany
+Edit company profile
 
 ```swift
-companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
+companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -14346,16 +14346,16 @@ companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 
-This API allows to view the company profile of the seller account.
+This API allows to edit the company profile of the seller account.
 
 *Success Response:*
 
 
 
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+Returns a success message
 
 
-Schema: `GetCompanyProfileSerializerResponse`
+Schema: `SuccessResponse`
 
 
 

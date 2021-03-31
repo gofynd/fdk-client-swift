@@ -1571,10 +1571,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        * Summary: UnFollow a Product
+        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: Int,
             
@@ -1586,7 +1586,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1610,10 +1610,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: Int,
             
@@ -1625,7 +1625,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -6807,7 +6807,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/payment/v1.0/refund/beneficiary/user",
+                url: "/service/application/payment/v1.0/refund/user/beneficiary",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -6889,7 +6889,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/payment/v1.0/refund/beneficiaries/order",
+                url: "/service/application/payment/v1.0/refund/order/beneficiaries",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -7309,6 +7309,44 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ShipmentTrack.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get POS Order by order id for application based on application Id
+        * Description: Get Order By Fynd Order Id
+        **/
+        public func getPosOrderById(
+            orderId: String,
+            
+            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/pos-order/\(orderId)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OrderById.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
