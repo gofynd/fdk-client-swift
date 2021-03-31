@@ -40342,6 +40342,50 @@
         }
         
         /*
+            Model: Promise
+            Used By: Order
+        */
+        struct Promise: Codable {
+            
+            public var timestamp: [String: Any]?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case timestamp = "timestamp"
+                
+            }
+
+            public init(timestamp: [String: Any]?) {
+                
+                self.timestamp = timestamp
+                
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    timestamp = try container.decode([String: Any].self, forKey: .timestamp)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+                
+            }
+            
+        }
+        
+        /*
             Model: ShipmentStatus
             Used By: Order
         */
@@ -40545,6 +40589,8 @@
             
             public var orderType: String?
             
+            public var promise: Promise?
+            
             public var fulfillingStore: FulfillingStore?
             
             public var totalItems: Int?
@@ -40608,6 +40654,8 @@
                 
                 case orderType = "order_type"
                 
+                case promise = "promise"
+                
                 case fulfillingStore = "fulfilling_store"
                 
                 case totalItems = "total_items"
@@ -40628,7 +40676,7 @@
                 
             }
 
-            public init(bags: [Bags]?, beneficiaryDetails: Bool?, breakupValues: [BreakupValues]?, canCancel: Bool?, canReturn: Bool?, comment: String?, deliveryAddress: DeliveryAddress?, enableCanReturn: Bool?, enableTracking: Bool?, fulfillingStore: FulfillingStore?, invoice: Invoice?, items: [ProductItems]?, meta: ShipmentMeta?, needHelpUrl: String?, orderId: String?, orderType: String?, paymentLogo: String?, paymentModeSource: String?, paymentStatus: String?, prices: Prices?, shipmentCreatedAt: String?, shipmentId: String?, shipmentImages: [String]?, shipmentStatus: ShipmentStatus?, totalBags: Int?, totalItems: Int?, trackingDetails: [TrackingDetails]?, trackUrl: String?, trakingNo: String?, userInfo: ShipmentUserInfo?) {
+            public init(bags: [Bags]?, beneficiaryDetails: Bool?, breakupValues: [BreakupValues]?, canCancel: Bool?, canReturn: Bool?, comment: String?, deliveryAddress: DeliveryAddress?, enableCanReturn: Bool?, enableTracking: Bool?, fulfillingStore: FulfillingStore?, invoice: Invoice?, items: [ProductItems]?, meta: ShipmentMeta?, needHelpUrl: String?, orderId: String?, orderType: String?, paymentLogo: String?, paymentModeSource: String?, paymentStatus: String?, prices: Prices?, promise: Promise?, shipmentCreatedAt: String?, shipmentId: String?, shipmentImages: [String]?, shipmentStatus: ShipmentStatus?, totalBags: Int?, totalItems: Int?, trackingDetails: [TrackingDetails]?, trackUrl: String?, trakingNo: String?, userInfo: ShipmentUserInfo?) {
                 
                 self.orderId = orderId
                 
@@ -40671,6 +40719,8 @@
                 self.comment = comment
                 
                 self.orderType = orderType
+                
+                self.promise = promise
                 
                 self.fulfillingStore = fulfillingStore
                 
@@ -40886,6 +40936,15 @@
                 
                 
                 do {
+                    promise = try container.decode(Promise.self, forKey: .promise)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                }
+                
+                
+                
+                do {
                     fulfillingStore = try container.decode(FulfillingStore.self, forKey: .fulfillingStore)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41011,6 +41070,8 @@
                 try? container.encodeIfPresent(comment, forKey: .comment)
                 
                 try? container.encodeIfPresent(orderType, forKey: .orderType)
+                
+                try? container.encodeIfPresent(promise, forKey: .promise)
                 
                 try? container.encodeIfPresent(fulfillingStore, forKey: .fulfillingStore)
                 

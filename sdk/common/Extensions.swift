@@ -106,14 +106,13 @@ public extension Dictionary {
                 var valueString: String? = nil
                 if let values = self[key] as? [Any] {
                     valueString = values.map{ "\($0)".urlEncoded }.joined(separator: "||")
-                } else {
-                    valueString = String(describing: self[key]).urlEncoded
+                } else if let valueOfKey = self[key] {
+                    valueString = "\(valueOfKey)".urlEncoded
                 }
                 if let valueString = valueString {
                     queryStrings.append("\(keyString):\(valueString)")
                 }
             }
-            
             return queryStrings.joined(separator: ":::")
         }
     }
