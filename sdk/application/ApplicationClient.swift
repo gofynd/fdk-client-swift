@@ -125,16 +125,12 @@ public class ApplicationClient {
         public func getProductPriceBySlug(
             slug: String,
             size: String,
-            pincode: Int?,
+            pincode: String,
             storeId: String?,
             
             onResponse: @escaping (_ response: ProductSizePriceResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
-            
-            if let value = pincode {
-                xQuery["pincode"] = value
-            }
             
             if let value = storeId {
                 xQuery["store_id"] = value
@@ -145,7 +141,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/price/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/pincode/\(pincode)/price/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -174,17 +170,13 @@ public class ApplicationClient {
         public func getProductSellersBySlug(
             slug: String,
             size: String,
-            pincode: Int?,
+            pincode: String,
             pageNo: Int?,
             pageSize: Int?,
             
             onResponse: @escaping (_ response: ProductSizeSellersResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
-            
-            if let value = pincode {
-                xQuery["pincode"] = value
-            }
             
             if let value = pageNo {
                 xQuery["page_no"] = value
@@ -199,7 +191,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/sellers/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/pincode/\(pincode)/sellers/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -253,7 +245,7 @@ public class ApplicationClient {
         public func getProductSellersBySlugPaginator(
             slug: String,
             size: String,
-            pincode: Int?,
+            pincode: String,
             pageSize: Int?
             
             ) -> Paginator<ProductSizeSellersResponse> {
@@ -1527,10 +1519,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        * Summary: UnFollow a Product
+        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: Int,
             
@@ -1542,7 +1534,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1566,10 +1558,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: Int,
             
@@ -1581,7 +1573,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],

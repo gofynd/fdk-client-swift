@@ -38,8 +38,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -255,7 +255,7 @@ catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId:
 | --------- | ----  | --- |
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
 | size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/** | 
-| pincode | integer | The pincode of the product for which the price needs to be retrieved. | 
+| pincode | string | The pincode of the product for which the price needs to be retrieved. | 
 | storeId | string | The store of the product whose size level price need to be retrieved | 
 
 Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
@@ -305,7 +305,7 @@ catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo
 | --------- | ----  | --- |
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
 | size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes** | 
-| pincode | integer | The pincode of the product for which the price needs to be retrieved. | 
+| pincode | string | The pincode of the product for which the price needs to be retrieved. | 
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
@@ -1259,11 +1259,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1271,9 +1271,9 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to follow | 
+| collectionId | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1307,11 +1307,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1319,9 +1319,9 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to unfollow | 
+| collectionId | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 

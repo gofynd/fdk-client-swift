@@ -36,6 +36,17 @@ public struct FDKError: Codable {
         self.meta = meta
     }
 
+    public init(message: String) {
+        self.message = message
+        self.status = nil
+        self.code = nil
+        self.exception = nil
+        self.info = nil
+        self.requestID = nil
+        self.stackTrace = nil
+        self.meta = nil
+    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
