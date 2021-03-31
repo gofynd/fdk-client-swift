@@ -1700,45 +1700,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Edit a brand.
-        * Description: This API allows to edit meta of a brand.
-        **/
-        public func editBrand(
-            brandId: String,
-            body: CreateUpdateBrandRequestSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
         * Summary: Get a single brand.
         * Description: This API helps to get data associated to a particular brand.
         **/
@@ -1767,6 +1728,45 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a brand.
+        * Description: This API allows to edit meta of a brand.
+        **/
+        public func editBrand(
+            brandId: String,
+            body: CreateUpdateBrandRequestSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -1993,45 +1993,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Edit a location asscoiated to a company.
-        * Description: This API allows to edit a location associated to a company.
-        **/
-        public func updateLocation(
-            locationId: String,
-            body: LocationSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
         * Summary: Get details of a specific location.
         * Description: This API helps to get data associated to a specific location.
         **/
@@ -2060,6 +2021,45 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(GetLocationSerializer.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
+        **/
+        public func updateLocation(
+            locationId: String,
+            body: LocationSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
