@@ -46,7 +46,7 @@ class RequestSigner {
             return false
         })
         let signingData: [String] = [type,
-                                     components.path,
+                                     components.percentEncodedPath,
                                      components.query?.trim() ?? "",
                                      releventSignHeaders.reduce("", {"\($0.isEmpty ? "" : ($0+"\n"))\($1.key):\($1.value)"}) + "\n",
                                      releventSignHeaders.reduce("", {"\($0.isEmpty ? "" : ($0+";"))\($1.key)"}),
