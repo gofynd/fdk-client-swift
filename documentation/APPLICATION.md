@@ -3,6 +3,7 @@
 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
+* [User](#User) - Authentication Service 
 * [FileStorage](#FileStorage) - File Storage 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Feedback](#Feedback) - User Reviews and Rating System 
@@ -40,8 +41,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [unfollowById](#unfollowbyid)
     * [followById](#followbyid)
+    * [unfollowById](#unfollowbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -72,6 +73,42 @@
     * [getCartShareLink](#getcartsharelink)
     * [getCartSharedItems](#getcartshareditems)
     * [updateCartWithSharedItems](#updatecartwithshareditems)
+    
+
+* [User](#User)
+  * Methods
+    * [loginWithFacebook](#loginwithfacebook)
+    * [loginWithGoogle](#loginwithgoogle)
+    * [loginWithGoogleAndroid](#loginwithgoogleandroid)
+    * [loginWithGoogleIOS](#loginwithgoogleios)
+    * [loginWithOTP](#loginwithotp)
+    * [loginWithEmailAndPassword](#loginwithemailandpassword)
+    * [sendResetPasswordEmail](#sendresetpasswordemail)
+    * [forgotPassword](#forgotpassword)
+    * [sendResetToken](#sendresettoken)
+    * [loginWithToken](#loginwithtoken)
+    * [registerWithForm](#registerwithform)
+    * [verifyEmail](#verifyemail)
+    * [verifyMobile](#verifymobile)
+    * [hasPassword](#haspassword)
+    * [updatePassword](#updatepassword)
+    * [logout](#logout)
+    * [sendOTPOnMobile](#sendotponmobile)
+    * [verifyMobileOTP](#verifymobileotp)
+    * [sendOTPOnEmail](#sendotponemail)
+    * [verifyEmailOTP](#verifyemailotp)
+    * [getLoggedInUser](#getloggedinuser)
+    * [getListOfActiveSessions](#getlistofactivesessions)
+    * [getPlatformConfig](#getplatformconfig)
+    * [updateProfile](#updateprofile)
+    * [addMobileNumber](#addmobilenumber)
+    * [deleteMobileNumber](#deletemobilenumber)
+    * [setMobileNumberAsPrimary](#setmobilenumberasprimary)
+    * [sendVerificationLinkToMobile](#sendverificationlinktomobile)
+    * [addEmail](#addemail)
+    * [deleteEmail](#deleteemail)
+    * [setEmailAsPrimary](#setemailasprimary)
+    * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
     
 
 * [FileStorage](#FileStorage)
@@ -1095,7 +1132,7 @@ catalog.getCollections(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | string | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
@@ -1278,11 +1315,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1290,9 +1327,9 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to unfollow | 
+| collectionId | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1326,11 +1363,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1338,9 +1375,9 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to follow | 
+| collectionId | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -4812,6 +4849,2114 @@ Cart Merged/Replaced
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## User
+
+
+#### loginWithFacebook
+Login/Register with Facebook
+
+```swift
+user.loginWithFacebook(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Facebook
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogle
+Login/Register with Google
+
+```swift
+user.loginWithGoogle(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleAndroid
+Login/Register with Google for android
+
+```swift
+user.loginWithGoogleAndroid(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google for android
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleIOS
+Login/Register with Google for ios
+
+```swift
+user.loginWithGoogleIOS(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with google for ios
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithOTP
+Login/Register with OTP
+
+```swift
+user.loginWithOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to login or register with OTP
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SendOtpResponse`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/SendOtpResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithEmailAndPassword
+Login/Register with password
+
+```swift
+user.loginWithEmailAndPassword(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with email & password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendResetPasswordEmail
+Reset Password
+
+```swift
+user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to reset account password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `ResetPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### forgotPassword
+
+
+```swift
+user.forgotPassword(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendResetToken
+
+
+```swift
+user.sendResetToken(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send code incase of reset password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `ResetPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithToken
+Login/Register with token
+
+```swift
+user.loginWithToken(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Login/Register with token
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerWithForm
+Registration Form
+
+```swift
+user.registerWithForm(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Register using form
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `RegisterFormSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyEmail
+Verify email
+
+```swift
+user.verifyEmail(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to verify email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyMobile
+Verify mobile
+
+```swift
+user.verifyMobile(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify mobile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### hasPassword
+Check if user has password
+
+```swift
+user.hasPassword() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Checks if user is using password or not
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `HasPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePassword
+Update user password
+
+```swift
+user.updatePassword(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to update user password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### logout
+Logout user
+
+```swift
+user.logout() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to log out user
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LogoutSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendOTPOnMobile
+Send OTP on mobile
+
+```swift
+user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to mobile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `OtpSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyMobileOTP
+Verify OTP on mobile
+
+```swift
+user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to mobile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyOtpSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendOTPOnEmail
+Send OTP on email
+
+```swift
+user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `EmailOtpSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyEmailOTP
+Verify OTP on email
+
+```swift
+user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyOtpSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLoggedInUser
+Get logged in user
+
+```swift
+user.getLoggedInUser() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to get logged in user details
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `UserSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExample"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getListOfActiveSessions
+Get list of sessions
+
+```swift
+user.getListOfActiveSessions() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Lists all active sessions
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SessionListSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPlatformConfig
+Get platform config
+
+```swift
+user.getPlatformConfig(name: name) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| name | string | Name | 
+
+Used to get platform config
+
+*Success Response:*
+
+
+
+Platform Config
+
+
+Schema: `PlatformSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateProfile
+Edit Profile Details
+
+```swift
+user.updateProfile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to update profile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addMobileNumber
+Add mobile number to profile
+
+```swift
+user.addMobileNumber(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new mobile number to profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `VerifyMobileOTPSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteMobileNumber
+Delete mobile number from profile
+
+```swift
+user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Active mobile number | 
+| primary | boolean | Primary number | 
+| verified | boolean | Verified Number | 
+| countryCode | string | Country code of phone number | 
+| phone | string | Phone number | 
+
+Used to delete mobile number from profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### setMobileNumberAsPrimary
+Set mobile as primary
+
+```swift
+user.setMobileNumberAsPrimary(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set a mobile number as primary
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendVerificationLinkToMobile
+Send verification link to mobile
+
+```swift
+user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send verification link to a mobile number
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SendMobileVerifyLinkSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addEmail
+Add email to profile
+
+```swift
+user.addEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new email to profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `VerifyEmailOTPSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyEmailOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteEmail
+Delete email from profile
+
+```swift
+user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Whether email id is active | 
+| primary | boolean | Whether email id is primary email | 
+| verified | boolean | Whether email id is verified | 
+| email | string | Email ID to be deleted | 
+
+Used to delete email from profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### setEmailAsPrimary
+Set email as primary
+
+```swift
+user.setEmailAsPrimary(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set an email as primart
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendVerificationLinkToEmail
+Send verification link to email
+
+```swift
+user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to sent verification to an email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SendEmailVerifyLinkSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
 
 
 
