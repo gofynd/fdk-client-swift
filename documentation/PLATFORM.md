@@ -2,6 +2,7 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
@@ -36,6 +37,27 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    
+
+* [Theme](#Theme)
+  * Methods
+    * [getThemeLibrary](#getthemelibrary)
+    * [addToThemeLibrary](#addtothemelibrary)
+    * [applyTheme](#applytheme)
+    * [isUpgradable](#isupgradable)
+    * [upgradeTheme](#upgradetheme)
+    * [getPublicThemes](#getpublicthemes)
+    * [createTheme](#createtheme)
+    * [getAppliedTheme](#getappliedtheme)
+    * [getFonts](#getfonts)
+    * [getThemeById](#getthemebyid)
+    * [updateTheme](#updatetheme)
+    * [deleteTheme](#deletetheme)
+    * [getThemeForPreview](#getthemeforpreview)
+    * [publishTheme](#publishtheme)
+    * [unpublishTheme](#unpublishtheme)
+    * [archiveTheme](#archivetheme)
+    * [unarchiveTheme](#unarchivetheme)
     
 
 * [User](#User)
@@ -3409,6 +3431,1234 @@ Default
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Theme
+
+
+#### getThemeLibrary
+Gets list of themes in theme library
+
+```swift
+theme.getThemeLibrary(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| pageNo | integer | Page number. Default is 1. | 
+
+Gets list of themes in theme library
+
+*Success Response:*
+
+
+
+Themes list
+
+
+Schema: `ThemesListingResponseSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/ThemesListingResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addToThemeLibrary
+Add theme to theme library
+
+```swift
+theme.addToThemeLibrary(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add theme to theme library
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### applyTheme
+Apply theme
+
+```swift
+theme.applyTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Apply theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### isUpgradable
+Checks if theme is upgradable
+
+```swift
+theme.isUpgradable(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Checks if theme is upgradable
+
+*Success Response:*
+
+
+
+Upgradable Theme
+
+
+Schema: `UpgradableThemeSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UpgradableTheme"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upgradeTheme
+Upgrades theme
+
+```swift
+theme.upgradeTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Upgrades theme
+
+*Success Response:*
+
+
+
+Upgrades Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPublicThemes
+Gets public themes
+
+```swift
+theme.getPublicThemes(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| pageNo | integer | Page number. Default is 1. | 
+
+Gets public themes
+
+*Success Response:*
+
+
+
+Themes list
+
+
+Schema: `ThemesListingResponseSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/ThemesListingResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTheme
+Create new theme
+
+```swift
+theme.createTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create new theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppliedTheme
+Get applied theme
+
+```swift
+theme.getAppliedTheme(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get applied theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFonts
+Gets fonts
+
+```swift
+theme.getFonts(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Gets fonts
+
+*Success Response:*
+
+
+
+Fonts list
+
+
+Schema: `FontsSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/FontsResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getThemeById
+Gets theme by id
+
+```swift
+theme.getThemeById(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Gets theme by id
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTheme
+Update theme
+
+```swift
+theme.updateTheme(companyId: companyId, applicationId: applicationId, themeId: themeId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Update theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteTheme
+Delete theme
+
+```swift
+theme.deleteTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Delete theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getThemeForPreview
+Gets theme for preview
+
+```swift
+theme.getThemeForPreview(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Gets theme for preview
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### publishTheme
+Publish theme
+
+```swift
+theme.publishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Publish theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### unpublishTheme
+Unpublish theme
+
+```swift
+theme.unpublishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Unpublish theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### archiveTheme
+Archive theme
+
+```swift
+theme.archiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Archive theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### unarchiveTheme
+Unarchive theme
+
+```swift
+theme.unarchiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Unarchive theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
