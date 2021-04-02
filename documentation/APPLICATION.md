@@ -8,6 +8,7 @@
 * [User](#User) - Authentication Service 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
+* [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
@@ -146,6 +147,28 @@
   * Methods
     * [startUpload](#startupload)
     * [completeUpload](#completeupload)
+    
+
+* [Payment](#Payment)
+  * Methods
+    * [getAggregatorsConfig](#getaggregatorsconfig)
+    * [attachCardToCustomer](#attachcardtocustomer)
+    * [getActiveCardAggregator](#getactivecardaggregator)
+    * [getActiveUserCards](#getactiveusercards)
+    * [deleteUserCard](#deleteusercard)
+    * [verifyCustomerForPayment](#verifycustomerforpayment)
+    * [verifyAndChargePayment](#verifyandchargepayment)
+    * [initialisePayment](#initialisepayment)
+    * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
+    * [getPaymentModeRoutes](#getpaymentmoderoutes)
+    * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
+    * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
+    * [verifyIfscCode](#verifyifsccode)
+    * [getOrderBeneficiariesDetail](#getorderbeneficiariesdetail)
+    * [verifyOtpAndAddBeneficiaryForBank](#verifyotpandaddbeneficiaryforbank)
+    * [addBeneficiaryDetails](#addbeneficiarydetails)
+    * [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
+    * [updateDefaultBeneficiary](#updatedefaultbeneficiary)
     
 
 * [Order](#Order)
@@ -8506,6 +8529,1079 @@ Failed
 
 
 Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Payment
+
+
+#### getAggregatorsConfig
+Get payment gateway keys
+
+```swift
+payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| xApiToken | string | api token | 
+| refresh | boolean | refresh cache | 
+
+Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+
+*Success Response:*
+
+
+
+Keys of all payment gateway
+
+
+Schema: `AggregatorsConfigDetailResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### attachCardToCustomer
+Attach a saved card to customer.
+
+```swift
+payment.attachCardToCustomer(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+
+*Success Response:*
+
+
+
+List of cards objects
+
+
+Schema: `AttachCardsResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getActiveCardAggregator
+Fetch active payment gateway for card
+
+```swift
+payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| refresh | boolean |  | 
+
+Fetch active payment gateway along with customer id for cards payments.
+
+*Success Response:*
+
+
+
+Object of payment gateway and customer id
+
+
+Schema: `ActiveCardPaymentGatewayResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getActiveUserCards
+Fetch the list of saved cards of user.
+
+```swift
+payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| forceRefresh | boolean |  | 
+
+Fetch the list of saved cards of user from active payment gateway.
+
+*Success Response:*
+
+
+
+List of cards objects
+
+
+Schema: `ListCardsResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteUserCard
+Delete an user card.
+
+```swift
+payment.deleteUserCard(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Delete an added user card on payment gateway and remove from cache.
+
+*Success Response:*
+
+
+
+List of cards objects
+
+
+Schema: `DeleteCardsResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyCustomerForPayment
+Validate customer for payment.
+
+```swift
+payment.verifyCustomerForPayment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Validate customer for payment i.e Simpl paylater, Rupifi loan.
+
+*Success Response:*
+
+
+
+List of cards objects
+
+
+Schema: `ValidateCustomerResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyAndChargePayment
+Verify and charge payment
+
+```swift
+payment.verifyAndChargePayment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify and charge payment server to server for Simpl & Mswipe.
+
+*Success Response:*
+
+
+
+List of cards objects
+
+
+Schema: `ChargeCustomerResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### initialisePayment
+Payment Initialisation server to server for UPI and BharatQR.
+
+```swift
+payment.initialisePayment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+
+*Success Response:*
+
+
+
+List of cards objects
+
+
+Schema: `PaymentInitializationResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### checkAndUpdatePaymentStatus
+Continous polling to check status of payment on server.
+
+```swift
+payment.checkAndUpdatePaymentStatus(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Continous polling on interval to check status of payment untill timeout.
+
+*Success Response:*
+
+
+
+List of cards objects
+
+
+Schema: `PaymentStatusUpdateResponse`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPaymentModeRoutes
+Get All Valid Payment Options
+
+```swift
+payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, assignCardId: assignCardId, userDetails: userDetails) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| amount | integer | Payment amount | 
+| cartId | string | Cart id | 
+| pincode | string | Pincode | 
+| checkoutMode | string | Checkout mode | 
+| refresh | boolean |  | 
+| assignCardId | string | selected card id | 
+| userDetails | string | URIencoded json annonymous user | 
+
+Use this API to get Get All Valid Payment Options for making payment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PaymentModeRouteResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPosPaymentModeRoutes
+Get All Valid Payment Options for POS
+
+```swift
+payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, assignCardId: assignCardId, orderType: orderType, userDetails: userDetails) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| amount | integer | Payment amount | 
+| cartId | string | Cart id | 
+| pincode | string | Pincode | 
+| checkoutMode | string | Checkout mode | 
+| refresh | boolean |  | 
+| assignCardId | string | selected card id | 
+| orderType | string | Order type | 
+| userDetails | string | URIencoded json annonymous user | 
+
+Use this API to get Get All Valid Payment Options for making payment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PaymentModeRouteResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserBeneficiariesDetail
+List User Beneficiary
+
+```swift
+payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| orderId | string |  | 
+
+Get all active  beneficiary details added by the user for refund
+
+*Success Response:*
+
+
+
+List User Beneficiary
+
+
+Schema: `OrderBeneficiaryResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `NotFoundResourceError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyIfscCode
+Ifsc Code Verification
+
+```swift
+payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| ifscCode | string |  | 
+
+Get True/False for correct IFSC Code for adding bank details for refund
+
+*Success Response:*
+
+
+
+Bank details on correct Ifsc Code
+
+
+Schema: `IfscCodeResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `NotFoundResourceError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorCodeDescription`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderBeneficiariesDetail
+List Order Beneficiary
+
+```swift
+payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| orderId | string |  | 
+
+Get all active  beneficiary details added by the user for refund
+
+*Success Response:*
+
+
+
+List Order Beneficiary
+
+
+Schema: `OrderBeneficiaryResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `NotFoundResourceError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyOtpAndAddBeneficiaryForBank
+Save Beneficiary details on otp validation.
+
+```swift
+payment.verifyOtpAndAddBeneficiaryForBank(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Save Beneficiary details on otp validation.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AddBeneficiaryViaOtpVerificationResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `WrongOtpError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addBeneficiaryDetails
+Save bank details for cancelled/returned order
+
+```swift
+payment.addBeneficiaryDetails(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Use this API to save bank details for returned/cancelled order to refund amount in his account.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `RefundAccountResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `NotFoundResourceError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyOtpAndAddBeneficiaryForWallet
+Send Otp on Adding wallet beneficiary
+
+```swift
+payment.verifyOtpAndAddBeneficiaryForWallet(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send Otp on Adding wallet beneficiary for user mobile verification
+
+*Success Response:*
+
+
+
+WalletOtp
+
+
+Schema: `WalletOtpResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `NotFoundResourceError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateDefaultBeneficiary
+Mark Default Beneficiary For Refund
+
+```swift
+payment.updateDefaultBeneficiary(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Mark Default Beneficiary ot of all Beneficiary Details for Refund
+
+*Success Response:*
+
+
+
+Set Default Beneficiary Response.
+
+
+Schema: `SetDefaultBeneficiaryResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `SetDefaultBeneficiaryResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
 
 
 

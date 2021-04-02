@@ -16,6 +16,8 @@ public class ApplicationClient {
 
     public let fileStorage: FileStorage
 
+    public let payment: Payment
+
     public let order: Order
 
     public let feedback: Feedback
@@ -39,6 +41,8 @@ public class ApplicationClient {
         share = Share(config: config)
         
         fileStorage = FileStorage(config: config)
+        
+        payment = Payment(config: config)
         
         order = Order(config: config)
         
@@ -5090,6 +5094,787 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CompleteResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Payment {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Get payment gateway keys
+        * Description: Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+        **/
+        public func getAggregatorsConfig(
+            xApiToken: String,
+            refresh: Bool?,
+            
+            onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = [] 
+            xHeaders.append((key: "x-api-token", value: xApiToken))
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/config/aggregators/key",
+                query: xQuery,
+                extraHeaders:  xHeaders,
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AggregatorsConfigDetailResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Attach a saved card to customer.
+        * Description: Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+        **/
+        public func attachCardToCustomer(
+            body: AttachCardRequest,
+            onResponse: @escaping (_ response: AttachCardsResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/card/attach",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AttachCardsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Fetch active payment gateway for card
+        * Description: Fetch active payment gateway along with customer id for cards payments.
+        **/
+        public func getActiveCardAggregator(
+            refresh: Bool?,
+            
+            onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/card/aggregator",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ActiveCardPaymentGatewayResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Fetch the list of saved cards of user.
+        * Description: Fetch the list of saved cards of user from active payment gateway.
+        **/
+        public func getActiveUserCards(
+            forceRefresh: Bool?,
+            
+            onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = forceRefresh {
+                xQuery["force_refresh"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/cards",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ListCardsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Delete an user card.
+        * Description: Delete an added user card on payment gateway and remove from cache.
+        **/
+        public func deleteUserCard(
+            body: DeletehCardRequest,
+            onResponse: @escaping (_ response: DeleteCardsResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/card/remove",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DeleteCardsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Validate customer for payment.
+        * Description: Validate customer for payment i.e Simpl paylater, Rupifi loan.
+        **/
+        public func verifyCustomerForPayment(
+            body: ValidateCustomerRequest,
+            onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/payment/customer/validation",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ValidateCustomerResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Verify and charge payment
+        * Description: Verify and charge payment server to server for Simpl & Mswipe.
+        **/
+        public func verifyAndChargePayment(
+            body: ChargeCustomerRequest,
+            onResponse: @escaping (_ response: ChargeCustomerResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/payment/confirm/charge",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ChargeCustomerResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Payment Initialisation server to server for UPI and BharatQR.
+        * Description: Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+        **/
+        public func initialisePayment(
+            body: PaymentInitializationRequest,
+            onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/payment/request",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PaymentInitializationResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Continous polling to check status of payment on server.
+        * Description: Continous polling on interval to check status of payment untill timeout.
+        **/
+        public func checkAndUpdatePaymentStatus(
+            body: PaymentStatusUpdateRequest,
+            onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/payment/confirm/polling",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PaymentStatusUpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get All Valid Payment Options
+        * Description: Use this API to get Get All Valid Payment Options for making payment
+        **/
+        public func getPaymentModeRoutes(
+            amount: Int,
+            cartId: String,
+            pincode: String,
+            checkoutMode: String,
+            refresh: Bool?,
+            assignCardId: String?,
+            userDetails: String?,
+            
+            onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            xQuery["amount"] = amount
+            
+            xQuery["cart_id"] = cartId
+            
+            xQuery["pincode"] = pincode
+            
+            xQuery["checkout_mode"] = checkoutMode
+            
+            
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+            if let value = assignCardId {
+                xQuery["assign_card_id"] = value
+            }
+            
+            if let value = userDetails {
+                xQuery["user_details"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/payment/options",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get All Valid Payment Options for POS
+        * Description: Use this API to get Get All Valid Payment Options for making payment
+        **/
+        public func getPosPaymentModeRoutes(
+            amount: Int,
+            cartId: String,
+            pincode: String,
+            checkoutMode: String,
+            refresh: Bool?,
+            assignCardId: String?,
+            orderType: String,
+            userDetails: String?,
+            
+            onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            xQuery["amount"] = amount
+            
+            xQuery["cart_id"] = cartId
+            
+            xQuery["pincode"] = pincode
+            
+            xQuery["checkout_mode"] = checkoutMode
+            
+            
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+            if let value = assignCardId {
+                xQuery["assign_card_id"] = value
+            }
+            xQuery["order_type"] = orderType
+            
+            
+            if let value = userDetails {
+                xQuery["user_details"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/payment/options/pos",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: List User Beneficiary
+        * Description: Get all active  beneficiary details added by the user for refund
+        **/
+        public func getUserBeneficiariesDetail(
+            orderId: String,
+            
+            onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            xQuery["order_id"] = orderId
+            
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/refund/user/beneficiary",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Ifsc Code Verification
+        * Description: Get True/False for correct IFSC Code for adding bank details for refund
+        **/
+        public func verifyIfscCode(
+            ifscCode: String?,
+            
+            onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = ifscCode {
+                xQuery["ifsc_code"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/ifsc-code/verify",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(IfscCodeResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: List Order Beneficiary
+        * Description: Get all active  beneficiary details added by the user for refund
+        **/
+        public func getOrderBeneficiariesDetail(
+            orderId: String,
+            
+            onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            xQuery["order_id"] = orderId
+            
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/refund/order/beneficiaries",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Save Beneficiary details on otp validation.
+        * Description: Save Beneficiary details on otp validation.
+        **/
+        public func verifyOtpAndAddBeneficiaryForBank(
+            body: AddBeneficiaryViaOtpVerificationRequest,
+            onResponse: @escaping (_ response: AddBeneficiaryViaOtpVerificationResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/refund/verification/bank",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AddBeneficiaryViaOtpVerificationResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Save bank details for cancelled/returned order
+        * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+        **/
+        public func addBeneficiaryDetails(
+            body: AddBeneficiaryDetailsRequest,
+            onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/refund/account",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RefundAccountResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Send Otp on Adding wallet beneficiary
+        * Description: Send Otp on Adding wallet beneficiary for user mobile verification
+        **/
+        public func verifyOtpAndAddBeneficiaryForWallet(
+            body: WalletOtpRequest,
+            onResponse: @escaping (_ response: WalletOtpResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/refund/verification/wallet",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(WalletOtpResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Mark Default Beneficiary For Refund
+        * Description: Mark Default Beneficiary ot of all Beneficiary Details for Refund
+        **/
+        public func updateDefaultBeneficiary(
+            body: SetDefaultBeneficiaryRequest,
+            onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/refund/beneficiary/default",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SetDefaultBeneficiaryResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
