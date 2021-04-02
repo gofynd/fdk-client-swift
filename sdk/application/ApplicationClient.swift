@@ -12,6 +12,8 @@ public class ApplicationClient {
 
     public let user: User
 
+    public let share: Share
+
     public let fileStorage: FileStorage
 
     public let order: Order
@@ -33,6 +35,8 @@ public class ApplicationClient {
         theme = Theme(config: config)
         
         user = User(config: config)
+        
+        share = Share(config: config)
         
         fileStorage = FileStorage(config: config)
         
@@ -85,6 +89,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductDetail.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -128,6 +133,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductSizes.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -173,6 +179,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductSizePriceResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -223,6 +230,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductSizeSellersResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -324,6 +332,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductsComparisonResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -362,6 +371,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductCompareResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -400,6 +410,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductFrequentlyComparedSimilarResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -439,6 +450,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SimilarProductByTypeResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -477,6 +489,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductVariantsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -539,6 +552,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductStockStatusResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -589,6 +603,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductStockPolling.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -716,6 +731,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -848,6 +864,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BrandListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -935,6 +952,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BrandDetailResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -977,6 +995,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CategoryListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1015,6 +1034,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CategoryMetaResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1067,6 +1087,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(HomeListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1154,6 +1175,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(DepartmentResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1194,6 +1216,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(AutoCompleteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1241,6 +1264,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetCollectionListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1347,6 +1371,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1453,6 +1478,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CollectionDetailResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1491,6 +1517,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetFollowListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1538,51 +1565,12 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-        **/
-        public func unfollowById(
-            collectionType: String,
-            collectionId: Int,
-            
-            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "delete",
-                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(FollowPostResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Follow a particular Product
         * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
         **/
         public func followById(
             collectionType: String,
-            collectionId: Int,
+            collectionId: String,
             
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1605,6 +1593,47 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
+                        let response = Utility.decode(FollowPostResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: UnFollow a Product
+        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        **/
+        public func unfollowById(
+            collectionType: String,
+            collectionId: String,
+            
+            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
                         let response = Utility.decode(FollowPostResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1644,6 +1673,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(FollowerCountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1686,6 +1716,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(FollowIdsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1753,6 +1784,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(StoreListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1889,6 +1921,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -1931,6 +1964,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = data.dictionary 
                         onResponse(response, nil)
                     } else {
@@ -1978,6 +2012,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(AddCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2030,6 +2065,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(UpdateCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2072,6 +2108,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartItemCountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2114,6 +2151,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetCouponResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2172,6 +2210,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2214,6 +2253,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2271,6 +2311,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkPriceResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2333,6 +2374,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetAddressesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2370,6 +2412,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SaveAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2433,6 +2476,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(Address.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2471,6 +2515,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(UpdateAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2509,6 +2554,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(DeleteAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2561,6 +2607,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2603,6 +2650,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2670,6 +2718,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(PaymentUpdate.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2727,6 +2776,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartShipmentsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2764,6 +2814,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartCheckoutResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2806,6 +2857,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartMetaResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2843,6 +2895,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2881,6 +2934,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2920,6 +2974,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -2970,6 +3025,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(Ticket.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3008,6 +3064,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(TicketHistory.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3045,6 +3102,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(Ticket.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3083,6 +3141,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CustomForm.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3121,6 +3180,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SubmitCustomFormResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3159,6 +3219,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3197,6 +3258,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3246,6 +3308,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ThemesSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3284,6 +3347,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ThemesSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3333,6 +3397,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3370,6 +3435,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3407,6 +3473,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3444,6 +3511,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3486,6 +3554,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SendOtpResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3523,6 +3592,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3565,6 +3635,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ResetPasswordSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3602,6 +3673,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3639,6 +3711,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ResetPasswordSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3676,6 +3749,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3718,6 +3792,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(RegisterFormSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3755,6 +3830,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(VerifyEmailSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3792,6 +3868,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(VerifyEmailSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3829,6 +3906,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(HasPasswordSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3866,6 +3944,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(VerifyEmailSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3903,6 +3982,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LogoutSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3945,6 +4025,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(OtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -3987,6 +4068,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(VerifyOtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4029,6 +4111,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(EmailOtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4071,6 +4154,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(VerifyOtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4108,6 +4192,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(UserSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4145,6 +4230,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SessionListSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4187,6 +4273,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(PlatformSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4229,6 +4316,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4271,6 +4359,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(VerifyMobileOTPSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4328,6 +4417,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4365,6 +4455,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4407,6 +4498,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SendMobileVerifyLinkSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4449,6 +4541,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(VerifyEmailOTPSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4503,6 +4596,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4540,6 +4634,7 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4582,7 +4677,293 @@ public class ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SendEmailVerifyLinkSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Share {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Create application QR Code
+        * Description: Create application QR Code
+        **/
+        public func getApplicationQRCode(
+            
+            onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/share/v1.0/qr/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(QRCodeResp.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Create product QR Code
+        * Description: Create product QR Code
+        **/
+        public func getProductQRCodeBySlug(
+            slug: String,
+            
+            onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/share/v1.0/qr/products/\(slug)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(QRCodeResp.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Create collection QR Code
+        * Description: Create collection QR Code
+        **/
+        public func getCollectionQRCodeBySlug(
+            slug: String,
+            
+            onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/share/v1.0/qr/collection/\(slug)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(QRCodeResp.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Create url QR Code
+        * Description: Create url QR Code
+        **/
+        public func getUrlQRCode(
+            url: String,
+            
+            onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            xQuery["url"] = url
+            
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/share/v1.0/qr/url/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(QRCodeResp.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Create short link
+        * Description: Create short link
+        **/
+        public func createShortLink(
+            body: ShortLinkReq,
+            onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/share/v1.0/links/short-link/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ShortLinkRes.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get short link by hash
+        * Description: Get short link by hash
+        **/
+        public func getShortLinkByHash(
+            hash: String,
+            
+            onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/share/v1.0/links/short-link/\(hash)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ShortLinkRes.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get original link by hash
+        * Description: Get original link by hash
+        **/
+        public func getOriginalShortLinkByHash(
+            hash: String,
+            
+            onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/share/v1.0/links/short-link/\(hash)/original/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ShortLinkRes.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -4614,15 +4995,15 @@ It has three Major Steps:
 * Complete
 
 ### Start
-Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+Initiates the assets upload using `startUpload`.
 It returns the storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
 
 ### Complete
-After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+After successfully upload, call `completeUpload` api to complete the upload process.
 This operation will return the url for the uploaded file.
 
         **/
@@ -4650,6 +5031,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(StartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4670,15 +5052,15 @@ It has three Major Steps:
 * Complete
 
 ### Start
-Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+Initiates the assets upload using `startUpload`.
 It returns the storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
 
 ### Complete
-After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+After successfully upload, call `completeUpload` api to complete the upload process.
 This operation will return the url for the uploaded file.
 
         **/
@@ -4706,6 +5088,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CompleteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4775,6 +5158,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(OrderList.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4813,6 +5197,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(OrderById.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4851,6 +5236,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ShipmentById.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4889,6 +5275,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ShipmentReasons.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4927,6 +5314,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -4965,6 +5353,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ShipmentTrack.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5003,6 +5392,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(PosOrderById.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5052,6 +5442,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XInsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5089,6 +5480,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5143,6 +5535,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5252,6 +5645,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XNumberGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5332,6 +5726,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XInsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5370,6 +5765,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(Attribute.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5408,6 +5804,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5445,6 +5842,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XInsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5482,6 +5880,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5545,6 +5944,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5652,6 +6052,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CheckEligibilityResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5689,6 +6090,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5726,6 +6128,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XInsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5763,6 +6166,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5817,6 +6221,7 @@ This operation will return the url for the uploaded file.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -5934,6 +6339,7 @@ It gives following response data: review count, rating average. review metrics /
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6034,6 +6440,7 @@ attributes rating, entity rating, title, description, media resources and templa
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6072,6 +6479,7 @@ attributes rating, entity rating, title, description, media resources and templa
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6156,6 +6564,7 @@ attributes rating, entity rating, title, description, media resources and templa
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6306,6 +6715,7 @@ attributes rating, entity rating, title, description, media resources and templa
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6344,6 +6754,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XInsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6381,6 +6792,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6440,6 +6852,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XCursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6555,6 +6968,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XNumberGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6592,6 +7006,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XInsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6629,6 +7044,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(XUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6698,6 +7114,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6740,6 +7157,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = data.dictionary 
                         onResponse(response, nil)
                     } else {
@@ -6787,6 +7205,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(AddCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6839,6 +7258,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(UpdateCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6881,6 +7301,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartItemCountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6923,6 +7344,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetCouponResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -6981,6 +7403,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7023,6 +7446,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7080,6 +7504,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkPriceResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7142,6 +7567,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetAddressesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7179,6 +7605,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SaveAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7242,6 +7669,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(Address.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7280,6 +7708,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(UpdateAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7318,6 +7747,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(DeleteAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7370,6 +7800,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7412,6 +7843,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7479,6 +7911,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(PaymentUpdate.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7551,6 +7984,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartShipmentsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7613,6 +8047,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartShipmentsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7655,6 +8090,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartCheckoutResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7697,6 +8133,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartMetaResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7742,6 +8179,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CartDeliveryModesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7782,6 +8220,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(StoreDetailsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7819,6 +8258,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7857,6 +8297,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7896,6 +8337,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7945,6 +8387,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetTatProductResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
@@ -7983,6 +8426,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetPincodeCityResponse.self, from: data)
                         onResponse(response, nil)
                     } else {

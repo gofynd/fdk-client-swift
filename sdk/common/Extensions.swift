@@ -105,9 +105,9 @@ public extension Dictionary {
                 guard let keyString = key as? String else { return }
                 var valueString: String? = nil
                 if let values = self[key] as? [Any] {
-                    valueString = values.map{ "\($0)".urlEncoded }.joined(separator: "||")
+                    valueString = values.map{ "\($0)" }.joined(separator: "||")
                 } else if let valueOfKey = self[key] {
-                    valueString = "\(valueOfKey)".urlEncoded
+                    valueString = "\(valueOfKey)"
                 }
                 if let valueString = valueString {
                     queryStrings.append("\(keyString):\(valueString)")
