@@ -5,7 +5,7 @@
             Model: Media
             Used By: Catalog
         */
-        struct Media: Codable {
+        class Media: Codable {
             
             public var url: String?
             
@@ -28,7 +28,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70,7 +70,7 @@
             Model: ProductDetailAttribute
             Used By: Catalog
         */
-        struct ProductDetailAttribute: Codable {
+        class ProductDetailAttribute: Codable {
             
             public var key: String?
             
@@ -99,7 +99,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -154,7 +154,7 @@
             Model: ProductDetailGroupedAttribute
             Used By: Catalog
         */
-        struct ProductDetailGroupedAttribute: Codable {
+        class ProductDetailGroupedAttribute: Codable {
             
             public var details: [ProductDetailAttribute]?
             
@@ -177,7 +177,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -219,7 +219,7 @@
             Model: ProductListingActionPage
             Used By: Catalog
         */
-        struct ProductListingActionPage: Codable {
+        class ProductListingActionPage: Codable {
             
             public var type: String?
             
@@ -242,7 +242,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -284,7 +284,7 @@
             Model: ProductListingAction
             Used By: Catalog
         */
-        struct ProductListingAction: Codable {
+        class ProductListingAction: Codable {
             
             public var page: ProductListingActionPage?
             
@@ -307,7 +307,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -349,7 +349,7 @@
             Model: ProductBrand
             Used By: Catalog
         */
-        struct ProductBrand: Codable {
+        class ProductBrand: Codable {
             
             public var logo: Media?
             
@@ -384,7 +384,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -452,7 +452,7 @@
             Model: Price
             Used By: Catalog
         */
-        struct Price: Codable {
+        class Price: Codable {
             
             public var currencySymbol: String?
             
@@ -487,7 +487,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -555,7 +555,7 @@
             Model: ProductListingPrice
             Used By: Catalog
         */
-        struct ProductListingPrice: Codable {
+        class ProductListingPrice: Codable {
             
             public var effective: Price?
             
@@ -578,7 +578,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -620,7 +620,7 @@
             Model: ProductDetail
             Used By: Catalog
         */
-        struct ProductDetail: Codable {
+        class ProductDetail: Codable {
             
             public var shortDescription: String?
             
@@ -775,7 +775,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1096,7 +1096,7 @@
             Model: ErrorResponse
             Used By: Catalog
         */
-        struct ErrorResponse: Codable {
+        class ErrorResponse: Codable {
             
             public var error: String?
             
@@ -1113,7 +1113,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1142,7 +1142,7 @@
             Model: ProductSize
             Used By: Catalog
         */
-        struct ProductSize: Codable {
+        class ProductSize: Codable {
             
             public var isAvailable: Bool?
             
@@ -1177,7 +1177,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1245,7 +1245,7 @@
             Model: SizeChartValues
             Used By: Catalog
         */
-        struct SizeChartValues: Codable {
+        class SizeChartValues: Codable {
             
             public var col3: String?
             
@@ -1292,7 +1292,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1386,7 +1386,7 @@
             Model: ColumnHeader
             Used By: Catalog
         */
-        struct ColumnHeader: Codable {
+        class ColumnHeader: Codable {
             
             public var value: String?
             
@@ -1409,7 +1409,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1451,7 +1451,7 @@
             Model: ColumnHeaders
             Used By: Catalog
         */
-        struct ColumnHeaders: Codable {
+        class ColumnHeaders: Codable {
             
             public var col3: ColumnHeader?
             
@@ -1498,7 +1498,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1592,7 +1592,7 @@
             Model: SizeChart
             Used By: Catalog
         */
-        struct SizeChart: Codable {
+        class SizeChart: Codable {
             
             public var unit: String?
             
@@ -1645,7 +1645,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1752,7 +1752,7 @@
             Model: ProductSizeStores
             Used By: Catalog
         */
-        struct ProductSizeStores: Codable {
+        class ProductSizeStores: Codable {
             
             public var count: Int?
             
@@ -1769,7 +1769,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1798,7 +1798,7 @@
             Model: ProductSizes
             Used By: Catalog
         */
-        struct ProductSizes: Codable {
+        class ProductSizes: Codable {
             
             public var discount: String?
             
@@ -1845,7 +1845,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -1939,7 +1939,7 @@
             Model: ProductSetDistributionSize
             Used By: Catalog
         */
-        struct ProductSetDistributionSize: Codable {
+        class ProductSetDistributionSize: Codable {
             
             public var size: String?
             
@@ -1962,7 +1962,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2004,7 +2004,7 @@
             Model: ProductSetDistribution
             Used By: Catalog
         */
-        struct ProductSetDistribution: Codable {
+        class ProductSetDistribution: Codable {
             
             public var sizes: [ProductSetDistributionSize]?
             
@@ -2021,7 +2021,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2050,7 +2050,7 @@
             Model: ProductSet
             Used By: Catalog
         */
-        struct ProductSet: Codable {
+        class ProductSet: Codable {
             
             public var quantity: Int?
             
@@ -2073,7 +2073,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2115,7 +2115,7 @@
             Model: ArticleAssignment
             Used By: Catalog
         */
-        struct ArticleAssignment: Codable {
+        class ArticleAssignment: Codable {
             
             public var strategy: String?
             
@@ -2138,7 +2138,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2180,7 +2180,7 @@
             Model: Seller
             Used By: Catalog
         */
-        struct Seller: Codable {
+        class Seller: Codable {
             
             public var count: Int?
             
@@ -2209,7 +2209,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2264,7 +2264,7 @@
             Model: ProductStockPrice
             Used By: Catalog
         */
-        struct ProductStockPrice: Codable {
+        class ProductStockPrice: Codable {
             
             public var effective: Double?
             
@@ -2293,7 +2293,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2348,7 +2348,7 @@
             Model: Store
             Used By: Catalog
         */
-        struct Store: Codable {
+        class Store: Codable {
             
             public var count: Int?
             
@@ -2377,7 +2377,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2432,7 +2432,7 @@
             Model: ProductSizePriceResponse
             Used By: Catalog
         */
-        struct ProductSizePriceResponse: Codable {
+        class ProductSizePriceResponse: Codable {
             
             public var set: ProductSet?
             
@@ -2533,7 +2533,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2744,7 +2744,7 @@
             Model: Page
             Used By: Catalog
         */
-        struct Page: Codable {
+        class Page: Codable {
             
             public var current: Int?
             
@@ -2797,7 +2797,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2904,7 +2904,7 @@
             Model: ProductSizeSellerFilter
             Used By: Catalog
         */
-        struct ProductSizeSellerFilter: Codable {
+        class ProductSizeSellerFilter: Codable {
             
             public var isSelected: Bool?
             
@@ -2933,7 +2933,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -2988,7 +2988,7 @@
             Model: ProductSizeSellersResponse
             Used By: Catalog
         */
-        struct ProductSizeSellersResponse: Codable {
+        class ProductSizeSellersResponse: Codable {
             
             public var items: [ProductSizePriceResponse]?
             
@@ -3017,7 +3017,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3065,7 +3065,7 @@
             Model: AttributeDetail
             Used By: Catalog
         */
-        struct AttributeDetail: Codable {
+        class AttributeDetail: Codable {
             
             public var key: String?
             
@@ -3094,7 +3094,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3149,7 +3149,7 @@
             Model: ProductsComparisonResponse
             Used By: Catalog
         */
-        struct ProductsComparisonResponse: Codable {
+        class ProductsComparisonResponse: Codable {
             
             public var items: [ProductDetail]?
             
@@ -3172,7 +3172,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3214,7 +3214,7 @@
             Model: ProductCompareResponse
             Used By: Catalog
         */
-        struct ProductCompareResponse: Codable {
+        class ProductCompareResponse: Codable {
             
             public var items: [ProductDetail]?
             
@@ -3249,7 +3249,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3317,7 +3317,7 @@
             Model: ProductFrequentlyComparedSimilarResponse
             Used By: Catalog
         */
-        struct ProductFrequentlyComparedSimilarResponse: Codable {
+        class ProductFrequentlyComparedSimilarResponse: Codable {
             
             public var similars: [ProductCompareResponse]?
             
@@ -3334,7 +3334,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3363,7 +3363,7 @@
             Model: ProductSimilarItem
             Used By: Catalog
         */
-        struct ProductSimilarItem: Codable {
+        class ProductSimilarItem: Codable {
             
             public var items: [ProductDetail]?
             
@@ -3392,7 +3392,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3447,7 +3447,7 @@
             Model: SimilarProductByTypeResponse
             Used By: Catalog
         */
-        struct SimilarProductByTypeResponse: Codable {
+        class SimilarProductByTypeResponse: Codable {
             
             public var similars: [ProductSimilarItem]?
             
@@ -3464,7 +3464,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3493,7 +3493,7 @@
             Model: ProductVariantItemResponse
             Used By: Catalog
         */
-        struct ProductVariantItemResponse: Codable {
+        class ProductVariantItemResponse: Codable {
             
             public var medias: [Media]?
             
@@ -3558,7 +3558,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3691,7 +3691,7 @@
             Model: ProductVariantResponse
             Used By: Catalog
         */
-        struct ProductVariantResponse: Codable {
+        class ProductVariantResponse: Codable {
             
             public var items: [ProductVariantItemResponse]?
             
@@ -3720,7 +3720,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3775,7 +3775,7 @@
             Model: ProductVariantsResponse
             Used By: Catalog
         */
-        struct ProductVariantsResponse: Codable {
+        class ProductVariantsResponse: Codable {
             
             public var variants: [ProductVariantResponse]?
             
@@ -3792,7 +3792,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3821,7 +3821,7 @@
             Model: StoreDetail
             Used By: Catalog
         */
-        struct StoreDetail: Codable {
+        class StoreDetail: Codable {
             
             public var code: String?
             
@@ -3856,7 +3856,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3924,7 +3924,7 @@
             Model: CompanyDetail
             Used By: Catalog
         */
-        struct CompanyDetail: Codable {
+        class CompanyDetail: Codable {
             
             public var id: Int?
             
@@ -3947,7 +3947,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -3989,7 +3989,7 @@
             Model: ProductStockStatusItem
             Used By: Catalog
         */
-        struct ProductStockStatusItem: Codable {
+        class ProductStockStatusItem: Codable {
             
             public var itemId: Int?
             
@@ -4054,7 +4054,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -4187,7 +4187,7 @@
             Model: ProductStockStatusResponse
             Used By: Catalog
         */
-        struct ProductStockStatusResponse: Codable {
+        class ProductStockStatusResponse: Codable {
             
             public var items: [ProductStockStatusItem]?
             
@@ -4204,7 +4204,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -4233,7 +4233,7 @@
             Model: ProductStockPolling
             Used By: Catalog
         */
-        struct ProductStockPolling: Codable {
+        class ProductStockPolling: Codable {
             
             public var items: [ProductStockStatusItem]?
             
@@ -4256,7 +4256,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -4291,7 +4291,7 @@
             Model: ProductListingDetail
             Used By: Catalog
         */
-        struct ProductListingDetail: Codable {
+        class ProductListingDetail: Codable {
             
             public var shortDescription: String?
             
@@ -4452,7 +4452,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -4786,7 +4786,7 @@
             Model: ProductFiltersKey
             Used By: Catalog
         */
-        struct ProductFiltersKey: Codable {
+        class ProductFiltersKey: Codable {
             
             public var logo: String?
             
@@ -4821,7 +4821,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -4875,7 +4875,7 @@
             Model: ProductFiltersValue
             Used By: Catalog
         */
-        struct ProductFiltersValue: Codable {
+        class ProductFiltersValue: Codable {
             
             public var queryFormat: String?
             
@@ -4958,7 +4958,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5116,7 +5116,7 @@
             Model: ProductFilters
             Used By: Catalog
         */
-        struct ProductFilters: Codable {
+        class ProductFilters: Codable {
             
             public var key: ProductFiltersKey
             
@@ -5139,7 +5139,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5167,7 +5167,7 @@
             Model: ProductSortOn
             Used By: Catalog
         */
-        struct ProductSortOn: Codable {
+        class ProductSortOn: Codable {
             
             public var isSelected: Bool?
             
@@ -5196,7 +5196,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5251,7 +5251,7 @@
             Model: ProductListingResponse
             Used By: Catalog
         */
-        struct ProductListingResponse: Codable {
+        class ProductListingResponse: Codable {
             
             public var items: [ProductListingDetail]?
             
@@ -5286,7 +5286,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5347,7 +5347,7 @@
             Model: ImageUrls
             Used By: Catalog
         */
-        struct ImageUrls: Codable {
+        class ImageUrls: Codable {
             
             public var landscape: Media?
             
@@ -5370,7 +5370,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5412,7 +5412,7 @@
             Model: BrandItem
             Used By: Catalog
         */
-        struct BrandItem: Codable {
+        class BrandItem: Codable {
             
             public var departments: [String]?
             
@@ -5471,7 +5471,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5591,7 +5591,7 @@
             Model: BrandListingResponse
             Used By: Catalog
         */
-        struct BrandListingResponse: Codable {
+        class BrandListingResponse: Codable {
             
             public var items: [BrandItem]?
             
@@ -5614,7 +5614,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5649,7 +5649,7 @@
             Model: BrandDetailResponse
             Used By: Catalog
         */
-        struct BrandDetailResponse: Codable {
+        class BrandDetailResponse: Codable {
             
             public var banners: ImageUrls?
             
@@ -5684,7 +5684,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5752,7 +5752,7 @@
             Model: DepartmentIdentifier
             Used By: Catalog
         */
-        struct DepartmentIdentifier: Codable {
+        class DepartmentIdentifier: Codable {
             
             public var uid: Int?
             
@@ -5775,7 +5775,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5817,7 +5817,7 @@
             Model: CategoryItems
             Used By: Catalog
         */
-        struct CategoryItems: Codable {
+        class CategoryItems: Codable {
             
             public var childs: [[String: Any]]?
             
@@ -5864,7 +5864,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -5958,7 +5958,7 @@
             Model: DepartmentCategoryTree
             Used By: Catalog
         */
-        struct DepartmentCategoryTree: Codable {
+        class DepartmentCategoryTree: Codable {
             
             public var items: [CategoryItems]?
             
@@ -5981,7 +5981,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6023,7 +6023,7 @@
             Model: CategoryListingResponse
             Used By: Catalog
         */
-        struct CategoryListingResponse: Codable {
+        class CategoryListingResponse: Codable {
             
             public var departments: [DepartmentIdentifier]?
             
@@ -6046,7 +6046,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6088,7 +6088,7 @@
             Model: CategoryMetaResponse
             Used By: Catalog
         */
-        struct CategoryMetaResponse: Codable {
+        class CategoryMetaResponse: Codable {
             
             public var banners: ImageUrls?
             
@@ -6123,7 +6123,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6191,7 +6191,7 @@
             Model: HomeListingResponse
             Used By: Catalog
         */
-        struct HomeListingResponse: Codable {
+        class HomeListingResponse: Codable {
             
             public var items: [ProductListingDetail]?
             
@@ -6220,7 +6220,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6268,7 +6268,7 @@
             Model: Department
             Used By: Catalog
         */
-        struct Department: Codable {
+        class Department: Codable {
             
             public var priorityOrder: Int?
             
@@ -6309,7 +6309,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6390,7 +6390,7 @@
             Model: DepartmentResponse
             Used By: Catalog
         */
-        struct DepartmentResponse: Codable {
+        class DepartmentResponse: Codable {
             
             public var items: [Department]?
             
@@ -6407,7 +6407,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6436,7 +6436,7 @@
             Model: PageQuery
             Used By: Catalog
         */
-        struct PageQuery: Codable {
+        class PageQuery: Codable {
             
             public var category: [String]?
             
@@ -6459,7 +6459,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6501,7 +6501,7 @@
             Model: AutocompletePage
             Used By: Catalog
         */
-        struct AutocompletePage: Codable {
+        class AutocompletePage: Codable {
             
             public var type: String?
             
@@ -6524,7 +6524,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6566,7 +6566,7 @@
             Model: Action
             Used By: Catalog
         */
-        struct Action: Codable {
+        class Action: Codable {
             
             public var page: AutocompletePage?
             
@@ -6589,7 +6589,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6631,7 +6631,7 @@
             Model: AutocompleteItem
             Used By: Catalog
         */
-        struct AutocompleteItem: Codable {
+        class AutocompleteItem: Codable {
             
             public var logo: Media?
             
@@ -6666,7 +6666,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6734,7 +6734,7 @@
             Model: AutoCompleteResponse
             Used By: Catalog
         */
-        struct AutoCompleteResponse: Codable {
+        class AutoCompleteResponse: Codable {
             
             public var items: [AutocompleteItem]?
             
@@ -6751,7 +6751,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -6780,7 +6780,7 @@
             Model: GetCollectionDetailNest
             Used By: Catalog
         */
-        struct GetCollectionDetailNest: Codable {
+        class GetCollectionDetailNest: Codable {
             
             public var meta: [String: Any]?
             
@@ -6905,7 +6905,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7168,7 +7168,7 @@
             Model: CollectionListingFilterTag
             Used By: Catalog
         */
-        struct CollectionListingFilterTag: Codable {
+        class CollectionListingFilterTag: Codable {
             
             public var isSelected: Bool?
             
@@ -7197,7 +7197,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7252,7 +7252,7 @@
             Model: CollectionListingFilterType
             Used By: Catalog
         */
-        struct CollectionListingFilterType: Codable {
+        class CollectionListingFilterType: Codable {
             
             public var isSelected: Bool?
             
@@ -7281,7 +7281,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7336,7 +7336,7 @@
             Model: CollectionListingFilter
             Used By: Catalog
         */
-        struct CollectionListingFilter: Codable {
+        class CollectionListingFilter: Codable {
             
             public var tags: [CollectionListingFilterTag]?
             
@@ -7359,7 +7359,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7401,7 +7401,7 @@
             Model: GetCollectionListingResponse
             Used By: Catalog
         */
-        struct GetCollectionListingResponse: Codable {
+        class GetCollectionListingResponse: Codable {
             
             public var items: [GetCollectionDetailNest]?
             
@@ -7430,7 +7430,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7478,7 +7478,7 @@
             Model: CollectionDetailResponse
             Used By: Catalog
         */
-        struct CollectionDetailResponse: Codable {
+        class CollectionDetailResponse: Codable {
             
             public var schedule: [String: Any]?
             
@@ -7591,7 +7591,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7828,7 +7828,7 @@
             Model: GetFollowListingResponse
             Used By: Catalog
         */
-        struct GetFollowListingResponse: Codable {
+        class GetFollowListingResponse: Codable {
             
             public var items: [ProductDetail]
             
@@ -7851,7 +7851,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7879,7 +7879,7 @@
             Model: FollowPostResponse
             Used By: Catalog
         */
-        struct FollowPostResponse: Codable {
+        class FollowPostResponse: Codable {
             
             public var message: String
             
@@ -7902,7 +7902,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7930,7 +7930,7 @@
             Model: FollowerCountResponse
             Used By: Catalog
         */
-        struct FollowerCountResponse: Codable {
+        class FollowerCountResponse: Codable {
             
             public var count: Int?
             
@@ -7947,7 +7947,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -7976,7 +7976,7 @@
             Model: FollowIdsData
             Used By: Catalog
         */
-        struct FollowIdsData: Codable {
+        class FollowIdsData: Codable {
             
             public var products: [Int]?
             
@@ -8005,7 +8005,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8060,7 +8060,7 @@
             Model: FollowIdsResponse
             Used By: Catalog
         */
-        struct FollowIdsResponse: Codable {
+        class FollowIdsResponse: Codable {
             
             public var data: FollowIdsData?
             
@@ -8077,7 +8077,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8106,7 +8106,7 @@
             Model: LatLong
             Used By: Catalog
         */
-        struct LatLong: Codable {
+        class LatLong: Codable {
             
             public var coordinates: [Double]?
             
@@ -8129,7 +8129,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8171,7 +8171,7 @@
             Model: Store1
             Used By: Catalog
         */
-        struct Store1: Codable {
+        class Store1: Codable {
             
             public var uid: Int?
             
@@ -8242,7 +8242,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8388,7 +8388,7 @@
             Model: StoreListingResponse
             Used By: Catalog
         */
-        struct StoreListingResponse: Codable {
+        class StoreListingResponse: Codable {
             
             public var items: [Store1]
             
@@ -8411,7 +8411,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8441,7 +8441,7 @@
             Model: CartProductIdentifer
             Used By: Cart
         */
-        struct CartProductIdentifer: Codable {
+        class CartProductIdentifer: Codable {
             
             public var identifier: String?
             
@@ -8458,7 +8458,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8487,7 +8487,7 @@
             Model: BasePrice
             Used By: Cart
         */
-        struct BasePrice: Codable {
+        class BasePrice: Codable {
             
             public var currencyCode: String?
             
@@ -8522,7 +8522,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8590,7 +8590,7 @@
             Model: ArticlePriceInfo
             Used By: Cart
         */
-        struct ArticlePriceInfo: Codable {
+        class ArticlePriceInfo: Codable {
             
             public var base: BasePrice?
             
@@ -8613,7 +8613,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8655,7 +8655,7 @@
             Model: BaseInfo
             Used By: Cart
         */
-        struct BaseInfo: Codable {
+        class BaseInfo: Codable {
             
             public var uid: Int?
             
@@ -8678,7 +8678,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8720,7 +8720,7 @@
             Model: ProductArticle
             Used By: Cart
         */
-        struct ProductArticle: Codable {
+        class ProductArticle: Codable {
             
             public var uid: String?
             
@@ -8773,7 +8773,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -8880,7 +8880,7 @@
             Model: ProductAvailability
             Used By: Cart
         */
-        struct ProductAvailability: Codable {
+        class ProductAvailability: Codable {
             
             public var sizes: [String]?
             
@@ -8921,7 +8921,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9002,7 +9002,7 @@
             Model: ProductPrice
             Used By: Cart
         */
-        struct ProductPrice: Codable {
+        class ProductPrice: Codable {
             
             public var selling: Double?
             
@@ -9049,7 +9049,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9143,7 +9143,7 @@
             Model: ProductPriceInfo
             Used By: Cart
         */
-        struct ProductPriceInfo: Codable {
+        class ProductPriceInfo: Codable {
             
             public var base: ProductPrice?
             
@@ -9166,7 +9166,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9208,7 +9208,7 @@
             Model: ActionQuery
             Used By: Cart
         */
-        struct ActionQuery: Codable {
+        class ActionQuery: Codable {
             
             public var productSlug: [String]?
             
@@ -9225,7 +9225,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9254,7 +9254,7 @@
             Model: ProductAction
             Used By: Cart
         */
-        struct ProductAction: Codable {
+        class ProductAction: Codable {
             
             public var type: String?
             
@@ -9283,7 +9283,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9338,7 +9338,7 @@
             Model: CategoryInfo
             Used By: Cart
         */
-        struct CategoryInfo: Codable {
+        class CategoryInfo: Codable {
             
             public var uid: Int?
             
@@ -9361,7 +9361,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9403,7 +9403,7 @@
             Model: Image
             Used By: Cart
         */
-        struct Image: Codable {
+        class Image: Codable {
             
             public var secureUrl: String?
             
@@ -9432,7 +9432,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9487,7 +9487,7 @@
             Model: Product
             Used By: Cart
         */
-        struct Product: Codable {
+        class Product: Codable {
             
             public var uid: Int?
             
@@ -9546,7 +9546,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9666,7 +9666,7 @@
             Model: CartProductInfo
             Used By: Cart
         */
-        struct CartProductInfo: Codable {
+        class CartProductInfo: Codable {
             
             public var identifiers: CartProductIdentifer
             
@@ -9749,7 +9749,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9914,7 +9914,7 @@
             Model: CartCurrency
             Used By: Cart
         */
-        struct CartCurrency: Codable {
+        class CartCurrency: Codable {
             
             public var symbol: String?
             
@@ -9937,7 +9937,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -9979,7 +9979,7 @@
             Model: PromiseTimestamp
             Used By: Cart
         */
-        struct PromiseTimestamp: Codable {
+        class PromiseTimestamp: Codable {
             
             public var min: Int?
             
@@ -10002,7 +10002,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10044,7 +10044,7 @@
             Model: PromiseFormatted
             Used By: Cart
         */
-        struct PromiseFormatted: Codable {
+        class PromiseFormatted: Codable {
             
             public var min: String?
             
@@ -10067,7 +10067,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10109,7 +10109,7 @@
             Model: ShipmentPromise
             Used By: Cart
         */
-        struct ShipmentPromise: Codable {
+        class ShipmentPromise: Codable {
             
             public var timestamp: PromiseTimestamp?
             
@@ -10132,7 +10132,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10174,7 +10174,7 @@
             Model: DisplayBreakup
             Used By: Cart
         */
-        struct DisplayBreakup: Codable {
+        class DisplayBreakup: Codable {
             
             public var currencyCode: String?
             
@@ -10221,7 +10221,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10315,7 +10315,7 @@
             Model: LoyaltyPoints
             Used By: Cart
         */
-        struct LoyaltyPoints: Codable {
+        class LoyaltyPoints: Codable {
             
             public var description: String?
             
@@ -10350,7 +10350,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10418,7 +10418,7 @@
             Model: RawBreakup
             Used By: Cart
         */
-        struct RawBreakup: Codable {
+        class RawBreakup: Codable {
             
             public var subtotal: Double?
             
@@ -10471,7 +10471,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10578,7 +10578,7 @@
             Model: CouponBreakup
             Used By: Cart
         */
-        struct CouponBreakup: Codable {
+        class CouponBreakup: Codable {
             
             public var isApplied: Bool?
             
@@ -10625,7 +10625,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10719,7 +10719,7 @@
             Model: CartBreakup
             Used By: Cart
         */
-        struct CartBreakup: Codable {
+        class CartBreakup: Codable {
             
             public var display: [DisplayBreakup]?
             
@@ -10754,7 +10754,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -10822,7 +10822,7 @@
             Model: CartResponse
             Used By: Cart
         */
-        struct CartResponse: Codable {
+        class CartResponse: Codable {
             
             public var gstin: String?
             
@@ -10923,7 +10923,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11134,7 +11134,7 @@
             Model: AddProductCart
             Used By: Cart
         */
-        struct AddProductCart: Codable {
+        class AddProductCart: Codable {
             
             public var itemId: Int?
             
@@ -11199,7 +11199,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11332,7 +11332,7 @@
             Model: AddCartRequest
             Used By: Cart
         */
-        struct AddCartRequest: Codable {
+        class AddCartRequest: Codable {
             
             public var items: [AddProductCart]?
             
@@ -11349,7 +11349,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11378,7 +11378,7 @@
             Model: AddCartResponse
             Used By: Cart
         */
-        struct AddCartResponse: Codable {
+        class AddCartResponse: Codable {
             
             public var cart: CartResponse?
             
@@ -11413,7 +11413,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11481,7 +11481,7 @@
             Model: UpdateProductCart
             Used By: Cart
         */
-        struct UpdateProductCart: Codable {
+        class UpdateProductCart: Codable {
             
             public var itemId: Int?
             
@@ -11528,7 +11528,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11615,7 +11615,7 @@
             Model: UpdateCartRequest
             Used By: Cart
         */
-        struct UpdateCartRequest: Codable {
+        class UpdateCartRequest: Codable {
             
             public var operation: String
             
@@ -11638,7 +11638,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11673,7 +11673,7 @@
             Model: UpdateCartResponse
             Used By: Cart
         */
-        struct UpdateCartResponse: Codable {
+        class UpdateCartResponse: Codable {
             
             public var cart: CartResponse?
             
@@ -11702,7 +11702,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11757,7 +11757,7 @@
             Model: CartItemCountResponse
             Used By: Cart
         */
-        struct CartItemCountResponse: Codable {
+        class CartItemCountResponse: Codable {
             
             public var userCartItemsCount: Int?
             
@@ -11774,7 +11774,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11803,7 +11803,7 @@
             Model: PageCoupon
             Used By: Cart
         */
-        struct PageCoupon: Codable {
+        class PageCoupon: Codable {
             
             public var total: Int?
             
@@ -11844,7 +11844,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -11925,7 +11925,7 @@
             Model: Coupon
             Used By: Cart
         */
-        struct Coupon: Codable {
+        class Coupon: Codable {
             
             public var expiresOn: String?
             
@@ -11996,7 +11996,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12142,7 +12142,7 @@
             Model: GetCouponResponse
             Used By: Cart
         */
-        struct GetCouponResponse: Codable {
+        class GetCouponResponse: Codable {
             
             public var page: PageCoupon?
             
@@ -12165,7 +12165,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12207,7 +12207,7 @@
             Model: ApplyCouponRequest
             Used By: Cart
         */
-        struct ApplyCouponRequest: Codable {
+        class ApplyCouponRequest: Codable {
             
             public var couponCode: String
             
@@ -12224,7 +12224,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12246,7 +12246,7 @@
             Model: OfferSeller
             Used By: Cart
         */
-        struct OfferSeller: Codable {
+        class OfferSeller: Codable {
             
             public var uid: Int?
             
@@ -12269,7 +12269,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12311,7 +12311,7 @@
             Model: OfferPrice
             Used By: Cart
         */
-        struct OfferPrice: Codable {
+        class OfferPrice: Codable {
             
             public var bulkEffective: Double?
             
@@ -12352,7 +12352,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12433,7 +12433,7 @@
             Model: OfferItem
             Used By: Cart
         */
-        struct OfferItem: Codable {
+        class OfferItem: Codable {
             
             public var total: Double?
             
@@ -12486,7 +12486,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12593,7 +12593,7 @@
             Model: BulkPriceOffer
             Used By: Cart
         */
-        struct BulkPriceOffer: Codable {
+        class BulkPriceOffer: Codable {
             
             public var seller: OfferSeller?
             
@@ -12616,7 +12616,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12658,7 +12658,7 @@
             Model: BulkPriceResponse
             Used By: Cart
         */
-        struct BulkPriceResponse: Codable {
+        class BulkPriceResponse: Codable {
             
             public var data: [BulkPriceOffer]?
             
@@ -12675,7 +12675,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12704,7 +12704,7 @@
             Model: GeoLocation
             Used By: Cart
         */
-        struct GeoLocation: Codable {
+        class GeoLocation: Codable {
             
             public var longitude: Double?
             
@@ -12727,7 +12727,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -12769,7 +12769,7 @@
             Model: Address
             Used By: Cart
         */
-        struct Address: Codable {
+        class Address: Codable {
             
             public var isActive: Bool?
             
@@ -12906,7 +12906,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13195,7 +13195,7 @@
             Model: GetAddressesResponse
             Used By: Cart
         */
-        struct GetAddressesResponse: Codable {
+        class GetAddressesResponse: Codable {
             
             public var address: [Address]?
             
@@ -13212,7 +13212,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13241,7 +13241,7 @@
             Model: SaveAddressResponse
             Used By: Cart
         */
-        struct SaveAddressResponse: Codable {
+        class SaveAddressResponse: Codable {
             
             public var addressId: Int?
             
@@ -13270,7 +13270,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13325,7 +13325,7 @@
             Model: UpdateAddressResponse
             Used By: Cart
         */
-        struct UpdateAddressResponse: Codable {
+        class UpdateAddressResponse: Codable {
             
             public var addressId: Int?
             
@@ -13360,7 +13360,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13428,7 +13428,7 @@
             Model: DeleteAddressResponse
             Used By: Cart
         */
-        struct DeleteAddressResponse: Codable {
+        class DeleteAddressResponse: Codable {
             
             public var addressId: Int?
             
@@ -13451,7 +13451,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13493,7 +13493,7 @@
             Model: SelectCartAddressRequest
             Used By: Cart
         */
-        struct SelectCartAddressRequest: Codable {
+        class SelectCartAddressRequest: Codable {
             
             public var addressId: String?
             
@@ -13522,7 +13522,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13577,7 +13577,7 @@
             Model: UpdateCartPaymentRequest
             Used By: Cart
         */
-        struct UpdateCartPaymentRequest: Codable {
+        class UpdateCartPaymentRequest: Codable {
             
             public var uid: Int?
             
@@ -13624,7 +13624,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13718,7 +13718,7 @@
             Model: CouponValidity
             Used By: Cart
         */
-        struct CouponValidity: Codable {
+        class CouponValidity: Codable {
             
             public var discount: Double?
             
@@ -13753,7 +13753,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13821,7 +13821,7 @@
             Model: PaymentUpdate
             Used By: Cart
         */
-        struct PaymentUpdate: Codable {
+        class PaymentUpdate: Codable {
             
             public var success: Bool
             
@@ -13850,7 +13850,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -13898,7 +13898,7 @@
             Model: ShipmentResponse
             Used By: Cart
         */
-        struct ShipmentResponse: Codable {
+        class ShipmentResponse: Codable {
             
             public var dpOptions: [String: Any]?
             
@@ -13969,7 +13969,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -14115,7 +14115,7 @@
             Model: CartShipmentsResponse
             Used By: Cart
         */
-        struct CartShipmentsResponse: Codable {
+        class CartShipmentsResponse: Codable {
             
             public var gstin: String?
             
@@ -14216,7 +14216,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -14427,7 +14427,7 @@
             Model: CartCheckoutRequest
             Used By: Cart
         */
-        struct CartCheckoutRequest: Codable {
+        class CartCheckoutRequest: Codable {
             
             public var orderingStore: Int?
             
@@ -14534,7 +14534,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -14751,7 +14751,7 @@
             Model: CheckCart
             Used By: Cart
         */
-        struct CheckCart: Codable {
+        class CheckCart: Codable {
             
             public var items: [CartProductInfo]?
             
@@ -14918,7 +14918,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15272,7 +15272,7 @@
             Model: CartCheckoutResponse
             Used By: Cart
         */
-        struct CartCheckoutResponse: Codable {
+        class CartCheckoutResponse: Codable {
             
             public var cart: CheckCart?
             
@@ -15325,7 +15325,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15432,7 +15432,7 @@
             Model: CartMetaRequest
             Used By: Cart
         */
-        struct CartMetaRequest: Codable {
+        class CartMetaRequest: Codable {
             
             public var gstin: String?
             
@@ -15467,7 +15467,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15535,7 +15535,7 @@
             Model: CartMetaResponse
             Used By: Cart
         */
-        struct CartMetaResponse: Codable {
+        class CartMetaResponse: Codable {
             
             public var message: String?
             
@@ -15552,7 +15552,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15581,7 +15581,7 @@
             Model: CartMetaMissingResponse
             Used By: Cart
         */
-        struct CartMetaMissingResponse: Codable {
+        class CartMetaMissingResponse: Codable {
             
             public var errors: [String]?
             
@@ -15598,7 +15598,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15627,7 +15627,7 @@
             Model: GetShareCartLinkRequest
             Used By: Cart
         */
-        struct GetShareCartLinkRequest: Codable {
+        class GetShareCartLinkRequest: Codable {
             
             public var meta: [String: Any]?
             
@@ -15650,7 +15650,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15685,7 +15685,7 @@
             Model: GetShareCartLinkResponse
             Used By: Cart
         */
-        struct GetShareCartLinkResponse: Codable {
+        class GetShareCartLinkResponse: Codable {
             
             public var token: String?
             
@@ -15708,7 +15708,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15750,7 +15750,7 @@
             Model: SharedCartDetails
             Used By: Cart
         */
-        struct SharedCartDetails: Codable {
+        class SharedCartDetails: Codable {
             
             public var user: [String: Any]?
             
@@ -15791,7 +15791,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -15872,7 +15872,7 @@
             Model: SharedCart
             Used By: Cart
         */
-        struct SharedCart: Codable {
+        class SharedCart: Codable {
             
             public var gstin: String?
             
@@ -15979,7 +15979,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -16203,7 +16203,7 @@
             Model: SharedCartResponse
             Used By: Cart
         */
-        struct SharedCartResponse: Codable {
+        class SharedCartResponse: Codable {
             
             public var cart: SharedCart?
             
@@ -16226,7 +16226,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -16270,7 +16270,7 @@
             Model: TicketList
             Used By: Lead
         */
-        struct TicketList: Codable {
+        class TicketList: Codable {
             
             public var items: [Ticket]?
             
@@ -16299,7 +16299,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -16354,7 +16354,7 @@
             Model: TicketHistoryList
             Used By: Lead
         */
-        struct TicketHistoryList: Codable {
+        class TicketHistoryList: Codable {
             
             public var docs: [TicketHistory]?
             
@@ -16395,7 +16395,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -16476,7 +16476,7 @@
             Model: CustomFormList
             Used By: Lead
         */
-        struct CustomFormList: Codable {
+        class CustomFormList: Codable {
             
             public var docs: [CustomForm]?
             
@@ -16517,7 +16517,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -16598,7 +16598,7 @@
             Model: CreateCustomFormPayload
             Used By: Lead
         */
-        struct CreateCustomFormPayload: Codable {
+        class CreateCustomFormPayload: Codable {
             
             public var slug: String
             
@@ -16657,7 +16657,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -16756,7 +16756,7 @@
             Model: EditCustomFormPayload
             Used By: Lead
         */
-        struct EditCustomFormPayload: Codable {
+        class EditCustomFormPayload: Codable {
             
             public var title: String
             
@@ -16815,7 +16815,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -16921,7 +16921,7 @@
             Model: EditTicketPayload
             Used By: Lead
         */
-        struct EditTicketPayload: Codable {
+        class EditTicketPayload: Codable {
             
             public var content: TicketContent?
             
@@ -16974,7 +16974,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17081,7 +17081,7 @@
             Model: AgentChangePayload
             Used By: Lead
         */
-        struct AgentChangePayload: Codable {
+        class AgentChangePayload: Codable {
             
             public var agentId: String
             
@@ -17098,7 +17098,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17120,7 +17120,7 @@
             Model: CreateVideoRoomResponse
             Used By: Lead
         */
-        struct CreateVideoRoomResponse: Codable {
+        class CreateVideoRoomResponse: Codable {
             
             public var uniqueName: String
             
@@ -17137,7 +17137,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17159,7 +17159,7 @@
             Model: CloseVideoRoomResponse
             Used By: Lead
         */
-        struct CloseVideoRoomResponse: Codable {
+        class CloseVideoRoomResponse: Codable {
             
             public var success: Bool
             
@@ -17176,7 +17176,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17198,7 +17198,7 @@
             Model: CreateVideoRoomPayload
             Used By: Lead
         */
-        struct CreateVideoRoomPayload: Codable {
+        class CreateVideoRoomPayload: Codable {
             
             public var uniqueName: String
             
@@ -17221,7 +17221,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17256,7 +17256,7 @@
             Model: Filter
             Used By: Lead
         */
-        struct Filter: Codable {
+        class Filter: Codable {
             
             public var priorities: [Priority]
             
@@ -17291,7 +17291,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17338,7 +17338,7 @@
             Model: TicketHistoryPayload
             Used By: Lead
         */
-        struct TicketHistoryPayload: Codable {
+        class TicketHistoryPayload: Codable {
             
             public var value: [String: Any]
             
@@ -17361,7 +17361,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17389,7 +17389,7 @@
             Model: CustomFormSubmissionPayload
             Used By: Lead
         */
-        struct CustomFormSubmissionPayload: Codable {
+        class CustomFormSubmissionPayload: Codable {
             
             public var response: [KeyValue]
             
@@ -17406,7 +17406,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17428,7 +17428,7 @@
             Model: KeyValue
             Used By: Lead
         */
-        struct KeyValue: Codable {
+        class KeyValue: Codable {
             
             public var key: String
             
@@ -17451,7 +17451,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17479,7 +17479,7 @@
             Model: GetTokenForVideoRoomResponse
             Used By: Lead
         */
-        struct GetTokenForVideoRoomResponse: Codable {
+        class GetTokenForVideoRoomResponse: Codable {
             
             public var accessToken: String
             
@@ -17496,7 +17496,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17518,7 +17518,7 @@
             Model: GetParticipantsInsideVideoRoomResponse
             Used By: Lead
         */
-        struct GetParticipantsInsideVideoRoomResponse: Codable {
+        class GetParticipantsInsideVideoRoomResponse: Codable {
             
             public var participants: [Participant]
             
@@ -17535,7 +17535,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17557,7 +17557,7 @@
             Model: Participant
             Used By: Lead
         */
-        struct Participant: Codable {
+        class Participant: Codable {
             
             public var user: UserSchema?
             
@@ -17586,7 +17586,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17641,7 +17641,7 @@
             Model: UserSchema
             Used By: Lead
         */
-        struct UserSchema: Codable {
+        class UserSchema: Codable {
             
             public var firstName: String?
             
@@ -17742,7 +17742,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -17953,7 +17953,7 @@
             Model: PhoneNumber
             Used By: Lead
         */
-        struct PhoneNumber: Codable {
+        class PhoneNumber: Codable {
             
             public var active: Bool?
             
@@ -17994,7 +17994,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18075,7 +18075,7 @@
             Model: Email
             Used By: Lead
         */
-        struct Email: Codable {
+        class Email: Codable {
             
             public var primary: Bool?
             
@@ -18110,7 +18110,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18178,7 +18178,7 @@
             Model: Debug
             Used By: Lead
         */
-        struct Debug: Codable {
+        class Debug: Codable {
             
             public var source: String?
             
@@ -18201,7 +18201,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18243,7 +18243,7 @@
             Model: SubmitCustomFormResponse
             Used By: Lead
         */
-        struct SubmitCustomFormResponse: Codable {
+        class SubmitCustomFormResponse: Codable {
             
             public var ticket: Ticket
             
@@ -18260,7 +18260,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18282,7 +18282,7 @@
             Model: TicketContext
             Used By: Lead
         */
-        struct TicketContext: Codable {
+        class TicketContext: Codable {
             
             public var applicationId: String?
             
@@ -18305,7 +18305,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18340,7 +18340,7 @@
             Model: CreatedOn
             Used By: Lead
         */
-        struct CreatedOn: Codable {
+        class CreatedOn: Codable {
             
             public var userAgent: String
             
@@ -18357,7 +18357,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18379,7 +18379,7 @@
             Model: TicketAsset
             Used By: Lead
         */
-        struct TicketAsset: Codable {
+        class TicketAsset: Codable {
             
             public var display: String?
             
@@ -18408,7 +18408,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18449,7 +18449,7 @@
             Model: TicketContent
             Used By: Lead
         */
-        struct TicketContent: Codable {
+        class TicketContent: Codable {
             
             public var title: String
             
@@ -18478,7 +18478,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18526,7 +18526,7 @@
             Model: AddTicketPayload
             Used By: Lead
         */
-        struct AddTicketPayload: Codable {
+        class AddTicketPayload: Codable {
             
             public var status: String
             
@@ -18561,7 +18561,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18601,7 +18601,7 @@
             Model: Priority
             Used By: Lead
         */
-        struct Priority: Codable {
+        class Priority: Codable {
             
             public var key: String
             
@@ -18630,7 +18630,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18664,7 +18664,7 @@
             Model: Status
             Used By: Lead
         */
-        struct Status: Codable {
+        class Status: Codable {
             
             public var key: String
             
@@ -18693,7 +18693,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18727,7 +18727,7 @@
             Model: TicketCategory
             Used By: Lead
         */
-        struct TicketCategory: Codable {
+        class TicketCategory: Codable {
             
             public var key: String
             
@@ -18756,7 +18756,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18797,7 +18797,7 @@
             Model: SubmitButton
             Used By: Lead
         */
-        struct SubmitButton: Codable {
+        class SubmitButton: Codable {
             
             public var title: String
             
@@ -18826,7 +18826,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18860,7 +18860,7 @@
             Model: PollForAssignment
             Used By: Lead
         */
-        struct PollForAssignment: Codable {
+        class PollForAssignment: Codable {
             
             public var duration: Double
             
@@ -18895,7 +18895,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -18935,7 +18935,7 @@
             Model: CustomForm
             Used By: Lead
         */
-        struct CustomForm: Codable {
+        class CustomForm: Codable {
             
             public var applicationId: String
             
@@ -19030,7 +19030,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -19179,7 +19179,7 @@
             Model: TicketHistory
             Used By: Lead
         */
-        struct TicketHistory: Codable {
+        class TicketHistory: Codable {
             
             public var type: String
             
@@ -19238,7 +19238,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -19330,7 +19330,7 @@
             Model: Ticket
             Used By: Lead
         */
-        struct Ticket: Codable {
+        class Ticket: Codable {
             
             public var context: TicketContext?
             
@@ -19437,7 +19437,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -19628,7 +19628,7 @@
             Model: PaginationSchema
             Used By: Theme
         */
-        struct PaginationSchema: Codable {
+        class PaginationSchema: Codable {
             
             public var size: Int?
             
@@ -19669,7 +19669,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -19750,7 +19750,7 @@
             Model: ThemesListingResponseSchema
             Used By: Theme
         */
-        struct ThemesListingResponseSchema: Codable {
+        class ThemesListingResponseSchema: Codable {
             
             public var items: [ThemesSchema]?
             
@@ -19773,7 +19773,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -19815,7 +19815,7 @@
             Model: AddThemeRequestSchema
             Used By: Theme
         */
-        struct AddThemeRequestSchema: Codable {
+        class AddThemeRequestSchema: Codable {
             
             public var themeId: String?
             
@@ -19832,7 +19832,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -19861,7 +19861,7 @@
             Model: UpgradableThemeSchema
             Used By: Theme
         */
-        struct UpgradableThemeSchema: Codable {
+        class UpgradableThemeSchema: Codable {
             
             public var parentTheme: String?
             
@@ -19890,7 +19890,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -19945,7 +19945,7 @@
             Model: FontsSchema
             Used By: Theme
         */
-        struct FontsSchema: Codable {
+        class FontsSchema: Codable {
             
             public var items: FontsSchemaItems?
             
@@ -19968,7 +19968,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -20010,7 +20010,7 @@
             Model: BlitzkriegApiErrorSchema
             Used By: Theme
         */
-        struct BlitzkriegApiErrorSchema: Codable {
+        class BlitzkriegApiErrorSchema: Codable {
             
             public var message: String?
             
@@ -20027,7 +20027,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -20056,7 +20056,7 @@
             Model: BlitzkriegNotFoundSchema
             Used By: Theme
         */
-        struct BlitzkriegNotFoundSchema: Codable {
+        class BlitzkriegNotFoundSchema: Codable {
             
             public var message: String?
             
@@ -20073,7 +20073,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -20102,7 +20102,7 @@
             Model: BlitzkriegInternalServerErrorSchema
             Used By: Theme
         */
-        struct BlitzkriegInternalServerErrorSchema: Codable {
+        class BlitzkriegInternalServerErrorSchema: Codable {
             
             public var message: String?
             
@@ -20119,7 +20119,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -20148,7 +20148,7 @@
             Model: FontsSchemaItems
             Used By: Theme
         */
-        struct FontsSchemaItems: Codable {
+        class FontsSchemaItems: Codable {
             
             public var family: String?
             
@@ -20207,7 +20207,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -20327,7 +20327,7 @@
             Model: FontsSchemaItemsFiles
             Used By: Theme
         */
-        struct FontsSchemaItemsFiles: Codable {
+        class FontsSchemaItemsFiles: Codable {
             
             public var regular: String?
             
@@ -20356,7 +20356,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -20411,7 +20411,7 @@
             Model: ThemesSchema
             Used By: Theme
         */
-        struct ThemesSchema: Codable {
+        class ThemesSchema: Codable {
             
             public var application: String?
             
@@ -20578,7 +20578,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -20932,7 +20932,7 @@
             Model: pagesSchema
             Used By: Theme
         */
-        struct pagesSchema: Codable {
+        class pagesSchema: Codable {
             
             public var text: String?
             
@@ -20973,7 +20973,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21054,7 +21054,7 @@
             Model: availableSectionSchema
             Used By: Theme
         */
-        struct availableSectionSchema: Codable {
+        class availableSectionSchema: Codable {
             
             public var blocks: Blocks?
             
@@ -21089,7 +21089,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21157,7 +21157,7 @@
             Model: sectionSchema
             Used By: Theme
         */
-        struct sectionSchema: Codable {
+        class sectionSchema: Codable {
             
             public var pageKey: String?
             
@@ -21180,7 +21180,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21222,7 +21222,7 @@
             Model: Information
             Used By: Theme
         */
-        struct Information: Codable {
+        class Information: Codable {
             
             public var images: Images?
             
@@ -21257,7 +21257,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21325,7 +21325,7 @@
             Model: Images
             Used By: Theme
         */
-        struct Images: Codable {
+        class Images: Codable {
             
             public var desktop: [String]?
             
@@ -21360,7 +21360,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21428,7 +21428,7 @@
             Model: Src
             Used By: Theme
         */
-        struct Src: Codable {
+        class Src: Codable {
             
             public var link: String?
             
@@ -21445,7 +21445,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21474,7 +21474,7 @@
             Model: AssetsSchema
             Used By: Theme
         */
-        struct AssetsSchema: Codable {
+        class AssetsSchema: Codable {
             
             public var umdJs: UmdJs?
             
@@ -21503,7 +21503,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21558,7 +21558,7 @@
             Model: UmdJs
             Used By: Theme
         */
-        struct UmdJs: Codable {
+        class UmdJs: Codable {
             
             public var link: String?
             
@@ -21575,7 +21575,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21604,7 +21604,7 @@
             Model: CommonJs
             Used By: Theme
         */
-        struct CommonJs: Codable {
+        class CommonJs: Codable {
             
             public var link: String?
             
@@ -21621,7 +21621,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21650,7 +21650,7 @@
             Model: Css
             Used By: Theme
         */
-        struct Css: Codable {
+        class Css: Codable {
             
             public var link: String?
             
@@ -21667,7 +21667,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21696,7 +21696,7 @@
             Model: AvailablePages
             Used By: Theme
         */
-        struct AvailablePages: Codable {
+        class AvailablePages: Codable {
             
             public var path: String?
             
@@ -21749,7 +21749,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21856,7 +21856,7 @@
             Model: Seo
             Used By: Theme
         */
-        struct Seo: Codable {
+        class Seo: Codable {
             
             public var title: String?
             
@@ -21879,7 +21879,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21921,7 +21921,7 @@
             Model: Sections
             Used By: Theme
         */
-        struct Sections: Codable {
+        class Sections: Codable {
             
             public var attributes: String?
             
@@ -21938,7 +21938,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -21967,7 +21967,7 @@
             Model: Pages
             Used By: Theme
         */
-        struct Pages: Codable {
+        class Pages: Codable {
             
             public var collectionListing: pagesSchema?
             
@@ -22038,7 +22038,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22184,7 +22184,7 @@
             Model: Config
             Used By: Theme
         */
-        struct Config: Codable {
+        class Config: Codable {
             
             public var preset: Preset?
             
@@ -22219,7 +22219,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22287,7 +22287,7 @@
             Model: Preset
             Used By: Theme
         */
-        struct Preset: Codable {
+        class Preset: Codable {
             
             public var sections: sectionSchema?
             
@@ -22304,7 +22304,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22333,7 +22333,7 @@
             Model: GlobalSchema
             Used By: Theme
         */
-        struct GlobalSchema: Codable {
+        class GlobalSchema: Codable {
             
             public var props: [String: Any]?
             
@@ -22350,7 +22350,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22379,7 +22379,7 @@
             Model: ListSchema
             Used By: Theme
         */
-        struct ListSchema: Codable {
+        class ListSchema: Codable {
             
             public var global: [String: Any]?
             
@@ -22408,7 +22408,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22463,7 +22463,7 @@
             Model: Colors
             Used By: Theme
         */
-        struct Colors: Codable {
+        class Colors: Codable {
             
             public var bgColor: String?
             
@@ -22510,7 +22510,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22604,7 +22604,7 @@
             Model: Custom
             Used By: Theme
         */
-        struct Custom: Codable {
+        class Custom: Codable {
             
             public var props: [String: Any]?
             
@@ -22621,7 +22621,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22650,7 +22650,7 @@
             Model: ConfigPage
             Used By: Theme
         */
-        struct ConfigPage: Codable {
+        class ConfigPage: Codable {
             
             public var settings: [String: Any]?
             
@@ -22673,7 +22673,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22715,7 +22715,7 @@
             Model: Font
             Used By: Theme
         */
-        struct Font: Codable {
+        class Font: Codable {
             
             public var family: String?
             
@@ -22738,7 +22738,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22780,7 +22780,7 @@
             Model: Variants
             Used By: Theme
         */
-        struct Variants: Codable {
+        class Variants: Codable {
             
             public var medium: Medium?
             
@@ -22821,7 +22821,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22902,7 +22902,7 @@
             Model: Medium
             Used By: Theme
         */
-        struct Medium: Codable {
+        class Medium: Codable {
             
             public var name: String?
             
@@ -22925,7 +22925,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -22967,7 +22967,7 @@
             Model: SemiBold
             Used By: Theme
         */
-        struct SemiBold: Codable {
+        class SemiBold: Codable {
             
             public var name: String?
             
@@ -22990,7 +22990,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23032,7 +23032,7 @@
             Model: Bold
             Used By: Theme
         */
-        struct Bold: Codable {
+        class Bold: Codable {
             
             public var name: String?
             
@@ -23055,7 +23055,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23097,7 +23097,7 @@
             Model: Light
             Used By: Theme
         */
-        struct Light: Codable {
+        class Light: Codable {
             
             public var name: String?
             
@@ -23120,7 +23120,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23162,7 +23162,7 @@
             Model: Regular
             Used By: Theme
         */
-        struct Regular: Codable {
+        class Regular: Codable {
             
             public var name: String?
             
@@ -23185,7 +23185,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23227,7 +23227,7 @@
             Model: Blocks
             Used By: Theme
         */
-        struct Blocks: Codable {
+        class Blocks: Codable {
             
             public var type: String?
             
@@ -23256,7 +23256,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23311,7 +23311,7 @@
             Model: BlocksProps
             Used By: Theme
         */
-        struct BlocksProps: Codable {
+        class BlocksProps: Codable {
             
             public var id: String?
             
@@ -23340,7 +23340,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23395,7 +23395,7 @@
             Model: PageSections
             Used By: Theme
         */
-        struct PageSections: Codable {
+        class PageSections: Codable {
             
             public var blocks: PageSectionsBlocks?
             
@@ -23442,7 +23442,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23536,7 +23536,7 @@
             Model: PageSectionsBlocks
             Used By: Theme
         */
-        struct PageSectionsBlocks: Codable {
+        class PageSectionsBlocks: Codable {
             
             public var type: String?
             
@@ -23565,7 +23565,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23620,7 +23620,7 @@
             Model: PageSectionsBlocksProps
             Used By: Theme
         */
-        struct PageSectionsBlocksProps: Codable {
+        class PageSectionsBlocksProps: Codable {
             
             public var id: String?
             
@@ -23649,7 +23649,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23704,7 +23704,7 @@
             Model: Predicate
             Used By: Theme
         */
-        struct Predicate: Codable {
+        class Predicate: Codable {
             
             public var screen: Screen?
             
@@ -23733,7 +23733,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23788,7 +23788,7 @@
             Model: Screen
             Used By: Theme
         */
-        struct Screen: Codable {
+        class Screen: Codable {
             
             public var mobile: Bool?
             
@@ -23817,7 +23817,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23872,7 +23872,7 @@
             Model: PredicateUserSchema
             Used By: Theme
         */
-        struct PredicateUserSchema: Codable {
+        class PredicateUserSchema: Codable {
             
             public var authenticated: Bool?
             
@@ -23895,7 +23895,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -23937,7 +23937,7 @@
             Model: Route
             Used By: Theme
         */
-        struct Route: Codable {
+        class Route: Codable {
             
             public var selected: String?
             
@@ -23966,7 +23966,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24023,7 +24023,7 @@
             Model: EditEmailRequestSchema
             Used By: User
         */
-        struct EditEmailRequestSchema: Codable {
+        class EditEmailRequestSchema: Codable {
             
             public var email: String?
             
@@ -24040,7 +24040,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24069,7 +24069,7 @@
             Model: SendVerificationLinkMobileRequestSchema
             Used By: User
         */
-        struct SendVerificationLinkMobileRequestSchema: Codable {
+        class SendVerificationLinkMobileRequestSchema: Codable {
             
             public var verified: Bool?
             
@@ -24110,7 +24110,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24191,7 +24191,7 @@
             Model: EditMobileRequestSchema
             Used By: User
         */
-        struct EditMobileRequestSchema: Codable {
+        class EditMobileRequestSchema: Codable {
             
             public var countryCode: String?
             
@@ -24214,7 +24214,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24256,7 +24256,7 @@
             Model: EditProfileRequestSchema
             Used By: User
         */
-        struct EditProfileRequestSchema: Codable {
+        class EditProfileRequestSchema: Codable {
             
             public var firstName: String?
             
@@ -24327,7 +24327,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24473,7 +24473,7 @@
             Model: SendEmailOtpRequestSchema
             Used By: User
         */
-        struct SendEmailOtpRequestSchema: Codable {
+        class SendEmailOtpRequestSchema: Codable {
             
             public var email: String?
             
@@ -24508,7 +24508,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24576,7 +24576,7 @@
             Model: VerifyOtpRequestSchema
             Used By: User
         */
-        struct VerifyOtpRequestSchema: Codable {
+        class VerifyOtpRequestSchema: Codable {
             
             public var requestId: String?
             
@@ -24605,7 +24605,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24660,7 +24660,7 @@
             Model: SendMobileOtpRequestSchema
             Used By: User
         */
-        struct SendMobileOtpRequestSchema: Codable {
+        class SendMobileOtpRequestSchema: Codable {
             
             public var mobile: String?
             
@@ -24707,7 +24707,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24801,7 +24801,7 @@
             Model: UpdatePasswordRequestSchema
             Used By: User
         */
-        struct UpdatePasswordRequestSchema: Codable {
+        class UpdatePasswordRequestSchema: Codable {
             
             public var oldPassword: String?
             
@@ -24824,7 +24824,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -24866,7 +24866,7 @@
             Model: FormRegisterRequestSchema
             Used By: User
         */
-        struct FormRegisterRequestSchema: Codable {
+        class FormRegisterRequestSchema: Codable {
             
             public var firstName: String?
             
@@ -24919,7 +24919,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25026,7 +25026,7 @@
             Model: TokenRequestBodySchema
             Used By: User
         */
-        struct TokenRequestBodySchema: Codable {
+        class TokenRequestBodySchema: Codable {
             
             public var token: String?
             
@@ -25043,7 +25043,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25072,7 +25072,7 @@
             Model: ForgotPasswordRequestSchema
             Used By: User
         */
-        struct ForgotPasswordRequestSchema: Codable {
+        class ForgotPasswordRequestSchema: Codable {
             
             public var code: String?
             
@@ -25095,7 +25095,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25137,7 +25137,7 @@
             Model: CodeRequestBodySchema
             Used By: User
         */
-        struct CodeRequestBodySchema: Codable {
+        class CodeRequestBodySchema: Codable {
             
             public var code: String?
             
@@ -25154,7 +25154,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25183,7 +25183,7 @@
             Model: SendResetPasswordEmailRequestSchema
             Used By: User
         */
-        struct SendResetPasswordEmailRequestSchema: Codable {
+        class SendResetPasswordEmailRequestSchema: Codable {
             
             public var email: String?
             
@@ -25206,7 +25206,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25248,7 +25248,7 @@
             Model: PasswordLoginRequestSchema
             Used By: User
         */
-        struct PasswordLoginRequestSchema: Codable {
+        class PasswordLoginRequestSchema: Codable {
             
             public var gRecaptchaResponse: String?
             
@@ -25277,7 +25277,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25332,7 +25332,7 @@
             Model: SendOtpRequestSchema
             Used By: User
         */
-        struct SendOtpRequestSchema: Codable {
+        class SendOtpRequestSchema: Codable {
             
             public var countryCode: String?
             
@@ -25361,7 +25361,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25416,7 +25416,7 @@
             Model: OAuthRequestSchema
             Used By: User
         */
-        struct OAuthRequestSchema: Codable {
+        class OAuthRequestSchema: Codable {
             
             public var isSignedIn: Bool?
             
@@ -25445,7 +25445,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25500,7 +25500,7 @@
             Model: AuthSuccess
             Used By: User
         */
-        struct AuthSuccess: Codable {
+        class AuthSuccess: Codable {
             
             public var registerToken: String?
             
@@ -25529,7 +25529,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25584,7 +25584,7 @@
             Model: SendOtpResponse
             Used By: User
         */
-        struct SendOtpResponse: Codable {
+        class SendOtpResponse: Codable {
             
             public var resendTimer: Int?
             
@@ -25637,7 +25637,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25744,7 +25744,7 @@
             Model: LoginSuccess
             Used By: User
         */
-        struct LoginSuccess: Codable {
+        class LoginSuccess: Codable {
             
             public var user: UserSchema?
             
@@ -25761,7 +25761,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25790,7 +25790,7 @@
             Model: VerifyOtpSuccess
             Used By: User
         */
-        struct VerifyOtpSuccess: Codable {
+        class VerifyOtpSuccess: Codable {
             
             public var user: UserSchema?
             
@@ -25813,7 +25813,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25855,7 +25855,7 @@
             Model: ResetPasswordSuccess
             Used By: User
         */
-        struct ResetPasswordSuccess: Codable {
+        class ResetPasswordSuccess: Codable {
             
             public var status: String?
             
@@ -25872,7 +25872,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -25901,7 +25901,7 @@
             Model: RegisterFormSuccess
             Used By: User
         */
-        struct RegisterFormSuccess: Codable {
+        class RegisterFormSuccess: Codable {
             
             public var resendTimer: Int?
             
@@ -25954,7 +25954,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26061,7 +26061,7 @@
             Model: VerifyEmailSuccess
             Used By: User
         */
-        struct VerifyEmailSuccess: Codable {
+        class VerifyEmailSuccess: Codable {
             
             public var message: String?
             
@@ -26078,7 +26078,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26107,7 +26107,7 @@
             Model: HasPasswordSuccess
             Used By: User
         */
-        struct HasPasswordSuccess: Codable {
+        class HasPasswordSuccess: Codable {
             
             public var result: Bool?
             
@@ -26124,7 +26124,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26153,7 +26153,7 @@
             Model: LogoutSuccess
             Used By: User
         */
-        struct LogoutSuccess: Codable {
+        class LogoutSuccess: Codable {
             
             public var logout: Bool?
             
@@ -26170,7 +26170,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26199,7 +26199,7 @@
             Model: OtpSuccess
             Used By: User
         */
-        struct OtpSuccess: Codable {
+        class OtpSuccess: Codable {
             
             public var resendTimer: Int?
             
@@ -26252,7 +26252,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26359,7 +26359,7 @@
             Model: EmailOtpSuccess
             Used By: User
         */
-        struct EmailOtpSuccess: Codable {
+        class EmailOtpSuccess: Codable {
             
             public var resendToken: String?
             
@@ -26376,7 +26376,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26405,7 +26405,7 @@
             Model: SessionListSuccess
             Used By: User
         */
-        struct SessionListSuccess: Codable {
+        class SessionListSuccess: Codable {
             
             public var sessions: [String]?
             
@@ -26422,7 +26422,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26451,7 +26451,7 @@
             Model: VerifyMobileOTPSuccess
             Used By: User
         */
-        struct VerifyMobileOTPSuccess: Codable {
+        class VerifyMobileOTPSuccess: Codable {
             
             public var user: UserSchema?
             
@@ -26474,7 +26474,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26516,7 +26516,7 @@
             Model: VerifyEmailOTPSuccess
             Used By: User
         */
-        struct VerifyEmailOTPSuccess: Codable {
+        class VerifyEmailOTPSuccess: Codable {
             
             public var user: UserSchema?
             
@@ -26539,7 +26539,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26581,7 +26581,7 @@
             Model: SendMobileVerifyLinkSuccess
             Used By: User
         */
-        struct SendMobileVerifyLinkSuccess: Codable {
+        class SendMobileVerifyLinkSuccess: Codable {
             
             public var verifyMobileLink: Bool?
             
@@ -26598,7 +26598,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26627,7 +26627,7 @@
             Model: SendEmailVerifyLinkSuccess
             Used By: User
         */
-        struct SendEmailVerifyLinkSuccess: Codable {
+        class SendEmailVerifyLinkSuccess: Codable {
             
             public var verifyEmailLink: Bool?
             
@@ -26644,7 +26644,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26673,7 +26673,7 @@
             Model: UserSearchResponseSchema
             Used By: User
         */
-        struct UserSearchResponseSchema: Codable {
+        class UserSearchResponseSchema: Codable {
             
             public var users: [UserSchema]?
             
@@ -26690,7 +26690,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26719,7 +26719,7 @@
             Model: CustomerListResponseSchema
             Used By: User
         */
-        struct CustomerListResponseSchema: Codable {
+        class CustomerListResponseSchema: Codable {
             
             public var items: [UserSchema]?
             
@@ -26742,7 +26742,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26784,7 +26784,7 @@
             Model: UnauthorizedSchema
             Used By: User
         */
-        struct UnauthorizedSchema: Codable {
+        class UnauthorizedSchema: Codable {
             
             public var message: String?
             
@@ -26801,7 +26801,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26830,7 +26830,7 @@
             Model: UnauthenticatedSchema
             Used By: User
         */
-        struct UnauthenticatedSchema: Codable {
+        class UnauthenticatedSchema: Codable {
             
             public var authenticated: Bool?
             
@@ -26847,7 +26847,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26876,7 +26876,7 @@
             Model: NotFoundSchema
             Used By: User
         */
-        struct NotFoundSchema: Codable {
+        class NotFoundSchema: Codable {
             
             public var message: String?
             
@@ -26893,7 +26893,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26922,7 +26922,7 @@
             Model: AuthenticationApiErrorSchema
             Used By: User
         */
-        struct AuthenticationApiErrorSchema: Codable {
+        class AuthenticationApiErrorSchema: Codable {
             
             public var message: String?
             
@@ -26939,7 +26939,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -26968,7 +26968,7 @@
             Model: ProfileEditSuccessSchema
             Used By: User
         */
-        struct ProfileEditSuccessSchema: Codable {
+        class ProfileEditSuccessSchema: Codable {
             
             public var email: String?
             
@@ -27021,7 +27021,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -27128,7 +27128,7 @@
             Model: FormRegisterRequestSchemaPhone
             Used By: User
         */
-        struct FormRegisterRequestSchemaPhone: Codable {
+        class FormRegisterRequestSchemaPhone: Codable {
             
             public var countryCode: String?
             
@@ -27151,7 +27151,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -27193,7 +27193,7 @@
             Model: OAuthRequestSchemaOauth2
             Used By: User
         */
-        struct OAuthRequestSchemaOauth2: Codable {
+        class OAuthRequestSchemaOauth2: Codable {
             
             public var accessToken: String?
             
@@ -27222,7 +27222,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -27277,7 +27277,7 @@
             Model: OAuthRequestSchemaProfile
             Used By: User
         */
-        struct OAuthRequestSchemaProfile: Codable {
+        class OAuthRequestSchemaProfile: Codable {
             
             public var lastName: String?
             
@@ -27324,7 +27324,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -27418,7 +27418,7 @@
             Model: AuthSuccessUser
             Used By: User
         */
-        struct AuthSuccessUser: Codable {
+        class AuthSuccessUser: Codable {
             
             public var firstName: String?
             
@@ -27459,7 +27459,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -27540,7 +27540,7 @@
             Model: AuthSuccessUserDebug
             Used By: User
         */
-        struct AuthSuccessUserDebug: Codable {
+        class AuthSuccessUserDebug: Codable {
             
             public var platform: String?
             
@@ -27557,7 +27557,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -27586,7 +27586,7 @@
             Model: AuthSuccessUserEmails
             Used By: User
         */
-        struct AuthSuccessUserEmails: Codable {
+        class AuthSuccessUserEmails: Codable {
             
             public var email: String?
             
@@ -27621,7 +27621,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -27689,7 +27689,7 @@
             Model: PlatformSchema
             Used By: User
         */
-        struct PlatformSchema: Codable {
+        class PlatformSchema: Codable {
             
             public var display: String?
             
@@ -27814,7 +27814,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28077,7 +28077,7 @@
             Model: LookAndFeel
             Used By: User
         */
-        struct LookAndFeel: Codable {
+        class LookAndFeel: Codable {
             
             public var cardPosition: String?
             
@@ -28100,7 +28100,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28142,7 +28142,7 @@
             Model: Login
             Used By: User
         */
-        struct Login: Codable {
+        class Login: Codable {
             
             public var password: Bool?
             
@@ -28165,7 +28165,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28207,7 +28207,7 @@
             Model: MetaSchema
             Used By: User
         */
-        struct MetaSchema: Codable {
+        class MetaSchema: Codable {
             
             public var fyndDefault: Bool?
             
@@ -28224,7 +28224,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28253,7 +28253,7 @@
             Model: Social
             Used By: User
         */
-        struct Social: Codable {
+        class Social: Codable {
             
             public var accountKit: Bool?
             
@@ -28282,7 +28282,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28337,7 +28337,7 @@
             Model: RequiredFields
             Used By: User
         */
-        struct RequiredFields: Codable {
+        class RequiredFields: Codable {
             
             public var email: Email?
             
@@ -28360,7 +28360,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28402,7 +28402,7 @@
             Model: Mobile
             Used By: User
         */
-        struct Mobile: Codable {
+        class Mobile: Codable {
             
             public var isRequired: Bool?
             
@@ -28425,7 +28425,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28467,7 +28467,7 @@
             Model: RegisterRequiredFields
             Used By: User
         */
-        struct RegisterRequiredFields: Codable {
+        class RegisterRequiredFields: Codable {
             
             public var email: RegisterRequiredFieldsEmail?
             
@@ -28490,7 +28490,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28532,7 +28532,7 @@
             Model: RegisterRequiredFieldsEmail
             Used By: User
         */
-        struct RegisterRequiredFieldsEmail: Codable {
+        class RegisterRequiredFieldsEmail: Codable {
             
             public var isRequired: Bool?
             
@@ -28555,7 +28555,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28597,7 +28597,7 @@
             Model: RegisterRequiredFieldsMobile
             Used By: User
         */
-        struct RegisterRequiredFieldsMobile: Codable {
+        class RegisterRequiredFieldsMobile: Codable {
             
             public var isRequired: Bool?
             
@@ -28620,7 +28620,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28662,7 +28662,7 @@
             Model: FlashCard
             Used By: User
         */
-        struct FlashCard: Codable {
+        class FlashCard: Codable {
             
             public var text: String?
             
@@ -28691,7 +28691,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28746,7 +28746,7 @@
             Model: SocialTokens
             Used By: User
         */
-        struct SocialTokens: Codable {
+        class SocialTokens: Codable {
             
             public var facebook: Facebook?
             
@@ -28775,7 +28775,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28830,7 +28830,7 @@
             Model: Facebook
             Used By: User
         */
-        struct Facebook: Codable {
+        class Facebook: Codable {
             
             public var appId: String?
             
@@ -28847,7 +28847,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28876,7 +28876,7 @@
             Model: Accountkit
             Used By: User
         */
-        struct Accountkit: Codable {
+        class Accountkit: Codable {
             
             public var appId: String?
             
@@ -28893,7 +28893,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28922,7 +28922,7 @@
             Model: Google
             Used By: User
         */
-        struct Google: Codable {
+        class Google: Codable {
             
             public var appId: String?
             
@@ -28939,7 +28939,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -28970,7 +28970,7 @@
             Model: ApplicationLegal
             Used By: Content
         */
-        struct ApplicationLegal: Codable {
+        class ApplicationLegal: Codable {
             
             public var application: String?
             
@@ -29029,7 +29029,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29149,7 +29149,7 @@
             Model: ApplicationLegalFAQ
             Used By: Content
         */
-        struct ApplicationLegalFAQ: Codable {
+        class ApplicationLegalFAQ: Codable {
             
             public var question: String?
             
@@ -29172,7 +29172,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29214,7 +29214,7 @@
             Model: CustomMetaTag
             Used By: Content
         */
-        struct CustomMetaTag: Codable {
+        class CustomMetaTag: Codable {
             
             public var name: String?
             
@@ -29237,7 +29237,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29279,7 +29279,7 @@
             Model: Detail
             Used By: Content
         */
-        struct Detail: Codable {
+        class Detail: Codable {
             
             public var title: String?
             
@@ -29302,7 +29302,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29344,7 +29344,7 @@
             Model: StorefrontAnnouncement
             Used By: Content
         */
-        struct StorefrontAnnouncement: Codable {
+        class StorefrontAnnouncement: Codable {
             
             public var announcements: AnnouncementSchema?
             
@@ -29373,7 +29373,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29428,7 +29428,7 @@
             Model: AnnouncementPageSchema
             Used By: Content
         */
-        struct AnnouncementPageSchema: Codable {
+        class AnnouncementPageSchema: Codable {
             
             public var pageSlug: String?
             
@@ -29451,7 +29451,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29493,7 +29493,7 @@
             Model: EditorMeta
             Used By: Content
         */
-        struct EditorMeta: Codable {
+        class EditorMeta: Codable {
             
             public var foregroundColor: String?
             
@@ -29528,7 +29528,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29596,7 +29596,7 @@
             Model: AnnouncementAuthorSchema
             Used By: Content
         */
-        struct AnnouncementAuthorSchema: Codable {
+        class AnnouncementAuthorSchema: Codable {
             
             public var createdBy: String?
             
@@ -29619,7 +29619,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29661,7 +29661,7 @@
             Model: AdminAnnouncementSchema
             Used By: Content
         */
-        struct AdminAnnouncementSchema: Codable {
+        class AdminAnnouncementSchema: Codable {
             
             public var id: String?
             
@@ -29738,7 +29738,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -29897,7 +29897,7 @@
             Model: ScheduleSchema
             Used By: Content
         */
-        struct ScheduleSchema: Codable {
+        class ScheduleSchema: Codable {
             
             public var cron: String?
             
@@ -29944,7 +29944,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30038,7 +30038,7 @@
             Model: NextSchedule
             Used By: Content
         */
-        struct NextSchedule: Codable {
+        class NextSchedule: Codable {
             
             public var start: String?
             
@@ -30061,7 +30061,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30103,7 +30103,7 @@
             Model: AnnouncementSchema
             Used By: Content
         */
-        struct AnnouncementSchema: Codable {
+        class AnnouncementSchema: Codable {
             
             public var pageSlug: [[String: Any]]?
             
@@ -30120,7 +30120,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30149,7 +30149,7 @@
             Model: announcementSchema
             Used By: Content
         */
-        struct announcementSchema: Codable {
+        class announcementSchema: Codable {
             
             public var announcement: String?
             
@@ -30172,7 +30172,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30214,7 +30214,7 @@
             Model: scheduleStartSchema
             Used By: Content
         */
-        struct scheduleStartSchema: Codable {
+        class scheduleStartSchema: Codable {
             
             public var start: String?
             
@@ -30231,7 +30231,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30260,7 +30260,7 @@
             Model: BlogGetResponse
             Used By: Content
         */
-        struct BlogGetResponse: Codable {
+        class BlogGetResponse: Codable {
             
             public var items: [[String: Any]]?
             
@@ -30283,7 +30283,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30325,7 +30325,7 @@
             Model: ResourceContent
             Used By: Content
         */
-        struct ResourceContent: Codable {
+        class ResourceContent: Codable {
             
             public var type: String?
             
@@ -30348,7 +30348,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30390,7 +30390,7 @@
             Model: Asset
             Used By: Content
         */
-        struct Asset: Codable {
+        class Asset: Codable {
             
             public var secureUrl: String?
             
@@ -30407,7 +30407,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30436,7 +30436,7 @@
             Model: Author
             Used By: Content
         */
-        struct Author: Codable {
+        class Author: Codable {
             
             public var designation: String?
             
@@ -30465,7 +30465,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30520,7 +30520,7 @@
             Model: BlogSchema
             Used By: Content
         */
-        struct BlogSchema: Codable {
+        class BlogSchema: Codable {
             
             public var id: [[String: Any]]?
             
@@ -30609,7 +30609,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30794,7 +30794,7 @@
             Model: DateMeta
             Used By: Content
         */
-        struct DateMeta: Codable {
+        class DateMeta: Codable {
             
             public var createdOn: String?
             
@@ -30817,7 +30817,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -30859,7 +30859,7 @@
             Model: BlogRequest
             Used By: Content
         */
-        struct BlogRequest: Codable {
+        class BlogRequest: Codable {
             
             public var schedule: String?
             
@@ -30930,7 +30930,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31076,7 +31076,7 @@
             Model: GetAnnouncementListSchema
             Used By: Content
         */
-        struct GetAnnouncementListSchema: Codable {
+        class GetAnnouncementListSchema: Codable {
             
             public var items: [AdminAnnouncementSchema]?
             
@@ -31093,7 +31093,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31122,7 +31122,7 @@
             Model: CreateAnnouncementSchema
             Used By: Content
         */
-        struct CreateAnnouncementSchema: Codable {
+        class CreateAnnouncementSchema: Codable {
             
             public var message: String?
             
@@ -31145,7 +31145,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31187,7 +31187,7 @@
             Model: Navigation
             Used By: Content
         */
-        struct Navigation: Codable {
+        class Navigation: Codable {
             
             public var name: String?
             
@@ -31258,7 +31258,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31404,7 +31404,7 @@
             Model: LocaleLanguage
             Used By: Content
         */
-        struct LocaleLanguage: Codable {
+        class LocaleLanguage: Codable {
             
             public var hi: Language?
             
@@ -31433,7 +31433,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31488,7 +31488,7 @@
             Model: Language
             Used By: Content
         */
-        struct Language: Codable {
+        class Language: Codable {
             
             public var display: String?
             
@@ -31505,7 +31505,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31534,7 +31534,7 @@
             Model: NavigationReference
             Used By: Content
         */
-        struct NavigationReference: Codable {
+        class NavigationReference: Codable {
             
             public var acl: [String: Any]?
             
@@ -31599,7 +31599,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31732,7 +31732,7 @@
             Model: LandingPage
             Used By: Content
         */
-        struct LandingPage: Codable {
+        class LandingPage: Codable {
             
             public var slug: String?
             
@@ -31785,7 +31785,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31892,7 +31892,7 @@
             Model: ConfigurationSchema
             Used By: Content
         */
-        struct ConfigurationSchema: Codable {
+        class ConfigurationSchema: Codable {
             
             public var sleepTime: Int?
             
@@ -31921,7 +31921,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -31976,7 +31976,7 @@
             Model: Slideshow
             Used By: Content
         */
-        struct Slideshow: Codable {
+        class Slideshow: Codable {
             
             public var id: String?
             
@@ -32041,7 +32041,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32174,7 +32174,7 @@
             Model: AnnouncementsResponseSchema
             Used By: Content
         */
-        struct AnnouncementsResponseSchema: Codable {
+        class AnnouncementsResponseSchema: Codable {
             
             public var announcements: [AnnouncementDataSchema]?
             
@@ -32203,7 +32203,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32258,7 +32258,7 @@
             Model: AnnouncementDataSchema
             Used By: Content
         */
-        struct AnnouncementDataSchema: Codable {
+        class AnnouncementDataSchema: Codable {
             
             public var pageSlug: String?
             
@@ -32281,7 +32281,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32323,7 +32323,7 @@
             Model: FaqResponseSchema
             Used By: Content
         */
-        struct FaqResponseSchema: Codable {
+        class FaqResponseSchema: Codable {
             
             public var faqs: [FAQ]?
             
@@ -32340,7 +32340,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32369,7 +32369,7 @@
             Model: UpdateHandpickedSchema
             Used By: Content
         */
-        struct UpdateHandpickedSchema: Codable {
+        class UpdateHandpickedSchema: Codable {
             
             public var tag: HandpickedTagSchema?
             
@@ -32386,7 +32386,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32415,7 +32415,7 @@
             Model: HandpickedTagSchema
             Used By: Content
         */
-        struct HandpickedTagSchema: Codable {
+        class HandpickedTagSchema: Codable {
             
             public var position: String?
             
@@ -32462,7 +32462,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32556,7 +32556,7 @@
             Model: RemoveHandpickedSchema
             Used By: Content
         */
-        struct RemoveHandpickedSchema: Codable {
+        class RemoveHandpickedSchema: Codable {
             
             public var tags: [String]?
             
@@ -32573,7 +32573,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32602,7 +32602,7 @@
             Model: CreateTagSchema
             Used By: Content
         */
-        struct CreateTagSchema: Codable {
+        class CreateTagSchema: Codable {
             
             public var name: String?
             
@@ -32649,7 +32649,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32743,7 +32743,7 @@
             Model: CreateTagRequestSchema
             Used By: Content
         */
-        struct CreateTagRequestSchema: Codable {
+        class CreateTagRequestSchema: Codable {
             
             public var tags: [CreateTagSchema]?
             
@@ -32760,7 +32760,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32789,7 +32789,7 @@
             Model: APIError
             Used By: Content
         */
-        struct APIError: Codable {
+        class APIError: Codable {
             
             public var message: String?
             
@@ -32848,7 +32848,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -32968,7 +32968,7 @@
             Model: CategorySchema
             Used By: Content
         */
-        struct CategorySchema: Codable {
+        class CategorySchema: Codable {
             
             public var index: Int?
             
@@ -33015,7 +33015,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33109,7 +33109,7 @@
             Model: ChildrenSchema
             Used By: Content
         */
-        struct ChildrenSchema: Codable {
+        class ChildrenSchema: Codable {
             
             public var question: String?
             
@@ -33156,7 +33156,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33250,7 +33250,7 @@
             Model: CategoryRequestSchema
             Used By: Content
         */
-        struct CategoryRequestSchema: Codable {
+        class CategoryRequestSchema: Codable {
             
             public var slug: String?
             
@@ -33273,7 +33273,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33315,7 +33315,7 @@
             Model: FAQCategorySchema
             Used By: Content
         */
-        struct FAQCategorySchema: Codable {
+        class FAQCategorySchema: Codable {
             
             public var index: Int?
             
@@ -33362,7 +33362,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33456,7 +33456,7 @@
             Model: FaqSchema
             Used By: Content
         */
-        struct FaqSchema: Codable {
+        class FaqSchema: Codable {
             
             public var slug: String?
             
@@ -33503,7 +33503,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33597,7 +33597,7 @@
             Model: FAQ
             Used By: Content
         */
-        struct FAQ: Codable {
+        class FAQ: Codable {
             
             public var slug: String?
             
@@ -33626,7 +33626,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33681,7 +33681,7 @@
             Model: CreateFaqResponseSchema
             Used By: Content
         */
-        struct CreateFaqResponseSchema: Codable {
+        class CreateFaqResponseSchema: Codable {
             
             public var faq: FaqSchema?
             
@@ -33698,7 +33698,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33727,7 +33727,7 @@
             Model: CreateFaqSchema
             Used By: Content
         */
-        struct CreateFaqSchema: Codable {
+        class CreateFaqSchema: Codable {
             
             public var faq: FAQ?
             
@@ -33744,7 +33744,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33773,7 +33773,7 @@
             Model: GetFaqSchema
             Used By: Content
         */
-        struct GetFaqSchema: Codable {
+        class GetFaqSchema: Codable {
             
             public var faqs: [[String: Any]]?
             
@@ -33790,7 +33790,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33819,7 +33819,7 @@
             Model: UpdateFaqCategoryRequestSchema
             Used By: Content
         */
-        struct UpdateFaqCategoryRequestSchema: Codable {
+        class UpdateFaqCategoryRequestSchema: Codable {
             
             public var category: CategorySchema?
             
@@ -33836,7 +33836,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33865,7 +33865,7 @@
             Model: CreateFaqCategoryRequestSchema
             Used By: Content
         */
-        struct CreateFaqCategoryRequestSchema: Codable {
+        class CreateFaqCategoryRequestSchema: Codable {
             
             public var category: CategoryRequestSchema?
             
@@ -33882,7 +33882,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33911,7 +33911,7 @@
             Model: CreateFaqCategorySchema
             Used By: Content
         */
-        struct CreateFaqCategorySchema: Codable {
+        class CreateFaqCategorySchema: Codable {
             
             public var category: CategorySchema?
             
@@ -33928,7 +33928,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -33957,7 +33957,7 @@
             Model: GetFaqCategoriesSchema
             Used By: Content
         */
-        struct GetFaqCategoriesSchema: Codable {
+        class GetFaqCategoriesSchema: Codable {
             
             public var categories: [CategorySchema]?
             
@@ -33974,7 +33974,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34003,7 +34003,7 @@
             Model: GetFaqCategoryByIdOrSlugSchema
             Used By: Content
         */
-        struct GetFaqCategoryByIdOrSlugSchema: Codable {
+        class GetFaqCategoryByIdOrSlugSchema: Codable {
             
             public var category: FAQCategorySchema?
             
@@ -34020,7 +34020,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34049,7 +34049,7 @@
             Model: Pagination
             Used By: Content
         */
-        struct Pagination: Codable {
+        class Pagination: Codable {
             
             public var type: String?
             
@@ -34090,7 +34090,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34171,7 +34171,7 @@
             Model: LandingPageGetResponse
             Used By: Content
         */
-        struct LandingPageGetResponse: Codable {
+        class LandingPageGetResponse: Codable {
             
             public var items: [[String: Any]]?
             
@@ -34194,7 +34194,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34236,7 +34236,7 @@
             Model: LandingPageSchema
             Used By: Content
         */
-        struct LandingPageSchema: Codable {
+        class LandingPageSchema: Codable {
             
             public var slug: String?
             
@@ -34295,7 +34295,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34415,7 +34415,7 @@
             Model: LandingPageRequest
             Used By: Content
         */
-        struct LandingPageRequest: Codable {
+        class LandingPageRequest: Codable {
             
             public var slug: String?
             
@@ -34444,7 +34444,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34499,7 +34499,7 @@
             Model: DefaultNavigationResponse
             Used By: Content
         */
-        struct DefaultNavigationResponse: Codable {
+        class DefaultNavigationResponse: Codable {
             
             public var items: [[String: Any]]?
             
@@ -34516,7 +34516,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34545,7 +34545,7 @@
             Model: NavigationGetResponse
             Used By: Content
         */
-        struct NavigationGetResponse: Codable {
+        class NavigationGetResponse: Codable {
             
             public var items: [[String: Any]]?
             
@@ -34568,7 +34568,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34610,7 +34610,7 @@
             Model: Orientation
             Used By: Content
         */
-        struct Orientation: Codable {
+        class Orientation: Codable {
             
             public var portrait: [String]?
             
@@ -34633,7 +34633,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34675,7 +34675,7 @@
             Model: NavigationSchema
             Used By: Content
         */
-        struct NavigationSchema: Codable {
+        class NavigationSchema: Codable {
             
             public var id: String?
             
@@ -34734,7 +34734,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34854,7 +34854,7 @@
             Model: NavigationRequest
             Used By: Content
         */
-        struct NavigationRequest: Codable {
+        class NavigationRequest: Codable {
             
             public var name: String?
             
@@ -34895,7 +34895,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -34976,7 +34976,7 @@
             Model: CustomPageSchema
             Used By: Content
         */
-        struct CustomPageSchema: Codable {
+        class CustomPageSchema: Codable {
             
             public var id: String?
             
@@ -35071,7 +35071,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35269,7 +35269,7 @@
             Model: ContentSchema
             Used By: Content
         */
-        struct ContentSchema: Codable {
+        class ContentSchema: Codable {
             
             public var type: String?
             
@@ -35292,7 +35292,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35334,7 +35334,7 @@
             Model: CustomPage
             Used By: Content
         */
-        struct CustomPage: Codable {
+        class CustomPage: Codable {
             
             public var data: CustomPageSchema?
             
@@ -35351,7 +35351,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35380,7 +35380,7 @@
             Model: CustomBlogSchema
             Used By: Content
         */
-        struct CustomBlogSchema: Codable {
+        class CustomBlogSchema: Codable {
             
             public var id: String?
             
@@ -35487,7 +35487,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35711,7 +35711,7 @@
             Model: FeatureImage
             Used By: Content
         */
-        struct FeatureImage: Codable {
+        class FeatureImage: Codable {
             
             public var secureUrl: String?
             
@@ -35728,7 +35728,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35757,7 +35757,7 @@
             Model: CustomBlog
             Used By: Content
         */
-        struct CustomBlog: Codable {
+        class CustomBlog: Codable {
             
             public var data: CustomBlogSchema?
             
@@ -35774,7 +35774,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35803,7 +35803,7 @@
             Model: PageGetResponse
             Used By: Content
         */
-        struct PageGetResponse: Codable {
+        class PageGetResponse: Codable {
             
             public var items: [[String: Any]]?
             
@@ -35826,7 +35826,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35868,7 +35868,7 @@
             Model: PageSpec
             Used By: Content
         */
-        struct PageSpec: Codable {
+        class PageSpec: Codable {
             
             public var specifications: [[String: Any]]?
             
@@ -35885,7 +35885,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -35914,7 +35914,7 @@
             Model: PageSpecItem
             Used By: Content
         */
-        struct PageSpecItem: Codable {
+        class PageSpecItem: Codable {
             
             public var pageType: String?
             
@@ -35949,7 +35949,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36017,7 +36017,7 @@
             Model: PageSchema
             Used By: Content
         */
-        struct PageSchema: Codable {
+        class PageSchema: Codable {
             
             public var id: [[String: Any]]?
             
@@ -36130,7 +36130,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36367,7 +36367,7 @@
             Model: CreatedBy
             Used By: Content
         */
-        struct CreatedBy: Codable {
+        class CreatedBy: Codable {
             
             public var id: String?
             
@@ -36384,7 +36384,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36413,7 +36413,7 @@
             Model: PageContent
             Used By: Content
         */
-        struct PageContent: Codable {
+        class PageContent: Codable {
             
             public var type: String?
             
@@ -36436,7 +36436,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36478,7 +36478,7 @@
             Model: PageMeta
             Used By: Content
         */
-        struct PageMeta: Codable {
+        class PageMeta: Codable {
             
             public var key: String?
             
@@ -36501,7 +36501,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36543,7 +36543,7 @@
             Model: PageRequest
             Used By: Content
         */
-        struct PageRequest: Codable {
+        class PageRequest: Codable {
             
             public var schedule: String?
             
@@ -36614,7 +36614,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36760,7 +36760,7 @@
             Model: PagePublishRequest
             Used By: Content
         */
-        struct PagePublishRequest: Codable {
+        class PagePublishRequest: Codable {
             
             public var publish: Bool?
             
@@ -36777,7 +36777,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36806,7 +36806,7 @@
             Model: PageMetaSchema
             Used By: Content
         */
-        struct PageMetaSchema: Codable {
+        class PageMetaSchema: Codable {
             
             public var systemPages: [[String: Any]]?
             
@@ -36835,7 +36835,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36890,7 +36890,7 @@
             Model: SlideshowGetResponse
             Used By: Content
         */
-        struct SlideshowGetResponse: Codable {
+        class SlideshowGetResponse: Codable {
             
             public var items: [[String: Any]]?
             
@@ -36913,7 +36913,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -36955,7 +36955,7 @@
             Model: SlideshowSchema
             Used By: Content
         */
-        struct SlideshowSchema: Codable {
+        class SlideshowSchema: Codable {
             
             public var id: String?
             
@@ -37020,7 +37020,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37153,7 +37153,7 @@
             Model: SlideshowRequest
             Used By: Content
         */
-        struct SlideshowRequest: Codable {
+        class SlideshowRequest: Codable {
             
             public var slug: String?
             
@@ -37194,7 +37194,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37275,7 +37275,7 @@
             Model: Support
             Used By: Content
         */
-        struct Support: Codable {
+        class Support: Codable {
             
             public var created: Bool?
             
@@ -37328,7 +37328,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37435,7 +37435,7 @@
             Model: Phone
             Used By: Content
         */
-        struct Phone: Codable {
+        class Phone: Codable {
             
             public var key: String?
             
@@ -37464,7 +37464,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37519,7 +37519,7 @@
             Model: PhoneSchema
             Used By: Content
         */
-        struct PhoneSchema: Codable {
+        class PhoneSchema: Codable {
             
             public var active: Bool?
             
@@ -37542,7 +37542,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37584,7 +37584,7 @@
             Model: EmailSchema
             Used By: Content
         */
-        struct EmailSchema: Codable {
+        class EmailSchema: Codable {
             
             public var active: Bool?
             
@@ -37607,7 +37607,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37649,7 +37649,7 @@
             Model: ContactSchema
             Used By: Content
         */
-        struct ContactSchema: Codable {
+        class ContactSchema: Codable {
             
             public var phone: PhoneSchema?
             
@@ -37672,7 +37672,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37714,7 +37714,7 @@
             Model: TagsSchema
             Used By: Content
         */
-        struct TagsSchema: Codable {
+        class TagsSchema: Codable {
             
             public var application: String?
             
@@ -37743,7 +37743,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37798,7 +37798,7 @@
             Model: TagSchema
             Used By: Content
         */
-        struct TagSchema: Codable {
+        class TagSchema: Codable {
             
             public var name: String?
             
@@ -37845,7 +37845,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -37941,7 +37941,7 @@
             Model: QRCodeResp
             Used By: Share
         */
-        struct QRCodeResp: Codable {
+        class QRCodeResp: Codable {
             
             public var link: String?
             
@@ -37964,7 +37964,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38006,7 +38006,7 @@
             Model: RedirectDevice
             Used By: Share
         */
-        struct RedirectDevice: Codable {
+        class RedirectDevice: Codable {
             
             public var link: String
             
@@ -38029,7 +38029,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38057,7 +38057,7 @@
             Model: WebRedirect
             Used By: Share
         */
-        struct WebRedirect: Codable {
+        class WebRedirect: Codable {
             
             public var link: String?
             
@@ -38080,7 +38080,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38122,7 +38122,7 @@
             Model: Redirects
             Used By: Share
         */
-        struct Redirects: Codable {
+        class Redirects: Codable {
             
             public var ios: RedirectDevice?
             
@@ -38157,7 +38157,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38225,7 +38225,7 @@
             Model: ShortLinkReq
             Used By: Share
         */
-        struct ShortLinkReq: Codable {
+        class ShortLinkReq: Codable {
             
             public var title: String
             
@@ -38284,7 +38284,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38390,7 +38390,7 @@
             Model: UrlInfo
             Used By: Share
         */
-        struct UrlInfo: Codable {
+        class UrlInfo: Codable {
             
             public var original: String?
             
@@ -38419,7 +38419,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38474,7 +38474,7 @@
             Model: ShortLinkRes
             Used By: Share
         */
-        struct ShortLinkRes: Codable {
+        class ShortLinkRes: Codable {
             
             public var title: String?
             
@@ -38575,7 +38575,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38786,7 +38786,7 @@
             Model: ShortLinkList
             Used By: Share
         */
-        struct ShortLinkList: Codable {
+        class ShortLinkList: Codable {
             
             public var items: [ShortLinkRes]?
             
@@ -38833,7 +38833,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38929,7 +38929,7 @@
             Model: FailedResponse
             Used By: FileStorage
         */
-        struct FailedResponse: Codable {
+        class FailedResponse: Codable {
             
             public var message: String
             
@@ -38946,7 +38946,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -38968,7 +38968,7 @@
             Model: CDN
             Used By: FileStorage
         */
-        struct CDN: Codable {
+        class CDN: Codable {
             
             public var url: String
             
@@ -38985,7 +38985,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39007,7 +39007,7 @@
             Model: Upload
             Used By: FileStorage
         */
-        struct Upload: Codable {
+        class Upload: Codable {
             
             public var expiry: Int
             
@@ -39030,7 +39030,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39058,7 +39058,7 @@
             Model: StartResponse
             Used By: FileStorage
         */
-        struct StartResponse: Codable {
+        class StartResponse: Codable {
             
             public var fileName: String
             
@@ -39123,7 +39123,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39193,7 +39193,7 @@
             Model: StartRequest
             Used By: FileStorage
         */
-        struct StartRequest: Codable {
+        class StartRequest: Codable {
             
             public var fileName: String
             
@@ -39228,7 +39228,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39275,7 +39275,7 @@
             Model: CompleteResponse
             Used By: FileStorage
         */
-        struct CompleteResponse: Codable {
+        class CompleteResponse: Codable {
             
             public var id: String
             
@@ -39370,7 +39370,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39477,7 +39477,7 @@
             Model: Opts
             Used By: FileStorage
         */
-        struct Opts: Codable {
+        class Opts: Codable {
             
             public var attempts: Int?
             
@@ -39506,7 +39506,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39561,7 +39561,7 @@
             Model: CopyFileTask
             Used By: FileStorage
         */
-        struct CopyFileTask: Codable {
+        class CopyFileTask: Codable {
             
             public var id: String
             
@@ -39638,7 +39638,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39727,7 +39727,7 @@
             Model: BulkResponse
             Used By: FileStorage
         */
-        struct BulkResponse: Codable {
+        class BulkResponse: Codable {
             
             public var trackingUrl: String
             
@@ -39750,7 +39750,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39778,7 +39778,7 @@
             Model: ReqConfiguration
             Used By: FileStorage
         */
-        struct ReqConfiguration: Codable {
+        class ReqConfiguration: Codable {
             
             public var concurrency: Int?
             
@@ -39795,7 +39795,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39824,7 +39824,7 @@
             Model: Destination
             Used By: FileStorage
         */
-        struct Destination: Codable {
+        class Destination: Codable {
             
             public var namespace: String
             
@@ -39853,7 +39853,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39894,7 +39894,7 @@
             Model: BulkRequest
             Used By: FileStorage
         */
-        struct BulkRequest: Codable {
+        class BulkRequest: Codable {
             
             public var urls: [String]
             
@@ -39923,7 +39923,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -39964,7 +39964,7 @@
             Model: Urls
             Used By: FileStorage
         */
-        struct Urls: Codable {
+        class Urls: Codable {
             
             public var url: String
             
@@ -39993,7 +39993,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40027,7 +40027,7 @@
             Model: SignUrlResponse
             Used By: FileStorage
         */
-        struct SignUrlResponse: Codable {
+        class SignUrlResponse: Codable {
             
             public var urls: [Urls]
             
@@ -40044,7 +40044,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40066,7 +40066,7 @@
             Model: SignUrlRequest
             Used By: FileStorage
         */
-        struct SignUrlRequest: Codable {
+        class SignUrlRequest: Codable {
             
             public var expiry: Int
             
@@ -40089,7 +40089,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40117,7 +40117,7 @@
             Model: DbRecord
             Used By: FileStorage
         */
-        struct DbRecord: Codable {
+        class DbRecord: Codable {
             
             public var success: Bool
             
@@ -40200,7 +40200,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40295,7 +40295,7 @@
             Model: BrowseResponse
             Used By: FileStorage
         */
-        struct BrowseResponse: Codable {
+        class BrowseResponse: Codable {
             
             public var items: [DbRecord]
             
@@ -40318,7 +40318,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40348,7 +40348,7 @@
             Model: ApplicationAboutResponse
             Used By: Configuration
         */
-        struct ApplicationAboutResponse: Codable {
+        class ApplicationAboutResponse: Codable {
             
             public var applicationInfo: ApplicationInfo?
             
@@ -40377,7 +40377,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40432,7 +40432,7 @@
             Model: ApplicationInfo
             Used By: Configuration
         */
-        struct ApplicationInfo: Codable {
+        class ApplicationInfo: Codable {
             
             public var id: String?
             
@@ -40521,7 +40521,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40706,7 +40706,7 @@
             Model: CompanyInfo
             Used By: Configuration
         */
-        struct CompanyInfo: Codable {
+        class CompanyInfo: Codable {
             
             public var id: String?
             
@@ -40759,7 +40759,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -40866,7 +40866,7 @@
             Model: OwnerInfo
             Used By: Configuration
         */
-        struct OwnerInfo: Codable {
+        class OwnerInfo: Codable {
             
             public var id: String?
             
@@ -40913,7 +40913,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41007,7 +41007,7 @@
             Model: AppVersionRequest
             Used By: Configuration
         */
-        struct AppVersionRequest: Codable {
+        class AppVersionRequest: Codable {
             
             public var application: ApplicationVersionRequest
             
@@ -41042,7 +41042,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41096,7 +41096,7 @@
             Model: ApplicationVersionRequest
             Used By: Configuration
         */
-        struct ApplicationVersionRequest: Codable {
+        class ApplicationVersionRequest: Codable {
             
             public var id: String?
             
@@ -41137,7 +41137,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41204,7 +41204,7 @@
             Model: Device
             Used By: Configuration
         */
-        struct Device: Codable {
+        class Device: Codable {
             
             public var build: Int?
             
@@ -41233,7 +41233,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41281,7 +41281,7 @@
             Model: OS
             Used By: Configuration
         */
-        struct OS: Codable {
+        class OS: Codable {
             
             public var name: String
             
@@ -41304,7 +41304,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41339,7 +41339,7 @@
             Model: LanguageResponse
             Used By: Configuration
         */
-        struct LanguageResponse: Codable {
+        class LanguageResponse: Codable {
             
             public var items: [Language]?
             
@@ -41356,7 +41356,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41385,7 +41385,7 @@
             Model: AppStaffResponse
             Used By: Configuration
         */
-        struct AppStaffResponse: Codable {
+        class AppStaffResponse: Codable {
             
             public var staffUsers: [AppStaff]?
             
@@ -41402,7 +41402,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41431,7 +41431,7 @@
             Model: UpdateDialog
             Used By: Configuration
         */
-        struct UpdateDialog: Codable {
+        class UpdateDialog: Codable {
             
             public var type: String?
             
@@ -41454,7 +41454,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41496,7 +41496,7 @@
             Model: OrderingStoreSelectRequest
             Used By: Configuration
         */
-        struct OrderingStoreSelectRequest: Codable {
+        class OrderingStoreSelectRequest: Codable {
             
             public var orderingStore: OrderingStoreSelect
             
@@ -41513,7 +41513,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41535,7 +41535,7 @@
             Model: OrderingStoreSelect
             Used By: Configuration
         */
-        struct OrderingStoreSelect: Codable {
+        class OrderingStoreSelect: Codable {
             
             public var id: String
             
@@ -41564,7 +41564,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41598,7 +41598,7 @@
             Model: AppStaff
             Used By: Configuration
         */
-        struct AppStaff: Codable {
+        class AppStaff: Codable {
             
             public var id: String?
             
@@ -41669,7 +41669,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41815,7 +41815,7 @@
             Model: ProductDetailFeature
             Used By: Configuration
         */
-        struct ProductDetailFeature: Codable {
+        class ProductDetailFeature: Codable {
             
             public var similar: [String]?
             
@@ -41850,7 +41850,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -41918,7 +41918,7 @@
             Model: LaunchPage
             Used By: Configuration
         */
-        struct LaunchPage: Codable {
+        class LaunchPage: Codable {
             
             public var pageType: String?
             
@@ -41947,7 +41947,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42002,7 +42002,7 @@
             Model: LandingPageFeature
             Used By: Configuration
         */
-        struct LandingPageFeature: Codable {
+        class LandingPageFeature: Codable {
             
             public var launchPage: LaunchPage?
             
@@ -42043,7 +42043,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42124,7 +42124,7 @@
             Model: RegistrationPageFeature
             Used By: Configuration
         */
-        struct RegistrationPageFeature: Codable {
+        class RegistrationPageFeature: Codable {
             
             public var askStoreAddress: Bool?
             
@@ -42141,7 +42141,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42170,7 +42170,7 @@
             Model: AppFeature
             Used By: Configuration
         */
-        struct AppFeature: Codable {
+        class AppFeature: Codable {
             
             public var productDetail: ProductDetailFeature?
             
@@ -42265,7 +42265,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42463,7 +42463,7 @@
             Model: HomePageFeature
             Used By: Configuration
         */
-        struct HomePageFeature: Codable {
+        class HomePageFeature: Codable {
             
             public var orderProcessing: Bool?
             
@@ -42480,7 +42480,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42509,7 +42509,7 @@
             Model: CommonFeature
             Used By: Configuration
         */
-        struct CommonFeature: Codable {
+        class CommonFeature: Codable {
             
             public var communicationOptinDialog: CommunicationOptinDialogFeature?
             
@@ -42568,7 +42568,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42688,7 +42688,7 @@
             Model: CommunicationOptinDialogFeature
             Used By: Configuration
         */
-        struct CommunicationOptinDialogFeature: Codable {
+        class CommunicationOptinDialogFeature: Codable {
             
             public var visibility: Bool?
             
@@ -42705,7 +42705,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42734,7 +42734,7 @@
             Model: DeploymentStoreSelectionFeature
             Used By: Configuration
         */
-        struct DeploymentStoreSelectionFeature: Codable {
+        class DeploymentStoreSelectionFeature: Codable {
             
             public var enabled: Bool?
             
@@ -42757,7 +42757,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42799,7 +42799,7 @@
             Model: ListingPriceFeature
             Used By: Configuration
         */
-        struct ListingPriceFeature: Codable {
+        class ListingPriceFeature: Codable {
             
             public var value: String?
             
@@ -42822,7 +42822,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42864,7 +42864,7 @@
             Model: ListingPageFeature
             Used By: Configuration
         */
-        struct ListingPageFeature: Codable {
+        class ListingPageFeature: Codable {
             
             public var sortOn: String?
             
@@ -42881,7 +42881,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42910,7 +42910,7 @@
             Model: CurrencyFeature
             Used By: Configuration
         */
-        struct CurrencyFeature: Codable {
+        class CurrencyFeature: Codable {
             
             public var value: [String]?
             
@@ -42939,7 +42939,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -42994,7 +42994,7 @@
             Model: RevenueEngineFeature
             Used By: Configuration
         */
-        struct RevenueEngineFeature: Codable {
+        class RevenueEngineFeature: Codable {
             
             public var enabled: Bool?
             
@@ -43011,7 +43011,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43040,7 +43040,7 @@
             Model: FeedbackFeature
             Used By: Configuration
         */
-        struct FeedbackFeature: Codable {
+        class FeedbackFeature: Codable {
             
             public var enabled: Bool?
             
@@ -43057,7 +43057,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43086,7 +43086,7 @@
             Model: CompareProductsFeature
             Used By: Configuration
         */
-        struct CompareProductsFeature: Codable {
+        class CompareProductsFeature: Codable {
             
             public var enabled: Bool?
             
@@ -43103,7 +43103,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43132,7 +43132,7 @@
             Model: CartFeature
             Used By: Configuration
         */
-        struct CartFeature: Codable {
+        class CartFeature: Codable {
             
             public var gstInput: Bool?
             
@@ -43167,7 +43167,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43235,7 +43235,7 @@
             Model: QrFeature
             Used By: Configuration
         */
-        struct QrFeature: Codable {
+        class QrFeature: Codable {
             
             public var application: Bool?
             
@@ -43264,7 +43264,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43319,7 +43319,7 @@
             Model: PcrFeature
             Used By: Configuration
         */
-        struct PcrFeature: Codable {
+        class PcrFeature: Codable {
             
             public var staffSelection: Bool?
             
@@ -43336,7 +43336,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43365,7 +43365,7 @@
             Model: OrderFeature
             Used By: Configuration
         */
-        struct OrderFeature: Codable {
+        class OrderFeature: Codable {
             
             public var buyAgain: Bool?
             
@@ -43382,7 +43382,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43411,7 +43411,7 @@
             Model: AppFeatureRequest
             Used By: Configuration
         */
-        struct AppFeatureRequest: Codable {
+        class AppFeatureRequest: Codable {
             
             public var feature: AppFeature?
             
@@ -43428,7 +43428,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43457,7 +43457,7 @@
             Model: AppFeatureResponse
             Used By: Configuration
         */
-        struct AppFeatureResponse: Codable {
+        class AppFeatureResponse: Codable {
             
             public var feature: AppFeature?
             
@@ -43474,7 +43474,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43503,7 +43503,7 @@
             Model: Currency
             Used By: Configuration
         */
-        struct Currency: Codable {
+        class Currency: Codable {
             
             public var id: String?
             
@@ -43562,7 +43562,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43682,7 +43682,7 @@
             Model: Domain
             Used By: Configuration
         */
-        struct Domain: Codable {
+        class Domain: Codable {
             
             public var verified: Bool?
             
@@ -43729,7 +43729,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43823,7 +43823,7 @@
             Model: ApplicationWebsite
             Used By: Configuration
         */
-        struct ApplicationWebsite: Codable {
+        class ApplicationWebsite: Codable {
             
             public var enabled: Bool?
             
@@ -43846,7 +43846,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43888,7 +43888,7 @@
             Model: ApplicationCors
             Used By: Configuration
         */
-        struct ApplicationCors: Codable {
+        class ApplicationCors: Codable {
             
             public var domains: [String]?
             
@@ -43905,7 +43905,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43934,7 +43934,7 @@
             Model: ApplicationAuth
             Used By: Configuration
         */
-        struct ApplicationAuth: Codable {
+        class ApplicationAuth: Codable {
             
             public var enabled: Bool?
             
@@ -43951,7 +43951,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -43980,7 +43980,7 @@
             Model: ApplicationRedirections
             Used By: Configuration
         */
-        struct ApplicationRedirections: Codable {
+        class ApplicationRedirections: Codable {
             
             public var from: String?
             
@@ -44009,7 +44009,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44064,7 +44064,7 @@
             Model: ApplicationMeta
             Used By: Configuration
         */
-        struct ApplicationMeta: Codable {
+        class ApplicationMeta: Codable {
             
             public var name: String?
             
@@ -44087,7 +44087,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44129,7 +44129,7 @@
             Model: SecureUrl
             Used By: Configuration
         */
-        struct SecureUrl: Codable {
+        class SecureUrl: Codable {
             
             public var secureUrl: String?
             
@@ -44146,7 +44146,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44175,7 +44175,7 @@
             Model: Application
             Used By: Configuration
         */
-        struct Application: Codable {
+        class Application: Codable {
             
             public var website: ApplicationWebsite?
             
@@ -44336,7 +44336,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44677,7 +44677,7 @@
             Model: NotFound
             Used By: Configuration
         */
-        struct NotFound: Codable {
+        class NotFound: Codable {
             
             public var message: String?
             
@@ -44694,7 +44694,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44723,7 +44723,7 @@
             Model: UnhandledError
             Used By: Configuration
         */
-        struct UnhandledError: Codable {
+        class UnhandledError: Codable {
             
             public var message: String?
             
@@ -44740,7 +44740,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44769,7 +44769,7 @@
             Model: InvalidPayloadRequest
             Used By: Configuration
         */
-        struct InvalidPayloadRequest: Codable {
+        class InvalidPayloadRequest: Codable {
             
             public var message: String?
             
@@ -44786,7 +44786,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44815,7 +44815,7 @@
             Model: SuccessMessageResponse
             Used By: Configuration
         */
-        struct SuccessMessageResponse: Codable {
+        class SuccessMessageResponse: Codable {
             
             public var message: String?
             
@@ -44832,7 +44832,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44861,7 +44861,7 @@
             Model: InventoryBrandRule
             Used By: Configuration
         */
-        struct InventoryBrandRule: Codable {
+        class InventoryBrandRule: Codable {
             
             public var criteria: String?
             
@@ -44884,7 +44884,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44926,7 +44926,7 @@
             Model: StoreCriteriaRule
             Used By: Configuration
         */
-        struct StoreCriteriaRule: Codable {
+        class StoreCriteriaRule: Codable {
             
             public var companies: [Int]?
             
@@ -44949,7 +44949,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -44991,7 +44991,7 @@
             Model: InventoryStoreRule
             Used By: Configuration
         */
-        struct InventoryStoreRule: Codable {
+        class InventoryStoreRule: Codable {
             
             public var criteria: String?
             
@@ -45020,7 +45020,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45075,7 +45075,7 @@
             Model: InventoryPaymentConfig
             Used By: Configuration
         */
-        struct InventoryPaymentConfig: Codable {
+        class InventoryPaymentConfig: Codable {
             
             public var modeOfPayment: String?
             
@@ -45098,7 +45098,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45140,7 +45140,7 @@
             Model: StorePriorityRule
             Used By: Configuration
         */
-        struct StorePriorityRule: Codable {
+        class StorePriorityRule: Codable {
             
             public var enabled: Bool?
             
@@ -45163,7 +45163,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45205,7 +45205,7 @@
             Model: ArticleAssignmentRule
             Used By: Configuration
         */
-        struct ArticleAssignmentRule: Codable {
+        class ArticleAssignmentRule: Codable {
             
             public var storePriority: StorePriorityRule?
             
@@ -45222,7 +45222,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45251,7 +45251,7 @@
             Model: InventoryArticleAssignment
             Used By: Configuration
         */
-        struct InventoryArticleAssignment: Codable {
+        class InventoryArticleAssignment: Codable {
             
             public var postOrderReassignment: Bool?
             
@@ -45280,7 +45280,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45335,7 +45335,7 @@
             Model: CompanyAboutAddress
             Used By: Configuration
         */
-        struct CompanyAboutAddress: Codable {
+        class CompanyAboutAddress: Codable {
             
             public var pincode: Int?
             
@@ -45388,7 +45388,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45495,7 +45495,7 @@
             Model: UserEmail
             Used By: Configuration
         */
-        struct UserEmail: Codable {
+        class UserEmail: Codable {
             
             public var active: Bool?
             
@@ -45530,7 +45530,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45598,7 +45598,7 @@
             Model: UserPhoneNumber
             Used By: Configuration
         */
-        struct UserPhoneNumber: Codable {
+        class UserPhoneNumber: Codable {
             
             public var active: Bool?
             
@@ -45639,7 +45639,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45720,7 +45720,7 @@
             Model: ApplicationInformation
             Used By: Configuration
         */
-        struct ApplicationInformation: Codable {
+        class ApplicationInformation: Codable {
             
             public var address: InformationAddress?
             
@@ -45797,7 +45797,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -45956,7 +45956,7 @@
             Model: InformationAddress
             Used By: Configuration
         */
-        struct InformationAddress: Codable {
+        class InformationAddress: Codable {
             
             public var loc: String?
             
@@ -46003,7 +46003,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46097,7 +46097,7 @@
             Model: InformationPhone
             Used By: Configuration
         */
-        struct InformationPhone: Codable {
+        class InformationPhone: Codable {
             
             public var code: String?
             
@@ -46120,7 +46120,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46162,7 +46162,7 @@
             Model: InformationSupport
             Used By: Configuration
         */
-        struct InformationSupport: Codable {
+        class InformationSupport: Codable {
             
             public var phone: [String]?
             
@@ -46191,7 +46191,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46246,7 +46246,7 @@
             Model: SocialLinks
             Used By: Configuration
         */
-        struct SocialLinks: Codable {
+        class SocialLinks: Codable {
             
             public var facebook: Facebook?
             
@@ -46311,7 +46311,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46444,7 +46444,7 @@
             Model: Instagram
             Used By: Configuration
         */
-        struct Instagram: Codable {
+        class Instagram: Codable {
             
             public var title: String?
             
@@ -46473,7 +46473,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46528,7 +46528,7 @@
             Model: Twitter
             Used By: Configuration
         */
-        struct Twitter: Codable {
+        class Twitter: Codable {
             
             public var title: String?
             
@@ -46557,7 +46557,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46612,7 +46612,7 @@
             Model: Pinterest
             Used By: Configuration
         */
-        struct Pinterest: Codable {
+        class Pinterest: Codable {
             
             public var title: String?
             
@@ -46641,7 +46641,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46696,7 +46696,7 @@
             Model: GooglePlus
             Used By: Configuration
         */
-        struct GooglePlus: Codable {
+        class GooglePlus: Codable {
             
             public var title: String?
             
@@ -46725,7 +46725,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46780,7 +46780,7 @@
             Model: Youtube
             Used By: Configuration
         */
-        struct Youtube: Codable {
+        class Youtube: Codable {
             
             public var title: String?
             
@@ -46809,7 +46809,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46864,7 +46864,7 @@
             Model: LinkedIn
             Used By: Configuration
         */
-        struct LinkedIn: Codable {
+        class LinkedIn: Codable {
             
             public var title: String?
             
@@ -46893,7 +46893,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -46948,7 +46948,7 @@
             Model: Vimeo
             Used By: Configuration
         */
-        struct Vimeo: Codable {
+        class Vimeo: Codable {
             
             public var title: String?
             
@@ -46977,7 +46977,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47032,7 +47032,7 @@
             Model: BlogLink
             Used By: Configuration
         */
-        struct BlogLink: Codable {
+        class BlogLink: Codable {
             
             public var title: String?
             
@@ -47061,7 +47061,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47116,7 +47116,7 @@
             Model: Links
             Used By: Configuration
         */
-        struct Links: Codable {
+        class Links: Codable {
             
             public var title: String?
             
@@ -47139,7 +47139,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47181,7 +47181,7 @@
             Model: BusinessHighlights
             Used By: Configuration
         */
-        struct BusinessHighlights: Codable {
+        class BusinessHighlights: Codable {
             
             public var id: String?
             
@@ -47216,7 +47216,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47284,7 +47284,7 @@
             Model: ApplicationDetail
             Used By: Configuration
         */
-        struct ApplicationDetail: Codable {
+        class ApplicationDetail: Codable {
             
             public var name: String
             
@@ -47349,7 +47349,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47440,7 +47440,7 @@
             Model: CurrenciesResponse
             Used By: Configuration
         */
-        struct CurrenciesResponse: Codable {
+        class CurrenciesResponse: Codable {
             
             public var items: [Currency]?
             
@@ -47457,7 +47457,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47486,7 +47486,7 @@
             Model: StoreLatLong
             Used By: Configuration
         */
-        struct StoreLatLong: Codable {
+        class StoreLatLong: Codable {
             
             public var type: String?
             
@@ -47509,7 +47509,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47551,7 +47551,7 @@
             Model: OptedStoreAddress
             Used By: Configuration
         */
-        struct OptedStoreAddress: Codable {
+        class OptedStoreAddress: Codable {
             
             public var state: String?
             
@@ -47604,7 +47604,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47711,7 +47711,7 @@
             Model: OrderingStore
             Used By: Configuration
         */
-        struct OrderingStore: Codable {
+        class OrderingStore: Codable {
             
             public var address: OptedStoreAddress?
             
@@ -47776,7 +47776,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -47909,7 +47909,7 @@
             Model: OrderingStores
             Used By: Configuration
         */
-        struct OrderingStores: Codable {
+        class OrderingStores: Codable {
             
             public var page: Pagination?
             
@@ -47974,7 +47974,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48107,7 +48107,7 @@
             Model: TokenResponse
             Used By: Configuration
         */
-        struct TokenResponse: Codable {
+        class TokenResponse: Codable {
             
             public var tokens: Tokens?
             
@@ -48154,7 +48154,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48248,7 +48248,7 @@
             Model: Tokens
             Used By: Configuration
         */
-        struct Tokens: Codable {
+        class Tokens: Codable {
             
             public var firebase: Firebase?
             
@@ -48313,7 +48313,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48446,7 +48446,7 @@
             Model: Firebase
             Used By: Configuration
         */
-        struct Firebase: Codable {
+        class Firebase: Codable {
             
             public var credentials: Credentials?
             
@@ -48469,7 +48469,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48511,7 +48511,7 @@
             Model: Credentials
             Used By: Configuration
         */
-        struct Credentials: Codable {
+        class Credentials: Codable {
             
             public var ios: Ios?
             
@@ -48558,7 +48558,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48652,7 +48652,7 @@
             Model: Ios
             Used By: Configuration
         */
-        struct Ios: Codable {
+        class Ios: Codable {
             
             public var applicationId: String?
             
@@ -48675,7 +48675,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48717,7 +48717,7 @@
             Model: Android
             Used By: Configuration
         */
-        struct Android: Codable {
+        class Android: Codable {
             
             public var applicationId: String?
             
@@ -48740,7 +48740,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48782,7 +48782,7 @@
             Model: Moengage
             Used By: Configuration
         */
-        struct Moengage: Codable {
+        class Moengage: Codable {
             
             public var credentials: MoengageCredentials?
             
@@ -48805,7 +48805,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48847,7 +48847,7 @@
             Model: MoengageCredentials
             Used By: Configuration
         */
-        struct MoengageCredentials: Codable {
+        class MoengageCredentials: Codable {
             
             public var appId: String?
             
@@ -48864,7 +48864,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48893,7 +48893,7 @@
             Model: Segment
             Used By: Configuration
         */
-        struct Segment: Codable {
+        class Segment: Codable {
             
             public var credentials: SegmentCredentials?
             
@@ -48916,7 +48916,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -48958,7 +48958,7 @@
             Model: SegmentCredentials
             Used By: Configuration
         */
-        struct SegmentCredentials: Codable {
+        class SegmentCredentials: Codable {
             
             public var writeKey: String?
             
@@ -48975,7 +48975,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49004,7 +49004,7 @@
             Model: Gtm
             Used By: Configuration
         */
-        struct Gtm: Codable {
+        class Gtm: Codable {
             
             public var credentials: GtmCredentials?
             
@@ -49027,7 +49027,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49069,7 +49069,7 @@
             Model: GtmCredentials
             Used By: Configuration
         */
-        struct GtmCredentials: Codable {
+        class GtmCredentials: Codable {
             
             public var apiKey: String?
             
@@ -49086,7 +49086,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49115,7 +49115,7 @@
             Model: Freshchat
             Used By: Configuration
         */
-        struct Freshchat: Codable {
+        class Freshchat: Codable {
             
             public var credentials: FreshchatCredentials?
             
@@ -49138,7 +49138,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49180,7 +49180,7 @@
             Model: FreshchatCredentials
             Used By: Configuration
         */
-        struct FreshchatCredentials: Codable {
+        class FreshchatCredentials: Codable {
             
             public var appId: String?
             
@@ -49209,7 +49209,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49264,7 +49264,7 @@
             Model: Safetynet
             Used By: Configuration
         */
-        struct Safetynet: Codable {
+        class Safetynet: Codable {
             
             public var credentials: SafetynetCredentials?
             
@@ -49287,7 +49287,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49329,7 +49329,7 @@
             Model: SafetynetCredentials
             Used By: Configuration
         */
-        struct SafetynetCredentials: Codable {
+        class SafetynetCredentials: Codable {
             
             public var apiKey: String?
             
@@ -49346,7 +49346,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49375,7 +49375,7 @@
             Model: FyndRewards
             Used By: Configuration
         */
-        struct FyndRewards: Codable {
+        class FyndRewards: Codable {
             
             public var credentials: FyndRewardsCredentials?
             
@@ -49392,7 +49392,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49421,7 +49421,7 @@
             Model: FyndRewardsCredentials
             Used By: Configuration
         */
-        struct FyndRewardsCredentials: Codable {
+        class FyndRewardsCredentials: Codable {
             
             public var publicKey: String?
             
@@ -49438,7 +49438,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49467,7 +49467,7 @@
             Model: Auth
             Used By: Configuration
         */
-        struct Auth: Codable {
+        class Auth: Codable {
             
             public var google: Google?
             
@@ -49496,7 +49496,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49551,7 +49551,7 @@
             Model: GoogleMap
             Used By: Configuration
         */
-        struct GoogleMap: Codable {
+        class GoogleMap: Codable {
             
             public var credentials: GoogleMapCredentials?
             
@@ -49568,7 +49568,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49597,7 +49597,7 @@
             Model: GoogleMapCredentials
             Used By: Configuration
         */
-        struct GoogleMapCredentials: Codable {
+        class GoogleMapCredentials: Codable {
             
             public var apiKey: String?
             
@@ -49614,7 +49614,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -49645,83 +49645,83 @@
             Model: AggregatorConfigDetail
             Used By: Payment
         */
-        struct AggregatorConfigDetail: Codable {
-            
-            public var pin: String?
-            
-            public var merchantId: String?
-            
-            public var sdk: Bool?
-            
-            public var secret: String
-            
-            public var merchantKey: String?
-            
-            public var key: String
-            
-            public var configType: String
+        class AggregatorConfigDetail: Codable {
             
             public var verifyApi: String?
             
+            public var configType: String
+            
+            public var secret: String
+            
+            public var merchantId: String?
+            
+            public var key: String
+            
             public var userId: String?
             
+            public var sdk: Bool?
+            
+            public var pin: String?
+            
             public var api: String?
+            
+            public var merchantKey: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case pin = "pin"
-                
-                case merchantId = "merchant_id"
-                
-                case sdk = "sdk"
-                
-                case secret = "secret"
-                
-                case merchantKey = "merchant_key"
-                
-                case key = "key"
+                case verifyApi = "verify_api"
                 
                 case configType = "config_type"
                 
-                case verifyApi = "verify_api"
+                case secret = "secret"
+                
+                case merchantId = "merchant_id"
+                
+                case key = "key"
                 
                 case userId = "user_id"
                 
+                case sdk = "sdk"
+                
+                case pin = "pin"
+                
                 case api = "api"
+                
+                case merchantKey = "merchant_key"
                 
             }
 
             public init(api: String?, configType: String, key: String, merchantId: String?, merchantKey: String?, pin: String?, sdk: Bool?, secret: String, userId: String?, verifyApi: String?) {
                 
-                self.pin = pin
-                
-                self.merchantId = merchantId
-                
-                self.sdk = sdk
-                
-                self.secret = secret
-                
-                self.merchantKey = merchantKey
-                
-                self.key = key
+                self.verifyApi = verifyApi
                 
                 self.configType = configType
                 
-                self.verifyApi = verifyApi
+                self.secret = secret
+                
+                self.merchantId = merchantId
+                
+                self.key = key
                 
                 self.userId = userId
                 
+                self.sdk = sdk
+                
+                self.pin = pin
+                
                 self.api = api
+                
+                self.merchantKey = merchantKey
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
                 do {
-                    pin = try container.decode(String.self, forKey: .pin)
+                    verifyApi = try container.decode(String.self, forKey: .verifyApi)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -49731,8 +49731,31 @@
                 
                 
                 
+                configType = try container.decode(String.self, forKey: .configType)
+                
+                
+                
+                secret = try container.decode(String.self, forKey: .secret)
+                
+                
+                
                 do {
                     merchantId = try container.decode(String.self, forKey: .merchantId)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                key = try container.decode(String.self, forKey: .key)
+                
+                
+                
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -49753,42 +49776,8 @@
                 
                 
                 
-                secret = try container.decode(String.self, forKey: .secret)
-                
-                
-                
                 do {
-                    merchantKey = try container.decode(String.self, forKey: .merchantKey)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                key = try container.decode(String.self, forKey: .key)
-                
-                
-                
-                configType = try container.decode(String.self, forKey: .configType)
-                
-                
-                
-                do {
-                    verifyApi = try container.decode(String.self, forKey: .verifyApi)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    userId = try container.decode(String.self, forKey: .userId)
+                    pin = try container.decode(String.self, forKey: .pin)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -49808,30 +49797,41 @@
                 }
                 
                 
+                
+                do {
+                    merchantKey = try container.decode(String.self, forKey: .merchantKey)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(pin, forKey: .pin)
-                
-                try? container.encodeIfPresent(merchantId, forKey: .merchantId)
-                
-                try? container.encodeIfPresent(sdk, forKey: .sdk)
-                
-                try? container.encodeIfPresent(secret, forKey: .secret)
-                
-                try? container.encodeIfPresent(merchantKey, forKey: .merchantKey)
-                
-                try? container.encodeIfPresent(key, forKey: .key)
+                try? container.encodeIfPresent(verifyApi, forKey: .verifyApi)
                 
                 try? container.encodeIfPresent(configType, forKey: .configType)
                 
-                try? container.encodeIfPresent(verifyApi, forKey: .verifyApi)
+                try? container.encodeIfPresent(secret, forKey: .secret)
+                
+                try? container.encodeIfPresent(merchantId, forKey: .merchantId)
+                
+                try? container.encodeIfPresent(key, forKey: .key)
                 
                 try? container.encodeIfPresent(userId, forKey: .userId)
                 
+                try? container.encodeIfPresent(sdk, forKey: .sdk)
+                
+                try? container.encodeIfPresent(pin, forKey: .pin)
+                
                 try? container.encodeIfPresent(api, forKey: .api)
+                
+                try? container.encodeIfPresent(merchantKey, forKey: .merchantKey)
                 
             }
             
@@ -49841,83 +49841,83 @@
             Model: AggregatorsConfigDetailResponse
             Used By: Payment
         */
-        struct AggregatorsConfigDetailResponse: Codable {
-            
-            public var razorpay: AggregatorConfigDetail?
-            
-            public var simpl: AggregatorConfigDetail?
-            
-            public var success: Bool
-            
-            public var rupifi: AggregatorConfigDetail?
+        class AggregatorsConfigDetailResponse: Codable {
             
             public var mswipe: AggregatorConfigDetail?
             
-            public var env: String
+            public var ccavenue: AggregatorConfigDetail?
             
-            public var juspay: AggregatorConfigDetail?
+            public var rupifi: AggregatorConfigDetail?
+            
+            public var success: Bool
+            
+            public var env: String
             
             public var stripe: AggregatorConfigDetail?
             
+            public var juspay: AggregatorConfigDetail?
+            
             public var payumoney: AggregatorConfigDetail?
             
-            public var ccavenue: AggregatorConfigDetail?
+            public var simpl: AggregatorConfigDetail?
+            
+            public var razorpay: AggregatorConfigDetail?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case razorpay = "razorpay"
+                case mswipe = "mswipe"
                 
-                case simpl = "simpl"
-                
-                case success = "success"
+                case ccavenue = "ccavenue"
                 
                 case rupifi = "rupifi"
                 
-                case mswipe = "mswipe"
+                case success = "success"
                 
                 case env = "env"
                 
-                case juspay = "juspay"
-                
                 case stripe = "stripe"
+                
+                case juspay = "juspay"
                 
                 case payumoney = "payumoney"
                 
-                case ccavenue = "ccavenue"
+                case simpl = "simpl"
+                
+                case razorpay = "razorpay"
                 
             }
 
             public init(ccavenue: AggregatorConfigDetail?, env: String, juspay: AggregatorConfigDetail?, mswipe: AggregatorConfigDetail?, payumoney: AggregatorConfigDetail?, razorpay: AggregatorConfigDetail?, rupifi: AggregatorConfigDetail?, simpl: AggregatorConfigDetail?, stripe: AggregatorConfigDetail?, success: Bool) {
                 
-                self.razorpay = razorpay
-                
-                self.simpl = simpl
-                
-                self.success = success
-                
-                self.rupifi = rupifi
-                
                 self.mswipe = mswipe
-                
-                self.env = env
-                
-                self.juspay = juspay
-                
-                self.stripe = stripe
-                
-                self.payumoney = payumoney
                 
                 self.ccavenue = ccavenue
                 
+                self.rupifi = rupifi
+                
+                self.success = success
+                
+                self.env = env
+                
+                self.stripe = stripe
+                
+                self.juspay = juspay
+                
+                self.payumoney = payumoney
+                
+                self.simpl = simpl
+                
+                self.razorpay = razorpay
+                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
                 do {
-                    razorpay = try container.decode(AggregatorConfigDetail.self, forKey: .razorpay)
+                    mswipe = try container.decode(AggregatorConfigDetail.self, forKey: .mswipe)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -49928,17 +49928,13 @@
                 
                 
                 do {
-                    simpl = try container.decode(AggregatorConfigDetail.self, forKey: .simpl)
+                    ccavenue = try container.decode(AggregatorConfigDetail.self, forKey: .ccavenue)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
                 } catch {
                     
                 }
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
                 
                 
                 
@@ -49953,14 +49949,7 @@
                 
                 
                 
-                do {
-                    mswipe = try container.decode(AggregatorConfigDetail.self, forKey: .mswipe)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                success = try container.decode(Bool.self, forKey: .success)
                 
                 
                 
@@ -49969,7 +49958,7 @@
                 
                 
                 do {
-                    juspay = try container.decode(AggregatorConfigDetail.self, forKey: .juspay)
+                    stripe = try container.decode(AggregatorConfigDetail.self, forKey: .stripe)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -49980,7 +49969,7 @@
                 
                 
                 do {
-                    stripe = try container.decode(AggregatorConfigDetail.self, forKey: .stripe)
+                    juspay = try container.decode(AggregatorConfigDetail.self, forKey: .juspay)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -50002,7 +49991,18 @@
                 
                 
                 do {
-                    ccavenue = try container.decode(AggregatorConfigDetail.self, forKey: .ccavenue)
+                    simpl = try container.decode(AggregatorConfigDetail.self, forKey: .simpl)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    razorpay = try container.decode(AggregatorConfigDetail.self, forKey: .razorpay)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -50016,25 +50016,25 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
+                try? container.encodeIfPresent(mswipe, forKey: .mswipe)
                 
-                try? container.encodeIfPresent(simpl, forKey: .simpl)
-                
-                try? container.encodeIfPresent(success, forKey: .success)
+                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
                 
                 try? container.encodeIfPresent(rupifi, forKey: .rupifi)
                 
-                try? container.encodeIfPresent(mswipe, forKey: .mswipe)
+                try? container.encodeIfPresent(success, forKey: .success)
                 
                 try? container.encodeIfPresent(env, forKey: .env)
                 
-                try? container.encodeIfPresent(juspay, forKey: .juspay)
-                
                 try? container.encodeIfPresent(stripe, forKey: .stripe)
+                
+                try? container.encodeIfPresent(juspay, forKey: .juspay)
                 
                 try? container.encodeIfPresent(payumoney, forKey: .payumoney)
                 
-                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
+                try? container.encodeIfPresent(simpl, forKey: .simpl)
+                
+                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
                 
             }
             
@@ -50044,38 +50044,38 @@
             Model: ErrorCodeAndDescription
             Used By: Payment
         */
-        struct ErrorCodeAndDescription: Codable {
-            
-            public var code: String
+        class ErrorCodeAndDescription: Codable {
             
             public var description: String
+            
+            public var code: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case code = "code"
-                
                 case description = "description"
+                
+                case code = "code"
                 
             }
 
             public init(code: String, description: String) {
                 
-                self.code = code
-                
                 self.description = description
+                
+                self.code = code
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                code = try container.decode(String.self, forKey: .code)
-                
-                
-                
                 description = try container.decode(String.self, forKey: .description)
+                
+                
+                
+                code = try container.decode(String.self, forKey: .code)
                 
                 
             }
@@ -50083,9 +50083,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(code, forKey: .code)
-                
                 try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(code, forKey: .code)
                 
             }
             
@@ -50095,38 +50095,38 @@
             Model: HttpErrorCodeAndResponse
             Used By: Payment
         */
-        struct HttpErrorCodeAndResponse: Codable {
-            
-            public var success: Bool
+        class HttpErrorCodeAndResponse: Codable {
             
             public var error: ErrorCodeAndDescription
+            
+            public var success: Bool
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case success = "success"
-                
                 case error = "error"
+                
+                case success = "success"
                 
             }
 
             public init(error: ErrorCodeAndDescription, success: Bool) {
                 
-                self.success = success
-                
                 self.error = error
+                
+                self.success = success
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
-                
                 error = try container.decode(ErrorCodeAndDescription.self, forKey: .error)
+                
+                
+                
+                success = try container.decode(Bool.self, forKey: .success)
                 
                 
             }
@@ -50134,9 +50134,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(success, forKey: .success)
-                
                 try? container.encodeIfPresent(error, forKey: .error)
+                
+                try? container.encodeIfPresent(success, forKey: .success)
                 
             }
             
@@ -50146,31 +50146,35 @@
             Model: AttachCardRequest
             Used By: Payment
         */
-        struct AttachCardRequest: Codable {
-            
-            public var refresh: Bool?
+        class AttachCardRequest: Codable {
             
             public var cardId: String
+            
+            public var refresh: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case refresh = "refresh"
-                
                 case cardId = "card_id"
+                
+                case refresh = "refresh"
                 
             }
 
             public init(cardId: String, refresh: Bool?) {
                 
-                self.refresh = refresh
-                
                 self.cardId = cardId
+                
+                self.refresh = refresh
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                cardId = try container.decode(String.self, forKey: .cardId)
+                
                 
                 
                 do {
@@ -50183,18 +50187,14 @@
                 }
                 
                 
-                
-                cardId = try container.decode(String.self, forKey: .cardId)
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(refresh, forKey: .refresh)
-                
                 try? container.encodeIfPresent(cardId, forKey: .cardId)
+                
+                try? container.encodeIfPresent(refresh, forKey: .refresh)
                 
             }
             
@@ -50204,37 +50204,45 @@
             Model: AttachCardsResponse
             Used By: Payment
         */
-        struct AttachCardsResponse: Codable {
+        class AttachCardsResponse: Codable {
             
-            public var message: String?
+            public var data: [String: Any]
             
             public var success: Bool
             
-            public var data: [String: Any]
+            public var message: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
+                case data = "data"
                 
                 case success = "success"
                 
-                case data = "data"
+                case message = "message"
                 
             }
 
             public init(data: [String: Any], message: String?, success: Bool) {
                 
-                self.message = message
+                self.data = data
                 
                 self.success = success
                 
-                self.data = data
+                self.message = message
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                data = try container.decode([String: Any].self, forKey: .data)
+                
+                
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
                 
                 
                 do {
@@ -50247,24 +50255,16 @@
                 }
                 
                 
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
-                
-                data = try container.decode([String: Any].self, forKey: .data)
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(message, forKey: .message)
+                try? container.encodeIfPresent(data, forKey: .data)
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(data, forKey: .data)
+                try? container.encodeIfPresent(message, forKey: .message)
                 
             }
             
@@ -50274,7 +50274,7 @@
             Model: CardPaymentGateway
             Used By: Payment
         */
-        struct CardPaymentGateway: Codable {
+        class CardPaymentGateway: Codable {
             
             public var aggregator: String
             
@@ -50303,7 +50303,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -50351,40 +50351,40 @@
             Model: ActiveCardPaymentGatewayResponse
             Used By: Payment
         */
-        struct ActiveCardPaymentGatewayResponse: Codable {
+        class ActiveCardPaymentGatewayResponse: Codable {
             
-            public var message: String
+            public var cards: CardPaymentGateway
             
             public var success: Bool
             
-            public var cards: CardPaymentGateway
+            public var message: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
+                case cards = "cards"
                 
                 case success = "success"
                 
-                case cards = "cards"
+                case message = "message"
                 
             }
 
             public init(cards: CardPaymentGateway, message: String, success: Bool) {
                 
-                self.message = message
+                self.cards = cards
                 
                 self.success = success
                 
-                self.cards = cards
+                self.message = message
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                message = try container.decode(String.self, forKey: .message)
+                cards = try container.decode(CardPaymentGateway.self, forKey: .cards)
                 
                 
                 
@@ -50392,7 +50392,7 @@
                 
                 
                 
-                cards = try container.decode(CardPaymentGateway.self, forKey: .cards)
+                message = try container.decode(String.self, forKey: .message)
                 
                 
             }
@@ -50400,11 +50400,11 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(message, forKey: .message)
+                try? container.encodeIfPresent(cards, forKey: .cards)
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(cards, forKey: .cards)
+                try? container.encodeIfPresent(message, forKey: .message)
                 
             }
             
@@ -50414,119 +50414,119 @@
             Model: Card
             Used By: Payment
         */
-        struct Card: Codable {
-            
-            public var cardBrandImage: String?
+        class Card: Codable {
             
             public var cardId: String?
             
+            public var cardBrandImage: String?
+            
             public var cardFingerprint: String?
-            
-            public var expMonth: Int?
-            
-            public var cardBrand: String?
-            
-            public var nickname: String?
-            
-            public var aggregatorName: String
-            
-            public var expYear: Int?
-            
-            public var cardToken: String?
-            
-            public var cardName: String?
-            
-            public var expired: Bool?
             
             public var cardReference: String?
             
-            public var cardType: String?
-            
-            public var cardIssuer: String?
+            public var expYear: Int?
             
             public var cardNumber: String?
             
+            public var cardIssuer: String?
+            
+            public var cardName: String?
+            
+            public var cardToken: String?
+            
+            public var expMonth: Int?
+            
+            public var expired: Bool?
+            
+            public var nickname: String?
+            
+            public var cardBrand: String?
+            
             public var cardIsin: String?
+            
+            public var cardType: String?
+            
+            public var aggregatorName: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case cardBrandImage = "card_brand_image"
-                
                 case cardId = "card_id"
+                
+                case cardBrandImage = "card_brand_image"
                 
                 case cardFingerprint = "card_fingerprint"
                 
-                case expMonth = "exp_month"
-                
-                case cardBrand = "card_brand"
-                
-                case nickname = "nickname"
-                
-                case aggregatorName = "aggregator_name"
+                case cardReference = "card_reference"
                 
                 case expYear = "exp_year"
                 
-                case cardToken = "card_token"
-                
-                case cardName = "card_name"
-                
-                case expired = "expired"
-                
-                case cardReference = "card_reference"
-                
-                case cardType = "card_type"
+                case cardNumber = "card_number"
                 
                 case cardIssuer = "card_issuer"
                 
-                case cardNumber = "card_number"
+                case cardName = "card_name"
+                
+                case cardToken = "card_token"
+                
+                case expMonth = "exp_month"
+                
+                case expired = "expired"
+                
+                case nickname = "nickname"
+                
+                case cardBrand = "card_brand"
                 
                 case cardIsin = "card_isin"
+                
+                case cardType = "card_type"
+                
+                case aggregatorName = "aggregator_name"
                 
             }
 
             public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, expired: Bool?, expMonth: Int?, expYear: Int?, nickname: String?) {
                 
-                self.cardBrandImage = cardBrandImage
-                
                 self.cardId = cardId
+                
+                self.cardBrandImage = cardBrandImage
                 
                 self.cardFingerprint = cardFingerprint
                 
-                self.expMonth = expMonth
-                
-                self.cardBrand = cardBrand
-                
-                self.nickname = nickname
-                
-                self.aggregatorName = aggregatorName
+                self.cardReference = cardReference
                 
                 self.expYear = expYear
                 
-                self.cardToken = cardToken
-                
-                self.cardName = cardName
-                
-                self.expired = expired
-                
-                self.cardReference = cardReference
-                
-                self.cardType = cardType
+                self.cardNumber = cardNumber
                 
                 self.cardIssuer = cardIssuer
                 
-                self.cardNumber = cardNumber
+                self.cardName = cardName
+                
+                self.cardToken = cardToken
+                
+                self.expMonth = expMonth
+                
+                self.expired = expired
+                
+                self.nickname = nickname
+                
+                self.cardBrand = cardBrand
                 
                 self.cardIsin = cardIsin
                 
+                self.cardType = cardType
+                
+                self.aggregatorName = aggregatorName
+                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
                 do {
-                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
+                    cardId = try container.decode(String.self, forKey: .cardId)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -50537,7 +50537,7 @@
                 
                 
                 do {
-                    cardId = try container.decode(String.self, forKey: .cardId)
+                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -50559,87 +50559,6 @@
                 
                 
                 do {
-                    expMonth = try container.decode(Int.self, forKey: .expMonth)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardBrand = try container.decode(String.self, forKey: .cardBrand)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    nickname = try container.decode(String.self, forKey: .nickname)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-                
-                
-                
-                do {
-                    expYear = try container.decode(Int.self, forKey: .expYear)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardToken = try container.decode(String.self, forKey: .cardToken)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardName = try container.decode(String.self, forKey: .cardName)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    expired = try container.decode(Bool.self, forKey: .expired)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
                     cardReference = try container.decode(String.self, forKey: .cardReference)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50651,18 +50570,7 @@
                 
                 
                 do {
-                    cardType = try container.decode(String.self, forKey: .cardType)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
+                    expYear = try container.decode(Int.self, forKey: .expYear)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -50684,6 +50592,83 @@
                 
                 
                 do {
+                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardName = try container.decode(String.self, forKey: .cardName)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardToken = try container.decode(String.self, forKey: .cardToken)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    expMonth = try container.decode(Int.self, forKey: .expMonth)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    expired = try container.decode(Bool.self, forKey: .expired)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    nickname = try container.decode(String.self, forKey: .nickname)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardBrand = try container.decode(String.self, forKey: .cardBrand)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
                     cardIsin = try container.decode(String.self, forKey: .cardIsin)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50693,42 +50678,57 @@
                 }
                 
                 
+                
+                do {
+                    cardType = try container.decode(String.self, forKey: .cardType)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
-                
                 try? container.encodeIfPresent(cardId, forKey: .cardId)
+                
+                try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
                 
                 try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
                 
-                try? container.encodeIfPresent(expMonth, forKey: .expMonth)
-                
-                try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
-                
-                try? container.encodeIfPresent(nickname, forKey: .nickname)
-                
-                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+                try? container.encodeIfPresent(cardReference, forKey: .cardReference)
                 
                 try? container.encodeIfPresent(expYear, forKey: .expYear)
                 
-                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
-                
-                try? container.encodeIfPresent(cardName, forKey: .cardName)
-                
-                try? container.encodeIfPresent(expired, forKey: .expired)
-                
-                try? container.encodeIfPresent(cardReference, forKey: .cardReference)
-                
-                try? container.encodeIfPresent(cardType, forKey: .cardType)
+                try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
                 
                 try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
                 
-                try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
+                try? container.encodeIfPresent(cardName, forKey: .cardName)
+                
+                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
+                
+                try? container.encodeIfPresent(expMonth, forKey: .expMonth)
+                
+                try? container.encodeIfPresent(expired, forKey: .expired)
+                
+                try? container.encodeIfPresent(nickname, forKey: .nickname)
+                
+                try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
                 
                 try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
+                
+                try? container.encodeIfPresent(cardType, forKey: .cardType)
+                
+                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
                 
             }
             
@@ -50738,45 +50738,37 @@
             Model: ListCardsResponse
             Used By: Payment
         */
-        struct ListCardsResponse: Codable {
+        class ListCardsResponse: Codable {
             
-            public var message: String
+            public var data: [Card]?
             
             public var success: Bool
             
-            public var data: [Card]?
+            public var message: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
+                case data = "data"
                 
                 case success = "success"
                 
-                case data = "data"
+                case message = "message"
                 
             }
 
             public init(data: [Card]?, message: String, success: Bool) {
                 
-                self.message = message
+                self.data = data
                 
                 self.success = success
                 
-                self.data = data
+                self.message = message
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                message = try container.decode(String.self, forKey: .message)
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
                 
                 
                 do {
@@ -50789,16 +50781,24 @@
                 }
                 
                 
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                message = try container.decode(String.self, forKey: .message)
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(message, forKey: .message)
+                try? container.encodeIfPresent(data, forKey: .data)
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(data, forKey: .data)
+                try? container.encodeIfPresent(message, forKey: .message)
                 
             }
             
@@ -50808,7 +50808,7 @@
             Model: DeletehCardRequest
             Used By: Payment
         */
-        struct DeletehCardRequest: Codable {
+        class DeletehCardRequest: Codable {
             
             public var cardId: String
             
@@ -50825,7 +50825,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -50847,31 +50847,35 @@
             Model: DeleteCardsResponse
             Used By: Payment
         */
-        struct DeleteCardsResponse: Codable {
-            
-            public var message: String?
+        class DeleteCardsResponse: Codable {
             
             public var success: Bool
+            
+            public var message: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
-                
                 case success = "success"
+                
+                case message = "message"
                 
             }
 
             public init(message: String?, success: Bool) {
                 
-                self.message = message
-                
                 self.success = success
+                
+                self.message = message
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
                 
                 
                 do {
@@ -50884,18 +50888,14 @@
                 }
                 
                 
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(message, forKey: .message)
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                try? container.encodeIfPresent(message, forKey: .message)
                 
             }
             
@@ -50905,60 +50905,56 @@
             Model: ValidateCustomerRequest
             Used By: Payment
         */
-        struct ValidateCustomerRequest: Codable {
-            
-            public var merchantParams: [String: Any]
-            
-            public var payload: String
+        class ValidateCustomerRequest: Codable {
             
             public var phoneNumber: String
+            
+            public var payload: String
             
             public var transactionAmountInPaise: Int
             
             public var aggregator: String
             
+            public var merchantParams: [String: Any]
+            
 
             public enum CodingKeys: String, CodingKey {
                 
-                case merchantParams = "merchant_params"
+                case phoneNumber = "phone_number"
                 
                 case payload = "payload"
-                
-                case phoneNumber = "phone_number"
                 
                 case transactionAmountInPaise = "transaction_amount_in_paise"
                 
                 case aggregator = "aggregator"
                 
+                case merchantParams = "merchant_params"
+                
             }
 
             public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
                 
-                self.merchantParams = merchantParams
+                self.phoneNumber = phoneNumber
                 
                 self.payload = payload
-                
-                self.phoneNumber = phoneNumber
                 
                 self.transactionAmountInPaise = transactionAmountInPaise
                 
                 self.aggregator = aggregator
                 
+                self.merchantParams = merchantParams
+                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
                 
                 
                 payload = try container.decode(String.self, forKey: .payload)
-                
-                
-                
-                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
                 
                 
@@ -50969,20 +50965,24 @@
                 aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 
+                
+                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
+                try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
                 
                 try? container.encodeIfPresent(payload, forKey: .payload)
-                
-                try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
                 
                 try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
                 
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+                
+                try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
                 
             }
             
@@ -50992,40 +50992,40 @@
             Model: ValidateCustomerResponse
             Used By: Payment
         */
-        struct ValidateCustomerResponse: Codable {
+        class ValidateCustomerResponse: Codable {
             
-            public var message: String
+            public var data: [String: Any]
             
             public var success: Bool
             
-            public var data: [String: Any]
+            public var message: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
+                case data = "data"
                 
                 case success = "success"
                 
-                case data = "data"
+                case message = "message"
                 
             }
 
             public init(data: [String: Any], message: String, success: Bool) {
                 
-                self.message = message
+                self.data = data
                 
                 self.success = success
                 
-                self.data = data
+                self.message = message
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                message = try container.decode(String.self, forKey: .message)
+                data = try container.decode([String: Any].self, forKey: .data)
                 
                 
                 
@@ -51033,7 +51033,7 @@
                 
                 
                 
-                data = try container.decode([String: Any].self, forKey: .data)
+                message = try container.decode(String.self, forKey: .message)
                 
                 
             }
@@ -51041,11 +51041,11 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(message, forKey: .message)
+                try? container.encodeIfPresent(data, forKey: .data)
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(data, forKey: .data)
+                try? container.encodeIfPresent(message, forKey: .message)
                 
             }
             
@@ -51055,49 +51055,60 @@
             Model: ChargeCustomerRequest
             Used By: Payment
         */
-        struct ChargeCustomerRequest: Codable {
+        class ChargeCustomerRequest: Codable {
+            
+            public var verified: Bool?
             
             public var orderId: String
             
-            public var verified: Bool?
+            public var transactionToken: String?
             
             public var amount: Int
             
             public var aggregator: String
             
-            public var transactionToken: String?
-            
 
             public enum CodingKeys: String, CodingKey {
                 
+                case verified = "verified"
+                
                 case orderId = "order_id"
                 
-                case verified = "verified"
+                case transactionToken = "transaction_token"
                 
                 case amount = "amount"
                 
                 case aggregator = "aggregator"
                 
-                case transactionToken = "transaction_token"
-                
             }
 
             public init(aggregator: String, amount: Int, orderId: String, transactionToken: String?, verified: Bool?) {
                 
+                self.verified = verified
+                
                 self.orderId = orderId
                 
-                self.verified = verified
+                self.transactionToken = transactionToken
                 
                 self.amount = amount
                 
                 self.aggregator = aggregator
                 
-                self.transactionToken = transactionToken
-                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    verified = try container.decode(Bool.self, forKey: .verified)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
                 
                 
                 orderId = try container.decode(String.self, forKey: .orderId)
@@ -51105,7 +51116,7 @@
                 
                 
                 do {
-                    verified = try container.decode(Bool.self, forKey: .verified)
+                    transactionToken = try container.decode(String.self, forKey: .transactionToken)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -51122,31 +51133,20 @@
                 aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 
-                
-                do {
-                    transactionToken = try container.decode(String.self, forKey: .transactionToken)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
+                try? container.encodeIfPresent(verified, forKey: .verified)
+                
                 try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
-                try? container.encodeIfPresent(verified, forKey: .verified)
+                try? container.encodeIfPresent(transactionToken, forKey: .transactionToken)
                 
                 try? container.encodeIfPresent(amount, forKey: .amount)
                 
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-                
-                try? container.encodeIfPresent(transactionToken, forKey: .transactionToken)
                 
             }
             
@@ -51156,64 +51156,80 @@
             Model: ChargeCustomerResponse
             Used By: Payment
         */
-        struct ChargeCustomerResponse: Codable {
-            
-            public var success: Bool
-            
-            public var deliveryAddressId: String?
-            
-            public var orderId: String
+        class ChargeCustomerResponse: Codable {
             
             public var status: String
             
-            public var cartId: String?
-            
             public var message: String
             
+            public var orderId: String
+            
+            public var success: Bool
+            
             public var aggregator: String
+            
+            public var deliveryAddressId: String?
+            
+            public var cartId: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case success = "success"
-                
-                case deliveryAddressId = "delivery_address_id"
-                
-                case orderId = "order_id"
-                
                 case status = "status"
-                
-                case cartId = "cart_id"
                 
                 case message = "message"
                 
+                case orderId = "order_id"
+                
+                case success = "success"
+                
                 case aggregator = "aggregator"
+                
+                case deliveryAddressId = "delivery_address_id"
+                
+                case cartId = "cart_id"
                 
             }
 
             public init(aggregator: String, cartId: String?, deliveryAddressId: String?, message: String, orderId: String, status: String, success: Bool) {
                 
-                self.success = success
-                
-                self.deliveryAddressId = deliveryAddressId
-                
-                self.orderId = orderId
-                
                 self.status = status
-                
-                self.cartId = cartId
                 
                 self.message = message
                 
+                self.orderId = orderId
+                
+                self.success = success
+                
                 self.aggregator = aggregator
+                
+                self.deliveryAddressId = deliveryAddressId
+                
+                self.cartId = cartId
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                status = try container.decode(String.self, forKey: .status)
+                
+                
+                
+                message = try container.decode(String.self, forKey: .message)
+                
+                
+                
+                orderId = try container.decode(String.self, forKey: .orderId)
+                
+                
+                
                 success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 
                 
@@ -51228,14 +51244,6 @@
                 
                 
                 
-                orderId = try container.decode(String.self, forKey: .orderId)
-                
-                
-                
-                status = try container.decode(String.self, forKey: .status)
-                
-                
-                
                 do {
                     cartId = try container.decode(String.self, forKey: .cartId)
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -51246,32 +51254,24 @@
                 }
                 
                 
-                
-                message = try container.decode(String.self, forKey: .message)
-                
-                
-                
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(success, forKey: .success)
-                
-                try? container.encodeIfPresent(deliveryAddressId, forKey: .deliveryAddressId)
-                
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
-                
                 try? container.encodeIfPresent(status, forKey: .status)
-                
-                try? container.encodeIfPresent(cartId, forKey: .cartId)
                 
                 try? container.encodeIfPresent(message, forKey: .message)
                 
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
+                
+                try? container.encodeIfPresent(success, forKey: .success)
+                
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+                
+                try? container.encodeIfPresent(deliveryAddressId, forKey: .deliveryAddressId)
+                
+                try? container.encodeIfPresent(cartId, forKey: .cartId)
                 
             }
             
@@ -51281,96 +51281,76 @@
             Model: PaymentInitializationRequest
             Used By: Payment
         */
-        struct PaymentInitializationRequest: Codable {
-            
-            public var pollingUrl: String
-            
-            public var razorpayPaymentId: String
-            
-            public var timeout: Int
+        class PaymentInitializationRequest: Codable {
             
             public var customerId: String
             
-            public var aggregatorOrderId: String
+            public var method: String
+            
+            public var pollingUrl: String
             
             public var merchantOrderId: String
             
-            public var method: String
-            
             public var aggregator: String
             
+            public var aggregatorOrderId: String
+            
+            public var razorpayPaymentId: String
+            
             public var virtualId: String?
+            
+            public var timeout: Int
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case pollingUrl = "polling_url"
-                
-                case razorpayPaymentId = "razorpay_payment_id"
-                
-                case timeout = "timeout"
-                
                 case customerId = "customer_id"
-                
-                case aggregatorOrderId = "aggregator_order_id"
-                
-                case merchantOrderId = "merchant_order_id"
                 
                 case method = "method"
                 
+                case pollingUrl = "polling_url"
+                
+                case merchantOrderId = "merchant_order_id"
+                
                 case aggregator = "aggregator"
                 
+                case aggregatorOrderId = "aggregator_order_id"
+                
+                case razorpayPaymentId = "razorpay_payment_id"
+                
                 case virtualId = "virtual_id"
+                
+                case timeout = "timeout"
                 
             }
 
             public init(aggregator: String, aggregatorOrderId: String, customerId: String, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String, timeout: Int, virtualId: String?) {
                 
-                self.pollingUrl = pollingUrl
-                
-                self.razorpayPaymentId = razorpayPaymentId
-                
-                self.timeout = timeout
-                
                 self.customerId = customerId
-                
-                self.aggregatorOrderId = aggregatorOrderId
-                
-                self.merchantOrderId = merchantOrderId
                 
                 self.method = method
                 
+                self.pollingUrl = pollingUrl
+                
+                self.merchantOrderId = merchantOrderId
+                
                 self.aggregator = aggregator
+                
+                self.aggregatorOrderId = aggregatorOrderId
+                
+                self.razorpayPaymentId = razorpayPaymentId
                 
                 self.virtualId = virtualId
                 
+                self.timeout = timeout
+                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
-                
-                
-                
-                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
-                
-                
-                
-                timeout = try container.decode(Int.self, forKey: .timeout)
-                
-                
-                
                 customerId = try container.decode(String.self, forKey: .customerId)
-                
-                
-                
-                aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
-                
-                
-                
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
                 
                 
@@ -51378,7 +51358,23 @@
                 
                 
                 
+                pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
+                
+                
+                
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+                
+                
+                
                 aggregator = try container.decode(String.self, forKey: .aggregator)
+                
+                
+                
+                aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+                
+                
+                
+                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
                 
                 
                 
@@ -51392,28 +51388,32 @@
                 }
                 
                 
+                
+                timeout = try container.decode(Int.self, forKey: .timeout)
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
-                
-                try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
-                
-                try? container.encodeIfPresent(timeout, forKey: .timeout)
-                
                 try? container.encodeIfPresent(customerId, forKey: .customerId)
-                
-                try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
-                
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
                 
                 try? container.encodeIfPresent(method, forKey: .method)
                 
+                try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
+                
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+                
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
+                try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
+                
+                try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+                
                 try? container.encodeIfPresent(virtualId, forKey: .virtualId)
+                
+                try? container.encodeIfPresent(timeout, forKey: .timeout)
                 
             }
             
@@ -51423,109 +51423,131 @@
             Model: PaymentInitializationResponse
             Used By: Payment
         */
-        struct PaymentInitializationResponse: Codable {
-            
-            public var success: Bool
-            
-            public var currency: String?
-            
-            public var vpa: String?
-            
-            public var pollingUrl: String
-            
-            public var merchantOrderId: String
-            
-            public var status: String?
-            
-            public var customerId: String?
-            
-            public var aggregatorOrderId: String?
-            
-            public var razorpayPaymentId: String?
-            
-            public var timeout: Int?
+        class PaymentInitializationResponse: Codable {
             
             public var bqrImage: String?
             
-            public var method: String
+            public var status: String?
+            
+            public var success: Bool
+            
+            public var timeout: Int?
+            
+            public var customerId: String?
+            
+            public var merchantOrderId: String
             
             public var amount: Int?
             
+            public var method: String
+            
             public var aggregator: String
             
+            public var pollingUrl: String
+            
+            public var aggregatorOrderId: String?
+            
+            public var currency: String?
+            
+            public var razorpayPaymentId: String?
+            
             public var virtualId: String?
+            
+            public var vpa: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case success = "success"
-                
-                case currency = "currency"
-                
-                case vpa = "vpa"
-                
-                case pollingUrl = "polling_url"
-                
-                case merchantOrderId = "merchant_order_id"
+                case bqrImage = "bqr_image"
                 
                 case status = "status"
                 
-                case customerId = "customer_id"
-                
-                case aggregatorOrderId = "aggregator_order_id"
-                
-                case razorpayPaymentId = "razorpay_payment_id"
+                case success = "success"
                 
                 case timeout = "timeout"
                 
-                case bqrImage = "bqr_image"
+                case customerId = "customer_id"
                 
-                case method = "method"
+                case merchantOrderId = "merchant_order_id"
                 
                 case amount = "amount"
                 
+                case method = "method"
+                
                 case aggregator = "aggregator"
                 
+                case pollingUrl = "polling_url"
+                
+                case aggregatorOrderId = "aggregator_order_id"
+                
+                case currency = "currency"
+                
+                case razorpayPaymentId = "razorpay_payment_id"
+                
                 case virtualId = "virtual_id"
+                
+                case vpa = "vpa"
                 
             }
 
             public init(aggregator: String, aggregatorOrderId: String?, amount: Int?, bqrImage: String?, currency: String?, customerId: String?, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String?, status: String?, success: Bool, timeout: Int?, virtualId: String?, vpa: String?) {
                 
-                self.success = success
-                
-                self.currency = currency
-                
-                self.vpa = vpa
-                
-                self.pollingUrl = pollingUrl
-                
-                self.merchantOrderId = merchantOrderId
+                self.bqrImage = bqrImage
                 
                 self.status = status
                 
-                self.customerId = customerId
-                
-                self.aggregatorOrderId = aggregatorOrderId
-                
-                self.razorpayPaymentId = razorpayPaymentId
+                self.success = success
                 
                 self.timeout = timeout
                 
-                self.bqrImage = bqrImage
+                self.customerId = customerId
                 
-                self.method = method
+                self.merchantOrderId = merchantOrderId
                 
                 self.amount = amount
                 
+                self.method = method
+                
                 self.aggregator = aggregator
+                
+                self.pollingUrl = pollingUrl
+                
+                self.aggregatorOrderId = aggregatorOrderId
+                
+                self.currency = currency
+                
+                self.razorpayPaymentId = razorpayPaymentId
                 
                 self.virtualId = virtualId
                 
+                self.vpa = vpa
+                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    bqrImage = try container.decode(String.self, forKey: .bqrImage)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    status = try container.decode(String.self, forKey: .status)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
                 
                 
                 success = try container.decode(Bool.self, forKey: .success)
@@ -51533,37 +51555,7 @@
                 
                 
                 do {
-                    currency = try container.decode(String.self, forKey: .currency)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    vpa = try container.decode(String.self, forKey: .vpa)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
-                
-                
-                
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-                
-                
-                
-                do {
-                    status = try container.decode(String.self, forKey: .status)
+                    timeout = try container.decode(Int.self, forKey: .timeout)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -51584,8 +51576,46 @@
                 
                 
                 
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+                
+                
+                
+                do {
+                    amount = try container.decode(Int.self, forKey: .amount)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                method = try container.decode(String.self, forKey: .method)
+                
+                
+                
+                aggregator = try container.decode(String.self, forKey: .aggregator)
+                
+                
+                
+                pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
+                
+                
+                
                 do {
                     aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    currency = try container.decode(String.self, forKey: .currency)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -51607,48 +51637,18 @@
                 
                 
                 do {
-                    timeout = try container.decode(Int.self, forKey: .timeout)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    bqrImage = try container.decode(String.self, forKey: .bqrImage)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                method = try container.decode(String.self, forKey: .method)
-                
-                
-                
-                do {
-                    amount = try container.decode(Int.self, forKey: .amount)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-                
-                
-                do {
                     virtualId = try container.decode(String.self, forKey: .virtualId)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    vpa = try container.decode(String.self, forKey: .vpa)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -51662,35 +51662,35 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(success, forKey: .success)
-                
-                try? container.encodeIfPresent(currency, forKey: .currency)
-                
-                try? container.encodeIfPresent(vpa, forKey: .vpa)
-                
-                try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
-                
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+                try? container.encodeIfPresent(bqrImage, forKey: .bqrImage)
                 
                 try? container.encodeIfPresent(status, forKey: .status)
                 
-                try? container.encodeIfPresent(customerId, forKey: .customerId)
-                
-                try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
-                
-                try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+                try? container.encodeIfPresent(success, forKey: .success)
                 
                 try? container.encodeIfPresent(timeout, forKey: .timeout)
                 
-                try? container.encodeIfPresent(bqrImage, forKey: .bqrImage)
+                try? container.encodeIfPresent(customerId, forKey: .customerId)
                 
-                try? container.encodeIfPresent(method, forKey: .method)
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
                 
                 try? container.encodeIfPresent(amount, forKey: .amount)
                 
+                try? container.encodeIfPresent(method, forKey: .method)
+                
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
+                try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
+                
+                try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
+                
+                try? container.encodeIfPresent(currency, forKey: .currency)
+                
+                try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+                
                 try? container.encodeIfPresent(virtualId, forKey: .virtualId)
+                
+                try? container.encodeIfPresent(vpa, forKey: .vpa)
                 
             }
             
@@ -51700,100 +51700,88 @@
             Model: PaymentStatusUpdateRequest
             Used By: Payment
         */
-        struct PaymentStatusUpdateRequest: Codable {
+        class PaymentStatusUpdateRequest: Codable {
             
-            public var currency: String
-            
-            public var vpa: String
-            
-            public var orderId: String
-            
-            public var merchantOrderId: String
+            public var contact: String
             
             public var status: String
             
-            public var customerId: String
+            public var orderId: String
             
-            public var email: String
+            public var customerId: String
             
             public var method: String
             
             public var amount: Int
             
+            public var merchantOrderId: String
+            
             public var aggregator: String
             
-            public var contact: String
+            public var email: String
+            
+            public var currency: String
+            
+            public var vpa: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case currency = "currency"
-                
-                case vpa = "vpa"
-                
-                case orderId = "order_id"
-                
-                case merchantOrderId = "merchant_order_id"
+                case contact = "contact"
                 
                 case status = "status"
                 
-                case customerId = "customer_id"
+                case orderId = "order_id"
                 
-                case email = "email"
+                case customerId = "customer_id"
                 
                 case method = "method"
                 
                 case amount = "amount"
                 
+                case merchantOrderId = "merchant_order_id"
+                
                 case aggregator = "aggregator"
                 
-                case contact = "contact"
+                case email = "email"
+                
+                case currency = "currency"
+                
+                case vpa = "vpa"
                 
             }
 
             public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String) {
                 
-                self.currency = currency
-                
-                self.vpa = vpa
-                
-                self.orderId = orderId
-                
-                self.merchantOrderId = merchantOrderId
+                self.contact = contact
                 
                 self.status = status
                 
-                self.customerId = customerId
+                self.orderId = orderId
                 
-                self.email = email
+                self.customerId = customerId
                 
                 self.method = method
                 
                 self.amount = amount
                 
+                self.merchantOrderId = merchantOrderId
+                
                 self.aggregator = aggregator
                 
-                self.contact = contact
+                self.email = email
+                
+                self.currency = currency
+                
+                self.vpa = vpa
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                currency = try container.decode(String.self, forKey: .currency)
-                
-                
-                
-                vpa = try container.decode(String.self, forKey: .vpa)
-                
-                
-                
-                orderId = try container.decode(String.self, forKey: .orderId)
-                
-                
-                
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+                contact = try container.decode(String.self, forKey: .contact)
                 
                 
                 
@@ -51801,11 +51789,11 @@
                 
                 
                 
+                orderId = try container.decode(String.self, forKey: .orderId)
+                
+                
+                
                 customerId = try container.decode(String.self, forKey: .customerId)
-                
-                
-                
-                email = try container.decode(String.self, forKey: .email)
                 
                 
                 
@@ -51817,11 +51805,23 @@
                 
                 
                 
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+                
+                
+                
                 aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 
                 
-                contact = try container.decode(String.self, forKey: .contact)
+                email = try container.decode(String.self, forKey: .email)
+                
+                
+                
+                currency = try container.decode(String.self, forKey: .currency)
+                
+                
+                
+                vpa = try container.decode(String.self, forKey: .vpa)
                 
                 
             }
@@ -51829,27 +51829,27 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(currency, forKey: .currency)
-                
-                try? container.encodeIfPresent(vpa, forKey: .vpa)
-                
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
-                
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+                try? container.encodeIfPresent(contact, forKey: .contact)
                 
                 try? container.encodeIfPresent(status, forKey: .status)
                 
-                try? container.encodeIfPresent(customerId, forKey: .customerId)
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
-                try? container.encodeIfPresent(email, forKey: .email)
+                try? container.encodeIfPresent(customerId, forKey: .customerId)
                 
                 try? container.encodeIfPresent(method, forKey: .method)
                 
                 try? container.encodeIfPresent(amount, forKey: .amount)
                 
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+                
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
                 
-                try? container.encodeIfPresent(contact, forKey: .contact)
+                try? container.encodeIfPresent(email, forKey: .email)
+                
+                try? container.encodeIfPresent(currency, forKey: .currency)
+                
+                try? container.encodeIfPresent(vpa, forKey: .vpa)
                 
             }
             
@@ -51859,7 +51859,7 @@
             Model: PaymentStatusUpdateResponse
             Used By: Payment
         */
-        struct PaymentStatusUpdateResponse: Codable {
+        class PaymentStatusUpdateResponse: Codable {
             
             public var retry: Bool
             
@@ -51888,7 +51888,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -51919,10 +51919,330 @@
         }
         
         /*
+            Model: AggregatorRoute
+            Used By: Payment
+        */
+        class AggregatorRoute: Codable {
+            
+            public var paymentFlow: String?
+            
+            public var apiLink: String?
+            
+            public var data: [String: Any]?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case paymentFlow = "payment_flow"
+                
+                case apiLink = "api_link"
+                
+                case data = "data"
+                
+            }
+
+            public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?) {
+                
+                self.paymentFlow = paymentFlow
+                
+                self.apiLink = apiLink
+                
+                self.data = data
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    apiLink = try container.decode(String.self, forKey: .apiLink)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    data = try container.decode([String: Any].self, forKey: .data)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
+                
+                try? container.encodeIfPresent(apiLink, forKey: .apiLink)
+                
+                try? container.encodeIfPresent(data, forKey: .data)
+                
+            }
+            
+        }
+        
+        /*
+            Model: PaymentFlow
+            Used By: Payment
+        */
+        class PaymentFlow: Codable {
+            
+            public var ccavenue: AggregatorRoute?
+            
+            public var rupifi: AggregatorRoute?
+            
+            public var bqrRazorpay: AggregatorRoute?
+            
+            public var fynd: AggregatorRoute?
+            
+            public var stripe: AggregatorRoute?
+            
+            public var juspay: AggregatorRoute?
+            
+            public var upiRazorpay: AggregatorRoute?
+            
+            public var payubiz: AggregatorRoute?
+            
+            public var simpl: AggregatorRoute?
+            
+            public var msipe: AggregatorRoute?
+            
+            public var razorpay: AggregatorRoute?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case ccavenue = "ccavenue"
+                
+                case rupifi = "rupifi"
+                
+                case bqrRazorpay = "bqr_razorpay"
+                
+                case fynd = "fynd"
+                
+                case stripe = "stripe"
+                
+                case juspay = "juspay"
+                
+                case upiRazorpay = "upi_razorpay"
+                
+                case payubiz = "payubiz"
+                
+                case simpl = "simpl"
+                
+                case msipe = "msipe"
+                
+                case razorpay = "razorpay"
+                
+            }
+
+            public init(bqrRazorpay: AggregatorRoute?, ccavenue: AggregatorRoute?, fynd: AggregatorRoute?, juspay: AggregatorRoute?, msipe: AggregatorRoute?, payubiz: AggregatorRoute?, razorpay: AggregatorRoute?, rupifi: AggregatorRoute?, simpl: AggregatorRoute?, stripe: AggregatorRoute?, upiRazorpay: AggregatorRoute?) {
+                
+                self.ccavenue = ccavenue
+                
+                self.rupifi = rupifi
+                
+                self.bqrRazorpay = bqrRazorpay
+                
+                self.fynd = fynd
+                
+                self.stripe = stripe
+                
+                self.juspay = juspay
+                
+                self.upiRazorpay = upiRazorpay
+                
+                self.payubiz = payubiz
+                
+                self.simpl = simpl
+                
+                self.msipe = msipe
+                
+                self.razorpay = razorpay
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    ccavenue = try container.decode(AggregatorRoute.self, forKey: .ccavenue)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    rupifi = try container.decode(AggregatorRoute.self, forKey: .rupifi)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    bqrRazorpay = try container.decode(AggregatorRoute.self, forKey: .bqrRazorpay)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    fynd = try container.decode(AggregatorRoute.self, forKey: .fynd)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    stripe = try container.decode(AggregatorRoute.self, forKey: .stripe)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    juspay = try container.decode(AggregatorRoute.self, forKey: .juspay)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    upiRazorpay = try container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    payubiz = try container.decode(AggregatorRoute.self, forKey: .payubiz)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    simpl = try container.decode(AggregatorRoute.self, forKey: .simpl)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    msipe = try container.decode(AggregatorRoute.self, forKey: .msipe)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    razorpay = try container.decode(AggregatorRoute.self, forKey: .razorpay)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
+                
+                try? container.encodeIfPresent(rupifi, forKey: .rupifi)
+                
+                try? container.encodeIfPresent(bqrRazorpay, forKey: .bqrRazorpay)
+                
+                try? container.encodeIfPresent(fynd, forKey: .fynd)
+                
+                try? container.encodeIfPresent(stripe, forKey: .stripe)
+                
+                try? container.encodeIfPresent(juspay, forKey: .juspay)
+                
+                try? container.encodeIfPresent(upiRazorpay, forKey: .upiRazorpay)
+                
+                try? container.encodeIfPresent(payubiz, forKey: .payubiz)
+                
+                try? container.encodeIfPresent(simpl, forKey: .simpl)
+                
+                try? container.encodeIfPresent(msipe, forKey: .msipe)
+                
+                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
+                
+            }
+            
+        }
+        
+        /*
             Model: PaymentModeLogo
             Used By: Payment
         */
-        struct PaymentModeLogo: Codable {
+        class PaymentModeLogo: Codable {
             
             public var large: String
             
@@ -51945,7 +52265,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -51973,185 +52293,185 @@
             Model: PaymentModeList
             Used By: Payment
         */
-        struct PaymentModeList: Codable {
-            
-            public var intentAppErrorList: [String]?
-            
-            public var cardFingerprint: String?
-            
-            public var nickname: String?
-            
-            public var timeout: Int?
-            
-            public var expYear: Int?
-            
-            public var fyndVpa: String?
-            
-            public var cardReference: String?
-            
-            public var displayName: String?
-            
-            public var cardType: String?
-            
-            public var cardIssuer: String?
-            
-            public var cardNumber: String?
-            
-            public var retryCount: Int?
-            
-            public var aggregatorName: String
-            
-            public var displayPriority: Int?
-            
-            public var merchantCode: String?
-            
-            public var logoUrl: PaymentModeLogo?
+        class PaymentModeList: Codable {
             
             public var name: String?
             
-            public var cardToken: String?
+            public var cardFingerprint: String?
             
-            public var cardName: String?
+            public var cardReference: String?
             
-            public var cardBrandImage: String?
-            
-            public var cardId: String?
+            public var cardNumber: String?
             
             public var expMonth: Int?
             
-            public var cardBrand: String?
+            public var expired: Bool?
             
-            public var code: String?
+            public var cardId: String?
+            
+            public var nickname: String?
+            
+            public var logoUrl: PaymentModeLogo?
+            
+            public var cardIsin: String?
+            
+            public var cardType: String?
+            
+            public var timeout: Int?
+            
+            public var merchantCode: String?
+            
+            public var cardBrand: String?
             
             public var intentFlow: String?
             
-            public var expired: Bool?
+            public var intentAppErrorList: [String]?
             
-            public var cardIsin: String?
+            public var displayName: String?
+            
+            public var displayPriority: Int?
+            
+            public var fyndVpa: String?
+            
+            public var expYear: Int?
+            
+            public var retryCount: Int?
+            
+            public var cardIssuer: String?
+            
+            public var cardToken: String?
+            
+            public var code: String?
+            
+            public var cardBrandImage: String?
+            
+            public var cardName: String?
+            
+            public var aggregatorName: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case intentAppErrorList = "intent_app_error_list"
+                case name = "name"
                 
                 case cardFingerprint = "card_fingerprint"
                 
-                case nickname = "nickname"
-                
-                case timeout = "timeout"
-                
-                case expYear = "exp_year"
-                
-                case fyndVpa = "fynd_vpa"
-                
                 case cardReference = "card_reference"
-                
-                case displayName = "display_name"
-                
-                case cardType = "card_type"
-                
-                case cardIssuer = "card_issuer"
                 
                 case cardNumber = "card_number"
                 
-                case retryCount = "retry_count"
-                
-                case aggregatorName = "aggregator_name"
-                
-                case displayPriority = "display_priority"
-                
-                case merchantCode = "merchant_code"
-                
-                case logoUrl = "logo_url"
-                
-                case name = "name"
-                
-                case cardToken = "card_token"
-                
-                case cardName = "card_name"
-                
-                case cardBrandImage = "card_brand_image"
-                
-                case cardId = "card_id"
-                
                 case expMonth = "exp_month"
-                
-                case cardBrand = "card_brand"
-                
-                case code = "code"
-                
-                case intentFlow = "intent_flow"
                 
                 case expired = "expired"
                 
+                case cardId = "card_id"
+                
+                case nickname = "nickname"
+                
+                case logoUrl = "logo_url"
+                
                 case cardIsin = "card_isin"
+                
+                case cardType = "card_type"
+                
+                case timeout = "timeout"
+                
+                case merchantCode = "merchant_code"
+                
+                case cardBrand = "card_brand"
+                
+                case intentFlow = "intent_flow"
+                
+                case intentAppErrorList = "intent_app_error_list"
+                
+                case displayName = "display_name"
+                
+                case displayPriority = "display_priority"
+                
+                case fyndVpa = "fynd_vpa"
+                
+                case expYear = "exp_year"
+                
+                case retryCount = "retry_count"
+                
+                case cardIssuer = "card_issuer"
+                
+                case cardToken = "card_token"
+                
+                case code = "code"
+                
+                case cardBrandImage = "card_brand_image"
+                
+                case cardName = "card_name"
+                
+                case aggregatorName = "aggregator_name"
                 
             }
 
             public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, code: String?, displayName: String?, displayPriority: Int?, expired: Bool?, expMonth: Int?, expYear: Int?, fyndVpa: String?, intentAppErrorList: [String]?, intentFlow: String?, logoUrl: PaymentModeLogo?, merchantCode: String?, name: String?, nickname: String?, retryCount: Int?, timeout: Int?) {
                 
-                self.intentAppErrorList = intentAppErrorList
+                self.name = name
                 
                 self.cardFingerprint = cardFingerprint
                 
-                self.nickname = nickname
-                
-                self.timeout = timeout
-                
-                self.expYear = expYear
-                
-                self.fyndVpa = fyndVpa
-                
                 self.cardReference = cardReference
-                
-                self.displayName = displayName
-                
-                self.cardType = cardType
-                
-                self.cardIssuer = cardIssuer
                 
                 self.cardNumber = cardNumber
                 
-                self.retryCount = retryCount
-                
-                self.aggregatorName = aggregatorName
-                
-                self.displayPriority = displayPriority
-                
-                self.merchantCode = merchantCode
-                
-                self.logoUrl = logoUrl
-                
-                self.name = name
-                
-                self.cardToken = cardToken
-                
-                self.cardName = cardName
-                
-                self.cardBrandImage = cardBrandImage
-                
-                self.cardId = cardId
-                
                 self.expMonth = expMonth
-                
-                self.cardBrand = cardBrand
-                
-                self.code = code
-                
-                self.intentFlow = intentFlow
                 
                 self.expired = expired
                 
+                self.cardId = cardId
+                
+                self.nickname = nickname
+                
+                self.logoUrl = logoUrl
+                
                 self.cardIsin = cardIsin
+                
+                self.cardType = cardType
+                
+                self.timeout = timeout
+                
+                self.merchantCode = merchantCode
+                
+                self.cardBrand = cardBrand
+                
+                self.intentFlow = intentFlow
+                
+                self.intentAppErrorList = intentAppErrorList
+                
+                self.displayName = displayName
+                
+                self.displayPriority = displayPriority
+                
+                self.fyndVpa = fyndVpa
+                
+                self.expYear = expYear
+                
+                self.retryCount = retryCount
+                
+                self.cardIssuer = cardIssuer
+                
+                self.cardToken = cardToken
+                
+                self.code = code
+                
+                self.cardBrandImage = cardBrandImage
+                
+                self.cardName = cardName
+                
+                self.aggregatorName = aggregatorName
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
                 do {
-                    intentAppErrorList = try container.decode([String].self, forKey: .intentAppErrorList)
+                    name = try container.decode(String.self, forKey: .name)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -52173,84 +52493,7 @@
                 
                 
                 do {
-                    nickname = try container.decode(String.self, forKey: .nickname)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    timeout = try container.decode(Int.self, forKey: .timeout)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    expYear = try container.decode(Int.self, forKey: .expYear)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    fyndVpa = try container.decode(String.self, forKey: .fyndVpa)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
                     cardReference = try container.decode(String.self, forKey: .cardReference)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    displayName = try container.decode(String.self, forKey: .displayName)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardType = try container.decode(String.self, forKey: .cardType)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -52272,143 +52515,7 @@
                 
                 
                 do {
-                    retryCount = try container.decode(Int.self, forKey: .retryCount)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-                
-                
-                
-                do {
-                    displayPriority = try container.decode(Int.self, forKey: .displayPriority)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    merchantCode = try container.decode(String.self, forKey: .merchantCode)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    logoUrl = try container.decode(PaymentModeLogo.self, forKey: .logoUrl)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardToken = try container.decode(String.self, forKey: .cardToken)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardName = try container.decode(String.self, forKey: .cardName)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardId = try container.decode(String.self, forKey: .cardId)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
                     expMonth = try container.decode(Int.self, forKey: .expMonth)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardBrand = try container.decode(String.self, forKey: .cardBrand)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    code = try container.decode(String.self, forKey: .code)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    intentFlow = try container.decode(String.self, forKey: .intentFlow)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -52430,6 +52537,39 @@
                 
                 
                 do {
+                    cardId = try container.decode(String.self, forKey: .cardId)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    nickname = try container.decode(String.self, forKey: .nickname)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    logoUrl = try container.decode(PaymentModeLogo.self, forKey: .logoUrl)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
                     cardIsin = try container.decode(String.self, forKey: .cardIsin)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52439,64 +52579,244 @@
                 }
                 
                 
+                
+                do {
+                    cardType = try container.decode(String.self, forKey: .cardType)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    timeout = try container.decode(Int.self, forKey: .timeout)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardBrand = try container.decode(String.self, forKey: .cardBrand)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    intentFlow = try container.decode(String.self, forKey: .intentFlow)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    intentAppErrorList = try container.decode([String].self, forKey: .intentAppErrorList)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    fyndVpa = try container.decode(String.self, forKey: .fyndVpa)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    expYear = try container.decode(Int.self, forKey: .expYear)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    retryCount = try container.decode(Int.self, forKey: .retryCount)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardToken = try container.decode(String.self, forKey: .cardToken)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    code = try container.decode(String.self, forKey: .code)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardName = try container.decode(String.self, forKey: .cardName)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(intentAppErrorList, forKey: .intentAppErrorList)
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
                 
-                try? container.encodeIfPresent(nickname, forKey: .nickname)
-                
-                try? container.encodeIfPresent(timeout, forKey: .timeout)
-                
-                try? container.encodeIfPresent(expYear, forKey: .expYear)
-                
-                try? container.encodeIfPresent(fyndVpa, forKey: .fyndVpa)
-                
                 try? container.encodeIfPresent(cardReference, forKey: .cardReference)
-                
-                try? container.encodeIfPresent(displayName, forKey: .displayName)
-                
-                try? container.encodeIfPresent(cardType, forKey: .cardType)
-                
-                try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
                 
                 try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
                 
-                try? container.encodeIfPresent(retryCount, forKey: .retryCount)
-                
-                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-                
-                try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
-                
-                try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-                
-                try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
-                
-                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
-                
-                try? container.encodeIfPresent(cardName, forKey: .cardName)
-                
-                try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
-                
-                try? container.encodeIfPresent(cardId, forKey: .cardId)
-                
                 try? container.encodeIfPresent(expMonth, forKey: .expMonth)
-                
-                try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
-                
-                try? container.encodeIfPresent(code, forKey: .code)
-                
-                try? container.encodeIfPresent(intentFlow, forKey: .intentFlow)
                 
                 try? container.encodeIfPresent(expired, forKey: .expired)
                 
+                try? container.encodeIfPresent(cardId, forKey: .cardId)
+                
+                try? container.encodeIfPresent(nickname, forKey: .nickname)
+                
+                try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+                
                 try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
+                
+                try? container.encodeIfPresent(cardType, forKey: .cardType)
+                
+                try? container.encodeIfPresent(timeout, forKey: .timeout)
+                
+                try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+                
+                try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
+                
+                try? container.encodeIfPresent(intentFlow, forKey: .intentFlow)
+                
+                try? container.encodeIfPresent(intentAppErrorList, forKey: .intentAppErrorList)
+                
+                try? container.encodeIfPresent(displayName, forKey: .displayName)
+                
+                try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+                
+                try? container.encodeIfPresent(fyndVpa, forKey: .fyndVpa)
+                
+                try? container.encodeIfPresent(expYear, forKey: .expYear)
+                
+                try? container.encodeIfPresent(retryCount, forKey: .retryCount)
+                
+                try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
+                
+                try? container.encodeIfPresent(cardToken, forKey: .cardToken)
+                
+                try? container.encodeIfPresent(code, forKey: .code)
+                
+                try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
+                
+                try? container.encodeIfPresent(cardName, forKey: .cardName)
+                
+                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
                 
             }
             
@@ -52506,65 +52826,65 @@
             Model: RootPaymentMode
             Used By: Payment
         */
-        struct RootPaymentMode: Codable {
-            
-            public var anonymousEnable: Bool?
-            
-            public var name: String
-            
-            public var aggregatorName: String?
+        class RootPaymentMode: Codable {
             
             public var addCardEnabled: Bool?
             
-            public var list: [PaymentModeList]?
+            public var name: String
             
             public var displayPriority: Int
             
             public var displayName: String
             
+            public var list: [PaymentModeList]?
+            
+            public var anonymousEnable: Bool?
+            
+            public var aggregatorName: String?
+            
 
             public enum CodingKeys: String, CodingKey {
                 
-                case anonymousEnable = "anonymous_enable"
-                
-                case name = "name"
-                
-                case aggregatorName = "aggregator_name"
-                
                 case addCardEnabled = "add_card_enabled"
                 
-                case list = "list"
+                case name = "name"
                 
                 case displayPriority = "display_priority"
                 
                 case displayName = "display_name"
                 
+                case list = "list"
+                
+                case anonymousEnable = "anonymous_enable"
+                
+                case aggregatorName = "aggregator_name"
+                
             }
 
             public init(addCardEnabled: Bool?, aggregatorName: String?, anonymousEnable: Bool?, displayName: String, displayPriority: Int, list: [PaymentModeList]?, name: String) {
                 
-                self.anonymousEnable = anonymousEnable
-                
-                self.name = name
-                
-                self.aggregatorName = aggregatorName
-                
                 self.addCardEnabled = addCardEnabled
                 
-                self.list = list
+                self.name = name
                 
                 self.displayPriority = displayPriority
                 
                 self.displayName = displayName
                 
+                self.list = list
+                
+                self.anonymousEnable = anonymousEnable
+                
+                self.aggregatorName = aggregatorName
+                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
                 do {
-                    anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
+                    addCardEnabled = try container.decode(Bool.self, forKey: .addCardEnabled)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -52578,25 +52898,11 @@
                 
                 
                 
-                do {
-                    aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                displayPriority = try container.decode(Int.self, forKey: .displayPriority)
                 
                 
                 
-                do {
-                    addCardEnabled = try container.decode(Bool.self, forKey: .addCardEnabled)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                displayName = try container.decode(String.self, forKey: .displayName)
                 
                 
                 
@@ -52611,11 +52917,25 @@
                 
                 
                 
-                displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+                do {
+                    anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
                 
                 
-                displayName = try container.decode(String.self, forKey: .displayName)
+                do {
+                    aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
                 
             }
@@ -52623,339 +52943,19 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
-                
-                try? container.encodeIfPresent(name, forKey: .name)
-                
-                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-                
                 try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
                 
-                try? container.encodeIfPresent(list, forKey: .list)
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
                 
                 try? container.encodeIfPresent(displayName, forKey: .displayName)
                 
-            }
-            
-        }
-        
-        /*
-            Model: AggregatorRoute
-            Used By: Payment
-        */
-        struct AggregatorRoute: Codable {
-            
-            public var data: [String: Any]?
-            
-            public var apiLink: String?
-            
-            public var paymentFlow: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
+                try? container.encodeIfPresent(list, forKey: .list)
                 
-                case data = "data"
+                try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
                 
-                case apiLink = "api_link"
-                
-                case paymentFlow = "payment_flow"
-                
-            }
-
-            public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?) {
-                
-                self.data = data
-                
-                self.apiLink = apiLink
-                
-                self.paymentFlow = paymentFlow
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                do {
-                    data = try container.decode([String: Any].self, forKey: .data)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    apiLink = try container.decode(String.self, forKey: .apiLink)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(data, forKey: .data)
-                
-                try? container.encodeIfPresent(apiLink, forKey: .apiLink)
-                
-                try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
-                
-            }
-            
-        }
-        
-        /*
-            Model: PaymentFlow
-            Used By: Payment
-        */
-        struct PaymentFlow: Codable {
-            
-            public var razorpay: AggregatorRoute?
-            
-            public var simpl: AggregatorRoute?
-            
-            public var payubiz: AggregatorRoute?
-            
-            public var ccavenue: AggregatorRoute?
-            
-            public var rupifi: AggregatorRoute?
-            
-            public var juspay: AggregatorRoute?
-            
-            public var fynd: AggregatorRoute?
-            
-            public var msipe: AggregatorRoute?
-            
-            public var stripe: AggregatorRoute?
-            
-            public var bqrRazorpay: AggregatorRoute?
-            
-            public var upiRazorpay: AggregatorRoute?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case razorpay = "razorpay"
-                
-                case simpl = "simpl"
-                
-                case payubiz = "payubiz"
-                
-                case ccavenue = "ccavenue"
-                
-                case rupifi = "rupifi"
-                
-                case juspay = "juspay"
-                
-                case fynd = "fynd"
-                
-                case msipe = "msipe"
-                
-                case stripe = "stripe"
-                
-                case bqrRazorpay = "bqr_razorpay"
-                
-                case upiRazorpay = "upi_razorpay"
-                
-            }
-
-            public init(bqrRazorpay: AggregatorRoute?, ccavenue: AggregatorRoute?, fynd: AggregatorRoute?, juspay: AggregatorRoute?, msipe: AggregatorRoute?, payubiz: AggregatorRoute?, razorpay: AggregatorRoute?, rupifi: AggregatorRoute?, simpl: AggregatorRoute?, stripe: AggregatorRoute?, upiRazorpay: AggregatorRoute?) {
-                
-                self.razorpay = razorpay
-                
-                self.simpl = simpl
-                
-                self.payubiz = payubiz
-                
-                self.ccavenue = ccavenue
-                
-                self.rupifi = rupifi
-                
-                self.juspay = juspay
-                
-                self.fynd = fynd
-                
-                self.msipe = msipe
-                
-                self.stripe = stripe
-                
-                self.bqrRazorpay = bqrRazorpay
-                
-                self.upiRazorpay = upiRazorpay
-                
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                do {
-                    razorpay = try container.decode(AggregatorRoute.self, forKey: .razorpay)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    simpl = try container.decode(AggregatorRoute.self, forKey: .simpl)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    payubiz = try container.decode(AggregatorRoute.self, forKey: .payubiz)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    ccavenue = try container.decode(AggregatorRoute.self, forKey: .ccavenue)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    rupifi = try container.decode(AggregatorRoute.self, forKey: .rupifi)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    juspay = try container.decode(AggregatorRoute.self, forKey: .juspay)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    fynd = try container.decode(AggregatorRoute.self, forKey: .fynd)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    msipe = try container.decode(AggregatorRoute.self, forKey: .msipe)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    stripe = try container.decode(AggregatorRoute.self, forKey: .stripe)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    bqrRazorpay = try container.decode(AggregatorRoute.self, forKey: .bqrRazorpay)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    upiRazorpay = try container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
-                
-                try? container.encodeIfPresent(simpl, forKey: .simpl)
-                
-                try? container.encodeIfPresent(payubiz, forKey: .payubiz)
-                
-                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
-                
-                try? container.encodeIfPresent(rupifi, forKey: .rupifi)
-                
-                try? container.encodeIfPresent(juspay, forKey: .juspay)
-                
-                try? container.encodeIfPresent(fynd, forKey: .fynd)
-                
-                try? container.encodeIfPresent(msipe, forKey: .msipe)
-                
-                try? container.encodeIfPresent(stripe, forKey: .stripe)
-                
-                try? container.encodeIfPresent(bqrRazorpay, forKey: .bqrRazorpay)
-                
-                try? container.encodeIfPresent(upiRazorpay, forKey: .upiRazorpay)
+                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
                 
             }
             
@@ -52965,38 +52965,38 @@
             Model: PaymentOptionAndFlow
             Used By: Payment
         */
-        struct PaymentOptionAndFlow: Codable {
-            
-            public var paymentOption: [RootPaymentMode]
+        class PaymentOptionAndFlow: Codable {
             
             public var paymentFlows: PaymentFlow
+            
+            public var paymentOption: [RootPaymentMode]
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case paymentOption = "payment_option"
-                
                 case paymentFlows = "payment_flows"
+                
+                case paymentOption = "payment_option"
                 
             }
 
             public init(paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
                 
-                self.paymentOption = paymentOption
-                
                 self.paymentFlows = paymentFlows
+                
+                self.paymentOption = paymentOption
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                paymentOption = try container.decode([RootPaymentMode].self, forKey: .paymentOption)
-                
-                
-                
                 paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
+                
+                
+                
+                paymentOption = try container.decode([RootPaymentMode].self, forKey: .paymentOption)
                 
                 
             }
@@ -53004,9 +53004,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(paymentOption, forKey: .paymentOption)
-                
                 try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
+                
+                try? container.encodeIfPresent(paymentOption, forKey: .paymentOption)
                 
             }
             
@@ -53016,38 +53016,38 @@
             Model: PaymentModeRouteResponse
             Used By: Payment
         */
-        struct PaymentModeRouteResponse: Codable {
-            
-            public var paymentOptions: PaymentOptionAndFlow
+        class PaymentModeRouteResponse: Codable {
             
             public var success: Bool
+            
+            public var paymentOptions: PaymentOptionAndFlow
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case paymentOptions = "payment_options"
-                
                 case success = "success"
+                
+                case paymentOptions = "payment_options"
                 
             }
 
             public init(paymentOptions: PaymentOptionAndFlow, success: Bool) {
                 
-                self.paymentOptions = paymentOptions
-                
                 self.success = success
+                
+                self.paymentOptions = paymentOptions
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                paymentOptions = try container.decode(PaymentOptionAndFlow.self, forKey: .paymentOptions)
-                
-                
-                
                 success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                paymentOptions = try container.decode(PaymentOptionAndFlow.self, forKey: .paymentOptions)
                 
                 
             }
@@ -53055,9 +53055,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(paymentOptions, forKey: .paymentOptions)
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                try? container.encodeIfPresent(paymentOptions, forKey: .paymentOptions)
                 
             }
             
@@ -53067,141 +53067,133 @@
             Model: OrderBeneficiaryDetails
             Used By: Payment
         */
-        struct OrderBeneficiaryDetails: Codable {
-            
-            public var createdOn: String
-            
-            public var accountHolder: String
+        class OrderBeneficiaryDetails: Codable {
             
             public var mobile: Bool?
-            
-            public var displayName: String
-            
-            public var comment: Bool?
-            
-            public var branchName: Bool?
-            
-            public var delightsUserName: String
             
             public var beneficiaryId: String
             
             public var subtitle: String
             
-            public var address: String
+            public var branchName: Bool?
+            
+            public var accountHolder: String
+            
+            public var id: Int
             
             public var ifscCode: String
+            
+            public var transferMode: String
+            
+            public var createdOn: String
+            
+            public var isActive: Bool
             
             public var email: String
             
             public var accountNo: String
             
-            public var id: Int
+            public var delightsUserName: String
             
-            public var modifiedOn: String
+            public var address: String
+            
+            public var displayName: String
             
             public var bankName: String
             
-            public var transferMode: String
-            
-            public var isActive: Bool
+            public var comment: Bool?
             
             public var title: String
+            
+            public var modifiedOn: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case createdOn = "created_on"
-                
-                case accountHolder = "account_holder"
-                
                 case mobile = "mobile"
-                
-                case displayName = "display_name"
-                
-                case comment = "comment"
-                
-                case branchName = "branch_name"
-                
-                case delightsUserName = "delights_user_name"
                 
                 case beneficiaryId = "beneficiary_id"
                 
                 case subtitle = "subtitle"
                 
-                case address = "address"
+                case branchName = "branch_name"
+                
+                case accountHolder = "account_holder"
+                
+                case id = "id"
                 
                 case ifscCode = "ifsc_code"
+                
+                case transferMode = "transfer_mode"
+                
+                case createdOn = "created_on"
+                
+                case isActive = "is_active"
                 
                 case email = "email"
                 
                 case accountNo = "account_no"
                 
-                case id = "id"
+                case delightsUserName = "delights_user_name"
                 
-                case modifiedOn = "modified_on"
+                case address = "address"
+                
+                case displayName = "display_name"
                 
                 case bankName = "bank_name"
                 
-                case transferMode = "transfer_mode"
-                
-                case isActive = "is_active"
+                case comment = "comment"
                 
                 case title = "title"
+                
+                case modifiedOn = "modified_on"
                 
             }
 
             public init(accountHolder: String, accountNo: String, address: String, bankName: String, beneficiaryId: String, branchName: Bool?, comment: Bool?, createdOn: String, delightsUserName: String, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, mobile: Bool?, modifiedOn: String, subtitle: String, title: String, transferMode: String) {
                 
-                self.createdOn = createdOn
-                
-                self.accountHolder = accountHolder
-                
                 self.mobile = mobile
-                
-                self.displayName = displayName
-                
-                self.comment = comment
-                
-                self.branchName = branchName
-                
-                self.delightsUserName = delightsUserName
                 
                 self.beneficiaryId = beneficiaryId
                 
                 self.subtitle = subtitle
                 
-                self.address = address
+                self.branchName = branchName
+                
+                self.accountHolder = accountHolder
+                
+                self.id = id
                 
                 self.ifscCode = ifscCode
+                
+                self.transferMode = transferMode
+                
+                self.createdOn = createdOn
+                
+                self.isActive = isActive
                 
                 self.email = email
                 
                 self.accountNo = accountNo
                 
-                self.id = id
+                self.delightsUserName = delightsUserName
                 
-                self.modifiedOn = modifiedOn
+                self.address = address
+                
+                self.displayName = displayName
                 
                 self.bankName = bankName
                 
-                self.transferMode = transferMode
-                
-                self.isActive = isActive
+                self.comment = comment
                 
                 self.title = title
                 
+                self.modifiedOn = modifiedOn
+                
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-                
-                
-                
-                accountHolder = try container.decode(String.self, forKey: .accountHolder)
-                
                 
                 
                 do {
@@ -53215,18 +53207,11 @@
                 
                 
                 
-                displayName = try container.decode(String.self, forKey: .displayName)
+                beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
                 
                 
                 
-                do {
-                    comment = try container.decode(Bool.self, forKey: .comment)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                subtitle = try container.decode(String.self, forKey: .subtitle)
                 
                 
                 
@@ -53241,23 +53226,27 @@
                 
                 
                 
-                delightsUserName = try container.decode(String.self, forKey: .delightsUserName)
+                accountHolder = try container.decode(String.self, forKey: .accountHolder)
                 
                 
                 
-                beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
-                
-                
-                
-                subtitle = try container.decode(String.self, forKey: .subtitle)
-                
-                
-                
-                address = try container.decode(String.self, forKey: .address)
+                id = try container.decode(Int.self, forKey: .id)
                 
                 
                 
                 ifscCode = try container.decode(String.self, forKey: .ifscCode)
+                
+                
+                
+                transferMode = try container.decode(String.self, forKey: .transferMode)
+                
+                
+                
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+                
+                
+                isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 
                 
@@ -53269,11 +53258,15 @@
                 
                 
                 
-                id = try container.decode(Int.self, forKey: .id)
+                delightsUserName = try container.decode(String.self, forKey: .delightsUserName)
                 
                 
                 
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                address = try container.decode(String.self, forKey: .address)
+                
+                
+                
+                displayName = try container.decode(String.self, forKey: .displayName)
                 
                 
                 
@@ -53281,15 +53274,22 @@
                 
                 
                 
-                transferMode = try container.decode(String.self, forKey: .transferMode)
-                
-                
-                
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                do {
+                    comment = try container.decode(Bool.self, forKey: .comment)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
                 
                 
                 title = try container.decode(String.self, forKey: .title)
+                
+                
+                
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
                 
                 
             }
@@ -53297,43 +53297,43 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-                
-                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-                
                 try? container.encodeIfPresent(mobile, forKey: .mobile)
-                
-                try? container.encodeIfPresent(displayName, forKey: .displayName)
-                
-                try? container.encodeIfPresent(comment, forKey: .comment)
-                
-                try? container.encodeIfPresent(branchName, forKey: .branchName)
-                
-                try? container.encodeIfPresent(delightsUserName, forKey: .delightsUserName)
                 
                 try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
                 
                 try? container.encodeIfPresent(subtitle, forKey: .subtitle)
                 
-                try? container.encodeIfPresent(address, forKey: .address)
+                try? container.encodeIfPresent(branchName, forKey: .branchName)
+                
+                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
                 
                 try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+                
+                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
+                
+                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+                
+                try? container.encodeIfPresent(isActive, forKey: .isActive)
                 
                 try? container.encodeIfPresent(email, forKey: .email)
                 
                 try? container.encodeIfPresent(accountNo, forKey: .accountNo)
                 
-                try? container.encodeIfPresent(id, forKey: .id)
+                try? container.encodeIfPresent(delightsUserName, forKey: .delightsUserName)
                 
-                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+                try? container.encodeIfPresent(address, forKey: .address)
+                
+                try? container.encodeIfPresent(displayName, forKey: .displayName)
                 
                 try? container.encodeIfPresent(bankName, forKey: .bankName)
                 
-                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-                
-                try? container.encodeIfPresent(isActive, forKey: .isActive)
+                try? container.encodeIfPresent(comment, forKey: .comment)
                 
                 try? container.encodeIfPresent(title, forKey: .title)
+                
+                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
                 
             }
             
@@ -53343,7 +53343,7 @@
             Model: OrderBeneficiaryResponse
             Used By: Payment
         */
-        struct OrderBeneficiaryResponse: Codable {
+        class OrderBeneficiaryResponse: Codable {
             
             public var beneficiaries: [OrderBeneficiaryDetails]
             
@@ -53360,7 +53360,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -53382,22 +53382,22 @@
             Model: NotFoundResourceError
             Used By: Payment
         */
-        struct NotFoundResourceError: Codable {
+        class NotFoundResourceError: Codable {
             
             public var success: Bool
             
-            public var code: String
-            
             public var description: String
+            
+            public var code: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case success = "success"
                 
-                case code = "code"
-                
                 case description = "description"
+                
+                case code = "code"
                 
             }
 
@@ -53405,13 +53405,13 @@
                 
                 self.success = success
                 
-                self.code = code
-                
                 self.description = description
+                
+                self.code = code
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -53419,11 +53419,11 @@
                 
                 
                 
-                code = try container.decode(String.self, forKey: .code)
-                
-                
-                
                 description = try container.decode(String.self, forKey: .description)
+                
+                
+                
+                code = try container.decode(String.self, forKey: .code)
                 
                 
             }
@@ -53433,9 +53433,9 @@
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(code, forKey: .code)
-                
                 try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(code, forKey: .code)
                 
             }
             
@@ -53445,7 +53445,7 @@
             Model: IfscCodeResponse
             Used By: Payment
         */
-        struct IfscCodeResponse: Codable {
+        class IfscCodeResponse: Codable {
             
             public var success: Bool?
             
@@ -53474,7 +53474,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -53515,22 +53515,22 @@
             Model: ErrorCodeDescription
             Used By: Payment
         */
-        struct ErrorCodeDescription: Codable {
+        class ErrorCodeDescription: Codable {
             
             public var success: Bool
             
-            public var code: String
-            
             public var description: String
+            
+            public var code: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case success = "success"
                 
-                case code = "code"
-                
                 case description = "description"
+                
+                case code = "code"
                 
             }
 
@@ -53538,13 +53538,13 @@
                 
                 self.success = success
                 
-                self.code = code
-                
                 self.description = description
+                
+                self.code = code
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -53552,11 +53552,11 @@
                 
                 
                 
-                code = try container.decode(String.self, forKey: .code)
-                
-                
-                
                 description = try container.decode(String.self, forKey: .description)
+                
+                
+                
+                code = try container.decode(String.self, forKey: .code)
                 
                 
             }
@@ -53566,9 +53566,9 @@
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(code, forKey: .code)
-                
                 try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(code, forKey: .code)
                 
             }
             
@@ -53578,40 +53578,40 @@
             Model: AddBeneficiaryViaOtpVerificationRequest
             Used By: Payment
         */
-        struct AddBeneficiaryViaOtpVerificationRequest: Codable {
+        class AddBeneficiaryViaOtpVerificationRequest: Codable {
             
-            public var hashKey: String
+            public var requestId: String
             
             public var otp: String
             
-            public var requestId: String
+            public var hashKey: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case hashKey = "hash_key"
+                case requestId = "request_id"
                 
                 case otp = "otp"
                 
-                case requestId = "request_id"
+                case hashKey = "hash_key"
                 
             }
 
             public init(hashKey: String, otp: String, requestId: String) {
                 
-                self.hashKey = hashKey
+                self.requestId = requestId
                 
                 self.otp = otp
                 
-                self.requestId = requestId
+                self.hashKey = hashKey
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                hashKey = try container.decode(String.self, forKey: .hashKey)
+                requestId = try container.decode(String.self, forKey: .requestId)
                 
                 
                 
@@ -53619,7 +53619,7 @@
                 
                 
                 
-                requestId = try container.decode(String.self, forKey: .requestId)
+                hashKey = try container.decode(String.self, forKey: .hashKey)
                 
                 
             }
@@ -53627,11 +53627,11 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(hashKey, forKey: .hashKey)
+                try? container.encodeIfPresent(requestId, forKey: .requestId)
                 
                 try? container.encodeIfPresent(otp, forKey: .otp)
                 
-                try? container.encodeIfPresent(requestId, forKey: .requestId)
+                try? container.encodeIfPresent(hashKey, forKey: .hashKey)
                 
             }
             
@@ -53641,40 +53641,40 @@
             Model: AddBeneficiaryViaOtpVerificationResponse
             Used By: Payment
         */
-        struct AddBeneficiaryViaOtpVerificationResponse: Codable {
+        class AddBeneficiaryViaOtpVerificationResponse: Codable {
             
-            public var hashKey: String
+            public var requestId: String
             
             public var otp: String
             
-            public var requestId: String
+            public var hashKey: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case hashKey = "hash_key"
+                case requestId = "request_id"
                 
                 case otp = "otp"
                 
-                case requestId = "request_id"
+                case hashKey = "hash_key"
                 
             }
 
             public init(hashKey: String, otp: String, requestId: String) {
                 
-                self.hashKey = hashKey
+                self.requestId = requestId
                 
                 self.otp = otp
                 
-                self.requestId = requestId
+                self.hashKey = hashKey
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                hashKey = try container.decode(String.self, forKey: .hashKey)
+                requestId = try container.decode(String.self, forKey: .requestId)
                 
                 
                 
@@ -53682,7 +53682,7 @@
                 
                 
                 
-                requestId = try container.decode(String.self, forKey: .requestId)
+                hashKey = try container.decode(String.self, forKey: .hashKey)
                 
                 
             }
@@ -53690,11 +53690,11 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(hashKey, forKey: .hashKey)
+                try? container.encodeIfPresent(requestId, forKey: .requestId)
                 
                 try? container.encodeIfPresent(otp, forKey: .otp)
                 
-                try? container.encodeIfPresent(requestId, forKey: .requestId)
+                try? container.encodeIfPresent(hashKey, forKey: .hashKey)
                 
             }
             
@@ -53704,7 +53704,7 @@
             Model: WrongOtpError
             Used By: Payment
         */
-        struct WrongOtpError: Codable {
+        class WrongOtpError: Codable {
             
             public var success: String
             
@@ -53727,7 +53727,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -53755,46 +53755,46 @@
             Model: BankDetails
             Used By: Payment
         */
-        struct BankDetails: Codable {
+        class BankDetails: Codable {
             
             public var branchName: String
             
+            public var bankName: String
+            
             public var accountHolder: String
-            
-            public var address: String
-            
-            public var ifscCode: String
             
             public var email: String
             
-            public var mobile: String
-            
-            public var bankName: String
+            public var accountNo: String
             
             public var comment: String?
             
-            public var accountNo: String
+            public var address: String
+            
+            public var mobile: String
+            
+            public var ifscCode: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case branchName = "branch_name"
                 
+                case bankName = "bank_name"
+                
                 case accountHolder = "account_holder"
-                
-                case address = "address"
-                
-                case ifscCode = "ifsc_code"
                 
                 case email = "email"
                 
-                case mobile = "mobile"
-                
-                case bankName = "bank_name"
+                case accountNo = "account_no"
                 
                 case comment = "comment"
                 
-                case accountNo = "account_no"
+                case address = "address"
+                
+                case mobile = "mobile"
+                
+                case ifscCode = "ifsc_code"
                 
             }
 
@@ -53802,25 +53802,25 @@
                 
                 self.branchName = branchName
                 
+                self.bankName = bankName
+                
                 self.accountHolder = accountHolder
-                
-                self.address = address
-                
-                self.ifscCode = ifscCode
                 
                 self.email = email
                 
-                self.mobile = mobile
-                
-                self.bankName = bankName
+                self.accountNo = accountNo
                 
                 self.comment = comment
                 
-                self.accountNo = accountNo
+                self.address = address
+                
+                self.mobile = mobile
+                
+                self.ifscCode = ifscCode
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -53828,15 +53828,11 @@
                 
                 
                 
+                bankName = try container.decode(String.self, forKey: .bankName)
+                
+                
+                
                 accountHolder = try container.decode(String.self, forKey: .accountHolder)
-                
-                
-                
-                address = try container.decode(String.self, forKey: .address)
-                
-                
-                
-                ifscCode = try container.decode(String.self, forKey: .ifscCode)
                 
                 
                 
@@ -53844,11 +53840,7 @@
                 
                 
                 
-                mobile = try container.decode(String.self, forKey: .mobile)
-                
-                
-                
-                bankName = try container.decode(String.self, forKey: .bankName)
+                accountNo = try container.decode(String.self, forKey: .accountNo)
                 
                 
                 
@@ -53863,7 +53855,15 @@
                 
                 
                 
-                accountNo = try container.decode(String.self, forKey: .accountNo)
+                address = try container.decode(String.self, forKey: .address)
+                
+                
+                
+                mobile = try container.decode(String.self, forKey: .mobile)
+                
+                
+                
+                ifscCode = try container.decode(String.self, forKey: .ifscCode)
                 
                 
             }
@@ -53873,21 +53873,21 @@
                 
                 try? container.encodeIfPresent(branchName, forKey: .branchName)
                 
+                try? container.encodeIfPresent(bankName, forKey: .bankName)
+                
                 try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-                
-                try? container.encodeIfPresent(address, forKey: .address)
-                
-                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
                 
                 try? container.encodeIfPresent(email, forKey: .email)
                 
-                try? container.encodeIfPresent(mobile, forKey: .mobile)
-                
-                try? container.encodeIfPresent(bankName, forKey: .bankName)
+                try? container.encodeIfPresent(accountNo, forKey: .accountNo)
                 
                 try? container.encodeIfPresent(comment, forKey: .comment)
                 
-                try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+                try? container.encodeIfPresent(address, forKey: .address)
+                
+                try? container.encodeIfPresent(mobile, forKey: .mobile)
+                
+                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
                 
             }
             
@@ -53897,30 +53897,30 @@
             Model: AddBeneficiaryDetailsRequest
             Used By: Payment
         */
-        struct AddBeneficiaryDetailsRequest: Codable {
+        class AddBeneficiaryDetailsRequest: Codable {
             
             public var shipmentId: String
             
-            public var orderId: String
+            public var transferMode: String
             
-            public var details: BankDetails
+            public var orderId: String
             
             public var delights: Bool
             
-            public var transferMode: String
+            public var details: BankDetails
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case shipmentId = "shipment_id"
                 
-                case orderId = "order_id"
+                case transferMode = "transfer_mode"
                 
-                case details = "details"
+                case orderId = "order_id"
                 
                 case delights = "delights"
                 
-                case transferMode = "transfer_mode"
+                case details = "details"
                 
             }
 
@@ -53928,17 +53928,17 @@
                 
                 self.shipmentId = shipmentId
                 
-                self.orderId = orderId
+                self.transferMode = transferMode
                 
-                self.details = details
+                self.orderId = orderId
                 
                 self.delights = delights
                 
-                self.transferMode = transferMode
+                self.details = details
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -53946,11 +53946,11 @@
                 
                 
                 
+                transferMode = try container.decode(String.self, forKey: .transferMode)
+                
+                
+                
                 orderId = try container.decode(String.self, forKey: .orderId)
-                
-                
-                
-                details = try container.decode(BankDetails.self, forKey: .details)
                 
                 
                 
@@ -53958,7 +53958,7 @@
                 
                 
                 
-                transferMode = try container.decode(String.self, forKey: .transferMode)
+                details = try container.decode(BankDetails.self, forKey: .details)
                 
                 
             }
@@ -53968,13 +53968,13 @@
                 
                 try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
                 
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
+                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
                 
-                try? container.encodeIfPresent(details, forKey: .details)
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
                 try? container.encodeIfPresent(delights, forKey: .delights)
                 
-                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
+                try? container.encodeIfPresent(details, forKey: .details)
                 
             }
             
@@ -53984,45 +53984,37 @@
             Model: RefundAccountResponse
             Used By: Payment
         */
-        struct RefundAccountResponse: Codable {
+        class RefundAccountResponse: Codable {
             
-            public var message: String
+            public var data: [String: Any]?
             
             public var success: Bool
             
-            public var data: [String: Any]?
+            public var message: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
+                case data = "data"
                 
                 case success = "success"
                 
-                case data = "data"
+                case message = "message"
                 
             }
 
             public init(data: [String: Any]?, message: String, success: Bool) {
                 
-                self.message = message
+                self.data = data
                 
                 self.success = success
                 
-                self.data = data
+                self.message = message
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                message = try container.decode(String.self, forKey: .message)
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
                 
                 
                 do {
@@ -54035,16 +54027,24 @@
                 }
                 
                 
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                message = try container.decode(String.self, forKey: .message)
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(message, forKey: .message)
+                try? container.encodeIfPresent(data, forKey: .data)
                 
                 try? container.encodeIfPresent(success, forKey: .success)
                 
-                try? container.encodeIfPresent(data, forKey: .data)
+                try? container.encodeIfPresent(message, forKey: .message)
                 
             }
             
@@ -54054,7 +54054,7 @@
             Model: WalletOtpRequest
             Used By: Payment
         */
-        struct WalletOtpRequest: Codable {
+        class WalletOtpRequest: Codable {
             
             public var countryCode: String
             
@@ -54077,7 +54077,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -54105,22 +54105,22 @@
             Model: WalletOtpResponse
             Used By: Payment
         */
-        struct WalletOtpResponse: Codable {
+        class WalletOtpResponse: Codable {
             
             public var requestId: String
             
-            public var success: Bool?
-            
             public var isVerifiedFlag: String
+            
+            public var success: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case requestId = "request_id"
                 
-                case success = "success"
-                
                 case isVerifiedFlag = "is_verified_flag"
+                
+                case success = "success"
                 
             }
 
@@ -54128,17 +54128,21 @@
                 
                 self.requestId = requestId
                 
-                self.success = success
-                
                 self.isVerifiedFlag = isVerifiedFlag
+                
+                self.success = success
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
                 requestId = try container.decode(String.self, forKey: .requestId)
+                
+                
+                
+                isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
                 
                 
                 
@@ -54150,10 +54154,6 @@
                 } catch {
                     
                 }
-                
-                
-                
-                isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
                 
                 
             }
@@ -54163,9 +54163,9 @@
                 
                 try? container.encodeIfPresent(requestId, forKey: .requestId)
                 
-                try? container.encodeIfPresent(success, forKey: .success)
-                
                 try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+                
+                try? container.encodeIfPresent(success, forKey: .success)
                 
             }
             
@@ -54175,38 +54175,38 @@
             Model: SetDefaultBeneficiaryRequest
             Used By: Payment
         */
-        struct SetDefaultBeneficiaryRequest: Codable {
-            
-            public var beneficiaryId: String
+        class SetDefaultBeneficiaryRequest: Codable {
             
             public var orderId: String
+            
+            public var beneficiaryId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case beneficiaryId = "beneficiary_id"
-                
                 case orderId = "order_id"
+                
+                case beneficiaryId = "beneficiary_id"
                 
             }
 
             public init(beneficiaryId: String, orderId: String) {
                 
-                self.beneficiaryId = beneficiaryId
-                
                 self.orderId = orderId
+                
+                self.beneficiaryId = beneficiaryId
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
-                
-                
-                
                 orderId = try container.decode(String.self, forKey: .orderId)
+                
+                
+                
+                beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
                 
                 
             }
@@ -54214,9 +54214,9 @@
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
-                
                 try? container.encodeIfPresent(orderId, forKey: .orderId)
+                
+                try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
                 
             }
             
@@ -54226,35 +54226,31 @@
             Model: SetDefaultBeneficiaryResponse
             Used By: Payment
         */
-        struct SetDefaultBeneficiaryResponse: Codable {
-            
-            public var isBeneficiarySet: Bool
+        class SetDefaultBeneficiaryResponse: Codable {
             
             public var success: Bool?
+            
+            public var isBeneficiarySet: Bool
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case isBeneficiarySet = "is_beneficiary_set"
-                
                 case success = "success"
+                
+                case isBeneficiarySet = "is_beneficiary_set"
                 
             }
 
             public init(isBeneficiarySet: Bool, success: Bool?) {
                 
-                self.isBeneficiarySet = isBeneficiarySet
-                
                 self.success = success
+                
+                self.isBeneficiarySet = isBeneficiarySet
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                isBeneficiarySet = try container.decode(Bool.self, forKey: .isBeneficiarySet)
-                
                 
                 
                 do {
@@ -54267,14 +54263,18 @@
                 }
                 
                 
+                
+                isBeneficiarySet = try container.decode(Bool.self, forKey: .isBeneficiarySet)
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
-                try? container.encodeIfPresent(isBeneficiarySet, forKey: .isBeneficiarySet)
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                try? container.encodeIfPresent(isBeneficiarySet, forKey: .isBeneficiarySet)
                 
             }
             
@@ -54286,7 +54286,7 @@
             Model: OrderById
             Used By: Order
         */
-        struct OrderById: Codable {
+        class OrderById: Codable {
             
             public var order: OrderSchema
             
@@ -54303,7 +54303,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -54325,7 +54325,7 @@
             Model: OrderList
             Used By: Order
         */
-        struct OrderList: Codable {
+        class OrderList: Codable {
             
             public var orders: [OrderSchema]
             
@@ -54348,7 +54348,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -54376,7 +54376,7 @@
             Model: OrderPage
             Used By: Order
         */
-        struct OrderPage: Codable {
+        class OrderPage: Codable {
             
             public var itemTotal: Int?
             
@@ -54417,7 +54417,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -54498,7 +54498,7 @@
             Model: ShipmentById
             Used By: Order
         */
-        struct ShipmentById: Codable {
+        class ShipmentById: Codable {
             
             public var shipment: Shipments
             
@@ -54515,7 +54515,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -54537,7 +54537,7 @@
             Model: ShipmentReasons
             Used By: Order
         */
-        struct ShipmentReasons: Codable {
+        class ShipmentReasons: Codable {
             
             public var reasons: [Reasons]
             
@@ -54554,7 +54554,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -54576,7 +54576,7 @@
             Model: ShipmentStatusUpdateBody
             Used By: Order
         */
-        struct ShipmentStatusUpdateBody: Codable {
+        class ShipmentStatusUpdateBody: Codable {
             
             public var shipments: Shipments
             
@@ -54605,7 +54605,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -54639,7 +54639,7 @@
             Model: Shipments
             Used By: Order
         */
-        struct Shipments: Codable {
+        class Shipments: Codable {
             
             public var shipmentId: String?
             
@@ -54836,7 +54836,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -55255,7 +55255,7 @@
             Model: ShipmentId
             Used By: Order
         */
-        struct ShipmentId: Codable {
+        class ShipmentId: Codable {
             
             public var statusUpdate: StatusUpdate?
             
@@ -55290,7 +55290,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -55358,7 +55358,7 @@
             Model: StatusUpdate
             Used By: Order
         */
-        struct StatusUpdate: Codable {
+        class StatusUpdate: Codable {
             
             public var status: String?
             
@@ -55375,7 +55375,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -55404,7 +55404,7 @@
             Model: ShipmentStatusUpdate
             Used By: Order
         */
-        struct ShipmentStatusUpdate: Codable {
+        class ShipmentStatusUpdate: Codable {
             
             public var shipments: Shipments
             
@@ -55421,7 +55421,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -55443,7 +55443,7 @@
             Model: ShipmentTrack
             Used By: Order
         */
-        struct ShipmentTrack: Codable {
+        class ShipmentTrack: Codable {
             
             public var results: [Track]
             
@@ -55460,7 +55460,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -55482,7 +55482,7 @@
             Model: OrderSchema
             Used By: Order
         */
-        struct OrderSchema: Codable {
+        class OrderSchema: Codable {
             
             public var orderId: String?
             
@@ -55529,7 +55529,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -55623,7 +55623,7 @@
             Model: PosOrderById
             Used By: Order
         */
-        struct PosOrderById: Codable {
+        class PosOrderById: Codable {
             
             public var order: OrderSchema
             
@@ -55640,7 +55640,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -55662,7 +55662,7 @@
             Model: Bags
             Used By: Order
         */
-        struct Bags: Codable {
+        class Bags: Codable {
             
             public var item: Item?
             
@@ -55799,7 +55799,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -56088,7 +56088,7 @@
             Model: Item
             Used By: Order
         */
-        struct Item: Codable {
+        class Item: Codable {
             
             public var brandId: Int?
             
@@ -56195,7 +56195,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -56419,7 +56419,7 @@
             Model: BagItemAttributes
             Used By: Order
         */
-        struct BagItemAttributes: Codable {
+        class BagItemAttributes: Codable {
             
             public var itemCode: String?
             
@@ -56448,7 +56448,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -56503,7 +56503,7 @@
             Model: Prices
             Used By: Order
         */
-        struct Prices: Codable {
+        class Prices: Codable {
             
             public var amountPaidRoundoff: Double?
             
@@ -56634,7 +56634,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -56910,7 +56910,7 @@
             Model: CurrentStatus
             Used By: Order
         */
-        struct CurrentStatus: Codable {
+        class CurrentStatus: Codable {
             
             public var storeId: Int?
             
@@ -56981,7 +56981,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -57127,7 +57127,7 @@
             Model: BagStateMapper
             Used By: Order
         */
-        struct BagStateMapper: Codable {
+        class BagStateMapper: Codable {
             
             public var name: String?
             
@@ -57198,7 +57198,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -57344,7 +57344,7 @@
             Model: BagStatus
             Used By: Order
         */
-        struct BagStatus: Codable {
+        class BagStatus: Codable {
             
             public var bagId: Int?
             
@@ -57415,7 +57415,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -57561,7 +57561,7 @@
             Model: BagStatusBagStateMapper
             Used By: Order
         */
-        struct BagStatusBagStateMapper: Codable {
+        class BagStatusBagStateMapper: Codable {
             
             public var appStateName: String?
             
@@ -57632,7 +57632,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -57778,7 +57778,7 @@
             Model: Dates
             Used By: Order
         */
-        struct Dates: Codable {
+        class Dates: Codable {
             
             public var orderCreated: String?
             
@@ -57795,7 +57795,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -57824,7 +57824,7 @@
             Model: BagState
             Used By: Order
         */
-        struct BagState: Codable {
+        class BagState: Codable {
             
             public var isReturnable: Bool?
             
@@ -57865,7 +57865,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -57946,7 +57946,7 @@
             Model: FinancialBreakup
             Used By: Order
         */
-        struct FinancialBreakup: Codable {
+        class FinancialBreakup: Codable {
             
             public var brandCalculatedAmount: Double?
             
@@ -58119,7 +58119,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -58486,7 +58486,7 @@
             Model: Identifiers
             Used By: Order
         */
-        struct Identifiers: Codable {
+        class Identifiers: Codable {
             
             public var ean: String?
             
@@ -58509,7 +58509,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -58551,7 +58551,7 @@
             Model: BagReasons
             Used By: Order
         */
-        struct BagReasons: Codable {
+        class BagReasons: Codable {
             
             public var id: Int?
             
@@ -58592,7 +58592,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -58673,7 +58673,7 @@
             Model: Article
             Used By: Order
         */
-        struct Article: Codable {
+        class Article: Codable {
             
             public var espModified: Bool?
             
@@ -58738,7 +58738,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -58871,7 +58871,7 @@
             Model: ArticleIdentifiers
             Used By: Order
         */
-        struct ArticleIdentifiers: Codable {
+        class ArticleIdentifiers: Codable {
             
             public var ean: String?
             
@@ -58894,7 +58894,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -58936,7 +58936,7 @@
             Model: ReturnConfig
             Used By: Order
         */
-        struct ReturnConfig: Codable {
+        class ReturnConfig: Codable {
             
             public var time: Int?
             
@@ -58965,7 +58965,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -59020,7 +59020,7 @@
             Model: CurrentOperationalStatus
             Used By: Order
         */
-        struct CurrentOperationalStatus: Codable {
+        class CurrentOperationalStatus: Codable {
             
             public var id: Int?
             
@@ -59097,7 +59097,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -59256,7 +59256,7 @@
             Model: CurrentOperationalStatusReasons
             Used By: Order
         */
-        struct CurrentOperationalStatusReasons: Codable {
+        class CurrentOperationalStatusReasons: Codable {
             
             public var id: Int?
             
@@ -59291,7 +59291,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -59359,7 +59359,7 @@
             Model: CurrentOperationalStatusBagStateMapper
             Used By: Order
         */
-        struct CurrentOperationalStatusBagStateMapper: Codable {
+        class CurrentOperationalStatusBagStateMapper: Codable {
             
             public var stateType: String?
             
@@ -59430,7 +59430,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -59576,7 +59576,7 @@
             Model: Brand
             Used By: Order
         */
-        struct Brand: Codable {
+        class Brand: Codable {
             
             public var modifiedOn: String?
             
@@ -59629,7 +59629,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -59736,7 +59736,7 @@
             Model: AffiliateBagDetails
             Used By: Order
         */
-        struct AffiliateBagDetails: Codable {
+        class AffiliateBagDetails: Codable {
             
             public var affiliateBagId: String?
             
@@ -59777,7 +59777,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -59858,7 +59858,7 @@
             Model: AffiliateMeta
             Used By: Order
         */
-        struct AffiliateMeta: Codable {
+        class AffiliateMeta: Codable {
             
             public var sizeLevelTotalQty: Int?
             
@@ -59899,7 +59899,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -59980,7 +59980,7 @@
             Model: Fynd
             Used By: Order
         */
-        struct Fynd: Codable {
+        class Fynd: Codable {
             
             public var fulfilmentIdentifier: String?
             
@@ -59997,7 +59997,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -60026,7 +60026,7 @@
             Model: GstDetails
             Used By: Order
         */
-        struct GstDetails: Codable {
+        class GstDetails: Codable {
             
             public var valueOfGood: Double?
             
@@ -60079,7 +60079,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -60186,7 +60186,7 @@
             Model: BreakupValues
             Used By: Order
         */
-        struct BreakupValues: Codable {
+        class BreakupValues: Codable {
             
             public var display: String?
             
@@ -60215,7 +60215,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -60270,7 +60270,7 @@
             Model: DeliveryAddress
             Used By: Order
         */
-        struct DeliveryAddress: Codable {
+        class DeliveryAddress: Codable {
             
             public var pincode: String?
             
@@ -60401,7 +60401,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -60677,7 +60677,7 @@
             Model: FulfillingStore
             Used By: Order
         */
-        struct FulfillingStore: Codable {
+        class FulfillingStore: Codable {
             
             public var address1: String?
             
@@ -60838,7 +60838,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -61179,7 +61179,7 @@
             Model: StoreAddressJson
             Used By: Order
         */
-        struct StoreAddressJson: Codable {
+        class StoreAddressJson: Codable {
             
             public var area: String?
             
@@ -61298,7 +61298,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -61548,7 +61548,7 @@
             Model: FulfillingStoreMeta
             Used By: Order
         */
-        struct FulfillingStoreMeta: Codable {
+        class FulfillingStoreMeta: Codable {
             
             public var additionalContactDetails: AdditionalContactDetails?
             
@@ -61601,7 +61601,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -61708,7 +61708,7 @@
             Model: AdditionalContactDetails
             Used By: Order
         */
-        struct AdditionalContactDetails: Codable {
+        class AdditionalContactDetails: Codable {
             
             public var number: [[String: Any]]?
             
@@ -61725,7 +61725,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -61754,7 +61754,7 @@
             Model: Timing
             Used By: Order
         */
-        struct Timing: Codable {
+        class Timing: Codable {
             
             public var opening: Opening?
             
@@ -61789,7 +61789,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -61857,7 +61857,7 @@
             Model: Opening
             Used By: Order
         */
-        struct Opening: Codable {
+        class Opening: Codable {
             
             public var hour: Int?
             
@@ -61880,7 +61880,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -61922,7 +61922,7 @@
             Model: Closing
             Used By: Order
         */
-        struct Closing: Codable {
+        class Closing: Codable {
             
             public var hour: Int?
             
@@ -61945,7 +61945,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -61987,7 +61987,7 @@
             Model: Documents
             Used By: Order
         */
-        struct Documents: Codable {
+        class Documents: Codable {
             
             public var gst: Gst?
             
@@ -62004,7 +62004,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -62033,7 +62033,7 @@
             Model: Gst
             Used By: Order
         */
-        struct Gst: Codable {
+        class Gst: Codable {
             
             public var value: String?
             
@@ -62068,7 +62068,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -62136,7 +62136,7 @@
             Model: Invoice
             Used By: Order
         */
-        struct Invoice: Codable {
+        class Invoice: Codable {
             
             public var updatedDate: String?
             
@@ -62165,7 +62165,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -62220,7 +62220,7 @@
             Model: ProductItems
             Used By: Order
         */
-        struct ProductItems: Codable {
+        class ProductItems: Codable {
             
             public var code: String?
             
@@ -62327,7 +62327,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -62551,7 +62551,7 @@
             Model: ProductItemAttributes
             Used By: Order
         */
-        struct ProductItemAttributes: Codable {
+        class ProductItemAttributes: Codable {
             
             public var itemCode: String?
             
@@ -62580,7 +62580,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -62635,7 +62635,7 @@
             Model: ShipmentMeta
             Used By: Order
         */
-        struct ShipmentMeta: Codable {
+        class ShipmentMeta: Codable {
             
             public var timestamp: Timestamp?
             
@@ -62718,7 +62718,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -62890,7 +62890,7 @@
             Model: Timestamp
             Used By: Order
         */
-        struct Timestamp: Codable {
+        class Timestamp: Codable {
             
             public var max: String?
             
@@ -62913,7 +62913,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -62955,7 +62955,7 @@
             Model: DpOptions
             Used By: Order
         */
-        struct DpOptions: Codable {
+        class DpOptions: Codable {
             
             public var dpOptionId: DpOptionId?
             
@@ -62972,7 +62972,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63001,7 +63001,7 @@
             Model: DpOptionId
             Used By: Order
         */
-        struct DpOptionId: Codable {
+        class DpOptionId: Codable {
             
             public var fPriority: Int?
             
@@ -63060,7 +63060,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63180,7 +63180,7 @@
             Model: Formatted
             Used By: Order
         */
-        struct Formatted: Codable {
+        class Formatted: Codable {
             
             public var max: String?
             
@@ -63203,7 +63203,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63245,7 +63245,7 @@
             Model: DebugInfo
             Used By: Order
         */
-        struct DebugInfo: Codable {
+        class DebugInfo: Codable {
             
             public var stormbreakerUuid: String?
             
@@ -63262,7 +63262,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63291,7 +63291,7 @@
             Model: Promise
             Used By: Order
         */
-        struct Promise: Codable {
+        class Promise: Codable {
             
             public var timestamp: Timestamp?
             
@@ -63308,7 +63308,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63337,7 +63337,7 @@
             Model: Reasons
             Used By: Order
         */
-        struct Reasons: Codable {
+        class Reasons: Codable {
             
             public var reasonText: String?
             
@@ -63384,7 +63384,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63478,7 +63478,7 @@
             Model: ShipmentStatus
             Used By: Order
         */
-        struct ShipmentStatus: Codable {
+        class ShipmentStatus: Codable {
             
             public var title: String?
             
@@ -63501,7 +63501,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63543,7 +63543,7 @@
             Model: ShipmentUserInfo
             Used By: Order
         */
-        struct ShipmentUserInfo: Codable {
+        class ShipmentUserInfo: Codable {
             
             public var gender: String?
             
@@ -63578,7 +63578,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63646,7 +63646,7 @@
             Model: Track
             Used By: Order
         */
-        struct Track: Codable {
+        class Track: Codable {
             
             public var awb: String?
             
@@ -63705,7 +63705,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63825,7 +63825,7 @@
             Model: TrackingDetails
             Used By: Order
         */
-        struct TrackingDetails: Codable {
+        class TrackingDetails: Codable {
             
             public var isCurrent: Bool?
             
@@ -63860,7 +63860,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -63928,7 +63928,7 @@
             Model: UserInfo
             Used By: Order
         */
-        struct UserInfo: Codable {
+        class UserInfo: Codable {
             
             public var gender: String?
             
@@ -63963,7 +63963,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64031,7 +64031,7 @@
             Model: ApefaceApiError
             Used By: Order
         */
-        struct ApefaceApiError: Codable {
+        class ApefaceApiError: Codable {
             
             public var message: String?
             
@@ -64048,7 +64048,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64079,7 +64079,7 @@
             Model: ActionPage
             Used By: Rewards
         */
-        struct ActionPage: Codable {
+        class ActionPage: Codable {
             
             public var params: ActionPageParams?
             
@@ -64108,7 +64108,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64163,7 +64163,7 @@
             Model: ActionPageParams
             Used By: Rewards
         */
-        struct ActionPageParams: Codable {
+        class ActionPageParams: Codable {
             
             public var slug: [String]?
             
@@ -64180,7 +64180,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64209,7 +64209,7 @@
             Model: CatalogueOrderRequest
             Used By: Rewards
         */
-        struct CatalogueOrderRequest: Codable {
+        class CatalogueOrderRequest: Codable {
             
             public var articles: [Article]?
             
@@ -64226,7 +64226,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64255,7 +64255,7 @@
             Model: CatalogueOrderResponse
             Used By: Rewards
         */
-        struct CatalogueOrderResponse: Codable {
+        class CatalogueOrderResponse: Codable {
             
             public var articles: [Article]?
             
@@ -64272,7 +64272,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64301,7 +64301,7 @@
             Model: CursorPage
             Used By: Rewards
         */
-        struct CursorPage: Codable {
+        class CursorPage: Codable {
             
             public var hasNext: Bool?
             
@@ -64342,7 +64342,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64423,7 +64423,7 @@
             Model: Discount
             Used By: Rewards
         */
-        struct Discount: Codable {
+        class Discount: Codable {
             
             public var absolute: Double?
             
@@ -64464,7 +64464,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64545,7 +64545,7 @@
             Model: Error
             Used By: Rewards
         */
-        struct Error: Codable {
+        class Error: Codable {
             
             public var code: Int?
             
@@ -64580,7 +64580,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64648,7 +64648,7 @@
             Model: Offer
             Used By: Rewards
         */
-        struct Offer: Codable {
+        class Offer: Codable {
             
             public var schedule: String?
             
@@ -64749,7 +64749,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -64960,7 +64960,7 @@
             Model: OrderDiscountRequest
             Used By: Rewards
         */
-        struct OrderDiscountRequest: Codable {
+        class OrderDiscountRequest: Codable {
             
             public var currency: String?
             
@@ -64983,7 +64983,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65018,7 +65018,7 @@
             Model: OrderDiscountResponse
             Used By: Rewards
         */
-        struct OrderDiscountResponse: Codable {
+        class OrderDiscountResponse: Codable {
             
             public var appliedRuleBucket: OrderDiscountRuleBucket?
             
@@ -65059,7 +65059,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65140,7 +65140,7 @@
             Model: OrderDiscountRuleBucket
             Used By: Rewards
         */
-        struct OrderDiscountRuleBucket: Codable {
+        class OrderDiscountRuleBucket: Codable {
             
             public var high: Double?
             
@@ -65181,7 +65181,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65262,7 +65262,7 @@
             Model: PointsHistory
             Used By: Rewards
         */
-        struct PointsHistory: Codable {
+        class PointsHistory: Codable {
             
             public var id: String?
             
@@ -65357,7 +65357,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65555,7 +65555,7 @@
             Model: PointsHistoryResponse
             Used By: Rewards
         */
-        struct PointsHistoryResponse: Codable {
+        class PointsHistoryResponse: Codable {
             
             public var history: [PointsHistory]?
             
@@ -65578,7 +65578,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65620,7 +65620,7 @@
             Model: PointsResponse
             Used By: Rewards
         */
-        struct PointsResponse: Codable {
+        class PointsResponse: Codable {
             
             public var points: Double?
             
@@ -65637,7 +65637,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65666,7 +65666,7 @@
             Model: RedeemReferralCodeRequest
             Used By: Rewards
         */
-        struct RedeemReferralCodeRequest: Codable {
+        class RedeemReferralCodeRequest: Codable {
             
             public var deviceId: String
             
@@ -65689,7 +65689,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65717,7 +65717,7 @@
             Model: RedeemReferralCodeResponse
             Used By: Rewards
         */
-        struct RedeemReferralCodeResponse: Codable {
+        class RedeemReferralCodeResponse: Codable {
             
             public var message: String?
             
@@ -65758,7 +65758,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65839,7 +65839,7 @@
             Model: ReferralDetailsResponse
             Used By: Rewards
         */
-        struct ReferralDetailsResponse: Codable {
+        class ReferralDetailsResponse: Codable {
             
             public var referral: Offer?
             
@@ -65874,7 +65874,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -65942,7 +65942,7 @@
             Model: ReferralDetailsUser
             Used By: Rewards
         */
-        struct ReferralDetailsUser: Codable {
+        class ReferralDetailsUser: Codable {
             
             public var blocked: Bool?
             
@@ -65977,7 +65977,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -66045,7 +66045,7 @@
             Model: ShareMessages
             Used By: Rewards
         */
-        struct ShareMessages: Codable {
+        class ShareMessages: Codable {
             
             public var email: String?
             
@@ -66110,7 +66110,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -66242,10 +66242,208 @@
         
         
         /*
+            Model: AbuseReport
+            Used By: Feedback
+        */
+        class AbuseReport: Codable {
+            
+            public var abused: Bool?
+            
+            public var createdOn: String?
+            
+            public var description: String?
+            
+            public var entity: Entity?
+            
+            public var id: String?
+            
+            public var modifiedOn: String?
+            
+            public var name: String?
+            
+            public var state: State?
+            
+            public var tags: [TagMeta]?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case abused = "abused"
+                
+                case createdOn = "created_on"
+                
+                case description = "description"
+                
+                case entity = "entity"
+                
+                case id = "id"
+                
+                case modifiedOn = "modified_on"
+                
+                case name = "name"
+                
+                case state = "state"
+                
+                case tags = "tags"
+                
+            }
+
+            public init(abused: Bool?, createdOn: String?, description: String?, entity: Entity?, id: String?, modifiedOn: String?, name: String?, state: State?, tags: [TagMeta]?) {
+                
+                self.abused = abused
+                
+                self.createdOn = createdOn
+                
+                self.description = description
+                
+                self.entity = entity
+                
+                self.id = id
+                
+                self.modifiedOn = modifiedOn
+                
+                self.name = name
+                
+                self.state = state
+                
+                self.tags = tags
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    abused = try container.decode(Bool.self, forKey: .abused)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    description = try container.decode(String.self, forKey: .description)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    entity = try container.decode(Entity.self, forKey: .entity)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    state = try container.decode(State.self, forKey: .state)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    tags = try container.decode([TagMeta].self, forKey: .tags)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(abused, forKey: .abused)
+                
+                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+                
+                try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(entity, forKey: .entity)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
+                
+                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(state, forKey: .state)
+                
+                try? container.encodeIfPresent(tags, forKey: .tags)
+                
+            }
+            
+        }
+        
+        /*
             Model: Access
             Used By: Feedback
         */
-        struct Access: Codable {
+        class Access: Codable {
             
             public var answer: Bool?
             
@@ -66280,7 +66478,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -66348,7 +66546,7 @@
             Model: AddMediaListRequest
             Used By: Feedback
         */
-        struct AddMediaListRequest: Codable {
+        class AddMediaListRequest: Codable {
             
             public var entityId: String?
             
@@ -66389,7 +66587,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -66470,7 +66668,7 @@
             Model: AddMediaRequest
             Used By: Feedback
         */
-        struct AddMediaRequest: Codable {
+        class AddMediaRequest: Codable {
             
             public var cloudId: String?
             
@@ -66547,7 +66745,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -66706,7 +66904,7 @@
             Model: Attribute
             Used By: Feedback
         */
-        struct Attribute: Codable {
+        class Attribute: Codable {
             
             public var createdOn: String?
             
@@ -66759,7 +66957,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -66866,7 +67064,7 @@
             Model: AttributeObject
             Used By: Feedback
         */
-        struct AttributeObject: Codable {
+        class AttributeObject: Codable {
             
             public var description: String?
             
@@ -66913,7 +67111,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -66986,7 +67184,7 @@
             Model: CheckEligibilityResponse
             Used By: Feedback
         */
-        struct CheckEligibilityResponse: Codable {
+        class CheckEligibilityResponse: Codable {
             
             public var access: Access?
             
@@ -67009,7 +67207,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67051,7 +67249,7 @@
             Model: Cloud
             Used By: Feedback
         */
-        struct Cloud: Codable {
+        class Cloud: Codable {
             
             public var id: String?
             
@@ -67080,7 +67278,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67132,10 +67330,273 @@
         }
         
         /*
+            Model: Comment
+            Used By: Feedback
+        */
+        class Comment: Codable {
+            
+            public var comment: [String]?
+            
+            public var createdOn: String?
+            
+            public var entity: Entity?
+            
+            public var id: String?
+            
+            public var modifiedOn: String?
+            
+            public var name: String?
+            
+            public var state: State?
+            
+            public var tags: [TagMeta]?
+            
+            public var voteCount: VoteCount?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case comment = "comment"
+                
+                case createdOn = "created_on"
+                
+                case entity = "entity"
+                
+                case id = "id"
+                
+                case modifiedOn = "modified_on"
+                
+                case name = "name"
+                
+                case state = "state"
+                
+                case tags = "tags"
+                
+                case voteCount = "vote_count"
+                
+            }
+
+            public init(comment: [String]?, createdOn: String?, entity: Entity?, id: String?, modifiedOn: String?, name: String?, state: State?, tags: [TagMeta]?, voteCount: VoteCount?) {
+                
+                self.comment = comment
+                
+                self.createdOn = createdOn
+                
+                self.entity = entity
+                
+                self.id = id
+                
+                self.modifiedOn = modifiedOn
+                
+                self.name = name
+                
+                self.state = state
+                
+                self.tags = tags
+                
+                self.voteCount = voteCount
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    comment = try container.decode([String].self, forKey: .comment)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    entity = try container.decode(Entity.self, forKey: .entity)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    state = try container.decode(State.self, forKey: .state)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    tags = try container.decode([TagMeta].self, forKey: .tags)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    voteCount = try container.decode(VoteCount.self, forKey: .voteCount)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(comment, forKey: .comment)
+                
+                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+                
+                try? container.encodeIfPresent(entity, forKey: .entity)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
+                
+                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(state, forKey: .state)
+                
+                try? container.encodeIfPresent(tags, forKey: .tags)
+                
+                try? container.encodeIfPresent(voteCount, forKey: .voteCount)
+                
+            }
+            
+        }
+        
+        /*
+            Model: CommentGetResponse
+            Used By: Feedback
+        */
+        class CommentGetResponse: Codable {
+            
+            public var items: [Comment]?
+            
+            public var page: PageCursor?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
+                
+                case page = "page"
+                
+            }
+
+            public init(items: [Comment]?, page: PageCursor?) {
+                
+                self.items = items
+                
+                self.page = page
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    items = try container.decode([Comment].self, forKey: .items)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    page = try container.decode(PageCursor.self, forKey: .page)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(items, forKey: .items)
+                
+                try? container.encodeIfPresent(page, forKey: .page)
+                
+            }
+            
+        }
+        
+        /*
             Model: CommentRequest
             Used By: Feedback
         */
-        struct CommentRequest: Codable {
+        class CommentRequest: Codable {
             
             public var comment: [String]
             
@@ -67164,7 +67625,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67198,7 +67659,7 @@
             Model: CreateQNARequest
             Used By: Feedback
         */
-        struct CreateQNARequest: Codable {
+        class CreateQNARequest: Codable {
             
             public var choices: [String]?
             
@@ -67257,7 +67718,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67356,7 +67817,7 @@
             Model: DeviceMeta
             Used By: Feedback
         */
-        struct DeviceMeta: Codable {
+        class DeviceMeta: Codable {
             
             public var appVersion: String?
             
@@ -67379,7 +67840,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67418,10 +67879,75 @@
         }
         
         /*
+            Model: Entity
+            Used By: Feedback
+        */
+        class Entity: Codable {
+            
+            public var id: String?
+            
+            public var type: String?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case id = "id"
+                
+                case type = "type"
+                
+            }
+
+            public init(id: String?, type: String?) {
+                
+                self.id = id
+                
+                self.type = type
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+            }
+            
+        }
+        
+        /*
             Model: MediaCloud
             Used By: Feedback
         */
-        struct MediaCloud: Codable {
+        class MediaCloud: Codable {
             
             public var key: String?
             
@@ -67468,7 +67994,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67559,10 +68085,75 @@
         }
         
         /*
+            Model: MediaGetResponse
+            Used By: Feedback
+        */
+        class MediaGetResponse: Codable {
+            
+            public var items: [Comment]?
+            
+            public var page: PageCursor?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
+                
+                case page = "page"
+                
+            }
+
+            public init(items: [Comment]?, page: PageCursor?) {
+                
+                self.items = items
+                
+                self.page = page
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    items = try container.decode([Comment].self, forKey: .items)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    page = try container.decode(PageCursor.self, forKey: .page)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(items, forKey: .items)
+                
+                try? container.encodeIfPresent(page, forKey: .page)
+                
+            }
+            
+        }
+        
+        /*
             Model: MediaMeta
             Used By: Feedback
         */
-        struct MediaMeta: Codable {
+        class MediaMeta: Codable {
             
             public var cloud: Cloud?
             
@@ -67609,7 +68200,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67700,10 +68291,75 @@
         }
         
         /*
+            Model: MediaState
+            Used By: Feedback
+        */
+        class MediaState: Codable {
+            
+            public var approve: Bool?
+            
+            public var archive: Bool?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case approve = "approve"
+                
+                case archive = "archive"
+                
+            }
+
+            public init(approve: Bool?, archive: Bool?) {
+                
+                self.approve = approve
+                
+                self.archive = archive
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    approve = try container.decode(Bool.self, forKey: .approve)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    archive = try container.decode(Bool.self, forKey: .archive)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(approve, forKey: .approve)
+                
+                try? container.encodeIfPresent(archive, forKey: .archive)
+                
+            }
+            
+        }
+        
+        /*
             Model: PageCursor
             Used By: Feedback
         */
-        struct PageCursor: Codable {
+        class PageCursor: Codable {
             
             public var hasNext: Bool?
             
@@ -67744,7 +68400,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67825,7 +68481,7 @@
             Model: PageNumber
             Used By: Feedback
         */
-        struct PageNumber: Codable {
+        class PageNumber: Codable {
             
             public var current: Int?
             
@@ -67866,7 +68522,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -67944,10 +68600,750 @@
         }
         
         /*
+            Model: QNA
+            Used By: Feedback
+        */
+        class QNA: Codable {
+            
+            public var comments: [Comment]?
+            
+            public var createdOn: String?
+            
+            public var entity: Entity?
+            
+            public var id: String?
+            
+            public var modifiedOn: String?
+            
+            public var name: String?
+            
+            public var question: Question?
+            
+            public var state: QNAState?
+            
+            public var tag: [String]?
+            
+            public var tags: [TagMeta]?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case comments = "comments"
+                
+                case createdOn = "created_on"
+                
+                case entity = "entity"
+                
+                case id = "id"
+                
+                case modifiedOn = "modified_on"
+                
+                case name = "name"
+                
+                case question = "question"
+                
+                case state = "state"
+                
+                case tag = "tag"
+                
+                case tags = "tags"
+                
+            }
+
+            public init(comments: [Comment]?, createdOn: String?, entity: Entity?, id: String?, modifiedOn: String?, name: String?, question: Question?, state: QNAState?, tag: [String]?, tags: [TagMeta]?) {
+                
+                self.comments = comments
+                
+                self.createdOn = createdOn
+                
+                self.entity = entity
+                
+                self.id = id
+                
+                self.modifiedOn = modifiedOn
+                
+                self.name = name
+                
+                self.question = question
+                
+                self.state = state
+                
+                self.tag = tag
+                
+                self.tags = tags
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    comments = try container.decode([Comment].self, forKey: .comments)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    entity = try container.decode(Entity.self, forKey: .entity)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    question = try container.decode(Question.self, forKey: .question)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    state = try container.decode(QNAState.self, forKey: .state)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    tag = try container.decode([String].self, forKey: .tag)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    tags = try container.decode([TagMeta].self, forKey: .tags)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(comments, forKey: .comments)
+                
+                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+                
+                try? container.encodeIfPresent(entity, forKey: .entity)
+                
+                try? container.encodeIfPresent(id, forKey: .id)
+                
+                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+                
+                try? container.encodeIfPresent(name, forKey: .name)
+                
+                try? container.encodeIfPresent(question, forKey: .question)
+                
+                try? container.encodeIfPresent(state, forKey: .state)
+                
+                try? container.encodeIfPresent(tag, forKey: .tag)
+                
+                try? container.encodeIfPresent(tags, forKey: .tags)
+                
+            }
+            
+        }
+        
+        /*
+            Model: QNAGetResponse
+            Used By: Feedback
+        */
+        class QNAGetResponse: Codable {
+            
+            public var items: [QNA]?
+            
+            public var page: PageCursor?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
+                
+                case page = "page"
+                
+            }
+
+            public init(items: [QNA]?, page: PageCursor?) {
+                
+                self.items = items
+                
+                self.page = page
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    items = try container.decode([QNA].self, forKey: .items)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    page = try container.decode(PageCursor.self, forKey: .page)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(items, forKey: .items)
+                
+                try? container.encodeIfPresent(page, forKey: .page)
+                
+            }
+            
+        }
+        
+        /*
+            Model: QNAState
+            Used By: Feedback
+        */
+        class QNAState: Codable {
+            
+            public var active: Bool?
+            
+            public var approve: Bool?
+            
+            public var modify: Bool?
+            
+            public var priority: Int?
+            
+            public var reply: Bool?
+            
+            public var vote: Bool?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case active = "active"
+                
+                case approve = "approve"
+                
+                case modify = "modify"
+                
+                case priority = "priority"
+                
+                case reply = "reply"
+                
+                case vote = "vote"
+                
+            }
+
+            public init(active: Bool?, approve: Bool?, modify: Bool?, priority: Int?, reply: Bool?, vote: Bool?) {
+                
+                self.active = active
+                
+                self.approve = approve
+                
+                self.modify = modify
+                
+                self.priority = priority
+                
+                self.reply = reply
+                
+                self.vote = vote
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    active = try container.decode(Bool.self, forKey: .active)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    approve = try container.decode(Bool.self, forKey: .approve)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    modify = try container.decode(Bool.self, forKey: .modify)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    priority = try container.decode(Int.self, forKey: .priority)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    reply = try container.decode(Bool.self, forKey: .reply)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    vote = try container.decode(Bool.self, forKey: .vote)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(active, forKey: .active)
+                
+                try? container.encodeIfPresent(approve, forKey: .approve)
+                
+                try? container.encodeIfPresent(modify, forKey: .modify)
+                
+                try? container.encodeIfPresent(priority, forKey: .priority)
+                
+                try? container.encodeIfPresent(reply, forKey: .reply)
+                
+                try? container.encodeIfPresent(vote, forKey: .vote)
+                
+            }
+            
+        }
+        
+        /*
+            Model: Question
+            Used By: Feedback
+        */
+        class Question: Codable {
+            
+            public var choices: [String]?
+            
+            public var maxLen: Int?
+            
+            public var text: String?
+            
+            public var type: String?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case choices = "choices"
+                
+                case maxLen = "max_len"
+                
+                case text = "text"
+                
+                case type = "type"
+                
+            }
+
+            public init(choices: [String]?, maxLen: Int?, text: String?, type: String?) {
+                
+                self.choices = choices
+                
+                self.maxLen = maxLen
+                
+                self.text = text
+                
+                self.type = type
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    choices = try container.decode([String].self, forKey: .choices)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    maxLen = try container.decode(Int.self, forKey: .maxLen)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    text = try container.decode(String.self, forKey: .text)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(choices, forKey: .choices)
+                
+                try? container.encodeIfPresent(maxLen, forKey: .maxLen)
+                
+                try? container.encodeIfPresent(text, forKey: .text)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+            }
+            
+        }
+        
+        /*
+            Model: Rating
+            Used By: Feedback
+        */
+        class Rating: Codable {
+            
+            public var attributes: [Attribute]?
+            
+            public var attributesSlugs: [String]?
+            
+            public var ui: UI?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case attributes = "attributes"
+                
+                case attributesSlugs = "attributes_slugs"
+                
+                case ui = "ui"
+                
+            }
+
+            public init(attributes: [Attribute]?, attributesSlugs: [String]?, ui: UI?) {
+                
+                self.attributes = attributes
+                
+                self.attributesSlugs = attributesSlugs
+                
+                self.ui = ui
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    attributes = try container.decode([Attribute].self, forKey: .attributes)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    attributesSlugs = try container.decode([String].self, forKey: .attributesSlugs)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    ui = try container.decode(UI.self, forKey: .ui)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(attributes, forKey: .attributes)
+                
+                try? container.encodeIfPresent(attributesSlugs, forKey: .attributesSlugs)
+                
+                try? container.encodeIfPresent(ui, forKey: .ui)
+                
+            }
+            
+        }
+        
+        /*
+            Model: RatingGetResponse
+            Used By: Feedback
+        */
+        class RatingGetResponse: Codable {
+            
+            public var items: [Rating]?
+            
+            public var page: PageCursor?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
+                
+                case page = "page"
+                
+            }
+
+            public init(items: [Rating]?, page: PageCursor?) {
+                
+                self.items = items
+                
+                self.page = page
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    items = try container.decode([Rating].self, forKey: .items)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    page = try container.decode(PageCursor.self, forKey: .page)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(items, forKey: .items)
+                
+                try? container.encodeIfPresent(page, forKey: .page)
+                
+            }
+            
+        }
+        
+        /*
+            Model: ReportAbuseGetResponse
+            Used By: Feedback
+        */
+        class ReportAbuseGetResponse: Codable {
+            
+            public var items: [AbuseReport]?
+            
+            public var page: PageCursor?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
+                
+                case page = "page"
+                
+            }
+
+            public init(items: [AbuseReport]?, page: PageCursor?) {
+                
+                self.items = items
+                
+                self.page = page
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    items = try container.decode([AbuseReport].self, forKey: .items)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    page = try container.decode(PageCursor.self, forKey: .page)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(items, forKey: .items)
+                
+                try? container.encodeIfPresent(page, forKey: .page)
+                
+            }
+            
+        }
+        
+        /*
             Model: ReportAbuseRequest
             Used By: Feedback
         */
-        struct ReportAbuseRequest: Codable {
+        class ReportAbuseRequest: Codable {
             
             public var description: String?
             
@@ -67976,7 +69372,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68014,10 +69410,216 @@
         }
         
         /*
+            Model: Review
+            Used By: Feedback
+        */
+        class Review: Codable {
+            
+            public var description: String?
+            
+            public var header: String?
+            
+            public var imageMeta: MediaMeta?
+            
+            public var title: String?
+            
+            public var videoMeta: MediaMeta?
+            
+            public var voteAllowed: Bool?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case description = "description"
+                
+                case header = "header"
+                
+                case imageMeta = "image_meta"
+                
+                case title = "title"
+                
+                case videoMeta = "video_meta"
+                
+                case voteAllowed = "vote_allowed"
+                
+            }
+
+            public init(description: String?, header: String?, imageMeta: MediaMeta?, title: String?, videoMeta: MediaMeta?, voteAllowed: Bool?) {
+                
+                self.description = description
+                
+                self.header = header
+                
+                self.imageMeta = imageMeta
+                
+                self.title = title
+                
+                self.videoMeta = videoMeta
+                
+                self.voteAllowed = voteAllowed
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    description = try container.decode(String.self, forKey: .description)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    header = try container.decode(String.self, forKey: .header)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    imageMeta = try container.decode(MediaMeta.self, forKey: .imageMeta)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    title = try container.decode(String.self, forKey: .title)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    videoMeta = try container.decode(MediaMeta.self, forKey: .videoMeta)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    voteAllowed = try container.decode(Bool.self, forKey: .voteAllowed)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(description, forKey: .description)
+                
+                try? container.encodeIfPresent(header, forKey: .header)
+                
+                try? container.encodeIfPresent(imageMeta, forKey: .imageMeta)
+                
+                try? container.encodeIfPresent(title, forKey: .title)
+                
+                try? container.encodeIfPresent(videoMeta, forKey: .videoMeta)
+                
+                try? container.encodeIfPresent(voteAllowed, forKey: .voteAllowed)
+                
+            }
+            
+        }
+        
+        /*
+            Model: ReviewGetResponse
+            Used By: Feedback
+        */
+        class ReviewGetResponse: Codable {
+            
+            public var items: [Review]?
+            
+            public var page: PageCursor?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case items = "items"
+                
+                case page = "page"
+                
+            }
+
+            public init(items: [Review]?, page: PageCursor?) {
+                
+                self.items = items
+                
+                self.page = page
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    items = try container.decode([Review].self, forKey: .items)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    page = try container.decode(PageCursor.self, forKey: .page)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(items, forKey: .items)
+                
+                try? container.encodeIfPresent(page, forKey: .page)
+                
+            }
+            
+        }
+        
+        /*
             Model: SaveAttributeRequest
             Used By: Feedback
         */
-        struct SaveAttributeRequest: Codable {
+        class SaveAttributeRequest: Codable {
             
             public var description: String?
             
@@ -68046,7 +69648,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68084,10 +69686,75 @@
         }
         
         /*
+            Model: State
+            Used By: Feedback
+        */
+        class State: Codable {
+            
+            public var active: Bool?
+            
+            public var approve: Bool?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case active = "active"
+                
+                case approve = "approve"
+                
+            }
+
+            public init(active: Bool?, approve: Bool?) {
+                
+                self.active = active
+                
+                self.approve = approve
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    active = try container.decode(Bool.self, forKey: .active)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    approve = try container.decode(Bool.self, forKey: .approve)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(active, forKey: .active)
+                
+                try? container.encodeIfPresent(approve, forKey: .approve)
+                
+            }
+            
+        }
+        
+        /*
             Model: TagMeta
             Used By: Feedback
         */
-        struct TagMeta: Codable {
+        class TagMeta: Codable {
             
             public var media: [MediaMeta]?
             
@@ -68116,7 +69783,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68168,10 +69835,197 @@
         }
         
         /*
+            Model: UI
+            Used By: Feedback
+        */
+        class UI: Codable {
+            
+            public var feedbackQuestion: [String]?
+            
+            public var icon: UIIcon?
+            
+            public var text: [String]?
+            
+            public var type: String?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case feedbackQuestion = "feedback_question"
+                
+                case icon = "icon"
+                
+                case text = "text"
+                
+                case type = "type"
+                
+            }
+
+            public init(feedbackQuestion: [String]?, icon: UIIcon?, text: [String]?, type: String?) {
+                
+                self.feedbackQuestion = feedbackQuestion
+                
+                self.icon = icon
+                
+                self.text = text
+                
+                self.type = type
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    feedbackQuestion = try container.decode([String].self, forKey: .feedbackQuestion)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    icon = try container.decode(UIIcon.self, forKey: .icon)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    text = try container.decode([String].self, forKey: .text)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(feedbackQuestion, forKey: .feedbackQuestion)
+                
+                try? container.encodeIfPresent(icon, forKey: .icon)
+                
+                try? container.encodeIfPresent(text, forKey: .text)
+                
+                try? container.encodeIfPresent(type, forKey: .type)
+                
+            }
+            
+        }
+        
+        /*
+            Model: UIIcon
+            Used By: Feedback
+        */
+        class UIIcon: Codable {
+            
+            public var active: String?
+            
+            public var inactive: String?
+            
+            public var selected: [String]?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case active = "active"
+                
+                case inactive = "inactive"
+                
+                case selected = "selected"
+                
+            }
+
+            public init(active: String?, inactive: String?, selected: [String]?) {
+                
+                self.active = active
+                
+                self.inactive = inactive
+                
+                self.selected = selected
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    active = try container.decode(String.self, forKey: .active)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    inactive = try container.decode(String.self, forKey: .inactive)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    selected = try container.decode([String].self, forKey: .selected)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(active, forKey: .active)
+                
+                try? container.encodeIfPresent(inactive, forKey: .inactive)
+                
+                try? container.encodeIfPresent(selected, forKey: .selected)
+                
+            }
+            
+        }
+        
+        /*
             Model: UpdateAbuseStatusRequest
             Used By: Feedback
         */
-        struct UpdateAbuseStatusRequest: Codable {
+        class UpdateAbuseStatusRequest: Codable {
             
             public var abusive: Bool?
             
@@ -68224,7 +70078,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68331,7 +70185,7 @@
             Model: UpdateAttributeRequest
             Used By: Feedback
         */
-        struct UpdateAttributeRequest: Codable {
+        class UpdateAttributeRequest: Codable {
             
             public var description: String?
             
@@ -68360,7 +70214,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68408,7 +70262,7 @@
             Model: UpdateCommentRequest
             Used By: Feedback
         */
-        struct UpdateCommentRequest: Codable {
+        class UpdateCommentRequest: Codable {
             
             public var active: Bool?
             
@@ -68443,7 +70297,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68497,7 +70351,7 @@
             Model: UpdateMediaListRequest
             Used By: Feedback
         */
-        struct UpdateMediaListRequest: Codable {
+        class UpdateMediaListRequest: Codable {
             
             public var approve: Bool?
             
@@ -68532,7 +70386,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68600,7 +70454,7 @@
             Model: UpdateQNARequest
             Used By: Feedback
         */
-        struct UpdateQNARequest: Codable {
+        class UpdateQNARequest: Codable {
             
             public var active: Bool?
             
@@ -68641,7 +70495,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -68722,7 +70576,7 @@
             Model: UpdateReviewRequest
             Used By: Feedback
         */
-        struct UpdateReviewRequest: Codable {
+        class UpdateReviewRequest: Codable {
             
             public var active: Bool?
             
@@ -68817,7 +70671,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69015,7 +70869,7 @@
             Model: UpdateVoteRequest
             Used By: Feedback
         */
-        struct UpdateVoteRequest: Codable {
+        class UpdateVoteRequest: Codable {
             
             public var action: String?
             
@@ -69056,7 +70910,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69137,7 +70991,7 @@
             Model: Url
             Used By: Feedback
         */
-        struct Url: Codable {
+        class Url: Codable {
             
             public var main: String?
             
@@ -69160,7 +71014,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69199,10 +71053,75 @@
         }
         
         /*
+            Model: VoteCount
+            Used By: Feedback
+        */
+        class VoteCount: Codable {
+            
+            public var downvote: Int?
+            
+            public var upvote: Int?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case downvote = "downvote"
+                
+                case upvote = "upvote"
+                
+            }
+
+            public init(downvote: Int?, upvote: Int?) {
+                
+                self.downvote = downvote
+                
+                self.upvote = upvote
+                
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    downvote = try container.decode(Int.self, forKey: .downvote)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    upvote = try container.decode(Int.self, forKey: .upvote)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                try? container.encodeIfPresent(downvote, forKey: .downvote)
+                
+                try? container.encodeIfPresent(upvote, forKey: .upvote)
+                
+            }
+            
+        }
+        
+        /*
             Model: VoteRequest
             Used By: Feedback
         */
-        struct VoteRequest: Codable {
+        class VoteRequest: Codable {
             
             public var action: String?
             
@@ -69243,7 +71162,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69324,9 +71243,9 @@
             Model: XCursorGetResponse
             Used By: Feedback
         */
-        struct XCursorGetResponse: Codable {
+        class XCursorGetResponse: Codable {
             
-            public var items: [String: Any]?
+            public var items: [[String: Any]]?
             
             public var page: PageCursor?
             
@@ -69339,7 +71258,7 @@
                 
             }
 
-            public init(items: [String: Any]?, page: PageCursor?) {
+            public init(items: [[String: Any]]?, page: PageCursor?) {
                 
                 self.items = items
                 
@@ -69347,12 +71266,12 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
                 do {
-                    items = try container.decode([String: Any].self, forKey: .items)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -69389,7 +71308,7 @@
             Model: XInsertResponse
             Used By: Feedback
         */
-        struct XInsertResponse: Codable {
+        class XInsertResponse: Codable {
             
             public var ids: String?
             
@@ -69406,7 +71325,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69435,7 +71354,7 @@
             Model: XNumberGetResponse
             Used By: Feedback
         */
-        struct XNumberGetResponse: Codable {
+        class XNumberGetResponse: Codable {
             
             public var items: [String: Any]?
             
@@ -69458,7 +71377,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69500,7 +71419,7 @@
             Model: XUpdateResponse
             Used By: Feedback
         */
-        struct XUpdateResponse: Codable {
+        class XUpdateResponse: Codable {
             
             public var id: String?
             
@@ -69517,7 +71436,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69548,7 +71467,7 @@
             Model: UpdateCartShipmentItem
             Used By: PosCart
         */
-        struct UpdateCartShipmentItem: Codable {
+        class UpdateCartShipmentItem: Codable {
             
             public var articleUid: String
             
@@ -69577,7 +71496,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69618,7 +71537,7 @@
             Model: UpdateCartShipmentRequest
             Used By: PosCart
         */
-        struct UpdateCartShipmentRequest: Codable {
+        class UpdateCartShipmentRequest: Codable {
             
             public var shipments: [UpdateCartShipmentItem]
             
@@ -69635,7 +71554,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69657,7 +71576,7 @@
             Model: Files
             Used By: PosCart
         */
-        struct Files: Codable {
+        class Files: Codable {
             
             public var key: String
             
@@ -69680,7 +71599,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -69708,7 +71627,7 @@
             Model: CartPosCheckoutRequest
             Used By: PosCart
         */
-        struct CartPosCheckoutRequest: Codable {
+        class CartPosCheckoutRequest: Codable {
             
             public var paymentAutoConfirm: Bool?
             
@@ -69839,7 +71758,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70101,7 +72020,7 @@
             Model: CartDeliveryModesResponse
             Used By: PosCart
         */
-        struct CartDeliveryModesResponse: Codable {
+        class CartDeliveryModesResponse: Codable {
             
             public var availableModes: [String]?
             
@@ -70124,7 +72043,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70166,7 +72085,7 @@
             Model: PickupStoreDetail
             Used By: PosCart
         */
-        struct PickupStoreDetail: Codable {
+        class PickupStoreDetail: Codable {
             
             public var pincode: Int?
             
@@ -70267,7 +72186,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70478,7 +72397,7 @@
             Model: StoreDetailsResponse
             Used By: PosCart
         */
-        struct StoreDetailsResponse: Codable {
+        class StoreDetailsResponse: Codable {
             
             public var items: [PickupStoreDetail]?
             
@@ -70495,7 +72414,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70526,7 +72445,7 @@
             Model: GetPincodeCityResponse
             Used By: Logistic
         */
-        struct GetPincodeCityResponse: Codable {
+        class GetPincodeCityResponse: Codable {
             
             public var requestUuid: String
             
@@ -70561,7 +72480,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70601,7 +72520,7 @@
             Model: LogisticPincodeData
             Used By: Logistic
         */
-        struct LogisticPincodeData: Codable {
+        class LogisticPincodeData: Codable {
             
             public var meta: LogisticMeta?
             
@@ -70654,7 +72573,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70761,7 +72680,7 @@
             Model: LogisticMeta
             Used By: Logistic
         */
-        struct LogisticMeta: Codable {
+        class LogisticMeta: Codable {
             
             public var zone: String?
             
@@ -70784,7 +72703,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70826,7 +72745,7 @@
             Model: LogisticParents
             Used By: Logistic
         */
-        struct LogisticParents: Codable {
+        class LogisticParents: Codable {
             
             public var subType: String?
             
@@ -70861,7 +72780,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -70929,7 +72848,7 @@
             Model: LogisticError
             Used By: Logistic
         */
-        struct LogisticError: Codable {
+        class LogisticError: Codable {
             
             public var type: String?
             
@@ -70958,7 +72877,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71013,7 +72932,7 @@
             Model: GetTatProductReqBody
             Used By: Logistic
         */
-        struct GetTatProductReqBody: Codable {
+        class GetTatProductReqBody: Codable {
             
             public var locationDetails: LocationDetails
             
@@ -71060,7 +72979,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71112,7 +73031,7 @@
             Model: LocationDetails
             Used By: Logistic
         */
-        struct LocationDetails: Codable {
+        class LocationDetails: Codable {
             
             public var fromPincode: String?
             
@@ -71141,7 +73060,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71196,7 +73115,7 @@
             Model: TatProductArticles
             Used By: Logistic
         */
-        struct TatProductArticles: Codable {
+        class TatProductArticles: Codable {
             
             public var error: [String: Any]?
             
@@ -71225,7 +73144,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71280,7 +73199,7 @@
             Model: LogisticRequestCategory
             Used By: Logistic
         */
-        struct LogisticRequestCategory: Codable {
+        class LogisticRequestCategory: Codable {
             
             public var id: Int?
             
@@ -71303,7 +73222,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71345,7 +73264,7 @@
             Model: LogisticPromise
             Used By: Logistic
         */
-        struct LogisticPromise: Codable {
+        class LogisticPromise: Codable {
             
             public var timestamp: LogisticTimestamp?
             
@@ -71368,7 +73287,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71410,7 +73329,7 @@
             Model: LogisticTimestamp
             Used By: Logistic
         */
-        struct LogisticTimestamp: Codable {
+        class LogisticTimestamp: Codable {
             
             public var min: Int?
             
@@ -71433,7 +73352,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71475,7 +73394,7 @@
             Model: GetTatProductResponse
             Used By: Logistic
         */
-        struct GetTatProductResponse: Codable {
+        class GetTatProductResponse: Codable {
             
             public var locationDetails: LocationDetails
             
@@ -71552,7 +73471,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
@@ -71634,7 +73553,7 @@
             Model: LogisticResponseCategory
             Used By: Logistic
         */
-        struct LogisticResponseCategory: Codable {
+        class LogisticResponseCategory: Codable {
             
             public var id: Int?
             
@@ -71657,7 +73576,7 @@
                 
             }
 
-            public init(from decoder: Decoder) throws {
+            required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 

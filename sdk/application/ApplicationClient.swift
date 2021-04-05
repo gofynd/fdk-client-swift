@@ -7768,7 +7768,7 @@ The list of points history is paginated.
             pageId: String?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ReportAbuseGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -7802,7 +7802,7 @@ The list of points history is paginated.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(XCursorGetResponse.self, from: data)
+                        let response = Utility.decode(ReportAbuseGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -7847,9 +7847,9 @@ The list of points history is paginated.
             id: String?,
             pageSize: Int?
             
-            ) -> Paginator<XCursorGetResponse> {
+            ) -> Paginator<ReportAbuseGetResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<ReportAbuseGetResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getAbuseReports(
                         
@@ -7879,20 +7879,10 @@ The list of points history is paginated.
         * Description: Provides a list of all attribute data.
         **/
         public func getAttributes(
-            pageNo: Int?,
-            pageSize: Int?,
             
             onResponse: @escaping (_ response: XNumberGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+             
             
              
             
@@ -7900,7 +7890,7 @@ The list of points history is paginated.
                 config: config,
                 method: "get",
                 url: "/service/application/feedback/v1.0/attributes",
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -7918,49 +7908,6 @@ The list of points history is paginated.
                         onResponse(nil, nil)
                     }
             });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getAttributes
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getAttributesPaginator(
-            pageSize: Int?
-            
-            ) -> Paginator<XNumberGetResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<XNumberGetResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getAttributes(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
         }
         
         
@@ -8169,7 +8116,7 @@ The list of points history is paginated.
             pageId: String?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CommentGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -8211,7 +8158,7 @@ The list of points history is paginated.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(XCursorGetResponse.self, from: data)
+                        let response = Utility.decode(CommentGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -8261,9 +8208,9 @@ The list of points history is paginated.
             userId: String?,
             pageSize: Int?
             
-            ) -> Paginator<XCursorGetResponse> {
+            ) -> Paginator<CommentGetResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<CommentGetResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getComments(
                         
@@ -8454,7 +8401,7 @@ The list of points history is paginated.
             pageId: String?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: MediaGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -8488,7 +8435,7 @@ The list of points history is paginated.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(XCursorGetResponse.self, from: data)
+                        let response = Utility.decode(MediaGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -8533,9 +8480,9 @@ The list of points history is paginated.
             id: String?,
             pageSize: Int?
             
-            ) -> Paginator<XCursorGetResponse> {
+            ) -> Paginator<MediaGetResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<MediaGetResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getMedias(
                         
@@ -8572,7 +8519,7 @@ It gives following response data: review count, rating average. review metrics /
             pageId: String?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RatingGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -8606,7 +8553,7 @@ It gives following response data: review count, rating average. review metrics /
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(XCursorGetResponse.self, from: data)
+                        let response = Utility.decode(RatingGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -8651,9 +8598,9 @@ It gives following response data: review count, rating average. review metrics /
             id: String?,
             pageSize: Int?
             
-            ) -> Paginator<XCursorGetResponse> {
+            ) -> Paginator<RatingGetResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<RatingGetResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getReviewSummaries(
                         
@@ -8773,7 +8720,7 @@ attributes rating, entity rating, title, description, media resources and templa
             pageId: String?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ReviewGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -8831,7 +8778,7 @@ attributes rating, entity rating, title, description, media resources and templa
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(XCursorGetResponse.self, from: data)
+                        let response = Utility.decode(ReviewGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -8906,9 +8853,9 @@ attributes rating, entity rating, title, description, media resources and templa
             sort: String?,
             pageSize: Int?
             
-            ) -> Paginator<XCursorGetResponse> {
+            ) -> Paginator<ReviewGetResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<ReviewGetResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getReviews(
                         
@@ -9081,7 +9028,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             pageId: String?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: XCursorGetResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: QNAGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -9119,7 +9066,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(XCursorGetResponse.self, from: data)
+                        let response = Utility.decode(QNAGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -9169,9 +9116,9 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             showAnswer: Bool?,
             pageSize: Int?
             
-            ) -> Paginator<XCursorGetResponse> {
+            ) -> Paginator<QNAGetResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<XCursorGetResponse>(pageSize: pageSize, type: "cursor")
+            let paginator = Paginator<QNAGetResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getQuestionAndAnswers(
                         
