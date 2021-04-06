@@ -4,16 +4,6 @@
 public class PlatformClient {
     public let config: PlatformConfig
 
-    public let lead: Lead
-
-    public let theme: Theme
-
-    public let user: User
-
-    public let content: Content
-
-    public let communication: Communication
-
     public let payment: Payment
 
     public let order: Order
@@ -24,9 +14,7 @@ public class PlatformClient {
 
     public let assets: Assets
 
-    public let share: Share
-
-    public let cart: Cart
+    public let configuration: Configuration
 
     public let marketplaces: Marketplaces
 
@@ -34,16 +22,6 @@ public class PlatformClient {
 
     public init(config: PlatformConfig) {
         self.config = config
-        
-        lead = Lead(config: config)
-        
-        theme = Theme(config: config)
-        
-        user = User(config: config)
-        
-        content = Content(config: config)
-        
-        communication = Communication(config: config)
         
         payment = Payment(config: config)
         
@@ -55,698 +33,13 @@ public class PlatformClient {
         
         assets = Assets(config: config)
         
-        share = Share(config: config)
-        
-        cart = Cart(config: config)
+        configuration = Configuration(config: config)
         
         marketplaces = Marketplaces(config: config)
         
         analytics = Analytics(config: config)
         
     }
-    
-    
-    public class Lead {        
-        var config: PlatformConfig
-        var companyId: String
-
-        init(config: PlatformConfig) {
-            self.config = config
-            self.companyId = config.companyId
-        }
-        
-        
-        /**
-        *
-        * Summary: Gets the list of company level tickets and/or ticket filters depending on query params
-        * Description: Gets the list of company level tickets and/or ticket filters
-        **/
-        public func getTickets(
-            items: Bool?,
-            filters: Bool?,
-            q: String?,
-            status: String?,
-            priority: String?,
-            category: String?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = items {
-                xQuery["items"] = value
-            }
-            
-            if let value = filters {
-                xQuery["filters"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = status {
-                xQuery["status"] = value
-            }
-            
-            if let value = priority {
-                xQuery["priority"] = value
-            }
-            
-            if let value = category {
-                xQuery["category"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketList.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getTickets
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getTicketsPaginator(
-            items: Bool?,
-            filters: Bool?,
-            q: String?,
-            status: String?,
-            priority: String?,
-            category: String?,
-            pageSize: Int?
-            
-            ) -> Paginator<TicketList> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<TicketList>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getTickets(
-                        
-                        items: items,
-                        filters: filters,
-                        q: q,
-                        status: status,
-                        priority: priority,
-                        category: category,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        /**
-        *
-        * Summary: Creates a company level ticket
-        * Description: Creates a company level ticket
-        **/
-        public func createTicket(
-            body: AddTicketPayload,
-            onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Ticket.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Retreives ticket details of a company level ticket with ticket ID
-        * Description: Retreives ticket details of a company level ticket
-        **/
-        public func getTicket(
-            ticketId: String,
-            
-            onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Ticket.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Edits ticket details of a company level ticket
-        * Description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
-        **/
-        public func editTicket(
-            ticketId: String,
-            body: EditTicketPayload,
-            onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Ticket.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create history for specific company level ticket
-        * Description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-        **/
-        public func createHistory(
-            ticketId: String,
-            body: TicketHistoryPayload,
-            onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketHistory.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Gets history list for specific company level ticket
-        * Description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-        **/
-        public func getTicketHistory(
-            ticketId: String,
-            
-            onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(ticketId)/history",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketHistoryList.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    public class Theme {        
-        var config: PlatformConfig
-        var companyId: String
-
-        init(config: PlatformConfig) {
-            self.config = config
-            self.companyId = config.companyId
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    public class User {        
-        var config: PlatformConfig
-        var companyId: String
-
-        init(config: PlatformConfig) {
-            self.config = config
-            self.companyId = config.companyId
-        }
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    public class Content {        
-        var config: PlatformConfig
-        var companyId: String
-
-        init(config: PlatformConfig) {
-            self.config = config
-            self.companyId = config.companyId
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    public class Communication {        
-        var config: PlatformConfig
-        var companyId: String
-
-        init(config: PlatformConfig) {
-            self.config = config
-            self.companyId = config.companyId
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get system notifications
-        * Description: Get system notifications
-        **/
-        public func getSystemNotifications(
-            query: [String: Any]?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: SystemNotifications?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = query {
-                xQuery["query"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/communication/v1.0/company/\(companyId)/notification/system-notifications/",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SystemNotifications.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getSystemNotifications
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getSystemNotificationsPaginator(
-            query: [String: Any]?,
-            pageSize: Int?
-            
-            ) -> Paginator<SystemNotifications> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<SystemNotifications>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getSystemNotifications(
-                        
-                        query: query,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
     
     
     public class Payment {        
@@ -4733,7 +4026,7 @@ This operation will return the url for the uploaded file.
     
     
     
-    public class Share {        
+    public class Configuration {        
         var config: PlatformConfig
         var companyId: String
 
@@ -4746,22 +4039,1037 @@ This operation will return the url for the uploaded file.
         
         
         
-    }
-    
-    
-    
-    public class Cart {        
-        var config: PlatformConfig
-        var companyId: String
-
-        init(config: PlatformConfig) {
-            self.config = config
-            self.companyId = config.companyId
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create application
+        * Description: Create new application
+        **/
+        public func createApplication(
+            body: CreateApplicationRequest,
+            onResponse: @escaping (_ response: CreateAppResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/application",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateAppResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get list of application under company
+        * Description: Get list of application under company
+        **/
+        public func getApplications(
+            pageNo: Int?,
+            pageSize: Int?,
+            q: [String: Any]?,
+            
+            onResponse: @escaping (_ response: ApplicationsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/application",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ApplicationsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
         }
         
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getApplications
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getApplicationsPaginator(
+            pageSize: Int?,
+            q: [String: Any]?
+            
+            ) -> Paginator<ApplicationsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ApplicationsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getApplications(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get all currencies
+        * Description: Get all currencies
+        **/
+        public func getCurrencies(
+            
+            onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/currencies",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CurrenciesResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Check domain availibility before linking to application
+        * Description: Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
+        **/
+        public func getDomainAvailibility(
+            body: DomainSuggestionsRequest,
+            onResponse: @escaping (_ response: DomainSuggestionsResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/domain/suggestions",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DomainSuggestionsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get integration data
+        * Description: Get integration data
+        **/
+        public func getIntegrationById(
+            id: Int,
+            
+            onResponse: @escaping (_ response: Integration?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integration/\(id)",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Integration.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get all available integration opt-ins
+        * Description: Get all available integration opt-ins
+        **/
+        public func getAvailableOptIns(
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: GetIntegrationsOptInsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integration-opt-in/available",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetIntegrationsOptInsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAvailableOptIns
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAvailableOptInsPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<GetIntegrationsOptInsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetIntegrationsOptInsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAvailableOptIns(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get company/store level integration opt-ins
+        * Description: Get company/store level integration opt-ins
+        **/
+        public func getSelectedOptIns(
+            level: String,
+            uid: Int,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: GetIntegrationsOptInsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/selected/\(level)/\(uid)",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetIntegrationsOptInsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getSelectedOptIns
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getSelectedOptInsPaginator(
+            level: String,
+            uid: Int,
+            pageSize: Int?
+            
+            ) -> Paginator<GetIntegrationsOptInsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetIntegrationsOptInsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getSelectedOptIns(
+                        
+                        level: level,
+                        uid: uid,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get integration level config
+        * Description: Get integration level config
+        **/
+        public func getIntegrationLevelConfig(
+            id: String,
+            level: String,
+            
+            onResponse: @escaping (_ response: IntegrationConfigResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(IntegrationConfigResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get level data for integration
+        * Description: Get level data for integration
+        **/
+        public func getIntegrationByLevelId(
+            id: String,
+            level: String,
+            uid: Int,
+            
+            onResponse: @escaping (_ response: IntegrationLevel?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)/\(uid)",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(IntegrationLevel.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Check store has active integration
+        * Description: API checks if a store is already opted in any other integrations
+        **/
+        public func getLevelActiveIntegrations(
+            id: String,
+            level: String,
+            uid: Int,
+            
+            onResponse: @escaping (_ response: OptedStoreIntegration?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/check/configuration/\(id)/\(level)/\(uid)",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OptedStoreIntegration.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get brands by company
+        * Description: Get brands by company
+        **/
+        public func getBrandsByCompany(
+            q: String?,
+            
+            onResponse: @escaping (_ response: BrandsByCompanyResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/brands-by-companies",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(BrandsByCompanyResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get company by brand uids
+        * Description: Get company by brand uids
+        **/
+        public func getCompanyByBrands(
+            pageNo: Int?,
+            pageSize: Int?,
+            body: CompanyByBrandsRequest,
+            onResponse: @escaping (_ response: CompanyByBrandsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/companies-by-brands",
+                query: xQuery,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CompanyByBrandsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getCompanyByBrands
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCompanyByBrandsPaginator(
+            pageSize: Int?,
+            
+            body: CompanyByBrandsRequest) -> Paginator<CompanyByBrandsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<CompanyByBrandsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getCompanyByBrands(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,body: body
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get stores by brand uids
+        * Description: Get stores by brand uids
+        **/
+        public func getStoreByBrands(
+            pageNo: Int?,
+            pageSize: Int?,
+            body: StoreByBrandsRequest,
+            onResponse: @escaping (_ response: StoreByBrandsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/stores-by-brands",
+                query: xQuery,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(StoreByBrandsResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getStoreByBrands
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getStoreByBrandsPaginator(
+            pageSize: Int?,
+            
+            body: StoreByBrandsRequest) -> Paginator<StoreByBrandsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<StoreByBrandsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getStoreByBrands(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,body: body
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get other seller applications
+        * Description: Get other seller applications who has opted current company as inventory
+        **/
+        public func getOtherSellerApplications(
+            
+            onResponse: @escaping (_ response: OtherSellerApplications?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications/",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OtherSellerApplications.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getOtherSellerApplications
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOtherSellerApplicationsPaginator(
+            
+            ) -> Paginator<OtherSellerApplications> {
+            let pageSize = 20
+            let paginator = Paginator<OtherSellerApplications>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOtherSellerApplications(
+                        
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get other seller applications
+        * Description: Get other seller application
+        **/
+        public func getOtherSellerApplicationById(
+            id: String,
+            
+            onResponse: @escaping (_ response: OptedApplicationResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/otherSellerApplications/\(id)",
+                query: nil,
+                body: nil,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OptedApplicationResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Opt out company or store from other seller application
+        * Description: Opt out company or store from other seller application
+        **/
+        public func optOutFromApplication(
+            id: String,
+            body: OptOutInventory,
+            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/otherSellerApplications/\(id)/opt_out",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
         
         
     }
@@ -5758,27 +6066,11 @@ This operation will return the url for the uploaded file.
         
         public let user: User
         
-        public let content: Content
-        
         public let communication: Communication
-        
-        public let payment: Payment
-        
-        public let order: Order
-        
-        public let catalog: Catalog
-        
-        public let companyProfile: CompanyProfile
-        
-        public let assets: Assets
         
         public let share: Share
         
         public let cart: Cart
-        
-        public let marketplaces: Marketplaces
-        
-        public let analytics: Analytics
         
         
         public init(applicationId: String, config: PlatformConfig) {
@@ -5793,27 +6085,11 @@ This operation will return the url for the uploaded file.
             
             user = User(config: config, applicationId: applicationId)
             
-            content = Content(config: config, applicationId: applicationId)
-            
             communication = Communication(config: config, applicationId: applicationId)
-            
-            payment = Payment(config: config, applicationId: applicationId)
-            
-            order = Order(config: config, applicationId: applicationId)
-            
-            catalog = Catalog(config: config, applicationId: applicationId)
-            
-            companyProfile = CompanyProfile(config: config, applicationId: applicationId)
-            
-            assets = Assets(config: config, applicationId: applicationId)
             
             share = Share(config: config, applicationId: applicationId)
             
             cart = Cart(config: config, applicationId: applicationId)
-            
-            marketplaces = Marketplaces(config: config, applicationId: applicationId)
-            
-            analytics = Analytics(config: config, applicationId: applicationId)
             
         }
 
@@ -7273,2557 +7549,6 @@ This operation will return the url for the uploaded file.
                         } else if let data = responseData {
                         
                         let response = Utility.decode(PlatformSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-        }
-        
-        
-            
-        public class Content {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            /**
-            *
-            * Summary: Get annoucements list
-            * Description: Get list of announcements
-            **/
-            public func getAnnouncementsList(
-                
-                onResponse: @escaping (_ response: GetAnnouncementListSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAnnouncementListSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getAnnouncementsList
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAnnouncementsListPaginator(
-                
-                ) -> Paginator<GetAnnouncementListSchema> {
-                let pageSize = 20
-                let paginator = Paginator<GetAnnouncementListSchema>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAnnouncementsList(
-                            
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            /**
-            *
-            * Summary: Create an annoucement
-            * Description: Create an announcement
-            **/
-            public func createAnnouncement(
-                body: AdminAnnouncementSchema,
-                onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get annoucement by id
-            * Description: Get announcement by id
-            **/
-            public func getAnnouncementById(
-                announcementId: String,
-                
-                onResponse: @escaping (_ response: AdminAnnouncementSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(AdminAnnouncementSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update an annoucement
-            * Description: Update an announcement
-            **/
-            public func updateAnnouncement(
-                announcementId: String,
-                body: AdminAnnouncementSchema,
-                onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update schedule or published status of an annoucement
-            * Description: Update schedule or published status of an announcement
-            **/
-            public func updateAnnouncementSchedule(
-                announcementId: String,
-                body: ScheduleSchema,
-                onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "patch",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete annoucement by id
-            * Description: Delete announcement by id
-            **/
-            public func deleteAnnouncement(
-                announcementId: String,
-                
-                onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Create blog
-            * Description: Use this to create a blog.
-            **/
-            public func createBlog(
-                body: BlogRequest,
-                onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get blogs
-            * Description: Use this to get blogs.
-            **/
-            public func getBlogs(
-                
-                onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogGetResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getBlogs
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getBlogsPaginator(
-                
-                ) -> Paginator<BlogGetResponse> {
-                let pageSize = 20
-                let paginator = Paginator<BlogGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getBlogs(
-                            
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            /**
-            *
-            * Summary: Update blog
-            * Description: Use this to update blog.
-            **/
-            public func updateBlog(
-                id: String,
-                body: BlogRequest,
-                onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete blogs
-            * Description: Use this to delete blogs.
-            **/
-            public func deleteBlog(
-                id: String,
-                
-                onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get components by component Id
-            * Description: The endpoint fetches the component by component Id
-            **/
-            public func getComponentById(
-                slug: String,
-                
-                onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(slug)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get FAQ categories list
-            * Description: Get list of FAQ categories
-            **/
-            public func getFaqCategories(
-                
-                onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/categories",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetFaqCategoriesSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get FAQ category by slug or id
-            * Description: Get FAQ category by slug or id
-            **/
-            public func getFaqCategoryBySlugOrId(
-                idOrSlug: String,
-                
-                onResponse: @escaping (_ response: GetFaqCategoryByIdOrSlugSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(idOrSlug)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetFaqCategoryByIdOrSlugSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Creates a FAQ category
-            * Description: Add Faq Category
-            **/
-            public func createFaqCategory(
-                body: CreateFaqCategoryRequestSchema,
-                onResponse: @escaping (_ response: CreateFaqCategorySchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqCategorySchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Updates a FAQ category
-            * Description: Update Faq Category
-            **/
-            public func updateFaqCategory(
-                id: String,
-                body: UpdateFaqCategoryRequestSchema,
-                onResponse: @escaping (_ response: CreateFaqCategorySchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqCategorySchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Deletes a FAQ category
-            * Description: Delete Faq Category
-            **/
-            public func deleteFaqCategory(
-                id: String,
-                
-                onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(FaqSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get FAQs of a Faq Category id or slug
-            * Description: Get FAQs of a Faq Category `id` or `slug`
-            **/
-            public func getFaqsByCategoryIdOrSlug(
-                idOrSlug: String,
-                
-                onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(idOrSlug)/faqs",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetFaqSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Creates FAQs for category whose `id` is specified
-            * Description: Creates FAQs for category whose `id` is specified
-            **/
-            public func addFaq(
-                categoryId: String,
-                body: CreateFaqSchema,
-                onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faqs",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Updates FAQ
-            * Description: Updates FAQ
-            **/
-            public func updateFaq(
-                categoryId: String,
-                faqId: String,
-                body: CreateFaqSchema,
-                onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faq/\(faqId)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete FAQ
-            * Description: Delete FAQ
-            **/
-            public func deleteFaq(
-                categoryId: String,
-                faqId: String,
-                
-                onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faq/\(faqId)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get frequently asked question
-            * Description: Get frequently asked questions list. These will be helpful for users to using website.
-            **/
-            public func getFaqByIdOrSlug(
-                idOrSlug: String,
-                
-                onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/\(idOrSlug)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get landing-pages
-            * Description: Use this to get landing-pages.
-            **/
-            public func getLandingPages(
-                
-                onResponse: @escaping (_ response: LandingPageGetResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageGetResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getLandingPages
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getLandingPagesPaginator(
-                
-                ) -> Paginator<LandingPageGetResponse> {
-                let pageSize = 20
-                let paginator = Paginator<LandingPageGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getLandingPages(
-                            
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            /**
-            *
-            * Summary: Create landing-page
-            * Description: Use this to create landing-page.
-            **/
-            public func createLandingPage(
-                body: LandingPageSchema,
-                onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update landing-page
-            * Description: Use this to update landing-page.
-            **/
-            public func updateLandingPage(
-                id: String,
-                body: LandingPageSchema,
-                onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landingPage/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete landing-page
-            * Description: Use this to delete landing-page.
-            **/
-            public func deleteLandingPage(
-                id: String,
-                
-                onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landingPage/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get legal information
-            * Description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-            **/
-            public func getLegalInformation(
-                
-                onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/legal",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationLegal.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Save legal information
-            * Description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
-            **/
-            public func updateLegalInformation(
-                body: ApplicationLegal,
-                onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/legal",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationLegal.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get navigations
-            * Description: Use this to get navigations.
-            **/
-            public func getNavigations(
-                devicePlatform: String,
-                
-                onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationGetResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getNavigations
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getNavigationsPaginator(
-                devicePlatform: String
-                
-                ) -> Paginator<NavigationGetResponse> {
-                let pageSize = 20
-                let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getNavigations(
-                            
-                            devicePlatform: devicePlatform
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            /**
-            *
-            * Summary: Create navigation
-            * Description: Use this to create navigation.
-            **/
-            public func createNavigation(
-                body: NavigationRequest,
-                onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get default navigations
-            * Description: Use this to get default navigations.
-            **/
-            public func getDefaultNavigations(
-                
-                onResponse: @escaping (_ response: DefaultNavigationResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/default",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(DefaultNavigationResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get navigation by slug
-            * Description: Use this to get navigation by slug.
-            **/
-            public func getNavigationBySlug(
-                slug: String,
-                devicePlatform: String,
-                
-                onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(slug)",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update navigation
-            * Description: Use this to update navigation.
-            **/
-            public func updateNavigation(
-                id: String,
-                body: NavigationRequest,
-                onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete navigation
-            * Description: Use this to delete navigation.
-            **/
-            public func deleteNavigation(
-                id: String,
-                
-                onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get page meta
-            * Description: Use this to get Page Meta.
-            **/
-            public func getPageMeta(
-                
-                onResponse: @escaping (_ response: PageMetaSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/meta",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageMetaSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get page spec
-            * Description: Use this to get page spec.
-            **/
-            public func getPageSpec(
-                
-                onResponse: @escaping (_ response: PageSpec?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/spec",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSpec.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Create page
-            * Description: Use this to create a page.
-            **/
-            public func createPage(
-                body: PageRequest,
-                onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get pages
-            * Description: Use this to get pages.
-            **/
-            public func getPages(
-                
-                onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageGetResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getPages
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getPagesPaginator(
-                
-                ) -> Paginator<PageGetResponse> {
-                let pageSize = 20
-                let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getPages(
-                            
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            /**
-            *
-            * Summary: Create page preview
-            * Description: Use this to create a page preview.
-            **/
-            public func createPagePreview(
-                body: PageRequest,
-                onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/preview/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update page
-            * Description: Use this to update page.
-            **/
-            public func updatePagePreview(
-                slug: String,
-                body: PagePublishRequest,
-                onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/publish/\(slug)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update page
-            * Description: Use this to update page.
-            **/
-            public func updatePage(
-                id: String,
-                body: PageSchema,
-                onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete page
-            * Description: Use this to delete page.
-            **/
-            public func deletePage(
-                id: String,
-                
-                onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get pages by component Id
-            * Description: The endpoint fetches the component by component Id
-            **/
-            public func getPageBySlug(
-                slug: String,
-                
-                onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/\(slug)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get seo of application
-            * Description: Get seo of application
-            **/
-            public func getSEOConfiguration(
-                
-                onResponse: @escaping (_ response: Seo?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(Seo.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update seo of application
-            * Description: Update seo of application
-            **/
-            public func updateSEOConfiguration(
-                body: Seo,
-                onResponse: @escaping (_ response: SeoSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(SeoSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get slideshows
-            * Description: Use this to get slideshows.
-            **/
-            public func getSlideshows(
-                devicePlatform: String,
-                
-                onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowGetResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getSlideshows
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getSlideshowsPaginator(
-                devicePlatform: String
-                
-                ) -> Paginator<SlideshowGetResponse> {
-                let pageSize = 20
-                let paginator = Paginator<SlideshowGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSlideshows(
-                            
-                            devicePlatform: devicePlatform
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            /**
-            *
-            * Summary: Create slideshow
-            * Description: Use this to create slideshow.
-            **/
-            public func createSlideshow(
-                body: SlideshowRequest,
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get slideshow by slug
-            * Description: Use this to get slideshow by slug.
-            **/
-            public func getSlideshowBySlug(
-                slug: String,
-                devicePlatform: String,
-                
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(slug)",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update slideshow
-            * Description: Use this to update slideshow.
-            **/
-            public func updateSlideshow(
-                id: String,
-                body: SlideshowRequest,
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete slideshow
-            * Description: Use this to delete slideshow.
-            **/
-            public func deleteSlideshow(
-                id: String,
-                
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get support information
-            * Description: Get contact details for customer support. Including emails and phone numbers
-            **/
-            public func getSupportInformation(
-                
-                onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/support",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(Support.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update support data of application
-            * Description: Update support data of application
-            **/
-            public func updateSupportInformation(
-                body: Support,
-                onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/support",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(Support.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Creates Tag
-            * Description: Create tags
-            **/
-            public func createInjectableTag(
-                body: CreateTagRequestSchema,
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Updates a Tag
-            * Description: Update tag
-            **/
-            public func updateInjectableTag(
-                body: CreateTagRequestSchema,
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete tags for application
-            * Description: Delete tags for application
-            **/
-            public func deleteAllInjectableTags(
-                
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get tags for application
-            * Description: Get tags for application
-            **/
-            public func getInjectableTags(
-                
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Adds a Tag
-            * Description: Add tag
-            **/
-            public func addInjectableTag(
-                body: CreateTagRequestSchema,
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/add",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Removes a Tag
-            * Description: Remove a particular tag
-            **/
-            public func removeInjectableTag(
-                body: RemoveHandpickedSchema,
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/remove/handpicked",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Edits a Tag by Id
-            * Description: Edits a particular tag
-            **/
-            public func editInjectableTag(
-                tagId: String,
-                body: UpdateHandpickedSchema,
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/edit/handpicked/\(tagId)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)
@@ -11715,1702 +9440,6 @@ This operation will return the url for the uploaded file.
         
         
             
-        public class Payment {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            /**
-            *
-            * Summary: Get All Brand Payment Gateway Config Secret
-            * Description: Get All Brand Payment Gateway Config Secret
-            **/
-            public func getBrandPaymentGatewayConfig(
-                
-                onResponse: @escaping (_ response: PaymentGatewayConfigResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentGatewayConfigResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Save Config Secret For Brand Payment Gateway
-            * Description: Save Config Secret For Brand Payment Gateway
-            **/
-            public func saveBrandPaymentGatewayConfig(
-                body: PaymentGatewayConfigRequest,
-                onResponse: @escaping (_ response: PaymentGatewayToBeReviewed?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentGatewayToBeReviewed.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Save Config Secret For Brand Payment Gateway
-            * Description: Save Config Secret For Brand Payment Gateway
-            **/
-            public func updateBrandPaymentGatewayConfig(
-                body: PaymentGatewayConfigRequest,
-                onResponse: @escaping (_ response: PaymentGatewayToBeReviewed?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentGatewayToBeReviewed.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get All Valid Payment Options
-            * Description: Use this API to get Get All Valid Payment Options for making payment
-            **/
-            public func getPaymentModeRoutes(
-                refresh: Bool,
-                requestType: String,
-                
-                onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["refresh"] = refresh
-                xQuery["request_type"] = requestType
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentOptionsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-            
-        public class Order {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Track Shipment by shipment id, for application based on application Id
-            * Description: Shipment Track
-            **/
-            public func trackShipmentPlatform(
-                shipmentId: String,
-                
-                onResponse: @escaping (_ response: PlatformShipmentTrack?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/track",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PlatformShipmentTrack.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Track Order by order id, for application based on application Id
-            * Description: Order Track
-            **/
-            public func trackOrder(
-                orderId: String,
-                
-                onResponse: @escaping (_ response: PlatformOrderTrack?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/track",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(PlatformOrderTrack.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get all failed orders application wise
-            * Description: Failed Orders
-            **/
-            public func failedOrders(
-                
-                onResponse: @escaping (_ response: FailedOrders?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/failed",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(FailedOrders.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Reprocess order by order id
-            * Description: Order Reprocess
-            **/
-            public func reprocessOrder(
-                orderId: String,
-                
-                onResponse: @escaping (_ response: UpdateOrderReprocessResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/\(orderId)/reprocess",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateOrderReprocessResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-        }
-        
-        
-            
-        public class Catalog {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            /**
-            *
-            * Summary: Delete a Search Keywords
-            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-            **/
-            public func deleteSearchKeywords(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeleteResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update Search Keyword
-            * Description: Update Search Keyword by its id. On successful request, returns the updated collection
-            **/
-            public func updateSearchKeywords(
-                id: String,
-                body: CreateSearchKeyword,
-                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsData.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get a Search Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-            **/
-            public func getSearchKeywords(
-                id: String,
-                
-                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Add a Custom Search Keywords
-            * Description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
-            **/
-            public func createCustomKeyword(
-                body: CreateSearchKeyword,
-                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsData.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: List all Search Custom Keyword Listing
-            * Description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
-            **/
-            public func getAllSearchKeyword(
-                
-                onResponse: @escaping (_ response: GetSearchWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a Autocomplete Keywords
-            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-            **/
-            public func deleteAutocompleteKeyword(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeleteResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Create & Update Autocomplete Keyword
-            * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-            **/
-            public func updateAutocompleteKeyword(
-                id: String,
-                body: CreateAutocompleteKeyword,
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get a Autocomplete Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-            **/
-            public func getAutocompleteKeywordDetail(
-                id: String,
-                
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Add a Custom Autocomplete Keywords
-            * Description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
-            **/
-            public func createCustomAutocompleteRule(
-                body: CreateAutocompleteKeyword,
-                onResponse: @escaping (_ response: CreateAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAutocompleteWordsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: List all Autocomplete Keyword Listing
-            * Description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
-            **/
-            public func getAutocompleteConfig(
-                
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get configuration meta  details for catalog for admin panel
-            * Description: configuration meta  details for catalog.
-            **/
-            public func getCatalogConfiguration(
-                
-                onResponse: @escaping (_ response: GetCatalogConfigurationMetaData?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/metadata/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCatalogConfigurationMetaData.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Add configuration for products & listings
-            * Description: Add configuration for products & listing.
-            **/
-            public func createConfigurationProductListing(
-                body: AppConfiguration,
-                onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get configured details for catalog
-            * Description: configured details for catalog.
-            **/
-            public func getConfigurations(
-                
-                onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Add configuration for categories and brands
-            * Description: Add configuration for categories & brands.
-            **/
-            public func createConfigurationByType(
-                type: String,
-                body: AppConfiguration,
-                onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get configured details for catalog
-            * Description: configured details for catalog.
-            **/
-            public func getConfigurationByType(
-                type: String,
-                
-                onResponse: @escaping (_ response: GetAppCatalogEntityConfiguration?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogEntityConfiguration.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get query filters to configure a collection
-            * Description: Get query filters to configure a collection
-            **/
-            public func getQueryFilters(
-                
-                onResponse: @escaping (_ response: GetCollectionQueryOptionResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/query-options/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCollectionQueryOptionResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Add a Collection
-            * Description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-            **/
-            public func createCollection(
-                body: CreateCollection,
-                onResponse: @escaping (_ response: CollectionCreateResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CollectionCreateResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: List all the collections
-            * Description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-            **/
-            public func getAllCollections(
-                
-                onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCollectionListingResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get a particular collection
-            * Description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
-            **/
-            public func getCollectionDetail(
-                slug: String,
-                
-                onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(slug)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CollectionDetailResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a Collection
-            * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-            **/
-            public func deleteCollection(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeleteResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update a collection
-            * Description: Update a collection by it's id. On successful request, returns the updated collection
-            **/
-            public func updateCollection(
-                id: String,
-                
-                onResponse: @escaping (_ response: CollectionCreateResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CollectionCreateResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Add items to a collection
-            * Description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-            **/
-            public func addCollectionItems(
-                id: String,
-                body: CollectionItemRequest,
-                onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdatedResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get the items for a collection
-            * Description: Get items from a collection specified by its `id`.
-            **/
-            public func getCollectionItems(
-                id: String,
-                sortOn: String?,
-                pageId: String?,
-                pageSize: Int?,
-                
-                onResponse: @escaping (_ response: GetCollectionItemsResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = sortOn {
-                    xQuery["sort_on"] = value
-                }
-                
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCollectionItemsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Analytics data of catalog and inventory.
-            * Description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
-            **/
-            public func getCatalogInsights(
-                brand: String?,
-                
-                onResponse: @escaping (_ response: CatalogInsightResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = brand {
-                    xQuery["brand"] = value
-                }
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/analytics/insights/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CatalogInsightResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-            
-        public class CompanyProfile {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-            
-        public class Assets {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-            * Description: Uploads an arbitrarily sized buffer or blob.
-
-It has three Major Steps:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `appStartUpload`.
-It returns the storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `appCompleteUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
-            **/
-            public func appStartUpload(
-                namespace: String,
-                body: StartRequest,
-                onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(StartResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-            * Description: Uploads an arbitrarily sized buffer or blob.
-
-It has three Major Steps:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `appStartUpload`.
-It returns the storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `appCompleteUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
-            **/
-            public func appCompleteUpload(
-                namespace: String,
-                body: StartResponse,
-                onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(CompleteResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Copy Files
-            * Description: Copy Files
-            **/
-            public func appCopyFiles(
-                sync: Bool?,
-                body: BulkRequest,
-                onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = sync {
-                    xQuery["sync"] = value
-                }
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/uploads/copy/",
-                    query: xQuery,
-                    body: body.dictionary,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(BulkResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Browse Files
-            * Description: Browse Files
-            **/
-            public func appBrowse(
-                namespace: String,
-                
-                onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(BrowseResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for appBrowse
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func appBrowsePaginator(
-                namespace: String
-                
-                ) -> Paginator<BrowseResponse> {
-                let pageSize = 20
-                let paginator = Paginator<BrowseResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.appBrowse(
-                            
-                            namespace: namespace
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-        }
-        
-        
-            
         public class Share {        
             var config: PlatformConfig
             var companyId: String
@@ -13700,6 +9729,107 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getCoupons
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getCouponsPaginator(
+                pageSize: Int?,
+                isArchived: Bool?,
+                title: String?,
+                isPublic: Bool?,
+                isDisplay: Bool?,
+                typeSlug: String?,
+                code: String?
+                
+                ) -> Paginator<CouponsResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<CouponsResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getCoupons(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            isArchived: isArchived,
+                            title: title,
+                            isPublic: isPublic,
+                            isDisplay: isDisplay,
+                            typeSlug: typeSlug,
+                            code: code
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
             /**
             *
             * Summary: Create new coupon
@@ -13856,394 +9986,6 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
-            
-            
-        }
-        
-        
-            
-        public class Marketplaces {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-            
-        public class Analytics {        
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-            
-            
-            /**
-            *
-            * Summary: Get statistics groups
-            * Description: Get statistics groups
-            **/
-            public func getStatiscticsGroups(
-                
-                onResponse: @escaping (_ response: StatsGroups?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/group",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(StatsGroups.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get statistics group components
-            * Description: Get statistics group components
-            **/
-            public func getStatiscticsGroupComponents(
-                groupName: String,
-                
-                onResponse: @escaping (_ response: StatsGroupComponents?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/group/\(groupName)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(StatsGroupComponents.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get component statistics csv
-            * Description: Get component statistics csv
-            **/
-            public func getComponentStatsCSV(
-                componentName: String,
-                
-                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/component/\(componentName).csv",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(String.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get component statistics pdf
-            * Description: Get component statistics pdf
-            **/
-            public func getComponentStatsPDF(
-                componentName: String,
-                
-                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/component/\(componentName).pdf",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(String.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get component statistics
-            * Description: Get component statistics
-            **/
-            public func getComponentStats(
-                componentName: String,
-                
-                onResponse: @escaping (_ response: StatsRes?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/component/\(componentName)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(StatsRes.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get abandon carts list
-            * Description: Get abandon carts list
-            **/
-            public func getAbandonCartList(
-                from: String,
-                to: String,
-                pageNo: String?,
-                pageSize: String?,
-                
-                onResponse: @escaping (_ response: AbandonCartsList?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["from"] = from
-                xQuery["to"] = to
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/abandon-cart",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(AbandonCartsList.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get abandon carts csv
-            * Description: Get abandon carts csv
-            **/
-            public func getAbandonCartsCSV(
-                from: String,
-                to: String,
-                
-                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["from"] = from
-                xQuery["to"] = to
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/abandon-cart.csv",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(String.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get abandon carts details
-            * Description: Get abandon cart details
-            **/
-            public func getAbandonCartDetail(
-                cartId: String,
-                
-                onResponse: @escaping (_ response: AbandonCartDetail?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/abandonCart/\(cartId)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(AbandonCartDetail.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            onResponse(nil, nil)
-                        }
-                });
-            }
-            
-            
-            
-            
             
             
         }
