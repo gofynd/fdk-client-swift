@@ -3677,7 +3677,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/userauthentication/v1.0/login/password/reset/forgot",
+                url: "/service/application/user/authentication/v1.0/login/password/reset/forgot",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -4761,7 +4761,7 @@ public class ApplicationClient {
         public func getBlog(
             slug: String,
             
-            onResponse: @escaping (_ response: CustomBlog?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomBlogSchema?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -4783,7 +4783,7 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomBlog.self, from: data)
+                        let response = Utility.decode(CustomBlogSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -4992,7 +4992,7 @@ public class ApplicationClient {
         **/
         public func getLandingPage(
             
-            onResponse: @escaping (_ response: LandingPage?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -5014,7 +5014,7 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(LandingPage.self, from: data)
+                        let response = Utility.decode(LandingPageSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -5064,11 +5064,11 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get navigation
-        * Description: Use this API to fetch a navigation
+        * Description: Use this API to fetch navigations
         **/
         public func getNavigations(
             
-            onResponse: @escaping (_ response: Navigation?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -5090,12 +5090,43 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(Navigation.self, from: data)
+                        let response = Utility.decode(NavigationGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getNavigations
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getNavigationsPaginator(
+            
+            ) -> Paginator<NavigationGetResponse> {
+            let pageSize = 20
+            let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getNavigations(
+                        
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -5107,7 +5138,7 @@ public class ApplicationClient {
         public func getPage(
             slug: String,
             
-            onResponse: @escaping (_ response: CustomPage?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomPageSchema?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -5129,7 +5160,7 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomPage.self, from: data)
+                        let response = Utility.decode(CustomPageSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -5143,7 +5174,7 @@ public class ApplicationClient {
         * Summary: Get seo of application
         * Description: Get seo of application
         **/
-        public func getSeoConfiguration(
+        public func getSEOConfiguration(
             
             onResponse: @escaping (_ response: Seo?, _ error: FDKError?) -> Void
         ) {
@@ -5184,7 +5215,7 @@ public class ApplicationClient {
         public func getSlideshow(
             slug: String,
             
-            onResponse: @escaping (_ response: Slideshow?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -5206,7 +5237,7 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(Slideshow.self, from: data)
+                        let response = Utility.decode(SlideshowSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
