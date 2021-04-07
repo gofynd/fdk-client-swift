@@ -12,6 +12,8 @@ public class ApplicationClient {
 
     public let user: User
 
+    public let content: Content
+
     public let share: Share
 
     public let fileStorage: FileStorage
@@ -37,6 +39,8 @@ public class ApplicationClient {
         theme = Theme(config: config)
         
         user = User(config: config)
+        
+        content = Content(config: config)
         
         share = Share(config: config)
         
@@ -4683,6 +4687,625 @@ public class ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SendEmailVerifyLinkSuccess.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Content {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Get live announcements
+        * Description: Get live announcements for each or all pages with page slug of page and end date schedule.
+        **/
+        public func getAnnouncements(
+            
+            onResponse: @escaping (_ response: AnnouncementsResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/announcements",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AnnouncementsResponseSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Blog by slug
+        * Description: Use this API to fetch a blog using `slug`
+        **/
+        public func getBlog(
+            slug: String,
+            
+            onResponse: @escaping (_ response: CustomBlogSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/blogs/\(slug)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomBlogSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get frequently asked questions
+        * Description: Get frequently asked questions list. These will be helpful for users to using website.
+        **/
+        public func getFaqs(
+            
+            onResponse: @escaping (_ response: FaqResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FaqResponseSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get FAQ categories list
+        * Description: Get list of FAQ categories
+        **/
+        public func getFaqCategories(
+            
+            onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/categories",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetFaqCategoriesSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get frequently asked question
+        * Description: Get frequently asked questions list. These will be helpful for users to using website.
+        **/
+        public func getFaqByIdOrSlug(
+            idOrSlug: String,
+            
+            onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/\(idOrSlug)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FaqSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get FAQ category by slug or id
+        * Description: Get FAQ category by slug or id
+        **/
+        public func getFaqCategoryBySlugOrId(
+            idOrSlug: String,
+            
+            onResponse: @escaping (_ response: GetFaqCategoryByIdOrSlugSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/category/\(idOrSlug)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetFaqCategoryByIdOrSlugSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get FAQs of a Faq Category id or slug
+        * Description: Get FAQs of a Faq Category `id` or `slug`
+        **/
+        public func getFaqsByCategoryIdOrSlug(
+            idOrSlug: String,
+            
+            onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/faq/category/\(idOrSlug)/faqs",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetFaqSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get landing page
+        * Description: Use this API to fetch a landing page
+        **/
+        public func getLandingPage(
+            
+            onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/landing-page",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(LandingPageSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get legal information
+        * Description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+        **/
+        public func getLegalInformation(
+            
+            onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/legal",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ApplicationLegal.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get navigation
+        * Description: Use this API to fetch navigations
+        **/
+        public func getNavigations(
+            
+            onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/navigations/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(NavigationGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getNavigations
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getNavigationsPaginator(
+            
+            ) -> Paginator<NavigationGetResponse> {
+            let pageSize = 20
+            let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getNavigations(
+                        
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Page by slug
+        * Description: Use this API to fetch a custom page using `slug`
+        **/
+        public func getPage(
+            slug: String,
+            
+            onResponse: @escaping (_ response: CustomPageSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/pages/\(slug)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomPageSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get seo of application
+        * Description: Get seo of application
+        **/
+        public func getSEOConfiguration(
+            
+            onResponse: @escaping (_ response: SeoComponent?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/seo",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SeoComponent.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get slideshow by slug
+        * Description: Use this API to fetch a slideshow using `slug`
+        **/
+        public func getSlideshow(
+            slug: String,
+            
+            onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/slideshow/\(slug)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SlideshowSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get support information
+        * Description: Get contact details for customer support. Including emails and phone numbers
+        **/
+        public func getSupportInformation(
+            
+            onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/support",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Support.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Tags for application
+        * Description: 
+        **/
+        public func getTags(
+            
+            onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/tags",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TagsSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)

@@ -6,6 +6,7 @@
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Content](#Content) - Content System 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
 * [Configuration](#Configuration) - Application configuration apis 
@@ -130,6 +131,25 @@
     * [deleteEmail](#deleteemail)
     * [setEmailAsPrimary](#setemailasprimary)
     * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
+    
+
+* [Content](#Content)
+  * Methods
+    * [getAnnouncements](#getannouncements)
+    * [getBlog](#getblog)
+    * [getFaqs](#getfaqs)
+    * [getFaqCategories](#getfaqcategories)
+    * [getFaqByIdOrSlug](#getfaqbyidorslug)
+    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
+    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
+    * [getLandingPage](#getlandingpage)
+    * [getLegalInformation](#getlegalinformation)
+    * [getNavigations](#getnavigations)
+    * [getPage](#getpage)
+    * [getSEOConfiguration](#getseoconfiguration)
+    * [getSlideshow](#getslideshow)
+    * [getSupportInformation](#getsupportinformation)
+    * [getTags](#gettags)
     
 
 * [Share](#Share)
@@ -8129,6 +8149,1340 @@ Schema: `AuthenticationApiError`
 
 
 Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Content
+
+
+#### getAnnouncements
+Get live announcements
+
+```swift
+content.getAnnouncements() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get live announcements for each or all pages with page slug of page and end date schedule.
+
+*Success Response:*
+
+
+
+Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
+
+
+Schema: `AnnouncementsResponseSchema`
+
+
+*Examples:*
+
+
+Announcements enabled
+```json
+{
+  "$ref": "#/components/examples/AnnouncementEnabledExample"
+}
+```
+
+No Announcement enabled
+```json
+{
+  "value": {
+    "announcements": {},
+    "refresh_rate": 900,
+    "refresh_pages": []
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBlog
+Get Blog by slug
+
+```swift
+content.getBlog(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+
+Use this API to fetch a blog using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with blog details
+
+
+Schema: `CustomBlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CustomBlog"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqs
+Get frequently asked questions
+
+```swift
+content.getFaqs() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FaqResponseSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/AppFaqs"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategories
+Get FAQ categories list
+
+```swift
+content.getFaqCategories() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get list of FAQ categories
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoriesSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqByIdOrSlug
+Get frequently asked question
+
+```swift
+content.getFaqByIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Slug or Id of FAQ | 
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FaqSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategoryBySlugOrId
+Get FAQ category by slug or id
+
+```swift
+content.getFaqCategoryBySlugOrId(idOrSlug: idOrSlug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Slug or Id of FAQ Category | 
+
+Get FAQ category by slug or id
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoryByIdOrSlugSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqsByCategoryIdOrSlug
+Get FAQs of a Faq Category id or slug
+
+```swift
+content.getFaqsByCategoryIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Faq category ID or slug | 
+
+Get FAQs of a Faq Category `id` or `slug`
+
+*Success Response:*
+
+
+
+Get FAQs by slug/id of FAQ Category
+
+
+Schema: `GetFaqSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLandingPage
+Get landing page
+
+```swift
+content.getLandingPage() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Use this API to fetch a landing page
+
+*Success Response:*
+
+
+
+A JSON object with landing details
+
+
+Schema: `LandingPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLegalInformation
+Get legal information
+
+```swift
+content.getLegalInformation() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNavigations
+Get navigation
+
+```swift
+content.getNavigations() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Use this API to fetch navigations
+
+*Success Response:*
+
+
+
+A JSON object with navigation details
+
+
+Schema: `NavigationGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPage
+Get Page by slug
+
+```swift
+content.getPage(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+
+Use this API to fetch a custom page using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with page details
+
+
+Schema: `CustomPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSEOConfiguration
+Get seo of application
+
+```swift
+content.getSEOConfiguration() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SeoComponent`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSlideshow
+Get slideshow by slug
+
+```swift
+content.getSlideshow(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+
+Use this API to fetch a slideshow using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with slideshow details
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSupportInformation
+Get support information
+
+```swift
+content.getSupportInformation() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get contact details for customer support. Including emails and phone numbers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTags
+Get Tags for application
+
+```swift
+content.getTags() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+*Success Response:*
+
+
+
+A JSON object of tags
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
