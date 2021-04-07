@@ -1,7 +1,6 @@
 # FDK Application Front API Documentaion
 
 
-* [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
@@ -13,7 +12,7 @@
 * [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
-* [Feedback](#Feedback) - User Reviews and Rating System 
+* [Rewards](#Rewards) - Earn and redeem Reward Points 
 * [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
 
@@ -22,38 +21,6 @@
 
 ### Classes and Methods
 
-
-* [Catalog](#Catalog)
-  * Methods
-    * [getProductDetailBySlug](#getproductdetailbyslug)
-    * [getProductSizesBySlug](#getproductsizesbyslug)
-    * [getProductPriceBySlug](#getproductpricebyslug)
-    * [getProductSellersBySlug](#getproductsellersbyslug)
-    * [getProductComparisonBySlugs](#getproductcomparisonbyslugs)
-    * [getSimilarComparisonProductBySlug](#getsimilarcomparisonproductbyslug)
-    * [getComparedFrequentlyProductBySlug](#getcomparedfrequentlyproductbyslug)
-    * [getProductSimilarByIdentifier](#getproductsimilarbyidentifier)
-    * [getProductVariantsBySlug](#getproductvariantsbyslug)
-    * [getProductStockByIds](#getproductstockbyids)
-    * [getProductStockForTimeByIds](#getproductstockfortimebyids)
-    * [getProducts](#getproducts)
-    * [getBrands](#getbrands)
-    * [getBrandDetailBySlug](#getbranddetailbyslug)
-    * [getCategories](#getcategories)
-    * [getCategoryDetailBySlug](#getcategorydetailbyslug)
-    * [getHomeProducts](#gethomeproducts)
-    * [getDepartments](#getdepartments)
-    * [getSearchResults](#getsearchresults)
-    * [getCollections](#getcollections)
-    * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
-    * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
-    * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
-    * [unfollowById](#unfollowbyid)
-    * [getFollowerCountById](#getfollowercountbyid)
-    * [getFollowIds](#getfollowids)
-    * [getStores](#getstores)
-    
 
 * [Cart](#Cart)
   * Methods
@@ -228,34 +195,14 @@
     * [getPosOrderById](#getposorderbyid)
     
 
-* [Feedback](#Feedback)
+* [Rewards](#Rewards)
   * Methods
-    * [createAbuseReport](#createabusereport)
-    * [updateAbuseReport](#updateabusereport)
-    * [getAbuseReports](#getabusereports)
-    * [getAttributes](#getattributes)
-    * [createAttribute](#createattribute)
-    * [getAttribute](#getattribute)
-    * [updateAttribute](#updateattribute)
-    * [createComment](#createcomment)
-    * [updateComment](#updatecomment)
-    * [getComments](#getcomments)
-    * [checkEligibility](#checkeligibility)
-    * [deleteMedia](#deletemedia)
-    * [createMedia](#createmedia)
-    * [updateMedia](#updatemedia)
-    * [getMedias](#getmedias)
-    * [getReviewSummaries](#getreviewsummaries)
-    * [createReview](#createreview)
-    * [updateReview](#updatereview)
-    * [getReviews](#getreviews)
-    * [getTemplates](#gettemplates)
-    * [createQuestion](#createquestion)
-    * [updateQuestion](#updatequestion)
-    * [getQuestionAndAnswers](#getquestionandanswers)
-    * [getVotes](#getvotes)
-    * [createVote](#createvote)
-    * [updateVote](#updatevote)
+    * [getPointsOnProduct](#getpointsonproduct)
+    * [getOrderDiscount](#getorderdiscount)
+    * [getUserPoints](#getuserpoints)
+    * [getUserPointsHistory](#getuserpointshistory)
+    * [getUserReferralDetails](#getuserreferraldetails)
+    * [redeemReferralCode](#redeemreferralcode)
     
 
 * [PosCart](#PosCart)
@@ -300,1368 +247,6 @@
 
 
 
-## Catalog
-
-
-#### getProductDetailBySlug
-Get a product
-
-```swift
-catalog.getProductDetailBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
-
-*Success Response:*
-
-
-
-The Product object. See example below or refer `ProductDetail` for details.
-
-
-Schema: `ProductDetail`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductSizesBySlug
-Get the sizes of a product
-
-```swift
-catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-| storeId | string | The store id of the product whose sizes need to be retrieved | 
-
-A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
-
-*Success Response:*
-
-
-
-The ProductSize object. See example below or refer `ProductSizes` for details.
-
-
-Schema: `ProductSizes`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductPriceBySlug
-Get price a product size
-
-```swift
-catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId: storeId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-| size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/** | 
-| pincode | string | The pincode of the product for which the price needs to be retrieved. | 
-| storeId | string | The store of the product whose size level price need to be retrieved | 
-
-Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
-
-*Success Response:*
-
-
-
-The ProductSizePrice object. See example below or refer `ProductSizePriceResponse` for details
-
-
-Schema: `ProductSizePriceResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductSellersBySlug
-List sellers of a product
-
-```swift
-catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-| size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes** | 
-| pincode | string | The pincode of the product for which the price needs to be retrieved. | 
-| pageNo | integer | The page number to navigate through the given set of results. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-
-A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
-
-*Success Response:*
-
-
-
-The ProductSizeSeller object. See example below or refer `ProductSizeSellersResponse` for details
-
-
-Schema: `ProductSizeSellersResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductComparisonBySlugs
-Compare products
-
-```swift
-catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** | 
-
-Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
-
-*Success Response:*
-
-
-
-The comparison between the products. See example below or refer `ProductsComparisonResponse` for details
-
-
-Schema: `ProductsComparisonResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSimilarComparisonProductBySlug
-Get comparison between similar products
-
-```swift
-catalog.getSimilarComparisonProductBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/** | 
-
-Compare between the features of the given set of products Use this API to compare how one product ranks against other products
-
-*Success Response:*
-
-
-
-The comparison between products similar to given product. See example below or refer `ProductCompareResponse` for details
-
-
-Schema: `ProductCompareResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComparedFrequentlyProductBySlug
-Get comparison between frequently compared products with the given product
-
-```swift
-catalog.getComparedFrequentlyProductBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/** | 
-
-Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
-
-*Success Response:*
-
-
-
-The comparison between products similar to given product. See example below or refer `ProductFrequentlyComparedSimilarResponse` for details
-
-
-Schema: `ProductFrequentlyComparedSimilarResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductSimilarByIdentifier
-Get similar products
-
-```swift
-catalog.getProductSimilarByIdentifier(slug: slug, similarType: similarType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-| similarType | string | The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec. | 
-
-Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
-
-*Success Response:*
-
-
-
-Similar Products based on type passed in the request path. Refer `SimilarProductByTypeResponse` for response structure
-
-
-Schema: `SimilarProductByTypeResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductVariantsBySlug
-Get variant of a particular product
-
-```swift
-catalog.getProductVariantsBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
-
-A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
-
-*Success Response:*
-
-
-
-See example below or refer `ProductVariantsResponse` for details. For `display_type:image`, `color` key will be present otherwise `value` key will be preset.
-
-
-Schema: `ProductVariantsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductStockByIds
-Get the stock of a product
-
-```swift
-catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode: skuCode, ean: ean, upc: upc) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| itemId | string | Product id to get product stock (Max. 50 allowed) | 
-| alu | string | Product identifier alu to get product stock (Max. 50 allowed) | 
-| skuCode | string | Product identifier sku_code to get product stock (Max. 50 allowed) | 
-| ean | string | Product identifier ean to get product stock (Max. 50 allowed) | 
-| upc | string | Product identifier upc to get product stock (Max. 50 allowed) | 
-
-Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
-
-*Success Response:*
-
-
-
-The ProductStockStatus object. See example below or refer `ProductStockStatusResponse` for details
-
-
-Schema: `ProductStockStatusResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductStockForTimeByIds
-Get the stock of a product
-
-```swift
-catalog.getProductStockForTimeByIds(timestamp: timestamp, pageSize: pageSize, pageId: pageId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| timestamp | string | timestamp in UTC format (2020-07-23T10:27:50Z) | 
-| pageSize | integer | Limit of number of items for stock status default 12 | 
-| pageId | string | will give next page results | 
-
-Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
-
-*Success Response:*
-
-
-
-The ProductStockStatus object. See example below or refer `ProductStockPolling` for details
-
-
-Schema: `ProductStockPolling`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProducts
-List the products
-
-```swift
-catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId, pageSize: pageSize, pageNo: pageNo, pageType: pageType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
-| filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
-| sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-| pageNo | integer | If page_type is number then pass it to fetch page items. Default is 1. | 
-| pageType | string | For pagination type should be cursor or number. Default is cursor. | 
-
-List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
-
-*Success Response:*
-
-
-
-List of Products. See example below or refer `ProductListingResponse` for details
-
-
-Schema: `ProductListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getBrands
-List all the brands
-
-```swift
-catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| department | string | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-
-A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-
-*Success Response:*
-
-
-
-List of Brands. See example below or refer `BrandListingResponse` for details
-
-
-Schema: `BrandListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getBrandDetailBySlug
-Get metadata of a brand
-
-```swift
-catalog.getBrandDetailBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a brand. i.e; `slug` of a brand. You can retrieve these from the APIs that list brands like **v1.0/brands/** | 
-
-Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
-
-*Success Response:*
-
-
-
-The Metadata object. See example below or refer `BrandDetailResponse` for details.
-
-
-Schema: `BrandDetailResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCategories
-List all the categories
-
-```swift
-catalog.getCategories(department: department) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| department | string | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API | 
-
-List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
-
-*Success Response:*
-
-
-
-List of Categories. See example below or refer `CategoryListingResponse` for details.
-
-
-Schema: `CategoryListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCategoryDetailBySlug
-Get metadata of a category
-
-```swift
-catalog.getCategoryDetailBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a category. i.e; `slug` of a category. You can retrieve these from the APIs that list categories like **v1.0/categories/** | 
-
-Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
-
-*Success Response:*
-
-
-
-The Metadata object. See example below or refer `CategoryMetaResponse` for details.
-
-
-Schema: `CategoryMetaResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getHomeProducts
-List the products
-
-```swift
-catalog.getHomeProducts(sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| sortOn | string | Each response will contain **sort_on** param, which should be sent back to make pagination work. | 
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-
-List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
-
-*Success Response:*
-
-
-
-List of Products. See example below or refer `HomeListingResponse` for details
-
-
-Schema: `HomeListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getDepartments
-List all the departments
-
-```swift
-catalog.getDepartments() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
-
-*Success Response:*
-
-
-
-List of Departments. See example below or refer `DepartmentResponse` for details.
-
-
-Schema: `DepartmentResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSearchResults
-Get relevant suggestions for a search query
-
-```swift
-catalog.getSearchResults(q: q) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-
-Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
-
-*Success Response:*
-
-
-
-Lists of autocomplete suggestions for the search query `q`. See example response below or refer `AutoCompleteResponse` for details
-
-
-Schema: `AutoCompleteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCollections
-List all the collections
-
-```swift
-catalog.getCollections(pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-
-*Success Response:*
-
-
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
-
-
-Schema: `GetCollectionListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCollectionItemsBySlug
-Get the items in a collection
-
-```swift
-catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
-| filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
-| sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-
-Get items in a collection specified by its `slug`.
-
-*Success Response:*
-
-
-
-The attached items of an collection. See example below or refer `ProductListingResponse` for details
-
-
-Schema: `ProductListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCollectionDetailBySlug
-Get a particular collection
-
-```swift
-catalog.getCollectionDetailBySlug(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. | 
-
-Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `CollectionDetailResponse` for details
-
-
-Schema: `CollectionDetailResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFollowedListing
-Get a list of followed Products, Brands, Collections
-
-```swift
-catalog.getFollowedListing(collectionType: collectionType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-
-A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
-
-*Success Response:*
-
-
-
-The Followed resource object. See example below or refer `GetFollowListingResponse` for details.
-
-
-Schema: `GetFollowListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### followById
-Follow a particular Product
-
-```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | string | the `id` of the collection type you want to follow | 
-
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-
-*Success Response:*
-
-
-
-The response object. See example below or refer `FollowPostResponse` for details
-
-
-Schema: `FollowPostResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### unfollowById
-UnFollow a Product
-
-```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | string | the `id` of the collection type you want to unfollow | 
-
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-
-*Success Response:*
-
-
-
-The response object. See example below or refer `FollowPostResponse` for details
-
-
-Schema: `FollowPostResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFollowerCountById
-Get Follow Count
-
-```swift
-catalog.getFollowerCountById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| collectionType | string | the `type` of the collection products/brands/collections. | 
-| collectionId | string | the `id` of the product/brand/collection. | 
-
-Get count of followers for given collection type and collection id.
-
-*Success Response:*
-
-
-
-The response object. See example below or refer `FollowerCountResponse` for details
-
-
-Schema: `FollowerCountResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFollowIds
-Get the Ids of followed product, brand and collection.
-
-```swift
-catalog.getFollowIds(collectionType: collectionType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-
-You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
-
-*Success Response:*
-
-
-
-The response object. See example below or refer `FollowIdsResponse` for details
-
-
-Schema: `FollowIdsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getStores
-List store meta information.
-
-```swift
-catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitude: latitude, longitude: longitude) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
-| q | string | This can be used to search a particulr store by its name or store_code. | 
-| range | integer | This can be used to retrieve store within a particular range. For eg range=10000 (in meters) | 
-| latitude | number | This should be the latitude of the location from which one needs to retreive the nearest stores. | 
-| longitude | number | This should be the longitude of the location from which one needs to retreive the nearest stores. | 
-
-Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
-
-*Success Response:*
-
-
-
-List of Stores. See example below or refer `StoreListingResponse` for details
-
-
-Schema: `StoreListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
 ## Cart
 
 
@@ -1675,11 +260,11 @@ cart.getCart(uid: uid, i: i, b: b, assignCardId: assignCardId) { (response, erro
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| i | boolean |  | 
-| b | boolean |  | 
-| assignCardId | integer |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| i | boolean? |  |    
+| b | boolean? |  |    
+| assignCardId | integer? |  |  
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
 
@@ -1691,9 +276,6 @@ The Cart object. See example below or refer CartResponse for details
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -1713,8 +295,8 @@ cart.getCartLastModified(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |  
 
 Fetch Last-Modified timestamp in header metadata
 
@@ -1742,9 +324,9 @@ cart.addItems(i: i, b: b, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| i | boolean |  | 
-| b | boolean |  | 
+| --------- | ----  | --- |  
+| i | boolean? |  |    
+| b | boolean? |  |  
 
 <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
 
@@ -1756,642 +338,6 @@ Response of the cart object including all item details included in .the cart,cou
 
 
 Schema: `AddCartResponse`
-
-
-*Examples:*
-
-
-Product has been added to your cart
-```json
-{
-  "value": {
-    "message": "Product has been added to your cart",
-    "success": true,
-    "cart": {
-      "breakup_values": {
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 17486,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -3540,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 13946,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 13946,
-            "currency_code": "INR"
-          }
-        ],
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -3540,
-          "fynd_cash": 0,
-          "gst_charges": 1529.96,
-          "mrp_total": 17486,
-          "subtotal": 13946,
-          "total": 13946,
-          "vog": 12416.04,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        }
-      },
-      "items": [
-        {
-          "key": "751083_10",
-          "article": {
-            "type": "article",
-            "uid": "612_9_SE61201_19100302_10",
-            "size": "10",
-            "seller": {
-              "uid": 612,
-              "name": "SSR ENTERPRISE"
-            },
-            "store": {
-              "uid": 4431,
-              "name": "Motilal Nagar 1, Goregaon"
-            },
-            "quantity": 4,
-            "price": {
-              "base": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "10"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 751083,
-            "name": "Carson 2",
-            "slug": "puma-carson-2-751083-6ad98d",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-carson-2-751083-6ad98d/",
-              "query": {
-                "product_slug": [
-                  "puma-carson-2-751083-6ad98d"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 2,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "41% OFF"
-        },
-        {
-          "key": "246228_S",
-          "article": {
-            "type": "article",
-            "uid": "46_235_TM62_M11029ONDSXNS_S",
-            "size": "S",
-            "seller": {
-              "uid": 46,
-              "name": "RELIANCE BRANDS LIMITED"
-            },
-            "store": {
-              "uid": 4550,
-              "name": "VR Mall"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "L",
-              "M",
-              "S",
-              "XL",
-              "XXL"
-            ],
-            "other_store_quantity": 0,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 246228,
-            "name": "Blue Solid T-Shirt",
-            "slug": "superdry-blue-solid-t-shirt-2",
-            "brand": {
-              "uid": 235,
-              "name": "Superdry"
-            },
-            "categories": [
-              {
-                "uid": 192,
-                "name": "T-Shirts"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/superdry-blue-solid-t-shirt-2/",
-              "query": {
-                "product_slug": [
-                  "superdry-blue-solid-t-shirt-2"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "443175_S",
-          "article": {
-            "type": "article",
-            "uid": "162_207_1271_LJ03LBLUDN88_S",
-            "size": "S",
-            "seller": {
-              "uid": 162,
-              "name": "GO FASHION INDIA PRIVATE LIMITED"
-            },
-            "store": {
-              "uid": 5784,
-              "name": "Vega City mall"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "XL",
-              "M",
-              "L",
-              "S"
-            ],
-            "other_store_quantity": 8,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 443175,
-            "name": "Light Blue Denim Jeggings",
-            "slug": "go-colors-light-blue-denim-jeggings-443175-3c688c",
-            "brand": {
-              "uid": 207,
-              "name": "Go Colors"
-            },
-            "categories": [
-              {
-                "uid": 267,
-                "name": "Jeggings"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/go-colors-light-blue-denim-jeggings-443175-3c688c/",
-              "query": {
-                "product_slug": [
-                  "go-colors-light-blue-denim-jeggings-443175-3c688c"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "778937_OS",
-          "article": {
-            "type": "article",
-            "uid": "686_963_IC68601_PWUPC01977_OS",
-            "size": "OS",
-            "seller": {
-              "uid": 686,
-              "name": "INDUS CORPORATION"
-            },
-            "store": {
-              "uid": 5059,
-              "name": "Vidyaranyapura Main Road"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "OS"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 778937,
-            "name": "Colourful Carnival Bouncer",
-            "slug": "fisher-price-colourful-carnival-bouncer-778937-fafa1f",
-            "brand": {
-              "uid": 963,
-              "name": "Fisher-Price"
-            },
-            "categories": [
-              {
-                "uid": 576,
-                "name": "Cradles"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/fisher-price-colourful-carnival-bouncer-778937-fafa1f/",
-              "query": {
-                "product_slug": [
-                  "fisher-price-colourful-carnival-bouncer-778937-fafa1f"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "11% OFF"
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 7927,
-      "uid": "7927",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Tue, 03 Sep 2019 06:00:43 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {}
-  }
-}
-```
-
-Sorry, item is out of stock
-```json
-{
-  "value": {
-    "message": "Sorry, item is out of stock",
-    "success": false,
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": false,
-      "last_modified": "Tue, 03 Sep 2019 09:55:40 GMT"
-    },
-    "result": {}
-  }
-}
-```
-
-
-
 
 
 
@@ -2411,10 +357,10 @@ cart.updateCart(uid: uid, i: i, b: b, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| i | boolean |  | 
-| b | boolean |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| i | boolean? |  |    
+| b | boolean? |  |  
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -2426,371 +372,6 @@ Response of the cart object including all item with their updated details includ
 
 
 Schema: `UpdateCartResponse`
-
-
-*Examples:*
-
-
-Nothing updated
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
-    },
-    "result": {
-      "707569_90": {
-        "success": true,
-        "message": "Nothing updated"
-      }
-    },
-    "message": "Nothing updated",
-    "success": true
-  }
-}
-```
-
-Item updated in the cart
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 838.83,
-          "mrp_total": 5499,
-          "subtotal": 5499,
-          "total": 5499,
-          "vog": 4660.17,
-          "you_saved": 0
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 5499,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "items": [
-        {
-          "key": "437414_7",
-          "message": "",
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            }
-          },
-          "quantity": 1,
-          "discount": "",
-          "product": {
-            "type": "product",
-            "uid": 437414,
-            "name": "Suede Classic",
-            "slug": "puma-suede-classic-437414-6e6bbf",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-suede-classic-437414-6e6bbf/",
-              "query": {
-                "product_slug": [
-                  "puma-suede-classic-437414-6e6bbf"
-                ]
-              }
-            }
-          },
-          "article": {
-            "type": "article",
-            "uid": "507_9_96099_35656851_7",
-            "size": "7",
-            "seller": {
-              "uid": 507,
-              "name": "PUMA SPORTS INDIA PVT LTD"
-            },
-            "store": {
-              "uid": 3632,
-              "name": "Colaba Causway"
-            },
-            "quantity": 5,
-            "price": {
-              "base": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "availability": {
-            "sizes": [
-              "10",
-              "11",
-              "6",
-              "9",
-              "7",
-              "8"
-            ],
-            "other_store_quantity": 22,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          }
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 12426,
-      "uid": "12426",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:51:42 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {
-      "437414_7": {
-        "success": true,
-        "message": "Item updated in the bag"
-      }
-    },
-    "message": "Item updated in the bag",
-    "success": true
-  }
-}
-```
-
-
-
 
 
 
@@ -2810,8 +391,8 @@ cart.getItemCount(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id | 
+| --------- | ----  | --- |  
+| uid | integer? | Cart id |  
 
 Get total count of item present in cart
 
@@ -2823,9 +404,6 @@ OK
 
 
 Schema: `CartItemCountResponse`
-
-
-
 
 
 
@@ -2845,8 +423,8 @@ cart.getCoupons(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |  
 
 Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
 
@@ -2858,9 +436,6 @@ Returns The Couppon object which has list of all available_coupon applicale for 
 
 
 Schema: `GetCouponResponse`
-
-
-
 
 
 
@@ -2880,11 +455,11 @@ cart.applyCoupon(i: i, b: b, p: p, uid: uid, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| i | boolean |  | 
-| b | boolean |  | 
-| p | boolean |  | 
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| i | boolean? |  |    
+| b | boolean? |  |    
+| p | boolean? |  |    
+| uid | integer? |  |  
 
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
@@ -2897,9 +472,6 @@ Response of the Coupon object including all item details included in .the cart,c
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -2919,8 +491,8 @@ cart.removeCoupon(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id | 
+| --------- | ----  | --- |  
+| uid | integer? | Cart id |  
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -2932,9 +504,6 @@ Response of the Coupon object including all item details included in .the cart,c
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -2954,11 +523,11 @@ cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug:
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| itemId | integer | Item id | 
-| articleId | string | Article mongo id | 
-| uid | integer | Item id | 
-| slug | string | Item unique url from product page | 
+| --------- | ----  | --- |  
+| itemId | integer? | Item id |    
+| articleId | string? | Article mongo id |    
+| uid | integer? | Item id |    
+| slug | string? | Item unique url from product page |  
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
@@ -2972,80 +541,6 @@ Offers found or not found with valid input
 Schema: `BulkPriceResponse`
 
 
-*Examples:*
-
-
-Offers found
-```json
-{
-  "value": {
-    "data": [
-      {
-        "seller": {
-          "uid": 248,
-          "name": "MANYAVAR CREATIONS PRIVATE LIMITED"
-        },
-        "offers": [
-          {
-            "quantity": 1,
-            "auto_applied": true,
-            "margin": 10,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3599.1,
-              "currency_code": "INR"
-            },
-            "total": 3599.1
-          },
-          {
-            "quantity": 3,
-            "auto_applied": true,
-            "margin": 20,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3199.2,
-              "currency_code": "INR"
-            },
-            "total": 9597.6
-          },
-          {
-            "quantity": 9,
-            "auto_applied": true,
-            "margin": 30,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3443.4444444444,
-              "currency_code": "INR"
-            },
-            "total": 30991,
-            "best": true
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-Offers not found
-```json
-{
-  "value": {
-    "data": []
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -3053,9 +548,6 @@ Unhandled api error
 
 
 Schema: `[String: Any]`
-
-
-
 
 
 
@@ -3075,12 +567,12 @@ cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| mobileNo | string |  | 
-| checkoutMode | string |  | 
-| tags | integer |  | 
-| isDefault | boolean |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| mobileNo | string? |  |    
+| checkoutMode | string? |  |    
+| tags | integer? |  |    
+| isDefault | boolean? |  |  
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -3092,9 +584,6 @@ Returns The Address object which has list of all address saved for the account. 
 
 
 Schema: `GetAddressesResponse`
-
-
-
 
 
 
@@ -3132,9 +621,6 @@ Schema: `SaveAddressResponse`
 
 
 
-
-
-
 ---
 
 
@@ -3148,13 +634,13 @@ cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkout
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | integer |  | 
-| uid | integer |  | 
-| mobileNo | string |  | 
-| checkoutMode | string |  | 
-| tags | integer |  | 
-| isDefault | boolean |  | 
+| --------- | ----  | --- |  
+| id | integer? |  |    
+| uid | integer? |  |    
+| mobileNo | string? |  |    
+| checkoutMode | string? |  |    
+| tags | integer? |  |    
+| isDefault | boolean? |  |  
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -3166,9 +652,6 @@ Returns The Address object which has list of all address saved for the account. 
 
 
 Schema: `Address`
-
-
-
 
 
 
@@ -3188,8 +671,8 @@ cart.updateAddress(id: id, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | integer | Address id | 
+| --------- | ----  | --- |  
+| id | integer? | Address id |  
 
 Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
@@ -3201,9 +684,6 @@ Response of the Address object containing address_id and sucess message.
 
 
 Schema: `UpdateAddressResponse`
-
-
-
 
 
 
@@ -3223,8 +703,8 @@ cart.removeAddress(id: id) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | integer | Address id | 
+| --------- | ----  | --- |  
+| id | integer? | Address id |  
 
 Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
 
@@ -3236,9 +716,6 @@ Status object. Tells whether the operation was successful. See example below or 
 
 
 Schema: `DeleteAddressResponse`
-
-
-
 
 
 
@@ -3258,10 +735,10 @@ cart.selectAddress(uid: uid, i: i, b: b, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| i | boolean |  | 
-| b | boolean |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| i | boolean? |  |    
+| b | boolean? |  |  
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
@@ -3278,40 +755,10 @@ Schema: `CartResponse`
 
 
 
-
-
-
 Address or Pincode Error
 
 
 Schema: `[String: Any]`
-
-
-*Examples:*
-
-
-Address Not Found
-```json
-{
-  "value": {
-    "status": "ERROR",
-    "message": "ADDRESS_NOT_FOUND"
-  }
-}
-```
-
-Pincode Not Serviciable
-```json
-{
-  "value": {
-    "status": "ERROR",
-    "message": "PINCODE_NOT_SERVICIABLE"
-  }
-}
-```
-
-
-
 
 
 
@@ -3331,8 +778,8 @@ cart.selectPaymentMode(uid: uid, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
+| --------- | ----  | --- |  
+| uid | string? |  |  
 
 Update Cart Payment for Your Account
 
@@ -3344,9 +791,6 @@ Cart response with payment options
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -3366,13 +810,13 @@ cart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: payme
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
-| addressId | string |  | 
-| paymentMode | string |  | 
-| paymentIdentifier | string |  | 
-| aggregatorName | string |  | 
-| merchantCode | string |  | 
+| --------- | ----  | --- |  
+| uid | string? |  |    
+| addressId | string? |  |    
+| paymentMode | string? |  |    
+| paymentIdentifier | string? |  |    
+| aggregatorName | string? |  |    
+| merchantCode | string? |  |  
 
 Validate coupon for selected payment mode
 
@@ -3384,9 +828,6 @@ Cart Affiliates.
 
 
 Schema: `PaymentUpdate`
-
-
-
 
 
 
@@ -3406,11 +847,11 @@ cart.getShipments(p: p, uid: uid, addressId: addressId, areaCode: areaCode) { (r
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| p | boolean | Get payment options or not | 
-| uid | integer | Cart id | 
-| addressId | integer | Address id | 
-| areaCode | string | Destination pincode. | 
+| --------- | ----  | --- |  
+| p | boolean? | Get payment options or not |    
+| uid | integer? | Cart id |    
+| addressId | integer? | Address id |    
+| areaCode | string? | Destination pincode. |  
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
@@ -3424,649 +865,6 @@ OK
 Schema: `CartShipmentsResponse`
 
 
-*Examples:*
-
-
-Shipment Generated
-```json
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [
-      {
-        "fulfillment_id": 3009,
-        "shipment_type": "single_shipment",
-        "fulfillment_type": "store",
-        "dp_id": "29",
-        "dp_options": {
-          "4": {
-            "f_priority": 4,
-            "r_priority": 5,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "7": {
-            "f_priority": 3,
-            "r_priority": 4,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "29": {
-            "f_priority": 1,
-            "r_priority": 2,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          }
-        },
-        "promise": {
-          "timestamp": {
-            "min": 1566678108,
-            "max": 1567023708
-          },
-          "formatted": {
-            "min": "Aug 24",
-            "max": "Aug 28"
-          }
-        },
-        "box_type": "Small Courier bag",
-        "shipments": 1,
-        "items": [
-          {
-            "quantity": 1,
-            "product": {
-              "type": "product",
-              "uid": 820312,
-              "name": "Navy Blue Melange Shorts",
-              "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-              "brand": {
-                "uid": 610,
-                "name": "883 Police"
-              },
-              "categories": [
-                {
-                  "uid": 193,
-                  "name": "Shorts"
-                }
-              ],
-              "images": [
-                {
-                  "aspect_ratio": "16:25",
-                  "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                  "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-                }
-              ],
-              "action": {
-                "type": "product",
-                "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-                "query": {
-                  "product_slug": [
-                    "883-police-navy-blue-melange-shorts-820312-4943a8"
-                  ]
-                }
-              }
-            },
-            "discount": "",
-            "bulk_offer": {},
-            "key": "820312_L",
-            "price": {
-              "base": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              }
-            },
-            "article": {
-              "type": "article",
-              "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-              "size": "L",
-              "seller": {
-                "uid": 381,
-                "name": "INTERSOURCE GARMENTS PVT LTD"
-              },
-              "store": {
-                "uid": 3009,
-                "name": "Kormangala"
-              },
-              "quantity": 2,
-              "price": {
-                "base": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                },
-                "converted": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                }
-              }
-            },
-            "availability": {
-              "sizes": [
-                "L",
-                "XL",
-                "XXL"
-              ],
-              "other_store_quantity": 1,
-              "out_of_stock": false,
-              "deliverable": true,
-              "is_valid": true
-            },
-            "coupon_message": "",
-            "message": ""
-          }
-        ]
-      }
-    ],
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": true
-  }
-}
-```
-
-Shipment Generation Failed
-```json
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [],
-    "message": "Shipments could not be generated. Please Try again after some time.",
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": false
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -4074,9 +872,6 @@ Unhandled api error
 
 
 Schema: `[String: Any]`
-
-
-
 
 
 
@@ -4110,386 +905,6 @@ OK
 Schema: `CartCheckoutResponse`
 
 
-*Examples:*
-
-
-Address id not found
-```json
-{
-  "value": {
-    "success": false,
-    "message": "No address found with address id {address_id}"
-  }
-}
-```
-
-Missing address_id
-```json
-{
-  "value": {
-    "address_id": [
-      "Missing data for required field."
-    ]
-  }
-}
-```
-
-Successful checkout cod payment
-```json
-{
-  "value": {
-    "success": true,
-    "cart": {
-      "success": true,
-      "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-      "payment_options": {
-        "payment_option": [
-          {
-            "name": "COD",
-            "display_name": "Cash on Delivery",
-            "display_priority": 1,
-            "payment_mode_id": 11,
-            "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "logo_url": {
-              "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-              "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-            },
-            "list": []
-          },
-          {
-            "name": "CARD",
-            "display_priority": 2,
-            "payment_mode_id": 2,
-            "display_name": "Card",
-            "list": []
-          },
-          {
-            "name": "NB",
-            "display_priority": 3,
-            "payment_mode_id": 3,
-            "display_name": "Net Banking",
-            "list": [
-              {
-                "aggregator_name": "Razorpay",
-                "bank_name": "ICICI Bank",
-                "bank_code": "ICIC",
-                "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-                },
-                "merchant_code": "NB_ICICI",
-                "display_priority": 1
-              }
-            ]
-          },
-          {
-            "name": "WL",
-            "display_priority": 4,
-            "payment_mode_id": 4,
-            "display_name": "Wallet",
-            "list": [
-              {
-                "wallet_name": "Paytm",
-                "wallet_code": "paytm",
-                "wallet_id": 4,
-                "merchant_code": "PAYTM",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-                },
-                "aggregator_name": "Juspay",
-                "display_priority": 1
-              }
-            ]
-          },
-          {
-            "name": "UPI",
-            "display_priority": 9,
-            "payment_mode_id": 6,
-            "display_name": "UPI",
-            "list": [
-              {
-                "aggregator_name": "UPI_Razorpay",
-                "name": "UPI",
-                "display_name": "BHIM UPI",
-                "code": "UPI",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-                },
-                "merchant_code": "UPI",
-                "timeout": 240,
-                "retry_count": 0,
-                "fynd_vpa": "shopsense.rzp@hdfcbank",
-                "intent_flow": true,
-                "intent_app_error_list": [
-                  "com.csam.icici.bank.imobile",
-                  "in.org.npci.upiapp",
-                  "com.whatsapp"
-                ]
-              }
-            ]
-          },
-          {
-            "name": "PL",
-            "display_priority": 11,
-            "payment_mode_id": 1,
-            "display_name": "Pay Later",
-            "list": [
-              {
-                "aggregator_name": "Simpl",
-                "name": "Simpl",
-                "code": "simpl",
-                "merchant_code": "SIMPL",
-                "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-                }
-              }
-            ]
-          }
-        ],
-        "payment_flows": {
-          "Simpl": {
-            "data": {
-              "gateway": {
-                "route": "simpl",
-                "entity": "sdk",
-                "is_customer_validation_required": true,
-                "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-                "sdk": {
-                  "config": {
-                    "redirect": false,
-                    "callback_url": null,
-                    "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                  },
-                  "data": {
-                    "user_phone": "8452996729",
-                    "user_email": "paymentsdummy@gofynd.com"
-                  }
-                },
-                "return_url": null
-              }
-            },
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "Juspay": {
-            "data": {},
-            "api_link": "https://sandbox.juspay.in/txns",
-            "payment_flow": "api"
-          },
-          "Razorpay": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "UPI_Razorpay": {
-            "data": {},
-            "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-            "payment_flow": "api"
-          },
-          "Fynd": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "api"
-          }
-        },
-        "default": {}
-      },
-      "user_type": "Store User",
-      "cod_charges": 0,
-      "order_id": "FY5D5E215CF287584CE6",
-      "cod_available": true,
-      "cod_message": "No additional COD charges applicable",
-      "delivery_charges": 0,
-      "delivery_charge_order_value": 0,
-      "delivery_slots": [
-        {
-          "date": "Sat, 24 Aug",
-          "delivery_slot": [
-            {
-              "delivery_slot_timing": "By 9:00 PM",
-              "default": true,
-              "delivery_slot_id": 1
-            }
-          ]
-        }
-      ],
-      "store_code": "",
-      "store_emps": [],
-      "breakup_values": {
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 214.18,
-          "mrp_total": 1999,
-          "subtotal": 1999,
-          "total": 1999,
-          "vog": 1784.82,
-          "you_saved": 0
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 1999,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 1999,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 1999,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "items": [
-        {
-          "key": "820312_L",
-          "message": "",
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
-              "currency_code": "INR"
-            }
-          },
-          "quantity": 1,
-          "discount": "",
-          "product": {
-            "type": "product",
-            "uid": 820312,
-            "name": "Navy Blue Melange Shorts",
-            "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-            "brand": {
-              "uid": 610,
-              "name": "883 Police"
-            },
-            "categories": [
-              {
-                "uid": 193,
-                "name": "Shorts"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-              "query": {
-                "product_slug": [
-                  "883-police-navy-blue-melange-shorts-820312-4943a8"
-                ]
-              }
-            }
-          },
-          "article": {
-            "type": "article",
-            "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-            "size": "L",
-            "seller": {
-              "uid": 381,
-              "name": "INTERSOURCE GARMENTS PVT LTD"
-            },
-            "store": {
-              "uid": 3009,
-              "name": "Kormangala"
-            },
-            "quantity": 2,
-            "price": {
-              "base": {
-                "marked": 1999,
-                "effective": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 1999,
-                "effective": 1999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "availability": {
-            "sizes": [
-              "L",
-              "XL",
-              "XXL"
-            ],
-            "other_store_quantity": 1,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          }
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 7483,
-      "uid": "7483",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "callback_url": "https://api.addsale.com/gringotts/api/v1/external/payment-callback/",
-    "app_intercept_url": "http://uniket-testing.addsale.link/cart/order-status",
-    "message": "",
-    "data": {
-      "order_id": "FY5D5E215CF287584CE6"
-    },
-    "order_id": "FY5D5E215CF287584CE6"
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -4507,8 +922,8 @@ cart.updateCartMeta(uid: uid, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id received in get cart. | 
+| --------- | ----  | --- |  
+| uid | integer? | Cart id received in get cart. |  
 
 Update cart meta like checkout_mode, gstin.
 
@@ -4525,16 +940,10 @@ Schema: `CartMetaResponse`
 
 
 
-
-
-
 Missing required Field
 
 
 Schema: `CartMetaMissingResponse`
-
-
-
 
 
 
@@ -4568,23 +977,6 @@ Token Generated successfully
 Schema: `GetShareCartLinkResponse`
 
 
-*Examples:*
-
-
-Token Generated
-```json
-{
-  "value": {
-    "token": "ZweG1XyX",
-    "share_url": "https://uniket-testing.addsale.link/shared-cart/ZweG1XyX"
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -4602,8 +994,8 @@ cart.getCartSharedItems(token: token) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| token | string | Shared short link token. | 
+| --------- | ----  | --- |  
+| token | string? | Shared short link token. |  
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
@@ -4620,16 +1012,10 @@ Schema: `SharedCartResponse`
 
 
 
-
-
-
 No cart found for sent token
 
 
 Schema: `SharedCartResponse`
-
-
-
 
 
 
@@ -4649,9 +1035,9 @@ cart.updateCartWithSharedItems(token: token, action: action) { (response, error)
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| token | string | Shared short link token. | 
-| action | string | Operation to perform on existing cart, whether to merge or replace. | 
+| --------- | ----  | --- |  
+| token | string? | Shared short link token. |    
+| action | string? | Operation to perform on existing cart, whether to merge or replace. |  
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
 
@@ -4663,295 +1049,6 @@ Success of Merge or Replace of cart with `shared_cart_details`                  
 
 
 Schema: `SharedCartResponse`
-
-
-*Examples:*
-
-
-Cart Merged/Replaced
-```json
-{
-  "value": {
-    "cart": {
-      "shared_cart_details": {
-        "token": "BQ9jySQ9",
-        "user": {
-          "user_id": "23109086",
-          "is_anonymous": false
-        },
-        "meta": {
-          "selected_staff": "",
-          "ordering_store": null
-        },
-        "selected_staff": "",
-        "ordering_store": null,
-        "source": {},
-        "created_on": "2019-12-18T14:00:07.165000"
-      },
-      "items": [
-        {
-          "key": "791651_6",
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_6",
-            "size": "6",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 1,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 12,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        {
-          "key": "791651_7",
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_7",
-            "size": "7",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 2,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 2,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            }
-          }
-        }
-      ],
-      "cart_id": 13055,
-      "uid": "13055",
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 958.73,
-          "mrp_total": 6285,
-          "subtotal": 6285,
-          "total": 6285,
-          "vog": 5326.27,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 6285,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "gstin": null,
-      "comment": "",
-      "checkout_mode": "self",
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "COD",
-        "payment_identifier": null
-      },
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
-    }
-  }
-}
-```
-
-
-
 
 
 
@@ -4978,8 +1075,8 @@ lead.getTicket(id: id) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | string | ID of ticket to be retrieved | 
+| --------- | ----  | --- |  
+| id | string? | ID of ticket to be retrieved |  
 
 Get Ticket with the specific id, this is used to view the ticket details
 
@@ -4991,211 +1088,6 @@ Success
 
 
 Schema: `Ticket`
-
-
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "context": {
-      "application_id": "000000000000000000000003",
-      "company_id": "884"
-    },
-    "content": {
-      "title": "SOme title Response",
-      "description": "<b>Single lineeee</b>: asdf<br><b>Email</b>: asdf@asdf.com<br><b>dfsdf</b>: asdf<br>",
-      "attachments": []
-    },
-    "status": {
-      "display": "In Progress",
-      "color": "#ffa951",
-      "key": "in_progress"
-    },
-    "priority": {
-      "display": "Medium",
-      "color": "#f37736",
-      "key": "medium"
-    },
-    "assigned_to": {
-      "agent_id": "5d1363adf599d850df93175e",
-      "gender": "male",
-      "accountType": "user",
-      "active": true,
-      "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-      "hasOldPasswordHash": false,
-      "_id": "5d1363adf599d850df93175e",
-      "phoneNumbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "countryCode": 91,
-          "phone": "9890425946"
-        }
-      ],
-      "firstName": "Nikhil",
-      "lastName": "Manapure",
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "nikhilmshchs@gmail.com"
-        }
-      ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
-      "createdAt": "2019-01-01T17:22:38.528Z",
-      "updatedAt": "2021-01-22T10:02:42.258Z",
-      "uid": "20500281",
-      "__v": 56
-    },
-    "tags": [
-      "some-title"
-    ],
-    "_id": "6012f38557751ee8fc162cf7",
-    "created_on": {
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-      "platform": "web",
-      "meta": {
-        "browser": {
-          "name": "Chrome",
-          "version": "88.0.4324.96"
-        },
-        "os": {
-          "name": "macOS",
-          "version": "10.15.7",
-          "versionName": "Catalina"
-        },
-        "platform": {
-          "type": "desktop",
-          "vendor": "Apple"
-        },
-        "engine": {
-          "name": "Blink"
-        }
-      }
-    },
-    "source": "sales_channel",
-    "created_by": {
-      "id": "5d1363adf599d850df93175e",
-      "user": {
-        "gender": "male",
-        "accountType": "user",
-        "active": true,
-        "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-        "hasOldPasswordHash": false,
-        "_id": "5d1363adf599d850df93175e",
-        "phoneNumbers": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "countryCode": 91,
-            "phone": "9890425946"
-          }
-        ],
-        "firstName": "Nikhil",
-        "lastName": "Manapure",
-        "emails": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "email": "nikhilmshchs@gmail.com"
-          }
-        ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
-        "createdAt": "2019-01-01T17:22:38.528Z",
-        "updatedAt": "2021-01-22T10:02:42.258Z",
-        "uid": "20500281",
-        "__v": 56
-      }
-    },
-    "response_id": "6012f38457751e0fb8162cf6",
-    "category": {
-      "form": {
-        "login_required": false,
-        "should_notify": false,
-        "inputs": [
-          {
-            "required": false,
-            "type": "text",
-            "enum": [],
-            "display": "Single lineeee",
-            "key": "single-lineeee",
-            "showRegexInput": false
-          },
-          {
-            "required": false,
-            "type": "email",
-            "enum": [],
-            "display": "Email",
-            "regex": "\\S+@\\S+\\.\\S+",
-            "key": "email",
-            "showRegexInput": true
-          },
-          {
-            "required": false,
-            "type": "text",
-            "enum": [],
-            "display": "dfsdf",
-            "key": "dfsdf",
-            "showRegexInput": false
-          }
-        ],
-        "available_assignees": [
-          "5b9b98150df588546aaea6d2",
-          "5c45d78395d7504f76c2cb37"
-        ],
-        "_id": "5fd72db3dc250f8decfc61b2",
-        "title": "SOme title",
-        "description": "SOme big description",
-        "slug": "some-title",
-        "application_id": "000000000000000000000003",
-        "created_on": {
-          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-          "platform": "web",
-          "meta": {
-            "browser": {
-              "name": "Chrome",
-              "version": "87.0.4280.88"
-            },
-            "os": {
-              "name": "macOS",
-              "version": "10.15.6",
-              "versionName": "Catalina"
-            },
-            "platform": {
-              "type": "desktop",
-              "vendor": "Apple"
-            },
-            "engine": {
-              "name": "Blink"
-            }
-          }
-        },
-        "created_by": "5d1363adf599d850df93175e",
-        "createdAt": "2020-12-14T09:17:39.953Z",
-        "updatedAt": "2021-01-28T18:48:07.717Z",
-        "__v": 0
-      },
-      "key": "some-title",
-      "display": "SOme title"
-    },
-    "ticket_id": "43",
-    "createdAt": "2021-01-28T17:25:25.013Z",
-    "updatedAt": "2021-01-28T17:25:33.396Z",
-    "__v": 0,
-    "video_room_id": "6012f38557751ee8fc162cf7"
-  }
-}
-```
-
-
-
 
 
 
@@ -5215,8 +1107,8 @@ lead.createHistory(ticketId: ticketId, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| ticketId | string | Ticket ID for which history is created | 
+| --------- | ----  | --- |  
+| ticketId | string? | Ticket ID for which history is created |  
 
 Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -5228,54 +1120,6 @@ Success
 
 
 Schema: `TicketHistory`
-
-
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "_id": "601a9d52c26687d086c499ef",
-    "ticket_id": "6012f38557751ee8fc162cf7",
-    "type": "comment",
-    "value": {
-      "text": "d",
-      "media": []
-    },
-    "created_on": {
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-      "platform": "web",
-      "meta": {
-        "browser": {
-          "name": "Chrome",
-          "version": "88.0.4324.96"
-        },
-        "os": {
-          "name": "macOS",
-          "version": "10.15.7",
-          "versionName": "Catalina"
-        },
-        "platform": {
-          "type": "desktop",
-          "vendor": "Apple"
-        },
-        "engine": {
-          "name": "Blink"
-        }
-      }
-    },
-    "created_by": "5d1363adf599d850df93175e",
-    "createdAt": "2021-02-03T12:55:46.808Z",
-    "updatedAt": "2021-02-03T12:55:46.808Z",
-    "__v": 0
-  }
-}
-```
-
-
-
 
 
 
@@ -5309,211 +1153,6 @@ Success
 Schema: `Ticket`
 
 
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "context": {
-      "application_id": "000000000000000000000003",
-      "company_id": "884"
-    },
-    "content": {
-      "title": "SOme title Response",
-      "description": "<b>Single lineeee</b>: asdf<br><b>Email</b>: asdf@asdf.com<br><b>dfsdf</b>: asdf<br>",
-      "attachments": []
-    },
-    "status": {
-      "display": "In Progress",
-      "color": "#ffa951",
-      "key": "in_progress"
-    },
-    "priority": {
-      "display": "Medium",
-      "color": "#f37736",
-      "key": "medium"
-    },
-    "assigned_to": {
-      "agent_id": "5d1363adf599d850df93175e",
-      "gender": "male",
-      "accountType": "user",
-      "active": true,
-      "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-      "hasOldPasswordHash": false,
-      "_id": "5d1363adf599d850df93175e",
-      "phoneNumbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "countryCode": 91,
-          "phone": "9890425946"
-        }
-      ],
-      "firstName": "Nikhil",
-      "lastName": "Manapure",
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "nikhilmshchs@gmail.com"
-        }
-      ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
-      "createdAt": "2019-01-01T17:22:38.528Z",
-      "updatedAt": "2021-01-22T10:02:42.258Z",
-      "uid": "20500281",
-      "__v": 56
-    },
-    "tags": [
-      "some-title"
-    ],
-    "_id": "6012f38557751ee8fc162cf7",
-    "created_on": {
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-      "platform": "web",
-      "meta": {
-        "browser": {
-          "name": "Chrome",
-          "version": "88.0.4324.96"
-        },
-        "os": {
-          "name": "macOS",
-          "version": "10.15.7",
-          "versionName": "Catalina"
-        },
-        "platform": {
-          "type": "desktop",
-          "vendor": "Apple"
-        },
-        "engine": {
-          "name": "Blink"
-        }
-      }
-    },
-    "source": "sales_channel",
-    "created_by": {
-      "id": "5d1363adf599d850df93175e",
-      "user": {
-        "gender": "male",
-        "accountType": "user",
-        "active": true,
-        "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-        "hasOldPasswordHash": false,
-        "_id": "5d1363adf599d850df93175e",
-        "phoneNumbers": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "countryCode": 91,
-            "phone": "9890425946"
-          }
-        ],
-        "firstName": "Nikhil",
-        "lastName": "Manapure",
-        "emails": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "email": "nikhilmshchs@gmail.com"
-          }
-        ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
-        "createdAt": "2019-01-01T17:22:38.528Z",
-        "updatedAt": "2021-01-22T10:02:42.258Z",
-        "uid": "20500281",
-        "__v": 56
-      }
-    },
-    "response_id": "6012f38457751e0fb8162cf6",
-    "category": {
-      "form": {
-        "login_required": false,
-        "should_notify": false,
-        "inputs": [
-          {
-            "required": false,
-            "type": "text",
-            "enum": [],
-            "display": "Single lineeee",
-            "key": "single-lineeee",
-            "showRegexInput": false
-          },
-          {
-            "required": false,
-            "type": "email",
-            "enum": [],
-            "display": "Email",
-            "regex": "\\S+@\\S+\\.\\S+",
-            "key": "email",
-            "showRegexInput": true
-          },
-          {
-            "required": false,
-            "type": "text",
-            "enum": [],
-            "display": "dfsdf",
-            "key": "dfsdf",
-            "showRegexInput": false
-          }
-        ],
-        "available_assignees": [
-          "5b9b98150df588546aaea6d2",
-          "5c45d78395d7504f76c2cb37"
-        ],
-        "_id": "5fd72db3dc250f8decfc61b2",
-        "title": "SOme title",
-        "description": "SOme big description",
-        "slug": "some-title",
-        "application_id": "000000000000000000000003",
-        "created_on": {
-          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-          "platform": "web",
-          "meta": {
-            "browser": {
-              "name": "Chrome",
-              "version": "87.0.4280.88"
-            },
-            "os": {
-              "name": "macOS",
-              "version": "10.15.6",
-              "versionName": "Catalina"
-            },
-            "platform": {
-              "type": "desktop",
-              "vendor": "Apple"
-            },
-            "engine": {
-              "name": "Blink"
-            }
-          }
-        },
-        "created_by": "5d1363adf599d850df93175e",
-        "createdAt": "2020-12-14T09:17:39.953Z",
-        "updatedAt": "2021-01-28T18:48:07.717Z",
-        "__v": 0
-      },
-      "key": "some-title",
-      "display": "SOme title"
-    },
-    "ticket_id": "43",
-    "createdAt": "2021-01-28T17:25:25.013Z",
-    "updatedAt": "2021-01-28T17:25:33.396Z",
-    "__v": 0,
-    "video_room_id": "6012f38557751ee8fc162cf7"
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -5531,8 +1170,8 @@ lead.getCustomForm(slug: slug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | Slug of form whose response is getting submitted | 
+| --------- | ----  | --- |  
+| slug | string? | Slug of form whose response is getting submitted |  
 
 Get specific Custom Form using it's slug, this is used to view the form.
 
@@ -5544,64 +1183,6 @@ Success
 
 
 Schema: `CustomForm`
-
-
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "login_required": false,
-    "should_notify": false,
-    "inputs": [
-      {
-        "required": false,
-        "type": "text",
-        "display": "Name",
-        "placeholder": "Please enter your name",
-        "key": "name"
-      }
-    ],
-    "available_assignees": [],
-    "_id": "5fd258a9088f957f34c288fc",
-    "title": "trail form",
-    "description": "Trail form description",
-    "slug": "trail-form",
-    "application_id": "000000000000000000000003",
-    "created_on": {
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-      "platform": "web",
-      "meta": {
-        "browser": {
-          "name": "Chrome",
-          "version": "87.0.4280.88"
-        },
-        "os": {
-          "name": "macOS",
-          "version": "10.15.6",
-          "versionName": "Catalina"
-        },
-        "platform": {
-          "type": "desktop",
-          "vendor": "Apple"
-        },
-        "engine": {
-          "name": "Blink"
-        }
-      }
-    },
-    "created_by": "5d1363adf599d850df93175e",
-    "createdAt": "2020-12-10T17:19:37.515Z",
-    "updatedAt": "2020-12-10T17:19:43.214Z",
-    "__v": 0
-  }
-}
-```
-
-
-
 
 
 
@@ -5621,8 +1202,8 @@ lead.submitCustomForm(slug: slug, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | Slug of form whose response is getting submitted | 
+| --------- | ----  | --- |  
+| slug | string? | Slug of form whose response is getting submitted |  
 
 Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
 
@@ -5634,213 +1215,6 @@ Success
 
 
 Schema: `SubmitCustomFormResponse`
-
-
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "ticket": {
-      "context": {
-        "application_id": "000000000000000000000003",
-        "company_id": "884"
-      },
-      "content": {
-        "title": "SOme title Response",
-        "description": "<b>Single lineeee</b>: asdf<br><b>Email</b>: asdf@asdf.com<br><b>dfsdf</b>: asdf<br>",
-        "attachments": []
-      },
-      "status": {
-        "display": "In Progress",
-        "color": "#ffa951",
-        "key": "in_progress"
-      },
-      "priority": {
-        "display": "Medium",
-        "color": "#f37736",
-        "key": "medium"
-      },
-      "assigned_to": {
-        "agent_id": "5d1363adf599d850df93175e",
-        "gender": "male",
-        "accountType": "user",
-        "active": true,
-        "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-        "hasOldPasswordHash": false,
-        "_id": "5d1363adf599d850df93175e",
-        "phoneNumbers": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "countryCode": 91,
-            "phone": "9890425946"
-          }
-        ],
-        "firstName": "Nikhil",
-        "lastName": "Manapure",
-        "emails": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "email": "nikhilmshchs@gmail.com"
-          }
-        ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
-        "createdAt": "2019-01-01T17:22:38.528Z",
-        "updatedAt": "2021-01-22T10:02:42.258Z",
-        "uid": "20500281",
-        "__v": 56
-      },
-      "tags": [
-        "some-title"
-      ],
-      "_id": "6012f38557751ee8fc162cf7",
-      "created_on": {
-        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-        "platform": "web",
-        "meta": {
-          "browser": {
-            "name": "Chrome",
-            "version": "88.0.4324.96"
-          },
-          "os": {
-            "name": "macOS",
-            "version": "10.15.7",
-            "versionName": "Catalina"
-          },
-          "platform": {
-            "type": "desktop",
-            "vendor": "Apple"
-          },
-          "engine": {
-            "name": "Blink"
-          }
-        }
-      },
-      "source": "sales_channel",
-      "created_by": {
-        "id": "5d1363adf599d850df93175e",
-        "user": {
-          "gender": "male",
-          "accountType": "user",
-          "active": true,
-          "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-          "hasOldPasswordHash": false,
-          "_id": "5d1363adf599d850df93175e",
-          "phoneNumbers": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "countryCode": 91,
-              "phone": "9890425946"
-            }
-          ],
-          "firstName": "Nikhil",
-          "lastName": "Manapure",
-          "emails": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "email": "nikhilmshchs@gmail.com"
-            }
-          ],
-          "username": "nikhilmshchs_gmail_com_38425_20500281",
-          "createdAt": "2019-01-01T17:22:38.528Z",
-          "updatedAt": "2021-01-22T10:02:42.258Z",
-          "uid": "20500281",
-          "__v": 56
-        }
-      },
-      "response_id": "6012f38457751e0fb8162cf6",
-      "category": {
-        "form": {
-          "login_required": false,
-          "should_notify": false,
-          "inputs": [
-            {
-              "required": false,
-              "type": "text",
-              "enum": [],
-              "display": "Single lineeee",
-              "key": "single-lineeee",
-              "showRegexInput": false
-            },
-            {
-              "required": false,
-              "type": "email",
-              "enum": [],
-              "display": "Email",
-              "regex": "\\S+@\\S+\\.\\S+",
-              "key": "email",
-              "showRegexInput": true
-            },
-            {
-              "required": false,
-              "type": "text",
-              "enum": [],
-              "display": "dfsdf",
-              "key": "dfsdf",
-              "showRegexInput": false
-            }
-          ],
-          "available_assignees": [
-            "5b9b98150df588546aaea6d2",
-            "5c45d78395d7504f76c2cb37"
-          ],
-          "_id": "5fd72db3dc250f8decfc61b2",
-          "title": "SOme title",
-          "description": "SOme big description",
-          "slug": "some-title",
-          "application_id": "000000000000000000000003",
-          "created_on": {
-            "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-            "platform": "web",
-            "meta": {
-              "browser": {
-                "name": "Chrome",
-                "version": "87.0.4280.88"
-              },
-              "os": {
-                "name": "macOS",
-                "version": "10.15.6",
-                "versionName": "Catalina"
-              },
-              "platform": {
-                "type": "desktop",
-                "vendor": "Apple"
-              },
-              "engine": {
-                "name": "Blink"
-              }
-            }
-          },
-          "created_by": "5d1363adf599d850df93175e",
-          "createdAt": "2020-12-14T09:17:39.953Z",
-          "updatedAt": "2021-01-28T18:48:07.717Z",
-          "__v": 0
-        },
-        "key": "some-title",
-        "display": "SOme title"
-      },
-      "ticket_id": "43",
-      "createdAt": "2021-01-28T17:25:25.013Z",
-      "updatedAt": "2021-01-28T17:25:33.396Z",
-      "__v": 0,
-      "video_room_id": "6012f38557751ee8fc162cf7"
-    }
-  }
-}
-```
-
-
-
 
 
 
@@ -5860,8 +1234,8 @@ lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) 
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uniqueName | string | Unique name of Video Room | 
+| --------- | ----  | --- |  
+| uniqueName | string? | Unique name of Video Room |  
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
@@ -5873,22 +1247,6 @@ Success
 
 
 Schema: `GetParticipantsInsideVideoRoomResponse`
-
-
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "participants": []
-  }
-}
-```
-
-
-
 
 
 
@@ -5908,8 +1266,8 @@ lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uniqueName | string | Unique name of Video Room | 
+| --------- | ----  | --- |  
+| uniqueName | string? | Unique name of Video Room |  
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
@@ -5921,22 +1279,6 @@ Success
 
 
 Schema: `GetTokenForVideoRoomResponse`
-
-
-*Examples:*
-
-
-Default
-```json
-{
-  "value": {
-    "access_token": "your_token_to_the_room"
-  }
-}
-```
-
-
-
 
 
 
@@ -5977,20 +1319,6 @@ A JSON object of theme
 Schema: `ThemesSchema`
 
 
-*Examples:*
-
-
-Applied Theme
-```json
-{
-  "$ref": "#/components/examples/Themes"
-}
-```
-
-
-
-
-
 
 
 
@@ -6006,13 +1334,7 @@ Schema: `BlitzkriegApiError`
 
 
 
-
-
-
 Schema: `BlitzkriegApiError`
-
-
-
 
 
 
@@ -6032,8 +1354,8 @@ theme.getThemeForPreview(themeId: themeId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| themeId | string | ID of the theme to be retrieved | 
+| --------- | ----  | --- |  
+| themeId | string? | ID of the theme to be retrieved |  
 
 
 
@@ -6047,20 +1369,6 @@ A JSON object of theme
 Schema: `ThemesSchema`
 
 
-*Examples:*
-
-
-Preview Theme
-```json
-{
-  "$ref": "#/components/examples/Themes"
-}
-```
-
-
-
-
-
 
 
 
@@ -6076,13 +1384,7 @@ Schema: `BlitzkriegApiError`
 
 
 
-
-
-
 Schema: `BlitzkriegApiError`
-
-
-
 
 
 
@@ -6123,20 +1425,6 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
 
 
 
@@ -6152,13 +1440,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6192,20 +1474,6 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
 
 
 
@@ -6221,13 +1489,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6261,20 +1523,6 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
 
 
 
@@ -6290,13 +1538,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6330,20 +1572,6 @@ A JSON object with user details
 Schema: `AuthSuccess`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/AuthSuccess"
-}
-```
-
-
-
-
-
 
 
 
@@ -6359,13 +1587,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6385,8 +1607,8 @@ user.loginWithOTP(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to login or register with OTP
 
@@ -6400,20 +1622,6 @@ Used to login or register with OTP
 Schema: `SendOtpResponse`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/SendOtpResponse"
-}
-```
-
-
-
-
-
 
 
 
@@ -6429,13 +1637,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6469,20 +1671,6 @@ Used to login or register with email & password
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -6498,13 +1686,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6524,8 +1706,8 @@ user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) 
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to reset account password
 
@@ -6545,9 +1727,6 @@ Schema: `ResetPasswordSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -6557,13 +1736,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6597,20 +1770,6 @@ user.forgotPassword(body: body) { (response, error) in
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -6626,13 +1785,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6672,9 +1825,6 @@ Schema: `ResetPasswordSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -6684,13 +1834,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6724,20 +1868,6 @@ Login/Register with token
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -6753,9 +1883,6 @@ Schema: `[String: Any]`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -6765,13 +1892,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6791,8 +1912,8 @@ user.registerWithForm(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Register using form
 
@@ -6812,9 +1933,6 @@ Schema: `RegisterFormSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -6824,13 +1942,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6870,9 +1982,6 @@ Schema: `VerifyEmailSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -6882,13 +1991,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6928,9 +2031,6 @@ Schema: `VerifyEmailSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -6940,13 +2040,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -6986,9 +2080,6 @@ Schema: `HasPasswordSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -6998,13 +2089,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7044,9 +2129,6 @@ Schema: `VerifyEmailSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -7056,13 +2138,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7102,9 +2178,6 @@ Schema: `LogoutSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -7114,13 +2187,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7140,8 +2207,8 @@ user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to send otp to mobile
 
@@ -7161,9 +2228,6 @@ Schema: `OtpSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -7173,13 +2237,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7199,8 +2257,8 @@ user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to verify otp sent to mobile
 
@@ -7214,20 +2272,6 @@ Used to verify otp sent to mobile
 Schema: `VerifyOtpSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
 
 
 
@@ -7243,13 +2287,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7269,8 +2307,8 @@ user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to send otp to email
 
@@ -7290,9 +2328,6 @@ Schema: `EmailOtpSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -7302,13 +2337,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7328,8 +2357,8 @@ user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to verify otp sent to email
 
@@ -7343,20 +2372,6 @@ Used to verify otp sent to email
 Schema: `VerifyOtpSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
 
 
 
@@ -7372,13 +2387,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7412,20 +2421,6 @@ Used to get logged in user details
 Schema: `UserSchema`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/UserExample"
-}
-```
-
-
-
-
-
 
 
 
@@ -7441,13 +2436,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7487,9 +2476,6 @@ Schema: `SessionListSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -7499,13 +2485,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7525,8 +2505,8 @@ user.getPlatformConfig(name: name) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| name | string | Name | 
+| --------- | ----  | --- |  
+| name | string? | Name |  
 
 Used to get platform config
 
@@ -7546,9 +2526,6 @@ Schema: `PlatformSchema`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -7558,13 +2535,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7584,8 +2555,8 @@ user.updateProfile(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to update profile
 
@@ -7599,20 +2570,6 @@ Used to update profile
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -7628,13 +2585,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7654,8 +2605,8 @@ user.addMobileNumber(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to add new mobile number to profile
 
@@ -7669,20 +2620,6 @@ A JSON object with user details
 Schema: `VerifyMobileOTPSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
 
 
 
@@ -7698,13 +2635,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7724,13 +2655,13 @@ user.deleteMobileNumber(platform: platform, active: active, primary: primary, ve
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-| active | boolean | Active mobile number | 
-| primary | boolean | Primary number | 
-| verified | boolean | Verified Number | 
-| countryCode | string | Country code of phone number | 
-| phone | string | Phone number | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |    
+| active | boolean? | Active mobile number |    
+| primary | boolean? | Primary number |    
+| verified | boolean? | Verified Number |    
+| countryCode | string? | Country code of phone number |    
+| phone | string? | Phone number |  
 
 Used to delete mobile number from profile
 
@@ -7744,20 +2675,6 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -7773,13 +2690,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7813,20 +2724,6 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -7842,13 +2739,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7868,8 +2759,8 @@ user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, e
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to send verification link to a mobile number
 
@@ -7883,20 +2774,6 @@ Used to send verification link to a mobile number
 Schema: `SendMobileVerifyLinkSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/VerifyMobileOTP"
-}
-```
-
-
-
-
-
 
 
 
@@ -7912,13 +2789,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -7938,8 +2809,8 @@ user.addEmail(platform: platform, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to add new email to profile
 
@@ -7953,20 +2824,6 @@ A JSON object with user details
 Schema: `VerifyEmailOTPSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/VerifyEmailOTP"
-}
-```
-
-
-
-
-
 
 
 
@@ -7982,13 +2839,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -8008,12 +2859,12 @@ user.deleteEmail(platform: platform, active: active, primary: primary, verified:
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
-| active | boolean | Whether email id is active | 
-| primary | boolean | Whether email id is primary email | 
-| verified | boolean | Whether email id is verified | 
-| email | string | Email ID to be deleted | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |    
+| active | boolean? | Whether email id is active |    
+| primary | boolean? | Whether email id is primary email |    
+| verified | boolean? | Whether email id is verified |    
+| email | string? | Email ID to be deleted |  
 
 Used to delete email from profile
 
@@ -8027,20 +2878,6 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -8056,13 +2893,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -8096,20 +2927,6 @@ A JSON object with user details
 Schema: `LoginSuccess`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/UserExampleObject"
-}
-```
-
-
-
-
-
 
 
 
@@ -8125,13 +2942,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -8151,8 +2962,8 @@ user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, er
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| platform | string | Platform | 
+| --------- | ----  | --- |  
+| platform | string? | Platform |  
 
 Used to sent verification to an email
 
@@ -8172,9 +2983,6 @@ Schema: `SendEmailVerifyLinkSuccess`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
 
 
@@ -8184,13 +2992,7 @@ Schema: `AuthenticationApiError`
 
 
 
-
-
-
 Schema: `AuthenticationApiError`
-
-
-
 
 
 
@@ -8231,31 +3033,6 @@ Announcement api response. announcements object contains page slug name as prope
 Schema: `AnnouncementsResponseSchema`
 
 
-*Examples:*
-
-
-Announcements enabled
-```json
-{
-  "$ref": "#/components/examples/AnnouncementEnabledExample"
-}
-```
-
-No Announcement enabled
-```json
-{
-  "value": {
-    "announcements": {},
-    "refresh_rate": 900,
-    "refresh_pages": []
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -8265,20 +3042,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -8286,20 +3049,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8319,8 +3068,8 @@ content.getBlog(slug: slug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+| --------- | ----  | --- |  
+| slug | string? | The `slug` of a blog. Use this parameter to retrieve a particular blog |  
 
 Use this API to fetch a blog using `slug`
 
@@ -8334,20 +3083,6 @@ A JSON object with blog details
 Schema: `CustomBlogSchema`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/CustomBlog"
-}
-```
-
-
-
-
-
 
 
 
@@ -8357,20 +3092,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -8378,20 +3099,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8425,20 +3132,6 @@ Success
 Schema: `FaqResponseSchema`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/AppFaqs"
-}
-```
-
-
-
-
-
 
 
 
@@ -8448,20 +3141,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -8469,20 +3148,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8519,27 +3184,10 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
-
-
-
 Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8549,20 +3197,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8582,8 +3216,8 @@ content.getFaqByIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| idOrSlug | string | Slug or Id of FAQ | 
+| --------- | ----  | --- |  
+| idOrSlug | string? | Slug or Id of FAQ |  
 
 Get frequently asked questions list. These will be helpful for users to using website.
 
@@ -8600,27 +3234,10 @@ Schema: `FaqSchema`
 
 
 
-
-
-
 Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8630,20 +3247,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8663,8 +3266,8 @@ content.getFaqCategoryBySlugOrId(idOrSlug: idOrSlug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| idOrSlug | string | Slug or Id of FAQ Category | 
+| --------- | ----  | --- |  
+| idOrSlug | string? | Slug or Id of FAQ Category |  
 
 Get FAQ category by slug or id
 
@@ -8681,27 +3284,10 @@ Schema: `GetFaqCategoryByIdOrSlugSchema`
 
 
 
-
-
-
 Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8711,20 +3297,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8744,8 +3316,8 @@ content.getFaqsByCategoryIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| idOrSlug | string | Faq category ID or slug | 
+| --------- | ----  | --- |  
+| idOrSlug | string? | Faq category ID or slug |  
 
 Get FAQs of a Faq Category `id` or `slug`
 
@@ -8762,27 +3334,10 @@ Schema: `GetFaqSchema`
 
 
 
-
-
-
 Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8792,20 +3347,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8839,20 +3380,6 @@ A JSON object with landing details
 Schema: `LandingPageSchema`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/LandingPageResponse"
-}
-```
-
-
-
-
-
 
 
 
@@ -8862,20 +3389,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -8883,20 +3396,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -8930,20 +3429,6 @@ Success
 Schema: `ApplicationLegal`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/Legal"
-}
-```
-
-
-
-
-
 
 
 
@@ -8953,20 +3438,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -8974,20 +3445,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9007,9 +3464,9 @@ content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| --------- | ----  | --- |  
+| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
+| pageSize | integer? | Number of items to retrieve in each page. |  
 
 Use this API to fetch navigations
 
@@ -9023,20 +3480,6 @@ A JSON object with navigation details
 Schema: `NavigationGetResponse`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/NavigationGetResponse"
-}
-```
-
-
-
-
-
 
 
 
@@ -9046,20 +3489,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -9067,20 +3496,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9100,8 +3515,8 @@ content.getPage(slug: slug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+| --------- | ----  | --- |  
+| slug | string? | The `slug` of a page. Use this parameter to retrieve a particular page |  
 
 Use this API to fetch a custom page using `slug`
 
@@ -9115,20 +3530,6 @@ A JSON object with page details
 Schema: `CustomPageSchema`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/PageResponse"
-}
-```
-
-
-
-
-
 
 
 
@@ -9138,20 +3539,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -9159,20 +3546,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9206,20 +3579,6 @@ Success
 Schema: `SeoComponent`
 
 
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/Seo"
-}
-```
-
-
-
-
-
 
 
 
@@ -9229,20 +3588,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -9250,20 +3595,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9283,8 +3614,8 @@ content.getSlideshow(slug: slug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+| --------- | ----  | --- |  
+| slug | string? | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow |  
 
 Use this API to fetch a slideshow using `slug`
 
@@ -9298,20 +3629,6 @@ A JSON object with slideshow details
 Schema: `SlideshowSchema`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/SlideshowResponse"
-}
-```
-
-
-
-
-
 
 
 
@@ -9321,20 +3638,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -9342,20 +3645,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9389,20 +3678,6 @@ Success
 Schema: `Support`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Support"
-}
-```
-
-
-
-
-
 
 
 
@@ -9412,20 +3687,6 @@ Failed
 Schema: `APIError`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
 
 
 
@@ -9433,20 +3694,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9483,27 +3730,10 @@ Schema: `TagsSchema`
 
 
 
-
-
-
 Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9513,20 +3743,6 @@ Failed
 
 
 Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
 
 
 
@@ -9567,20 +3783,6 @@ Success
 Schema: `CommunicationConsent`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/CommunicationConsent"
-}
-```
-
-
-
-
-
 
 
 
@@ -9612,20 +3814,6 @@ Success
 Schema: `CommunicationConsentRes`
 
 
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/CommunicationConsentRes"
-}
-```
-
-
-
-
-
 
 
 
@@ -9633,9 +3821,6 @@ Bad request
 
 
 Schema: `BadRequest`
-
-
-
 
 
 
@@ -9669,34 +3854,6 @@ Success
 Schema: `PushtokenRes`
 
 
-*Examples:*
-
-
-create
-```json
-{
-  "$ref": "#/components/examples/PushtokenResponseCreate"
-}
-```
-
-update
-```json
-{
-  "$ref": "#/components/examples/PushtokenResponseUpdate"
-}
-```
-
-reset
-```json
-{
-  "$ref": "#/components/examples/PushtokenResponseReset"
-}
-```
-
-
-
-
-
 
 
 
@@ -9704,9 +3861,6 @@ Bad request
 
 
 Schema: `BadRequest`
-
-
-
 
 
 
@@ -9751,9 +3905,6 @@ Schema: `QRCodeResp`
 
 
 
-
-
-
 ---
 
 
@@ -9767,8 +3918,8 @@ share.getProductQRCodeBySlug(slug: slug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a product | 
+| --------- | ----  | --- |  
+| slug | string? | The unique identifier of a product |  
 
 Create product QR Code
 
@@ -9785,16 +3936,10 @@ Schema: `QRCodeResp`
 
 
 
-
-
-
 Error
 
 
 Schema: `ErrorRes`
-
-
-
 
 
 
@@ -9814,8 +3959,8 @@ share.getCollectionQRCodeBySlug(slug: slug) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The unique identifier of a collection | 
+| --------- | ----  | --- |  
+| slug | string? | The unique identifier of a collection |  
 
 Create collection QR Code
 
@@ -9832,16 +3977,10 @@ Schema: `QRCodeResp`
 
 
 
-
-
-
 Error
 
 
 Schema: `ErrorRes`
-
-
-
 
 
 
@@ -9861,8 +4000,8 @@ share.getUrlQRCode(url: url) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| url | string | Url | 
+| --------- | ----  | --- |  
+| url | string? | Url |  
 
 Create url QR Code
 
@@ -9879,16 +4018,10 @@ Schema: `QRCodeResp`
 
 
 
-
-
-
 Error
 
 
 Schema: `ErrorRes`
-
-
-
 
 
 
@@ -9925,16 +4058,10 @@ Schema: `ShortLinkRes`
 
 
 
-
-
-
 Error
 
 
 Schema: `ErrorRes`
-
-
-
 
 
 
@@ -9954,8 +4081,8 @@ share.getShortLinkByHash(hash: hash) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| hash | string | Hash of short link | 
+| --------- | ----  | --- |  
+| hash | string? | Hash of short link |  
 
 Get short link by hash
 
@@ -9972,16 +4099,10 @@ Schema: `ShortLinkRes`
 
 
 
-
-
-
 Error
 
 
 Schema: `ErrorRes`
-
-
-
 
 
 
@@ -10001,8 +4122,8 @@ share.getOriginalShortLinkByHash(hash: hash) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| hash | string | Hash of short link | 
+| --------- | ----  | --- |  
+| hash | string? | Hash of short link |  
 
 Get original link by hash
 
@@ -10019,16 +4140,10 @@ Schema: `ShortLinkRes`
 
 
 
-
-
-
 Error
 
 
 Schema: `ErrorRes`
-
-
-
 
 
 
@@ -10055,8 +4170,8 @@ filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
+| --------- | ----  | --- |  
+| namespace | string? | bucket name |  
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -10091,16 +4206,10 @@ Schema: `StartResponse`
 
 
 
-
-
-
 Failed
 
 
 Schema: `FailedResponse`
-
-
-
 
 
 
@@ -10120,8 +4229,8 @@ filestorage.completeUpload(namespace: namespace, body: body) { (response, error)
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
+| --------- | ----  | --- |  
+| namespace | string? | bucket name |  
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -10156,16 +4265,10 @@ Schema: `CompleteResponse`
 
 
 
-
-
-
 Failed
 
 
 Schema: `FailedResponse`
-
-
-
 
 
 
@@ -10209,16 +4312,10 @@ Schema: `Application`
 
 
 
-
-
-
 Not found
 
 
 Schema: `NotFound`
-
-
-
 
 
 
@@ -10256,9 +4353,6 @@ Schema: `ApplicationAboutResponse`
 
 
 
-
-
-
 ---
 
 
@@ -10284,9 +4378,6 @@ Success
 
 
 Schema: `ApplicationDetail`
-
-
-
 
 
 
@@ -10324,9 +4415,6 @@ Schema: `TokenResponse`
 
 
 
-
-
-
 ---
 
 
@@ -10340,10 +4428,10 @@ configuration.getOrderingStores(pageNo: pageNo, pageSize: pageSize, q: q) { (res
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| q | string | Search ordering store by name or store code | 
+| --------- | ----  | --- |  
+| pageNo | integer? | Current page no |    
+| pageSize | integer? | Current request items count |    
+| q | string? | Search ordering store by name or store code |  
 
 Get deployment meta stores.
 
@@ -10360,16 +4448,10 @@ Schema: `OrderingStores`
 
 
 
-
-
-
 Not found
 
 
 Schema: `NotFound`
-
-
-
 
 
 
@@ -10406,16 +4488,10 @@ Schema: `AppFeatureResponse`
 
 
 
-
-
-
 Not found
 
 
 Schema: `NotFound`
-
-
-
 
 
 
@@ -10453,9 +4529,6 @@ Schema: `ApplicationInformation`
 
 
 
-
-
-
 ---
 
 
@@ -10487,9 +4560,6 @@ Schema: `CurrenciesResponse`
 
 
 
-
-
-
 ---
 
 
@@ -10503,8 +4573,8 @@ configuration.getCurrencyById(id: id) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | string | Currency object id | 
+| --------- | ----  | --- |  
+| id | string? | Currency object id |  
 
 Get currency object with symbol and name information by id.
 
@@ -10516,9 +4586,6 @@ Success response
 
 
 Schema: `Currency`
-
-
-
 
 
 
@@ -10556,9 +4623,6 @@ Schema: `LanguageResponse`
 
 
 
-
-
-
 ---
 
 
@@ -10589,16 +4653,10 @@ Schema: `SuccessMessageResponse`
 
 
 
-
-
-
 Success
 
 
 Schema: `NotFound`
-
-
-
 
 
 
@@ -10636,9 +4694,6 @@ Schema: `SuccessMessageResponse`
 
 
 
-
-
-
 ---
 
 
@@ -10652,10 +4707,10 @@ configuration.getAppStaffs(orderIncent: orderIncent, orderingStore: orderingStor
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderIncent | boolean | This is to check which staff members are applicable for order incentives. | 
-| orderingStore | integer | This is to filter staff members from only selected ordering store. | 
-| user | string | Get single staff member details using staff user mongo id | 
+| --------- | ----  | --- |  
+| orderIncent | boolean? | This is to check which staff members are applicable for order incentives. |    
+| orderingStore | integer? | This is to filter staff members from only selected ordering store. |    
+| user | string? | Get single staff member details using staff user mongo id |  
 
 Get a staff list based on the user's session token passed in the header.
 
@@ -10672,16 +4727,10 @@ Schema: `AppStaffResponse`
 
 
 
-
-
-
 Request failed with internal server error.
 
 
 Schema: `UnhandledError`
-
-
-
 
 
 
@@ -10708,9 +4757,9 @@ payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| xApiToken | string | api token | 
-| refresh | boolean | refresh cache | 
+| --------- | ----  | --- |  
+| xApiToken | string? | api token |    
+| refresh | boolean? | refresh cache |  
 
 Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
 
@@ -10727,9 +4776,6 @@ Schema: `AggregatorsConfigDetailResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -10739,16 +4785,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -10785,9 +4825,6 @@ Schema: `AttachCardsResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -10797,16 +4834,10 @@ Schema: `[String: Any]`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `[String: Any]`
-
-
-
 
 
 
@@ -10826,8 +4857,8 @@ payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| refresh | boolean |  | 
+| --------- | ----  | --- |  
+| refresh | boolean? |  |  
 
 Fetch active payment gateway along with customer id for cards payments.
 
@@ -10844,9 +4875,6 @@ Schema: `ActiveCardPaymentGatewayResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -10856,16 +4884,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -10885,8 +4907,8 @@ payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| forceRefresh | boolean |  | 
+| --------- | ----  | --- |  
+| forceRefresh | boolean? |  |  
 
 Fetch the list of saved cards of user from active payment gateway.
 
@@ -10903,9 +4925,6 @@ Schema: `ListCardsResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -10915,16 +4934,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -10961,9 +4974,6 @@ Schema: `DeleteCardsResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -10973,16 +4983,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11019,9 +5023,6 @@ Schema: `ValidateCustomerResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -11031,16 +5032,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11077,9 +5072,6 @@ Schema: `ChargeCustomerResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -11089,16 +5081,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11135,9 +5121,6 @@ Schema: `PaymentInitializationResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -11147,16 +5130,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11193,9 +5170,6 @@ Schema: `PaymentStatusUpdateResponse`
 
 
 
-
-
-
 Bad request error
 
 
@@ -11205,16 +5179,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11234,14 +5202,14 @@ payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, c
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| amount | integer | Payment amount | 
-| cartId | string | Cart id | 
-| pincode | string | Pincode | 
-| checkoutMode | string | Checkout mode | 
-| refresh | boolean |  | 
-| assignCardId | string | selected card id | 
-| userDetails | string | URIencoded json annonymous user | 
+| --------- | ----  | --- |  
+| amount | integer? | Payment amount |    
+| cartId | string? | Cart id |    
+| pincode | string? | Pincode |    
+| checkoutMode | string? | Checkout mode |    
+| refresh | boolean? |  |    
+| assignCardId | string? | selected card id |    
+| userDetails | string? | URIencoded json annonymous user |  
 
 Use this API to get Get All Valid Payment Options for making payment
 
@@ -11258,9 +5226,6 @@ Schema: `PaymentModeRouteResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11270,16 +5235,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11299,15 +5258,15 @@ payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| amount | integer | Payment amount | 
-| cartId | string | Cart id | 
-| pincode | string | Pincode | 
-| checkoutMode | string | Checkout mode | 
-| refresh | boolean |  | 
-| assignCardId | string | selected card id | 
-| orderType | string | Order type | 
-| userDetails | string | URIencoded json annonymous user | 
+| --------- | ----  | --- |  
+| amount | integer? | Payment amount |    
+| cartId | string? | Cart id |    
+| pincode | string? | Pincode |    
+| checkoutMode | string? | Checkout mode |    
+| refresh | boolean? |  |    
+| assignCardId | string? | selected card id |    
+| orderType | string? | Order type |    
+| userDetails | string? | URIencoded json annonymous user |  
 
 Use this API to get Get All Valid Payment Options for making payment
 
@@ -11324,9 +5283,6 @@ Schema: `PaymentModeRouteResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11336,16 +5292,10 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11365,8 +5315,8 @@ payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderId | string |  | 
+| --------- | ----  | --- |  
+| orderId | string? |  |  
 
 Get all active  beneficiary details added by the user for refund
 
@@ -11383,9 +5333,6 @@ Schema: `OrderBeneficiaryResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11395,16 +5342,10 @@ Schema: `NotFoundResourceError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11424,8 +5365,8 @@ payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| ifscCode | string |  | 
+| --------- | ----  | --- |  
+| ifscCode | string? |  |  
 
 Get True/False for correct IFSC Code for adding bank details for refund
 
@@ -11442,9 +5383,6 @@ Schema: `IfscCodeResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11454,16 +5392,10 @@ Schema: `NotFoundResourceError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ErrorCodeDescription`
-
-
-
 
 
 
@@ -11483,8 +5415,8 @@ payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderId | string |  | 
+| --------- | ----  | --- |  
+| orderId | string? |  |  
 
 Get all active  beneficiary details added by the user for refund
 
@@ -11501,9 +5433,6 @@ Schema: `OrderBeneficiaryResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11513,16 +5442,10 @@ Schema: `NotFoundResourceError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11559,9 +5482,6 @@ Schema: `AddBeneficiaryViaOtpVerificationResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11571,16 +5491,10 @@ Schema: `WrongOtpError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11617,9 +5531,6 @@ Schema: `RefundAccountResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11629,16 +5540,10 @@ Schema: `NotFoundResourceError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11675,9 +5580,6 @@ Schema: `WalletOtpResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11687,16 +5589,10 @@ Schema: `NotFoundResourceError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11733,9 +5629,6 @@ Schema: `SetDefaultBeneficiaryResponse`
 
 
 
-
-
-
 Bad Request Error
 
 
@@ -11745,16 +5638,10 @@ Schema: `SetDefaultBeneficiaryResponse`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
-
-
-
 
 
 
@@ -11781,11 +5668,11 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | string | Current page number | 
-| pageSize | string | Page limit | 
-| fromDate | string | From Date | 
-| toDate | string | To Date | 
+| --------- | ----  | --- |  
+| pageNo | string? | Current page number |    
+| pageSize | string? | Page limit |    
+| fromDate | string? | From Date |    
+| toDate | string? | To Date |  
 
 Get Orders
 
@@ -11802,9 +5689,6 @@ Schema: `OrderList`
 
 
 
-
-
-
 API Error
 
 
@@ -11814,16 +5698,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -11843,8 +5721,8 @@ order.getOrderById(orderId: orderId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderId | string | Order Id | 
+| --------- | ----  | --- |  
+| orderId | string? | Order Id |  
 
 Get Order By Fynd Order Id
 
@@ -11861,9 +5739,6 @@ Schema: `OrderById`
 
 
 
-
-
-
 API Error
 
 
@@ -11873,16 +5748,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -11902,8 +5771,8 @@ order.getShipmentById(shipmentId: shipmentId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| --------- | ----  | --- |  
+| shipmentId | string? | Shipment Id |  
 
 Get Shipment
 
@@ -11920,9 +5789,6 @@ Schema: `ShipmentById`
 
 
 
-
-
-
 API Error
 
 
@@ -11932,16 +5798,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -11961,8 +5821,8 @@ order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| --------- | ----  | --- |  
+| shipmentId | string? | Shipment Id |  
 
 Get Shipment Reasons
 
@@ -11979,9 +5839,6 @@ Schema: `ShipmentReasons`
 
 
 
-
-
-
 API Error
 
 
@@ -11991,16 +5848,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -12020,8 +5871,8 @@ order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, erro
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| --------- | ----  | --- |  
+| shipmentId | string? | Shipment Id |  
 
 Update Shipment Status
 
@@ -12038,9 +5889,6 @@ Schema: `ShipmentStatusUpdate`
 
 
 
-
-
-
 API Error
 
 
@@ -12050,16 +5898,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -12079,8 +5921,8 @@ order.trackShipment(shipmentId: shipmentId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| --------- | ----  | --- |  
+| shipmentId | string? | Shipment Id |  
 
 Shipment Track
 
@@ -12097,9 +5939,6 @@ Schema: `ShipmentTrack`
 
 
 
-
-
-
 API Error
 
 
@@ -12109,16 +5948,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -12138,8 +5971,8 @@ order.getPosOrderById(orderId: orderId) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderId | string | Order Id | 
+| --------- | ----  | --- |  
+| orderId | string? | Order Id |  
 
 Get Order By Fynd Order Id
 
@@ -12156,16 +5989,10 @@ Schema: `PosOrderById`
 
 
 
-
-
-
 API Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -12181,9 +6008,6 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 ---
 
 
@@ -12191,14 +6015,14 @@ Schema: `ApefaceApiError`
 ---
 
 
-## Feedback
+## Rewards
 
 
-#### createAbuseReport
-post a new abuse request
+#### getPointsOnProduct
+Get reward points that could be earned on any catalogue product.
 
 ```swift
-feedback.createAbuseReport(body: body) { (response, error) in
+rewards.getPointsOnProduct(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12206,7 +6030,7 @@ feedback.createAbuseReport(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Report a new abuse for specific entity with description text.
+Evaluate the amount of reward points that could be earned on any catalogue product.
 
 *Success Response:*
 
@@ -12215,10 +6039,7 @@ Report a new abuse for specific entity with description text.
 ok
 
 
-Schema: `InsertResponse`
-
-
-
+Schema: `CatalogueOrderResponse`
 
 
 
@@ -12227,10 +6048,7 @@ Schema: `InsertResponse`
 Bad request
 
 
-Schema: `ErrorResponse`
-
-
-
+Schema: `Error`
 
 
 
@@ -12240,11 +6058,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAbuseReport
-Update abuse details
+#### getOrderDiscount
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
 ```swift
-feedback.updateAbuseReport(body: body) { (response, error) in
+rewards.getOrderDiscount(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12252,7 +6070,7 @@ feedback.updateAbuseReport(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update the abuse details like status and description text.
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
 *Success Response:*
 
@@ -12261,10 +6079,7 @@ Update the abuse details like status and description text.
 ok
 
 
-Schema: `UpdateResponse`
-
-
-
+Schema: `OrderDiscountResponse`
 
 
 
@@ -12273,10 +6088,7 @@ Schema: `UpdateResponse`
 Bad request
 
 
-Schema: `ErrorResponse`
-
-
-
+Schema: `Error`
 
 
 
@@ -12286,24 +6098,19 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAbuseReports
-Get list of abuse data
+#### getUserPoints
+Total available points of a user for current application
 
 ```swift
-feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+rewards.getUserPoints() { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityId | string | entity id | 
-| entityType | string | entity type | 
-| id | string | abuse id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
 
-Get the list of abuse data from entity type and entity ID.
+Total available points of a user for current application
 
 *Success Response:*
 
@@ -12312,10 +6119,7 @@ Get the list of abuse data from entity type and entity ID.
 ok
 
 
-Schema: `ReportAbuseGetResponse`
-
-
-
+Schema: `PointsResponse`
 
 
 
@@ -12324,10 +6128,7 @@ Schema: `ReportAbuseGetResponse`
 Bad request
 
 
-Schema: `ErrorResponse`
-
-
-
+Schema: `Error`
 
 
 
@@ -12337,19 +6138,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAttributes
-Get list of attribute data
+#### getUserPointsHistory
+Get list of points transactions.
 
 ```swift
-feedback.getAttributes() { (response, error) in
+rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
+| --------- | ----  | --- |  
+| pageId | string? | PageID is the ID of the requested page. For first request it should be kept empty. |    
+| pageSize | integer? | PageSize is the number of requested items in response. |  
 
-Provides a list of all attribute data.
+Get list of points transactions.
+The list of points history is paginated.
 
 *Success Response:*
 
@@ -12358,10 +6162,7 @@ Provides a list of all attribute data.
 ok
 
 
-Schema: `AttributeResponse`
-
-
-
+Schema: `PointsHistoryResponse`
 
 
 
@@ -12370,10 +6171,7 @@ Schema: `AttributeResponse`
 Bad request
 
 
-Schema: `ErrorResponse`
-
-
-
+Schema: `Error`
 
 
 
@@ -12383,11 +6181,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createAttribute
-Add a new attribute request
+#### getUserReferralDetails
+User's referral details.
 
 ```swift
-feedback.createAttribute(body: body) { (response, error) in
+rewards.getUserReferralDetails() { (response, error) in
     // Use response
 }
 ```
@@ -12395,7 +6193,7 @@ feedback.createAttribute(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Add a new attribute with its name, slug and description.
+User's referral details.
 
 *Success Response:*
 
@@ -12404,10 +6202,7 @@ Add a new attribute with its name, slug and description.
 ok
 
 
-Schema: `InsertResponse`
-
-
-
+Schema: `ReferralDetailsResponse`
 
 
 
@@ -12416,10 +6211,7 @@ Schema: `InsertResponse`
 Bad request
 
 
-Schema: `ErrorResponse`
-
-
-
+Schema: `Error`
 
 
 
@@ -12429,20 +6221,19 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAttribute
-Get single attribute data
+#### redeemReferralCode
+Redeems referral code and credits points to users points account.
 
 ```swift
-feedback.getAttribute(slug: slug) { (response, error) in
+rewards.redeemReferralCode(body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Slug of attribute | 
 
-Get a single attribute data from a given slug.
+Redeems referral code and credits points to users points account.
 
 *Success Response:*
 
@@ -12451,57 +6242,7 @@ Get a single attribute data from a given slug.
 ok
 
 
-Schema: `Attribute`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAttribute
-Update attribute details
-
-```swift
-feedback.updateAttribute(slug: slug, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | Slug of attribute | 
-
-Update the attribute's name and description.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
+Schema: `RedeemReferralCodeResponse`
 
 
 
@@ -12510,928 +6251,7 @@ Schema: `UpdateResponse`
 Bad request
 
 
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createComment
-post a new comment
-
-```swift
-feedback.createComment(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to add a new comment for specific entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateComment
-Update comment status
-
-```swift
-feedback.updateComment(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update the comment status (active/approve) or text.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComments
-Get list of comments
-
-```swift
-feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| id | string | comment id | 
-| entityId | string | entity id | 
-| userId | string | user id - flag/filter to get comments for user | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-Get the list of comments from specific entity type.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `CommentGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### checkEligibility
-Checks eligibility and cloud media config
-
-```swift
-feedback.checkEligibility(entityType: entityType, entityId: entityId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-
-Checks eligibility to rate and review and cloud media configuration
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `CheckEligibilityResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteMedia
-Delete Media
-
-```swift
-feedback.deleteMedia() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Delete Media for the given entity IDs.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createMedia
-Add Media
-
-```swift
-feedback.createMedia(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Add Media list for specific entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateMedia
-Update Media
-
-```swift
-feedback.updateMedia(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update Media (archive/approve) for the given entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getMedias
-Get Media
-
-```swift
-feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | vote id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-Get Media from the given entity type and entity ID.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `MediaGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getReviewSummaries
-Get a review summary
-
-```swift
-feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | review summary identifier | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-Review summary gives ratings and attribute metrics of a review per entity
-It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
-
-*Success Response:*
-
-
-
-success
-
-
-Schema: `RatingGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createReview
-Add customer reviews
-
-```swift
-feedback.createReview(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Add customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateReview
-Update customer reviews
-
-```swift
-feedback.updateReview(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getReviews
-Get list of customer reviews
-
-```swift
-feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | review id | 
-| userId | string | user id | 
-| media | string | media type e.g. image | video | video_file | video_link | 
-| rating | array | rating filter, 1-5 | 
-| attributeRating | array | attribute rating filter | 
-| facets | boolean | facets (true|false) | 
-| sort | string | sort by : default | top | recent | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-This is used to get the list of customer reviews based on entity and provided filters.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ReviewGetResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getTemplates
-Get the templates for product or l3 type
-
-```swift
-feedback.getTemplates(templateId: templateId, entityId: entityId, entityType: entityType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| templateId | string | template id | 
-| entityId | string | entity id | 
-| entityType | string | entity type e.g. product | l3 | 
-
-This is used to get the templates details.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CursorGetResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createQuestion
-Create a new question
-
-```swift
-feedback.createQuestion(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to create a new question with following data:
-tags, text, type, choices for MCQ type questions, maximum length of answer.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateQuestion
-Update question
-
-```swift
-feedback.updateQuestion(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to update question's status, tags and choices.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getQuestionAndAnswers
-Get a list of QnA
-
-```swift
-feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: id, showAnswer: showAnswer, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | qna id | 
-| showAnswer | boolean | show answer flag | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-This is used to get a list of questions and its answers.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `QNAGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getVotes
-Get list of votes
-
-```swift
-feedback.getVotes(id: id, refType: refType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | string | vote id | 
-| refType | string | entity type e.g. review | comment | 
-
-This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `VoteResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createVote
-Create a new vote
-
-```swift
-feedback.createVote(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to create a new vote and the actions can be upvote or downvote.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateVote
-Update vote
-
-```swift
-feedback.updateVote(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to update the vote and the actions can be upvote or downvote.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `ErrorResponse`
-
-
-
+Schema: `Error`
 
 
 
@@ -13458,11 +6278,11 @@ poscart.getCart(uid: uid, i: i, b: b, assignCardId: assignCardId) { (response, e
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| i | boolean |  | 
-| b | boolean |  | 
-| assignCardId | integer |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| i | boolean? |  |    
+| b | boolean? |  |    
+| assignCardId | integer? |  |  
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
 
@@ -13474,9 +6294,6 @@ The Cart object. See example below or refer CartResponse for details
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -13496,8 +6313,8 @@ poscart.getCartLastModified(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |  
 
 Fetch Last-Modified timestamp in header metadata
 
@@ -13525,9 +6342,9 @@ poscart.addItems(i: i, b: b, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| i | boolean |  | 
-| b | boolean |  | 
+| --------- | ----  | --- |  
+| i | boolean? |  |    
+| b | boolean? |  |  
 
 <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
 
@@ -13539,642 +6356,6 @@ Response of the cart object including all item details included in .the cart,cou
 
 
 Schema: `AddCartResponse`
-
-
-*Examples:*
-
-
-Product has been added to your cart
-```json
-{
-  "value": {
-    "message": "Product has been added to your cart",
-    "success": true,
-    "cart": {
-      "breakup_values": {
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 17486,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -3540,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 13946,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 13946,
-            "currency_code": "INR"
-          }
-        ],
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -3540,
-          "fynd_cash": 0,
-          "gst_charges": 1529.96,
-          "mrp_total": 17486,
-          "subtotal": 13946,
-          "total": 13946,
-          "vog": 12416.04,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        }
-      },
-      "items": [
-        {
-          "key": "751083_10",
-          "article": {
-            "type": "article",
-            "uid": "612_9_SE61201_19100302_10",
-            "size": "10",
-            "seller": {
-              "uid": 612,
-              "name": "SSR ENTERPRISE"
-            },
-            "store": {
-              "uid": 4431,
-              "name": "Motilal Nagar 1, Goregaon"
-            },
-            "quantity": 4,
-            "price": {
-              "base": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "10"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 751083,
-            "name": "Carson 2",
-            "slug": "puma-carson-2-751083-6ad98d",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-carson-2-751083-6ad98d/",
-              "query": {
-                "product_slug": [
-                  "puma-carson-2-751083-6ad98d"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 2,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "41% OFF"
-        },
-        {
-          "key": "246228_S",
-          "article": {
-            "type": "article",
-            "uid": "46_235_TM62_M11029ONDSXNS_S",
-            "size": "S",
-            "seller": {
-              "uid": 46,
-              "name": "RELIANCE BRANDS LIMITED"
-            },
-            "store": {
-              "uid": 4550,
-              "name": "VR Mall"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "L",
-              "M",
-              "S",
-              "XL",
-              "XXL"
-            ],
-            "other_store_quantity": 0,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 246228,
-            "name": "Blue Solid T-Shirt",
-            "slug": "superdry-blue-solid-t-shirt-2",
-            "brand": {
-              "uid": 235,
-              "name": "Superdry"
-            },
-            "categories": [
-              {
-                "uid": 192,
-                "name": "T-Shirts"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/superdry-blue-solid-t-shirt-2/",
-              "query": {
-                "product_slug": [
-                  "superdry-blue-solid-t-shirt-2"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "443175_S",
-          "article": {
-            "type": "article",
-            "uid": "162_207_1271_LJ03LBLUDN88_S",
-            "size": "S",
-            "seller": {
-              "uid": 162,
-              "name": "GO FASHION INDIA PRIVATE LIMITED"
-            },
-            "store": {
-              "uid": 5784,
-              "name": "Vega City mall"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "XL",
-              "M",
-              "L",
-              "S"
-            ],
-            "other_store_quantity": 8,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 443175,
-            "name": "Light Blue Denim Jeggings",
-            "slug": "go-colors-light-blue-denim-jeggings-443175-3c688c",
-            "brand": {
-              "uid": 207,
-              "name": "Go Colors"
-            },
-            "categories": [
-              {
-                "uid": 267,
-                "name": "Jeggings"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/go-colors-light-blue-denim-jeggings-443175-3c688c/",
-              "query": {
-                "product_slug": [
-                  "go-colors-light-blue-denim-jeggings-443175-3c688c"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "778937_OS",
-          "article": {
-            "type": "article",
-            "uid": "686_963_IC68601_PWUPC01977_OS",
-            "size": "OS",
-            "seller": {
-              "uid": 686,
-              "name": "INDUS CORPORATION"
-            },
-            "store": {
-              "uid": 5059,
-              "name": "Vidyaranyapura Main Road"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "OS"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 778937,
-            "name": "Colourful Carnival Bouncer",
-            "slug": "fisher-price-colourful-carnival-bouncer-778937-fafa1f",
-            "brand": {
-              "uid": 963,
-              "name": "Fisher-Price"
-            },
-            "categories": [
-              {
-                "uid": 576,
-                "name": "Cradles"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/fisher-price-colourful-carnival-bouncer-778937-fafa1f/",
-              "query": {
-                "product_slug": [
-                  "fisher-price-colourful-carnival-bouncer-778937-fafa1f"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "11% OFF"
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 7927,
-      "uid": "7927",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Tue, 03 Sep 2019 06:00:43 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {}
-  }
-}
-```
-
-Sorry, item is out of stock
-```json
-{
-  "value": {
-    "message": "Sorry, item is out of stock",
-    "success": false,
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": false,
-      "last_modified": "Tue, 03 Sep 2019 09:55:40 GMT"
-    },
-    "result": {}
-  }
-}
-```
-
-
-
 
 
 
@@ -14194,10 +6375,10 @@ poscart.updateCart(uid: uid, i: i, b: b, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| i | boolean |  | 
-| b | boolean |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| i | boolean? |  |    
+| b | boolean? |  |  
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -14209,371 +6390,6 @@ Response of the cart object including all item with their updated details includ
 
 
 Schema: `UpdateCartResponse`
-
-
-*Examples:*
-
-
-Nothing updated
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
-    },
-    "result": {
-      "707569_90": {
-        "success": true,
-        "message": "Nothing updated"
-      }
-    },
-    "message": "Nothing updated",
-    "success": true
-  }
-}
-```
-
-Item updated in the cart
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 838.83,
-          "mrp_total": 5499,
-          "subtotal": 5499,
-          "total": 5499,
-          "vog": 4660.17,
-          "you_saved": 0
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 5499,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "items": [
-        {
-          "key": "437414_7",
-          "message": "",
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            }
-          },
-          "quantity": 1,
-          "discount": "",
-          "product": {
-            "type": "product",
-            "uid": 437414,
-            "name": "Suede Classic",
-            "slug": "puma-suede-classic-437414-6e6bbf",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-suede-classic-437414-6e6bbf/",
-              "query": {
-                "product_slug": [
-                  "puma-suede-classic-437414-6e6bbf"
-                ]
-              }
-            }
-          },
-          "article": {
-            "type": "article",
-            "uid": "507_9_96099_35656851_7",
-            "size": "7",
-            "seller": {
-              "uid": 507,
-              "name": "PUMA SPORTS INDIA PVT LTD"
-            },
-            "store": {
-              "uid": 3632,
-              "name": "Colaba Causway"
-            },
-            "quantity": 5,
-            "price": {
-              "base": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "availability": {
-            "sizes": [
-              "10",
-              "11",
-              "6",
-              "9",
-              "7",
-              "8"
-            ],
-            "other_store_quantity": 22,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          }
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 12426,
-      "uid": "12426",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:51:42 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {
-      "437414_7": {
-        "success": true,
-        "message": "Item updated in the bag"
-      }
-    },
-    "message": "Item updated in the bag",
-    "success": true
-  }
-}
-```
-
-
-
 
 
 
@@ -14593,8 +6409,8 @@ poscart.getItemCount(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id | 
+| --------- | ----  | --- |  
+| uid | integer? | Cart id |  
 
 Get total count of item present in cart
 
@@ -14606,9 +6422,6 @@ OK
 
 
 Schema: `CartItemCountResponse`
-
-
-
 
 
 
@@ -14628,8 +6441,8 @@ poscart.getCoupons(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |  
 
 Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
 
@@ -14641,9 +6454,6 @@ Returns The Couppon object which has list of all available_coupon applicale for 
 
 
 Schema: `GetCouponResponse`
-
-
-
 
 
 
@@ -14663,11 +6473,11 @@ poscart.applyCoupon(i: i, b: b, p: p, uid: uid, body: body) { (response, error) 
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| i | boolean |  | 
-| b | boolean |  | 
-| p | boolean |  | 
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| i | boolean? |  |    
+| b | boolean? |  |    
+| p | boolean? |  |    
+| uid | integer? |  |  
 
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
@@ -14680,9 +6490,6 @@ Response of the Coupon object including all item details included in .the cart,c
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -14702,8 +6509,8 @@ poscart.removeCoupon(uid: uid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id | 
+| --------- | ----  | --- |  
+| uid | integer? | Cart id |  
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -14715,9 +6522,6 @@ Response of the Coupon object including all item details included in .the cart,c
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -14737,11 +6541,11 @@ poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, sl
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| itemId | integer | Item id | 
-| articleId | string | Article mongo id | 
-| uid | integer | Item id | 
-| slug | string | Item unique url from product page | 
+| --------- | ----  | --- |  
+| itemId | integer? | Item id |    
+| articleId | string? | Article mongo id |    
+| uid | integer? | Item id |    
+| slug | string? | Item unique url from product page |  
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
@@ -14755,80 +6559,6 @@ Offers found or not found with valid input
 Schema: `BulkPriceResponse`
 
 
-*Examples:*
-
-
-Offers found
-```json
-{
-  "value": {
-    "data": [
-      {
-        "seller": {
-          "uid": 248,
-          "name": "MANYAVAR CREATIONS PRIVATE LIMITED"
-        },
-        "offers": [
-          {
-            "quantity": 1,
-            "auto_applied": true,
-            "margin": 10,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3599.1,
-              "currency_code": "INR"
-            },
-            "total": 3599.1
-          },
-          {
-            "quantity": 3,
-            "auto_applied": true,
-            "margin": 20,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3199.2,
-              "currency_code": "INR"
-            },
-            "total": 9597.6
-          },
-          {
-            "quantity": 9,
-            "auto_applied": true,
-            "margin": 30,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3443.4444444444,
-              "currency_code": "INR"
-            },
-            "total": 30991,
-            "best": true
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-Offers not found
-```json
-{
-  "value": {
-    "data": []
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -14836,9 +6566,6 @@ Unhandled api error
 
 
 Schema: `[String: Any]`
-
-
-
 
 
 
@@ -14858,12 +6585,12 @@ poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, t
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| mobileNo | string |  | 
-| checkoutMode | string |  | 
-| tags | integer |  | 
-| isDefault | boolean |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| mobileNo | string? |  |    
+| checkoutMode | string? |  |    
+| tags | integer? |  |    
+| isDefault | boolean? |  |  
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -14875,9 +6602,6 @@ Returns The Address object which has list of all address saved for the account. 
 
 
 Schema: `GetAddressesResponse`
-
-
-
 
 
 
@@ -14915,9 +6639,6 @@ Schema: `SaveAddressResponse`
 
 
 
-
-
-
 ---
 
 
@@ -14931,13 +6652,13 @@ poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: check
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | integer |  | 
-| uid | integer |  | 
-| mobileNo | string |  | 
-| checkoutMode | string |  | 
-| tags | integer |  | 
-| isDefault | boolean |  | 
+| --------- | ----  | --- |  
+| id | integer? |  |    
+| uid | integer? |  |    
+| mobileNo | string? |  |    
+| checkoutMode | string? |  |    
+| tags | integer? |  |    
+| isDefault | boolean? |  |  
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -14949,9 +6670,6 @@ Returns The Address object which has list of all address saved for the account. 
 
 
 Schema: `Address`
-
-
-
 
 
 
@@ -14971,8 +6689,8 @@ poscart.updateAddress(id: id, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | integer | Address id | 
+| --------- | ----  | --- |  
+| id | integer? | Address id |  
 
 Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
@@ -14984,9 +6702,6 @@ Response of the Address object containing address_id and sucess message.
 
 
 Schema: `UpdateAddressResponse`
-
-
-
 
 
 
@@ -15006,8 +6721,8 @@ poscart.removeAddress(id: id) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | integer | Address id | 
+| --------- | ----  | --- |  
+| id | integer? | Address id |  
 
 Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
 
@@ -15019,9 +6734,6 @@ Status object. Tells whether the operation was successful. See example below or 
 
 
 Schema: `DeleteAddressResponse`
-
-
-
 
 
 
@@ -15041,10 +6753,10 @@ poscart.selectAddress(uid: uid, i: i, b: b, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
-| i | boolean |  | 
-| b | boolean |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |    
+| i | boolean? |  |    
+| b | boolean? |  |  
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
@@ -15061,40 +6773,10 @@ Schema: `CartResponse`
 
 
 
-
-
-
 Address or Pincode Error
 
 
 Schema: `[String: Any]`
-
-
-*Examples:*
-
-
-Address Not Found
-```json
-{
-  "value": {
-    "status": "ERROR",
-    "message": "ADDRESS_NOT_FOUND"
-  }
-}
-```
-
-Pincode Not Serviciable
-```json
-{
-  "value": {
-    "status": "ERROR",
-    "message": "PINCODE_NOT_SERVICIABLE"
-  }
-}
-```
-
-
-
 
 
 
@@ -15114,8 +6796,8 @@ poscart.selectPaymentMode(uid: uid, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
+| --------- | ----  | --- |  
+| uid | string? |  |  
 
 Update Cart Payment for Your Account
 
@@ -15127,9 +6809,6 @@ Cart response with payment options
 
 
 Schema: `CartResponse`
-
-
-
 
 
 
@@ -15149,13 +6828,13 @@ poscart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: pa
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
-| addressId | string |  | 
-| paymentMode | string |  | 
-| paymentIdentifier | string |  | 
-| aggregatorName | string |  | 
-| merchantCode | string |  | 
+| --------- | ----  | --- |  
+| uid | string? |  |    
+| addressId | string? |  |    
+| paymentMode | string? |  |    
+| paymentIdentifier | string? |  |    
+| aggregatorName | string? |  |    
+| merchantCode | string? |  |  
 
 Validate coupon for selected payment mode
 
@@ -15167,9 +6846,6 @@ Cart Affiliates.
 
 
 Schema: `PaymentUpdate`
-
-
-
 
 
 
@@ -15189,14 +6865,14 @@ poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingSt
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pickAtStoreUid | integer |  | 
-| orderingStoreId | integer |  | 
-| p | boolean | Get payment options or not | 
-| uid | integer | Cart id | 
-| addressId | integer | Address id | 
-| areaCode | string | Destination pincode. | 
-| orderType | string | Order type of shipment | 
+| --------- | ----  | --- |  
+| pickAtStoreUid | integer? |  |    
+| orderingStoreId | integer? |  |    
+| p | boolean? | Get payment options or not |    
+| uid | integer? | Cart id |    
+| addressId | integer? | Address id |    
+| areaCode | string? | Destination pincode. |    
+| orderType | string? | Order type of shipment |  
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
@@ -15210,649 +6886,6 @@ OK
 Schema: `CartShipmentsResponse`
 
 
-*Examples:*
-
-
-Shipment Generated
-```json
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [
-      {
-        "fulfillment_id": 3009,
-        "shipment_type": "single_shipment",
-        "fulfillment_type": "store",
-        "dp_id": "29",
-        "dp_options": {
-          "4": {
-            "f_priority": 4,
-            "r_priority": 5,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "7": {
-            "f_priority": 3,
-            "r_priority": 4,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "29": {
-            "f_priority": 1,
-            "r_priority": 2,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          }
-        },
-        "promise": {
-          "timestamp": {
-            "min": 1566678108,
-            "max": 1567023708
-          },
-          "formatted": {
-            "min": "Aug 24",
-            "max": "Aug 28"
-          }
-        },
-        "box_type": "Small Courier bag",
-        "shipments": 1,
-        "items": [
-          {
-            "quantity": 1,
-            "product": {
-              "type": "product",
-              "uid": 820312,
-              "name": "Navy Blue Melange Shorts",
-              "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-              "brand": {
-                "uid": 610,
-                "name": "883 Police"
-              },
-              "categories": [
-                {
-                  "uid": 193,
-                  "name": "Shorts"
-                }
-              ],
-              "images": [
-                {
-                  "aspect_ratio": "16:25",
-                  "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                  "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-                }
-              ],
-              "action": {
-                "type": "product",
-                "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-                "query": {
-                  "product_slug": [
-                    "883-police-navy-blue-melange-shorts-820312-4943a8"
-                  ]
-                }
-              }
-            },
-            "discount": "",
-            "bulk_offer": {},
-            "key": "820312_L",
-            "price": {
-              "base": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              }
-            },
-            "article": {
-              "type": "article",
-              "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-              "size": "L",
-              "seller": {
-                "uid": 381,
-                "name": "INTERSOURCE GARMENTS PVT LTD"
-              },
-              "store": {
-                "uid": 3009,
-                "name": "Kormangala"
-              },
-              "quantity": 2,
-              "price": {
-                "base": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                },
-                "converted": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                }
-              }
-            },
-            "availability": {
-              "sizes": [
-                "L",
-                "XL",
-                "XXL"
-              ],
-              "other_store_quantity": 1,
-              "out_of_stock": false,
-              "deliverable": true,
-              "is_valid": true
-            },
-            "coupon_message": "",
-            "message": ""
-          }
-        ]
-      }
-    ],
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": true
-  }
-}
-```
-
-Shipment Generation Failed
-```json
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [],
-    "message": "Shipments could not be generated. Please Try again after some time.",
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": false
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -15860,9 +6893,6 @@ Unhandled api error
 
 
 Schema: `[String: Any]`
-
-
-
 
 
 
@@ -15882,12 +6912,12 @@ poscart.updateShipments(i: i, p: p, uid: uid, addressId: addressId, orderType: o
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| i | boolean | Get items or not | 
-| p | boolean | Get payment options or not | 
-| uid | integer | Cart id | 
-| addressId | integer | Address id | 
-| orderType | string | Order is hand over or home delivery | 
+| --------- | ----  | --- |  
+| i | boolean? | Get items or not |    
+| p | boolean? | Get payment options or not |    
+| uid | integer? | Cart id |    
+| addressId | integer? | Address id |    
+| orderType | string? | Order is hand over or home delivery |  
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
 
@@ -15901,650 +6931,6 @@ OK
 Schema: `CartShipmentsResponse`
 
 
-*Examples:*
-
-
-Shipment Generated
-```json
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [
-      {
-        "fulfillment_id": 3009,
-        "shipment_type": "single_shipment",
-        "fulfillment_type": "store",
-        "dp_id": "29",
-        "order_type": "PickAtStore",
-        "dp_options": {
-          "4": {
-            "f_priority": 4,
-            "r_priority": 5,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "7": {
-            "f_priority": 3,
-            "r_priority": 4,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "29": {
-            "f_priority": 1,
-            "r_priority": 2,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          }
-        },
-        "promise": {
-          "timestamp": {
-            "min": 1566678108,
-            "max": 1567023708
-          },
-          "formatted": {
-            "min": "Aug 24",
-            "max": "Aug 28"
-          }
-        },
-        "box_type": "Small Courier bag",
-        "shipments": 1,
-        "items": [
-          {
-            "quantity": 1,
-            "product": {
-              "type": "product",
-              "uid": 820312,
-              "name": "Navy Blue Melange Shorts",
-              "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-              "brand": {
-                "uid": 610,
-                "name": "883 Police"
-              },
-              "categories": [
-                {
-                  "uid": 193,
-                  "name": "Shorts"
-                }
-              ],
-              "images": [
-                {
-                  "aspect_ratio": "16:25",
-                  "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                  "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-                }
-              ],
-              "action": {
-                "type": "product",
-                "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-                "query": {
-                  "product_slug": [
-                    "883-police-navy-blue-melange-shorts-820312-4943a8"
-                  ]
-                }
-              }
-            },
-            "discount": "",
-            "bulk_offer": {},
-            "key": "820312_L",
-            "price": {
-              "base": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              }
-            },
-            "article": {
-              "type": "article",
-              "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-              "size": "L",
-              "seller": {
-                "uid": 381,
-                "name": "INTERSOURCE GARMENTS PVT LTD"
-              },
-              "store": {
-                "uid": 3009,
-                "name": "Kormangala"
-              },
-              "quantity": 2,
-              "price": {
-                "base": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                },
-                "converted": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                }
-              }
-            },
-            "availability": {
-              "sizes": [
-                "L",
-                "XL",
-                "XXL"
-              ],
-              "other_store_quantity": 1,
-              "out_of_stock": false,
-              "deliverable": true,
-              "is_valid": true
-            },
-            "coupon_message": "",
-            "message": ""
-          }
-        ]
-      }
-    ],
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": true
-  }
-}
-```
-
-Shipment Generation Failed
-```json
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [],
-    "message": "Shipments could not be generated. Please Try again after some time.",
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": false
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -16552,9 +6938,6 @@ Unhandled api error
 
 
 Schema: `[String: Any]`
-
-
-
 
 
 
@@ -16574,8 +6957,8 @@ poscart.checkoutCart(uid: uid, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| uid | integer? |  |  
 
 Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
 
@@ -16587,386 +6970,6 @@ OK
 
 
 Schema: `CartCheckoutResponse`
-
-
-*Examples:*
-
-
-Address id not found
-```json
-{
-  "value": {
-    "success": false,
-    "message": "No address found with address id {address_id}"
-  }
-}
-```
-
-Missing address_id
-```json
-{
-  "value": {
-    "address_id": [
-      "Missing data for required field."
-    ]
-  }
-}
-```
-
-Successful checkout cod payment
-```json
-{
-  "value": {
-    "success": true,
-    "cart": {
-      "success": true,
-      "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-      "payment_options": {
-        "payment_option": [
-          {
-            "name": "COD",
-            "display_name": "Cash on Delivery",
-            "display_priority": 1,
-            "payment_mode_id": 11,
-            "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "logo_url": {
-              "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-              "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-            },
-            "list": []
-          },
-          {
-            "name": "CARD",
-            "display_priority": 2,
-            "payment_mode_id": 2,
-            "display_name": "Card",
-            "list": []
-          },
-          {
-            "name": "NB",
-            "display_priority": 3,
-            "payment_mode_id": 3,
-            "display_name": "Net Banking",
-            "list": [
-              {
-                "aggregator_name": "Razorpay",
-                "bank_name": "ICICI Bank",
-                "bank_code": "ICIC",
-                "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-                },
-                "merchant_code": "NB_ICICI",
-                "display_priority": 1
-              }
-            ]
-          },
-          {
-            "name": "WL",
-            "display_priority": 4,
-            "payment_mode_id": 4,
-            "display_name": "Wallet",
-            "list": [
-              {
-                "wallet_name": "Paytm",
-                "wallet_code": "paytm",
-                "wallet_id": 4,
-                "merchant_code": "PAYTM",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-                },
-                "aggregator_name": "Juspay",
-                "display_priority": 1
-              }
-            ]
-          },
-          {
-            "name": "UPI",
-            "display_priority": 9,
-            "payment_mode_id": 6,
-            "display_name": "UPI",
-            "list": [
-              {
-                "aggregator_name": "UPI_Razorpay",
-                "name": "UPI",
-                "display_name": "BHIM UPI",
-                "code": "UPI",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-                },
-                "merchant_code": "UPI",
-                "timeout": 240,
-                "retry_count": 0,
-                "fynd_vpa": "shopsense.rzp@hdfcbank",
-                "intent_flow": true,
-                "intent_app_error_list": [
-                  "com.csam.icici.bank.imobile",
-                  "in.org.npci.upiapp",
-                  "com.whatsapp"
-                ]
-              }
-            ]
-          },
-          {
-            "name": "PL",
-            "display_priority": 11,
-            "payment_mode_id": 1,
-            "display_name": "Pay Later",
-            "list": [
-              {
-                "aggregator_name": "Simpl",
-                "name": "Simpl",
-                "code": "simpl",
-                "merchant_code": "SIMPL",
-                "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-                }
-              }
-            ]
-          }
-        ],
-        "payment_flows": {
-          "Simpl": {
-            "data": {
-              "gateway": {
-                "route": "simpl",
-                "entity": "sdk",
-                "is_customer_validation_required": true,
-                "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-                "sdk": {
-                  "config": {
-                    "redirect": false,
-                    "callback_url": null,
-                    "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                  },
-                  "data": {
-                    "user_phone": "8452996729",
-                    "user_email": "paymentsdummy@gofynd.com"
-                  }
-                },
-                "return_url": null
-              }
-            },
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "Juspay": {
-            "data": {},
-            "api_link": "https://sandbox.juspay.in/txns",
-            "payment_flow": "api"
-          },
-          "Razorpay": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "UPI_Razorpay": {
-            "data": {},
-            "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-            "payment_flow": "api"
-          },
-          "Fynd": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "api"
-          }
-        },
-        "default": {}
-      },
-      "user_type": "Store User",
-      "cod_charges": 0,
-      "order_id": "FY5D5E215CF287584CE6",
-      "cod_available": true,
-      "cod_message": "No additional COD charges applicable",
-      "delivery_charges": 0,
-      "delivery_charge_order_value": 0,
-      "delivery_slots": [
-        {
-          "date": "Sat, 24 Aug",
-          "delivery_slot": [
-            {
-              "delivery_slot_timing": "By 9:00 PM",
-              "default": true,
-              "delivery_slot_id": 1
-            }
-          ]
-        }
-      ],
-      "store_code": "",
-      "store_emps": [],
-      "breakup_values": {
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 214.18,
-          "mrp_total": 1999,
-          "subtotal": 1999,
-          "total": 1999,
-          "vog": 1784.82,
-          "you_saved": 0
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 1999,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 1999,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 1999,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "items": [
-        {
-          "key": "820312_L",
-          "message": "",
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
-              "currency_code": "INR"
-            }
-          },
-          "quantity": 1,
-          "discount": "",
-          "product": {
-            "type": "product",
-            "uid": 820312,
-            "name": "Navy Blue Melange Shorts",
-            "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-            "brand": {
-              "uid": 610,
-              "name": "883 Police"
-            },
-            "categories": [
-              {
-                "uid": 193,
-                "name": "Shorts"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-              "query": {
-                "product_slug": [
-                  "883-police-navy-blue-melange-shorts-820312-4943a8"
-                ]
-              }
-            }
-          },
-          "article": {
-            "type": "article",
-            "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-            "size": "L",
-            "seller": {
-              "uid": 381,
-              "name": "INTERSOURCE GARMENTS PVT LTD"
-            },
-            "store": {
-              "uid": 3009,
-              "name": "Kormangala"
-            },
-            "quantity": 2,
-            "price": {
-              "base": {
-                "marked": 1999,
-                "effective": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 1999,
-                "effective": 1999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "availability": {
-            "sizes": [
-              "L",
-              "XL",
-              "XXL"
-            ],
-            "other_store_quantity": 1,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          }
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 7483,
-      "uid": "7483",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "callback_url": "https://api.addsale.com/gringotts/api/v1/external/payment-callback/",
-    "app_intercept_url": "http://uniket-testing.addsale.link/cart/order-status",
-    "message": "",
-    "data": {
-      "order_id": "FY5D5E215CF287584CE6"
-    },
-    "order_id": "FY5D5E215CF287584CE6"
-  }
-}
-```
-
-
-
 
 
 
@@ -16986,8 +6989,8 @@ poscart.updateCartMeta(uid: uid, body: body) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id received in get cart. | 
+| --------- | ----  | --- |  
+| uid | integer? | Cart id received in get cart. |  
 
 Update cart meta like checkout_mode, gstin.
 
@@ -17004,16 +7007,10 @@ Schema: `CartMetaResponse`
 
 
 
-
-
-
 Missing required Field
 
 
 Schema: `CartMetaMissingResponse`
-
-
-
 
 
 
@@ -17033,9 +7030,9 @@ poscart.getAvailableDeliveryModes(areaCode: areaCode, uid: uid) { (response, err
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| areaCode | string |  | 
-| uid | integer |  | 
+| --------- | ----  | --- |  
+| areaCode | string? |  |    
+| uid | integer? |  |  
 
 Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
 
@@ -17047,9 +7044,6 @@ Returns Available delivery modes for cart and pick up available store uid for cu
 
 
 Schema: `CartDeliveryModesResponse`
-
-
-
 
 
 
@@ -17069,8 +7063,8 @@ poscart.getStoreAddressByUid(storeUid: storeUid) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| storeUid | integer |  | 
+| --------- | ----  | --- |  
+| storeUid | integer? |  |  
 
 Get list of stores by providing pick up available store uids.
 
@@ -17082,9 +7076,6 @@ Returns available store information with its address
 
 
 Schema: `StoreDetailsResponse`
-
-
-
 
 
 
@@ -17118,23 +7109,6 @@ Token Generated successfully
 Schema: `GetShareCartLinkResponse`
 
 
-*Examples:*
-
-
-Token Generated
-```json
-{
-  "value": {
-    "token": "ZweG1XyX",
-    "share_url": "https://uniket-testing.addsale.link/shared-cart/ZweG1XyX"
-  }
-}
-```
-
-
-
-
-
 
 
 
@@ -17152,8 +7126,8 @@ poscart.getCartSharedItems(token: token) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| token | string | Shared short link token. | 
+| --------- | ----  | --- |  
+| token | string? | Shared short link token. |  
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
@@ -17170,16 +7144,10 @@ Schema: `SharedCartResponse`
 
 
 
-
-
-
 No cart found for sent token
 
 
 Schema: `SharedCartResponse`
-
-
-
 
 
 
@@ -17199,9 +7167,9 @@ poscart.updateCartWithSharedItems(token: token, action: action) { (response, err
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| token | string | Shared short link token. | 
-| action | string | Operation to perform on existing cart, whether to merge or replace. | 
+| --------- | ----  | --- |  
+| token | string? | Shared short link token. |    
+| action | string? | Operation to perform on existing cart, whether to merge or replace. |  
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
 
@@ -17213,295 +7181,6 @@ Success of Merge or Replace of cart with `shared_cart_details`                  
 
 
 Schema: `SharedCartResponse`
-
-
-*Examples:*
-
-
-Cart Merged/Replaced
-```json
-{
-  "value": {
-    "cart": {
-      "shared_cart_details": {
-        "token": "BQ9jySQ9",
-        "user": {
-          "user_id": "23109086",
-          "is_anonymous": false
-        },
-        "meta": {
-          "selected_staff": "",
-          "ordering_store": null
-        },
-        "selected_staff": "",
-        "ordering_store": null,
-        "source": {},
-        "created_on": "2019-12-18T14:00:07.165000"
-      },
-      "items": [
-        {
-          "key": "791651_6",
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_6",
-            "size": "6",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 1,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 12,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        {
-          "key": "791651_7",
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_7",
-            "size": "7",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 2,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 2,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            }
-          }
-        }
-      ],
-      "cart_id": 13055,
-      "uid": "13055",
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 958.73,
-          "mrp_total": 6285,
-          "subtotal": 6285,
-          "total": 6285,
-          "vog": 5326.27,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 6285,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "gstin": null,
-      "comment": "",
-      "checkout_mode": "self",
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "COD",
-        "payment_identifier": null
-      },
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
-    }
-  }
-}
-```
-
-
-
 
 
 
@@ -17545,9 +7224,6 @@ Schema: `GetTatProductResponse`
 
 
 
-
-
-
 API Error
 
 
@@ -17557,16 +7233,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
@@ -17586,8 +7256,8 @@ logistic.getPincodeCity(pincode: pincode) { (response, error) in
 ```
 
 | Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pincode | string | Pincode | 
+| --------- | ----  | --- |  
+| pincode | string? | Pincode |  
 
 Get City from Pincode
 
@@ -17604,9 +7274,6 @@ Schema: `GetPincodeCityResponse`
 
 
 
-
-
-
 API Error
 
 
@@ -17616,16 +7283,10 @@ Schema: `ApefaceApiError`
 
 
 
-
-
-
 Internal Server Error
 
 
 Schema: `ApefaceApiError`
-
-
-
 
 
 
