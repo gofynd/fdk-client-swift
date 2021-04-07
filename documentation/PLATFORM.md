@@ -21283,7 +21283,7 @@ configuration.getApplications(companyId: companyId, pageNo: pageNo, pageSize: pa
 | companyId | string | Current company id | 
 | pageNo | integer |  | 
 | pageSize | integer |  | 
-| q | object | Url encoded object used as mongodb query | 
+| q | string | Url encoded object used as mongodb query | 
 
 Get list of application under company
 

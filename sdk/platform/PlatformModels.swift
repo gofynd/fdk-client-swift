@@ -19960,7 +19960,7 @@ public extension PlatformClient {
         
         public var orientation: String?
         
-        public var createdBy: CreatedBy?
+        public var createdBy: CreatedBySchema?
         
         public var dateMeta: DateMeta?
         
@@ -19999,7 +19999,7 @@ public extension PlatformClient {
             
         }
 
-        public init(application: String?, createdBy: CreatedBy?, dateMeta: DateMeta?, name: String?, navigation: NavigationReference?, orientation: String?, platform: String?, position: String?, slug: String?, id: String?) {
+        public init(application: String?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, name: String?, navigation: NavigationReference?, orientation: String?, platform: String?, position: String?, slug: String?, id: String?) {
             
             self.name = name
             
@@ -20061,7 +20061,7 @@ public extension PlatformClient {
             
             
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -23150,7 +23150,7 @@ public extension PlatformClient {
         
         public var platform: [String]?
         
-        public var createdBy: CreatedBy?
+        public var createdBy: CreatedBySchema?
         
         public var dateMeta: DateMeta?
         
@@ -23185,7 +23185,7 @@ public extension PlatformClient {
             
         }
 
-        public init(action: Action?, application: String?, archived: Bool?, createdBy: CreatedBy?, dateMeta: DateMeta?, platform: [String]?, slug: String?, customJson: [String: Any]?, id: String?) {
+        public init(action: Action?, application: String?, archived: Bool?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, platform: [String]?, slug: String?, customJson: [String: Any]?, id: String?) {
             
             self.slug = slug
             
@@ -23245,7 +23245,7 @@ public extension PlatformClient {
             
             
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -23538,7 +23538,7 @@ public extension PlatformClient {
         
         public var platform: [String]?
         
-        public var createdBy: CreatedBy?
+        public var createdBy: CreatedBySchema?
         
         public var dateMeta: DateMeta?
         
@@ -23575,7 +23575,7 @@ public extension PlatformClient {
             
         }
 
-        public init(application: String?, archived: Bool?, createdBy: CreatedBy?, dateMeta: DateMeta?, name: String?, navigation: NavigationReference?, orientation: Orientation?, platform: [String]?, slug: String?, version: Double?, id: String?) {
+        public init(application: String?, archived: Bool?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, name: String?, navigation: NavigationReference?, orientation: Orientation?, platform: [String]?, slug: String?, version: Double?, id: String?) {
             
             self.id = id
             
@@ -23672,7 +23672,7 @@ public extension PlatformClient {
             
             
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -23910,7 +23910,7 @@ public extension PlatformClient {
         
         public var content: [ContentSchema]?
         
-        public var createdBy: CreatedBy?
+        public var createdBy: CreatedBySchema?
         
         public var dateMeta: DateMeta?
         
@@ -23949,7 +23949,7 @@ public extension PlatformClient {
             
         }
 
-        public init(application: String?, content: [ContentSchema]?, createdBy: CreatedBy?, dateMeta: DateMeta?, description: String?, orientation: String?, platform: String?, published: Bool?, slug: String?, tags: [String]?, title: String?, type: String?, id: String?, schedule: ScheduleSchema?) {
+        public init(application: String?, content: [ContentSchema]?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, description: String?, orientation: String?, platform: String?, published: Bool?, slug: String?, tags: [String]?, title: String?, type: String?, id: String?, schedule: ScheduleSchema?) {
             
             self.id = id
             
@@ -24107,7 +24107,7 @@ public extension PlatformClient {
             
             
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
@@ -25410,6 +25410,54 @@ public extension PlatformClient {
             try? container.encodeIfPresent(seo, forKey: .seo)
             
             try? container.encodeIfPresent(visibility, forKey: .visibility)
+            
+        }
+        
+    }
+    
+    /*
+        Model: CreatedBySchema
+        Used By: Content
+    */
+
+    class CreatedBySchema: Codable {
+        
+        
+        public var id: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case id = "id"
+            
+        }
+
+        public init(id: String?) {
+            
+            self.id = id
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
         }
         
