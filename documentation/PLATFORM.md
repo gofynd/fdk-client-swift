@@ -2,6 +2,7 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
@@ -11,7 +12,7 @@
 * [Order](#Order) - Handles Platform websites OMS 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
-* [Assets](#Assets) - File Storage 
+* [FileStorage](#FileStorage) - File Storage 
 * [Share](#Share) - Short link and QR Code 
 * [Configuration](#Configuration) - Application configuration apis 
 * [Cart](#Cart) - Cart APIs 
@@ -45,6 +46,19 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    
+
+* [Feedback](#Feedback)
+  * Methods
+    * [getAttributes](#getattributes)
+    * [getCustomerReviews](#getcustomerreviews)
+    * [updateApprove](#updateapprove)
+    * [getHistory](#gethistory)
+    * [getApplicationTemplates](#getapplicationtemplates)
+    * [createTemplate](#createtemplate)
+    * [getTemplateById](#gettemplatebyid)
+    * [updateTemplate](#updatetemplate)
+    * [updateTemplateStatus](#updatetemplatestatus)
     
 
 * [Theme](#Theme)
@@ -322,7 +336,7 @@
     * [getLocationDetail](#getlocationdetail)
     
 
-* [Assets](#Assets)
+* [FileStorage](#FileStorage)
   * Methods
     * [startUpload](#startupload)
     * [completeUpload](#completeupload)
@@ -3680,6 +3694,468 @@ Default
 ---
 
 
+## Feedback
+
+
+#### getAttributes
+Get list of attribute data
+
+```swift
+feedback.getAttributes(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+
+Provides a list of all attribute data.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `Attributes`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCustomerReviews
+Get list of customer reviews [admin]
+
+```swift
+feedback.getCustomerReviews(companyId: companyId, applicationId: applicationId, id: id, entityId: entityId, entityType: entityType, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, next: next, start: start, limit: limit, count: count) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | review id | 
+| entityId | string | entity id | 
+| entityType | string | entity type | 
+| userId | string | user id | 
+| media | string | media type e.g. image | video | video_file | video_link | 
+| rating | array | rating filter, 1-5 | 
+| attributeRating | array | attribute rating filter with ma,e of attribute | 
+| facets | boolean | facets (true|false) | 
+| sort | string | sort by : default | top | recent | 
+| next | string | pagination next | 
+| start | string | pagination start | 
+| limit | string | pagination limit | 
+| count | string | pagination count | 
+
+The endpoint provides a list of customer reviews based on entity and provided filters
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetReviewResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateApprove
+update approve details
+
+```swift
+feedback.updateApprove(companyId: companyId, applicationId: applicationId, reviewId: reviewId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to update approve details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getHistory
+get history details
+
+```swift
+feedback.getHistory(companyId: companyId, applicationId: applicationId, reviewId: reviewId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to get the history details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `[ActivityDump]`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationTemplates
+Get list of templates
+
+```swift
+feedback.getApplicationTemplates(companyId: companyId, applicationId: applicationId, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
+
+Get all templates of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TemplateGetResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTemplate
+Create a new template
+
+```swift
+feedback.createTemplate(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+
+Create a new template for review with following data:
+- Enable media, rating and review
+- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+- Review - header, title, description, image and video meta, enable votes
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTemplateById
+Get a template by ID
+
+```swift
+feedback.getTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Get the template for product or l3 type by ID
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Template`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplate
+Update a template's status
+
+```swift
+feedback.updateTemplate(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplateStatus
+Update a template's status
+
+```swift
+feedback.updateTemplateStatus(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Theme
 
 
@@ -5177,7 +5653,7 @@ Schema: `AuthenticationApiError`
 Get annoucements list
 
 ```swift
-content.getAnnouncementsList(companyId: companyId, applicationId: applicationId) { (response, error) in
+content.getAnnouncementsList(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -5186,6 +5662,8 @@ content.getAnnouncementsList(companyId: companyId, applicationId: applicationId)
 | --------- | ----  | --- |
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Get list of announcements
 
@@ -5850,7 +6328,7 @@ default
 Get blogs
 
 ```swift
-content.getBlogs(companyId: companyId, applicationId: applicationId) { (response, error) in
+content.getBlogs(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -5859,6 +6337,8 @@ content.getBlogs(companyId: companyId, applicationId: applicationId) { (response
 | --------- | ----  | --- |
 | companyId | string | Company Id | 
 | applicationId | string | Application Id | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get blogs.
 
@@ -7073,7 +7553,7 @@ default
 Get landing-pages
 
 ```swift
-content.getLandingPages(companyId: companyId, applicationId: applicationId) { (response, error) in
+content.getLandingPages(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -7082,6 +7562,8 @@ content.getLandingPages(companyId: companyId, applicationId: applicationId) { (r
 | --------- | ----  | --- |
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get landing-pages.
 
@@ -7645,7 +8127,7 @@ default
 Get navigations
 
 ```swift
-content.getNavigations(companyId: companyId, applicationId: applicationId, devicePlatform: devicePlatform) { (response, error) in
+content.getNavigations(companyId: companyId, applicationId: applicationId, devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -7655,6 +8137,8 @@ content.getNavigations(companyId: companyId, applicationId: applicationId, devic
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
 | devicePlatform | string | Device platform | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get navigations.
 
@@ -8693,7 +9177,7 @@ default
 Get pages
 
 ```swift
-content.getPages(companyId: companyId, applicationId: applicationId) { (response, error) in
+content.getPages(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -8702,6 +9186,8 @@ content.getPages(companyId: companyId, applicationId: applicationId) { (response
 | --------- | ----  | --- |
 | companyId | string | Company Id | 
 | applicationId | string | Application Id | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get pages.
 
@@ -9464,7 +9950,7 @@ default
 Get slideshows
 
 ```swift
-content.getSlideshows(companyId: companyId, applicationId: applicationId, devicePlatform: devicePlatform) { (response, error) in
+content.getSlideshows(companyId: companyId, applicationId: applicationId, devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -9474,6 +9960,8 @@ content.getSlideshows(companyId: companyId, applicationId: applicationId, device
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
 | devicePlatform | string | Device platform | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get slideshows.
 
@@ -19015,14 +19503,14 @@ Schema: `ErrorResponse`
 ---
 
 
-## Assets
+## FileStorage
 
 
 #### startUpload
 This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
 ```swift
-assets.startUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
+filestorage.startUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19088,7 +19576,7 @@ Schema: `FailedResponse`
 This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
 ```swift
-assets.completeUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
+filestorage.completeUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19154,7 +19642,7 @@ Schema: `FailedResponse`
 This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
 ```swift
-assets.appStartUpload(namespace: namespace, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+filestorage.appStartUpload(namespace: namespace, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19221,7 +19709,7 @@ Schema: `FailedResponse`
 This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
 ```swift
-assets.appCompleteUpload(namespace: namespace, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+filestorage.appCompleteUpload(namespace: namespace, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19288,7 +19776,7 @@ Schema: `FailedResponse`
 Explain here
 
 ```swift
-assets.getSignUrls(companyId: companyId, body: body) { (response, error) in
+filestorage.getSignUrls(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19335,7 +19823,7 @@ Schema: `FailedResponse`
 Copy Files
 
 ```swift
-assets.copyFiles(sync: sync, companyId: companyId, body: body) { (response, error) in
+filestorage.copyFiles(sync: sync, companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19383,7 +19871,7 @@ Schema: `FailedResponse`
 Copy Files
 
 ```swift
-assets.appCopyFiles(sync: sync, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+filestorage.appCopyFiles(sync: sync, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19432,7 +19920,7 @@ Schema: `FailedResponse`
 Browse Files
 
 ```swift
-assets.browse(namespace: namespace, companyId: companyId) { (response, error) in
+filestorage.browse(namespace: namespace, companyId: companyId) { (response, error) in
     // Use response
 }
 ```
@@ -19480,7 +19968,7 @@ Schema: `FailedResponse`
 Browse Files
 
 ```swift
-assets.appBrowse(namespace: namespace, companyId: companyId, applicationId: applicationId) { (response, error) in
+filestorage.appBrowse(namespace: namespace, companyId: companyId, applicationId: applicationId) { (response, error) in
     // Use response
 }
 ```
@@ -19529,7 +20017,7 @@ Schema: `FailedResponse`
 Proxy
 
 ```swift
-assets.proxy(companyId: companyId, url: url) { (response, error) in
+filestorage.proxy(companyId: companyId, url: url) { (response, error) in
     // Use response
 }
 ```

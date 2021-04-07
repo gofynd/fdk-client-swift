@@ -14,6 +14,8 @@ public class ApplicationClient {
 
     public let content: Content
 
+    public let communication: Communication
+
     public let share: Share
 
     public let fileStorage: FileStorage
@@ -41,6 +43,8 @@ public class ApplicationClient {
         user = User(config: config)
         
         content = Content(config: config)
+        
+        communication = Communication(config: config)
         
         share = Share(config: config)
         
@@ -5059,10 +5063,20 @@ public class ApplicationClient {
         * Description: Use this API to fetch navigations
         **/
         public func getNavigations(
+            pageNo: Int?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
         ) {
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
             
              
             
@@ -5070,7 +5084,7 @@ public class ApplicationClient {
                 config: config,
                 method: "get",
                 url: "/service/application/content/v1.0/navigations/",
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 onResponse: { (responseData, error, responseCode) in
@@ -5096,23 +5110,35 @@ public class ApplicationClient {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getNavigations
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getNavigationsPaginator(
+            pageSize: Int?
             
             ) -> Paginator<NavigationGetResponse> {
-            let pageSize = 20
+            let pageSize = pageSize ?? 20
             let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getNavigations(
                         
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
                         
                     ) { response, error in                    
                     if let response = response {
-                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.hasNext = response.page?.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
                     }
                     paginator.onNext?(response, error)
@@ -5306,6 +5332,132 @@ public class ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(TagsSchema.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Communication {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: Get communication consent
+        * Description: Get communication consent
+        **/
+        public func getCommunicationConsent(
+            
+            onResponse: @escaping (_ response: CommunicationConsent?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/communication/v1.0/consent",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CommunicationConsent.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Upsert communication consent
+        * Description: Upsert communication consent
+        **/
+        public func upsertCommunicationConsent(
+            body: CommunicationConsentReq,
+            onResponse: @escaping (_ response: CommunicationConsentRes?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/communication/v1.0/consent",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CommunicationConsentRes.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Upsert push token of a user
+        * Description: Upsert push token of a user
+        **/
+        public func upsertAppPushtoken(
+            body: PushtokenReq,
+            onResponse: @escaping (_ response: PushtokenRes?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/communication/v1.0/pn-token",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PushtokenRes.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)

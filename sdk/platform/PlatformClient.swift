@@ -14,7 +14,7 @@ public class PlatformClient {
 
     public let companyProfile: CompanyProfile
 
-    public let assets: Assets
+    public let fileStorage: FileStorage
 
     public let configuration: Configuration
 
@@ -35,7 +35,7 @@ public class PlatformClient {
         
         companyProfile = CompanyProfile(config: config)
         
-        assets = Assets(config: config)
+        fileStorage = FileStorage(config: config)
         
         configuration = Configuration(config: config)
         
@@ -4018,7 +4018,7 @@ public class PlatformClient {
     
     
     
-    public class Assets {        
+    public class FileStorage {        
         var config: PlatformConfig
         var companyId: String
 
@@ -6393,6 +6393,8 @@ This operation will return the url for the uploaded file.
         
         public let lead: Lead
         
+        public let feedback: Feedback
+        
         public let theme: Theme
         
         public let user: User
@@ -6413,6 +6415,8 @@ This operation will return the url for the uploaded file.
 
             
             lead = Lead(config: config, applicationId: applicationId)
+            
+            feedback = Feedback(config: config, applicationId: applicationId)
             
             theme = Theme(config: config, applicationId: applicationId)
             
@@ -6985,6 +6989,686 @@ This operation will return the url for the uploaded file.
                         } else if let data = responseData {
                         
                         let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+        }
+        
+        
+            
+        public class Feedback {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            /**
+            *
+            * Summary: Get list of attribute data
+            * Description: Provides a list of all attribute data.
+            **/
+            public func getAttributes(
+                
+                onResponse: @escaping (_ response: Attributes?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/attributes/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(Attributes.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getAttributes
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAttributesPaginator(
+                
+                ) -> Paginator<Attributes> {
+                let pageSize = 20
+                let paginator = Paginator<Attributes>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAttributes(
+                            
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            /**
+            *
+            * Summary: Get list of customer reviews [admin]
+            * Description: The endpoint provides a list of customer reviews based on entity and provided filters
+            **/
+            public func getCustomerReviews(
+                id: String?,
+                entityId: String?,
+                entityType: String?,
+                userId: String?,
+                media: String?,
+                rating: [Double]?,
+                attributeRating: [String]?,
+                facets: Bool?,
+                sort: String?,
+                next: String?,
+                start: String?,
+                limit: String?,
+                count: String?,
+                
+                onResponse: @escaping (_ response: GetReviewResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = entityId {
+                    xQuery["entity_id"] = value
+                }
+                
+                if let value = entityType {
+                    xQuery["entity_type"] = value
+                }
+                
+                if let value = userId {
+                    xQuery["user_id"] = value
+                }
+                
+                if let value = media {
+                    xQuery["media"] = value
+                }
+                
+                if let value = rating {
+                    xQuery["rating"] = value
+                }
+                
+                if let value = attributeRating {
+                    xQuery["attribute_rating"] = value
+                }
+                
+                if let value = facets {
+                    xQuery["facets"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = next {
+                    xQuery["next"] = value
+                }
+                
+                if let value = start {
+                    xQuery["start"] = value
+                }
+                
+                if let value = limit {
+                    xQuery["limit"] = value
+                }
+                
+                if let value = count {
+                    xQuery["count"] = value
+                }
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/reviews/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetReviewResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getCustomerReviews
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getCustomerReviewsPaginator(
+                id: String?,
+                entityId: String?,
+                entityType: String?,
+                userId: String?,
+                media: String?,
+                rating: [Double]?,
+                attributeRating: [String]?,
+                facets: Bool?,
+                sort: String?,
+                next: String?,
+                start: String?,
+                limit: String?,
+                count: String?
+                
+                ) -> Paginator<GetReviewResponse> {
+                let pageSize = 20
+                let paginator = Paginator<GetReviewResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getCustomerReviews(
+                            
+                            id: id,
+                            entityId: entityId,
+                            entityType: entityType,
+                            userId: userId,
+                            media: media,
+                            rating: rating,
+                            attributeRating: attributeRating,
+                            facets: facets,
+                            sort: sort,
+                            next: next,
+                            start: start,
+                            limit: limit,
+                            count: count
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            /**
+            *
+            * Summary: update approve details
+            * Description: The is used to update approve details like status and description text
+            **/
+            public func updateApprove(
+                reviewId: String,
+                body: ApproveRequest,
+                onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/reviews/\(reviewId)/approve/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: get history details
+            * Description: The is used to get the history details like status and description text
+            **/
+            public func getHistory(
+                reviewId: String,
+                
+                onResponse: @escaping (_ response: [ActivityDump]?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/reviews/\(reviewId)/history/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode([ActivityDump].self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get list of templates
+            * Description: Get all templates of application
+            **/
+            public func getApplicationTemplates(
+                pageId: String?,
+                pageSize: String?,
+                
+                onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(TemplateGetResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getApplicationTemplates
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getApplicationTemplatesPaginator(
+                pageSize: String?
+                
+                ) -> Paginator<TemplateGetResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<TemplateGetResponse>(pageSize: pageSize, type: "cursor")
+                paginator.onPage = {
+                    self.getApplicationTemplates(
+                            
+                            pageId: paginator.pageId
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageId = response.page?.nextId
+                            
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            /**
+            *
+            * Summary: Create a new template
+            * Description: Create a new template for review with following data:
+- Enable media, rating and review
+- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+- Review - header, title, description, image and video meta, enable votes
+            **/
+            public func createTemplate(
+                body: TemplateRequestList,
+                onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get a template by ID
+            * Description: Get the template for product or l3 type by ID
+            **/
+            public func getTemplateById(
+                id: String,
+                
+                onResponse: @escaping (_ response: Template?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(Template.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update a template's status
+            * Description: Update existing template status, active/archive
+            **/
+            public func updateTemplate(
+                id: String,
+                body: UpdateTemplateRequest,
+                onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                            onResponse(response, nil)
+                        } else {
+                            onResponse(nil, nil)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update a template's status
+            * Description: Update existing template status, active/archive
+            **/
+            public func updateTemplateStatus(
+                id: String,
+                body: UpdateTemplateStatusRequest,
+                onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/status",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                             onResponse(response, nil)
                         } else {
                             onResponse(nil, nil)
@@ -7914,10 +8598,20 @@ This operation will return the url for the uploaded file.
             * Description: Get list of announcements
             **/
             public func getAnnouncementsList(
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 onResponse: @escaping (_ response: GetAnnouncementListSchema?, _ error: FDKError?) -> Void
             ) {
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                  
                  
                 
@@ -7925,7 +8619,7 @@ This operation will return the url for the uploaded file.
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -7958,19 +8652,35 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getAnnouncementsList
             * Description: fetch the next page by calling .next(...) function
             **/
             public func getAnnouncementsListPaginator(
+                pageSize: Int?
                 
                 ) -> Paginator<GetAnnouncementListSchema> {
-                let pageSize = 20
+                let pageSize = pageSize ?? 20
                 let paginator = Paginator<GetAnnouncementListSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAnnouncementsList(
                             
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
                             
                         ) { response, error in                    
                         if let response = response {
@@ -8228,10 +8938,20 @@ This operation will return the url for the uploaded file.
             * Description: Use this to get blogs.
             **/
             public func getBlogs(
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
             ) {
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                  
                  
                 
@@ -8239,7 +8959,7 @@ This operation will return the url for the uploaded file.
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -8272,19 +8992,35 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getBlogs
             * Description: fetch the next page by calling .next(...) function
             **/
             public func getBlogsPaginator(
+                pageSize: Int?
                 
                 ) -> Paginator<BlogGetResponse> {
-                let pageSize = 20
+                let pageSize = pageSize ?? 20
                 let paginator = Paginator<BlogGetResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getBlogs(
                             
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
                             
                         ) { response, error in                    
                         if let response = response {
@@ -8824,10 +9560,20 @@ This operation will return the url for the uploaded file.
             * Description: Use this to get landing-pages.
             **/
             public func getLandingPages(
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 onResponse: @escaping (_ response: LandingPageGetResponse?, _ error: FDKError?) -> Void
             ) {
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                  
                  
                 
@@ -8835,7 +9581,7 @@ This operation will return the url for the uploaded file.
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -8868,19 +9614,35 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getLandingPages
             * Description: fetch the next page by calling .next(...) function
             **/
             public func getLandingPagesPaginator(
+                pageSize: Int?
                 
                 ) -> Paginator<LandingPageGetResponse> {
-                let pageSize = 20
+                let pageSize = pageSize ?? 20
                 let paginator = Paginator<LandingPageGetResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getLandingPages(
                             
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
                             
                         ) { response, error in                    
                         if let response = response {
@@ -9098,11 +9860,21 @@ This operation will return the url for the uploaded file.
             **/
             public func getNavigations(
                 devicePlatform: String,
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:] 
                 xQuery["device_platform"] = devicePlatform
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                  
                  
                 
@@ -9149,21 +9921,38 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getNavigations
             * Description: fetch the next page by calling .next(...) function
             **/
             public func getNavigationsPaginator(
-                devicePlatform: String
+                devicePlatform: String,
+                pageSize: Int?
                 
                 ) -> Paginator<NavigationGetResponse> {
-                let pageSize = 20
+                let pageSize = pageSize ?? 20
                 let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getNavigations(
                             
-                            devicePlatform: devicePlatform
+                            devicePlatform: devicePlatform,
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
                         ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false
@@ -9499,10 +10288,20 @@ This operation will return the url for the uploaded file.
             * Description: Use this to get pages.
             **/
             public func getPages(
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
             ) {
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                  
                  
                 
@@ -9510,7 +10309,7 @@ This operation will return the url for the uploaded file.
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     onResponse: { (responseData, error, responseCode) in
@@ -9543,19 +10342,35 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getPages
             * Description: fetch the next page by calling .next(...) function
             **/
             public func getPagesPaginator(
+                pageSize: Int?
                 
                 ) -> Paginator<PageGetResponse> {
-                let pageSize = 20
+                let pageSize = pageSize ?? 20
                 let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getPages(
                             
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
                             
                         ) { response, error in                    
                         if let response = response {
@@ -9853,11 +10668,21 @@ This operation will return the url for the uploaded file.
             **/
             public func getSlideshows(
                 devicePlatform: String,
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:] 
                 xQuery["device_platform"] = devicePlatform
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                  
                  
                 
@@ -9904,21 +10729,38 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getSlideshows
             * Description: fetch the next page by calling .next(...) function
             **/
             public func getSlideshowsPaginator(
-                devicePlatform: String
+                devicePlatform: String,
+                pageSize: Int?
                 
                 ) -> Paginator<SlideshowGetResponse> {
-                let pageSize = 20
+                let pageSize = pageSize ?? 20
                 let paginator = Paginator<SlideshowGetResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getSlideshows(
                             
-                            devicePlatform: devicePlatform
+                            devicePlatform: devicePlatform,
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
                         ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false

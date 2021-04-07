@@ -7,6 +7,7 @@
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
+* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
 * [Configuration](#Configuration) - Application configuration apis 
@@ -150,6 +151,13 @@
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
+    
+
+* [Communication](#Communication)
+  * Methods
+    * [getCommunicationConsent](#getcommunicationconsent)
+    * [upsertCommunicationConsent](#upsertcommunicationconsent)
+    * [upsertAppPushtoken](#upsertapppushtoken)
     
 
 * [Share](#Share)
@@ -8962,13 +8970,15 @@ default
 Get navigation
 
 ```swift
-content.getNavigations() { (response, error) in
+content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this API to fetch navigations
 
@@ -9483,6 +9493,186 @@ default
   "$ref": "#/components/examples/5XXAPIError"
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Communication
+
+
+#### getCommunicationConsent
+Get communication consent
+
+```swift
+communication.getCommunicationConsent() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get communication consent
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CommunicationConsent`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CommunicationConsent"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertCommunicationConsent
+Upsert communication consent
+
+```swift
+communication.upsertCommunicationConsent(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Upsert communication consent
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CommunicationConsentRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CommunicationConsentRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertAppPushtoken
+Upsert push token of a user
+
+```swift
+communication.upsertAppPushtoken(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Upsert push token of a user
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PushtokenRes`
+
+
+*Examples:*
+
+
+create
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseCreate"
+}
+```
+
+update
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseUpdate"
+}
+```
+
+reset
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseReset"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
 
 
 
