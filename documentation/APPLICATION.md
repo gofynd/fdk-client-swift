@@ -14,6 +14,7 @@
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Rewards](#Rewards) - Earn and redeem Reward Points 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
 
@@ -48,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -141,9 +142,9 @@
     * [getBlog](#getblog)
     * [getFaqs](#getfaqs)
     * [getFaqCategories](#getfaqcategories)
-    * [getFaqByIdOrSlug](#getfaqbyidorslug)
-    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
-    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
+    * [getFaqBySlug](#getfaqbyslug)
+    * [getFaqCategoryBySlug](#getfaqcategorybyslug)
+    * [getFaqsByCategorySlug](#getfaqsbycategoryslug)
     * [getLandingPage](#getlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
@@ -236,6 +237,36 @@
     * [getUserPointsHistory](#getuserpointshistory)
     * [getUserReferralDetails](#getuserreferraldetails)
     * [redeemReferralCode](#redeemreferralcode)
+    
+
+* [Feedback](#Feedback)
+  * Methods
+    * [createAbuseReport](#createabusereport)
+    * [updateAbuseReport](#updateabusereport)
+    * [getAbuseReports](#getabusereports)
+    * [getAttributes](#getattributes)
+    * [createAttribute](#createattribute)
+    * [getAttribute](#getattribute)
+    * [updateAttribute](#updateattribute)
+    * [createComment](#createcomment)
+    * [updateComment](#updatecomment)
+    * [getComments](#getcomments)
+    * [checkEligibility](#checkeligibility)
+    * [deleteMedia](#deletemedia)
+    * [createMedia](#createmedia)
+    * [updateMedia](#updatemedia)
+    * [getMedias](#getmedias)
+    * [getReviewSummaries](#getreviewsummaries)
+    * [createReview](#createreview)
+    * [updateReview](#updatereview)
+    * [getReviews](#getreviews)
+    * [getTemplates](#gettemplates)
+    * [createQuestion](#createquestion)
+    * [updateQuestion](#updatequestion)
+    * [getQuestionAndAnswers](#getquestionandanswers)
+    * [getVotes](#getvotes)
+    * [createVote](#createvote)
+    * [updateVote](#updatevote)
     
 
 * [PosCart](#PosCart)
@@ -1259,11 +1290,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1271,9 +1302,9 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | string? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | string? | the `id` of the collection type you want to follow |  
+| collectionId | string? | the `id` of the collection type you want to unfollow |  
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1301,11 +1332,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1313,9 +1344,9 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | string? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | string? | the `id` of the collection type you want to unfollow |  
+| collectionId | string? | the `id` of the collection type you want to follow |  
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -4435,18 +4466,18 @@ Schema: `APIError`
 ---
 
 
-#### getFaqByIdOrSlug
+#### getFaqBySlug
 Get frequently asked question
 
 ```swift
-content.getFaqByIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
+content.getFaqBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| idOrSlug | string? | Slug or Id of FAQ |  
+| slug | string? | Slug of FAQ |  
 
 Get frequently asked questions list. These will be helpful for users to using website.
 
@@ -4485,20 +4516,20 @@ Schema: `APIError`
 ---
 
 
-#### getFaqCategoryBySlugOrId
-Get FAQ category by slug or id
+#### getFaqCategoryBySlug
+Get FAQ category by slug
 
 ```swift
-content.getFaqCategoryBySlugOrId(idOrSlug: idOrSlug) { (response, error) in
+content.getFaqCategoryBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| idOrSlug | string? | Slug or Id of FAQ Category |  
+| slug | string? | Slug of FAQ Category |  
 
-Get FAQ category by slug or id
+Get FAQ category by slug
 
 *Success Response:*
 
@@ -4507,7 +4538,7 @@ Get FAQ category by slug or id
 Get FAQ Categories
 
 
-Schema: `GetFaqCategoryByIdOrSlugSchema`
+Schema: `GetFaqCategoryBySlugSchema`
 
 
 
@@ -4535,26 +4566,26 @@ Schema: `APIError`
 ---
 
 
-#### getFaqsByCategoryIdOrSlug
-Get FAQs of a Faq Category id or slug
+#### getFaqsByCategorySlug
+Get FAQs of a Faq Category slug
 
 ```swift
-content.getFaqsByCategoryIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
+content.getFaqsByCategorySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| idOrSlug | string? | Faq category ID or slug |  
+| slug | string? | Faq category slug |  
 
-Get FAQs of a Faq Category `id` or `slug`
+Get FAQs of a Faq Category `slug`
 
 *Success Response:*
 
 
 
-Get FAQs by slug/id of FAQ Category
+Get FAQs by slug of FAQ Category
 
 
 Schema: `GetFaqSchema`
@@ -7481,6 +7512,1108 @@ Bad request
 
 
 Schema: `Error`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Feedback
+
+
+#### createAbuseReport
+post a new abuse request
+
+```swift
+feedback.createAbuseReport(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Report a new abuse for specific entity with description text.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateAbuseReport
+Update abuse details
+
+```swift
+feedback.updateAbuseReport(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update the abuse details like status and description text.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getAbuseReports
+Get list of abuse data
+
+```swift
+feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| entityId | string? | entity id |    
+| entityType | string? | entity type |    
+| id | string? | abuse id |    
+| pageId | string? | pagination page id |    
+| pageSize | integer? | pagination page size |  
+
+Get the list of abuse data from entity type and entity ID.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `ReportAbuseGetResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getAttributes
+Get list of attribute data
+
+```swift
+feedback.getAttributes(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| pageNo | integer? | pagination page no |    
+| pageSize | integer? | pagination page size |  
+
+Provides a list of all attribute data.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `AttributeResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### createAttribute
+Add a new attribute request
+
+```swift
+feedback.createAttribute(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add a new attribute with its name, slug and description.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getAttribute
+Get single attribute data
+
+```swift
+feedback.getAttribute(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| slug | string? | Slug of attribute |  
+
+Get a single attribute data from a given slug.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `Attribute`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateAttribute
+Update attribute details
+
+```swift
+feedback.updateAttribute(slug: slug, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| slug | string? | Slug of attribute |  
+
+Update the attribute's name and description.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### createComment
+post a new comment
+
+```swift
+feedback.createComment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to add a new comment for specific entity.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateComment
+Update comment status
+
+```swift
+feedback.updateComment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update the comment status (active/approve) or text.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getComments
+Get list of comments
+
+```swift
+feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| entityType | string? | entity type |    
+| id | string? | comment id |    
+| entityId | string? | entity id |    
+| userId | string? | user id - flag/filter to get comments for user |    
+| pageId | string? | pagination page id |    
+| pageSize | integer? | pagination page size |  
+
+Get the list of comments from specific entity type.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `CommentGetResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### checkEligibility
+Checks eligibility and cloud media config
+
+```swift
+feedback.checkEligibility(entityType: entityType, entityId: entityId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| entityType | string? | entity type |    
+| entityId | string? | entity id |  
+
+Checks eligibility to rate and review and cloud media configuration
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `CheckEligibilityResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### deleteMedia
+Delete Media
+
+```swift
+feedback.deleteMedia() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Delete Media for the given entity IDs.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### createMedia
+Add Media
+
+```swift
+feedback.createMedia(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add Media list for specific entity.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateMedia
+Update Media
+
+```swift
+feedback.updateMedia(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update Media (archive/approve) for the given entity.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getMedias
+Get Media
+
+```swift
+feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| entityType | string? | entity type |    
+| entityId | string? | entity id |    
+| id | string? | vote id |    
+| pageId | string? | pagination page id |    
+| pageSize | integer? | pagination page size |  
+
+Get Media from the given entity type and entity ID.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `MediaGetResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getReviewSummaries
+Get a review summary
+
+```swift
+feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| entityType | string? | entity type |    
+| entityId | string? | entity id |    
+| id | string? | review summary identifier |    
+| pageId | string? | pagination page id |    
+| pageSize | integer? | pagination page size |  
+
+Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+
+*Success Response:*
+
+
+
+success
+
+
+Schema: `RatingGetResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### createReview
+Add customer reviews
+
+```swift
+feedback.createReview(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateReview
+Update customer reviews
+
+```swift
+feedback.updateReview(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getReviews
+Get list of customer reviews
+
+```swift
+feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| entityType | string? | entity type |    
+| entityId | string? | entity id |    
+| id | string? | review id |    
+| userId | string? | user id |    
+| media | string? | media type e.g. image | video | video_file | video_link |    
+| rating | array? | rating filter, 1-5 |    
+| attributeRating | array? | attribute rating filter |    
+| facets | boolean? | facets (true|false) |    
+| sort | string? | sort by : default | top | recent |    
+| pageId | string? | pagination page id |    
+| pageSize | integer? | pagination page size |  
+
+This is used to get the list of customer reviews based on entity and provided filters.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ReviewGetResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getTemplates
+Get the templates for product or l3 type
+
+```swift
+feedback.getTemplates(templateId: templateId, entityId: entityId, entityType: entityType) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| templateId | string? | template id |    
+| entityId | string? | entity id |    
+| entityType | string? | entity type e.g. product | l3 |  
+
+This is used to get the templates details.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CursorGetResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### createQuestion
+Create a new question
+
+```swift
+feedback.createQuestion(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to create a new question with following data:
+tags, text, type, choices for MCQ type questions, maximum length of answer.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateQuestion
+Update question
+
+```swift
+feedback.updateQuestion(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to update question's status, tags and choices.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getQuestionAndAnswers
+Get a list of QnA
+
+```swift
+feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: id, showAnswer: showAnswer, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| entityType | string? | entity type |    
+| entityId | string? | entity id |    
+| id | string? | qna id |    
+| showAnswer | boolean? | show answer flag |    
+| pageId | string? | pagination page id |    
+| pageSize | integer? | pagination page size |  
+
+This is used to get a list of questions and its answers.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `QNAGetResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getVotes
+Get list of votes
+
+```swift
+feedback.getVotes(id: id, refType: refType, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| id | string? | vote id |    
+| refType | string? | entity type e.g. review | comment |    
+| pageNo | integer? | pagination page no |    
+| pageSize | integer? | pagination page size |  
+
+This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `VoteResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### createVote
+Create a new vote
+
+```swift
+feedback.createVote(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to create a new vote and the actions can be upvote or downvote.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateVote
+Update vote
+
+```swift
+feedback.updateVote(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to update the vote and the actions can be upvote or downvote.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
 
 
 
