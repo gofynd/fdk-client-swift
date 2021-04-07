@@ -18,6 +18,7 @@
 * [Cart](#Cart) - Cart APIs 
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Analytics](#Analytics) - Perceptor analytics 
+* [Discount](#Discount) - Discount 
 
 ----
 ----
@@ -450,6 +451,20 @@
     * [getExportJobStatus](#getexportjobstatus)
     * [getLogsList](#getlogslist)
     * [searchLogs](#searchlogs)
+    
+
+* [Discount](#Discount)
+  * Methods
+    * [getDiscounts](#getdiscounts)
+    * [createDiscount](#creatediscount)
+    * [getDiscount](#getdiscount)
+    * [updateDiscount](#updatediscount)
+    * [validateDiscountFile](#validatediscountfile)
+    * [downloadDiscountFile](#downloaddiscountfile)
+    * [getValidationJob](#getvalidationjob)
+    * [cancelValidationJob](#cancelvalidationjob)
+    * [getDownloadJob](#getdownloadjob)
+    * [cancelDownloadJob](#canceldownloadjob)
     
 
 
@@ -20117,8 +20132,8 @@ share.getShortLinks(companyId: companyId, applicationId: applicationId, pageNo: 
 | --------- | ----  | --- |
 | companyId | string | Company Id | 
 | applicationId | string | Application Id | 
-| pageNo | string | Current page number | 
-| pageSize | string | Current page size | 
+| pageNo | integer | Current page number | 
+| pageSize | integer | Current page size | 
 | createdBy | string | Short link creator | 
 | active | string | Short link active status | 
 | q | string | Search text for original and short url | 
@@ -23490,6 +23505,500 @@ Success
 
 
 Schema: `SearchLogRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Discount
+
+
+#### getDiscounts
+Fetch discount list.
+
+```swift
+discount.getDiscounts(companyId: companyId, view: view, q: q, pageNo: pageNo, pageSize: pageSize, archived: archived, month: month, year: year, type: type, appIds: appIds) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| view | string | listing or calender.  Default is listing. | 
+| q | string | The search query. This can be a partial or complete name of a discount. | 
+| pageNo | integer | page number. Default is 1. | 
+| pageSize | integer | page size. Default is 12. | 
+| archived | boolean | archived. Default is false. | 
+| month | integer | month. Default is current month. | 
+| year | integer | year. Default is current year. | 
+| type | string | basic or custom. | 
+| appIds | array | application ids. | 
+
+Fetch discount list.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ListOrCalender`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createDiscount
+Create Discount.
+
+```swift
+discount.createDiscount(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+
+Create Discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDiscount
+Fetch discount.
+
+```swift
+discount.getDiscount(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | unique id. | 
+
+Fetch discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateDiscount
+Create Discount.
+
+```swift
+discount.updateDiscount(companyId: companyId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Create Discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateDiscountFile
+Validate File.
+
+```swift
+discount.validateDiscountFile(companyId: companyId, discount: discount, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| discount | string | discount | 
+
+Validate File.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### downloadDiscountFile
+Validate File.
+
+```swift
+discount.downloadDiscountFile(companyId: companyId, type: type, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| type | string | type | 
+
+Validate File.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getValidationJob
+Validate File Job.
+
+```swift
+discount.getValidationJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Validate File Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cancelValidationJob
+Cancel Validation Job.
+
+```swift
+discount.cancelValidationJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Cancel Validation Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDownloadJob
+Download File Job.
+
+```swift
+discount.getDownloadJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Download File Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cancelDownloadJob
+Cancel Download Job.
+
+```swift
+discount.cancelDownloadJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Cancel Download Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequest`
 
 
 

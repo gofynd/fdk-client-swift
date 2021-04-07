@@ -26,6 +26,8 @@ public class ApplicationClient {
 
     public let order: Order
 
+    public let feedback: Feedback
+
     public let posCart: PosCart
 
     public let logistic: Logistic
@@ -55,6 +57,8 @@ public class ApplicationClient {
         payment = Payment(config: config)
         
         order = Order(config: config)
+        
+        feedback = Feedback(config: config)
         
         posCart = PosCart(config: config)
         
@@ -7540,6 +7544,1678 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PosOrderById.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
+    public class Feedback {
+        
+        var config: ApplicationConfig
+
+        init(config: ApplicationConfig) {
+            self.config = config;
+        }
+        
+        /**
+        *
+        * Summary: post a new abuse request
+        * Description: Report a new abuse for specific entity with description text.
+        **/
+        public func createAbuseReport(
+            body: ReportAbuseRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/abuse",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update abuse details
+        * Description: Update the abuse details like status and description text.
+        **/
+        public func updateAbuseReport(
+            body: UpdateAbuseStatusRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/abuse",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of abuse data
+        * Description: Get the list of abuse data from entity type and entity ID.
+        **/
+        public func getAbuseReports(
+            entityId: String,
+            entityType: String,
+            id: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ReportAbuseGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/abuse/entity/\(entityType)/entityId/\(entityId)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ReportAbuseGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAbuseReports
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAbuseReportsPaginator(
+            entityId: String,
+            entityType: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ReportAbuseGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReportAbuseGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getAbuseReports(
+                        
+                        entityId: entityId,
+                        entityType: entityType,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of attribute data
+        * Description: Provides a list of all attribute data.
+        **/
+        public func getAttributes(
+            
+            onResponse: @escaping (_ response: AttributeResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/attributes",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AttributeResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAttributes
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAttributesPaginator(
+            
+            ) -> Paginator<AttributeResponse> {
+            let pageSize = 20
+            let paginator = Paginator<AttributeResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAttributes(
+                        
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Add a new attribute request
+        * Description: Add a new attribute with its name, slug and description.
+        **/
+        public func createAttribute(
+            body: SaveAttributeRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/attributes",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get single attribute data
+        * Description: Get a single attribute data from a given slug.
+        **/
+        public func getAttribute(
+            slug: String,
+            
+            onResponse: @escaping (_ response: Attribute?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/attributes/\(slug)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Attribute.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update attribute details
+        * Description: Update the attribute's name and description.
+        **/
+        public func updateAttribute(
+            slug: String,
+            body: UpdateAttributeRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/attributes/\(slug)",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: post a new comment
+        * Description: This is used to add a new comment for specific entity.
+        **/
+        public func createComment(
+            body: CommentRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/comment",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update comment status
+        * Description: Update the comment status (active/approve) or text.
+        **/
+        public func updateComment(
+            body: UpdateCommentRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/comment",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of comments
+        * Description: Get the list of comments from specific entity type.
+        **/
+        public func getComments(
+            entityType: String,
+            id: String?,
+            entityId: String?,
+            userId: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: CommentGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = entityId {
+                xQuery["entity_id"] = value
+            }
+            
+            if let value = userId {
+                xQuery["user_id"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/comment/entity/\(entityType)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CommentGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getComments
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCommentsPaginator(
+            entityType: String,
+            id: String?,
+            entityId: String?,
+            userId: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<CommentGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<CommentGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getComments(
+                        
+                        entityType: entityType,
+                        id: id,
+                        entityId: entityId,
+                        userId: userId,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Checks eligibility and cloud media config
+        * Description: Checks eligibility to rate and review and cloud media configuration
+        **/
+        public func checkEligibility(
+            entityType: String,
+            entityId: String,
+            
+            onResponse: @escaping (_ response: CheckEligibilityResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/config/entity/\(entityType)/entityId/\(entityId)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CheckEligibilityResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Delete Media
+        * Description: Delete Media for the given entity IDs.
+        **/
+        public func deleteMedia(
+            
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/application/feedback/v1.0/media/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Add Media
+        * Description: Add Media list for specific entity.
+        **/
+        public func createMedia(
+            body: AddMediaListRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/media/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update Media
+        * Description: Update Media (archive/approve) for the given entity.
+        **/
+        public func updateMedia(
+            body: UpdateMediaListRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/media/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Media
+        * Description: Get Media from the given entity type and entity ID.
+        **/
+        public func getMedias(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: MediaGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/media/entity/\(entityType)/entityId/\(entityId)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(MediaGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getMedias
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getMediasPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<MediaGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<MediaGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getMedias(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get a review summary
+        * Description: Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+        **/
+        public func getReviewSummaries(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: RatingGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/rating/summary/entity/\(entityType)/entityId/\(entityId)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RatingGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getReviewSummaries
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getReviewSummariesPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<RatingGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<RatingGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviewSummaries(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Add customer reviews
+        * Description: Add customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+        **/
+        public func createReview(
+            body: UpdateReviewRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/review/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update customer reviews
+        * Description: Update customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+        **/
+        public func updateReview(
+            body: UpdateReviewRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/review/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of customer reviews
+        * Description: This is used to get the list of customer reviews based on entity and provided filters.
+        **/
+        public func getReviews(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            userId: String?,
+            media: String?,
+            rating: [Double]?,
+            attributeRating: [String]?,
+            facets: Bool?,
+            sort: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ReviewGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = userId {
+                xQuery["user_id"] = value
+            }
+            
+            if let value = media {
+                xQuery["media"] = value
+            }
+            
+            if let value = rating {
+                xQuery["rating"] = value
+            }
+            
+            if let value = attributeRating {
+                xQuery["attribute_rating"] = value
+            }
+            
+            if let value = facets {
+                xQuery["facets"] = value
+            }
+            
+            if let value = sort {
+                xQuery["sort"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/review/entity/\(entityType)/entityId/\(entityId)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ReviewGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getReviews
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getReviewsPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            userId: String?,
+            media: String?,
+            rating: [Double]?,
+            attributeRating: [String]?,
+            facets: Bool?,
+            sort: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ReviewGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReviewGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviews(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        userId: userId,
+                        media: media,
+                        rating: rating,
+                        attributeRating: attributeRating,
+                        facets: facets,
+                        sort: sort,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get the templates for product or l3 type
+        * Description: This is used to get the templates details.
+        **/
+        public func getTemplates(
+            templateId: String?,
+            entityId: String?,
+            entityType: String?,
+            
+            onResponse: @escaping (_ response: CursorGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = templateId {
+                xQuery["template_id"] = value
+            }
+            
+            if let value = entityId {
+                xQuery["entity_id"] = value
+            }
+            
+            if let value = entityType {
+                xQuery["entity_type"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/template/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CursorGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Create a new question
+        * Description: This is used to create a new question with following data:
+tags, text, type, choices for MCQ type questions, maximum length of answer.
+        **/
+        public func createQuestion(
+            body: CreateQNARequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/template/qna/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update question
+        * Description: This is used to update question's status, tags and choices.
+        **/
+        public func updateQuestion(
+            body: UpdateQNARequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/template/qna/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get a list of QnA
+        * Description: This is used to get a list of questions and its answers.
+        **/
+        public func getQuestionAndAnswers(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            showAnswer: Bool?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: QNAGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = showAnswer {
+                xQuery["show_answer"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/template/qna/entity/\(entityType)/entityId/\(entityId)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(QNAGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getQuestionAndAnswers
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getQuestionAndAnswersPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            showAnswer: Bool?,
+            pageSize: Int?
+            
+            ) -> Paginator<QNAGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<QNAGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getQuestionAndAnswers(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        showAnswer: showAnswer,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get list of votes
+        * Description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+        **/
+        public func getVotes(
+            id: String?,
+            refType: String?,
+            
+            onResponse: @escaping (_ response: VoteResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = refType {
+                xQuery["ref_type"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/vote/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(VoteResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getVotes
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getVotesPaginator(
+            id: String?,
+            refType: String?
+            
+            ) -> Paginator<VoteResponse> {
+            let pageSize = 20
+            let paginator = Paginator<VoteResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getVotes(
+                        
+                        id: id,
+                        refType: refType
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Create a new vote
+        * Description: This is used to create a new vote and the actions can be upvote or downvote.
+        **/
+        public func createVote(
+            body: VoteRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/vote/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        onResponse(nil, nil)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update vote
+        * Description: This is used to update the vote and the actions can be upvote or downvote.
+        **/
+        public func updateVote(
+            body: UpdateVoteRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/vote/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
