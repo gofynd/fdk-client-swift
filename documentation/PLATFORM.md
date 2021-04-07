@@ -4,6 +4,7 @@
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
@@ -72,6 +73,18 @@
     * [searchUsers](#searchusers)
     * [getPlatformConfig](#getplatformconfig)
     * [updatePlatformConfig](#updateplatformconfig)
+    
+
+* [Billing](#Billing)
+  * Methods
+    * [getInvoices](#getinvoices)
+    * [getInvoiceById](#getinvoicebyid)
+    * [getCustomerDetail](#getcustomerdetail)
+    * [upsertCustomerDetail](#upsertcustomerdetail)
+    * [getSubscription](#getsubscription)
+    * [getFeatureLimitConfig](#getfeaturelimitconfig)
+    * [activateSubscriptionPlan](#activatesubscriptionplan)
+    * [cancelSubscriptionPlan](#cancelsubscriptionplan)
     
 
 * [Communication](#Communication)
@@ -5078,6 +5091,498 @@ Schema: `AuthenticationApiError`
 
 
 Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Billing
+
+
+#### getInvoices
+Get invoices
+
+```swift
+billing.getInvoices(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Get invoices.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Invoices`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Invoices"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInvoiceById
+Get invoice by id
+
+```swift
+billing.getInvoiceById(companyId: companyId, invoiceId: invoiceId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+| invoiceId | string | Invoice id | 
+
+Get invoice by id.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Invoice`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Invoice"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCustomerDetail
+Get subscription customer detail
+
+```swift
+billing.getCustomerDetail(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Get subscription customer detail.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionCustomer`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SubscriptionCustomerRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertCustomerDetail
+Upsert subscription customer detail
+
+```swift
+billing.upsertCustomerDetail(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Upsert subscription customer detail.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionCustomer`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SubscriptionCustomerRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSubscription
+Get current subscription detail
+
+```swift
+billing.getSubscription(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionStatus`
+
+
+*Examples:*
+
+
+Active subscription
+```json
+{
+  "$ref": "#/components/examples/SubscriptionActiveRes"
+}
+```
+
+Inactive subscription
+```json
+{
+  "$ref": "#/components/examples/SubscriptionInavtiveRes"
+}
+```
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFeatureLimitConfig
+Get subscription subscription limits
+
+```swift
+billing.getFeatureLimitConfig(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Get subscription subscription limits.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionLimit`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CurrentLimitRes"
+}
+```
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### activateSubscriptionPlan
+Activate subscription
+
+```swift
+billing.activateSubscriptionPlan(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+It will activate subscription plan for customer
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionActivateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SubscriptionActivateRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cancelSubscriptionPlan
+Cancel subscription
+
+```swift
+billing.cancelSubscriptionPlan(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+It will cancel current active subscription.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelSubscriptionRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CancelSubscriptionRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
 
 
 
