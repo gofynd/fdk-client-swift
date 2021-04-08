@@ -327,7 +327,7 @@ public class ApplicationClient {
         * Description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
         **/
         public func getProductComparisonBySlugs(
-            slug: String,
+            slug: [String],
             
             onResponse: @escaping (_ response: ProductsComparisonResponse?, _ error: FDKError?) -> Void
         ) {
