@@ -140,6 +140,7 @@
   * Methods
     * [getAnnouncements](#getannouncements)
     * [getBlog](#getblog)
+    * [getBlogs](#getblogs)
     * [getFaqs](#getfaqs)
     * [getFaqCategories](#getfaqcategories)
     * [getFaqBySlug](#getfaqbyslug)
@@ -149,6 +150,7 @@
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
     * [getPage](#getpage)
+    * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
@@ -4368,6 +4370,57 @@ Schema: `APIError`
 ---
 
 
+#### getBlogs
+Get blogs
+
+```swift
+content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
+| pageSize | integer? | Number of items to retrieve in each page. |  
+
+Use this to get blogs.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogGetResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
 #### getFaqs
 Get frequently asked questions
 
@@ -4788,6 +4841,57 @@ A JSON object with page details
 
 
 Schema: `CustomPageSchema`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
+#### getPages
+Get pages
+
+```swift
+content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
+| pageSize | integer? | Number of items to retrieve in each page. |  
+
+Use this to get pages.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageGetResponse`
 
 
 
