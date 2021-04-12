@@ -2717,7 +2717,7 @@ public class ApplicationClient {
             aggregatorName: String?,
             merchantCode: String?,
             
-            onResponse: @escaping (_ response: PaymentUpdate?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -2763,7 +2763,7 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentUpdate.self, from: data)
+                        let response = Utility.decode(PaymentCouponValidate.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
@@ -10586,7 +10586,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             aggregatorName: String?,
             merchantCode: String?,
             
-            onResponse: @escaping (_ response: PaymentUpdate?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
@@ -10632,7 +10632,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentUpdate.self, from: data)
+                        let response = Utility.decode(PaymentCouponValidate.self, from: data)
                         onResponse(response, nil)
                     } else {
                         onResponse(nil, nil)
