@@ -243,24 +243,24 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [updateSearchKeywords](#updatesearchkeywords)
     * [deleteSearchKeywords](#deletesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
+    * [updateSearchKeywords](#updatesearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
     * [getAllSearchKeyword](#getallsearchkeyword)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
     * [getProductBundle](#getproductbundle)
-    * [updateProductBundle](#updateproductbundle)
     * [getProductBundleDetail](#getproductbundledetail)
+    * [updateProductBundle](#updateproductbundle)
     * [createSizeGuide](#createsizeguide)
     * [getSizeGuides](#getsizeguides)
-    * [updateSizeGuide](#updatesizeguide)
     * [getSizeGuide](#getsizeguide)
+    * [updateSizeGuide](#updatesizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurations](#getconfigurations)
@@ -270,8 +270,8 @@
     * [createCollection](#createcollection)
     * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [updateCollection](#updatecollection)
     * [deleteCollection](#deletecollection)
+    * [updateCollection](#updatecollection)
     * [addCollectionItems](#addcollectionitems)
     * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
@@ -296,13 +296,13 @@
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
     * [createCategories](#createcategories)
     * [listCategories](#listcategories)
-    * [updateCategory](#updatecategory)
     * [getCategoryData](#getcategorydata)
+    * [updateCategory](#updatecategory)
     * [createProduct](#createproduct)
     * [getProducts](#getproducts)
-    * [editProduct](#editproduct)
     * [deleteProduct](#deleteproduct)
     * [getProduct](#getproduct)
+    * [editProduct](#editproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
@@ -325,8 +325,8 @@
     * [exportInventoryConfig](#exportinventoryconfig)
     * [createHsnCode](#createhsncode)
     * [getAllHsnCodes](#getallhsncodes)
-    * [updateHsnCode](#updatehsncode)
     * [getHsnCode](#gethsncode)
+    * [updateHsnCode](#updatehsncode)
     * [bulkHsnCode](#bulkhsncode)
     
 
@@ -338,10 +338,10 @@
     * [editBrand](#editbrand)
     * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
+    * [createLocation](#createlocation)
     * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
     
@@ -527,15 +527,15 @@ lead.getTickets(companyId: companyId, items: items, filters: filters, q: q, stat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID for which the data will be returned |   
-| items | boolean? | Decides that the reponse will contain the list of tickets |   
-| filters | boolean? | Decides that the reponse will contain the ticket filters |   
-| q | string? | Search through ticket titles and description |   
-| status | string? | Filter tickets on status |   
-| priority | string? | Filter tickets on priority |   
-| category | string? | Filter tickets on category |   
-| pageNo | integer? | The page number to navigate through the given set of results. |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 12. |  
+| companyId | String? | Company ID for which the data will be returned |   
+| items | Bool? | Decides that the reponse will contain the list of tickets |   
+| filters | Bool? | Decides that the reponse will contain the ticket filters |   
+| q | String? | Search through ticket titles and description |   
+| status | String? | Filter tickets on status |   
+| priority | String? | Filter tickets on priority |   
+| category | String? | Filter tickets on category |   
+| pageNo | Int? | The page number to navigate through the given set of results. |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
 
 Gets the list of company level tickets and/or ticket filters
 
@@ -567,7 +567,7 @@ lead.createTicket(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID for which the data will be returned |  
+| companyId | String? | Company ID for which the data will be returned |  
 
 Creates a company level ticket
 
@@ -599,14 +599,14 @@ lead.getTickets(companyId: companyId, applicationId: applicationId, items: items
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for which the data will be returned |   
-| items | boolean? | Decides that the reponse will contain the list of tickets |   
-| filters | boolean? | Decides that the reponse will contain the ticket filters |   
-| q | string? | Search through ticket titles and description |   
-| status | string? | Filter tickets on status |   
-| priority | string? | Filter tickets on priority |   
-| category | string? | Filter tickets on category |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for which the data will be returned |   
+| items | Bool? | Decides that the reponse will contain the list of tickets |   
+| filters | Bool? | Decides that the reponse will contain the ticket filters |   
+| q | String? | Search through ticket titles and description |   
+| status | String? | Filter tickets on status |   
+| priority | String? | Filter tickets on priority |   
+| category | String? | Filter tickets on category |  
 
 Gets the list of Application level Tickets and/or ticket filters
 
@@ -638,8 +638,8 @@ lead.getTicket(companyId: companyId, ticketId: ticketId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID for which the data will be returned |   
-| ticketId | string? | Tiket ID of the ticket to be fetched |  
+| companyId | String? | Company ID for which the data will be returned |   
+| ticketId | String? | Tiket ID of the ticket to be fetched |  
 
 Retreives ticket details of a company level ticket
 
@@ -671,8 +671,8 @@ lead.editTicket(companyId: companyId, ticketId: ticketId, body: body) { (respons
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID for ticket |   
-| ticketId | string? | Ticket ID of ticket to be edited |  
+| companyId | String? | Company ID for ticket |   
+| ticketId | String? | Ticket ID of ticket to be edited |  
 
 Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
 
@@ -704,9 +704,9 @@ lead.getTicket(companyId: companyId, applicationId: applicationId, ticketId: tic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for which the data will be returned |   
-| ticketId | string? | Tiket ID of the ticket to be fetched |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for which the data will be returned |   
+| ticketId | String? | Tiket ID of the ticket to be fetched |  
 
 Retreives ticket details of a application level ticket with ticket ID
 
@@ -738,9 +738,9 @@ lead.editTicket(companyId: companyId, applicationId: applicationId, ticketId: ti
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for ticket |   
-| ticketId | string? | Ticket ID of ticket to be edited |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for ticket |   
+| ticketId | String? | Ticket ID of ticket to be edited |  
 
 Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
 
@@ -772,8 +772,8 @@ lead.createHistory(companyId: companyId, ticketId: ticketId, body: body) { (resp
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID for ticket |   
-| ticketId | string? | Ticket ID for which history is created |  
+| companyId | String? | Company ID for ticket |   
+| ticketId | String? | Ticket ID for which history is created |  
 
 Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -805,8 +805,8 @@ lead.getTicketHistory(companyId: companyId, ticketId: ticketId) { (response, err
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID for ticket |   
-| ticketId | string? | Ticket ID for which history is to be fetched |  
+| companyId | String? | Company ID for ticket |   
+| ticketId | String? | Ticket ID for which history is to be fetched |  
 
 Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -838,9 +838,9 @@ lead.createHistory(companyId: companyId, applicationId: applicationId, ticketId:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for ticket |   
-| ticketId | string? | Ticket ID for which history is created |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for ticket |   
+| ticketId | String? | Ticket ID for which history is created |  
 
 Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -872,9 +872,9 @@ lead.getTicketHistory(companyId: companyId, applicationId: applicationId, ticket
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of application |   
-| applicationId | string? | Application ID for ticket |   
-| ticketId | string? | Ticket ID for which history is to be fetched |  
+| companyId | String? | Company ID of application |   
+| applicationId | String? | Application ID for ticket |   
+| ticketId | String? | Ticket ID for which history is to be fetched |  
 
 Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -906,9 +906,9 @@ lead.getCustomForm(companyId: companyId, applicationId: applicationId, slug: slu
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for the form |   
-| slug | string? | Slug of form whose response is getting submitted |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for the form |   
+| slug | String? | Slug of form whose response is getting submitted |  
 
 Get specific custom form using it's slug, this is used to view the form.
 
@@ -940,9 +940,9 @@ lead.editCustomForm(companyId: companyId, applicationId: applicationId, slug: sl
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for the form |   
-| slug | string? | Slug of form whose response is getting submitted |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for the form |   
+| slug | String? | Slug of form whose response is getting submitted |  
 
 Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
 
@@ -974,8 +974,8 @@ lead.getCustomForms(companyId: companyId, applicationId: applicationId) { (respo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for the form |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for the form |  
 
 Get list of custom form for given application
 
@@ -1007,8 +1007,8 @@ lead.createCustomForm(companyId: companyId, applicationId: applicationId, body: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for the form |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for the form |  
 
 Creates a new custom form for given application
 
@@ -1040,9 +1040,9 @@ lead.getTokenForVideoRoom(companyId: companyId, applicationId: applicationId, un
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for video room |   
-| uniqueName | string? | Unique name of video room |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for video room |   
+| uniqueName | String? | Unique name of video room |  
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
@@ -1074,9 +1074,9 @@ lead.getVideoParticipants(companyId: companyId, applicationId: applicationId, un
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for video room |   
-| uniqueName | string? | Unique name of Video Room |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for video room |   
+| uniqueName | String? | Unique name of Video Room |  
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
@@ -1108,8 +1108,8 @@ lead.openVideoRoom(companyId: companyId, applicationId: applicationId, body: bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for video room |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for video room |  
 
 Open a video room.
 
@@ -1141,9 +1141,9 @@ lead.closeVideoRoom(companyId: companyId, applicationId: applicationId, uniqueNa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID of the application |   
-| applicationId | string? | Application ID for video room |   
-| uniqueName | string? | Unique name of Video Room |  
+| companyId | String? | Company ID of the application |   
+| applicationId | String? | Application ID for video room |   
+| uniqueName | String? | Unique name of Video Room |  
 
 Close the video room and force all participants to leave.
 
@@ -1182,10 +1182,10 @@ feedback.getAttributes(companyId: companyId, applicationId: applicationId, pageN
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| pageNo | integer? | pagination page no |   
-| pageSize | integer? | pagination page size |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| pageNo | Int? | pagination page no |   
+| pageSize | Int? | pagination page size |  
 
 Provides a list of all attribute data.
 
@@ -1226,23 +1226,23 @@ feedback.getCustomerReviews(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| id | string? | review id |   
-| entityId | string? | entity id |   
-| entityType | string? | entity type |   
-| userId | string? | user id |   
-| media | string? | media type e.g. image | video | video_file | video_link |   
-| rating | array? | rating filter, 1-5 |   
-| attributeRating | array? | attribute rating filter with ma,e of attribute |   
-| facets | boolean? | facets (true|false) |   
-| sort | string? | sort by : default | top | recent |   
-| next | string? | pagination next |   
-| start | string? | pagination start |   
-| limit | string? | pagination limit |   
-| count | string? | pagination count |   
-| pageId | string? | pagination page id |   
-| pageSize | integer? | pagination page size |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | review id |   
+| entityId | String? | entity id |   
+| entityType | String? | entity type |   
+| userId | String? | user id |   
+| media | String? | media type e.g. image | video | video_file | video_link |   
+| rating | [Double]? | rating filter, 1-5 |   
+| attributeRating | [String]? | attribute rating filter with ma,e of attribute |   
+| facets | Bool? | facets (true|false) |   
+| sort | String? | sort by : default | top | recent |   
+| next | String? | pagination next |   
+| start | String? | pagination start |   
+| limit | String? | pagination limit |   
+| count | String? | pagination count |   
+| pageId | String? | pagination page id |   
+| pageSize | Int? | pagination page size |  
 
 The endpoint provides a list of customer reviews based on entity and provided filters
 
@@ -1283,9 +1283,9 @@ feedback.updateApprove(companyId: companyId, applicationId: applicationId, revie
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| reviewId | string? | review id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| reviewId | String? | review id |  
 
 The is used to update approve details like status and description text
 
@@ -1326,9 +1326,9 @@ feedback.getHistory(companyId: companyId, applicationId: applicationId, reviewId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| reviewId | string? | review id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| reviewId | String? | review id |  
 
 The is used to get the history details like status and description text
 
@@ -1369,10 +1369,10 @@ feedback.getApplicationTemplates(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| pageId | string? | pagination page id |   
-| pageSize | integer? | pagination page size |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| pageId | String? | pagination page id |   
+| pageSize | Int? | pagination page size |  
 
 Get all templates of application
 
@@ -1413,8 +1413,8 @@ feedback.createTemplate(companyId: companyId, applicationId: applicationId, body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |  
 
 Create a new template for review with following data:
 - Enable media, rating and review
@@ -1458,9 +1458,9 @@ feedback.getTemplateById(companyId: companyId, applicationId: applicationId, id:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| id | string? | template id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | template id |  
 
 Get the template for product or l3 type by ID
 
@@ -1501,9 +1501,9 @@ feedback.updateTemplate(companyId: companyId, applicationId: applicationId, id: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| id | string? | template id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | template id |  
 
 Update existing template status, active/archive
 
@@ -1544,9 +1544,9 @@ feedback.updateTemplateStatus(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| id | string? | template id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | template id |  
 
 Update existing template status, active/archive
 
@@ -1594,10 +1594,10 @@ theme.getThemeLibrary(companyId: companyId, applicationId: applicationId, pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |   
-| pageNo | integer? | Page number. Default is 1. |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
+| pageNo | Int? | Page number. Default is 1. |  
 
 Gets list of themes in theme library
 
@@ -1647,8 +1647,8 @@ theme.addToThemeLibrary(companyId: companyId, applicationId: applicationId, body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Add theme to theme library
 
@@ -1698,8 +1698,8 @@ theme.applyTheme(companyId: companyId, applicationId: applicationId, body: body)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Apply theme
 
@@ -1749,9 +1749,9 @@ theme.isUpgradable(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Checks if theme is upgradable
 
@@ -1801,9 +1801,9 @@ theme.upgradeTheme(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Upgrades theme
 
@@ -1853,10 +1853,10 @@ theme.getPublicThemes(companyId: companyId, applicationId: applicationId, pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |   
-| pageNo | integer? | Page number. Default is 1. |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
+| pageNo | Int? | Page number. Default is 1. |  
 
 Gets public themes
 
@@ -1906,8 +1906,8 @@ theme.createTheme(companyId: companyId, applicationId: applicationId, body: body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Create new theme
 
@@ -1957,8 +1957,8 @@ theme.getAppliedTheme(companyId: companyId, applicationId: applicationId) { (res
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Get applied theme
 
@@ -2008,8 +2008,8 @@ theme.getFonts(companyId: companyId, applicationId: applicationId) { (response, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Gets fonts
 
@@ -2059,9 +2059,9 @@ theme.getThemeById(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Gets theme by id
 
@@ -2111,9 +2111,9 @@ theme.updateTheme(companyId: companyId, applicationId: applicationId, themeId: t
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Update theme
 
@@ -2163,9 +2163,9 @@ theme.deleteTheme(companyId: companyId, applicationId: applicationId, themeId: t
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Delete theme
 
@@ -2215,9 +2215,9 @@ theme.getThemeForPreview(companyId: companyId, applicationId: applicationId, the
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Gets theme for preview
 
@@ -2267,9 +2267,9 @@ theme.publishTheme(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Publish theme
 
@@ -2319,9 +2319,9 @@ theme.unpublishTheme(companyId: companyId, applicationId: applicationId, themeId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Unpublish theme
 
@@ -2371,9 +2371,9 @@ theme.archiveTheme(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Archive theme
 
@@ -2423,9 +2423,9 @@ theme.unarchiveTheme(companyId: companyId, applicationId: applicationId, themeId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| themeId | string? | Theme ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| themeId | String? | Theme ID |  
 
 Unarchive theme
 
@@ -2482,11 +2482,11 @@ user.getCustomers(companyId: companyId, applicationId: applicationId, q: q, page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| q | string? | The search query. This can be a partial or complete name of a either a product, brand or category |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |   
-| pageNo | integer? | Page number. Default is 1. |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| q | String? | The search query. This can be a partial or complete name of a either a product, brand or category |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
+| pageNo | Int? | Page number. Default is 1. |  
 
 Used to get application customers list
 
@@ -2536,9 +2536,9 @@ user.searchUsers(companyId: companyId, applicationId: applicationId, q: q) { (re
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| q | string? | The search query. This can be a partial or complete name of a either a product, brand or category |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| q | String? | The search query. This can be a partial or complete name of a either a product, brand or category |  
 
 Search users
 
@@ -2588,8 +2588,8 @@ user.getPlatformConfig(companyId: companyId, applicationId: applicationId) { (re
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Used to get platform config
 
@@ -2639,8 +2639,8 @@ user.updatePlatformConfig(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Used to update platform config
 
@@ -2697,10 +2697,10 @@ content.getAnnouncementsList(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | integer? | Number of items to retrieve in each page. |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
+| pageSize | Int? | Number of items to retrieve in each page. |  
 
 Get list of announcements
 
@@ -2750,8 +2750,8 @@ content.createAnnouncement(companyId: companyId, applicationId: applicationId, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Create an announcement
 
@@ -2801,9 +2801,9 @@ content.getAnnouncementById(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| announcementId | string? | Announcement ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| announcementId | String? | Announcement ID |  
 
 Get announcement by id
 
@@ -2853,9 +2853,9 @@ content.updateAnnouncement(companyId: companyId, applicationId: applicationId, a
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| announcementId | string? | Announcement ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| announcementId | String? | Announcement ID |  
 
 Update an announcement
 
@@ -2905,9 +2905,9 @@ content.updateAnnouncementSchedule(companyId: companyId, applicationId: applicat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| announcementId | string? | Announcement ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| announcementId | String? | Announcement ID |  
 
 Update schedule or published status of an announcement
 
@@ -2957,9 +2957,9 @@ content.deleteAnnouncement(companyId: companyId, applicationId: applicationId, a
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| announcementId | string? | Announcement ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| announcementId | String? | Announcement ID |  
 
 Delete announcement by id
 
@@ -3009,8 +3009,8 @@ content.createBlog(companyId: companyId, applicationId: applicationId, body: bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |  
 
 Use this to create a blog.
 
@@ -3060,10 +3060,10 @@ content.getBlogs(companyId: companyId, applicationId: applicationId, pageNo: pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | integer? | Number of items to retrieve in each page. |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
+| pageSize | Int? | Number of items to retrieve in each page. |  
 
 Use this to get blogs.
 
@@ -3113,9 +3113,9 @@ content.updateBlog(companyId: companyId, applicationId: applicationId, id: id, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| id | string? | Blog Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| id | String? | Blog Id |  
 
 Use this to update blog.
 
@@ -3165,9 +3165,9 @@ content.deleteBlog(companyId: companyId, applicationId: applicationId, id: id) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| id | string? | Blog Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| id | String? | Blog Id |  
 
 Use this to delete blogs.
 
@@ -3217,9 +3217,9 @@ content.getComponentById(companyId: companyId, applicationId: applicationId, slu
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| slug | string? | slug of page to be fetched |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| slug | String? | slug of page to be fetched |  
 
 The endpoint fetches the component by component Id
 
@@ -3269,8 +3269,8 @@ content.getFaqCategories(companyId: companyId, applicationId: applicationId) { (
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Get list of FAQ categories
 
@@ -3320,9 +3320,9 @@ content.getFaqCategoryBySlugOrId(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| idOrSlug | string? | Slug or Id of FAQ Category |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| idOrSlug | String? | Slug or Id of FAQ Category |  
 
 Get FAQ category by slug or id
 
@@ -3372,8 +3372,8 @@ content.createFaqCategory(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Add Faq Category
 
@@ -3423,9 +3423,9 @@ content.updateFaqCategory(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Faq category ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Faq category ID |  
 
 Update Faq Category
 
@@ -3475,9 +3475,9 @@ content.deleteFaqCategory(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Faq category ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Faq category ID |  
 
 Delete Faq Category
 
@@ -3527,9 +3527,9 @@ content.getFaqsByCategoryIdOrSlug(companyId: companyId, applicationId: applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| idOrSlug | string? | Faq category ID or slug |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| idOrSlug | String? | Faq category ID or slug |  
 
 Get FAQs of a Faq Category `id` or `slug`
 
@@ -3579,9 +3579,9 @@ content.addFaq(companyId: companyId, applicationId: applicationId, categoryId: c
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| categoryId | string? | Faq category ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| categoryId | String? | Faq category ID |  
 
 Creates FAQs for category whose `id` is specified
 
@@ -3631,10 +3631,10 @@ content.updateFaq(companyId: companyId, applicationId: applicationId, categoryId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| categoryId | string? | Faq category ID |   
-| faqId | string? | Faq ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| categoryId | String? | Faq category ID |   
+| faqId | String? | Faq ID |  
 
 Updates FAQ
 
@@ -3684,10 +3684,10 @@ content.deleteFaq(companyId: companyId, applicationId: applicationId, categoryId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| categoryId | string? | Faq category ID |   
-| faqId | string? | Faq ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| categoryId | String? | Faq category ID |   
+| faqId | String? | Faq ID |  
 
 Delete FAQ
 
@@ -3737,9 +3737,9 @@ content.getFaqByIdOrSlug(companyId: companyId, applicationId: applicationId, idO
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| idOrSlug | string? | Slug or Id of FAQ |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| idOrSlug | String? | Slug or Id of FAQ |  
 
 Get frequently asked questions list. These will be helpful for users to using website.
 
@@ -3789,10 +3789,10 @@ content.getLandingPages(companyId: companyId, applicationId: applicationId, page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | integer? | Number of items to retrieve in each page. |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
+| pageSize | Int? | Number of items to retrieve in each page. |  
 
 Use this to get landing-pages.
 
@@ -3842,8 +3842,8 @@ content.createLandingPage(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Use this to create landing-page.
 
@@ -3893,9 +3893,9 @@ content.updateLandingPage(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Landing page ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Landing page ID |  
 
 Use this to update landing-page.
 
@@ -3945,9 +3945,9 @@ content.deleteLandingPage(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Landing page ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Landing page ID |  
 
 Use this to delete landing-page.
 
@@ -3997,8 +3997,8 @@ content.getLegalInformation(companyId: companyId, applicationId: applicationId) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
 
@@ -4048,8 +4048,8 @@ content.updateLegalInformation(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
 
@@ -4099,11 +4099,11 @@ content.getNavigations(companyId: companyId, applicationId: applicationId, devic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| devicePlatform | string? | Device platform |   
-| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | integer? | Number of items to retrieve in each page. |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| devicePlatform | String? | Device platform |   
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
+| pageSize | Int? | Number of items to retrieve in each page. |  
 
 Use this to get navigations.
 
@@ -4153,8 +4153,8 @@ content.createNavigation(companyId: companyId, applicationId: applicationId, bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Use this to create navigation.
 
@@ -4204,8 +4204,8 @@ content.getDefaultNavigations(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Use this to get default navigations.
 
@@ -4255,10 +4255,10 @@ content.getNavigationBySlug(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| slug | string? | Slug |   
-| devicePlatform | string? | Device platform |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| slug | String? | Slug |   
+| devicePlatform | String? | Device platform |  
 
 Use this to get navigation by slug.
 
@@ -4308,9 +4308,9 @@ content.updateNavigation(companyId: companyId, applicationId: applicationId, id:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Navigation ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Navigation ID |  
 
 Use this to update navigation.
 
@@ -4360,9 +4360,9 @@ content.deleteNavigation(companyId: companyId, applicationId: applicationId, id:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Navigation ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Navigation ID |  
 
 Use this to delete navigation.
 
@@ -4412,8 +4412,8 @@ content.getPageMeta(companyId: companyId, applicationId: applicationId) { (respo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |  
 
 Use this to get Page Meta.
 
@@ -4463,8 +4463,8 @@ content.getPageSpec(companyId: companyId, applicationId: applicationId) { (respo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Use this to get page spec.
 
@@ -4514,8 +4514,8 @@ content.createPage(companyId: companyId, applicationId: applicationId, body: bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |  
 
 Use this to create a page.
 
@@ -4565,10 +4565,10 @@ content.getPages(companyId: companyId, applicationId: applicationId, pageNo: pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | integer? | Number of items to retrieve in each page. |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
+| pageSize | Int? | Number of items to retrieve in each page. |  
 
 Use this to get pages.
 
@@ -4618,8 +4618,8 @@ content.createPagePreview(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |  
 
 Use this to create a page preview.
 
@@ -4669,9 +4669,9 @@ content.updatePagePreview(companyId: companyId, applicationId: applicationId, sl
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| slug | string? | Page publish slug |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| slug | String? | Page publish slug |  
 
 Use this to update page.
 
@@ -4721,9 +4721,9 @@ content.updatePage(companyId: companyId, applicationId: applicationId, id: id, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| id | string? | Page Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| id | String? | Page Id |  
 
 Use this to update page.
 
@@ -4773,9 +4773,9 @@ content.deletePage(companyId: companyId, applicationId: applicationId, id: id) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| id | string? | Page Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| id | String? | Page Id |  
 
 Use this to delete page.
 
@@ -4825,9 +4825,9 @@ content.getPageBySlug(companyId: companyId, applicationId: applicationId, slug: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| slug | string? | Slug of page to be fetched |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| slug | String? | Slug of page to be fetched |  
 
 The endpoint fetches the component by component Id
 
@@ -4877,8 +4877,8 @@ content.getSEOConfiguration(companyId: companyId, applicationId: applicationId) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Get seo of application
 
@@ -4928,8 +4928,8 @@ content.updateSEOConfiguration(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Update seo of application
 
@@ -4979,11 +4979,11 @@ content.getSlideshows(companyId: companyId, applicationId: applicationId, device
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| devicePlatform | string? | Device platform |   
-| pageNo | integer? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | integer? | Number of items to retrieve in each page. |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| devicePlatform | String? | Device platform |   
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
+| pageSize | Int? | Number of items to retrieve in each page. |  
 
 Use this to get slideshows.
 
@@ -5033,8 +5033,8 @@ content.createSlideshow(companyId: companyId, applicationId: applicationId, body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Use this to create slideshow.
 
@@ -5084,10 +5084,10 @@ content.getSlideshowBySlug(companyId: companyId, applicationId: applicationId, s
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| slug | string? | Slug |   
-| devicePlatform | string? | Device platform |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| slug | String? | Slug |   
+| devicePlatform | String? | Device platform |  
 
 Use this to get slideshow by slug.
 
@@ -5137,9 +5137,9 @@ content.updateSlideshow(companyId: companyId, applicationId: applicationId, id: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Slideshow ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Slideshow ID |  
 
 Use this to update slideshow.
 
@@ -5189,9 +5189,9 @@ content.deleteSlideshow(companyId: companyId, applicationId: applicationId, id: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| id | string? | Slideshow ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| id | String? | Slideshow ID |  
 
 Use this to delete slideshow.
 
@@ -5241,8 +5241,8 @@ content.getSupportInformation(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Get contact details for customer support. Including emails and phone numbers
 
@@ -5292,8 +5292,8 @@ content.updateSupportInformation(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Update support data of application
 
@@ -5343,8 +5343,8 @@ content.createInjectableTag(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Create tags
 
@@ -5394,8 +5394,8 @@ content.updateInjectableTag(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Update tag
 
@@ -5445,8 +5445,8 @@ content.deleteAllInjectableTags(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Delete tags for application
 
@@ -5496,8 +5496,8 @@ content.getInjectableTags(companyId: companyId, applicationId: applicationId) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Get tags for application
 
@@ -5547,8 +5547,8 @@ content.addInjectableTag(companyId: companyId, applicationId: applicationId, bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Add tag
 
@@ -5598,8 +5598,8 @@ content.removeInjectableTag(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |  
 
 Remove a particular tag
 
@@ -5649,9 +5649,9 @@ content.editInjectableTag(companyId: companyId, applicationId: applicationId, ta
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company ID |   
-| applicationId | string? | Application ID |   
-| tagId | string? | Tag ID |  
+| companyId | String? | Company ID |   
+| applicationId | String? | Application ID |   
+| tagId | String? | Tag ID |  
 
 Edits a particular tag
 
@@ -5708,7 +5708,7 @@ billing.getInvoices(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |  
 
 Get invoices.
 
@@ -5740,8 +5740,8 @@ billing.getInvoiceById(companyId: companyId, invoiceId: invoiceId) { (response, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |   
-| invoiceId | string? | Invoice id |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |   
+| invoiceId | String? | Invoice id |  
 
 Get invoice by id.
 
@@ -5773,7 +5773,7 @@ billing.getCustomerDetail(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |  
 
 Get subscription customer detail.
 
@@ -5814,7 +5814,7 @@ billing.upsertCustomerDetail(companyId: companyId, body: body) { (response, erro
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |  
 
 Upsert subscription customer detail.
 
@@ -5864,7 +5864,7 @@ billing.getSubscription(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |  
 
 If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
 
@@ -5906,7 +5906,7 @@ billing.getFeatureLimitConfig(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |  
 
 Get subscription subscription limits.
 
@@ -5947,7 +5947,7 @@ billing.activateSubscriptionPlan(companyId: companyId, body: body) { (response, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |  
 
 It will activate subscription plan for customer
 
@@ -5997,7 +5997,7 @@ billing.cancelSubscriptionPlan(companyId: companyId, body: body) { (response, er
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Customer unique id. In case of company it will be company id. |  
+| companyId | String? | Customer unique id. In case of company it will be company id. |  
 
 It will cancel current active subscription.
 
@@ -6054,11 +6054,11 @@ communication.getCampaigns(companyId: companyId, applicationId: applicationId, p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get campaigns
 
@@ -6090,8 +6090,8 @@ communication.createCampaign(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Create campaign
 
@@ -6123,9 +6123,9 @@ communication.getCampaignById(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Campaign id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Campaign id |  
 
 Get campaign by id
 
@@ -6166,9 +6166,9 @@ communication.updateCampaignById(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Campaign id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Campaign id |  
 
 Update campaign by id
 
@@ -6209,9 +6209,9 @@ communication.getStatsOfCampaignById(companyId: companyId, applicationId: applic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Campaign id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Campaign id |  
 
 Get stats of campaign by id
 
@@ -6252,11 +6252,11 @@ communication.getAudiences(companyId: companyId, applicationId: applicationId, p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get audiences
 
@@ -6288,8 +6288,8 @@ communication.createAudience(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Create audience
 
@@ -6321,8 +6321,8 @@ communication.getBigqueryHeaders(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Get bigquery headers
 
@@ -6363,9 +6363,9 @@ communication.getAudienceById(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Audience id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Audience id |  
 
 Get audience by id
 
@@ -6406,9 +6406,9 @@ communication.updateAudienceById(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Audience id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Audience id |  
 
 Update audience by id
 
@@ -6449,8 +6449,8 @@ communication.getNSampleRecordsFromCsv(companyId: companyId, applicationId: appl
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Get n sample records from csv
 
@@ -6491,11 +6491,11 @@ communication.getEmailProviders(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get email providers
 
@@ -6527,8 +6527,8 @@ communication.createEmailProvider(companyId: companyId, applicationId: applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Create email provider
 
@@ -6560,9 +6560,9 @@ communication.getEmailProviderById(companyId: companyId, applicationId: applicat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Email provider id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Email provider id |  
 
 Get email provider by id
 
@@ -6594,9 +6594,9 @@ communication.updateEmailProviderById(companyId: companyId, applicationId: appli
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Email provider id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Email provider id |  
 
 Update email provider by id
 
@@ -6628,11 +6628,11 @@ communication.getEmailTemplates(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get email templates
 
@@ -6664,8 +6664,8 @@ communication.createEmailTemplate(companyId: companyId, applicationId: applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Create email template
 
@@ -6697,11 +6697,11 @@ communication.getSystemEmailTemplates(companyId: companyId, applicationId: appli
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get system email templates
 
@@ -6733,9 +6733,9 @@ communication.getEmailTemplateById(companyId: companyId, applicationId: applicat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Email template id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Email template id |  
 
 Get email template by id
 
@@ -6767,9 +6767,9 @@ communication.updateEmailTemplateById(companyId: companyId, applicationId: appli
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Email template id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Email template id |  
 
 Update email template by id
 
@@ -6801,9 +6801,9 @@ communication.deleteEmailTemplateById(companyId: companyId, applicationId: appli
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Email template id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Email template id |  
 
 Delete email template by id
 
@@ -6844,11 +6844,11 @@ communication.getEventSubscriptions(companyId: companyId, applicationId: applica
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| populate | string? | populate fields |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| populate | String? | populate fields |  
 
 Get event subscriptions
 
@@ -6880,11 +6880,11 @@ communication.getJobs(companyId: companyId, applicationId: applicationId, pageNo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get jobs
 
@@ -6916,8 +6916,8 @@ communication.triggerCampaignJob(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Trigger campaign job
 
@@ -6949,11 +6949,11 @@ communication.getJobLogs(companyId: companyId, applicationId: applicationId, pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get job logs
 
@@ -6985,12 +6985,12 @@ communication.getCommunicationLogs(companyId: companyId, applicationId: applicat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageId | string? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on _id |   
-| query | object? |  |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageId | String? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on _id |   
+| query | [String: Any]? |  |  
 
 Get communication logs
 
@@ -7022,9 +7022,9 @@ communication.getSystemNotifications(companyId: companyId, pageNo: pageNo, pageS
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| pageNo | integer? |  |   
-| pageSize | integer? |  |  
+| companyId | String? | Company id |   
+| pageNo | Int? |  |   
+| pageSize | Int? |  |  
 
 Get system notifications
 
@@ -7056,11 +7056,11 @@ communication.getSmsProviders(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get sms providers
 
@@ -7092,8 +7092,8 @@ communication.createSmsProvider(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Create sms provider
 
@@ -7125,9 +7125,9 @@ communication.getSmsProviderById(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Sms provider id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Sms provider id |  
 
 Get sms provider by id
 
@@ -7159,9 +7159,9 @@ communication.updateSmsProviderById(companyId: companyId, applicationId: applica
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Sms provider id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Sms provider id |  
 
 Update sms provider by id
 
@@ -7193,11 +7193,11 @@ communication.getSmsTemplates(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get sms templates
 
@@ -7229,8 +7229,8 @@ communication.createSmsTemplate(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |  
 
 Create sms template
 
@@ -7262,9 +7262,9 @@ communication.getSmsTemplateById(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Sms template id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Sms template id |  
 
 Get sms template by id
 
@@ -7305,9 +7305,9 @@ communication.updateSmsTemplateById(companyId: companyId, applicationId: applica
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Sms template id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Sms template id |  
 
 Update sms template by id
 
@@ -7348,9 +7348,9 @@ communication.deleteSmsTemplateById(companyId: companyId, applicationId: applica
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| id | string? | Sms template id |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| id | String? | Sms template id |  
 
 Delete sms template by id
 
@@ -7400,11 +7400,11 @@ communication.getSystemSystemTemplates(companyId: companyId, applicationId: appl
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company id |   
-| applicationId | string? | Application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |   
-| sort | object? | To sort based on created_at |  
+| companyId | String? | Company id |   
+| applicationId | String? | Application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |   
+| sort | [String: Any]? | To sort based on created_at |  
 
 Get system sms templates
 
@@ -7443,8 +7443,8 @@ payment.getBrandPaymentGatewayConfig(companyId: companyId, applicationId: applic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| applicationId | string? | Application id |  
+| companyId | Int? | Company Id |   
+| applicationId | String? | Application id |  
 
 Get All Brand Payment Gateway Config Secret
 
@@ -7494,8 +7494,8 @@ payment.saveBrandPaymentGatewayConfig(companyId: companyId, applicationId: appli
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| applicationId | string? | Application id |  
+| companyId | Int? | Company Id |   
+| applicationId | String? | Application id |  
 
 Save Config Secret For Brand Payment Gateway
 
@@ -7545,8 +7545,8 @@ payment.updateBrandPaymentGatewayConfig(companyId: companyId, applicationId: app
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| applicationId | string? | Application id |  
+| companyId | Int? | Company Id |   
+| applicationId | String? | Application id |  
 
 Save Config Secret For Brand Payment Gateway
 
@@ -7596,10 +7596,10 @@ payment.getPaymentModeRoutes(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| applicationId | string? | Application id |   
-| refresh | boolean? |  |   
-| requestType | string? |  |  
+| companyId | Int? | Company Id |   
+| applicationId | String? | Application id |   
+| refresh | Bool? |  |   
+| requestType | String? |  |  
 
 Use this API to get Get All Valid Payment Options for making payment
 
@@ -7649,8 +7649,8 @@ payment.getAllPayouts(companyId: companyId, uniqueExternalId: uniqueExternalId) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| uniqueExternalId | string? | Fetch payouts using unique external id |  
+| companyId | Int? | Company Id |   
+| uniqueExternalId | String? | Fetch payouts using unique external id |  
 
 Get All Payouts
 
@@ -7700,7 +7700,7 @@ payment.savePayout(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |  
+| companyId | Int? | Company Id |  
 
 Save Payout
 
@@ -7750,8 +7750,8 @@ payment.updatePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| uniqueTransferNo | string? | Unique transfer id |  
+| companyId | Int? | Company Id |   
+| uniqueTransferNo | String? | Unique transfer id |  
 
 Update Payout
 
@@ -7801,8 +7801,8 @@ payment.activateAndDectivatePayout(companyId: companyId, uniqueTransferNo: uniqu
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| uniqueTransferNo | string? | Unique transfer id |  
+| companyId | Int? | Company Id |   
+| uniqueTransferNo | String? | Unique transfer id |  
 
 Partial Update Payout
 
@@ -7852,8 +7852,8 @@ payment.deletePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| uniqueTransferNo | string? | Unique transfer id |  
+| companyId | Int? | Company Id |   
+| uniqueTransferNo | String? | Unique transfer id |  
 
 Delete Payout
 
@@ -7903,7 +7903,7 @@ payment.getSubscriptionPaymentMethod(companyId: companyId) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |  
+| companyId | Int? | Company Id |  
 
 Get all  Subscription  Payment Method
 
@@ -7953,9 +7953,9 @@ payment.deleteSubscriptionPaymentMethod(companyId: companyId, uniqueExternalId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| uniqueExternalId | string? |  |   
-| paymentMethodId | string? |  |  
+| companyId | Int? | Company Id |   
+| uniqueExternalId | String? |  |   
+| paymentMethodId | String? |  |  
 
 Uses this api to Delete Subscription Payment Method
 
@@ -7996,7 +7996,7 @@ payment.getSubscriptionConfig(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |  
+| companyId | Int? | Company Id |  
 
 Get all  Subscription Config details
 
@@ -8046,7 +8046,7 @@ payment.saveSubscriptionSetupIntent(companyId: companyId, body: body) { (respons
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |  
+| companyId | Int? | Company Id |  
 
 Uses this api to Save Subscription Setup Intent
 
@@ -8103,7 +8103,7 @@ order.shipmentStatusUpdate(companyId: companyId, body: body) { (response, error)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Update Shipment Status
 
@@ -8153,8 +8153,8 @@ order.activityStatus(companyId: companyId, bagId: bagId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| bagId | string? | Bag Id |  
+| companyId | String? | Company Id |   
+| bagId | String? | Bag Id |  
 
 Get Activity Status
 
@@ -8204,7 +8204,7 @@ order.storeProcessShipmentUpdate(companyId: companyId, body: body) { (response, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Update Store Process-Shipment
 
@@ -8254,19 +8254,19 @@ order.getOrdersByCompanyId(companyId: companyId, pageNo: pageNo, pageSize: pageS
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| pageNo | string? | Current page number |   
-| pageSize | string? | Page limit |   
-| fromDate | string? | From Date |   
-| toDate | string? | To Date |   
-| q | string? | Keyword for Search |   
-| stage | string? | Specefic Order Stage |   
-| salesChannels | string? | Selected Sales Channel |   
-| orderId | string? | Order Id |   
-| stores | string? | Selected Stores |   
-| status | string? | Status of order |   
-| shortenUrls | boolean? | Shorten URL option |   
-| filterType | string? | Filters |  
+| companyId | String? | Company Id |   
+| pageNo | String? | Current page number |   
+| pageSize | String? | Page limit |   
+| fromDate | String? | From Date |   
+| toDate | String? | To Date |   
+| q | String? | Keyword for Search |   
+| stage | String? | Specefic Order Stage |   
+| salesChannels | String? | Selected Sales Channel |   
+| orderId | String? | Order Id |   
+| stores | String? | Selected Stores |   
+| status | String? | Status of order |   
+| shortenUrls | Bool? | Shorten URL option |   
+| filterType | String? | Filters |  
 
 Get Orders
 
@@ -8316,9 +8316,9 @@ order.trackShipmentPlatform(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| shipmentId | string? | Shipment Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| shipmentId | String? | Shipment Id |  
 
 Shipment Track
 
@@ -8368,9 +8368,9 @@ order.trackOrder(companyId: companyId, applicationId: applicationId, orderId: or
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| orderId | string? | Order Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| orderId | String? | Order Id |  
 
 Order Track
 
@@ -8420,8 +8420,8 @@ order.failedOrders(companyId: companyId, applicationId: applicationId) { (respon
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |  
 
 Failed Orders
 
@@ -8471,9 +8471,9 @@ order.reprocessOrder(companyId: companyId, applicationId: applicationId, orderId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| orderId | string? | Order Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| orderId | String? | Order Id |  
 
 Order Reprocess
 
@@ -8523,7 +8523,7 @@ order.getPing(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Get Ping
 
@@ -8573,7 +8573,7 @@ order.voiceCallback(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Voice Callback
 
@@ -8623,9 +8623,9 @@ order.voiceClickToCall(companyId: companyId, caller: caller, receiver: receiver)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| caller | string? | Caller contact number |   
-| receiver | string? | Receiver contact number |  
+| companyId | String? | Company Id |   
+| caller | String? | Caller contact number |   
+| receiver | String? | Receiver contact number |  
 
 Voice Click to Call
 
@@ -8671,49 +8671,6 @@ Schema: `ApefaceApiError`
 ## Catalog
 
 
-#### updateSearchKeywords
-Update Search Keyword
-
-```swift
-catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-Update Search Keyword by its id. On successful request, returns the updated collection
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
-
-
-Schema: `GetSearchWordsData`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### deleteSearchKeywords
 Delete a Search Keywords
 
@@ -8725,9 +8682,9 @@ catalog.deleteSearchKeywords(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
@@ -8768,9 +8725,9 @@ catalog.getSearchKeywords(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
 
@@ -8800,6 +8757,49 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateSearchKeywords
+Update Search Keyword
+
+```swift
+catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+Update Search Keyword by its id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+Schema: `GetSearchWordsData`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### createCustomKeyword
 Add a Custom Search Keywords
 
@@ -8811,8 +8811,8 @@ catalog.createCustomKeyword(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
@@ -8853,8 +8853,8 @@ catalog.getAllSearchKeyword(companyId: companyId, applicationId: applicationId) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
 
@@ -8884,49 +8884,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
-
-```swift
-catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-
-*Success Response:*
-
-
-
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
-
-
-Schema: `GetAutocompleteWordsResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### deleteAutocompleteKeyword
 Delete a Autocomplete Keywords
 
@@ -8938,9 +8895,9 @@ catalog.deleteAutocompleteKeyword(companyId: companyId, applicationId: applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
@@ -8981,9 +8938,9 @@ catalog.getAutocompleteKeywordDetail(companyId: companyId, applicationId: applic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
 
@@ -8992,6 +8949,49 @@ Get the details of a words by its `id`. If successful, returns a keywords resour
 
 
 The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
+
+```swift
+catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+
+*Success Response:*
+
+
+
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -9024,8 +9024,8 @@ catalog.createCustomAutocompleteRule(companyId: companyId, applicationId: applic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
 
@@ -9066,8 +9066,8 @@ catalog.getAutocompleteConfig(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
 
@@ -9108,7 +9108,7 @@ catalog.createProductBundle(companyId: companyId, body: body) { (response, error
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
 
@@ -9149,8 +9149,8 @@ catalog.getProductBundle(companyId: companyId, q: q) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| q | string? | A search string that is searched with product bundle name. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| q | String? | A search string that is searched with product bundle name. |  
 
 Get all product bundles for a particular company
 
@@ -9180,48 +9180,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateProductBundle
-Update a Product Bundle
-
-```swift
-catalog.updateProductBundle(companyId: companyId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-Update a Product Bundle by its id. On successful request, returns the updated product bundle
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
-
-
-Schema: `GetProductBundleCreateResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### getProductBundleDetail
 Get a particular Product Bundle details
 
@@ -9233,8 +9191,8 @@ catalog.getProductBundleDetail(companyId: companyId, id: id) { (response, error)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| id | string? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
 
@@ -9264,6 +9222,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateProductBundle
+Update a Product Bundle
+
+```swift
+catalog.updateProductBundle(companyId: companyId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+Update a Product Bundle by its id. On successful request, returns the updated product bundle
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+
+
+Schema: `GetProductBundleCreateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### createSizeGuide
 Create a size guide.
 
@@ -9275,7 +9275,7 @@ catalog.createSizeGuide(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company inside which the size guide is to be created. |  
+| companyId | String? | Id of the company inside which the size guide is to be created. |  
 
 This API allows to create a size guide associated to a brand.
 
@@ -9316,12 +9316,12 @@ catalog.getSizeGuides(companyId: companyId, active: active, q: q, tag: tag, page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company for which the size guides are to be fetched. |   
-| active | boolean? | filter size guide on basis of active, in-active |   
-| q | string? | Query that is to be searched. |   
-| tag | string? | to filter size guide on basis of tag. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |  
+| companyId | String? | Id of the company for which the size guides are to be fetched. |   
+| active | Bool? | filter size guide on basis of active, in-active |   
+| q | String? | Query that is to be searched. |   
+| tag | String? | to filter size guide on basis of tag. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |  
 
 This API allows to view all the size guides associated to the seller.
 
@@ -9351,48 +9351,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateSizeGuide
-Edit a size guide.
-
-```swift
-catalog.updateSizeGuide(companyId: companyId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | Id of the company. |   
-| id | string? | Mongo id of the size guide to be edited |  
-
-This API allows to edit a size guide.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### getSizeGuide
 Get a single size guide.
 
@@ -9404,8 +9362,8 @@ catalog.getSizeGuide(companyId: companyId, id: id) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to size guide. |   
-| id | string? | Id of the size guide to be viewed. |  
+| companyId | String? | Id of the company associated to size guide. |   
+| id | String? | Id of the size guide to be viewed. |  
 
 This API helps to get data associated to a size guide.
 
@@ -9435,6 +9393,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateSizeGuide
+Edit a size guide.
+
+```swift
+catalog.updateSizeGuide(companyId: companyId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company. |   
+| id | String? | Mongo id of the size guide to be edited |  
+
+This API allows to edit a size guide.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getCatalogConfiguration
 Get configuration meta  details for catalog for admin panel
 
@@ -9446,8 +9446,8 @@ catalog.getCatalogConfiguration(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 configuration meta  details for catalog.
 
@@ -9488,8 +9488,8 @@ catalog.createConfigurationProductListing(companyId: companyId, applicationId: a
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 Add configuration for products & listing.
 
@@ -9530,8 +9530,8 @@ catalog.getConfigurations(companyId: companyId, applicationId: applicationId) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 configured details for catalog.
 
@@ -9572,9 +9572,9 @@ catalog.createConfigurationByType(companyId: companyId, applicationId: applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| type | string? | type can be brands, categories etc. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | String? | type can be brands, categories etc. |  
 
 Add configuration for categories & brands.
 
@@ -9615,9 +9615,9 @@ catalog.getConfigurationByType(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| type | string? | type can be brands, categories etc. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | String? | type can be brands, categories etc. |  
 
 configured details for catalog.
 
@@ -9658,8 +9658,8 @@ catalog.getQueryFilters(companyId: companyId, applicationId: applicationId) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 Get query filters to configure a collection
 
@@ -9700,8 +9700,8 @@ catalog.createCollection(companyId: companyId, applicationId: applicationId, bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
 
@@ -9742,8 +9742,8 @@ catalog.getAllCollections(companyId: companyId, applicationId: applicationId) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
 
@@ -9784,9 +9784,9 @@ catalog.getCollectionDetail(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| slug | string? | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| slug | String? | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
 
 Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
 
@@ -9816,49 +9816,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCollection
-Update a collection
-
-```swift
-catalog.updateCollection(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier of a collection. |  
-
-Update a collection by it's id. On successful request, returns the updated collection
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `CollectionCreateResponse` for details.
-
-
-Schema: `CollectionCreateResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### deleteCollection
 Delete a Collection
 
@@ -9870,9 +9827,9 @@ catalog.deleteCollection(companyId: companyId, applicationId: applicationId, id:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier of a collection. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier of a collection. |  
 
 Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
 
@@ -9902,6 +9859,49 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateCollection
+Update a collection
+
+```swift
+catalog.updateCollection(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier of a collection. |  
+
+Update a collection by it's id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `CollectionCreateResponse` for details.
+
+
+Schema: `CollectionCreateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### addCollectionItems
 Add items to a collection
 
@@ -9913,9 +9913,9 @@ catalog.addCollectionItems(companyId: companyId, applicationId: applicationId, i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier of a collection. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier of a collection. |  
 
 Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
 
@@ -9956,12 +9956,12 @@ catalog.getCollectionItems(companyId: companyId, applicationId: applicationId, i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string? | A `id` is a unique identifier of a collection. |   
-| sortOn | string? | Each response will contain sort_on param, which should be sent back to make pagination work. |   
-| pageId | string? | Each response will contain next_id param, which should be sent back to make pagination work. |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 12. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier of a collection. |   
+| sortOn | String? | Each response will contain sort_on param, which should be sent back to make pagination work. |   
+| pageId | String? | Each response will contain next_id param, which should be sent back to make pagination work. |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
 
 Get items from a collection specified by its `id`.
 
@@ -10002,9 +10002,9 @@ catalog.getCatalogInsights(companyId: companyId, applicationId: applicationId, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string? | A `application_id` is a unique identifier for a particular sale channel. |   
-| brand | string? | Brand slug |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| brand | String? | Brand slug |  
 
 Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
 
@@ -10045,8 +10045,8 @@ catalog.getSellerInsights(companyId: companyId, sellerAppId: sellerAppId) { (res
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| sellerAppId | string? | Id of the seller application which is serving the invetory/catalog of the company |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| sellerAppId | String? | Id of the seller application which is serving the invetory/catalog of the company |  
 
 Analytics data of catalog and inventory that are being cross-selled.
 
@@ -10087,8 +10087,8 @@ catalog.createMarketplaceOptin(companyId: companyId, marketplace: marketplace, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | The company id for which the detail needs to be retrieved. |   
-| marketplace | string? | The marketplace for which the detail needs to be retrieved. |  
+| companyId | Int? | The company id for which the detail needs to be retrieved. |   
+| marketplace | String? | The marketplace for which the detail needs to be retrieved. |  
 
 Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
 
@@ -10129,7 +10129,7 @@ catalog.getMarketplaceOptinDetail(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? |  |  
+| companyId | Int? |  |  
 
 Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
 
@@ -10170,7 +10170,7 @@ catalog.getCompanyDetail(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | The company id for which the detail needs to be retrieved. |  
+| companyId | Int? | The company id for which the detail needs to be retrieved. |  
 
 Get the details of the company associated with the given company_id passed.
 
@@ -10211,12 +10211,12 @@ catalog.getCompanyBrandDetail(companyId: companyId, isActive: isActive, q: q, pa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | The company id for which the detail needs to be retrieved. |   
-| isActive | boolean? | The is_active status for the optin id. |   
-| q | boolean? | The search value to filter the list. |   
-| pageNo | integer? | The number of page for the company id. |   
-| pageSize | integer? | Number of records that can be seen on the page for the company id. |   
-| marketplace | string? | The marketplace platform associated with the company id. |  
+| companyId | Int? | The company id for which the detail needs to be retrieved. |   
+| isActive | Bool? | The is_active status for the optin id. |   
+| q | Bool? | The search value to filter the list. |   
+| pageNo | Int? | The number of page for the company id. |   
+| pageSize | Int? | Number of records that can be seen on the page for the company id. |   
+| marketplace | String? | The marketplace platform associated with the company id. |  
 
 Get the details of the Brands associated with the given company_id passed.
 
@@ -10257,7 +10257,7 @@ catalog.getCompanyMetrics(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | The company id for which the detail needs to be retrieved. |  
+| companyId | Int? | The company id for which the detail needs to be retrieved. |  
 
 Get the Company metrics associated with the company ID passed.
 
@@ -10298,10 +10298,10 @@ catalog.getStoreDetail(companyId: companyId, q: q, pageNo: pageNo, pageSize: pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | The company id for which the detail needs to be retrieved. |   
-| q | string? | The search related the store for the company id. |   
-| pageNo | integer? | The number of page for the company id. |   
-| pageSize | integer? | Number of records that can be seen on the page for the company id. |  
+| companyId | Int? | The company id for which the detail needs to be retrieved. |   
+| q | String? | The search related the store for the company id. |   
+| pageNo | Int? | The number of page for the company id. |   
+| pageSize | Int? | Number of records that can be seen on the page for the company id. |  
 
 Get the details of the store associated with the company ID passed.
 
@@ -10342,8 +10342,8 @@ catalog.getGenderAttribute(companyId: companyId, department: department) { (resp
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company for which you want to view the genders |   
-| department | string? | department for which you want to view the genders |  
+| companyId | Int? | company for which you want to view the genders |   
+| department | String? | department for which you want to view the genders |  
 
 This API allows to view the gender attribute details.
 
@@ -10384,9 +10384,9 @@ catalog.listProductTemplateCategories(companyId: companyId, departments: departm
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| departments | string? | A `department` is name of a departments whose category needs to be listed. Can specify multiple departments. |   
-| itemType | string? | An `item_type` is the type of item, it can be `set`, `standard`, `digital`, etc. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| departments | String? | A `department` is name of a departments whose category needs to be listed. Can specify multiple departments. |   
+| itemType | String? | An `item_type` is the type of item, it can be `set`, `standard`, `digital`, etc. |  
 
 Allows you to list all product categories values for the departments specified
 
@@ -10427,12 +10427,12 @@ catalog.listDepartmentsData(companyId: companyId, pageNo: pageNo, pageSize: page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |   
-| name | string? | Can search departments by passing name. |   
-| search | string? | Can search departments by passing name of the department in search parameter. |   
-| isActive | boolean? | Can query for departments based on whether they are active or inactive. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
+| name | String? | Can search departments by passing name. |   
+| search | String? | Can search departments by passing name of the department in search parameter. |   
+| isActive | Bool? | Can query for departments based on whether they are active or inactive. |  
 
 Allows you to list all departments, also can search using name and filter active and incative departments, and item type
 
@@ -10473,8 +10473,8 @@ catalog.getDepartmentData(companyId: companyId, uid: uid) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| uid | string? | A `uid` is a unique identifier of a department. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | String? | A `uid` is a unique identifier of a department. |  
 
 Allows you to get department data, by uid
 
@@ -10515,8 +10515,8 @@ catalog.listProductTemplate(companyId: companyId, departments: departments) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| departments | string? | A `departments` is the name of a particular department. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| departments | String? | A `departments` is the name of a particular department. |  
 
 Allows you to list all product templates, also can filter by department
 
@@ -10557,8 +10557,8 @@ catalog.validateProductTemplate(companyId: companyId, slug: slug) { (response, e
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| slug | string? | A `slug` is a unique identifier for a particular template. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| slug | String? | A `slug` is a unique identifier for a particular template. |  
 
 Allows you to list all product templates validation values for all the fields present in the database
 
@@ -10599,8 +10599,8 @@ catalog.downloadProductTemplateViews(companyId: companyId, slug: slug) { (respon
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| slug | string? | A `slug` is a unique identifier for a particular template. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| slug | String? | A `slug` is a unique identifier for a particular template. |  
 
 Allows you to download product template data
 
@@ -10641,8 +10641,8 @@ catalog.downloadProductTemplateView(companyId: companyId, itemType: itemType) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| itemType | string? | An `item_type` defines the type of item. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| itemType | String? | An `item_type` defines the type of item. |  
 
 Allows you to download product template data
 
@@ -10683,8 +10683,8 @@ catalog.validateProductTemplateSchema(companyId: companyId, itemType: itemType) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| itemType | string? | An `item_type` defines the type of item. The default value is standard. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| itemType | String? | An `item_type` defines the type of item. The default value is standard. |  
 
 Allows you to list all product templates validation values for all the fields present in the database
 
@@ -10725,7 +10725,7 @@ catalog.listHSNCodes(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 Allows you to list all hsn Codes
 
@@ -10766,7 +10766,7 @@ catalog.listProductTemplateExportDetails(companyId: companyId) { (response, erro
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 Can view details including trigger data, task id , etc.
 
@@ -10807,8 +10807,8 @@ catalog.listTemplateBrandTypeValues(companyId: companyId, filter: filter) { (res
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| filter | string? | A `filter` is the unique identifier of the type of value required. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| filter | String? | A `filter` is the unique identifier of the type of value required. |  
 
 The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
 
@@ -10849,7 +10849,7 @@ catalog.createCategories(companyId: companyId, body: body) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 This API lets user create product categories
 
@@ -10890,12 +10890,12 @@ catalog.listCategories(companyId: companyId, level: level, departments: departme
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| level | string? | Get category for multiple levels |   
-| departments | string? | Get category for multiple departments filtered |   
-| q | string? | Get multiple categories filtered by search string |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| level | String? | Get category for multiple levels |   
+| departments | String? | Get category for multiple departments filtered |   
+| q | String? | Get multiple categories filtered by search string |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |  
 
 This API gets meta associated to product categories.
 
@@ -10925,48 +10925,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCategory
-Update product categories
-
-```swift
-catalog.updateCategory(companyId: companyId, uid: uid, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| uid | string? | Category unique id |  
-
-Update a product category using this apu
-
-*Success Response:*
-
-
-
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
-
-
-Schema: `CategoryUpdateResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### getCategoryData
 Get product category by uid
 
@@ -10978,8 +10936,8 @@ catalog.getCategoryData(companyId: companyId, uid: uid) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |   
-| uid | string? | Category unique id |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | String? | Category unique id |  
 
 This API gets meta associated to product categories.
 
@@ -11009,6 +10967,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateCategory
+Update product categories
+
+```swift
+catalog.updateCategory(companyId: companyId, uid: uid, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | String? | Category unique id |  
+
+Update a product category using this apu
+
+*Success Response:*
+
+
+
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
+
+
+Schema: `CategoryUpdateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### createProduct
 Create a product.
 
@@ -11020,7 +11020,7 @@ catalog.createProduct(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to product that is to be viewed. |  
+| companyId | String? | Id of the company associated to product that is to be viewed. |  
 
 This API allows to create product.
 
@@ -11061,12 +11061,12 @@ catalog.getProducts(companyId: companyId, brandIds: brandIds, categoryIds: categ
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | number? | Get list of products filtered by company Id |   
-| brandIds | number? | Get multiple products filtered by brand Ids |   
-| categoryIds | number? | Get multiple products filtered by category Ids |   
-| search | string? | Get multiple products filtered by search string |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |  
+| companyId | Double? | Get list of products filtered by company Id |   
+| brandIds | Double? | Get multiple products filtered by brand Ids |   
+| categoryIds | Double? | Get multiple products filtered by category Ids |   
+| search | String? | Get multiple products filtered by search string |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |  
 
 This API gets meta associated to products.
 
@@ -11096,48 +11096,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editProduct
-Edit a product.
-
-```swift
-catalog.editProduct(companyId: companyId, itemId: itemId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to product that is to be viewed. |   
-| itemId | integer? | Id of the product to be updated. |  
-
-This API allows to edit product.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### deleteProduct
 Delete a product.
 
@@ -11149,8 +11107,8 @@ catalog.deleteProduct(companyId: companyId, itemId: itemId) { (response, error) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id of the company associated to product that is to be deleted. |   
-| itemId | integer? | Id of the product to be updated. |  
+| companyId | String? | Company Id of the company associated to product that is to be deleted. |   
+| itemId | Int? | Id of the product to be updated. |  
 
 This API allows to delete product.
 
@@ -11191,11 +11149,11 @@ catalog.getProduct(itemCode: itemCode, companyId: companyId, itemId: itemId, bra
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| itemCode | string? | Item code of the product. |   
-| companyId | integer? | Company Id of the product. |   
-| itemId | integer? | Item Id of the product. |   
-| brandUid | integer? | Brand Id of the product. |   
-| uid | integer? | Id of the product. |  
+| itemCode | String? | Item code of the product. |   
+| companyId | Int? | Company Id of the product. |   
+| itemId | Int? | Item Id of the product. |   
+| brandUid | Int? | Brand Id of the product. |   
+| uid | Int? | Id of the product. |  
 
 This API helps to get data associated to a particular product.
 
@@ -11225,6 +11183,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### editProduct
+Edit a product.
+
+```swift
+catalog.editProduct(companyId: companyId, itemId: itemId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company associated to product that is to be viewed. |   
+| itemId | Int? | Id of the product to be updated. |  
+
+This API allows to edit product.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getProductValidation
 Validate product/size data
 
@@ -11236,7 +11236,7 @@ catalog.getProductValidation(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | number? | Validates data against given company |  
+| companyId | Double? | Validates data against given company |  
 
 This API validates product data.
 
@@ -11277,11 +11277,11 @@ catalog.getProductSize(itemCode: itemCode, companyId: companyId, itemId: itemId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| itemCode | string? | Item code of the product size. |   
-| companyId | integer? | Company Id of the product size. |   
-| itemId | integer? | Item Id of the product size. |   
-| brandUid | integer? | Brand Id of the product size. |   
-| uid | integer? | Id of the product size. |  
+| itemCode | String? | Item code of the product size. |   
+| companyId | Int? | Company Id of the product size. |   
+| itemId | Int? | Item Id of the product size. |   
+| brandUid | Int? | Brand Id of the product size. |   
+| uid | Int? | Id of the product size. |  
 
 This API helps to get data associated to a particular product size.
 
@@ -11322,7 +11322,7 @@ catalog.updateProductAssetsInBulk(companyId: companyId, body: body) { (response,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id in which assets to be uploaded. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |  
 
 This API helps to create a bulk asset upload job.
 
@@ -11363,9 +11363,9 @@ catalog.getProductBulkUploadHistory(companyId: companyId, pageNo: pageNo, pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id of of which Product Bulk Upload History to be obtained. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 12. |  
+| companyId | Int? | Company Id of of which Product Bulk Upload History to be obtained. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
 
 This API helps to get bulk product upload jobs data.
 
@@ -11406,8 +11406,8 @@ catalog.createProductsInBulk(companyId: companyId, batchId: batchId, body: body)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id in which assets to be uploaded. |   
-| batchId | string? | Batch Id in which assets to be uploaded. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |   
+| batchId | String? | Batch Id in which assets to be uploaded. |  
 
 This API helps to create products in bulk push to kafka for approval/creation.
 
@@ -11448,8 +11448,8 @@ catalog.deleteProductBulkJob(companyId: companyId, batchId: batchId) { (response
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id of the company associated to size that is to be deleted. |   
-| batchId | integer? | Batch Id of the bulk product job to be deleted. |  
+| companyId | String? | Company Id of the company associated to size that is to be deleted. |   
+| batchId | Int? | Batch Id of the bulk product job to be deleted. |  
 
 This API allows to delete bulk product job associated with company.
 
@@ -11490,7 +11490,7 @@ catalog.getCompanyTags(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id of the product size. |  
+| companyId | Int? | Company Id of the product size. |  
 
 This API helps to get tags data associated to a particular copmpany.
 
@@ -11531,7 +11531,7 @@ catalog.createProductAssetsInBulk(companyId: companyId, body: body) { (response,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id in which assets to be uploaded. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |  
 
 This API helps to create a bulk asset upload job.
 
@@ -11572,9 +11572,9 @@ catalog.getProductAssetsInBulk(companyId: companyId, pageNo: pageNo, pageSize: p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id of the product size. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 12. |  
+| companyId | Int? | Company Id of the product size. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
 
 This API helps to get bulk asset jobs data associated to a particular company.
 
@@ -11615,9 +11615,9 @@ catalog.deleteSize(companyId: companyId, itemId: itemId, size: size) { (response
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id of the company associated to size that is to be deleted. |   
-| itemId | integer? | Item Id of the product associated with size to be deleted. |   
-| size | integer? | size to be deleted. |  
+| companyId | String? | Company Id of the company associated to size that is to be deleted. |   
+| itemId | Int? | Item Id of the product associated with size to be deleted. |   
+| size | Int? | size to be deleted. |  
 
 This API allows to delete size associated with product.
 
@@ -11658,9 +11658,9 @@ catalog.addInventory(companyId: companyId, itemId: itemId, size: size, body: bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to product that is to be viewed. |   
-| itemId | number? | Item code of the product of which size is to be get. |   
-| size | string? | Size in which inventory is to be added. |  
+| companyId | String? | Id of the company associated to product that is to be viewed. |   
+| itemId | Double? | Item of the company associated to product that is to be viewed. |   
+| size | String? | Size in which inventory is to be added. |  
 
 This API allows add Inventory for particular size and store.
 
@@ -11701,11 +11701,11 @@ catalog.getInventory(companyId: companyId, itemId: itemId, size: size, pageNo: p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to product that is to be viewed. |   
-| itemId | string? | Item code of the product of which size is to be get. |   
-| size | string? | Size of which inventory is to get. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 12. |  
+| companyId | String? | Id of the company associated to product that is to be viewed. |   
+| itemId | String? | Item code of the product of which size is to be get. |   
+| size | String? | Size of which inventory is to get. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
 
 This API allows get Inventory data for particular company grouped by size and store.
 
@@ -11716,7 +11716,7 @@ This API allows get Inventory data for particular company grouped by size and st
 returns a list of all inventory grouped by size and store
 
 
-Schema: `InventoryResponse`
+Schema: `InventoryRequest1`
 
 
 
@@ -11746,9 +11746,9 @@ catalog.deleteInventory(companyId: companyId, itemId: itemId, locationId: locati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id of the company associated with Inventory that is to be deleted. |   
-| itemId | integer? | Id of the product associated with Inventory to be deleted. |   
-| locationId | number? | Location ID of store of which inventory is to be deleted. |  
+| companyId | String? | Company Id of the company associated with Inventory that is to be deleted. |   
+| itemId | Int? | Id of the product associated with Inventory to be deleted. |   
+| locationId | Double? | Location ID of store of which inventory is to be deleted. |  
 
 This API allows to delete inventory of a particular product for particular company.
 
@@ -11789,7 +11789,7 @@ catalog.createBulkInventoryJob(companyId: companyId, body: body) { (response, er
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id in which Inventory to be uploaded. |  
+| companyId | Int? | Company Id in which Inventory to be uploaded. |  
 
 This API helps to create a bulk Inventory upload job.
 
@@ -11830,9 +11830,9 @@ catalog.getInventoryBulkUploadHistory(companyId: companyId, pageNo: pageNo, page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id of of which Inventory Bulk Upload History to be obtained. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 12. |  
+| companyId | Int? | Company Id of of which Inventory Bulk Upload History to be obtained. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
 
 This API helps to get bulk Inventory upload jobs data.
 
@@ -11840,10 +11840,10 @@ This API helps to get bulk Inventory upload jobs data.
 
 
 
-List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
+List of bulk Inventory upload jobs. See `BulkRequestGetSchema` for details
 
 
-Schema: `BulkInventoryGet`
+Schema: `BulkRequestGet`
 
 
 
@@ -11873,7 +11873,7 @@ catalog.createBulkInventory(companyId: companyId, body: body) { (response, error
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id in which Inventory is to be uploaded. |  
+| companyId | Int? | Company Id in which Inventory is to be uploaded. |  
 
 This API helps to create products in bulk push to kafka for approval/creation.
 
@@ -11914,7 +11914,7 @@ catalog.deleteBulkInventoryJob(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id of the company of which bulk Inventory job is to be deleted. |  
+| companyId | String? | Company Id of the company of which bulk Inventory job is to be deleted. |  
 
 This API allows to delete bulk Inventory job associated with company.
 
@@ -11955,7 +11955,7 @@ catalog.createInventoryExportJob(companyId: companyId, body: body) { (response, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id in which assets to be uploaded. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |  
 
 This API helps to create a Inventory export job.
 
@@ -11996,7 +11996,7 @@ catalog.getInventoryExport(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id in which assets to be uploaded. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |  
 
 This API helps to get Inventory export history.
 
@@ -12037,8 +12037,8 @@ catalog.exportInventoryConfig(companyId: companyId, filterType: filterType) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to product that is to be viewed. |   
-| filterType | string? | filter type from any one of ['brand', 'store', 'type'] |  
+| companyId | String? | Id of the company associated to product that is to be viewed. |   
+| filterType | String? | filter type from any one of ['brand', 'store', 'type'] |  
 
 This API allows get List of different filters like brand, store, and type for inventory export.
 
@@ -12079,7 +12079,7 @@ catalog.createHsnCode(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |  
+| companyId | String? | company id |  
 
 Create Hsn Code.
 
@@ -12120,10 +12120,10 @@ catalog.getAllHsnCodes(companyId: companyId, pageNo: pageNo, pageSize: pageSize,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| pageNo | integer? | page no |   
-| pageSize | integer? | page size |   
-| q | string? | search using hsn code. |  
+| companyId | String? | company id |   
+| pageNo | Int? | page no |   
+| pageSize | Int? | page size |   
+| q | String? | search using hsn code. |  
 
 Hsn Code List.
 
@@ -12153,27 +12153,27 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateHsnCode
-Update Hsn Code.
+#### getHsnCode
+Fetch Hsn Code.
 
 ```swift
-catalog.updateHsnCode(companyId: companyId, uid: uid, body: body) { (response, error) in
+catalog.getHsnCode(companyId: companyId, uid: uid) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| uid | integer? | uid |  
+| companyId | String? | company id |   
+| uid | Int? | uid |  
 
-Update Hsn Code.
+Fetch Hsn Code.
 
 *Success Response:*
 
 
 
-See example below for details
+See example below details
 
 
 Schema: `HsnCode`
@@ -12195,27 +12195,27 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getHsnCode
-Fetch Hsn Code.
+#### updateHsnCode
+Update Hsn Code.
 
 ```swift
-catalog.getHsnCode(companyId: companyId, uid: uid) { (response, error) in
+catalog.updateHsnCode(companyId: companyId, uid: uid, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| uid | integer? | uid |  
+| companyId | String? | company id |   
+| uid | Int? | uid |  
 
-Fetch Hsn Code.
+Update Hsn Code.
 
 *Success Response:*
 
 
 
-See example below details
+See example below for details
 
 
 Schema: `HsnCode`
@@ -12248,7 +12248,7 @@ catalog.bulkHsnCode(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |  
+| companyId | String? | company id |  
 
 Bulk Create or Update Hsn Code.
 
@@ -12296,7 +12296,7 @@ companyprofile.updateCompany(companyId: companyId, body: body) { (response, erro
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 This API allows to edit the company profile of the seller account.
 
@@ -12337,7 +12337,7 @@ companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 This API allows to view the company profile of the seller account.
 
@@ -12378,7 +12378,7 @@ companyprofile.getCompanyMetrics(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
 
@@ -12419,8 +12419,8 @@ companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to brand that is to be viewed. |   
-| brandId | string? | Id of the brand to be viewed. |  
+| companyId | String? | Id of the company associated to brand that is to be viewed. |   
+| brandId | String? | Id of the brand to be viewed. |  
 
 This API allows to edit meta of a brand.
 
@@ -12461,8 +12461,8 @@ companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, err
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company associated to brand that is to be viewed. |   
-| brandId | string? | Id of the brand to be viewed. |  
+| companyId | String? | Id of the company associated to brand that is to be viewed. |   
+| brandId | String? | Id of the brand to be viewed. |  
 
 This API helps to get data associated to a particular brand.
 
@@ -12503,50 +12503,9 @@ companyprofile.createBrand(companyId: companyId, body: body) { (response, error)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company. |  
+| companyId | String? | Id of the company. |  
 
 This API allows to create a brand associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### createCompanyBrandMapping
-Create a company brand mapping.
-
-```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | string? | Id of the company inside which the brand is to be mapped. |  
-
-This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -12585,9 +12544,9 @@ companyprofile.getBrands(companyId: companyId, pageNo: pageNo, pageSize: pageSiz
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |  
+| companyId | String? | Id of the company. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |  
 
 This API helps to get view brands associated to a particular company.
 
@@ -12617,20 +12576,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createCompanyBrandMapping
+Create a company brand mapping.
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company inside which the location is to be created. |  
+| companyId | String? | Id of the company inside which the brand is to be mapped. |  
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -12669,12 +12628,12 @@ companyprofile.getLocations(companyId: companyId, storeType: storeType, q: q, st
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company whose locations are to fetched |   
-| storeType | string? | Helps to sort the location list on the basis of location type. |   
-| q | string? | Query that is to be searched. |   
-| stage | string? | to filter companies on basis of verified or unverified companies. |   
-| pageNo | integer? | The page number to navigate through the given set of results |   
-| pageSize | integer? | Number of items to retrieve in each page. Default is 10. |  
+| companyId | String? | Id of the company whose locations are to fetched |   
+| storeType | String? | Helps to sort the location list on the basis of location type. |   
+| q | String? | Query that is to be searched. |   
+| stage | String? | to filter companies on basis of verified or unverified companies. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |  
 
 This API allows to view all the locations asscoiated to a company.
 
@@ -12704,6 +12663,47 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createLocation
+Create a location asscoiated to a company.
+
+```swift
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company inside which the location is to be created. |  
+
+This API allows to create a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### updateLocation
 Edit a location asscoiated to a company.
 
@@ -12715,8 +12715,8 @@ companyprofile.updateLocation(companyId: companyId, locationId: locationId, body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company inside which the location is to be created. |   
-| locationId | string? | Id of the location which you want to edit. |  
+| companyId | String? | Id of the company inside which the location is to be created. |   
+| locationId | String? | Id of the location which you want to edit. |  
 
 This API allows to edit a location associated to a company.
 
@@ -12757,8 +12757,8 @@ companyprofile.getLocationDetail(companyId: companyId, locationId: locationId) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Id of the company inside which the location lies. |   
-| locationId | string? | Id of the location which you want to view. |  
+| companyId | String? | Id of the company inside which the location lies. |   
+| locationId | String? | Id of the location which you want to view. |  
 
 This API helps to get data associated to a specific location.
 
@@ -12806,8 +12806,8 @@ filestorage.startUpload(namespace: namespace, companyId: companyId, body: body) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| namespace | string? | bucket name |   
-| companyId | integer? | company_id |  
+| namespace | String? | bucket name |   
+| companyId | Int? | company_id |  
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -12866,8 +12866,8 @@ filestorage.completeUpload(namespace: namespace, companyId: companyId, body: bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| namespace | string? | bucket name |   
-| companyId | integer? | company_id |  
+| namespace | String? | bucket name |   
+| companyId | Int? | company_id |  
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -12926,9 +12926,9 @@ filestorage.appStartUpload(namespace: namespace, companyId: companyId, applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| namespace | string? | bucket name |   
-| companyId | integer? | company_id |   
-| applicationId | string? | application id |  
+| namespace | String? | bucket name |   
+| companyId | Int? | company_id |   
+| applicationId | String? | application id |  
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -12987,9 +12987,9 @@ filestorage.appCompleteUpload(namespace: namespace, companyId: companyId, applic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| namespace | string? | bucket name |   
-| companyId | integer? | company_id |   
-| applicationId | string? | application id |  
+| namespace | String? | bucket name |   
+| companyId | Int? | company_id |   
+| applicationId | String? | application id |  
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -13048,7 +13048,7 @@ filestorage.getSignUrls(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |  
+| companyId | Int? | company_id |  
 
 Describe here
 
@@ -13089,8 +13089,8 @@ filestorage.copyFiles(sync: sync, companyId: companyId, body: body) { (response,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| sync | boolean? | sync |   
-| companyId | integer? | company_id |  
+| sync | Bool? | sync |   
+| companyId | Int? | company_id |  
 
 Copy Files
 
@@ -13131,9 +13131,9 @@ filestorage.appCopyFiles(sync: sync, companyId: companyId, applicationId: applic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| sync | boolean? | sync |   
-| companyId | integer? | company_id |   
-| applicationId | integer? | application_id |  
+| sync | Bool? | sync |   
+| companyId | Int? | company_id |   
+| applicationId | Int? | application_id |  
 
 Copy Files
 
@@ -13174,9 +13174,9 @@ filestorage.browse(namespace: namespace, companyId: companyId, pageNo: pageNo) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| namespace | string? | bucket name |   
-| companyId | integer? | company_id |   
-| pageNo | integer? | page no |  
+| namespace | String? | bucket name |   
+| companyId | Int? | company_id |   
+| pageNo | Int? | page no |  
 
 Browse Files
 
@@ -13217,10 +13217,10 @@ filestorage.appBrowse(namespace: namespace, companyId: companyId, applicationId:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| namespace | string? | bucket name |   
-| companyId | integer? | company_id |   
-| applicationId | integer? | application_id |   
-| pageNo | integer? | page no |  
+| namespace | String? | bucket name |   
+| companyId | Int? | company_id |   
+| applicationId | Int? | application_id |   
+| pageNo | Int? | page no |  
 
 Browse Files
 
@@ -13261,8 +13261,8 @@ filestorage.proxy(companyId: companyId, url: url) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| url | string? | url |  
+| companyId | Int? | company_id |   
+| url | String? | url |  
 
 Proxy
 
@@ -13301,8 +13301,8 @@ share.createShortLink(companyId: companyId, applicationId: applicationId, body: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |  
 
 Create short link
 
@@ -13343,13 +13343,13 @@ share.getShortLinks(companyId: companyId, applicationId: applicationId, pageNo: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| pageNo | integer? | Current page number |   
-| pageSize | integer? | Current page size |   
-| createdBy | string? | Short link creator |   
-| active | string? | Short link active status |   
-| q | string? | Search text for original and short url |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| pageNo | Int? | Current page number |   
+| pageSize | Int? | Current page size |   
+| createdBy | String? | Short link creator |   
+| active | String? | Short link active status |   
+| q | String? | Search text for original and short url |  
 
 Get short links
 
@@ -13390,9 +13390,9 @@ share.getShortLinkByHash(companyId: companyId, applicationId: applicationId, has
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| hash | string? | Hash of short url |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| hash | String? | Hash of short url |  
 
 Get short link by hash
 
@@ -13433,9 +13433,9 @@ share.updateShortLinkById(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| id | string? | Short link document identifier |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| id | String? | Short link document identifier |  
 
 Update short link by id
 
@@ -13483,9 +13483,9 @@ inventory.getJobsByCompany(companyId: companyId, pageNo: pageNo, pageSize: pageS
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| pageNo | integer? | Page Number |   
-| pageSize | integer? | Page Size |  
+| companyId | Int? | Company Id |   
+| pageNo | Int? | Page Number |   
+| pageSize | Int? | Page Size |  
 
 REST Endpoint that returns all job configs for a company
 
@@ -13535,8 +13535,8 @@ inventory.updateJob(companyId: companyId, xUserData: xUserData, body: body) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| xUserData | string? |  |  
+| companyId | Int? | Company Id |   
+| xUserData | String? |  |  
 
 REST Endpoint that updates a job config
 
@@ -13595,8 +13595,8 @@ inventory.createJob(companyId: companyId, xUserData: xUserData, body: body) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| xUserData | string? |  |  
+| companyId | Int? | Company Id |   
+| xUserData | String? |  |  
 
 REST Endpoint that creates a new job config
 
@@ -13664,10 +13664,10 @@ inventory.getJobByCompanyAndIntegration(companyId: companyId, integrationId: int
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| integrationId | string? | Integration Id |   
-| pageNo | integer? | Page Number |   
-| pageSize | integer? | Page Size |  
+| companyId | Int? | Company Id |   
+| integrationId | String? | Integration Id |   
+| pageNo | Int? | Page Number |   
+| pageSize | Int? | Page Size |  
 
 REST Endpoint that returns all job configs by company And integration
 
@@ -13717,7 +13717,7 @@ inventory.getJobConfigDefaults(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |  
+| companyId | Int? | Company Id |  
 
 REST Endpoint that returns default fields job configs by company And integration
 
@@ -13767,8 +13767,8 @@ inventory.getJobByCode(companyId: companyId, code: code) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| code | string? | Job Code |  
+| companyId | Int? | Company Id |   
+| code | String? | Job Code |  
 
 REST Endpoint that returns job config by code
 
@@ -13818,10 +13818,10 @@ inventory.getJobCodesByCompanyAndIntegration(companyId: companyId, integrationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | Company Id |   
-| integrationId | string? | Integration Id |   
-| pageNo | integer? | Page Number |   
-| pageSize | integer? | Page Size |  
+| companyId | Int? | Company Id |   
+| integrationId | String? | Integration Id |   
+| pageNo | Int? | Page Number |   
+| pageSize | Int? | Page Size |  
 
 REST Endpoint that returns all job codes by company And integration
 
@@ -13878,9 +13878,9 @@ configuration.getBuildConfig(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| platformType | string? | Current platform name |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| platformType | String? | Current platform name |  
 
 Get latest build config
 
@@ -13912,9 +13912,9 @@ configuration.updateBuildConfig(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| platformType | string? | Current platform name |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| platformType | String? | Current platform name |  
 
 Update build config for next build
 
@@ -13946,9 +13946,9 @@ configuration.getPreviousVersions(companyId: companyId, applicationId: applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| platformType | string? | Current platform name |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| platformType | String? | Current platform name |  
 
 Get previous versions
 
@@ -13980,8 +13980,8 @@ configuration.getAppFeatures(companyId: companyId, applicationId: applicationId)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get features of application
 
@@ -14022,8 +14022,8 @@ configuration.updateAppFeatures(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Update features of application
 
@@ -14055,8 +14055,8 @@ configuration.getAppBasicDetails(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get basic application details like name
 
@@ -14088,8 +14088,8 @@ configuration.updateAppBasicDetails(companyId: companyId, applicationId: applica
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Add or update application's basic details
 
@@ -14121,8 +14121,8 @@ configuration.getAppContactInfo(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
 
@@ -14154,8 +14154,8 @@ configuration.updateAppContactInfo(companyId: companyId, applicationId: applicat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Save Application Current Information. This includes information about social links, address and contact information of an application.
 
@@ -14187,8 +14187,8 @@ configuration.getAppApiTokens(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get social tokens.
 
@@ -14220,8 +14220,8 @@ configuration.updateAppApiTokens(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Add social tokens.
 
@@ -14253,10 +14253,10 @@ configuration.getAppCompanies(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Application inventory enabled companies.
 
@@ -14288,10 +14288,10 @@ configuration.getAppStores(companyId: companyId, applicationId: applicationId, p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Application inventory enabled stores.
 
@@ -14323,8 +14323,8 @@ configuration.getInventoryConfig(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get application configuration for various features and data
 
@@ -14356,8 +14356,8 @@ configuration.updateInventoryConfig(companyId: companyId, applicationId: applica
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Update application configuration for various features and data
 
@@ -14389,8 +14389,8 @@ configuration.partiallyUpdateInventoryConfig(companyId: companyId, applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Partially update application configuration for various features and data
 
@@ -14422,8 +14422,8 @@ configuration.getAppCurrencyConfig(companyId: companyId, applicationId: applicat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get application enabled currency list
 
@@ -14455,8 +14455,8 @@ configuration.updateAppCurrencyConfig(companyId: companyId, applicationId: appli
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Add initial application supported currency for various features and data. Default INR will be enabled.
 
@@ -14488,10 +14488,10 @@ configuration.getOrderingStoresByFilter(companyId: companyId, applicationId: app
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Get ordering store by filter
 
@@ -14523,8 +14523,8 @@ configuration.updateOrderingStoreConfig(companyId: companyId, applicationId: app
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Add/Update ordering store config.
 
@@ -14565,8 +14565,8 @@ configuration.getDomains(companyId: companyId, applicationId: applicationId) { (
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get attached domain list.
 
@@ -14598,8 +14598,8 @@ configuration.addDomain(companyId: companyId, applicationId: applicationId, body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Add new domain to application.
 
@@ -14640,9 +14640,9 @@ configuration.removeDomainById(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| id | string? | Domain _id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| id | String? | Domain _id |  
 
 Remove attached domain.
 
@@ -14692,8 +14692,8 @@ configuration.changeDomainType(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Change a domain to Primary or Shortlink domain
 
@@ -14734,8 +14734,8 @@ configuration.getDomainStatus(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
 
@@ -14767,7 +14767,7 @@ configuration.createApplication(companyId: companyId, body: body) { (response, e
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |  
+| companyId | String? | Current company id |  
 
 Create new application
 
@@ -14799,10 +14799,10 @@ configuration.getApplications(companyId: companyId, pageNo: pageNo, pageSize: pa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| pageNo | integer? |  |   
-| pageSize | integer? |  |   
-| q | string? | Url encoded object used as mongodb query |  
+| companyId | String? | Current company id |   
+| pageNo | Int? |  |   
+| pageSize | Int? |  |   
+| q | String? | Url encoded object used as mongodb query |  
 
 Get list of application under company
 
@@ -14834,8 +14834,8 @@ configuration.getApplicationById(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |  
 
 Get application data from id
 
@@ -14867,7 +14867,7 @@ configuration.getCurrencies(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |  
+| companyId | String? | Current company id |  
 
 Get all currencies
 
@@ -14899,7 +14899,7 @@ configuration.getDomainAvailibility(companyId: companyId, body: body) { (respons
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |  
+| companyId | String? | Current company id |  
 
 Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
 
@@ -14931,8 +14931,8 @@ configuration.getIntegrationById(companyId: companyId, id: id) { (response, erro
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| id | integer? | Integration id |  
+| companyId | String? | Current company id |   
+| id | Int? | Integration id |  
 
 Get integration data
 
@@ -14964,9 +14964,9 @@ configuration.getAvailableOptIns(companyId: companyId, pageNo: pageNo, pageSize:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Get all available integration opt-ins
 
@@ -14998,11 +14998,11 @@ configuration.getSelectedOptIns(companyId: companyId, level: level, uid: uid, pa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| level | string? | Integration level |   
-| uid | integer? | Integration level uid |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| level | String? | Integration level |   
+| uid | Int? | Integration level uid |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Get company/store level integration opt-ins
 
@@ -15034,9 +15034,9 @@ configuration.getIntegrationLevelConfig(companyId: companyId, id: id, level: lev
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| id | string? | Integration id |   
-| level | string? | Integration level |  
+| companyId | String? | Current company id |   
+| id | String? | Integration id |   
+| level | String? | Integration level |  
 
 Get integration level config
 
@@ -15068,10 +15068,10 @@ configuration.getIntegrationByLevelId(companyId: companyId, id: id, level: level
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| id | string? | Integration id |   
-| level | string? | Integration level |   
-| uid | integer? | Integration level uid |  
+| companyId | String? | Current company id |   
+| id | String? | Integration id |   
+| level | String? | Integration level |   
+| uid | Int? | Integration level uid |  
 
 Get level data for integration
 
@@ -15103,10 +15103,10 @@ configuration.getLevelActiveIntegrations(companyId: companyId, id: id, level: le
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| id | string? | Integration id |   
-| level | string? | Integration level |   
-| uid | integer? | Integration level uid |  
+| companyId | String? | Current company id |   
+| id | String? | Integration id |   
+| level | String? | Integration level |   
+| uid | Int? | Integration level uid |  
 
 API checks if a store is already opted in any other integrations
 
@@ -15138,8 +15138,8 @@ configuration.getBrandsByCompany(companyId: companyId, q: q) { (response, error)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| q | string? | Search text for brand name |  
+| companyId | String? | Current company id |   
+| q | String? | Search text for brand name |  
 
 Get brands by company
 
@@ -15171,9 +15171,9 @@ configuration.getCompanyByBrands(companyId: companyId, pageNo: pageNo, pageSize:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Get company by brand uids
 
@@ -15205,9 +15205,9 @@ configuration.getStoreByBrands(companyId: companyId, pageNo: pageNo, pageSize: p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Get stores by brand uids
 
@@ -15239,9 +15239,9 @@ configuration.getOtherSellerApplications(companyId: companyId, pageNo: pageNo, p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| pageNo | integer? | Current page no |   
-| pageSize | integer? | Current request items count |  
+| companyId | String? | Current company id |   
+| pageNo | Int? | Current page no |   
+| pageSize | Int? | Current request items count |  
 
 Get other seller applications who has opted current company as inventory
 
@@ -15273,8 +15273,8 @@ configuration.getOtherSellerApplicationById(companyId: companyId, id: id) { (res
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| id | string? | Application Id |  
+| companyId | String? | Current company id |   
+| id | String? | Application Id |  
 
 Get other seller application
 
@@ -15315,8 +15315,8 @@ configuration.optOutFromApplication(companyId: companyId, id: id, body: body) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| id | string? | Application Id |  
+| companyId | String? | Current company id |   
+| id | String? | Application Id |  
 
 Opt out company or store from other seller application
 
@@ -15373,16 +15373,16 @@ cart.getCoupons(companyId: companyId, applicationId: applicationId, pageNo: page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current Application _id |   
-| pageNo | integer? |  |   
-| pageSize | integer? |  |   
-| isArchived | boolean? |  |   
-| title | string? |  |   
-| isPublic | boolean? |  |   
-| isDisplay | boolean? |  |   
-| typeSlug | string? |  |   
-| code | string? |  |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| pageNo | Int? |  |   
+| pageSize | Int? |  |   
+| isArchived | Bool? |  |   
+| title | String? |  |   
+| isPublic | Bool? |  |   
+| isDisplay | Bool? |  |   
+| typeSlug | String? |  |   
+| code | String? |  |  
 
 Get coupon list with pagination
 
@@ -15414,8 +15414,8 @@ cart.createCoupon(companyId: companyId, applicationId: applicationId, body: body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current Application _id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |  
 
 Create new coupon
 
@@ -15456,9 +15456,9 @@ cart.getCouponById(companyId: companyId, applicationId: applicationId, id: id) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current Application _id |   
-| id | string? |  |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| id | String? |  |  
 
 Get single coupon details with `id` in path param
 
@@ -15499,9 +15499,9 @@ cart.updateCoupon(companyId: companyId, applicationId: applicationId, id: id, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current Application _id |   
-| id | string? |  |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| id | String? |  |  
 
 Update coupon with id sent in `id`
 
@@ -15542,9 +15542,9 @@ cart.updateCouponPartially(companyId: companyId, applicationId: applicationId, i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current Application _id |   
-| id | string? |  |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| id | String? |  |  
 
 Update archive/unarchive and change schedule for coupon
 
@@ -15592,7 +15592,7 @@ marketplaces.getAvailableChannels(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Get available marketplace channels
 
@@ -15624,7 +15624,7 @@ marketplaces.getChannels(companyId: companyId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Get all registered marketplace channels for a seller
 
@@ -15656,8 +15656,8 @@ marketplaces.getChannel(companyId: companyId, channel: channel) { (response, err
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| channel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| channel | String? | Name of marketplace channel |  
 
 Get registered marketplace channel credentials configuration for a seller
 
@@ -15689,7 +15689,7 @@ marketplaces.registerMyntraChannel(companyId: companyId, body: body) { (response
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Create Myntra marketplace channel for a seller
 
@@ -15721,7 +15721,7 @@ marketplaces.updateMyntraChannelCredentials(companyId: companyId, body: body) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Update Myntra marketplace channel credentials for a seller
 
@@ -15753,7 +15753,7 @@ marketplaces.registerAmazonChannel(companyId: companyId, body: body) { (response
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Create Amazon marketplace channel for a seller
 
@@ -15785,7 +15785,7 @@ marketplaces.updateAmazonChannelCredentials(companyId: companyId, body: body) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Update Amazon marketplace channel credentials for a seller
 
@@ -15817,8 +15817,8 @@ marketplaces.registerFlipkartChannel(companyId: companyId, flipkartChannel: flip
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| flipkartChannel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| flipkartChannel | String? | Name of marketplace channel |  
 
 Create Flipkart / Flipkart Assured marketplace channel for a seller
 
@@ -15850,8 +15850,8 @@ marketplaces.updateFlipkartChannelCredentials(companyId: companyId, flipkartChan
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| flipkartChannel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| flipkartChannel | String? | Name of marketplace channel |  
 
 Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
 
@@ -15883,8 +15883,8 @@ marketplaces.registerTatacliqChannel(companyId: companyId, tatacliqChannel: tata
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| tatacliqChannel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| tatacliqChannel | String? | Name of marketplace channel |  
 
 Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
 
@@ -15916,8 +15916,8 @@ marketplaces.updateTatacliqChannelCredentials(companyId: companyId, tatacliqChan
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| tatacliqChannel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| tatacliqChannel | String? | Name of marketplace channel |  
 
 Update Tatacliq / Tatacliq Luxury marketplace channel credentials for a seller
 
@@ -15949,7 +15949,7 @@ marketplaces.registerAjioChannel(companyId: companyId, body: body) { (response, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Create Ajio marketplace channel for a seller
 
@@ -15981,7 +15981,7 @@ marketplaces.updateAjioChannelCredentials(companyId: companyId, body: body) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |  
+| companyId | String? | Company Id |  
 
 Update Ajio marketplace channel credentials for a seller
 
@@ -16013,9 +16013,9 @@ marketplaces.updateChannelInventorySyncConfig(companyId: companyId, channel: cha
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| channel | string? | Name of marketplace channel |   
-| validateCred | string? | Validate marketplace cred while saving inventory config |  
+| companyId | String? | Company Id |   
+| channel | String? | Name of marketplace channel |   
+| validateCred | String? | Validate marketplace cred while saving inventory config |  
 
 Update inventory sync configuration of marketplace channel for a seller
 
@@ -16047,8 +16047,8 @@ marketplaces.getChannelLocationConfig(companyId: companyId, channel: channel) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| channel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| channel | String? | Name of marketplace channel |  
 
 Get marketplace channel location config for a seller
 
@@ -16080,8 +16080,8 @@ marketplaces.updateChannelLocationConfig(companyId: companyId, channel: channel,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| channel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| channel | String? | Name of marketplace channel |  
 
 update marketplace channel location config for a seller
 
@@ -16113,8 +16113,8 @@ marketplaces.getChannelStatus(companyId: companyId, channel: channel) { (respons
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| channel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| channel | String? | Name of marketplace channel |  
 
 Get marketplace channel active status for a seller
 
@@ -16146,8 +16146,8 @@ marketplaces.updateChannelStatus(companyId: companyId, channel: channel, body: b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| channel | string? | Name of marketplace channel |  
+| companyId | String? | Company Id |   
+| channel | String? | Name of marketplace channel |  
 
 Update marketplace channel active status for a seller
 
@@ -16179,9 +16179,9 @@ marketplaces.triggerChannelInventoryUpdates(companyId: companyId, channel: chann
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| channel | string? | Name of marketplace channel |   
-| updateType | string? | Inventory update type |  
+| companyId | String? | Company Id |   
+| channel | String? | Name of marketplace channel |   
+| updateType | String? | Inventory update type |  
 
 Trigger marketplace channel inventory updates for a seller
 
@@ -16220,10 +16220,10 @@ rewards.getGiveaways(companyId: companyId, applicationId: applicationId, pageId:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| pageId | string? | pagination page id |   
-| pageSize | integer? | pagination page size |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| pageId | String? | pagination page id |   
+| pageSize | Int? | pagination page size |  
 
 List of giveaways of the current application.
 
@@ -16264,8 +16264,8 @@ rewards.createGiveaway(companyId: companyId, applicationId: applicationId, body:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |  
 
 Adds a new giveaway.
 
@@ -16306,9 +16306,9 @@ rewards.getGiveawayByID(companyId: companyId, applicationId: applicationId, id: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| id | string? | Giveaway ID |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | Giveaway ID |  
 
 Get giveaway by ID.
 
@@ -16349,9 +16349,9 @@ rewards.updateGiveaway(companyId: companyId, applicationId: applicationId, id: i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| id | string? | Giveaway ID |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | Giveaway ID |  
 
 Updates the giveaway by it's ID.
 
@@ -16392,8 +16392,8 @@ rewards.getOffers(companyId: companyId, applicationId: applicationId) { (respons
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |  
 
 List of offer of the current application.
 
@@ -16434,10 +16434,10 @@ rewards.getOfferByName(companyId: companyId, applicationId: applicationId, cooki
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| cookie | string? | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |   
-| name | string? | Offer name |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| cookie | String? | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |   
+| name | String? | Offer name |  
 
 Get offer by name.
 
@@ -16478,9 +16478,9 @@ rewards.updateOfferByName(companyId: companyId, applicationId: applicationId, na
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| name | string? | Offer name |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| name | String? | Offer name |  
 
 Updates the offer by name.
 
@@ -16521,9 +16521,9 @@ rewards.getUserAvailablePoints(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| userId | string? | user id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| userId | String? | user id |  
 
 User's reward details.
 
@@ -16564,9 +16564,9 @@ rewards.updateUserStatus(companyId: companyId, applicationId: applicationId, use
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| userId | string? | user id |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| userId | String? | user id |  
 
 Update user status, active/archive
 
@@ -16607,12 +16607,12 @@ rewards.getUserPointsHistory(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | company id |   
-| applicationId | string? | application id |   
-| userId | string? | user id |   
-| pageId | string? | PageID is the ID of the requested page. For first request it should be kept empty. |   
-| pageLimit | integer? | PageLimit is the number of requested items in response. |   
-| pageSize | integer? | PageSize is the number of requested items in response. |  
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| userId | String? | user id |   
+| pageId | String? | PageID is the ID of the requested page. For first request it should be kept empty. |   
+| pageLimit | Int? | PageLimit is the number of requested items in response. |   
+| pageSize | Int? | PageSize is the number of requested items in response. |  
 
 Get list of points transactions.
 The list of points history is paginated.
@@ -16661,8 +16661,8 @@ analytics.getStatiscticsGroups(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |  
 
 Get statistics groups
 
@@ -16703,9 +16703,9 @@ analytics.getStatiscticsGroupComponents(companyId: companyId, applicationId: app
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| groupName | string? | Group name |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| groupName | String? | Group name |  
 
 Get statistics group components
 
@@ -16746,9 +16746,9 @@ analytics.getComponentStatsCSV(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| componentName | string? | Component name |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| componentName | String? | Component name |  
 
 Get component statistics csv
 
@@ -16789,9 +16789,9 @@ analytics.getComponentStatsPDF(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| componentName | string? | Component name |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| componentName | String? | Component name |  
 
 Get component statistics pdf
 
@@ -16832,9 +16832,9 @@ analytics.getComponentStats(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| componentName | string? | Component name |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| componentName | String? | Component name |  
 
 Get component statistics
 
@@ -16875,12 +16875,12 @@ analytics.getAbandonCartList(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| fromDate | string? | From date |   
-| toDate | string? | To date |   
-| pageNo | integer? | Current page number |   
-| pageSize | integer? | Current page size |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| fromDate | String? | From date |   
+| toDate | String? | To date |   
+| pageNo | Int? | Current page number |   
+| pageSize | Int? | Current page size |  
 
 Get abandon carts list
 
@@ -16921,10 +16921,10 @@ analytics.getAbandonCartsCSV(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| fromDate | string? | From date |   
-| toDate | string? | To date |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| fromDate | String? | From date |   
+| toDate | String? | To date |  
 
 Get abandon carts csv
 
@@ -16965,9 +16965,9 @@ analytics.getAbandonCartDetail(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| applicationId | string? | Application Id |   
-| cartId | string? | Cart Id |  
+| companyId | String? | Company Id |   
+| applicationId | String? | Application Id |   
+| cartId | String? | Cart Id |  
 
 Get abandon cart details
 
@@ -16999,8 +16999,8 @@ analytics.createExportJob(companyId: companyId, exportType: exportType, body: bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| exportType | string? | Export type / format |  
+| companyId | String? | Company Id |   
+| exportType | String? | Export type / format |  
 
 Create data export job in required format
 
@@ -17032,9 +17032,9 @@ analytics.getExportJobStatus(companyId: companyId, exportType: exportType, jobId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| exportType | string? | Export type / format |   
-| jobId | string? | Export job id |  
+| companyId | String? | Company Id |   
+| exportType | String? | Export type / format |   
+| jobId | String? | Export job id |  
 
 Get data export job status
 
@@ -17066,10 +17066,10 @@ analytics.getLogsList(companyId: companyId, logType: logType, pageNo: pageNo, pa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| logType | string? | Log type |   
-| pageNo | integer? | Current page number |   
-| pageSize | integer? | Current page size |  
+| companyId | String? | Company Id |   
+| logType | String? | Log type |   
+| pageNo | Int? | Current page number |   
+| pageSize | Int? | Current page size |  
 
 Get logs list
 
@@ -17101,10 +17101,10 @@ analytics.searchLogs(companyId: companyId, pageNo: pageNo, pageSize: pageSize, l
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Company Id |   
-| pageNo | integer? | Current page number |   
-| pageSize | integer? | Current page size |   
-| logType | string? | Log type |  
+| companyId | String? | Company Id |   
+| pageNo | Int? | Current page number |   
+| pageSize | Int? | Current page size |   
+| logType | String? | Log type |  
 
 Search logs
 
@@ -17143,16 +17143,16 @@ discount.getDiscounts(companyId: companyId, view: view, q: q, pageNo: pageNo, pa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| view | string? | listing or calender.  Default is listing. |   
-| q | string? | The search query. This can be a partial or complete name of a discount. |   
-| pageNo | integer? | page number. Default is 1. |   
-| pageSize | integer? | page size. Default is 12. |   
-| archived | boolean? | archived. Default is false. |   
-| month | integer? | month. Default is current month. |   
-| year | integer? | year. Default is current year. |   
-| type | string? | basic or custom. |   
-| appIds | array? | application ids. |  
+| companyId | Int? | company_id |   
+| view | String? | listing or calender.  Default is listing. |   
+| q | String? | The search query. This can be a partial or complete name of a discount. |   
+| pageNo | Int? | page number. Default is 1. |   
+| pageSize | Int? | page size. Default is 12. |   
+| archived | Bool? | archived. Default is false. |   
+| month | Int? | month. Default is current month. |   
+| year | Int? | year. Default is current year. |   
+| type | String? | basic or custom. |   
+| appIds | [String]? | application ids. |  
 
 Fetch discount list.
 
@@ -17193,7 +17193,7 @@ discount.createDiscount(companyId: companyId, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |  
+| companyId | Int? | company_id |  
 
 Create Discount.
 
@@ -17234,8 +17234,8 @@ discount.getDiscount(companyId: companyId, id: id) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| id | string? | unique id. |  
+| companyId | Int? | company_id |   
+| id | String? | unique id. |  
 
 Fetch discount.
 
@@ -17276,8 +17276,8 @@ discount.updateDiscount(companyId: companyId, id: id, body: body) { (response, e
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| id | string? | id |  
+| companyId | Int? | company_id |   
+| id | String? | id |  
 
 Create Discount.
 
@@ -17318,8 +17318,8 @@ discount.validateDiscountFile(companyId: companyId, discount: discount, body: bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| discount | string? | discount |  
+| companyId | Int? | company_id |   
+| discount | String? | discount |  
 
 Validate File.
 
@@ -17360,8 +17360,8 @@ discount.downloadDiscountFile(companyId: companyId, type: type, body: body) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| type | string? | type |  
+| companyId | Int? | company_id |   
+| type | String? | type |  
 
 Validate File.
 
@@ -17402,8 +17402,8 @@ discount.getValidationJob(companyId: companyId, id: id) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| id | string? | id |  
+| companyId | Int? | company_id |   
+| id | String? | id |  
 
 Validate File Job.
 
@@ -17444,8 +17444,8 @@ discount.cancelValidationJob(companyId: companyId, id: id) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| id | string? | id |  
+| companyId | Int? | company_id |   
+| id | String? | id |  
 
 Cancel Validation Job.
 
@@ -17486,8 +17486,8 @@ discount.getDownloadJob(companyId: companyId, id: id) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| id | string? | id |  
+| companyId | Int? | company_id |   
+| id | String? | id |  
 
 Download File Job.
 
@@ -17528,8 +17528,8 @@ discount.cancelDownloadJob(companyId: companyId, id: id) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | integer? | company_id |   
-| id | string? | id |  
+| companyId | Int? | company_id |   
+| id | String? | id |  
 
 Cancel Download Job.
 
@@ -17577,9 +17577,9 @@ partner.addProxyPath(companyId: companyId, applicationId: applicationId, extensi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| extensionId | string? | Extension id |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| extensionId | String? | Extension id |  
 
 Add proxy path for external url
 
@@ -17620,10 +17620,10 @@ partner.removeProxyPath(companyId: companyId, applicationId: applicationId, exte
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | string? | Current company id |   
-| applicationId | string? | Current application id |   
-| extensionId | string? | Extension id |   
-| attachedPath | string? | Attachaed path slug |  
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| extensionId | String? | Extension id |   
+| attachedPath | String? | Attachaed path slug |  
 
 Remove proxy path for external url
 

@@ -113,7 +113,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductDetail.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -157,7 +160,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductSizes.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -203,7 +209,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductSizePriceResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -254,7 +263,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductSizeSellersResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -356,7 +368,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductsComparisonResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -395,7 +410,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductCompareResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -434,7 +452,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductFrequentlyComparedSimilarResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -474,7 +495,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SimilarProductByTypeResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -513,7 +537,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductVariantsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -576,7 +603,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductStockStatusResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -627,7 +657,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductStockPolling.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -755,7 +788,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -888,7 +924,10 @@ public class ApplicationClient {
                         let response = Utility.decode(BrandListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -976,7 +1015,10 @@ public class ApplicationClient {
                         let response = Utility.decode(BrandDetailResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1019,7 +1061,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CategoryListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1058,7 +1103,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CategoryMetaResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1111,7 +1159,10 @@ public class ApplicationClient {
                         let response = Utility.decode(HomeListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1199,7 +1250,10 @@ public class ApplicationClient {
                         let response = Utility.decode(DepartmentResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1240,7 +1294,10 @@ public class ApplicationClient {
                         let response = Utility.decode(AutoCompleteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1288,7 +1345,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetCollectionListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1395,7 +1455,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ProductListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1502,7 +1565,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CollectionDetailResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1551,7 +1617,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetFollowListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1609,46 +1678,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-        **/
-        public func followById(
-            collectionType: String,
-            collectionId: String,
-            
-            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(FollowPostResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        onResponse(nil, nil)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: UnFollow a Product
         * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
         **/
@@ -1681,7 +1710,53 @@ public class ApplicationClient {
                         let response = Utility.decode(FollowPostResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        **/
+        public func followById(
+            collectionType: String,
+            collectionId: String,
+            
+            onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FollowPostResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1721,7 +1796,10 @@ public class ApplicationClient {
                         let response = Utility.decode(FollowerCountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1764,7 +1842,10 @@ public class ApplicationClient {
                         let response = Utility.decode(FollowIdsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1832,7 +1913,10 @@ public class ApplicationClient {
                         let response = Utility.decode(StoreListingResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -1969,7 +2053,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2012,7 +2099,10 @@ public class ApplicationClient {
                         let response = data.dictionary 
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2060,7 +2150,10 @@ public class ApplicationClient {
                         let response = Utility.decode(AddCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2113,7 +2206,10 @@ public class ApplicationClient {
                         let response = Utility.decode(UpdateCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2156,7 +2252,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartItemCountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2199,7 +2298,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetCouponResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2258,7 +2360,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2301,7 +2406,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2359,7 +2467,10 @@ public class ApplicationClient {
                         let response = Utility.decode(BulkPriceResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2422,7 +2533,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetAddressesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2460,7 +2574,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SaveAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2524,7 +2641,10 @@ public class ApplicationClient {
                         let response = Utility.decode(Address.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2563,7 +2683,10 @@ public class ApplicationClient {
                         let response = Utility.decode(UpdateAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2602,7 +2725,10 @@ public class ApplicationClient {
                         let response = Utility.decode(DeleteAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2655,7 +2781,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2698,7 +2827,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2766,7 +2898,10 @@ public class ApplicationClient {
                         let response = Utility.decode(PaymentCouponValidate.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2824,7 +2959,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartShipmentsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2862,7 +3000,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartCheckoutResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2905,7 +3046,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CartMetaResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2943,7 +3087,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -2982,7 +3129,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3022,7 +3172,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3073,7 +3226,10 @@ public class ApplicationClient {
                         let response = Utility.decode(Ticket.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3112,7 +3268,10 @@ public class ApplicationClient {
                         let response = Utility.decode(TicketHistory.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3150,7 +3309,10 @@ public class ApplicationClient {
                         let response = Utility.decode(Ticket.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3189,7 +3351,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CustomForm.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3228,7 +3393,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SubmitCustomFormResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3267,7 +3435,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3306,7 +3477,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3356,7 +3530,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ThemesSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3395,7 +3572,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ThemesSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3445,7 +3625,10 @@ public class ApplicationClient {
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3483,7 +3666,10 @@ public class ApplicationClient {
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3521,7 +3707,10 @@ public class ApplicationClient {
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3559,7 +3748,10 @@ public class ApplicationClient {
                         let response = Utility.decode(AuthSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3602,7 +3794,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SendOtpResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3640,7 +3835,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3683,7 +3881,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ResetPasswordSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3721,7 +3922,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3759,7 +3963,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ResetPasswordSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3797,7 +4004,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3840,7 +4050,10 @@ public class ApplicationClient {
                         let response = Utility.decode(RegisterFormSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3878,7 +4091,10 @@ public class ApplicationClient {
                         let response = Utility.decode(VerifyEmailSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3916,7 +4132,10 @@ public class ApplicationClient {
                         let response = Utility.decode(VerifyEmailSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3954,7 +4173,10 @@ public class ApplicationClient {
                         let response = Utility.decode(HasPasswordSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -3992,7 +4214,10 @@ public class ApplicationClient {
                         let response = Utility.decode(VerifyEmailSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4030,7 +4255,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LogoutSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4073,7 +4301,10 @@ public class ApplicationClient {
                         let response = Utility.decode(OtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4116,7 +4347,10 @@ public class ApplicationClient {
                         let response = Utility.decode(VerifyOtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4159,7 +4393,10 @@ public class ApplicationClient {
                         let response = Utility.decode(EmailOtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4202,7 +4439,10 @@ public class ApplicationClient {
                         let response = Utility.decode(VerifyOtpSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4240,7 +4480,10 @@ public class ApplicationClient {
                         let response = Utility.decode(UserSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4278,7 +4521,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SessionListSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4321,7 +4567,10 @@ public class ApplicationClient {
                         let response = Utility.decode(PlatformSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4364,7 +4613,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4407,7 +4659,10 @@ public class ApplicationClient {
                         let response = Utility.decode(VerifyMobileOTPSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4465,7 +4720,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4503,7 +4761,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4546,7 +4807,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SendMobileVerifyLinkSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4589,7 +4853,10 @@ public class ApplicationClient {
                         let response = Utility.decode(VerifyEmailOTPSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4644,7 +4911,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4682,7 +4952,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LoginSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4725,7 +4998,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SendEmailVerifyLinkSuccess.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4775,7 +5051,10 @@ public class ApplicationClient {
                         let response = Utility.decode(AnnouncementsResponseSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4814,7 +5093,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CustomBlogSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4862,7 +5144,10 @@ public class ApplicationClient {
                         let response = Utility.decode(BlogGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4943,7 +5228,10 @@ public class ApplicationClient {
                         let response = Utility.decode(FaqResponseSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -4981,7 +5269,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetFaqCategoriesSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5020,7 +5311,10 @@ public class ApplicationClient {
                         let response = Utility.decode(FaqSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5059,7 +5353,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetFaqCategoryBySlugSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5098,7 +5395,10 @@ public class ApplicationClient {
                         let response = Utility.decode(GetFaqSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5136,7 +5436,10 @@ public class ApplicationClient {
                         let response = Utility.decode(LandingPageSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5174,7 +5477,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ApplicationLegal.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5222,7 +5528,10 @@ public class ApplicationClient {
                         let response = Utility.decode(NavigationGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5304,7 +5613,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CustomPageSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5352,7 +5664,10 @@ public class ApplicationClient {
                         let response = Utility.decode(PageGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5433,7 +5748,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SeoComponent.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5472,7 +5790,10 @@ public class ApplicationClient {
                         let response = Utility.decode(SlideshowSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5510,7 +5831,10 @@ public class ApplicationClient {
                         let response = Utility.decode(Support.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5548,7 +5872,10 @@ public class ApplicationClient {
                         let response = Utility.decode(TagsSchema.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5598,7 +5925,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CommunicationConsent.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5636,7 +5966,10 @@ public class ApplicationClient {
                         let response = Utility.decode(CommunicationConsentRes.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5674,7 +6007,10 @@ public class ApplicationClient {
                         let response = Utility.decode(PushtokenRes.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5724,7 +6060,10 @@ public class ApplicationClient {
                         let response = Utility.decode(QRCodeResp.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5763,7 +6102,10 @@ public class ApplicationClient {
                         let response = Utility.decode(QRCodeResp.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5802,7 +6144,10 @@ public class ApplicationClient {
                         let response = Utility.decode(QRCodeResp.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5843,7 +6188,10 @@ public class ApplicationClient {
                         let response = Utility.decode(QRCodeResp.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5881,7 +6229,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ShortLinkRes.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5920,7 +6271,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ShortLinkRes.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -5959,7 +6313,10 @@ public class ApplicationClient {
                         let response = Utility.decode(ShortLinkRes.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6028,7 +6385,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(StartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6085,7 +6445,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(CompleteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6135,7 +6498,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(Application.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6173,7 +6539,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ApplicationAboutResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6211,7 +6580,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ApplicationDetail.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6249,7 +6621,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(TokenResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6302,7 +6677,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(OrderingStores.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6389,7 +6767,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(AppFeatureResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6427,7 +6808,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ApplicationInformation.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6465,7 +6849,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(CurrenciesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6504,7 +6891,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(Currency.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6542,7 +6932,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(LanguageResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6580,7 +6973,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6618,7 +7014,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(SuccessMessageResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6671,7 +7070,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(AppStaffResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6728,7 +7130,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(AggregatorsConfigDetailResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6766,7 +7171,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(AttachCardsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6809,7 +7217,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ActiveCardPaymentGatewayResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6852,7 +7263,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ListCardsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6890,7 +7304,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(DeleteCardsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6928,7 +7345,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ValidateCustomerResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -6966,7 +7386,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ChargeCustomerResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7004,7 +7427,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(PaymentInitializationResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7042,7 +7468,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(PaymentStatusUpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7107,7 +7536,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7175,7 +7607,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7216,7 +7651,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7259,7 +7697,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(IfscCodeResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7300,7 +7741,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7338,7 +7782,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(AddBeneficiaryViaOtpVerificationResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7376,7 +7823,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(RefundAccountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7414,7 +7864,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(WalletOtpResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7452,7 +7905,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(SetDefaultBeneficiaryResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7522,7 +7978,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(OrderList.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7561,7 +8020,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(OrderById.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7600,7 +8062,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ShipmentById.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7639,7 +8104,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ShipmentReasons.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7678,7 +8146,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7717,7 +8188,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(ShipmentTrack.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7756,7 +8230,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(PosOrderById.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7806,7 +8283,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(CatalogueOrderResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7844,7 +8324,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(OrderDiscountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7882,7 +8365,10 @@ This operation will return the url for the uploaded file.
                         let response = Utility.decode(PointsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -7931,7 +8417,10 @@ The list of points history is paginated.
                         let response = Utility.decode(PointsHistoryResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8013,7 +8502,10 @@ The list of points history is paginated.
                         let response = Utility.decode(ReferralDetailsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8051,7 +8543,10 @@ The list of points history is paginated.
                         let response = Utility.decode(RedeemReferralCodeResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8101,7 +8596,10 @@ The list of points history is paginated.
                         let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8139,7 +8637,10 @@ The list of points history is paginated.
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8194,7 +8695,10 @@ The list of points history is paginated.
                         let response = Utility.decode(ReportAbuseGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8304,7 +8808,10 @@ The list of points history is paginated.
                         let response = Utility.decode(AttributeResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8385,7 +8892,10 @@ The list of points history is paginated.
                         let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8424,7 +8934,10 @@ The list of points history is paginated.
                         let response = Utility.decode(Attribute.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8463,7 +8976,10 @@ The list of points history is paginated.
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8501,7 +9017,10 @@ The list of points history is paginated.
                         let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8539,7 +9058,10 @@ The list of points history is paginated.
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8603,7 +9125,10 @@ The list of points history is paginated.
                         let response = Utility.decode(CommentGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8711,7 +9236,10 @@ The list of points history is paginated.
                         let response = Utility.decode(CheckEligibilityResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8749,7 +9277,10 @@ The list of points history is paginated.
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8787,7 +9318,10 @@ The list of points history is paginated.
                         let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8825,7 +9359,10 @@ The list of points history is paginated.
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8880,7 +9417,10 @@ The list of points history is paginated.
                         let response = Utility.decode(MediaGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -8998,7 +9538,10 @@ It gives following response data: review count, rating average. review metrics /
                         let response = Utility.decode(RatingGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9099,7 +9642,10 @@ attributes rating, entity rating, title, description, media resources and templa
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9138,7 +9684,10 @@ attributes rating, entity rating, title, description, media resources and templa
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9223,7 +9772,10 @@ attributes rating, entity rating, title, description, media resources and templa
                         let response = Utility.decode(ReviewGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9374,7 +9926,10 @@ attributes rating, entity rating, title, description, media resources and templa
                         let response = Utility.decode(CursorGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9413,7 +9968,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9451,7 +10009,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9511,7 +10072,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(QNAGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9637,7 +10201,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(VoteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9730,7 +10297,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9768,7 +10338,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9838,7 +10411,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9881,7 +10457,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = data.dictionary 
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9929,7 +10508,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(AddCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -9982,7 +10564,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(UpdateCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10025,7 +10610,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartItemCountResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10068,7 +10656,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(GetCouponResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10127,7 +10718,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10170,7 +10764,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10228,7 +10825,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(BulkPriceResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10291,7 +10891,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(GetAddressesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10329,7 +10932,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(SaveAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10393,7 +10999,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(Address.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10432,7 +11041,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(UpdateAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10471,7 +11083,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(DeleteAddressResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10524,7 +11139,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10567,7 +11185,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10635,7 +11256,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(PaymentCouponValidate.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10708,7 +11332,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartShipmentsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10771,7 +11398,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartShipmentsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10814,7 +11444,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartCheckoutResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10857,7 +11490,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartMetaResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10903,7 +11539,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(CartDeliveryModesResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10944,7 +11583,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(StoreDetailsResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -10982,7 +11624,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -11021,7 +11666,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -11061,7 +11709,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(SharedCartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -11111,7 +11762,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(GetTatProductResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }
@@ -11150,7 +11804,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
                         let response = Utility.decode(GetPincodeCityResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
-                        onResponse(nil, nil)
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
                     }
             });
         }

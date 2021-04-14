@@ -13,39 +13,41 @@ Get started with the Swift Development SDK for Fynd Platform
 3. Add `import FDKClient`
 4. Start integrating
 
-### Sample Usage (ApplicationClient):
+### Sample Usage - ApplicationClient
+
 ```swift
-  if let config = ApplicationConfig(
-      applicationID: "YOUR_APPLICATION_ID",
-      applicationToken: "YOUR_APPLICATION_TOKEN"
-  ) {
-      let applicationClient = ApplicationClient(config: config)
-      applicationClient.catalog.getProductDetailBySlug(slug: "product-slug") { (product, error) in
-          if let product = product {
-              print(product.name)
-          } else if let error = error {
-              print(error.message)
-          } else {
-              print("ERROR")
-          }
-      }
-  }
+guard let config = ApplicationConfig(
+    applicationID: "YOUR_APPLICATION_ID",
+    applicationToken: "YOUR_APPLICATION_TOKEN") {
+        return
+}
+let applicationClient = ApplicationClient(config: config)
+applicationClient.catalog.getProductDetailBySlug(slug: "product-slug") { (product, error) in
+    if let product = product {
+        print(product.name)
+    } else if let error = error {
+        print(error.message)
+    }
+}
 ```
 
-### Sample Usage (PlatformClient):
+### Sample Usage - PlatformClient
+
 ```swift
-    if let config = PlatformConfig(companyId: "COMPANY_ID", apiKey: "API_KEY", apiSecret: "API_SECRET", domain: "DOMAIN") {
-        let applicationClient = PlatformClient(config: config1)
-            applicationClient.lead.getTicket(ticketId: "") { (tickets, error) in
-                if let tickets = tickets {
-                    print("Number of tickets \(tickets.count)")
-                } else if let error = error {
-                     print(error.message)
-                } else {
-                    print("ERROR")
-                }
-            }
+guard let config = PlatformConfig(companyId: "COMPANY_ID", 
+                                  apiKey: "API_KEY", 
+                                  apiSecret: "API_SECRET", 
+                                  domain: "DOMAIN") {
+    return
+}
+let platformClient = PlatformClient(config: config)
+platformClient.catalog.getCompanyDetail { (response, error) in
+    if let companyDetail = response {
+        print("Name of the company \(companyDetail.name)")
+    } else if let error = error {
+        print(error.message)
     }
+}
 ```
 
 
