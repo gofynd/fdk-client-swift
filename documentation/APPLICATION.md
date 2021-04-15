@@ -13,7 +13,7 @@
 * [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
-* [Feedback](#Feedback) - User Reviews and Rating System 
+* [Rewards](#Rewards) - Earn and redeem Reward Points 
 * [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
 
@@ -151,7 +151,6 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
-    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -231,34 +230,14 @@
     * [getPosOrderById](#getposorderbyid)
     
 
-* [Feedback](#Feedback)
+* [Rewards](#Rewards)
   * Methods
-    * [createAbuseReport](#createabusereport)
-    * [updateAbuseReport](#updateabusereport)
-    * [getAbuseReports](#getabusereports)
-    * [getAttributes](#getattributes)
-    * [createAttribute](#createattribute)
-    * [getAttribute](#getattribute)
-    * [updateAttribute](#updateattribute)
-    * [createComment](#createcomment)
-    * [updateComment](#updatecomment)
-    * [getComments](#getcomments)
-    * [checkEligibility](#checkeligibility)
-    * [deleteMedia](#deletemedia)
-    * [createMedia](#createmedia)
-    * [updateMedia](#updatemedia)
-    * [getMedias](#getmedias)
-    * [getReviewSummaries](#getreviewsummaries)
-    * [createReview](#createreview)
-    * [updateReview](#updatereview)
-    * [getReviews](#getreviews)
-    * [getTemplates](#gettemplates)
-    * [createQuestion](#createquestion)
-    * [updateQuestion](#updatequestion)
-    * [getQuestionAndAnswers](#getquestionandanswers)
-    * [getVotes](#getvotes)
-    * [createVote](#createvote)
-    * [updateVote](#updatevote)
+    * [getPointsOnProduct](#getpointsonproduct)
+    * [getOrderDiscount](#getorderdiscount)
+    * [getUserPoints](#getuserpoints)
+    * [getUserPointsHistory](#getuserpointshistory)
+    * [getUserReferralDetails](#getuserreferraldetails)
+    * [redeemReferralCode](#redeemreferralcode)
     
 
 * [PosCart](#PosCart)
@@ -489,7 +468,7 @@ catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | [String]? | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** |  
+| slug | String? | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** |  
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
 
@@ -1823,7 +1802,7 @@ cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | String? |  |    
+| tags | Int? |  |    
 | isDefault | Bool? |  |  
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -1891,7 +1870,7 @@ cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkout
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | String? |  |    
+| tags | Int? |  |    
 | isDefault | Bool? |  |  
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -4958,57 +4937,6 @@ Schema: `APIError`
 ---
 
 
-#### getSlideshows
-Get slideshows
-
-```swift
-content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. |  
-
-Use this to get slideshows.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SlideshowGetResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-
-
-
-
----
-
-
 #### getSlideshow
 Get slideshow by slug
 
@@ -7420,14 +7348,14 @@ Schema: `ApefaceApiError`
 ---
 
 
-## Feedback
+## Rewards
 
 
-#### createAbuseReport
-post a new abuse request
+#### getPointsOnProduct
+Get reward points that could be earned on any catalogue product.
 
 ```swift
-feedback.createAbuseReport(body: body) { (response, error) in
+rewards.getPointsOnProduct(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7435,7 +7363,7 @@ feedback.createAbuseReport(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Report a new abuse for specific entity with description text.
+Evaluate the amount of reward points that could be earned on any catalogue product.
 
 *Success Response:*
 
@@ -7444,7 +7372,7 @@ Report a new abuse for specific entity with description text.
 ok
 
 
-Schema: `InsertResponse`
+Schema: `CatalogueOrderResponse`
 
 
 
@@ -7453,7 +7381,7 @@ Schema: `InsertResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -7463,11 +7391,11 @@ Schema: `FeedbackError`
 ---
 
 
-#### updateAbuseReport
-Update abuse details
+#### getOrderDiscount
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
 ```swift
-feedback.updateAbuseReport(body: body) { (response, error) in
+rewards.getOrderDiscount(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7475,7 +7403,7 @@ feedback.updateAbuseReport(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update the abuse details like status and description text.
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
 *Success Response:*
 
@@ -7484,7 +7412,7 @@ Update the abuse details like status and description text.
 ok
 
 
-Schema: `UpdateResponse`
+Schema: `OrderDiscountResponse`
 
 
 
@@ -7493,7 +7421,7 @@ Schema: `UpdateResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -7503,24 +7431,62 @@ Schema: `FeedbackError`
 ---
 
 
-#### getAbuseReports
-Get list of abuse data
+#### getUserPoints
+Total available points of a user for current application
 
 ```swift
-feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+rewards.getUserPoints() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Total available points of a user for current application
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `PointsResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
+
+
+
+
+
+
+---
+
+
+#### getUserPointsHistory
+Get list of points transactions.
+
+```swift
+rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| entityId | String? | entity id |    
-| entityType | String? | entity type |    
-| id | String? | abuse id |    
-| pageId | String? | pagination page id |    
-| pageSize | Int? | pagination page size |  
+| pageId | String? | PageID is the ID of the requested page. For first request it should be kept empty. |    
+| pageSize | Int? | PageSize is the number of requested items in response. |  
 
-Get the list of abuse data from entity type and entity ID.
+Get list of points transactions.
+The list of points history is paginated.
 
 *Success Response:*
 
@@ -7529,7 +7495,7 @@ Get the list of abuse data from entity type and entity ID.
 ok
 
 
-Schema: `ReportAbuseGetResponse`
+Schema: `PointsHistoryResponse`
 
 
 
@@ -7538,7 +7504,7 @@ Schema: `ReportAbuseGetResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -7548,53 +7514,11 @@ Schema: `FeedbackError`
 ---
 
 
-#### getAttributes
-Get list of attribute data
+#### getUserReferralDetails
+User's referral details.
 
 ```swift
-feedback.getAttributes(pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| pageNo | Int? | pagination page no |    
-| pageSize | Int? | pagination page size |  
-
-Provides a list of all attribute data.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `AttributeResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### createAttribute
-Add a new attribute request
-
-```swift
-feedback.createAttribute(body: body) { (response, error) in
+rewards.getUserReferralDetails() { (response, error) in
     // Use response
 }
 ```
@@ -7602,7 +7526,7 @@ feedback.createAttribute(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Add a new attribute with its name, slug and description.
+User's referral details.
 
 *Success Response:*
 
@@ -7611,7 +7535,7 @@ Add a new attribute with its name, slug and description.
 ok
 
 
-Schema: `InsertResponse`
+Schema: `ReferralDetailsResponse`
 
 
 
@@ -7620,7 +7544,7 @@ Schema: `InsertResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -7630,93 +7554,11 @@ Schema: `FeedbackError`
 ---
 
 
-#### getAttribute
-Get single attribute data
+#### redeemReferralCode
+Redeems referral code and credits points to users points account.
 
 ```swift
-feedback.getAttribute(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| slug | String? | Slug of attribute |  
-
-Get a single attribute data from a given slug.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `Attribute`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### updateAttribute
-Update attribute details
-
-```swift
-feedback.updateAttribute(slug: slug, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| slug | String? | Slug of attribute |  
-
-Update the attribute's name and description.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### createComment
-post a new comment
-
-```swift
-feedback.createComment(body: body) { (response, error) in
+rewards.redeemReferralCode(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7724,7 +7566,7 @@ feedback.createComment(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-This is used to add a new comment for specific entity.
+Redeems referral code and credits points to users points account.
 
 *Success Response:*
 
@@ -7733,7 +7575,7 @@ This is used to add a new comment for specific entity.
 ok
 
 
-Schema: `InsertResponse`
+Schema: `RedeemReferralCodeResponse`
 
 
 
@@ -7742,773 +7584,7 @@ Schema: `InsertResponse`
 Bad request
 
 
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### updateComment
-Update comment status
-
-```swift
-feedback.updateComment(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update the comment status (active/approve) or text.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### getComments
-Get list of comments
-
-```swift
-feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| entityType | String? | entity type |    
-| id | String? | comment id |    
-| entityId | String? | entity id |    
-| userId | String? | user id - flag/filter to get comments for user |    
-| pageId | String? | pagination page id |    
-| pageSize | Int? | pagination page size |  
-
-Get the list of comments from specific entity type.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `CommentGetResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### checkEligibility
-Checks eligibility and cloud media config
-
-```swift
-feedback.checkEligibility(entityType: entityType, entityId: entityId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| entityType | String? | entity type |    
-| entityId | String? | entity id |  
-
-Checks eligibility to rate and review and cloud media configuration
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `CheckEligibilityResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### deleteMedia
-Delete Media
-
-```swift
-feedback.deleteMedia() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Delete Media for the given entity IDs.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### createMedia
-Add Media
-
-```swift
-feedback.createMedia(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Add Media list for specific entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### updateMedia
-Update Media
-
-```swift
-feedback.updateMedia(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update Media (archive/approve) for the given entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### getMedias
-Get Media
-
-```swift
-feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| entityType | String? | entity type |    
-| entityId | String? | entity id |    
-| id | String? | vote id |    
-| pageId | String? | pagination page id |    
-| pageSize | Int? | pagination page size |  
-
-Get Media from the given entity type and entity ID.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `MediaGetResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### getReviewSummaries
-Get a review summary
-
-```swift
-feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| entityType | String? | entity type |    
-| entityId | String? | entity id |    
-| id | String? | review summary identifier |    
-| pageId | String? | pagination page id |    
-| pageSize | Int? | pagination page size |  
-
-Review summary gives ratings and attribute metrics of a review per entity
-It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
-
-*Success Response:*
-
-
-
-success
-
-
-Schema: `RatingGetResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### createReview
-Add customer reviews
-
-```swift
-feedback.createReview(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Add customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### updateReview
-Update customer reviews
-
-```swift
-feedback.updateReview(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### getReviews
-Get list of customer reviews
-
-```swift
-feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| entityType | String? | entity type |    
-| entityId | String? | entity id |    
-| id | String? | review id |    
-| userId | String? | user id |    
-| media | String? | media type e.g. image | video | video_file | video_link |    
-| rating | [Double]? | rating filter, 1-5 |    
-| attributeRating | [String]? | attribute rating filter |    
-| facets | Bool? | facets (true|false) |    
-| sort | String? | sort by : default | top | recent |    
-| pageId | String? | pagination page id |    
-| pageSize | Int? | pagination page size |  
-
-This is used to get the list of customer reviews based on entity and provided filters.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ReviewGetResponse`
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### getTemplates
-Get the templates for product or l3 type
-
-```swift
-feedback.getTemplates(templateId: templateId, entityId: entityId, entityType: entityType) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| templateId | String? | template id |    
-| entityId | String? | entity id |    
-| entityType | String? | entity type e.g. product | l3 |  
-
-This is used to get the templates details.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CursorGetResponse`
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### createQuestion
-Create a new question
-
-```swift
-feedback.createQuestion(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to create a new question with following data:
-tags, text, type, choices for MCQ type questions, maximum length of answer.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### updateQuestion
-Update question
-
-```swift
-feedback.updateQuestion(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to update question's status, tags and choices.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### getQuestionAndAnswers
-Get a list of QnA
-
-```swift
-feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: id, showAnswer: showAnswer, pageId: pageId, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| entityType | String? | entity type |    
-| entityId | String? | entity id |    
-| id | String? | qna id |    
-| showAnswer | Bool? | show answer flag |    
-| pageId | String? | pagination page id |    
-| pageSize | Int? | pagination page size |  
-
-This is used to get a list of questions and its answers.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `QNAGetResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### getVotes
-Get list of votes
-
-```swift
-feedback.getVotes(id: id, refType: refType, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| id | String? | vote id |    
-| refType | String? | entity type e.g. review | comment |    
-| pageNo | Int? | pagination page no |    
-| pageSize | Int? | pagination page size |  
-
-This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `VoteResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### createVote
-Create a new vote
-
-```swift
-feedback.createVote(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to create a new vote and the actions can be upvote or downvote.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
----
-
-
-#### updateVote
-Update vote
-
-```swift
-feedback.updateVote(body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to update the vote and the actions can be upvote or downvote.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -8846,7 +7922,7 @@ poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, t
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | String? |  |    
+| tags | Int? |  |    
 | isDefault | Bool? |  |  
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -8914,7 +7990,7 @@ poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: check
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | String? |  |    
+| tags | Int? |  |    
 | isDefault | Bool? |  |  
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
