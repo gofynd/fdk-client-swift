@@ -152,6 +152,7 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
+    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -1833,7 +1834,7 @@ cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | Int? |  |    
+| tags | String? |  |    
 | isDefault | Bool? |  |  
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -1901,7 +1902,7 @@ cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkout
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | Int? |  |    
+| tags | String? |  |    
 | isDefault | Bool? |  |  
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -4941,6 +4942,57 @@ Success
 
 
 Schema: `SeoComponent`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
+#### getSlideshows
+Get slideshows
+
+```swift
+content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
+| pageSize | Int? | Number of items to retrieve in each page. |  
+
+Use this to get slideshows.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowGetResponse`
 
 
 
@@ -9055,7 +9107,7 @@ poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, t
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | Int? |  |    
+| tags | String? |  |    
 | isDefault | Bool? |  |  
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -9123,7 +9175,7 @@ poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: check
 | uid | Int? |  |    
 | mobileNo | String? |  |    
 | checkoutMode | String? |  |    
-| tags | Int? |  |    
+| tags | String? |  |    
 | isDefault | Bool? |  |  
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
