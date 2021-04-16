@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -152,6 +152,7 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
+    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -1292,11 +1293,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1304,9 +1305,9 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | String? | the `id` of the collection type you want to follow |  
+| collectionId | String? | the `id` of the collection type you want to unfollow |  
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1334,11 +1335,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1346,9 +1347,9 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | String? | the `id` of the collection type you want to unfollow |  
+| collectionId | String? | the `id` of the collection type you want to follow |  
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -4941,6 +4942,57 @@ Success
 
 
 Schema: `SeoComponent`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
+#### getSlideshows
+Get slideshows
+
+```swift
+content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
+| pageSize | Int? | Number of items to retrieve in each page. |  
+
+Use this to get slideshows.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowGetResponse`
 
 
 
