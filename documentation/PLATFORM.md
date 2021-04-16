@@ -2,6 +2,7 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
@@ -13,11 +14,14 @@
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [FileStorage](#FileStorage) - File Storage 
 * [Share](#Share) - Short link and QR Code 
+* [Inventory](#Inventory) -  
 * [Configuration](#Configuration) - Application configuration apis 
 * [Cart](#Cart) - Cart APIs 
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Rewards](#Rewards) - Rewards 
 * [Analytics](#Analytics) - Perceptor analytics 
+* [Discount](#Discount) - Discount 
+* [Partner](#Partner) - Partner configuration apis 
 
 ----
 ----
@@ -46,6 +50,19 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    
+
+* [Feedback](#Feedback)
+  * Methods
+    * [getAttributes](#getattributes)
+    * [getCustomerReviews](#getcustomerreviews)
+    * [updateApprove](#updateapprove)
+    * [getHistory](#gethistory)
+    * [getApplicationTemplates](#getapplicationtemplates)
+    * [createTemplate](#createtemplate)
+    * [getTemplateById](#gettemplatebyid)
+    * [updateTemplate](#updatetemplate)
+    * [updateTemplateStatus](#updatetemplatestatus)
     
 
 * [Theme](#Theme)
@@ -265,6 +282,7 @@
     * [getCompanyBrandDetail](#getcompanybranddetail)
     * [getCompanyMetrics](#getcompanymetrics)
     * [getStoreDetail](#getstoredetail)
+    * [getGenderAttribute](#getgenderattribute)
     * [listProductTemplateCategories](#listproducttemplatecategories)
     * [listDepartmentsData](#listdepartmentsdata)
     * [getDepartmentData](#getdepartmentdata)
@@ -317,15 +335,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
+    * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     
 
 * [FileStorage](#FileStorage)
@@ -348,6 +366,17 @@
     * [getShortLinks](#getshortlinks)
     * [getShortLinkByHash](#getshortlinkbyhash)
     * [updateShortLinkById](#updateshortlinkbyid)
+    
+
+* [Inventory](#Inventory)
+  * Methods
+    * [getJobsByCompany](#getjobsbycompany)
+    * [updateJob](#updatejob)
+    * [createJob](#createjob)
+    * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
+    * [getJobConfigDefaults](#getjobconfigdefaults)
+    * [getJobByCode](#getjobbycode)
+    * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
     
 
 * [Configuration](#Configuration)
@@ -456,6 +485,26 @@
     * [getExportJobStatus](#getexportjobstatus)
     * [getLogsList](#getlogslist)
     * [searchLogs](#searchlogs)
+    
+
+* [Discount](#Discount)
+  * Methods
+    * [getDiscounts](#getdiscounts)
+    * [createDiscount](#creatediscount)
+    * [getDiscount](#getdiscount)
+    * [updateDiscount](#updatediscount)
+    * [validateDiscountFile](#validatediscountfile)
+    * [downloadDiscountFile](#downloaddiscountfile)
+    * [getValidationJob](#getvalidationjob)
+    * [cancelValidationJob](#cancelvalidationjob)
+    * [getDownloadJob](#getdownloadjob)
+    * [cancelDownloadJob](#canceldownloadjob)
+    
+
+* [Partner](#Partner)
+  * Methods
+    * [addProxyPath](#addproxypath)
+    * [removeProxyPath](#removeproxypath)
     
 
 
@@ -1106,6 +1155,418 @@ Success
 
 
 Schema: `CloseVideoRoomResponse`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Feedback
+
+
+#### getAttributes
+Get list of attribute data
+
+```swift
+feedback.getAttributes(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| pageNo | Int? | pagination page no |   
+| pageSize | Int? | pagination page size |  
+
+Provides a list of all attribute data.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `FeedbackAttributes`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getCustomerReviews
+Get list of customer reviews [admin]
+
+```swift
+feedback.getCustomerReviews(companyId: companyId, applicationId: applicationId, id: id, entityId: entityId, entityType: entityType, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, next: next, start: start, limit: limit, count: count, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | review id |   
+| entityId | String? | entity id |   
+| entityType | String? | entity type |   
+| userId | String? | user id |   
+| media | String? | media type e.g. image | video | video_file | video_link |   
+| rating | [Double]? | rating filter, 1-5 |   
+| attributeRating | [String]? | attribute rating filter with ma,e of attribute |   
+| facets | Bool? | facets (true|false) |   
+| sort | String? | sort by : default | top | recent |   
+| next | String? | pagination next |   
+| start | String? | pagination start |   
+| limit | String? | pagination limit |   
+| count | String? | pagination count |   
+| pageId | String? | pagination page id |   
+| pageSize | Int? | pagination page size |  
+
+The endpoint provides a list of customer reviews based on entity and provided filters
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetReviewResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateApprove
+update approve details
+
+```swift
+feedback.updateApprove(companyId: companyId, applicationId: applicationId, reviewId: reviewId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| reviewId | String? | review id |  
+
+The is used to update approve details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getHistory
+get history details
+
+```swift
+feedback.getHistory(companyId: companyId, applicationId: applicationId, reviewId: reviewId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| reviewId | String? | review id |  
+
+The is used to get the history details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `[ActivityDump]`
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getApplicationTemplates
+Get list of templates
+
+```swift
+feedback.getApplicationTemplates(companyId: companyId, applicationId: applicationId, pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| pageId | String? | pagination page id |   
+| pageSize | Int? | pagination page size |  
+
+Get all templates of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TemplateGetResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### createTemplate
+Create a new template
+
+```swift
+feedback.createTemplate(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |  
+
+Create a new template for review with following data:
+- Enable media, rating and review
+- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+- Review - header, title, description, image and video meta, enable votes
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### getTemplateById
+Get a template by ID
+
+```swift
+feedback.getTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | template id |  
+
+Get the template for product or l3 type by ID
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Template`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateTemplate
+Update a template's status
+
+```swift
+feedback.updateTemplate(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | template id |  
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+#### updateTemplateStatus
+Update a template's status
+
+```swift
+feedback.updateTemplateStatus(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| applicationId | String? | application id |   
+| id | String? | template id |  
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
 
 
 
@@ -9870,6 +10331,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### getGenderAttribute
+Get gender attribute details
+
+```swift
+catalog.getGenderAttribute(companyId: companyId, department: department) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company for which you want to view the genders |   
+| department | String? | department for which you want to view the genders |  
+
+This API allows to view the gender attribute details.
+
+*Success Response:*
+
+
+
+Size guide object. See example below or refer `GenderDetailSchema` for details
+
+
+Schema: `GenderDetail`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### listProductTemplateCategories
 List Department specifiec product categories
 
@@ -9917,14 +10420,19 @@ Schema: `PTErrorResponse`
 List all Departments
 
 ```swift
-catalog.listDepartmentsData(companyId: companyId) { (response, error) in
+catalog.listDepartmentsData(companyId: companyId, pageNo: pageNo, pageSize: pageSize, name: name, search: search, isActive: isActive) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
+| name | String? | Can search departments by passing name. |   
+| search | String? | Can search departments by passing name of the department in search parameter. |   
+| isActive | Bool? | Can query for departments based on whether they are active or inactive. |  
 
 Allows you to list all departments, also can search using name and filter active and incative departments, and item type
 
@@ -9932,7 +10440,7 @@ Allows you to list all departments, also can search using name and filter active
 
 
 
-List of custom search keywords. See example below or refer `DepartmentsResponse` for details
+List of departments data. See example below or refer `DepartmentsResponse` for details
 
 
 Schema: `DepartmentsResponse`
@@ -10016,7 +10524,7 @@ Allows you to list all product templates, also can filter by department
 
 
 
-List of custom search keywords. See example below or refer `TemplatesResponse` for details
+List of product templates. See example below or refer `TemplatesResponse` for details
 
 
 Schema: `TemplatesResponse`
@@ -10260,16 +10768,16 @@ catalog.listProductTemplateExportDetails(companyId: companyId) { (response, erro
 | --------- | ----  | --- | 
 | companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
-Can vies details including trigger data, task id , etc.
+Can view details including trigger data, task id , etc.
 
 *Success Response:*
 
 
 
-List of custom search keywords. See example below or refer `TemplatesResponse` for details
+List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
 
 
-Schema: `TemplatesResponse`
+Schema: `ProductDownloadsResponse`
 
 
 
@@ -10308,10 +10816,10 @@ The filter type query parameter defines what type of data to return. The type of
 
 
 
-List of Templates, Brands or Types. See example below or refer `ProductConfligurationDownloads` for details
+See example below or refer `ProductConfigurationDownloadsSchema` for details
 
 
-Schema: `ProductConfligurationDownloads`
+Schema: `ProductConfigurationDownloads`
 
 
 
@@ -10375,7 +10883,7 @@ Schema: `ErrorResponse`
 Get product categories list
 
 ```swift
-catalog.listCategories(companyId: companyId, level: level, q: q) { (response, error) in
+catalog.listCategories(companyId: companyId, level: level, departments: departments, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -10384,7 +10892,10 @@ catalog.listCategories(companyId: companyId, level: level, q: q) { (response, er
 | --------- | ----  | --- | 
 | companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
 | level | String? | Get category for multiple levels |   
-| q | String? | Get multiple categories filtered by search string |  
+| departments | String? | Get category for multiple departments filtered |   
+| q | String? | Get multiple categories filtered by search string |   
+| pageNo | Int? | The page number to navigate through the given set of results |   
+| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |  
 
 This API gets meta associated to product categories.
 
@@ -10476,10 +10987,10 @@ This API gets meta associated to product categories.
 
 
 
-Category Meta. See example below or refer `CategorySchema` for details
+Get Data for one category. See example below or refer `CategoryResponse` for details
 
 
-Schema: `Category`
+Schema: `SingleCategoryResponse`
 
 
 
@@ -11897,48 +12408,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```swift
-companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to brand that is to be viewed. |   
-| brandId | String? | Id of the brand to be viewed. |  
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -11981,6 +12450,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### getBrand
+Get a single brand.
+
+```swift
+companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company associated to brand that is to be viewed. |   
+| brandId | String? | Id of the brand to be viewed. |  
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### createBrand
 Create a Brand.
 
@@ -11995,6 +12506,47 @@ companyprofile.createBrand(companyId: companyId, body: body) { (response, error)
 | companyId | String? | Id of the company. |  
 
 This API allows to create a brand associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+```swift
+companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company inside which the brand is to be mapped. |  
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -12065,20 +12617,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the brand is to be mapped. |  
+| companyId | String? | Id of the company inside which the location is to be created. |  
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -12152,20 +12704,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### updateLocation
+Edit a location asscoiated to a company.
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location is to be created. |  
+| companyId | String? | Id of the company inside which the location is to be created. |   
+| locationId | String? | Id of the location which you want to edit. |  
 
-This API allows to create a location associated to a company.
+This API allows to edit a location associated to a company.
 
 *Success Response:*
 
@@ -12217,48 +12770,6 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```swift
-companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location is to be created. |   
-| locationId | String? | Id of the location which you want to edit. |  
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -12945,6 +13456,401 @@ Error
 
 
 Schema: `ErrorRes`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Inventory
+
+
+#### getJobsByCompany
+Get Job Configs For A Company
+
+```swift
+inventory.getJobsByCompany(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id |   
+| pageNo | Int? | Page Number |   
+| pageSize | Int? | Page Size |  
+
+REST Endpoint that returns all job configs for a company
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+---
+
+
+#### updateJob
+Updates An Existing Job Config
+
+```swift
+inventory.updateJob(companyId: companyId, xUserData: xUserData, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id |   
+| xUserData | String? |  |  
+
+REST Endpoint that updates a job config
+
+*Success Response:*
+
+
+
+Job Config Updated Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+---
+
+
+#### createJob
+Creates A New Job Config
+
+```swift
+inventory.createJob(companyId: companyId, xUserData: xUserData, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id |   
+| xUserData | String? |  |  
+
+REST Endpoint that creates a new job config
+
+*Success Response:*
+
+
+
+Job Config Created Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+Job Config Already Exists
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+---
+
+
+#### getJobByCompanyAndIntegration
+Get Job Configs By Company And Integration
+
+```swift
+inventory.getJobByCompanyAndIntegration(companyId: companyId, integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id |   
+| integrationId | String? | Integration Id |   
+| pageNo | Int? | Page Number |   
+| pageSize | Int? | Page Size |  
+
+REST Endpoint that returns all job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+---
+
+
+#### getJobConfigDefaults
+Get Job Configs Defaults
+
+```swift
+inventory.getJobConfigDefaults(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id |  
+
+REST Endpoint that returns default fields job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+---
+
+
+#### getJobByCode
+Get Job Config By Code
+
+```swift
+inventory.getJobByCode(companyId: companyId, code: code) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id |   
+| code | String? | Job Code |  
+
+REST Endpoint that returns job config by code
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+---
+
+
+#### getJobCodesByCompanyAndIntegration
+Get Job Codes By Company And Integration
+
+```swift
+inventory.getJobCodesByCompanyAndIntegration(companyId: companyId, integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id |   
+| integrationId | String? | Integration Id |   
+| pageNo | Int? | Page Number |   
+| pageSize | Int? | Page Size |  
+
+REST Endpoint that returns all job codes by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
 
 
 
@@ -14121,7 +15027,7 @@ Schema: `GetIntegrationsOptInsResponse`
 Get integration level config
 
 ```swift
-configuration.getIntegrationLevelConfig(companyId: companyId, id: id, level: level) { (response, error) in
+configuration.getIntegrationLevelConfig(companyId: companyId, id: id, level: level, opted: opted, checkPermission: checkPermission) { (response, error) in
     // Use response
 }
 ```
@@ -14130,7 +15036,9 @@ configuration.getIntegrationLevelConfig(companyId: companyId, id: id, level: lev
 | --------- | ----  | --- | 
 | companyId | String? | Current company id |   
 | id | String? | Integration id |   
-| level | String? | Integration level |  
+| level | String? | Integration level |   
+| opted | Bool? | Filter on opted stores |   
+| checkPermission | Bool? | Filter on if permissions are present |  
 
 Get integration level config
 
@@ -14703,15 +15611,6 @@ Schema: `[String: Any]`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -14739,15 +15638,6 @@ Success
 
 
 Schema: `[String: Any]`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -14786,15 +15676,6 @@ Schema: `[String: Any]`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -14822,15 +15703,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -14868,15 +15740,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -14909,15 +15772,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -14945,15 +15799,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -14992,15 +15837,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -15029,15 +15865,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -15076,15 +15903,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -15113,15 +15931,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -15159,15 +15968,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -15195,15 +15995,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -15243,15 +16034,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -15280,15 +16062,6 @@ Success
 
 
 Schema: `StoreMapping`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -15327,15 +16100,6 @@ Schema: `StoreMapping`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -15364,15 +16128,6 @@ Success
 
 
 Schema: `StatusPayload`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -15411,15 +16166,6 @@ Schema: `StatusResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
 
 ---
 
@@ -15449,15 +16195,6 @@ Success
 
 
 Schema: `SyncResp`
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -16381,6 +17118,534 @@ Success
 
 
 Schema: `SearchLogRes`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Discount
+
+
+#### getDiscounts
+Fetch discount list.
+
+```swift
+discount.getDiscounts(companyId: companyId, view: view, q: q, pageNo: pageNo, pageSize: pageSize, archived: archived, month: month, year: year, type: type, appIds: appIds) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| view | String? | listing or calender.  Default is listing. |   
+| q | String? | The search query. This can be a partial or complete name of a discount. |   
+| pageNo | Int? | page number. Default is 1. |   
+| pageSize | Int? | page size. Default is 12. |   
+| archived | Bool? | archived. Default is false. |   
+| month | Int? | month. Default is current month. |   
+| year | Int? | year. Default is current year. |   
+| type | String? | basic or custom. |   
+| appIds | [String]? | application ids. |  
+
+Fetch discount list.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ListOrCalender`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### createDiscount
+Create Discount.
+
+```swift
+discount.createDiscount(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |  
+
+Create Discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### getDiscount
+Fetch discount.
+
+```swift
+discount.getDiscount(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| id | String? | unique id. |  
+
+Fetch discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### updateDiscount
+Create Discount.
+
+```swift
+discount.updateDiscount(companyId: companyId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| id | String? | id |  
+
+Create Discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### validateDiscountFile
+Validate File.
+
+```swift
+discount.validateDiscountFile(companyId: companyId, discount: discount, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| discount | String? | discount |  
+
+Validate File.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### downloadDiscountFile
+Validate File.
+
+```swift
+discount.downloadDiscountFile(companyId: companyId, type: type, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| type | String? | type |  
+
+Validate File.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### getValidationJob
+Validate File Job.
+
+```swift
+discount.getValidationJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| id | String? | id |  
+
+Validate File Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### cancelValidationJob
+Cancel Validation Job.
+
+```swift
+discount.cancelValidationJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| id | String? | id |  
+
+Cancel Validation Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelJobResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### getDownloadJob
+Download File Job.
+
+```swift
+discount.getDownloadJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| id | String? | id |  
+
+Download File Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+#### cancelDownloadJob
+Cancel Download Job.
+
+```swift
+discount.cancelDownloadJob(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | company_id |   
+| id | String? | id |  
+
+Cancel Download Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelJobResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Partner
+
+
+#### addProxyPath
+Add proxy path for external url
+
+```swift
+partner.addProxyPath(companyId: companyId, applicationId: applicationId, extensionId: extensionId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| extensionId | String? | Extension id |  
+
+Add proxy path for external url
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AddProxyResponse`
+
+
+
+
+
+Duplicate proxy path
+
+
+Schema: `ApiError`
+
+
+
+
+
+
+---
+
+
+#### removeProxyPath
+Remove proxy path for external url
+
+```swift
+partner.removeProxyPath(companyId: companyId, applicationId: applicationId, extensionId: extensionId, attachedPath: attachedPath) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Current company id |   
+| applicationId | String? | Current application id |   
+| extensionId | String? | Extension id |   
+| attachedPath | String? | Attachaed path slug |  
+
+Remove proxy path for external url
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `RemoveProxyResponse`
+
+
+
+
+
+Entry not found attached path
+
+
+Schema: `ApiError`
 
 
 
