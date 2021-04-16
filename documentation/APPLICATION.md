@@ -152,7 +152,6 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
-    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -500,7 +499,7 @@ catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | [String]? | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** |  
+| slug | String? | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** |  
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
 
@@ -4969,57 +4968,6 @@ Schema: `APIError`
 ---
 
 
-#### getSlideshows
-Get slideshows
-
-```swift
-content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. |  
-
-Use this to get slideshows.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SlideshowGetResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-
-
-
-
----
-
-
 #### getSlideshow
 Get slideshow by slug
 
@@ -7078,7 +7026,7 @@ Schema: `HttpErrorCodeAndResponse`
 Get Orders for application based on application Id
 
 ```swift
-order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, orderStatus: orderStatus) { (response, error) in
+order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate) { (response, error) in
     // Use response
 }
 ```
@@ -7088,8 +7036,7 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 | pageNo | String? | Current page number |    
 | pageSize | String? | Page limit |    
 | fromDate | String? | From Date |    
-| toDate | String? | To Date |    
-| orderStatus | Int? | Order Status |  
+| toDate | String? | To Date |  
 
 Get Orders
 

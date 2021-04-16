@@ -20,8 +20,6 @@
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Rewards](#Rewards) - Rewards 
 * [Analytics](#Analytics) - Perceptor analytics 
-* [Discount](#Discount) - Discount 
-* [Partner](#Partner) - Partner configuration apis 
 
 ----
 ----
@@ -282,7 +280,6 @@
     * [getCompanyBrandDetail](#getcompanybranddetail)
     * [getCompanyMetrics](#getcompanymetrics)
     * [getStoreDetail](#getstoredetail)
-    * [getGenderAttribute](#getgenderattribute)
     * [listProductTemplateCategories](#listproducttemplatecategories)
     * [listDepartmentsData](#listdepartmentsdata)
     * [getDepartmentData](#getdepartmentdata)
@@ -307,8 +304,8 @@
     * [getProductSize](#getproductsize)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
-    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [createProductsInBulk](#createproductsinbulk)
+    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [getCompanyTags](#getcompanytags)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [getProductAssetsInBulk](#getproductassetsinbulk)
@@ -318,8 +315,8 @@
     * [deleteInventory](#deleteinventory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
     * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
-    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createBulkInventory](#createbulkinventory)
+    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createInventoryExportJob](#createinventoryexportjob)
     * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
@@ -338,10 +335,10 @@
     * [editBrand](#editbrand)
     * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
+    * [createLocation](#createlocation)
     * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
     
@@ -485,26 +482,6 @@
     * [getExportJobStatus](#getexportjobstatus)
     * [getLogsList](#getlogslist)
     * [searchLogs](#searchlogs)
-    
-
-* [Discount](#Discount)
-  * Methods
-    * [getDiscounts](#getdiscounts)
-    * [createDiscount](#creatediscount)
-    * [getDiscount](#getdiscount)
-    * [updateDiscount](#updatediscount)
-    * [validateDiscountFile](#validatediscountfile)
-    * [downloadDiscountFile](#downloaddiscountfile)
-    * [getValidationJob](#getvalidationjob)
-    * [cancelValidationJob](#cancelvalidationjob)
-    * [getDownloadJob](#getdownloadjob)
-    * [cancelDownloadJob](#canceldownloadjob)
-    
-
-* [Partner](#Partner)
-  * Methods
-    * [addProxyPath](#addproxypath)
-    * [removeProxyPath](#removeproxypath)
     
 
 
@@ -10331,48 +10308,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getGenderAttribute
-Get gender attribute details
-
-```swift
-catalog.getGenderAttribute(companyId: companyId, department: department) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company for which you want to view the genders |   
-| department | String? | department for which you want to view the genders |  
-
-This API allows to view the gender attribute details.
-
-*Success Response:*
-
-
-
-Size guide object. See example below or refer `GenderDetailSchema` for details
-
-
-Schema: `GenderDetail`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### listProductTemplateCategories
 List Department specifiec product categories
 
@@ -10420,19 +10355,14 @@ Schema: `PTErrorResponse`
 List all Departments
 
 ```swift
-catalog.listDepartmentsData(companyId: companyId, pageNo: pageNo, pageSize: pageSize, name: name, search: search, isActive: isActive) { (response, error) in
+catalog.listDepartmentsData(companyId: companyId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| pageNo | Int? | The page number to navigate through the given set of results |   
-| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
-| name | String? | Can search departments by passing name. |   
-| search | String? | Can search departments by passing name of the department in search parameter. |   
-| isActive | Bool? | Can query for departments based on whether they are active or inactive. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
 Allows you to list all departments, also can search using name and filter active and incative departments, and item type
 
@@ -10440,7 +10370,7 @@ Allows you to list all departments, also can search using name and filter active
 
 
 
-List of departments data. See example below or refer `DepartmentsResponse` for details
+List of custom search keywords. See example below or refer `DepartmentsResponse` for details
 
 
 Schema: `DepartmentsResponse`
@@ -10524,7 +10454,7 @@ Allows you to list all product templates, also can filter by department
 
 
 
-List of product templates. See example below or refer `TemplatesResponse` for details
+List of custom search keywords. See example below or refer `TemplatesResponse` for details
 
 
 Schema: `TemplatesResponse`
@@ -10768,16 +10698,16 @@ catalog.listProductTemplateExportDetails(companyId: companyId) { (response, erro
 | --------- | ----  | --- | 
 | companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
-Can view details including trigger data, task id , etc.
+Can vies details including trigger data, task id , etc.
 
 *Success Response:*
 
 
 
-List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
+List of custom search keywords. See example below or refer `TemplatesResponse` for details
 
 
-Schema: `ProductDownloadsResponse`
+Schema: `TemplatesResponse`
 
 
 
@@ -10816,10 +10746,10 @@ The filter type query parameter defines what type of data to return. The type of
 
 
 
-See example below or refer `ProductConfigurationDownloadsSchema` for details
+List of Templates, Brands or Types. See example below or refer `ProductConfligurationDownloads` for details
 
 
-Schema: `ProductConfigurationDownloads`
+Schema: `ProductConfligurationDownloads`
 
 
 
@@ -10883,7 +10813,7 @@ Schema: `ErrorResponse`
 Get product categories list
 
 ```swift
-catalog.listCategories(companyId: companyId, level: level, departments: departments, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+catalog.listCategories(companyId: companyId, level: level, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -10892,10 +10822,7 @@ catalog.listCategories(companyId: companyId, level: level, departments: departme
 | --------- | ----  | --- | 
 | companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
 | level | String? | Get category for multiple levels |   
-| departments | String? | Get category for multiple departments filtered |   
-| q | String? | Get multiple categories filtered by search string |   
-| pageNo | Int? | The page number to navigate through the given set of results |   
-| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |  
+| q | String? | Get multiple categories filtered by search string |  
 
 This API gets meta associated to product categories.
 
@@ -10987,10 +10914,10 @@ This API gets meta associated to product categories.
 
 
 
-Get Data for one category. See example below or refer `CategoryResponse` for details
+Category Meta. See example below or refer `CategorySchema` for details
 
 
-Schema: `SingleCategoryResponse`
+Schema: `Category`
 
 
 
@@ -11395,21 +11322,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteProductBulkJob
-Delete Bulk product job.
+#### createProductsInBulk
+Create products in bulk associated with given batch Id.
 
 ```swift
-catalog.deleteProductBulkJob(companyId: companyId, batchId: batchId) { (response, error) in
+catalog.createProductsInBulk(companyId: companyId, batchId: batchId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id of the company associated to size that is to be deleted. |   
-| batchId | Int? | Batch Id of the bulk product job to be deleted. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |   
+| batchId | String? | Batch Id in which assets to be uploaded. |  
 
-This API allows to delete bulk product job associated with company.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -11437,21 +11364,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createProductsInBulk
-Create products in bulk associated with given batch Id.
+#### deleteProductBulkJob
+Delete Bulk product job.
 
 ```swift
-catalog.createProductsInBulk(companyId: companyId, batchId: batchId, body: body) { (response, error) in
+catalog.deleteProductBulkJob(companyId: companyId, batchId: batchId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | Int? | Company Id in which assets to be uploaded. |   
-| batchId | String? | Batch Id in which assets to be uploaded. |  
+| companyId | String? | Company Id of the company associated to size that is to be deleted. |   
+| batchId | Int? | Batch Id of the bulk product job to be deleted. |  
 
-This API helps to create products in bulk push to kafka for approval/creation.
+This API allows to delete bulk product job associated with company.
 
 *Success Response:*
 
@@ -11862,20 +11789,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteBulkInventoryJob
-Delete Bulk Inventory job.
+#### createBulkInventory
+Create products in bulk associated with given batch Id.
 
 ```swift
-catalog.deleteBulkInventoryJob(companyId: companyId) { (response, error) in
+catalog.createBulkInventory(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id of the company of which bulk Inventory job is to be deleted. |  
+| companyId | Int? | Company Id in which Inventory is to be uploaded. |  
 
-This API allows to delete bulk Inventory job associated with company.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -11903,20 +11830,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBulkInventory
-Create products in bulk associated with given batch Id.
+#### deleteBulkInventoryJob
+Delete Bulk Inventory job.
 
 ```swift
-catalog.createBulkInventory(companyId: companyId, body: body) { (response, error) in
+catalog.deleteBulkInventoryJob(companyId: companyId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | Int? | Company Id in which Inventory is to be uploaded. |  
+| companyId | String? | Company Id of the company of which bulk Inventory job is to be deleted. |  
 
-This API helps to create products in bulk push to kafka for approval/creation.
+This API allows to delete bulk Inventory job associated with company.
 
 *Success Response:*
 
@@ -12533,47 +12460,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
-
-```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the brand is to be mapped. |  
-
-This API allows to create a company brand mapping, for a already existing brand in the system.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### getBrands
 Get brands associated to a company
 
@@ -12617,20 +12503,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createCompanyBrandMapping
+Create a company brand mapping.
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location is to be created. |  
+| companyId | String? | Id of the company inside which the brand is to be mapped. |  
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -12686,6 +12572,47 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
 
 Schema: `LocationListSerializer`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### createLocation
+Create a location asscoiated to a company.
+
+```swift
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company inside which the location is to be created. |  
+
+This API allows to create a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -15611,6 +15538,15 @@ Schema: `[String: Any]`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -15638,6 +15574,15 @@ Success
 
 
 Schema: `[String: Any]`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -15676,6 +15621,15 @@ Schema: `[String: Any]`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -15703,6 +15657,15 @@ Success
 
 
 Schema: `MkpResp`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -15740,6 +15703,15 @@ Schema: `MkpResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -15772,6 +15744,15 @@ Schema: `MkpResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -15799,6 +15780,15 @@ Success
 
 
 Schema: `MkpResp`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -15837,6 +15827,15 @@ Schema: `MkpResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -15865,6 +15864,15 @@ Success
 
 
 Schema: `MkpResp`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -15903,6 +15911,15 @@ Schema: `MkpResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -15931,6 +15948,15 @@ Success
 
 
 Schema: `MkpResp`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -15968,6 +15994,15 @@ Schema: `MkpResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -15995,6 +16030,15 @@ Success
 
 
 Schema: `MkpResp`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -16034,6 +16078,15 @@ Schema: `MkpResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -16062,6 +16115,15 @@ Success
 
 
 Schema: `StoreMapping`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -16100,6 +16162,15 @@ Schema: `StoreMapping`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -16128,6 +16199,15 @@ Success
 
 
 Schema: `StatusPayload`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -16166,6 +16246,15 @@ Schema: `StatusResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
 
 ---
 
@@ -16195,6 +16284,15 @@ Success
 
 
 Schema: `SyncResp`
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -17118,534 +17216,6 @@ Success
 
 
 Schema: `SearchLogRes`
-
-
-
-
-
-
----
-
-
-
----
-
-
-## Discount
-
-
-#### getDiscounts
-Fetch discount list.
-
-```swift
-discount.getDiscounts(companyId: companyId, view: view, q: q, pageNo: pageNo, pageSize: pageSize, archived: archived, month: month, year: year, type: type, appIds: appIds) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| view | String? | listing or calender.  Default is listing. |   
-| q | String? | The search query. This can be a partial or complete name of a discount. |   
-| pageNo | Int? | page number. Default is 1. |   
-| pageSize | Int? | page size. Default is 12. |   
-| archived | Bool? | archived. Default is false. |   
-| month | Int? | month. Default is current month. |   
-| year | Int? | year. Default is current year. |   
-| type | String? | basic or custom. |   
-| appIds | [String]? | application ids. |  
-
-Fetch discount list.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ListOrCalender`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### createDiscount
-Create Discount.
-
-```swift
-discount.createDiscount(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |  
-
-Create Discount.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DiscountJob`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### getDiscount
-Fetch discount.
-
-```swift
-discount.getDiscount(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| id | String? | unique id. |  
-
-Fetch discount.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DiscountJob`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### updateDiscount
-Create Discount.
-
-```swift
-discount.updateDiscount(companyId: companyId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| id | String? | id |  
-
-Create Discount.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DiscountJob`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### validateDiscountFile
-Validate File.
-
-```swift
-discount.validateDiscountFile(companyId: companyId, discount: discount, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| discount | String? | discount |  
-
-Validate File.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `FileJobResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### downloadDiscountFile
-Validate File.
-
-```swift
-discount.downloadDiscountFile(companyId: companyId, type: type, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| type | String? | type |  
-
-Validate File.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `FileJobResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### getValidationJob
-Validate File Job.
-
-```swift
-discount.getValidationJob(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| id | String? | id |  
-
-Validate File Job.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `FileJobResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### cancelValidationJob
-Cancel Validation Job.
-
-```swift
-discount.cancelValidationJob(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| id | String? | id |  
-
-Cancel Validation Job.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CancelJobResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### getDownloadJob
-Download File Job.
-
-```swift
-discount.getDownloadJob(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| id | String? | id |  
-
-Download File Job.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `FileJobResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-#### cancelDownloadJob
-Cancel Download Job.
-
-```swift
-discount.cancelDownloadJob(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | company_id |   
-| id | String? | id |  
-
-Cancel Download Job.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CancelJobResponse`
-
-
-
-
-
-Failed
-
-
-Schema: `BadRequestObject`
-
-
-
-
-
-
----
-
-
-
----
-
-
-## Partner
-
-
-#### addProxyPath
-Add proxy path for external url
-
-```swift
-partner.addProxyPath(companyId: companyId, applicationId: applicationId, extensionId: extensionId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Current company id |   
-| applicationId | String? | Current application id |   
-| extensionId | String? | Extension id |  
-
-Add proxy path for external url
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AddProxyResponse`
-
-
-
-
-
-Duplicate proxy path
-
-
-Schema: `ApiError`
-
-
-
-
-
-
----
-
-
-#### removeProxyPath
-Remove proxy path for external url
-
-```swift
-partner.removeProxyPath(companyId: companyId, applicationId: applicationId, extensionId: extensionId, attachedPath: attachedPath) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Current company id |   
-| applicationId | String? | Current application id |   
-| extensionId | String? | Extension id |   
-| attachedPath | String? | Attachaed path slug |  
-
-Remove proxy path for external url
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `RemoveProxyResponse`
-
-
-
-
-
-Entry not found attached path
-
-
-Schema: `ApiError`
 
 
 
