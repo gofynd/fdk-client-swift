@@ -8030,6 +8030,7 @@ This operation will return the url for the uploaded file.
             pageSize: String?,
             fromDate: String?,
             toDate: String?,
+            orderStatus: Int?,
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
@@ -8049,6 +8050,10 @@ This operation will return the url for the uploaded file.
             
             if let value = toDate {
                 xQuery["to_date"] = value
+            }
+            
+            if let value = orderStatus {
+                xQuery["order_status"] = value
             }
             
              

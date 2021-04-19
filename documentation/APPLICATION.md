@@ -7078,7 +7078,7 @@ Schema: `HttpErrorCodeAndResponse`
 Get Orders for application based on application Id
 
 ```swift
-order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate) { (response, error) in
+order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, orderStatus: orderStatus) { (response, error) in
     // Use response
 }
 ```
@@ -7088,7 +7088,8 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 | pageNo | String? | Current page number |    
 | pageSize | String? | Page limit |    
 | fromDate | String? | From Date |    
-| toDate | String? | To Date |  
+| toDate | String? | To Date |    
+| orderStatus | Int? | Order Status |  
 
 Get Orders
 
