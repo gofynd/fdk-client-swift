@@ -8026,8 +8026,8 @@ This operation will return the url for the uploaded file.
         * Description: Get Orders
         **/
         public func getOrders(
-            pageNo: String?,
-            pageSize: String?,
+            pageNo: Int?,
+            pageSize: Int?,
             fromDate: String?,
             toDate: String?,
             orderStatus: Int?,
