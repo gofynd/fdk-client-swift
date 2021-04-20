@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [unfollowById](#unfollowbyid)
     * [followById](#followbyid)
+    * [unfollowById](#unfollowbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -212,6 +212,8 @@
     * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
     * [getPaymentModeRoutes](#getpaymentmoderoutes)
     * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
+    * [getActiveRefundTransferModes](#getactiverefundtransfermodes)
+    * [enableOrDisableRefundTransferMode](#enableordisablerefundtransfermode)
     * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
     * [verifyIfscCode](#verifyifsccode)
     * [getOrderBeneficiariesDetail](#getorderbeneficiariesdetail)
@@ -1293,11 +1295,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1305,9 +1307,9 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | String? | the `id` of the collection type you want to unfollow |  
+| collectionId | String? | the `id` of the collection type you want to follow |  
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1335,11 +1337,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1347,9 +1349,9 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | String? | the `id` of the collection type you want to follow |  
+| collectionId | String? | the `id` of the collection type you want to unfollow |  
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -6703,6 +6705,86 @@ Bad Request Error
 
 
 Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+---
+
+
+#### getActiveRefundTransferModes
+List Refund Transfer Mode
+
+```swift
+payment.getActiveRefundTransferModes() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get all active transfer mode for adding beneficiary details
+
+*Success Response:*
+
+
+
+Refund Transfer Mode
+
+
+Schema: `TransferModeResponse`
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+---
+
+
+#### enableOrDisableRefundTransferMode
+Enable/Disable Refund Transfer Mode
+
+```swift
+payment.enableOrDisableRefundTransferMode(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
+
+*Success Response:*
+
+
+
+Update Refund Transfer Mode.
+
+
+Schema: `UpdateRefundTransferModeResponse`
 
 
 
