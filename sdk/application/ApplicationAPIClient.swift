@@ -1,4 +1,3 @@
-import Foundation
 class ApplicationAPIClient {
     static func execute(config: ApplicationConfig, method: String, url: String, query: [String: Any]?, extraHeaders: [(key: String, value: String)] = [], body: [String: Any]?, onResponse: @escaping OnResponse) {
         var headers = [
