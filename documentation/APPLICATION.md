@@ -139,6 +139,7 @@
 * [Content](#Content)
   * Methods
     * [getAnnouncements](#getannouncements)
+    * [getBlog](#getblog)
     * [getBlogs](#getblogs)
     * [getFaqs](#getfaqs)
     * [getFaqCategories](#getfaqcategories)
@@ -148,6 +149,7 @@
     * [getLandingPage](#getlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
+    * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
     * [getSlideshows](#getslideshows)
@@ -4321,6 +4323,56 @@ Schema: `APIError`
 ---
 
 
+#### getBlog
+Get Blog by slug
+
+```swift
+content.getBlog(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| slug | String? | The `slug` of a blog. Use this parameter to retrieve a particular blog |  
+
+Use this API to fetch a blog using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with blog details
+
+
+Schema: `CustomBlogSchema`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
 #### getBlogs
 Get blogs
 
@@ -4742,6 +4794,56 @@ A JSON object with navigation details
 
 
 Schema: `NavigationGetResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
+#### getPage
+Get Page by slug
+
+```swift
+content.getPage(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| slug | String? | The `slug` of a page. Use this parameter to retrieve a particular page |  
+
+Use this API to fetch a custom page using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with page details
+
+
+Schema: `CustomPageSchema`
 
 
 
