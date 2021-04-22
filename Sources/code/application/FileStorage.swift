@@ -1,5 +1,6 @@
 import Alamofire
-
+import Foundation
+import UIKit
 
 public extension ApplicationClient.FileStorage {
     func upload(data: Data, withFileName fileName: String, as contentType: String, toNameSpace namespace: String, onResponse: @escaping (_ response: ApplicationClient.CompleteResponse?, _ error: FDKError?) -> Void) {

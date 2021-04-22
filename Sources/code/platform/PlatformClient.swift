@@ -1,5 +1,6 @@
 
 
+import Foundation
 
 public class PlatformClient {
     public let config: PlatformConfig

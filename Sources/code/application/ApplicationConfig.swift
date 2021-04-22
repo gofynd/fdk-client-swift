@@ -1,3 +1,4 @@
+import Foundation
 public class ApplicationConfig {
     var applicationId: String
     var applicationToken: String
