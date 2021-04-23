@@ -97,7 +97,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -144,7 +144,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/sizes/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -193,7 +193,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/sizes/%s/pincode/%s/price/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/pincode/\(pincode)/price/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -247,7 +247,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/sizes/%s/pincode/%s/sellers/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/pincode/\(pincode)/sellers/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -394,7 +394,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/similar/compare/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/similar/compare/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -436,7 +436,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/similar/compared-frequently/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/similar/compared-frequently/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -479,7 +479,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/similar/%s/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/similar/\(similarType)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -521,7 +521,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/products/%s/variants/",
+                url: "/service/application/catalog/v1.0/products/\(slug)/variants/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -999,7 +999,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/brands/%s/",
+                url: "/service/application/catalog/v1.0/brands/\(slug)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -1087,7 +1087,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/categories/%s/",
+                url: "/service/application/catalog/v1.0/categories/\(slug)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -1439,7 +1439,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/collections/%s/items/",
+                url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -1549,7 +1549,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/collections/%s/",
+                url: "/service/application/catalog/v1.0/collections/\(slug)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -1601,7 +1601,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/follow/%s/",
+                url: "/service/application/catalog/v1.0/follow/\(collectionType)/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -1678,10 +1678,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        * Summary: UnFollow a Product
+        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1693,8 +1693,8 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/application/catalog/v1.0/follow/%s/%s/",
+                method: "delete",
+                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -1721,10 +1721,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        * Summary: Follow a particular Product
+        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1736,8 +1736,8 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
-                url: "/service/application/catalog/v1.0/follow/%s/%s/",
+                method: "post",
+                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -1780,7 +1780,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/follow/%s/%s/count/",
+                url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/count/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -2625,7 +2625,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/cart/v1.0/address/%d",
+                url: "/service/application/cart/v1.0/address/\(id)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -2667,7 +2667,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/cart/v1.0/address/%d",
+                url: "/service/application/cart/v1.0/address/\(id)",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -2709,7 +2709,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
-                url: "/service/application/cart/v1.0/address/%d",
+                url: "/service/application/cart/v1.0/address/\(id)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -3113,7 +3113,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/cart/v1.0/share-cart/%s",
+                url: "/service/application/cart/v1.0/share-cart/\(token)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -3156,7 +3156,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/cart/v1.0/share-cart/%s/%s",
+                url: "/service/application/cart/v1.0/share-cart/\(token)/\(action)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -3210,7 +3210,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/lead/v1.0/ticket/%s",
+                url: "/service/application/lead/v1.0/ticket/\(id)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -3252,7 +3252,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/lead/v1.0/ticket/%s/history",
+                url: "/service/application/lead/v1.0/ticket/\(ticketId)/history",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -3335,7 +3335,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/lead/v1.0/form/%s",
+                url: "/service/application/lead/v1.0/form/\(slug)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -3377,7 +3377,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/lead/v1.0/form/%s/submit",
+                url: "/service/application/lead/v1.0/form/\(slug)/submit",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -3419,7 +3419,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/lead/v1.0/video/room/%s/participants",
+                url: "/service/application/lead/v1.0/video/room/\(uniqueName)/participants",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -3461,7 +3461,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/lead/v1.0/video/room/%s/token",
+                url: "/service/application/lead/v1.0/video/room/\(uniqueName)/token",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -3556,7 +3556,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/theme/v1.0/%s/preview",
+                url: "/service/application/theme/v1.0/\(themeId)/preview",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -5062,48 +5062,6 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get Blog by slug
-        * Description: Use this API to fetch a blog using `slug`
-        **/
-        public func getBlog(
-            slug: String,
-            
-            onResponse: @escaping (_ response: CustomBlogSchema?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/blogs/%s",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomBlogSchema.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
         * Summary: Get blogs
         * Description: Use this to get blogs.
         **/
@@ -5295,7 +5253,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/content/v1.0/faq/%s",
+                url: "/service/application/content/v1.0/faq/\(slug)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -5337,7 +5295,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/content/v1.0/faq/category/%s",
+                url: "/service/application/content/v1.0/faq/category/\(slug)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -5379,7 +5337,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/content/v1.0/faq/category/%s/faqs",
+                url: "/service/application/content/v1.0/faq/category/\(slug)/faqs",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -5577,48 +5535,6 @@ public class ApplicationClient {
                 }
             }
             return paginator
-        }
-        
-        
-        /**
-        *
-        * Summary: Get Page by slug
-        * Description: Use this API to fetch a custom page using `slug`
-        **/
-        public func getPage(
-            slug: String,
-            
-            onResponse: @escaping (_ response: CustomPageSchema?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/pages/%s",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomPageSchema.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
         }
         
         
@@ -5868,7 +5784,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/content/v1.0/slideshow/%s",
+                url: "/service/application/content/v1.0/slideshow/\(slug)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6180,7 +6096,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/share/v1.0/qr/products/%s/",
+                url: "/service/application/share/v1.0/qr/products/\(slug)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6222,7 +6138,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/share/v1.0/qr/collection/%s/",
+                url: "/service/application/share/v1.0/qr/collection/\(slug)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6349,7 +6265,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/share/v1.0/links/short-link/%s/",
+                url: "/service/application/share/v1.0/links/short-link/\(hash)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6391,7 +6307,7 @@ public class ApplicationClient {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/share/v1.0/links/short-link/%s/original/",
+                url: "/service/application/share/v1.0/links/short-link/\(hash)/original/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -6463,7 +6379,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/assets/v1.0/namespaces/%s/upload/start/",
+                url: "/service/application/assets/v1.0/namespaces/\(namespace)/upload/start/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -6523,7 +6439,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/assets/v1.0/namespaces/%s/upload/complete/",
+                url: "/service/application/assets/v1.0/namespaces/\(namespace)/upload/complete/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -6969,7 +6885,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/configuration/v1.0/currency/%s",
+                url: "/service/application/configuration/v1.0/currency/\(id)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -8185,7 +8101,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/order/v1.0/orders/%s",
+                url: "/service/application/order/v1.0/orders/\(orderId)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -8227,7 +8143,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/order/v1.0/orders/shipments/%s",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -8269,7 +8185,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/order/v1.0/orders/shipments/%s/reasons",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/reasons",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -8311,7 +8227,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/order/v1.0/orders/shipments/%s/status",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/status",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -8353,7 +8269,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/order/v1.0/orders/shipments/%s/track",
+                url: "/service/application/order/v1.0/orders/shipments/\(shipmentId)/track",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -8395,7 +8311,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/order/v1.0/orders/pos-order/%s",
+                url: "/service/application/order/v1.0/orders/pos-order/\(orderId)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -8860,7 +8776,7 @@ The list of points history is paginated.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/abuse/entity/%s/entity-id/%s",
+                url: "/service/application/feedback/v1.0/abuse/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -9099,7 +9015,7 @@ The list of points history is paginated.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/attributes/%s",
+                url: "/service/application/feedback/v1.0/attributes/\(slug)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -9141,7 +9057,7 @@ The list of points history is paginated.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/feedback/v1.0/attributes/%s",
+                url: "/service/application/feedback/v1.0/attributes/\(slug)",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -9290,7 +9206,7 @@ The list of points history is paginated.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/comment/entity/%s",
+                url: "/service/application/feedback/v1.0/comment/entity/\(entityType)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -9401,7 +9317,7 @@ The list of points history is paginated.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/config/entity/%s/entity-id/%s",
+                url: "/service/application/feedback/v1.0/config/entity/\(entityType)/entityId/\(entityId)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -9582,7 +9498,7 @@ The list of points history is paginated.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/media/entity/%s/entity-id/%s",
+                url: "/service/application/feedback/v1.0/media/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -9703,7 +9619,7 @@ It gives following response data: review count, rating average. review metrics /
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/rating/summary/entity/%s/entity-id/%s",
+                url: "/service/application/feedback/v1.0/rating/summary/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -9937,7 +9853,7 @@ attributes rating, entity rating, title, description, media resources and templa
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/review/entity/%s/entity-id/%s",
+                url: "/service/application/feedback/v1.0/review/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -10237,7 +10153,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/template/qna/entity/%s/entity-id/%s",
+                url: "/service/application/feedback/v1.0/template/qna/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -11164,7 +11080,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/pos/cart/v1.0/address/%d",
+                url: "/service/application/pos/cart/v1.0/address/\(id)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -11206,7 +11122,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/pos/cart/v1.0/address/%d",
+                url: "/service/application/pos/cart/v1.0/address/\(id)",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -11248,7 +11164,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
-                url: "/service/application/pos/cart/v1.0/address/%d",
+                url: "/service/application/pos/cart/v1.0/address/\(id)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -11831,7 +11747,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/pos/cart/v1.0/share-cart/%s",
+                url: "/service/application/pos/cart/v1.0/share-cart/\(token)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -11874,7 +11790,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/pos/cart/v1.0/share-cart/%s/%s",
+                url: "/service/application/pos/cart/v1.0/share-cart/\(token)/\(action)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -11969,7 +11885,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/logistics/v1.0/pincode/%s",
+                url: "/service/application/logistics/v1.0/pincode/\(pincode)",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
