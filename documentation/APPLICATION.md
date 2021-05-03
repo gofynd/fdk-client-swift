@@ -149,6 +149,7 @@
     * [getLandingPage](#getlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
+    * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
     * [getSlideshows](#getslideshows)
@@ -796,7 +797,7 @@ catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | q | String? | The search query. This can be a partial or complete name of a either a product, brand or category |    
-| f | String? | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** |    
+| f | String? | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** |    
 | filters | Bool? | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
 | sortOn | String? | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. |    
 | pageId | String? | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
@@ -1176,7 +1177,7 @@ catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sor
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items |    
-| f | String? | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** |    
+| f | String? | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** |    
 | filters | Bool? | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
 | sortOn | String? | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. |    
 | pageId | String? | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
@@ -3682,7 +3683,7 @@ Used to get logged in user details
 
 
 
-Schema: `UserObjectSchema`
+Schema: `UserSchema`
 
 
 
@@ -4793,6 +4794,56 @@ A JSON object with navigation details
 
 
 Schema: `NavigationGetResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
+#### getPage
+Get Page by slug
+
+```swift
+content.getPage(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| slug | String? | The `slug` of a page. Use this parameter to retrieve a particular page |  
+
+Use this API to fetch a custom page using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with page details
+
+
+Schema: `CustomPageSchema`
 
 
 
