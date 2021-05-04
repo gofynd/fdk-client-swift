@@ -236,6 +236,7 @@
 * [Rewards](#Rewards)
   * Methods
     * [getPointsOnProduct](#getpointsonproduct)
+    * [getOfferByName](#getofferbyname)
     * [getOrderDiscount](#getorderdiscount)
     * [getUserPoints](#getuserpoints)
     * [getUserPointsHistory](#getuserpointshistory)
@@ -7488,6 +7489,47 @@ ok
 
 
 Schema: `CatalogueOrderResponse`
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
+
+
+
+
+
+
+---
+
+
+#### getOfferByName
+Get offer by name.
+
+```swift
+rewards.getOfferByName(name: name) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| name | String? | Offer name |  
+
+Get offer by name.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `Offer`
 
 
 
