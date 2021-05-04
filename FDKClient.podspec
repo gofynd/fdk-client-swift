@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FDKClient'
-  s.version          = '0.0.382'
+  s.version          = '0.0.383'
   s.summary          = 'FDK Client SDK for Swift language'
 
   s.description      = 'FDK Client SDK for Swift language that can be used to make Apps or extensions.'
@@ -23,6 +23,11 @@ Pod::Spec.new do |s|
   s.subspec 'Common' do |subspec|
     subspec.source_files = 'sdk/common/**/*'
     subspec.dependency 'Alamofire', '= 5.0.2'
+  end
+
+  s.subspec 'Common' do |subspec|
+    subspec.source_files = 'sdk/common/**/*'
+    subspec.dependency 'CryptoSwift', '= 1.3.8'
   end
 
   s.subspec 'Application' do |subspec|
