@@ -1,4 +1,4 @@
-# FDK Swift 
+# FDK Swift
 
 FDK client for Swift language
 
