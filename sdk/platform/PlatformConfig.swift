@@ -1,4 +1,3 @@
-import Foundation
 public class PlatformConfig {
     var companyId: String
     var apiKey: String?
