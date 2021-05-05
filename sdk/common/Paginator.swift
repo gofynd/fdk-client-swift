@@ -1,4 +1,3 @@
-import Foundation
 public class Paginator<T> {
     public internal(set) var hasNext: Bool = true
     var type: String
