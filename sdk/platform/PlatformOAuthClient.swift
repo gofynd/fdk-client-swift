@@ -1,4 +1,3 @@
-import Foundation
 public struct AccessToken: Codable {
     
     public let accessToken: String
