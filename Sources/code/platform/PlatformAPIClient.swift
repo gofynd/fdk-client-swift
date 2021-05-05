@@ -1,3 +1,4 @@
+import Foundation
 public class PlatformAPIClient {
     public static func execute(config: PlatformConfig, method: String, url: String, query: [String: Any]?, body: [String: Any]?, headers: [(key: String, value: String)] = [], onResponse: @escaping OnResponse) {
         config.oauthClient.getAccessToken { (token) in

@@ -1,5 +1,5 @@
 import Alamofire
-
+import Foundation
 
 public extension ApplicationClient.FileStorage {
     func upload(data: Data, withFileName fileName: String, as contentType: String, toNameSpace namespace: String, onResponse: @escaping (_ response: ApplicationClient.CompleteResponse?, _ error: FDKError?) -> Void) {
@@ -20,10 +20,10 @@ public extension ApplicationClient.FileStorage {
         }
     }
     
-    func upload(image: UIImage, withFileName fileName: String, as contentType: String, toNameSpace namespace: String, onResponse: @escaping (_ response: ApplicationClient.CompleteResponse?, _ error: FDKError?) -> Void) {
-        guard let data = image.pngData() else {
-            return onResponse(nil, FDKError(message: "Image could not be converted to data"))
-        }
-        upload(data: data, withFileName: fileName, as: contentType, toNameSpace: namespace, onResponse: onResponse)
-    }
+    // func upload(image: UIImage, withFileName fileName: String, as contentType: String, toNameSpace namespace: String, onResponse: @escaping (_ response: ApplicationClient.CompleteResponse?, _ error: FDKError?) -> Void) {
+    //     guard let data = image.pngData() else {
+    //         return onResponse(nil, FDKError(message: "Image could not be converted to data"))
+    //     }
+    //     upload(data: data, withFileName: fileName, as: contentType, toNameSpace: namespace, onResponse: onResponse)
+    // }
 }

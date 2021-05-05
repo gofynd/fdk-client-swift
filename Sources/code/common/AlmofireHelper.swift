@@ -1,4 +1,5 @@
 import Alamofire
+import Foundation
 
 public typealias OnResponse = (_ responseData: Data?, _ error: Swift.Error?, _ responseCode: Int?) -> Void
 
