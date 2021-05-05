@@ -1,3 +1,8 @@
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
 extension String {
     func trim() -> String {
         return self.trimmingCharacters(in: .whitespacesAndNewlines)

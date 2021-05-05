@@ -1,4 +1,5 @@
 import Foundation
+import CryptoSwift
 
 class RequestSigner {
     //Constants
@@ -53,9 +54,12 @@ class RequestSigner {
                                      reqHash]
         let finalSignatureData = [dateStr,
                                   signingData.joined(separator: "\n").sha256()]
-        let signature = finalSignatureData
-            .joined(separator: "\n").hmac(algorithm: .SHA256, key: signingkey)
-        finalHeaders.append((key: "x-fp-signature", value: "v1:\(signature)"))
+        let signatureStr = finalSignatureData.joined(separator: "\n")
+        let signature = try? CryptoSwift.HMAC(key: signingkey, variant: .sha256).authenticate(signatureStr.bytes)
+        //let signature = signatureStr.hmac(algorithm: .SHA256, key: signingkey)
+        if let hmacSignature = signature {
+            finalHeaders.append((key: "x-fp-signature", value: "v1:\(hmacSignature)")) 
+        }
         return finalHeaders
     }
 }

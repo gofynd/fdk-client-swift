@@ -1,3 +1,4 @@
+import Foundation
 public struct FDKError: Codable {
     
     public let message: String
