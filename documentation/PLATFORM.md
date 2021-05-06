@@ -17,6 +17,7 @@
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Configuration](#Configuration) - Application configuration apis 
+* [Cart](#Cart) - Cart APIs 
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Rewards](#Rewards) - Rewards 
 * [Analytics](#Analytics) - Perceptor analytics 
@@ -246,10 +247,6 @@
     * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
     * [getSubscriptionConfig](#getsubscriptionconfig)
     * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
-    * [addBeneficiaryDetails](#addbeneficiarydetails)
-    * [verifyIfscCode](#verifyifsccode)
-    * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
-    * [getUserBeneficiaries](#getuserbeneficiaries)
     
 
 * [Order](#Order)
@@ -257,7 +254,6 @@
     * [shipmentStatusUpdate](#shipmentstatusupdate)
     * [activityStatus](#activitystatus)
     * [storeProcessShipmentUpdate](#storeprocessshipmentupdate)
-    * [checkRefund](#checkrefund)
     * [getOrdersByCompanyId](#getordersbycompanyid)
     * [trackShipmentPlatform](#trackshipmentplatform)
     * [trackOrder](#trackorder)
@@ -271,36 +267,36 @@
 * [Catalog](#Catalog)
   * Methods
     * [getSearchKeywords](#getsearchkeywords)
-    * [deleteSearchKeywords](#deletesearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
-    * [getAllSearchKeyword](#getallsearchkeyword)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
+    * [getAllSearchKeyword](#getallsearchkeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
-    * [getAutocompleteConfig](#getautocompleteconfig)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
-    * [getProductBundle](#getproductbundle)
+    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
+    * [getProductBundle](#getproductbundle)
     * [getProductBundleDetail](#getproductbundledetail)
     * [updateProductBundle](#updateproductbundle)
-    * [getSizeGuides](#getsizeguides)
     * [createSizeGuide](#createsizeguide)
+    * [getSizeGuides](#getsizeguides)
     * [getSizeGuide](#getsizeguide)
     * [updateSizeGuide](#updatesizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
-    * [getConfigurationByType](#getconfigurationbytype)
+    * [getConfigurations](#getconfigurations)
     * [createConfigurationByType](#createconfigurationbytype)
+    * [getConfigurationByType](#getconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
+    * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
-    * [getCollectionItems](#getcollectionitems)
+    * [deleteCollection](#deletecollection)
     * [addCollectionItems](#addcollectionitems)
+    * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -321,37 +317,37 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [listCategories](#listcategories)
     * [createCategories](#createcategories)
+    * [listCategories](#listcategories)
     * [getCategoryData](#getcategorydata)
     * [updateCategory](#updatecategory)
-    * [getProducts](#getproducts)
     * [createProduct](#createproduct)
+    * [getProducts](#getproducts)
     * [getProduct](#getproduct)
-    * [deleteProduct](#deleteproduct)
     * [editProduct](#editproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
-    * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [createProductsInBulk](#createproductsinbulk)
+    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [getCompanyTags](#getcompanytags)
-    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
+    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [getInventory](#getinventory)
     * [addInventory](#addinventory)
+    * [getInventory](#getinventory)
     * [deleteInventory](#deleteinventory)
-    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
-    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
+    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventory](#createbulkinventory)
-    * [getInventoryExport](#getinventoryexport)
+    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createInventoryExportJob](#createinventoryexportjob)
+    * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
+    * [getAllHsnCodes](#getallhsncodes)
     * [getHsnCode](#gethsncode)
     * [updateHsnCode](#updatehsncode)
     * [bulkHsnCode](#bulkhsncode)
@@ -364,18 +360,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
-    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
+    * [createLocation](#createlocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [FileStorage](#FileStorage)
@@ -455,6 +451,15 @@
     * [getOtherSellerApplications](#getothersellerapplications)
     * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
     * [optOutFromApplication](#optoutfromapplication)
+    
+
+* [Cart](#Cart)
+  * Methods
+    * [getCoupons](#getcoupons)
+    * [createCoupon](#createcoupon)
+    * [getCouponById](#getcouponbyid)
+    * [updateCoupon](#updatecoupon)
+    * [updateCouponPartially](#updatecouponpartially)
     
 
 * [Marketplaces](#Marketplaces)
@@ -8893,212 +8898,6 @@ Schema: `HttpErrorCodeAndResponse`
 ---
 
 
-#### addBeneficiaryDetails
-Save bank details for cancelled/returned order
-
-```swift
-payment.addBeneficiaryDetails(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | Company Id |   
-| applicationId | String? | Application id |  
-
-Use this API to save bank details for returned/cancelled order to refund amount in his account.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `RefundAccountResponse`
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
----
-
-
-#### verifyIfscCode
-Ifsc Code Verification
-
-```swift
-payment.verifyIfscCode(companyId: companyId, ifscCode: ifscCode) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | Company Id |   
-| ifscCode | String? |  |  
-
-Get True/False for correct IFSC Code for adding bank details for refund
-
-*Success Response:*
-
-
-
-Bank details on correct Ifsc Code
-
-
-Schema: `IfscCodeResponse`
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ErrorCodeDescription`
-
-
-
-
-
-
----
-
-
-#### getUserOrderBeneficiaries
-List Order Beneficiary
-
-```swift
-payment.getUserOrderBeneficiaries(orderId: orderId, companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| orderId | String? |  |   
-| companyId | Int? | Company Id |   
-| applicationId | String? | Application id |  
-
-Get all active  beneficiary details added by the user for refund
-
-*Success Response:*
-
-
-
-List Order Beneficiary
-
-
-Schema: `OrderBeneficiaryResponse`
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
----
-
-
-#### getUserBeneficiaries
-List User Beneficiary
-
-```swift
-payment.getUserBeneficiaries(orderId: orderId, companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| orderId | String? |  |   
-| companyId | Int? | Company Id |   
-| applicationId | String? | Application id |  
-
-Get all active  beneficiary details added by the user for refund
-
-*Success Response:*
-
-
-
-List User Beneficiary
-
-
-Schema: `OrderBeneficiaryResponse`
-
-
-
-
-
-Bad Request Error
-
-
-Schema: `NotFoundResourceError`
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `HttpErrorCodeAndResponse`
-
-
-
-
-
-
----
-
-
 
 ---
 
@@ -9230,57 +9029,6 @@ Success
 
 
 Schema: `UpdateProcessShipmenstRequestResponse`
-
-
-
-
-
-API Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ApefaceApiError`
-
-
-
-
-
-
----
-
-
-#### checkRefund
-Check Refund is available or not
-
-```swift
-order.checkRefund(companyId: companyId, shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| shipmentId | String? | Shipment Id |  
-
-Check Refund is available or not
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `[String: Any]`
 
 
 
@@ -9779,6 +9527,49 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateSearchKeywords
+Update Search Keyword
+
+```swift
+catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+Update Search Keyword by its id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+Schema: `GetSearchWordsData`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### deleteSearchKeywords
 Delete a Search Keywords
 
@@ -9822,11 +9613,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateSearchKeywords
-Update Search Keyword
+#### createCustomKeyword
+Add a Custom Search Keywords
 
 ```swift
-catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+catalog.createCustomKeyword(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -9834,16 +9625,15 @@ catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId,
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
 | companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
-Update Search Keyword by its id. On successful request, returns the updated collection
+Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
 Schema: `GetSearchWordsData`
@@ -9907,48 +9697,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCustomKeyword
-Add a Custom Search Keywords
-
-```swift
-catalog.createCustomKeyword(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
-
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
-
-*Success Response:*
-
-
-
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
-
-
-Schema: `GetSearchWordsData`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### getAutocompleteKeywordDetail
 Get a Autocomplete Keywords Details
 
@@ -9971,6 +9719,49 @@ Get the details of a words by its `id`. If successful, returns a keywords resour
 
 
 The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
+
+```swift
+catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+
+*Success Response:*
+
+
+
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -10035,11 +9826,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+#### createCustomAutocompleteRule
+Add a Custom Autocomplete Keywords
 
 ```swift
-catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+catalog.createCustomAutocompleteRule(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10047,19 +9838,18 @@ catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicati
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
 | companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
 
 
-Schema: `GetAutocompleteWordsResponse`
+Schema: `CreateAutocompleteWordsResponse`
 
 
 
@@ -10120,30 +9910,29 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
+#### createProductBundle
+Create Product Bundle
 
 ```swift
-catalog.createCustomAutocompleteRule(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+catalog.createProductBundle(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
 
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
 
 *Success Response:*
 
 
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
 
 
-Schema: `CreateAutocompleteWordsResponse`
+Schema: `GetProductBundleCreateResponse`
 
 
 
@@ -10186,47 +9975,6 @@ List of bundle configured for a company. See example below or refer `GetProductB
 
 
 Schema: `GetProductBundleListingResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### createProductBundle
-Create Product Bundle
-
-```swift
-catalog.createProductBundle(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
-
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-
-*Success Response:*
-
-
-
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
-
-
-Schema: `GetProductBundleCreateResponse`
 
 
 
@@ -10329,6 +10077,47 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createSizeGuide
+Create a size guide.
+
+```swift
+catalog.createSizeGuide(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company inside which the size guide is to be created. |  
+
+This API allows to create a size guide associated to a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getSizeGuides
 Get list of size guides
 
@@ -10357,47 +10146,6 @@ Size guide object. See example below or refer `ListSizeGuide` for details
 
 
 Schema: `ListSizeGuide`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### createSizeGuide
-Create a size guide.
-
-```swift
-catalog.createSizeGuide(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the size guide is to be created. |  
-
-This API allows to create a size guide associated to a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -10542,6 +10290,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createConfigurationProductListing
+Add configuration for products & listings
+
+```swift
+catalog.createConfigurationProductListing(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
+
+Add configuration for products & listing.
+
+*Success Response:*
+
+
+
+success flag will tell whether the operation was successful.
+
+
+Schema: `GetAppCatalogConfiguration`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getConfigurations
 Get configured details for catalog
 
@@ -10584,11 +10374,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createConfigurationProductListing
-Add configuration for products & listings
+#### createConfigurationByType
+Add configuration for categories and brands
 
 ```swift
-catalog.createConfigurationProductListing(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+catalog.createConfigurationByType(companyId: companyId, applicationId: applicationId, type: type, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10596,9 +10386,10 @@ catalog.createConfigurationProductListing(companyId: companyId, applicationId: a
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
 | companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | String? | type can be brands, categories etc. |  
 
-Add configuration for products & listing.
+Add configuration for categories & brands.
 
 *Success Response:*
 
@@ -10669,49 +10460,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createConfigurationByType
-Add configuration for categories and brands
-
-```swift
-catalog.createConfigurationByType(companyId: companyId, applicationId: applicationId, type: type, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
-| type | String? | type can be brands, categories etc. |  
-
-Add configuration for categories & brands.
-
-*Success Response:*
-
-
-
-success flag will tell whether the operation was successful.
-
-
-Schema: `GetAppCatalogConfiguration`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### getQueryFilters
 Get query filters to configure a collection
 
@@ -10754,48 +10502,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAllCollections
-List all the collections
-
-```swift
-catalog.getAllCollections(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
-
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-
-*Success Response:*
-
-
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
-
-
-Schema: `GetCollectionListingResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### createCollection
 Add a Collection
 
@@ -10820,6 +10526,48 @@ List of all the collections including the one you added. See example below or re
 
 
 Schema: `CollectionCreateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getAllCollections
+List all the collections
+
+```swift
+catalog.getAllCollections(companyId: companyId, applicationId: applicationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |  
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+
+*Success Response:*
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+Schema: `GetCollectionListingResponse`
 
 
 
@@ -10881,6 +10629,49 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateCollection
+Update a collection
+
+```swift
+catalog.updateCollection(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier of a collection. |  
+
+Update a collection by it's id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `CollectionCreateResponse` for details.
+
+
+Schema: `CollectionCreateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### deleteCollection
 Delete a Collection
 
@@ -10924,11 +10715,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCollection
-Update a collection
+#### addCollectionItems
+Add items to a collection
 
 ```swift
-catalog.updateCollection(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+catalog.addCollectionItems(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10939,16 +10730,16 @@ catalog.updateCollection(companyId: companyId, applicationId: applicationId, id:
 | applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | String? | A `id` is a unique identifier of a collection. |  
 
-Update a collection by it's id. On successful request, returns the updated collection
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `CollectionCreateResponse` for details.
+Status object. Tells whether the operation was successful.
 
 
-Schema: `CollectionCreateResponse`
+Schema: `UpdatedResponse`
 
 
 
@@ -10995,49 +10786,6 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 
 
 Schema: `GetCollectionItemsResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### addCollectionItems
-Add items to a collection
-
-```swift
-catalog.addCollectionItems(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String? | A `id` is a unique identifier of a collection. |  
-
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful.
-
-
-Schema: `UpdatedResponse`
 
 
 
@@ -11903,6 +11651,47 @@ Schema: `PTErrorResponse`
 ---
 
 
+#### createCategories
+Create product categories
+
+```swift
+catalog.createCategories(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
+
+This API lets user create product categories
+
+*Success Response:*
+
+
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
+
+
+Schema: `CategoryCreateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### listCategories
 Get product categories list
 
@@ -11931,47 +11720,6 @@ Category Meta. See example below or refer `CategoryResponse` for details
 
 
 Schema: `CategoryResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### createCategories
-Create product categories
-
-```swift
-catalog.createCategories(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
-
-This API lets user create product categories
-
-*Success Response:*
-
-
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-Schema: `CategoryCreateResponse`
 
 
 
@@ -12074,6 +11822,47 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createProduct
+Create a product.
+
+```swift
+catalog.createProduct(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company associated to product that is to be viewed. |  
+
+This API allows to create product.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getProducts
 Get product list
 
@@ -12102,47 +11891,6 @@ Product Meta. See example below for details
 
 
 Schema: `ProductListingResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### createProduct
-Create a product.
-
-```swift
-catalog.createProduct(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to product that is to be viewed. |  
-
-This API allows to create product.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -12206,21 +11954,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### editProduct
+Edit a product.
 
 ```swift
-catalog.deleteProduct(companyId: companyId, itemId: itemId) { (response, error) in
+catalog.editProduct(companyId: companyId, itemId: itemId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id of the company associated to product that is to be deleted. |   
+| companyId | String? | Id of the company associated to product that is to be viewed. |   
 | itemId | Int? | Id of the product to be updated. |  
 
-This API allows to delete product.
+This API allows to edit product.
 
 *Success Response:*
 
@@ -12248,21 +11996,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editProduct
-Edit a product.
+#### deleteProduct
+Delete a product.
 
 ```swift
-catalog.editProduct(companyId: companyId, itemId: itemId, body: body) { (response, error) in
+catalog.deleteProduct(companyId: companyId, itemId: itemId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to product that is to be viewed. |   
+| companyId | String? | Company Id of the company associated to product that is to be deleted. |   
 | itemId | Int? | Id of the product to be updated. |  
 
-This API allows to edit product.
+This API allows to delete product.
 
 *Success Response:*
 
@@ -12376,6 +12124,47 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```swift
+catalog.updateProductAssetsInBulk(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id in which assets to be uploaded. |  
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getProductBulkUploadHistory
 Get a list of all bulk product upload jobs.
 
@@ -12419,20 +12208,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
+#### createProductsInBulk
+Create products in bulk associated with given batch Id.
 
 ```swift
-catalog.updateProductAssetsInBulk(companyId: companyId, body: body) { (response, error) in
+catalog.createProductsInBulk(companyId: companyId, batchId: batchId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | Int? | Company Id in which assets to be uploaded. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |   
+| batchId | String? | Batch Id in which assets to be uploaded. |  
 
-This API helps to create a bulk asset upload job.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -12502,48 +12292,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createProductsInBulk
-Create products in bulk associated with given batch Id.
-
-```swift
-catalog.createProductsInBulk(companyId: companyId, batchId: batchId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | Company Id in which assets to be uploaded. |   
-| batchId | String? | Batch Id in which assets to be uploaded. |  
-
-This API helps to create products in bulk push to kafka for approval/creation.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### getCompanyTags
 Get a list of all tags associated with company.
 
@@ -12567,6 +12315,47 @@ Tag List. See example below for details
 
 
 Schema: `ProductTagsViewResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```swift
+catalog.createProductAssetsInBulk(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | Int? | Company Id in which assets to be uploaded. |  
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -12628,20 +12417,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
+#### deleteSize
+Delete a Size associated with product.
 
 ```swift
-catalog.createProductAssetsInBulk(companyId: companyId, body: body) { (response, error) in
+catalog.deleteSize(companyId: companyId, itemId: itemId, size: size) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | Int? | Company Id in which assets to be uploaded. |  
+| companyId | String? | Company Id of the company associated to size that is to be deleted. |   
+| itemId | Int? | Item Id of the product associated with size to be deleted. |   
+| size | Int? | size to be deleted. |  
 
-This API helps to create a bulk asset upload job.
+This API allows to delete size associated with product.
 
 *Success Response:*
 
@@ -12669,22 +12460,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteSize
-Delete a Size associated with product.
+#### addInventory
+Add Inventory for particular size and store.
 
 ```swift
-catalog.deleteSize(companyId: companyId, itemId: itemId, size: size) { (response, error) in
+catalog.addInventory(companyId: companyId, itemId: itemId, size: size, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id of the company associated to size that is to be deleted. |   
-| itemId | Int? | Item Id of the product associated with size to be deleted. |   
-| size | Int? | size to be deleted. |  
+| companyId | String? | Id of the company associated to product that is to be viewed. |   
+| itemId | Double? | Item code of the product of which size is to be get. |   
+| size | String? | Size in which inventory is to be added. |  
 
-This API allows to delete size associated with product.
+This API allows add Inventory for particular size and store.
 
 *Success Response:*
 
@@ -12757,22 +12548,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### addInventory
-Add Inventory for particular size and store.
+#### deleteInventory
+Delete a Inventory.
 
 ```swift
-catalog.addInventory(companyId: companyId, itemId: itemId, size: size, body: body) { (response, error) in
+catalog.deleteInventory(companyId: companyId, itemId: itemId, locationId: locationId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to product that is to be viewed. |   
-| itemId | Double? | Item code of the product of which size is to be get. |   
-| size | String? | Size in which inventory is to be added. |  
+| companyId | String? | Company Id of the company associated with Inventory that is to be deleted. |   
+| itemId | Int? | Id of the product associated with Inventory to be deleted. |   
+| locationId | Double? | Location ID of store of which inventory is to be deleted. |  
 
-This API allows add Inventory for particular size and store.
+This API allows to delete inventory of a particular product for particular company.
 
 *Success Response:*
 
@@ -12800,22 +12591,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteInventory
-Delete a Inventory.
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
 
 ```swift
-catalog.deleteInventory(companyId: companyId, itemId: itemId, locationId: locationId) { (response, error) in
+catalog.createBulkInventoryJob(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id of the company associated with Inventory that is to be deleted. |   
-| itemId | Int? | Id of the product associated with Inventory to be deleted. |   
-| locationId | Double? | Location ID of store of which inventory is to be deleted. |  
+| companyId | Int? | Company Id in which Inventory to be uploaded. |  
 
-This API allows to delete inventory of a particular product for particular company.
+This API helps to create a bulk Inventory upload job.
 
 *Success Response:*
 
@@ -12824,7 +12613,7 @@ This API allows to delete inventory of a particular product for particular compa
 Returns a success response
 
 
-Schema: `SuccessResponse`
+Schema: `CommonResponse`
 
 
 
@@ -12886,20 +12675,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
+#### createBulkInventory
+Create products in bulk associated with given batch Id.
 
 ```swift
-catalog.createBulkInventoryJob(companyId: companyId, body: body) { (response, error) in
+catalog.createBulkInventory(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | Int? | Company Id in which Inventory to be uploaded. |  
+| companyId | Int? | Company Id in which Inventory is to be uploaded. |  
 
-This API helps to create a bulk Inventory upload job.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -12908,7 +12697,7 @@ This API helps to create a bulk Inventory upload job.
 Returns a success response
 
 
-Schema: `CommonResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -12968,20 +12757,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBulkInventory
-Create products in bulk associated with given batch Id.
+#### createInventoryExportJob
+Create a Inventory export Job.
 
 ```swift
-catalog.createBulkInventory(companyId: companyId, body: body) { (response, error) in
+catalog.createInventoryExportJob(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | Int? | Company Id in which Inventory is to be uploaded. |  
+| companyId | Int? | Company Id in which assets to be uploaded. |  
 
-This API helps to create products in bulk push to kafka for approval/creation.
+This API helps to create a Inventory export job.
 
 *Success Response:*
 
@@ -13050,47 +12839,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createInventoryExportJob
-Create a Inventory export Job.
-
-```swift
-catalog.createInventoryExportJob(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | Int? | Company Id in which assets to be uploaded. |  
-
-This API helps to create a Inventory export job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### exportInventoryConfig
 Get List of different filters for inventory export
 
@@ -13133,6 +12881,47 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createHsnCode
+Create Hsn Code.
+
+```swift
+catalog.createHsnCode(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |  
+
+Create Hsn Code.
+
+*Success Response:*
+
+
+
+See example below for details
+
+
+Schema: `HsnCode`
+
+
+
+
+
+Bad request.
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getAllHsnCodes
 Hsn Code List.
 
@@ -13159,47 +12948,6 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
 
 
 Schema: `HsnCodesListingResponse`
-
-
-
-
-
-Bad request.
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### createHsnCode
-Create Hsn Code.
-
-```swift
-catalog.createHsnCode(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | company id |  
-
-Create Hsn Code.
-
-*Success Response:*
-
-
-
-See example below for details
-
-
-Schema: `HsnCode`
 
 
 
@@ -13573,47 +13321,6 @@ Schema: `ErrorResponse`
 ## CompanyProfile
 
 
-#### cbsOnboardGet
-Get company profile
-
-```swift
-companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateCompany
 Edit company profile
 
@@ -13655,6 +13362,47 @@ Schema: `ErrorResponse`
 ---
 
 
+#### cbsOnboardGet
+Get company profile
+
+```swift
+companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getCompanyMetrics
 Get company metrics
 
@@ -13678,48 +13426,6 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 Schema: `MetricsSerializer`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### editBrand
-Edit a brand.
-
-```swift
-companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to brand that is to be viewed. |   
-| brandId | String? | Id of the brand to be viewed. |  
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -13780,20 +13486,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBrand
-Create a Brand.
+#### editBrand
+Edit a brand.
 
 ```swift
-companyprofile.createBrand(companyId: companyId, body: body) { (response, error) in
+companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company. |  
+| companyId | String? | Id of the company associated to brand that is to be viewed. |   
+| brandId | String? | Id of the brand to be viewed. |  
 
-This API allows to create a brand associated to a company.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
@@ -13821,20 +13528,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createBrand
+Create a Brand.
 
 ```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+companyprofile.createBrand(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the brand is to be mapped. |  
+| companyId | String? | Id of the company. |  
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a brand associated to a company.
 
 *Success Response:*
 
@@ -13905,20 +13612,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createCompanyBrandMapping
+Create a company brand mapping.
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location is to be created. |  
+| companyId | String? | Id of the company inside which the brand is to be mapped. |  
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -13992,21 +13699,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```swift
-companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location is to be created. |   
-| locationId | String? | Id of the location which you want to edit. |  
+| companyId | String? | Id of the company inside which the location is to be created. |  
 
-This API allows to edit a location associated to a company.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -14058,6 +13764,48 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```swift
+companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company inside which the location is to be created. |   
+| locationId | String? | Id of the location which you want to edit. |  
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -16636,6 +16384,225 @@ Not found
 
 
 Schema: `NotFound`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Cart
+
+
+#### getCoupons
+Get with single coupon details or coupon list
+
+```swift
+cart.getCoupons(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, isArchived: isArchived, title: title, isPublic: isPublic, isDisplay: isDisplay, typeSlug: typeSlug, code: code) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| pageNo | Int? |  |   
+| pageSize | Int? |  |   
+| isArchived | Bool? |  |   
+| title | String? |  |   
+| isPublic | Bool? |  |   
+| isDisplay | Bool? |  |   
+| typeSlug | String? |  |   
+| code | String? |  |  
+
+Get coupon list with pagination
+
+*Success Response:*
+
+
+
+Coupon List for sent page_size and page_no
+
+
+Schema: `CouponsResponse`
+
+
+
+
+
+
+---
+
+
+#### createCoupon
+Create new coupon
+
+```swift
+cart.createCoupon(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |  
+
+Create new coupon
+
+*Success Response:*
+
+
+
+Coupon Created successfully
+
+
+Schema: `SuccessMessage`
+
+
+
+
+
+Invalid coupon data or existing coupon code
+
+
+Schema: `OperationErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getCouponById
+Get with single coupon details or coupon list
+
+```swift
+cart.getCouponById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| id | String? |  |  
+
+Get single coupon details with `id` in path param
+
+*Success Response:*
+
+
+
+Coupon object for sent `id`
+
+
+Schema: `CouponUpdate`
+
+
+
+
+
+Coupon not found for passed `id`
+
+
+Schema: `OperationErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### updateCoupon
+Update existing coupon configuration
+
+```swift
+cart.updateCoupon(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| id | String? |  |  
+
+Update coupon with id sent in `id`
+
+*Success Response:*
+
+
+
+Coupon updated successfully
+
+
+Schema: `SuccessMessage`
+
+
+
+
+
+Coupon not found for `id` from path params
+
+
+Schema: `OperationErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### updateCouponPartially
+Update coupon archive state and schedule
+
+```swift
+cart.updateCouponPartially(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Current company id |   
+| applicationId | String? | Current Application _id |   
+| id | String? |  |  
+
+Update archive/unarchive and change schedule for coupon
+
+*Success Response:*
+
+
+
+Coupon updated successfully
+
+
+Schema: `SuccessMessage`
+
+
+
+
+
+Coupon not found for `id` from path params
+
+
+Schema: `OperationErrorResponse`
 
 
 
