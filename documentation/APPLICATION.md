@@ -149,6 +149,7 @@
     * [getLandingPage](#getlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
+    * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
     * [getSlideshows](#getslideshows)
@@ -4327,14 +4328,15 @@ Schema: `APIError`
 Get Blog by slug
 
 ```swift
-content.getBlog(slug: slug) { (response, error) in
+content.getBlog(slug: slug, rootId: rootId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The `slug` of a blog. Use this parameter to retrieve a particular blog |  
+| slug | String? | The `slug` of a blog. Use this parameter to retrieve a particular blog |    
+| rootId | String? |  |  
 
 Use this API to fetch a blog using `slug`
 
@@ -4794,6 +4796,57 @@ A JSON object with navigation details
 
 
 Schema: `NavigationGetResponse`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+
+
+
+
+---
+
+
+#### getPage
+Get Page by slug
+
+```swift
+content.getPage(slug: slug, rootId: rootId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| slug | String? | The `slug` of a page. Use this parameter to retrieve a particular page |    
+| rootId | String? |  |  
+
+Use this API to fetch a custom page using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with page details
+
+
+Schema: `CustomPageSchema`
 
 
 
