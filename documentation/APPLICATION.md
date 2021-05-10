@@ -96,8 +96,6 @@
 
 * [Theme](#Theme)
   * Methods
-    * [getAppliedTheme](#getappliedtheme)
-    * [getThemeForPreview](#getthemeforpreview)
     
 
 * [User](#User)
@@ -2561,105 +2559,6 @@ Schema: `GetTokenForVideoRoomResponse`
 ## Theme
 
 
-#### getAppliedTheme
-Get applied theme for an application
-
-```swift
-theme.getAppliedTheme() { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-
-
-*Success Response:*
-
-
-
-A JSON object of theme
-
-
-Schema: `ThemesSchema`
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
----
-
-
-#### getThemeForPreview
-Get theme for preview
-
-```swift
-theme.getThemeForPreview(themeId: themeId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |  
-| themeId | String? | ID of the theme to be retrieved |  
-
-
-
-*Success Response:*
-
-
-
-A JSON object of theme
-
-
-Schema: `ThemesSchema`
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
-
-
-Schema: `BlitzkriegApiError`
-
-
-
-
-
-
----
-
-
 
 ---
 
@@ -2668,7 +2567,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### loginWithFacebook
-Login/Register with Facebook
+Login or Register using Facebook
 
 ```swift
 user.loginWithFacebook(body: body) { (response, error) in
@@ -2679,13 +2578,13 @@ user.loginWithFacebook(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to login or register with Facebook
+Use this API to login or register using Facebook credentials.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
 Schema: `AuthSuccess`
@@ -2706,7 +2605,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -2717,7 +2616,7 @@ Schema: `AuthenticationApiError`
 
 
 #### loginWithGoogle
-Login/Register with Google
+Login or Register using Google
 
 ```swift
 user.loginWithGoogle(body: body) { (response, error) in
@@ -2728,13 +2627,13 @@ user.loginWithGoogle(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to login or register with Google
+Use this API to login or register using Google Account credentials.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
 Schema: `AuthSuccess`
@@ -2755,7 +2654,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -2766,7 +2665,7 @@ Schema: `AuthenticationApiError`
 
 
 #### loginWithGoogleAndroid
-Login/Register with Google for android
+Login or Register using Google on Android
 
 ```swift
 user.loginWithGoogleAndroid(body: body) { (response, error) in
@@ -2777,13 +2676,13 @@ user.loginWithGoogleAndroid(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to login or register with Google for android
+Use this API to login or register in Android app using Google Account credentials.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
 Schema: `AuthSuccess`
@@ -2804,7 +2703,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -2815,7 +2714,7 @@ Schema: `AuthenticationApiError`
 
 
 #### loginWithGoogleIOS
-Login/Register with Google for ios
+Login or Register using Google on iOS
 
 ```swift
 user.loginWithGoogleIOS(body: body) { (response, error) in
@@ -2826,13 +2725,13 @@ user.loginWithGoogleIOS(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to login or register with google for ios
+Use this API to login or register in iOS app using Google Account credentials.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
 Schema: `AuthSuccess`
@@ -2853,7 +2752,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -2864,7 +2763,7 @@ Schema: `AuthenticationApiError`
 
 
 #### loginWithOTP
-Login/Register with OTP
+Login or Register with OTP
 
 ```swift
 user.loginWithOTP(platform: platform, body: body) { (response, error) in
@@ -2874,15 +2773,15 @@ user.loginWithOTP(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to login or register with OTP
+Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `SendOtpResponse` for more details.
 
 
 Schema: `SendOtpResponse`
@@ -2903,7 +2802,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -2914,7 +2813,7 @@ Schema: `AuthenticationApiError`
 
 
 #### loginWithEmailAndPassword
-Login/Register with password
+Login or Register with password
 
 ```swift
 user.loginWithEmailAndPassword(body: body) { (response, error) in
@@ -2925,13 +2824,13 @@ user.loginWithEmailAndPassword(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to login or register with email & password
+Use this API to login or register using an email address and password.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -2952,7 +2851,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -2973,15 +2872,15 @@ user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to reset account password
+Use this API to reset a password using the link sent on email.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
 
 
 Schema: `ResetPasswordSuccess`
@@ -3002,7 +2901,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3013,7 +2912,7 @@ Schema: `AuthenticationApiError`
 
 
 #### forgotPassword
-
+Forgot Password
 
 ```swift
 user.forgotPassword(body: body) { (response, error) in
@@ -3024,13 +2923,13 @@ user.forgotPassword(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-
+Use this API to reset a password using the code sent on email or SMS.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -3051,7 +2950,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3062,7 +2961,7 @@ Schema: `AuthenticationApiError`
 
 
 #### sendResetToken
-
+Reset Password using token
 
 ```swift
 user.sendResetToken(body: body) { (response, error) in
@@ -3073,13 +2972,13 @@ user.sendResetToken(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Send code incase of reset password
+Use this API to send code to reset password.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
 
 
 Schema: `ResetPasswordSuccess`
@@ -3100,7 +2999,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3111,7 +3010,7 @@ Schema: `AuthenticationApiError`
 
 
 #### loginWithToken
-Login/Register with token
+Login or Register with token
 
 ```swift
 user.loginWithToken(body: body) { (response, error) in
@@ -3122,13 +3021,13 @@ user.loginWithToken(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Login/Register with token
+Use this API to login or register using a token for authentication.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -3158,7 +3057,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3169,7 +3068,7 @@ Schema: `AuthenticationApiError`
 
 
 #### registerWithForm
-Registration Form
+Registration using a form
 
 ```swift
 user.registerWithForm(platform: platform, body: body) { (response, error) in
@@ -3179,15 +3078,15 @@ user.registerWithForm(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Register using form
+Use this API to perform user registration by sending form data in the request body.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `RegisterFormSuccess` for more details.
 
 
 Schema: `RegisterFormSuccess`
@@ -3208,7 +3107,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3230,13 +3129,13 @@ user.verifyEmail(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to verify email
+Use this API to send a verification code to verify an email.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `VerifyEmailSuccess` for more details.
 
 
 Schema: `VerifyEmailSuccess`
@@ -3257,7 +3156,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3279,13 +3178,13 @@ user.verifyMobile(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Verify mobile
+Use this API to send a verification code to verify a mobile number.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `VerifyEmailSuccess` for more details.
 
 
 Schema: `VerifyEmailSuccess`
@@ -3306,7 +3205,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3317,7 +3216,7 @@ Schema: `AuthenticationApiError`
 
 
 #### hasPassword
-Check if user has password
+Check password
 
 ```swift
 user.hasPassword() { (response, error) in
@@ -3328,13 +3227,13 @@ user.hasPassword() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Checks if user is using password or not
+Use this API to check if user has created a password for login.
 
 *Success Response:*
 
 
 
-
+Success. Returns a boolean value. Check the example shown below or refer `HasPasswordSuccess` for more details.
 
 
 Schema: `HasPasswordSuccess`
@@ -3355,7 +3254,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3377,13 +3276,13 @@ user.updatePassword(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to update user password
+Use this API to update the password.
 
 *Success Response:*
 
 
 
-
+Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 
 
 Schema: `VerifyEmailSuccess`
@@ -3415,7 +3314,7 @@ Schema: `AuthenticationApiError`
 
 
 #### logout
-Logout user
+Logs out currently logged in user
 
 ```swift
 user.logout() { (response, error) in
@@ -3426,13 +3325,13 @@ user.logout() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to log out user
+Use this API to check to logout a user from the app.
 
 *Success Response:*
 
 
 
-
+Success. Returns a success message as shown below. Refer `LogoutSuccess` for more details.
 
 
 Schema: `LogoutSuccess`
@@ -3453,7 +3352,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3474,15 +3373,15 @@ user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to send otp to mobile
+Use this API to send an OTP to a mobile number.
 
 *Success Response:*
 
 
 
-
+Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more details.
 
 
 Schema: `OtpSuccess`
@@ -3503,7 +3402,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3524,15 +3423,15 @@ user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to verify otp sent to mobile
+Use this API to verify the OTP received on a mobile number.
 
 *Success Response:*
 
 
 
-
+Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
 
 
 Schema: `VerifyOtpSuccess`
@@ -3553,7 +3452,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3574,15 +3473,15 @@ user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to send otp to email
+Use this API to send an OTP to an email ID.
 
 *Success Response:*
 
 
 
-
+Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more details.
 
 
 Schema: `EmailOtpSuccess`
@@ -3603,7 +3502,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3624,15 +3523,15 @@ user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to verify otp sent to email
+Use this API to verify the OTP received on an email ID.
 
 *Success Response:*
 
 
 
-
+Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
 
 
 Schema: `VerifyOtpSuccess`
@@ -3653,7 +3552,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3675,13 +3574,13 @@ user.getLoggedInUser() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to get logged in user details
+Use this API  to get the details of a logged in user.
 
 *Success Response:*
 
 
 
-
+Success. Returns a JSON object with user details. Refer `UserObjectSchema` for more details.
 
 
 Schema: `UserObjectSchema`
@@ -3702,7 +3601,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3724,13 +3623,13 @@ user.getListOfActiveSessions() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Lists all active sessions
+Use this API to retrieve all active sessions of a user.
 
 *Success Response:*
 
 
 
-
+Success. Returns a JSON object containing an array of sessions. Refer `SessionListSuccess` for more details.
 
 
 Schema: `SessionListSuccess`
@@ -3751,7 +3650,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3762,7 +3661,7 @@ Schema: `AuthenticationApiError`
 
 
 #### getPlatformConfig
-Get platform config
+Get platform configurations
 
 ```swift
 user.getPlatformConfig(name: name) { (response, error) in
@@ -3772,15 +3671,15 @@ user.getPlatformConfig(name: name) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| name | String? | Name |  
+| name | String? | Name of the application, e.g. Fynd |  
 
-Used to get platform config
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
 
 *Success Response:*
 
 
 
-Platform Config
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
 
 
 Schema: `PlatformSchema`
@@ -3801,7 +3700,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3822,15 +3721,15 @@ user.updateProfile(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to update profile
+Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -3851,7 +3750,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3872,15 +3771,15 @@ user.addMobileNumber(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to add new mobile number to profile
+Use this API to add a new mobile number to a profile.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for more details.
 
 
 Schema: `VerifyMobileOTPSuccess`
@@ -3901,7 +3800,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3922,20 +3821,20 @@ user.deleteMobileNumber(platform: platform, active: active, primary: primary, ve
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |    
-| active | Bool? | Active mobile number |    
-| primary | Bool? | Primary number |    
-| verified | Bool? | Verified Number |    
-| countryCode | String? | Country code of phone number |    
+| platform | String? | ID of the application |    
+| active | Bool? | This is a boolean value to check if mobile number is active 1.True - Number is active 2. False - Number is inactive |    
+| primary | Bool? | This is a boolean value to check if mobile number is primary number (main number) 1. True - Number is primary 2. False - Number is not primary |    
+| verified | Bool? | This is a boolean value to check if mobile number is verified 1. True - Number is verified 2.False - Number is not verified yet |    
+| countryCode | String? | Country code of the phone number, e.g. 91 |    
 | phone | String? | Phone number |  
 
-Used to delete mobile number from profile
+Use this API to delete a mobile number from a profile.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -3956,7 +3855,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -3978,13 +3877,13 @@ user.setMobileNumberAsPrimary(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to set a mobile number as primary
+Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -4005,7 +3904,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -4026,15 +3925,15 @@ user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, e
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to send verification link to a mobile number
+Use this API to send a verification link to a mobile number
 
 *Success Response:*
 
 
 
-
+Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` for more details.
 
 
 Schema: `SendMobileVerifyLinkSuccess`
@@ -4055,7 +3954,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -4076,15 +3975,15 @@ user.addEmail(platform: platform, body: body) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to add new email to profile
+Use this API to add a new email address to a profile
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` for more details.
 
 
 Schema: `VerifyEmailOTPSuccess`
@@ -4105,7 +4004,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -4126,19 +4025,19 @@ user.deleteEmail(platform: platform, active: active, primary: primary, verified:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |    
-| active | Bool? | Whether email id is active |    
-| primary | Bool? | Whether email id is primary email |    
-| verified | Bool? | Whether email id is verified |    
-| email | String? | Email ID to be deleted |  
+| platform | String? | ID of the application |    
+| active | Bool? | This is a boolean value to check if email ID is active 1. True - Email ID is active 2.False - Email ID is inactive |    
+| primary | Bool? | This is a boolean value to check if email ID is primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is not primary |    
+| verified | Bool? | This is a boolean value to check if email ID is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet |    
+| email | String? | The email ID to delete |  
 
-Used to delete email from profile
+Use this API to delete an email address from a profile
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Returns a JSON object with user details. Refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -4159,7 +4058,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -4181,13 +4080,13 @@ user.setEmailAsPrimary(body: body) { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Used to set an email as primart
+Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
 
 *Success Response:*
 
 
 
-A JSON object with user details
+Success. Returns a JSON object with user details. Refer `LoginSuccess` for more details.
 
 
 Schema: `LoginSuccess`
@@ -4208,7 +4107,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
@@ -4229,15 +4128,15 @@ user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, er
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| platform | String? | Platform |  
+| platform | String? | ID of the application |  
 
-Used to sent verification to an email
+Use this API to send verification link to an email address.
 
 *Success Response:*
 
 
 
-
+Request body must contain an email ID. Refer `EditEmailRequestSchema` for more details.
 
 
 Schema: `SendEmailVerifyLinkSuccess`
@@ -4258,7 +4157,7 @@ Schema: `AuthenticationApiError`
 
 
 
-Schema: `AuthenticationApiError`
+Schema: `AuthenticationInternalServerError`
 
 
 
