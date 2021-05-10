@@ -96,6 +96,8 @@
 
 * [Theme](#Theme)
   * Methods
+    * [getAppliedTheme](#getappliedtheme)
+    * [getThemeForPreview](#getthemeforpreview)
     
 
 * [User](#User)
@@ -2559,6 +2561,105 @@ Schema: `GetTokenForVideoRoomResponse`
 ## Theme
 
 
+#### getAppliedTheme
+Get the theme currently applied to an application
+
+```swift
+theme.getAppliedTheme() { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
+
+*Success Response:*
+
+
+
+Success. Returns a JSON object of the theme. Check the example shown below or    refer `ThemesSchema` for more details.
+
+
+Schema: `ThemesSchema`
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegInternalServerError`
+
+
+
+
+
+
+---
+
+
+#### getThemeForPreview
+Get a theme for a preview
+
+```swift
+theme.getThemeForPreview(themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| themeId | String? | ID of the theme to be retrieved |  
+
+A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
+
+*Success Response:*
+
+
+
+Success. Returns a JSON object of the theme. Check the example shown below or refer `ThemesSchema` for more details.
+
+
+Schema: `ThemesSchema`
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegInternalServerError`
+
+
+
+
+
+
+---
+
+
 
 ---
 
@@ -3732,7 +3833,7 @@ Use this API to update details in the user profile. Details can be first name, l
 Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
-Schema: `LoginSuccess`
+Schema: `ProfileEditSuccess`
 
 
 
