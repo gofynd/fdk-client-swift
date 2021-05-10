@@ -3499,89 +3499,6 @@ public class ApplicationClient {
             self.config = config;
         }
         
-        /**
-        *
-        * Summary: Get applied theme for an application
-        * Description: 
-        **/
-        public func getAppliedTheme(
-            
-            onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/theme/v1.0/applied-theme",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get theme for preview
-        * Description: 
-        **/
-        public func getThemeForPreview(
-            themeId: String,
-            
-            onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/theme/v1.0/\(themeId)/preview",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
     }
     
     
@@ -3596,8 +3513,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Login/Register with Facebook
-        * Description: Used to login or register with Facebook
+        * Summary: Login or Register using Facebook
+        * Description: Use this API to login or register using Facebook credentials.
         **/
         public func loginWithFacebook(
             body: OAuthRequestSchema,
@@ -3637,8 +3554,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Login/Register with Google
-        * Description: Used to login or register with Google
+        * Summary: Login or Register using Google
+        * Description: Use this API to login or register using Google Account credentials.
         **/
         public func loginWithGoogle(
             body: OAuthRequestSchema,
@@ -3678,8 +3595,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Login/Register with Google for android
-        * Description: Used to login or register with Google for android
+        * Summary: Login or Register using Google on Android
+        * Description: Use this API to login or register in Android app using Google Account credentials.
         **/
         public func loginWithGoogleAndroid(
             body: OAuthRequestSchema,
@@ -3719,8 +3636,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Login/Register with Google for ios
-        * Description: Used to login or register with google for ios
+        * Summary: Login or Register using Google on iOS
+        * Description: Use this API to login or register in iOS app using Google Account credentials.
         **/
         public func loginWithGoogleIOS(
             body: OAuthRequestSchema,
@@ -3760,8 +3677,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Login/Register with OTP
-        * Description: Used to login or register with OTP
+        * Summary: Login or Register with OTP
+        * Description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
         **/
         public func loginWithOTP(
             platform: String?,
@@ -3806,8 +3723,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Login/Register with password
-        * Description: Used to login or register with email & password
+        * Summary: Login or Register with password
+        * Description: Use this API to login or register using an email address and password.
         **/
         public func loginWithEmailAndPassword(
             body: PasswordLoginRequestSchema,
@@ -3848,7 +3765,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Reset Password
-        * Description: Used to reset account password
+        * Description: Use this API to reset a password using the link sent on email.
         **/
         public func sendResetPasswordEmail(
             platform: String?,
@@ -3893,8 +3810,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: 
-        * Description: 
+        * Summary: Forgot Password
+        * Description: Use this API to reset a password using the code sent on email or SMS.
         **/
         public func forgotPassword(
             body: ForgotPasswordRequestSchema,
@@ -3934,8 +3851,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: 
-        * Description: Send code incase of reset password
+        * Summary: Reset Password using token
+        * Description: Use this API to send code to reset password.
         **/
         public func sendResetToken(
             body: CodeRequestBodySchema,
@@ -3975,8 +3892,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Login/Register with token
-        * Description: Login/Register with token
+        * Summary: Login or Register with token
+        * Description: Use this API to login or register using a token for authentication.
         **/
         public func loginWithToken(
             body: TokenRequestBodySchema,
@@ -4016,8 +3933,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Registration Form
-        * Description: Register using form
+        * Summary: Registration using a form
+        * Description: Use this API to perform user registration by sending form data in the request body.
         **/
         public func registerWithForm(
             platform: String?,
@@ -4063,7 +3980,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Verify email
-        * Description: Used to verify email
+        * Description: Use this API to send a verification code to verify an email.
         **/
         public func verifyEmail(
             body: CodeRequestBodySchema,
@@ -4104,7 +4021,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Verify mobile
-        * Description: Verify mobile
+        * Description: Use this API to send a verification code to verify a mobile number.
         **/
         public func verifyMobile(
             body: CodeRequestBodySchema,
@@ -4144,8 +4061,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Check if user has password
-        * Description: Checks if user is using password or not
+        * Summary: Check password
+        * Description: Use this API to check if user has created a password for login.
         **/
         public func hasPassword(
             
@@ -4186,7 +4103,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Update user password
-        * Description: Used to update user password
+        * Description: Use this API to update the password.
         **/
         public func updatePassword(
             body: UpdatePasswordRequestSchema,
@@ -4226,8 +4143,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Logout user
-        * Description: Used to log out user
+        * Summary: Logs out currently logged in user
+        * Description: Use this API to check to logout a user from the app.
         **/
         public func logout(
             
@@ -4268,7 +4185,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Send OTP on mobile
-        * Description: Used to send otp to mobile
+        * Description: Use this API to send an OTP to a mobile number.
         **/
         public func sendOTPOnMobile(
             platform: String?,
@@ -4314,7 +4231,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Verify OTP on mobile
-        * Description: Used to verify otp sent to mobile
+        * Description: Use this API to verify the OTP received on a mobile number.
         **/
         public func verifyMobileOTP(
             platform: String?,
@@ -4360,7 +4277,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Send OTP on email
-        * Description: Used to send otp to email
+        * Description: Use this API to send an OTP to an email ID.
         **/
         public func sendOTPOnEmail(
             platform: String?,
@@ -4406,7 +4323,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Verify OTP on email
-        * Description: Used to verify otp sent to email
+        * Description: Use this API to verify the OTP received on an email ID.
         **/
         public func verifyEmailOTP(
             platform: String?,
@@ -4452,7 +4369,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get logged in user
-        * Description: Used to get logged in user details
+        * Description: Use this API  to get the details of a logged in user.
         **/
         public func getLoggedInUser(
             
@@ -4493,7 +4410,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get list of sessions
-        * Description: Lists all active sessions
+        * Description: Use this API to retrieve all active sessions of a user.
         **/
         public func getListOfActiveSessions(
             
@@ -4533,8 +4450,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get platform config
-        * Description: Used to get platform config
+        * Summary: Get platform configurations
+        * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
         **/
         public func getPlatformConfig(
             name: String?,
@@ -4580,7 +4497,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Edit Profile Details
-        * Description: Used to update profile
+        * Description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
         **/
         public func updateProfile(
             platform: String?,
@@ -4626,7 +4543,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Add mobile number to profile
-        * Description: Used to add new mobile number to profile
+        * Description: Use this API to add a new mobile number to a profile.
         **/
         public func addMobileNumber(
             platform: String?,
@@ -4672,7 +4589,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Delete mobile number from profile
-        * Description: Used to delete mobile number from profile
+        * Description: Use this API to delete a mobile number from a profile.
         **/
         public func deleteMobileNumber(
             platform: String?,
@@ -4733,7 +4650,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Set mobile as primary
-        * Description: Used to set a mobile number as primary
+        * Description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
         **/
         public func setMobileNumberAsPrimary(
             body: SendVerificationLinkMobileRequestSchema,
@@ -4774,7 +4691,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Send verification link to mobile
-        * Description: Used to send verification link to a mobile number
+        * Description: Use this API to send a verification link to a mobile number
         **/
         public func sendVerificationLinkToMobile(
             platform: String?,
@@ -4820,7 +4737,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Add email to profile
-        * Description: Used to add new email to profile
+        * Description: Use this API to add a new email address to a profile
         **/
         public func addEmail(
             platform: String?,
@@ -4866,7 +4783,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Delete email from profile
-        * Description: Used to delete email from profile
+        * Description: Use this API to delete an email address from a profile
         **/
         public func deleteEmail(
             platform: String?,
@@ -4924,7 +4841,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Set email as primary
-        * Description: Used to set an email as primart
+        * Description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
         **/
         public func setEmailAsPrimary(
             body: EditEmailRequestSchema,
@@ -4965,7 +4882,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Send verification link to email
-        * Description: Used to sent verification to an email
+        * Description: Use this API to send verification link to an email address.
         **/
         public func sendVerificationLinkToEmail(
             platform: String?,
@@ -8583,7 +8500,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/rewards/v1.0/user/points",
+                url: "/service/application/rewards/v1.0/user/points/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
