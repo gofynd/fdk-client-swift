@@ -19,6 +19,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
             .package(url: "https://github.com/Alamofire/Alamofire.git", .branch("feature/linux-support")),
             .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.3.8")),
+            .package(url: "https://github.com/pvzig/SlackKit.git", .upToNextMinor(from: "4.6.0")),
             //.package(url: "https://github.com/jernejstrasner/SwiftCrypto.git", from: "1.0.1"),
             //.package(url: "https://github.com/kmussel/ccommoncrypto.git", from: "0.0.1"),//from: "5.0.2")
             //.package(url: "https://github.com/venj/CommonCrypto.git", from: "0.3.0"),
