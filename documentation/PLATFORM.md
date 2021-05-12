@@ -363,18 +363,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
+    * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     
 
 * [FileStorage](#FileStorage)
@@ -13490,47 +13490,6 @@ Schema: `ErrorResponse`
 ## CompanyProfile
 
 
-#### cbsOnboardGet
-Get company profile
-
-```swift
-companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateCompany
 Edit company profile
 
@@ -13572,6 +13531,47 @@ Schema: `ErrorResponse`
 ---
 
 
+#### cbsOnboardGet
+Get company profile
+
+```swift
+companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### getCompanyMetrics
 Get company metrics
 
@@ -13595,48 +13595,6 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 Schema: `MetricsSerializer`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### getBrand
-Get a single brand.
-
-```swift
-companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to brand that is to be viewed. |   
-| brandId | String? | Id of the brand to be viewed. |  
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
 
 
 
@@ -13697,6 +13655,48 @@ Schema: `ErrorResponse`
 ---
 
 
+#### getBrand
+Get a single brand.
+
+```swift
+companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company associated to brand that is to be viewed. |   
+| brandId | String? | Id of the brand to be viewed. |  
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
 #### createBrand
 Create a Brand.
 
@@ -13711,6 +13711,47 @@ companyprofile.createBrand(companyId: companyId, body: body) { (response, error)
 | companyId | String? | Id of the company. |  
 
 This API allows to create a brand associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+```swift
+companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company inside which the brand is to be mapped. |  
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -13781,20 +13822,20 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the brand is to be mapped. |  
+| companyId | String? | Id of the company inside which the location is to be created. |  
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -13868,20 +13909,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### updateLocation
+Edit a location asscoiated to a company.
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location is to be created. |  
+| companyId | String? | Id of the company inside which the location is to be created. |   
+| locationId | String? | Id of the location which you want to edit. |  
 
-This API allows to create a location associated to a company.
+This API allows to edit a location associated to a company.
 
 *Success Response:*
 
@@ -13933,48 +13975,6 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```swift
-companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location is to be created. |   
-| locationId | String? | Id of the location which you want to edit. |  
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
