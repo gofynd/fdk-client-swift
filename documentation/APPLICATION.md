@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -331,7 +331,7 @@ catalog.getProductDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 Use this API to retrieve a product by its slug value.
 
@@ -372,7 +372,7 @@ catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { (response, error) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
 | storeId | Int? | The ID of the store that is selling the product, e.g. 1,2,3. |  
 
 A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
@@ -414,8 +414,8 @@ catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
-| size | String? | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes** |    
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| size | String? | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
 | pincode | String? | The PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
 | storeId | String? | The ID of the store that is selling the product, e.g. 1,2,3. |  
 
@@ -458,8 +458,8 @@ catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
-| size | String? | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes** |    
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| size | String? | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
 | pincode | String? | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
 | pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
@@ -503,7 +503,7 @@ catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | [String]? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**. |  
+| slug | [String]? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/. |  
 
 Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
 
@@ -544,7 +544,7 @@ catalog.getSimilarComparisonProductBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 Use this API to compare a given product automatically with similar products. Only one slug is needed.
 
@@ -585,7 +585,7 @@ catalog.getComparedFrequentlyProductBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
 
@@ -626,7 +626,7 @@ catalog.getProductSimilarByIdentifier(slug: slug, similarType: similarType) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
 | similarType | String? | Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory. |  
 
 Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
@@ -668,7 +668,7 @@ catalog.getProductVariantsBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
 
@@ -798,7 +798,7 @@ catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | q | String? | The search query for entering partial or full name of product, brand, category, or collection. |    
-| f | String? | The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| f | String? | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
 | filters | Bool? | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
 | sortOn | String? | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
 | pageId | String? | Page ID to retrieve next set of results. |    
@@ -845,7 +845,7 @@ catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/** |    
+| department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |    
 | pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
 
@@ -888,7 +888,7 @@ catalog.getBrandDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**. |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
 
 Fetch metadata of a brand such as name, information, logo, banner, etc.
 
@@ -929,7 +929,7 @@ catalog.getCategories(department: department) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/** |  
+| department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |  
 
 Use this API to list all the categories. You can also filter the categories by department.
 
@@ -970,7 +970,7 @@ catalog.getCategoryDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**. |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
 
 Fetch metadata of a category such as name, information, logo, banner, etc.
 
@@ -1177,8 +1177,8 @@ catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sor
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**. |    
-| f | String? | The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |    
+| f | String? | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
 | filters | Bool? | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
 | sortOn | String? | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
 | pageId | String? | Page ID to retrieve next set of results. |    
@@ -1223,7 +1223,7 @@ catalog.getCollectionDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**. |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |  
 
 Get the details of a collection by its `slug`.
 
@@ -1296,11 +1296,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow an entity (product/brand/collection)
+#### unfollowById
+Unfollow an entity (product/brand/collection)
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1310,7 +1310,7 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
 | collectionId | String? | The ID of the collection type. |  
 
-Follow a particular entity such as product, brand, collection specified by its ID.
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 
@@ -1338,11 +1338,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-Unfollow an entity (product/brand/collection)
+#### followById
+Follow an entity (product/brand/collection)
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1352,7 +1352,7 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
 | collectionId | String? | The ID of the collection type. |  
 
-You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
