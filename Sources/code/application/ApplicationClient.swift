@@ -84,7 +84,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get a product
-        * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
+        * Description: Use this API to retrieve a product by its slug value.
         **/
         public func getProductDetailBySlug(
             slug: String,
@@ -126,11 +126,11 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get the sizes of a product
-        * Description: A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
+        * Description: A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
         **/
         public func getProductSizesBySlug(
             slug: String,
-            storeId: String?,
+            storeId: Int?,
             
             onResponse: @escaping (_ response: ProductSizes?, _ error: FDKError?) -> Void
         ) {
@@ -172,8 +172,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get price a product size
-        * Description: Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
+        * Summary: Get the price of a product size at a PIN Code
+        * Description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
         **/
         public func getProductPriceBySlug(
             slug: String,
@@ -221,8 +221,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: List sellers of a product
-        * Description: A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
+        * Summary: Get the sellers of a product size at a PIN Code
+        * Description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
         **/
         public func getProductSellersBySlug(
             slug: String,
@@ -337,7 +337,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Compare products
-        * Description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
+        * Description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
         **/
         public func getProductComparisonBySlugs(
             slug: [String],
@@ -381,7 +381,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get comparison between similar products
-        * Description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products
+        * Description: Use this API to compare a given product automatically with similar products. Only one slug is needed.
         **/
         public func getSimilarComparisonProductBySlug(
             slug: String,
@@ -423,7 +423,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get comparison between frequently compared products with the given product
-        * Description: Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
+        * Description: Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
         **/
         public func getComparedFrequentlyProductBySlug(
             slug: String,
@@ -465,7 +465,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get similar products
-        * Description: Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
+        * Description: Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
         **/
         public func getProductSimilarByIdentifier(
             slug: String,
@@ -508,7 +508,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get variant of a particular product
-        * Description: A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
+        * Description: A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
         **/
         public func getProductVariantsBySlug(
             slug: String,
@@ -550,7 +550,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get the stock of a product
-        * Description: Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
+        * Description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
         **/
         public func getProductStockByIds(
             itemId: String?,
@@ -616,7 +616,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get the stock of a product
-        * Description: Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
+        * Description: Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
         **/
         public func getProductStockForTimeByIds(
             timestamp: String,
@@ -719,8 +719,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: List the products
-        * Description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
+        * Summary: Get all the products
+        * Description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
         **/
         public func getProducts(
             q: String?,
@@ -880,8 +880,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: List all the brands
-        * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+        * Summary: Get all the brands
+        * Description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
         **/
         public func getBrands(
             department: String?,
@@ -986,7 +986,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get metadata of a brand
-        * Description: Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
+        * Description: Fetch metadata of a brand such as name, information, logo, banner, etc.
         **/
         public func getBrandDetailBySlug(
             slug: String,
@@ -1028,7 +1028,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: List all the categories
-        * Description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
+        * Description: Use this API to list all the categories. You can also filter the categories by department.
         **/
         public func getCategories(
             department: String?,
@@ -1074,7 +1074,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get metadata of a category
-        * Description: Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
+        * Description: Fetch metadata of a category such as name, information, logo, banner, etc.
         **/
         public func getCategoryDetailBySlug(
             slug: String,
@@ -1116,7 +1116,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: List the products
-        * Description: List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
+        * Description: List all the products associated with a brand, collection or category in a random order.
         **/
         public func getHomeProducts(
             sortOn: String?,
@@ -1263,7 +1263,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get relevant suggestions for a search query
-        * Description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
+        * Description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
         **/
         public func getSearchResults(
             q: String,
@@ -1307,7 +1307,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: List all the collections
-        * Description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+        * Description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
         **/
         public func getCollections(
             pageNo: Int?,
@@ -1536,7 +1536,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get a particular collection
-        * Description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
+        * Description: Get the details of a collection by its `slug`.
         **/
         public func getCollectionDetailBySlug(
             slug: String,
@@ -1578,7 +1578,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get a list of followed Products, Brands, Collections
-        * Description: A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
+        * Description: Users can follow a product they like. This API retrieves the products the user have followed.
         **/
         public func getFollowedListing(
             collectionType: String,
@@ -1679,8 +1679,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: UnFollow a Product
-        * Description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
         public func unfollowById(
             collectionType: String,
@@ -1722,8 +1722,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow a particular Product
-        * Description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
         public func followById(
             collectionType: String,
@@ -1766,7 +1766,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get Follow Count
-        * Description: Get count of followers for given collection type and collection id.
+        * Description: Get the total count of followers for a given collection type and collection ID.
         **/
         public func getFollowerCountById(
             collectionType: String,
@@ -1808,8 +1808,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get the Ids of followed product, brand and collection.
-        * Description: You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
+        * Summary: Get the IDs of followed products, brands and collections.
+        * Description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
         **/
         public func getFollowIds(
             collectionType: String?,
@@ -1854,8 +1854,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: List store meta information.
-        * Description: Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
+        * Summary: Get store meta information.
+        * Description: Use this API to get a list of stores in a specific application.
         **/
         public func getStores(
             pageNo: Int?,

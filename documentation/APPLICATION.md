@@ -331,15 +331,15 @@ catalog.getProductDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
 
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
+Use this API to retrieve a product by its slug value.
 
 *Success Response:*
 
 
 
-The Product object. See example below or refer `ProductDetail` for details.
+Success. Returns a Product object. Check the example shown below or refer `ProductDetail` for more details.
 
 
 Schema: `ProductDetail`
@@ -348,7 +348,7 @@ Schema: `ProductDetail`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -372,16 +372,16 @@ catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { (response, error) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |    
-| storeId | String? | The store id of the product whose sizes need to be retrieved |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
+| storeId | Int? | The ID of the store that is selling the product, e.g. 1,2,3. |  
 
-A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
+A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
 
 *Success Response:*
 
 
 
-The ProductSize object. See example below or refer `ProductSizes` for details.
+Success. Returns a ProductSize object. Check the example shown below or refer `ProductSizes` for more details.
 
 
 Schema: `ProductSizes`
@@ -390,7 +390,7 @@ Schema: `ProductSizes`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -404,7 +404,7 @@ Schema: `ErrorResponse`
 
 
 #### getProductPriceBySlug
-Get price a product size
+Get the price of a product size at a PIN Code
 
 ```swift
 catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId: storeId) { (response, error) in
@@ -414,18 +414,18 @@ catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |    
-| size | String? | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/** |    
-| pincode | String? | The pincode of the product for which the price needs to be retrieved. |    
-| storeId | String? | The store of the product whose size level price need to be retrieved |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
+| size | String? | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes** |    
+| pincode | String? | The PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
+| storeId | String? | The ID of the store that is selling the product, e.g. 1,2,3. |  
 
-Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
+Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
 
 *Success Response:*
 
 
 
-The ProductSizePrice object. See example below or refer `ProductSizePriceResponse` for details
+Success. Returns a ProductSizePrice object. Check the example shown below or refer `ProductSizePriceResponse` for more details.
 
 
 Schema: `ProductSizePriceResponse`
@@ -434,7 +434,7 @@ Schema: `ProductSizePriceResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -448,7 +448,7 @@ Schema: `ErrorResponse`
 
 
 #### getProductSellersBySlug
-List sellers of a product
+Get the sellers of a product size at a PIN Code
 
 ```swift
 catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -458,19 +458,19 @@ catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, pageNo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |    
-| size | String? | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes** |    
-| pincode | String? | The pincode of the product for which the price needs to be retrieved. |    
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
+| size | String? | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes** |    
+| pincode | String? | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
 | pageNo | Int? | The page number to navigate through the given set of results. |    
-| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
+A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
 
 *Success Response:*
 
 
 
-The ProductSizeSeller object. See example below or refer `ProductSizeSellersResponse` for details
+Success. Returns a ProductSizeSeller object. Check the example shown below or refer `ProductSizeSellersResponse` for more details.
 
 
 Schema: `ProductSizeSellersResponse`
@@ -479,7 +479,7 @@ Schema: `ProductSizeSellersResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -503,15 +503,15 @@ catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | [String]? | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** |  
+| slug | [String]? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**. |  
 
-Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
+Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
 
 *Success Response:*
 
 
 
-The comparison between the products. See example below or refer `ProductsComparisonResponse` for details
+Success. Returns an array of objects containing the attributes for comparision. Check the example shown below or refer `ProductsComparisonResponse` for more details.
 
 
 Schema: `ProductsComparisonResponse`
@@ -520,7 +520,7 @@ Schema: `ProductsComparisonResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -544,15 +544,15 @@ catalog.getSimilarComparisonProductBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
 
-Compare between the features of the given set of products Use this API to compare how one product ranks against other products
+Use this API to compare a given product automatically with similar products. Only one slug is needed.
 
 *Success Response:*
 
 
 
-The comparison between products similar to given product. See example below or refer `ProductCompareResponse` for details
+Success. Returns an array of objects containing the attributes for comparision. Check the example shown below or refer `ProductCompareResponse` for more details.
 
 
 Schema: `ProductCompareResponse`
@@ -561,7 +561,7 @@ Schema: `ProductCompareResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -585,15 +585,15 @@ catalog.getComparedFrequentlyProductBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
 
-Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
+Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
 
 *Success Response:*
 
 
 
-The comparison between products similar to given product. See example below or refer `ProductFrequentlyComparedSimilarResponse` for details
+Success. Returns an array of objects containing the attributes for comparision. Check the example shown below or refer `ProductFrequentlyComparedSimilarResponse` for more details.
 
 
 Schema: `ProductFrequentlyComparedSimilarResponse`
@@ -602,7 +602,7 @@ Schema: `ProductFrequentlyComparedSimilarResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -626,16 +626,16 @@ catalog.getProductSimilarByIdentifier(slug: slug, similarType: similarType) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |    
-| similarType | String? | The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec. |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |    
+| similarType | String? | Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory. |  
 
-Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
+Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
 
 *Success Response:*
 
 
 
-Similar Products based on type passed in the request path. Refer `SimilarProductByTypeResponse` for response structure
+Success. Returns a group of similar products based on type. Check the example shown below or refer `SimilarProductByTypeResponse` for more details.
 
 
 Schema: `SimilarProductByTypeResponse`
@@ -644,7 +644,7 @@ Schema: `SimilarProductByTypeResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -668,15 +668,15 @@ catalog.getProductVariantsBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** |  
 
-A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
+A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
 
 *Success Response:*
 
 
 
-See example below or refer `ProductVariantsResponse` for details. For `display_type:image`, `color` key will be present otherwise `value` key will be preset.
+Success. Returns all variants of a product. Check the example shown below or refer `ProductVariantsResponse` for more details. For `display_type:image`, `color` key will be present otherwise `value` key will be shown.
 
 
 Schema: `ProductVariantsResponse`
@@ -685,7 +685,7 @@ Schema: `ProductVariantsResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -709,19 +709,19 @@ catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode: skuCode, ean: ea
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| itemId | String? | Product id to get product stock (Max. 50 allowed) |    
-| alu | String? | Product identifier alu to get product stock (Max. 50 allowed) |    
-| skuCode | String? | Product identifier sku_code to get product stock (Max. 50 allowed) |    
-| ean | String? | Product identifier ean to get product stock (Max. 50 allowed) |    
-| upc | String? | Product identifier upc to get product stock (Max. 50 allowed) |  
+| itemId | String? | The Item ID of the product (Max. 50 allowed) |    
+| alu | String? | ALU of the product (limited upto 50 ALU identifier in a single request) |    
+| skuCode | String? | Stock-keeping Unit of the product (limited upto 50 SKU Code in a single request) |    
+| ean | String? | European Article Number of the product (limited upto 50 EAN identifier in a single request) |    
+| upc | String? | Universal Product Code of the product (limited upto 50 UPC identifier in a single request) |  
 
-Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
+Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
 
 *Success Response:*
 
 
 
-The ProductStockStatus object. See example below or refer `ProductStockStatusResponse` for details
+Success. Returns the status of the product stock.Check the example shown below or refer `ProductStockStatusResponse` for more details.
 
 
 Schema: `ProductStockStatusResponse`
@@ -730,7 +730,7 @@ Schema: `ProductStockStatusResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -754,17 +754,17 @@ catalog.getProductStockForTimeByIds(timestamp: timestamp, pageSize: pageSize, pa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| timestamp | String? | timestamp in UTC format (2020-07-23T10:27:50Z) |    
-| pageSize | Int? | Limit of number of items for stock status default 12 |    
-| pageId | String? | will give next page results |  
+| timestamp | String? | Timestamp in UTC format (2020-07-23T10:27:50Z) |    
+| pageSize | Int? | The number of items to retrieve in each page. |    
+| pageId | String? | Page ID to retrieve next set of results. |  
 
-Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
+Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
 
 *Success Response:*
 
 
 
-The ProductStockStatus object. See example below or refer `ProductStockPolling` for details
+Success. Returns the status of the product stock.Check the example shown below or refer `ProductStockPolling` for more details.
 
 
 Schema: `ProductStockPolling`
@@ -773,7 +773,7 @@ Schema: `ProductStockPolling`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -787,7 +787,7 @@ Schema: `ErrorResponse`
 
 
 #### getProducts
-List the products
+Get all the products
 
 ```swift
 catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId, pageSize: pageSize, pageNo: pageNo, pageType: pageType) { (response, error) in
@@ -797,22 +797,22 @@ catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| q | String? | The search query. This can be a partial or complete name of a either a product, brand or category |    
-| f | String? | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** |    
-| filters | Bool? | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
-| sortOn | String? | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. |    
-| pageId | String? | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |    
-| pageNo | Int? | If page_type is number then pass it to fetch page items. Default is 1. |    
-| pageType | String? | For pagination type should be cursor or number. Default is cursor. |  
+| q | String? | The search query for entering partial or full name of product, brand, category, or collection. |    
+| f | String? | The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| filters | Bool? | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
+| sortOn | String? | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
+| pageId | String? | Page ID to retrieve next set of results. |    
+| pageSize | Int? | The number of items to retrieve in each page. |    
+| pageNo | Int? | The page number to navigate through the given set of results. |    
+| pageType | String? | Available pagination types are cursor or number. |  
 
-List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
+Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
 
 *Success Response:*
 
 
 
-List of Products. See example below or refer `ProductListingResponse` for details
+Success. Returns a paginated list of products..Check the example shown below or refer `ProductListingResponse` for more details.
 
 
 Schema: `ProductListingResponse`
@@ -821,7 +821,7 @@ Schema: `ProductListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -835,7 +835,7 @@ Schema: `ErrorResponse`
 
 
 #### getBrands
-List all the brands
+Get all the brands
 
 ```swift
 catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -845,17 +845,17 @@ catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| department | String? | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |    
-| pageNo | Int? | The page number to navigate through the given set of results |    
-| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
+| department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/** |    
+| pageNo | Int? | The page number to navigate through the given set of results. |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
 
 *Success Response:*
 
 
 
-List of Brands. See example below or refer `BrandListingResponse` for details
+Success. Returns a paginated list of brands. Check the example shown below or refer `BrandListingResponse` for more details.
 
 
 Schema: `BrandListingResponse`
@@ -864,7 +864,7 @@ Schema: `BrandListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -888,15 +888,15 @@ catalog.getBrandDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a brand. i.e; `slug` of a brand. You can retrieve these from the APIs that list brands like **v1.0/brands/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**. |  
 
-Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
+Fetch metadata of a brand such as name, information, logo, banner, etc.
 
 *Success Response:*
 
 
 
-The Metadata object. See example below or refer `BrandDetailResponse` for details.
+Success. Returns a metadata object. Check the example shown below or refer `BrandDetailResponse` for more details.
 
 
 Schema: `BrandDetailResponse`
@@ -905,7 +905,7 @@ Schema: `BrandDetailResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -929,15 +929,15 @@ catalog.getCategories(department: department) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| department | String? | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |  
+| department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/** |  
 
-List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
+Use this API to list all the categories. You can also filter the categories by department.
 
 *Success Response:*
 
 
 
-List of Categories. See example below or refer `CategoryListingResponse` for details.
+Success. Returns a list of categories. Check the example shown below or refer `CategoryListingResponse` for more details.
 
 
 Schema: `CategoryListingResponse`
@@ -946,7 +946,7 @@ Schema: `CategoryListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -970,15 +970,15 @@ catalog.getCategoryDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The unique identifier of a category. i.e; `slug` of a category. You can retrieve these from the APIs that list categories like **v1.0/categories/** |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**. |  
 
-Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
+Fetch metadata of a category such as name, information, logo, banner, etc.
 
 *Success Response:*
 
 
 
-The Metadata object. See example below or refer `CategoryMetaResponse` for details.
+Success. Returns metadata of a category. Check the example shown below or refer `CategoryMetaResponse` for more details.
 
 
 Schema: `CategoryMetaResponse`
@@ -987,7 +987,7 @@ Schema: `CategoryMetaResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1011,17 +1011,17 @@ catalog.getHomeProducts(sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (r
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| sortOn | String? | Each response will contain **sort_on** param, which should be sent back to make pagination work. |    
-| pageId | String? | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
+| sortOn | String? | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. |    
+| pageId | String? | Page ID to retrieve next set of results. |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
+List all the products associated with a brand, collection or category in a random order.
 
 *Success Response:*
 
 
 
-List of Products. See example below or refer `HomeListingResponse` for details
+Success. Returns a paginated list of products. Check the example shown below or refer `HomeListingResponse` for more details.
 
 
 Schema: `HomeListingResponse`
@@ -1030,7 +1030,7 @@ Schema: `HomeListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1070,7 +1070,7 @@ Schema: `DepartmentResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1094,15 +1094,15 @@ catalog.getSearchResults(q: q) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| q | String? | The search query. This can be a partial or complete name of a either a product, brand or category |  
+| q | String? | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |  
 
-Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
+Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
 
 *Success Response:*
 
 
 
-Lists of autocomplete suggestions for the search query `q`. See example response below or refer `AutoCompleteResponse` for details
+Success. Returns a list autocomplete suggestions for the search query `q`. Check the example shown below or refer `AutoCompleteResponse` for more details.
 
 
 Schema: `AutoCompleteResponse`
@@ -1111,7 +1111,7 @@ Schema: `AutoCompleteResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1135,16 +1135,16 @@ catalog.getCollections(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
+| pageNo | Int? | The page number to navigate through the given set of results. |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
 
 *Success Response:*
 
 
 
-List of collections. See example below or refer `GetCollectionListingResponse` for details
+Success. Returns a list of collections. Check the example shown below or refer `GetCollectionListingResponse` for more details.
 
 
 Schema: `GetCollectionListingResponse`
@@ -1153,7 +1153,7 @@ Schema: `GetCollectionListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1177,12 +1177,12 @@ catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sor
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items |    
-| f | String? | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** |    
-| filters | Bool? | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
-| sortOn | String? | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. |    
-| pageId | String? | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**. |    
+| f | String? | The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| filters | Bool? | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
+| sortOn | String? | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
+| pageId | String? | Page ID to retrieve next set of results. |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
 Get items in a collection specified by its `slug`.
 
@@ -1190,7 +1190,7 @@ Get items in a collection specified by its `slug`.
 
 
 
-The attached items of an collection. See example below or refer `ProductListingResponse` for details
+Success. Returns a list items in a given collection. Check the example shown below or refer `ProductListingResponse` for more details.
 
 
 Schema: `ProductListingResponse`
@@ -1199,7 +1199,7 @@ Schema: `ProductListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1223,15 +1223,15 @@ catalog.getCollectionDetailBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**. |  
 
-Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
+Get the details of a collection by its `slug`.
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `CollectionDetailResponse` for details
+Success. Returns a Collection object. Check the example shown below or refer `CollectionDetailResponse` for more details.
 
 
 Schema: `CollectionDetailResponse`
@@ -1240,7 +1240,7 @@ Schema: `CollectionDetailResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1264,17 +1264,17 @@ catalog.getFollowedListing(collectionType: collectionType, pageId: pageId, pageS
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| collectionType | String? | Type of collection followed. i. e. products, brands, collections |    
-| pageId | String? | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. Default is 12. |  
+| collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
+| pageId | String? | Page ID to retrieve next set of results. |    
+| pageSize | Int? | Page ID to retrieve next set of results. |  
 
-A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
+Users can follow a product they like. This API retrieves the products the user have followed.
 
 *Success Response:*
 
 
 
-The Followed resource object. See example below or refer `GetFollowListingResponse` for details.
+Success. Returns a Followed resource object. Check the example shown below or refer `GetFollowListingResponse` for more details.
 
 
 Schema: `GetFollowListingResponse`
@@ -1283,7 +1283,7 @@ Schema: `GetFollowListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1297,7 +1297,7 @@ Schema: `ErrorResponse`
 
 
 #### unfollowById
-UnFollow a Product
+Unfollow an entity (product/brand/collection)
 
 ```swift
 catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
@@ -1307,16 +1307,16 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| collectionType | String? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | String? | the `id` of the collection type you want to unfollow |  
+| collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
+| collectionId | String? | The ID of the collection type. |  
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 
 
 
-The response object. See example below or refer `FollowPostResponse` for details
+Success. Returns a response object. Check the example shown below or refer `FollowPostResponse` for more details.
 
 
 Schema: `FollowPostResponse`
@@ -1325,7 +1325,7 @@ Schema: `FollowPostResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1339,7 +1339,7 @@ Schema: `ErrorResponse`
 
 
 #### followById
-Follow a particular Product
+Follow an entity (product/brand/collection)
 
 ```swift
 catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
@@ -1349,16 +1349,16 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| collectionType | String? | Type of collection followed. i. e. products, brands, collections |    
-| collectionId | String? | the `id` of the collection type you want to follow |  
+| collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
+| collectionId | String? | The ID of the collection type. |  
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
 
 
-The response object. See example below or refer `FollowPostResponse` for details
+Success. Returns a response object. Check the example shown below or refer `FollowPostResponse` for more details.
 
 
 Schema: `FollowPostResponse`
@@ -1367,7 +1367,7 @@ Schema: `FollowPostResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1391,16 +1391,16 @@ catalog.getFollowerCountById(collectionType: collectionType, collectionId: colle
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| collectionType | String? | the `type` of the collection products/brands/collections. |    
-| collectionId | String? | the `id` of the product/brand/collection. |  
+| collectionType | String? | Type of collection, i.e. products, brands, or collections. |    
+| collectionId | String? | The ID of the collection type. |  
 
-Get count of followers for given collection type and collection id.
+Get the total count of followers for a given collection type and collection ID.
 
 *Success Response:*
 
 
 
-The response object. See example below or refer `FollowerCountResponse` for details
+Success. Returns the number of followers for a given collection type. Check the example shown below or refer `FollowerCountResponse` for more details.
 
 
 Schema: `FollowerCountResponse`
@@ -1409,7 +1409,7 @@ Schema: `FollowerCountResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1423,7 +1423,7 @@ Schema: `ErrorResponse`
 
 
 #### getFollowIds
-Get the Ids of followed product, brand and collection.
+Get the IDs of followed products, brands and collections.
 
 ```swift
 catalog.getFollowIds(collectionType: collectionType) { (response, error) in
@@ -1433,15 +1433,15 @@ catalog.getFollowIds(collectionType: collectionType) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| collectionType | String? | Type of collection followed. i. e. products, brands, collections |  
+| collectionType | String? | Type of collection, i.e. products, brands, collections. |  
 
-You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
+You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
 
 *Success Response:*
 
 
 
-The response object. See example below or refer `FollowIdsResponse` for details
+Success. Returns the IDs of all the Products, Brands and Collections which were followed. Check the example shown below or refer `FollowIdsResponse` for more details.
 
 
 Schema: `FollowIdsResponse`
@@ -1450,7 +1450,7 @@ Schema: `FollowIdsResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
@@ -1464,7 +1464,7 @@ Schema: `ErrorResponse`
 
 
 #### getStores
-List store meta information.
+Get store meta information.
 
 ```swift
 catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitude: latitude, longitude: longitude) { (response, error) in
@@ -1474,20 +1474,20 @@ catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitu
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
+| pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageSize | Int? | Number of items to retrieve in each page. |    
-| q | String? | This can be used to search a particulr store by its name or store_code. |    
-| range | Int? | This can be used to retrieve store within a particular range. For eg range=10000 (in meters) |    
-| latitude | Double? | This should be the latitude of the location from which one needs to retreive the nearest stores. |    
-| longitude | Double? | This should be the longitude of the location from which one needs to retreive the nearest stores. |  
+| q | String? | Search a store by its name or store_code. |    
+| range | Int? | Use this to retrieve stores within a particular range in meters, e.g. 10000, to indicate a 10km range |    
+| latitude | Double? | Latitude of the location from where one wants to retreive the nearest stores, e.g. 72.8691788 |    
+| longitude | Double? | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |  
 
-Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
+Use this API to get a list of stores in a specific application.
 
 *Success Response:*
 
 
 
-List of Stores. See example below or refer `StoreListingResponse` for details
+Success. Returns a list of selling locations. Check the example shown below or refer `StoreListingResponse` for more details.
 
 
 Schema: `StoreListingResponse`
@@ -1496,7 +1496,7 @@ Schema: `StoreListingResponse`
 
 
 
-Bad request. See the error object in the response body for specific reason
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorResponse`
