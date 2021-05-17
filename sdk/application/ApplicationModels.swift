@@ -33815,7 +33815,7 @@
         */
         class AnnouncementsResponseSchema: Codable {
             
-            public var announcements: [String: Any]?
+            public var announcements: [String: [AnnouncementSchema]]?
             
             public var refreshRate: Int?
             
@@ -33832,7 +33832,7 @@
                 
             }
 
-            public init(announcements: [String: Any]?, refreshPages: [String]?, refreshRate: Int?) {
+            public init(announcements: [String: [AnnouncementSchema]]?, refreshPages: [String]?, refreshRate: Int?) {
                 
                 self.announcements = announcements
                 
@@ -33847,7 +33847,7 @@
                 
                 
                 do {
-                    announcements = try container.decode([String: Any].self, forKey: .announcements)
+                    announcements = try container.decode([String: [AnnouncementSchema]].self, forKey: .announcements)
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
                     print("codingPath:", context.codingPath)
