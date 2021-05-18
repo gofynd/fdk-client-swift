@@ -8798,8 +8798,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: post a new abuse request
-        * Description: Report a new abuse for specific entity with description text.
+        * Summary: Post a new abuse request
+        * Description: Use this API to report a specific entity (question/review/comment) for abuse.
         **/
         public func createAbuseReport(
             body: ReportAbuseRequest,
@@ -8840,7 +8840,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Update abuse details
-        * Description: Update the abuse details like status and description text.
+        * Description: Use this API to update the abuse details, i.e. status and description.
         **/
         public func updateAbuseReport(
             body: UpdateAbuseStatusRequest,
@@ -8880,8 +8880,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get list of abuse data
-        * Description: Get the list of abuse data from entity type and entity ID.
+        * Summary: Get a list of abuse data
+        * Description: Use this API to retrieve a list of abuse data from entity type and entity ID.
         **/
         public func getAbuseReports(
             entityId: String,
@@ -9000,8 +9000,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get list of attribute data
-        * Description: Provides a list of all attribute data.
+        * Summary: Get a list of attribute data
+        * Description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
         **/
         public func getAttributes(
             pageNo: Int?,
@@ -9095,7 +9095,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Add a new attribute request
-        * Description: Add a new attribute with its name, slug and description.
+        * Description: Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
         **/
         public func createAttribute(
             body: SaveAttributeRequest,
@@ -9135,8 +9135,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get single attribute data
-        * Description: Get a single attribute data from a given slug.
+        * Summary: Get data of a single attribute
+        * Description: Use this API to retrieve a single attribute data from a given slug.
         **/
         public func getAttribute(
             slug: String,
@@ -9177,8 +9177,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Update attribute details
-        * Description: Update the attribute's name and description.
+        * Summary: Update details of an attribute 
+        * Description: Use this API update the attribute's name and description.
         **/
         public func updateAttribute(
             slug: String,
@@ -9219,8 +9219,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: post a new comment
-        * Description: This is used to add a new comment for specific entity.
+        * Summary: Post a new comment
+        * Description: Use this API to add a new comment for a specific entity.
         **/
         public func createComment(
             body: CommentRequest,
@@ -9260,8 +9260,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Update comment status
-        * Description: Update the comment status (active/approve) or text.
+        * Summary: Update the status of a comment
+        * Description: Use this API to update the comment status (active or approve) along with new comment if any.
         **/
         public func updateComment(
             body: UpdateCommentRequest,
@@ -9301,8 +9301,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get list of comments
-        * Description: Get the list of comments from specific entity type.
+        * Summary: Get a list of comments
+        * Description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
         **/
         public func getComments(
             entityType: String,
@@ -9436,8 +9436,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Checks eligibility and cloud media config
-        * Description: Checks eligibility to rate and review and cloud media configuration
+        * Summary: Checks eligibility to rate and review, and shows the cloud media configuration
+        * Description: Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
         **/
         public func checkEligibility(
             entityType: String,
@@ -9480,7 +9480,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Delete Media
-        * Description: Delete Media for the given entity IDs.
+        * Description: Use this API to delete media for an entity ID.
         **/
         public func deleteMedia(
             
@@ -9521,7 +9521,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Add Media
-        * Description: Add Media list for specific entity.
+        * Description: Use this API to add media to an entity, e.g. review.
         **/
         public func createMedia(
             body: AddMediaListRequest,
@@ -9562,7 +9562,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Update Media
-        * Description: Update Media (archive/approve) for the given entity.
+        * Description: Use this API to update media (archive/approve) for an entity.
         **/
         public func updateMedia(
             body: UpdateMediaListRequest,
@@ -9603,7 +9603,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get Media
-        * Description: Get Media from the given entity type and entity ID.
+        * Description: Use this API to retrieve all media from an entity.
         **/
         public func getMedias(
             entityType: String,
@@ -9723,8 +9723,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get a review summary
-        * Description: Review summary gives ratings and attribute metrics of a review per entity
-It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+        * Description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
         **/
         public func getReviewSummaries(
             entityType: String,
@@ -9844,8 +9843,7 @@ It gives following response data: review count, rating average. review metrics /
         /**
         *
         * Summary: Add customer reviews
-        * Description: Add customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
+        * Description: Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
         **/
         public func createReview(
             body: UpdateReviewRequest,
@@ -9886,8 +9884,7 @@ attributes rating, entity rating, title, description, media resources and templa
         /**
         *
         * Summary: Update customer reviews
-        * Description: Update customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
+        * Description: Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
         **/
         public func updateReview(
             body: UpdateReviewRequest,
@@ -9928,7 +9925,7 @@ attributes rating, entity rating, title, description, media resources and templa
         /**
         *
         * Summary: Get list of customer reviews
-        * Description: This is used to get the list of customer reviews based on entity and provided filters.
+        * Description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
         **/
         public func getReviews(
             entityType: String,
@@ -10113,8 +10110,8 @@ attributes rating, entity rating, title, description, media resources and templa
         
         /**
         *
-        * Summary: Get the templates for product or l3 type
-        * Description: This is used to get the templates details.
+        * Summary: Get the feedback templates for a product or l3
+        * Description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
         **/
         public func getTemplates(
             templateId: String?,
@@ -10170,8 +10167,7 @@ attributes rating, entity rating, title, description, media resources and templa
         /**
         *
         * Summary: Create a new question
-        * Description: This is used to create a new question with following data:
-tags, text, type, choices for MCQ type questions, maximum length of answer.
+        * Description: Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
         **/
         public func createQuestion(
             body: CreateQNARequest,
@@ -10211,8 +10207,8 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         
         /**
         *
-        * Summary: Update question
-        * Description: This is used to update question's status, tags and choices.
+        * Summary: Update a question
+        * Description: Use this API to update the status of a question, its tags and its choices.
         **/
         public func updateQuestion(
             body: UpdateQNARequest,
@@ -10253,7 +10249,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         /**
         *
         * Summary: Get a list of QnA
-        * Description: This is used to get a list of questions and its answers.
+        * Description: Use this API to retrieve a list of questions and answers for a given entity.
         **/
         public func getQuestionAndAnswers(
             entityType: String,
@@ -10383,8 +10379,8 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         
         /**
         *
-        * Summary: Get list of votes
-        * Description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+        * Summary: Get a list of votes
+        * Description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
         **/
         public func getVotes(
             id: String?,
@@ -10500,7 +10496,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         /**
         *
         * Summary: Create a new vote
-        * Description: This is used to create a new vote and the actions can be upvote or downvote.
+        * Description: Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
         **/
         public func createVote(
             body: VoteRequest,
@@ -10540,8 +10536,8 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
         
         /**
         *
-        * Summary: Update vote
-        * Description: This is used to update the vote and the actions can be upvote or downvote.
+        * Summary: Update a vote
+        * Description: Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
         **/
         public func updateVote(
             body: UpdateVoteRequest,
