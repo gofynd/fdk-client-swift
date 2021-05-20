@@ -4287,13 +4287,13 @@ content.getAnnouncements() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get live announcements for each or all pages with page slug of page and end date schedule.
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
 
 *Success Response:*
 
 
 
-Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
+Success. Returns a JSON object with the details of the announcement shown on an individual page. `$all` is a special slug to indicate that an announcement is being shown on all the pages. Check the example shown below or refer `AnnouncementsResponseSchema` for more details.
 
 
 Schema: `AnnouncementsResponseSchema`
@@ -4302,7 +4302,7 @@ Schema: `AnnouncementsResponseSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4311,7 +4311,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4325,7 +4325,7 @@ Schema: `APIError`
 
 
 #### getBlog
-Get Blog by slug
+Get a blog
 
 ```swift
 content.getBlog(slug: slug, rootId: rootId) { (response, error) in
@@ -4335,16 +4335,16 @@ content.getBlog(slug: slug, rootId: rootId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The `slug` of a blog. Use this parameter to retrieve a particular blog |    
-| rootId | String? |  |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a blog. You can get slug value from the endpoint /service/application/content/v1.0/blogs/. |    
+| rootId | String? | ID given to the HTML element |  
 
-Use this API to fetch a blog using `slug`
+Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
 
 *Success Response:*
 
 
 
-A JSON object with blog details
+Success. Returns a JSON object with blog details. Check the example shown below or refer `CustomBlogSchema` for more details.
 
 
 Schema: `CustomBlogSchema`
@@ -4353,7 +4353,7 @@ Schema: `CustomBlogSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4362,7 +4362,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4376,7 +4376,7 @@ Schema: `APIError`
 
 
 #### getBlogs
-Get blogs
+Get a list of blogs
 
 ```swift
 content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -4386,16 +4386,16 @@ content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-Use this to get blogs.
+Use this API to get all the blogs.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `BlogGetResponse` for more details.
 
 
 Schema: `BlogGetResponse`
@@ -4404,7 +4404,7 @@ Schema: `BlogGetResponse`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4413,7 +4413,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4427,7 +4427,7 @@ Schema: `APIError`
 
 
 #### getFaqs
-Get frequently asked questions
+Get a list of FAQs
 
 ```swift
 content.getFaqs() { (response, error) in
@@ -4438,13 +4438,13 @@ content.getFaqs() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get frequently asked questions list. These will be helpful for users to using website.
+Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a JSON object with question and answers. Check the example shown below or refer `FaqResponseSchema` for more details.
 
 
 Schema: `FaqResponseSchema`
@@ -4453,7 +4453,7 @@ Schema: `FaqResponseSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4462,7 +4462,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4476,7 +4476,7 @@ Schema: `APIError`
 
 
 #### getFaqCategories
-Get FAQ categories list
+Get a list of FAQ categories
 
 ```swift
 content.getFaqCategories() { (response, error) in
@@ -4487,13 +4487,13 @@ content.getFaqCategories() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get list of FAQ categories
+FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Returns a JSON object with categories of FAQ. Check the example shown below or refer `GetFaqCategoriesSchema` for more details.
 
 
 Schema: `GetFaqCategoriesSchema`
@@ -4502,7 +4502,7 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4511,7 +4511,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4525,7 +4525,7 @@ Schema: `APIError`
 
 
 #### getFaqBySlug
-Get frequently asked question
+Get an FAQ
 
 ```swift
 content.getFaqBySlug(slug: slug) { (response, error) in
@@ -4535,15 +4535,15 @@ content.getFaqBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | Slug of FAQ |  
+| slug | String? | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. |  
 
-Get frequently asked questions list. These will be helpful for users to using website.
+Use this API to get a particular FAQ by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a question and answer by its slug. Check the example shown below or refer `FaqSchema` for more details.
 
 
 Schema: `FaqSchema`
@@ -4552,7 +4552,7 @@ Schema: `FaqSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4561,7 +4561,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4575,7 +4575,7 @@ Schema: `APIError`
 
 
 #### getFaqCategoryBySlug
-Get FAQ category by slug
+Get the FAQ category
 
 ```swift
 content.getFaqCategoryBySlug(slug: slug) { (response, error) in
@@ -4585,15 +4585,15 @@ content.getFaqCategoryBySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | Slug of FAQ Category |  
+| slug | String? | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
 
-Get FAQ category by slug
+FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Returns a FAQ category with its slug. Check the example shown below or refer `GetFaqCategoryBySlugSchema` for more details.
 
 
 Schema: `GetFaqCategoryBySlugSchema`
@@ -4602,7 +4602,7 @@ Schema: `GetFaqCategoryBySlugSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4611,7 +4611,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4625,7 +4625,7 @@ Schema: `APIError`
 
 
 #### getFaqsByCategorySlug
-Get FAQs of a Faq Category slug
+Get FAQs using the slug of FAQ category
 
 ```swift
 content.getFaqsByCategorySlug(slug: slug) { (response, error) in
@@ -4635,15 +4635,15 @@ content.getFaqsByCategorySlug(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | Faq category slug |  
+| slug | String? | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
 
-Get FAQs of a Faq Category `slug`
+FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
 
 *Success Response:*
 
 
 
-Get FAQs by slug of FAQ Category
+Success. Returns a categorized list of question and answers using its slug. Check the example shown below or refer `GetFaqSchema` for more details.
 
 
 Schema: `GetFaqSchema`
@@ -4652,7 +4652,7 @@ Schema: `GetFaqSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4661,7 +4661,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4675,7 +4675,7 @@ Schema: `APIError`
 
 
 #### getLandingPage
-Get landing page
+Get the landing page
 
 ```swift
 content.getLandingPage() { (response, error) in
@@ -4686,13 +4686,13 @@ content.getLandingPage() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Use this API to fetch a landing page
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
 
 *Success Response:*
 
 
 
-A JSON object with landing details
+Success. Returns the landing page details. Check the example shown below or refer `LandingPageSchema` for more details.
 
 
 Schema: `LandingPageSchema`
@@ -4701,7 +4701,7 @@ Schema: `LandingPageSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4710,7 +4710,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4735,13 +4735,13 @@ content.getLegalInformation() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns the T&C, Shipping Policy, Privacy Policy and Return Policy. Check the example shown below or refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -4750,7 +4750,7 @@ Schema: `ApplicationLegal`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4759,7 +4759,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4773,7 +4773,7 @@ Schema: `APIError`
 
 
 #### getNavigations
-Get navigation
+Get the navigation
 
 ```swift
 content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -4783,16 +4783,16 @@ content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-Use this API to fetch navigations
+Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
 
 *Success Response:*
 
 
 
-A JSON object with navigation details
+Success. Returns a JSON object with navigation details. Check the example shown below or refer `NavigationGetResponse` for more details.
 
 
 Schema: `NavigationGetResponse`
@@ -4801,7 +4801,7 @@ Schema: `NavigationGetResponse`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4810,7 +4810,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4824,7 +4824,7 @@ Schema: `APIError`
 
 
 #### getPage
-Get Page by slug
+Get a page
 
 ```swift
 content.getPage(slug: slug, rootId: rootId) { (response, error) in
@@ -4834,16 +4834,16 @@ content.getPage(slug: slug, rootId: rootId) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The `slug` of a page. Use this parameter to retrieve a particular page |    
-| rootId | String? |  |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v1.0/pages/. |    
+| rootId | String? | ID given to the HTML element |  
 
-Use this API to fetch a custom page using `slug`
+Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
 
 *Success Response:*
 
 
 
-A JSON object with page details
+Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
 
 
 Schema: `CustomPageSchema`
@@ -4852,7 +4852,7 @@ Schema: `CustomPageSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4861,7 +4861,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4875,7 +4875,7 @@ Schema: `APIError`
 
 
 #### getPages
-Get pages
+Get all pages
 
 ```swift
 content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -4885,16 +4885,16 @@ content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-Use this to get pages.
+Use this API to get a list of pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetResponse` for more details.
 
 
 Schema: `PageGetResponse`
@@ -4903,7 +4903,7 @@ Schema: `PageGetResponse`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4912,7 +4912,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4926,7 +4926,7 @@ Schema: `APIError`
 
 
 #### getSEOConfiguration
-Get seo of application
+Get the SEO of an application
 
 ```swift
 content.getSEOConfiguration() { (response, error) in
@@ -4937,13 +4937,13 @@ content.getSEOConfiguration() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get seo of application
+Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and sitemap. Check the example shown below or refer `SeoComponent` for more details.
 
 
 Schema: `SeoComponent`
@@ -4952,7 +4952,7 @@ Schema: `SeoComponent`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4961,7 +4961,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4975,7 +4975,7 @@ Schema: `APIError`
 
 
 #### getSlideshows
-Get slideshows
+Get the slideshows
 
 ```swift
 content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -4985,16 +4985,16 @@ content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |    
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | Int? | The number of items to retrieve in each page. |  
 
-Use this to get slideshows.
+Use this API to get a list of slideshows along with their details.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `SlideshowGetResponse` for more details.
 
 
 Schema: `SlideshowGetResponse`
@@ -5003,7 +5003,7 @@ Schema: `SlideshowGetResponse`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5012,7 +5012,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5026,7 +5026,7 @@ Schema: `APIError`
 
 
 #### getSlideshow
-Get slideshow by slug
+Get a slideshow
 
 ```swift
 content.getSlideshow(slug: slug) { (response, error) in
@@ -5036,15 +5036,15 @@ content.getSlideshow(slug: slug) { (response, error) in
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
-| slug | String? | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow |  
+| slug | String? | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. |  
 
-Use this API to fetch a slideshow using `slug`
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
 
 *Success Response:*
 
 
 
-A JSON object with slideshow details
+Success. Returns the details of how a slideshow is configured. Check the example shown below or refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -5053,7 +5053,7 @@ Schema: `SlideshowSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5062,7 +5062,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5076,7 +5076,7 @@ Schema: `APIError`
 
 
 #### getSupportInformation
-Get support information
+Get the support information
 
 ```swift
 content.getSupportInformation() { (response, error) in
@@ -5087,13 +5087,13 @@ content.getSupportInformation() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get contact details for customer support. Including emails and phone numbers
+Use this API to get contact details for customer support including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns all support information including email and phone number. Check the example shown below or refer `Support` for more details.
 
 
 Schema: `Support`
@@ -5102,7 +5102,7 @@ Schema: `Support`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5111,7 +5111,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5125,7 +5125,7 @@ Schema: `APIError`
 
 
 #### getTags
-Get Tags for application
+Get the tags associated with an application
 
 ```swift
 content.getTags() { (response, error) in
@@ -5136,13 +5136,13 @@ content.getTags() { (response, error) in
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-
+Use this API to get all the CSS and JS injected in the application in the form of tags.
 
 *Success Response:*
 
 
 
-A JSON object of tags
+Success. Returns a JSON object containing all the tags injected in the application. Check the example shown below or refer `TagsSchema` for more details.
 
 
 Schema: `TagsSchema`
@@ -5151,7 +5151,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5160,7 +5160,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`

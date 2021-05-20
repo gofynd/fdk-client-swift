@@ -5023,7 +5023,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get live announcements
-        * Description: Get live announcements for each or all pages with page slug of page and end date schedule.
+        * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
         **/
         public func getAnnouncements(
             
@@ -5063,8 +5063,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get Blog by slug
-        * Description: Use this API to fetch a blog using `slug`
+        * Summary: Get a blog
+        * Description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
         **/
         public func getBlog(
             slug: String,
@@ -5110,8 +5110,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get blogs
-        * Description: Use this to get blogs.
+        * Summary: Get a list of blogs
+        * Description: Use this API to get all the blogs.
         **/
         public func getBlogs(
             pageNo: Int?,
@@ -5204,8 +5204,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get frequently asked questions
-        * Description: Get frequently asked questions list. These will be helpful for users to using website.
+        * Summary: Get a list of FAQs
+        * Description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
         **/
         public func getFaqs(
             
@@ -5245,8 +5245,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get FAQ categories list
-        * Description: Get list of FAQ categories
+        * Summary: Get a list of FAQ categories
+        * Description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
         **/
         public func getFaqCategories(
             
@@ -5286,8 +5286,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get frequently asked question
-        * Description: Get frequently asked questions list. These will be helpful for users to using website.
+        * Summary: Get an FAQ
+        * Description: Use this API to get a particular FAQ by its slug.
         **/
         public func getFaqBySlug(
             slug: String,
@@ -5328,8 +5328,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get FAQ category by slug
-        * Description: Get FAQ category by slug
+        * Summary: Get the FAQ category
+        * Description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
         **/
         public func getFaqCategoryBySlug(
             slug: String,
@@ -5370,8 +5370,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get FAQs of a Faq Category slug
-        * Description: Get FAQs of a Faq Category `slug`
+        * Summary: Get FAQs using the slug of FAQ category
+        * Description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
         **/
         public func getFaqsByCategorySlug(
             slug: String,
@@ -5412,8 +5412,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get landing page
-        * Description: Use this API to fetch a landing page
+        * Summary: Get the landing page
+        * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
         **/
         public func getLandingPage(
             
@@ -5454,7 +5454,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get legal information
-        * Description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+        * Description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
         **/
         public func getLegalInformation(
             
@@ -5494,8 +5494,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get navigation
-        * Description: Use this API to fetch navigations
+        * Summary: Get the navigation
+        * Description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
         **/
         public func getNavigations(
             pageNo: Int?,
@@ -5588,8 +5588,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get Page by slug
-        * Description: Use this API to fetch a custom page using `slug`
+        * Summary: Get a page
+        * Description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
         **/
         public func getPage(
             slug: String,
@@ -5635,8 +5635,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get pages
-        * Description: Use this to get pages.
+        * Summary: Get all pages
+        * Description: Use this API to get a list of pages.
         **/
         public func getPages(
             pageNo: Int?,
@@ -5729,8 +5729,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get seo of application
-        * Description: Get seo of application
+        * Summary: Get the SEO of an application
+        * Description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
         **/
         public func getSEOConfiguration(
             
@@ -5770,8 +5770,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get slideshows
-        * Description: Use this to get slideshows.
+        * Summary: Get the slideshows
+        * Description: Use this API to get a list of slideshows along with their details.
         **/
         public func getSlideshows(
             pageNo: Int?,
@@ -5864,8 +5864,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get slideshow by slug
-        * Description: Use this API to fetch a slideshow using `slug`
+        * Summary: Get a slideshow
+        * Description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
         **/
         public func getSlideshow(
             slug: String,
@@ -5906,8 +5906,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get support information
-        * Description: Get contact details for customer support. Including emails and phone numbers
+        * Summary: Get the support information
+        * Description: Use this API to get contact details for customer support including emails and phone numbers.
         **/
         public func getSupportInformation(
             
@@ -5947,8 +5947,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get Tags for application
-        * Description: 
+        * Summary: Get the tags associated with an application
+        * Description: Use this API to get all the CSS and JS injected in the application in the form of tags.
         **/
         public func getTags(
             
