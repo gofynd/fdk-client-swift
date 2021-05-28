@@ -29,7 +29,7 @@ public class ApplicationClient {
 
     public let rewards: Rewards
 
-    public let posCart: PosCart
+    public let feedback: Feedback
 
     public let logistic: Logistic
 
@@ -61,7 +61,7 @@ public class ApplicationClient {
         
         rewards = Rewards(config: config)
         
-        posCart = PosCart(config: config)
+        feedback = Feedback(config: config)
         
         logistic = Logistic(config: config)
         
@@ -2462,6 +2462,62 @@ public class ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(BulkPriceResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Fetch all Items Added to  Cart
+        * Description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+        **/
+        public func applyRewardPoints(
+            uid: Int?,
+            i: Bool?,
+            b: Bool?,
+            
+            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = uid {
+                xQuery["uid"] = value
+            }
+            
+            if let value = i {
+                xQuery["i"] = value
+            }
+            
+            if let value = b {
+                xQuery["b"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/cart/v1.0/redeem/points/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CartResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5997,7 +6053,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get communication consent
-        * Description: Get communication consent
+        * Description: Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
         **/
         public func getCommunicationConsent(
             
@@ -6038,7 +6094,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Upsert communication consent
-        * Description: Upsert communication consent
+        * Description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
         **/
         public func upsertCommunicationConsent(
             body: CommunicationConsentReq,
@@ -6079,7 +6135,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Upsert push token of a user
-        * Description: Upsert push token of a user
+        * Description: Use this API to update and insert the push token of the user.
         **/
         public func upsertAppPushtoken(
             body: PushtokenReq,
@@ -6437,25 +6493,25 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-        * Description: Uploads an arbitrarily sized buffer or blob.
+        * Summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
+        * Description: Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
 
-It has three Major Steps:
+The three major steps are:
 * Start
 * Upload
 * Complete
 
 ### Start
 Initiates the assets upload using `startUpload`.
-It returns the storage link in response.
+It returns a storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
+Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
 
 ### Complete
-After successfully upload, call `completeUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
+After successfully upload, call the `completeUpload` API to finish the upload process.
+This operation will return the URL of the uploaded file.
 
         **/
         public func startUpload(
@@ -6497,25 +6553,25 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-        * Description: Uploads an arbitrarily sized buffer or blob.
+        * Summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
+        * Description: Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
 
-It has three Major Steps:
+The three major steps are:
 * Start
 * Upload
 * Complete
 
 ### Start
 Initiates the assets upload using `startUpload`.
-It returns the storage link in response.
+It returns a storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
+Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
 
 ### Complete
-After successfully upload, call `completeUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
+After successfully upload, call the `completeUpload` API to finish the upload process.
+This operation will return the URL of the uploaded file.
 
         **/
         public func completeUpload(
@@ -6570,7 +6626,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get current application details
-        * Description: Get current application details.
+        * Description: Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
         **/
         public func getApplication(
             
@@ -6611,7 +6667,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get application, owner and seller information
-        * Description: Get application information with owner and seller basic details
+        * Description: Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
         **/
         public func getOwnerInfo(
             
@@ -6652,7 +6708,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get basic application details
-        * Description: Get basic application details like name
+        * Description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
         **/
         public func getBasicDetails(
             
@@ -6693,7 +6749,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get integration tokens
-        * Description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+        * Description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
         **/
         public func getIntegrationTokens(
             
@@ -6733,8 +6789,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get deployment meta stores
-        * Description: Get deployment meta stores.
+        * Summary: Get deployment stores
+        * Description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
         **/
         public func getOrderingStores(
             pageNo: Int?,
@@ -6839,7 +6895,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get features of application
-        * Description: Get features of application
+        * Description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
         **/
         public func getFeatures(
             
@@ -6880,7 +6936,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get application information
-        * Description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+        * Description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
         **/
         public func getContactInfo(
             
@@ -6920,8 +6976,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get application enabled currencies
-        * Description: Get currency list for allowed currencies under current application
+        * Summary: Get currencies enabled in the application
+        * Description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
         **/
         public func getCurrencies(
             
@@ -6961,8 +7017,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get currency by id
-        * Description: Get currency object with symbol and name information by id.
+        * Summary: Get currency by its ID
+        * Description: Use this API to retrieve a currency using its ID.
         **/
         public func getCurrencyById(
             id: String,
@@ -7004,7 +7060,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get list of languages
-        * Description: Get list of supported languages under application.
+        * Description: Use this API to get a list of languages supported in the application.
         **/
         public func getLanguages(
             
@@ -7044,8 +7100,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
-        * Description: Get ordering store signed cookie on selection of ordering store.
+        * Summary: Get an Ordering Store signed cookie on selection of ordering store.
+        * Description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
         **/
         public func getOrderingStoreCookie(
             body: OrderingStoreSelectRequest,
@@ -7085,8 +7141,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
-        * Description: Unset ordering store cookie.
+        * Summary: Unset the Ordering Store signed cookie.
+        * Description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
         **/
         public func removeOrderingStoreCookie(
             
@@ -7126,8 +7182,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get Staff List.
-        * Description: Get a staff list based on the user's session token passed in the header.
+        * Summary: Get a list of staff.
+        * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
         **/
         public func getAppStaffs(
             orderIncent: Bool?,
@@ -7195,10 +7251,10 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Get payment gateway keys
-        * Description: Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+        * Description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
         **/
         public func getAggregatorsConfig(
-            xApiToken: String,
+            xApiToken: String?,
             refresh: Bool?,
             
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
@@ -7210,7 +7266,10 @@ This operation will return the url for the uploaded file.
             }
             
             var xHeaders: [(key: String, value: String)] = [] 
-            xHeaders.append((key: "x-api-token", value: xApiToken))
+            
+            if let value = xApiToken {
+                xHeaders.append((key: "x-api-token", value: value))
+            }
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -7243,7 +7302,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Attach a saved card to customer.
-        * Description: Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+        * Description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe.
         **/
         public func attachCardToCustomer(
             body: AttachCardRequest,
@@ -7283,8 +7342,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Fetch active payment gateway for card
-        * Description: Fetch active payment gateway along with customer id for cards payments.
+        * Summary: Fetch active payment gateway for card payments
+        * Description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
         **/
         public func getActiveCardAggregator(
             refresh: Bool?,
@@ -7329,8 +7388,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Fetch the list of saved cards of user.
-        * Description: Fetch the list of saved cards of user from active payment gateway.
+        * Summary: Fetch the list of cards saved by the user
+        * Description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
         **/
         public func getActiveUserCards(
             forceRefresh: Bool?,
@@ -7375,8 +7434,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Delete an user card.
-        * Description: Delete an added user card on payment gateway and remove from cache.
+        * Summary: Delete a card
+        * Description: Use this API to delete a card added by a user on the payment gateway and clear the cache.
         **/
         public func deleteUserCard(
             body: DeletehCardRequest,
@@ -7416,8 +7475,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Validate customer for payment.
-        * Description: Validate customer for payment i.e Simpl paylater, Rupifi loan.
+        * Summary: Validate customer for payment
+        * Description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
         **/
         public func verifyCustomerForPayment(
             body: ValidateCustomerRequest,
@@ -7458,7 +7517,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Verify and charge payment
-        * Description: Verify and charge payment server to server for Simpl & Mswipe.
+        * Description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
         **/
         public func verifyAndChargePayment(
             body: ChargeCustomerRequest,
@@ -7498,8 +7557,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Payment Initialisation server to server for UPI and BharatQR.
-        * Description: Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+        * Summary: Initialize a payment (server-to-server) for UPI and BharatQR
+        * Description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
         **/
         public func initialisePayment(
             body: PaymentInitializationRequest,
@@ -7539,8 +7598,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Continous polling to check status of payment on server.
-        * Description: Continous polling on interval to check status of payment untill timeout.
+        * Summary: Performs continuous polling to check status of payment on the server
+        * Description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
         **/
         public func checkAndUpdatePaymentStatus(
             body: PaymentStatusUpdateRequest,
@@ -7580,8 +7639,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get All Valid Payment Options
-        * Description: Use this API to get Get All Valid Payment Options for making payment
+        * Summary: Get applicable payment options
+        * Description: Use this API to get all valid payment options for doing a payment.
         **/
         public func getPaymentModeRoutes(
             amount: Int,
@@ -7648,8 +7707,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get All Valid Payment Options for POS
-        * Description: Use this API to get Get All Valid Payment Options for making payment
+        * Summary: Get applicable payment options for Point-of-Sale (POS)
+        * Description: Use this API to get all valid payment options for doing a payment in POS.
         **/
         public func getPosPaymentModeRoutes(
             amount: Int,
@@ -7719,8 +7778,49 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: List Refund Transfer Mode
-        * Description: Get all active transfer mode for adding beneficiary details
+        * Summary: Get CreditLine Offer
+        * Description: Get CreditLine Offer if user is tentatively approved by rupifi
+        **/
+        public func getRupifiBannerDetails(
+            
+            onResponse: @escaping (_ response: RupifiBannerResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/payment/v1.0/rupifi/banner",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RupifiBannerResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Lists the mode of refund
+        * Description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
         **/
         public func getActiveRefundTransferModes(
             
@@ -7760,7 +7860,7 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Enable/Disable Refund Transfer Mode
+        * Summary: Enable/Disable a mode for transferring a refund
         * Description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
         **/
         public func enableOrDisableRefundTransferMode(
@@ -7801,8 +7901,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: List User Beneficiary
-        * Description: Get all active  beneficiary details added by the user for refund
+        * Summary: Lists the beneficiary of a refund
+        * Description: Use this API to get the details of all active beneficiary added by a user for refund.
         **/
         public func getUserBeneficiariesDetail(
             orderId: String,
@@ -7845,8 +7945,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Ifsc Code Verification
-        * Description: Get True/False for correct IFSC Code for adding bank details for refund
+        * Summary: Verify IFSC Code
+        * Description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
         **/
         public func verifyIfscCode(
             ifscCode: String?,
@@ -7891,8 +7991,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: List Order Beneficiary
-        * Description: Get all active  beneficiary details added by the user for refund
+        * Summary: Lists the beneficiary of a refund
+        * Description: Use this API to get the details of all active beneficiary added by a user for refund.
         **/
         public func getOrderBeneficiariesDetail(
             orderId: String,
@@ -7935,8 +8035,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Save Beneficiary details on otp validation.
-        * Description: Save Beneficiary details on otp validation.
+        * Summary: Verify the beneficiary details using OTP
+        * Description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
         **/
         public func verifyOtpAndAddBeneficiaryForBank(
             body: AddBeneficiaryViaOtpVerificationRequest,
@@ -7977,7 +8077,7 @@ This operation will return the url for the uploaded file.
         /**
         *
         * Summary: Save bank details for cancelled/returned order
-        * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+        * Description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
         **/
         public func addBeneficiaryDetails(
             body: AddBeneficiaryDetailsRequest,
@@ -8017,8 +8117,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Send Otp on Adding wallet beneficiary
-        * Description: Send Otp on Adding wallet beneficiary for user mobile verification
+        * Summary: Send OTP on adding a wallet beneficiary
+        * Description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
         **/
         public func verifyOtpAndAddBeneficiaryForWallet(
             body: WalletOtpRequest,
@@ -8058,8 +8158,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Mark Default Beneficiary For Refund
-        * Description: Mark Default Beneficiary ot of all Beneficiary Details for Refund
+        * Summary: Set a default beneficiary for a refund
+        * Description: Use this API to set a default beneficiary for getting a refund.
         **/
         public func updateDefaultBeneficiary(
             body: SetDefaultBeneficiaryRequest,
@@ -8111,8 +8211,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get Orders for application based on application Id
-        * Description: Get Orders
+        * Summary: Use this API to retrieve all the orders.
+        * Description: Get all orders
         **/
         public func getOrders(
             pageNo: Int?,
@@ -8177,8 +8277,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get Order by order id for application based on application Id
-        * Description: Get Order By Fynd Order Id
+        * Summary: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+        * Description: Get details of an order
         **/
         public func getOrderById(
             orderId: String,
@@ -8219,8 +8319,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get Shipment by shipment id and order id for application based on application Id
-        * Description: Get Shipment
+        * Summary: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+        * Description: Get details of a shipment
         **/
         public func getShipmentById(
             shipmentId: String,
@@ -8261,8 +8361,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get Shipment reasons by shipment id and order id for application based on application Id
-        * Description: Get Shipment Reasons
+        * Summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+        * Description: Get reasons behind full or partial cancellation of a shipment
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -8303,8 +8403,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Update Shipment status by shipment id and order id for application based on application Id
-        * Description: Update Shipment Status
+        * Summary: Use this API to update the status of a shipment using its shipment ID.
+        * Description: Update the shipment status
         **/
         public func updateShipmentStatus(
             shipmentId: String,
@@ -8345,8 +8445,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Track Shipment by shipment id and order id for application based on application Id
-        * Description: Shipment Track
+        * Summary: Use this API to track a shipment using its shipment ID.
+        * Description: Track shipment
         **/
         public func trackShipment(
             shipmentId: String,
@@ -8387,8 +8487,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get POS Order by order id for application based on application Id
-        * Description: Get Order By Fynd Order Id
+        * Summary: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+        * Description: Get POS Order
         **/
         public func getPosOrderById(
             orderId: String,
@@ -8785,7 +8885,7 @@ This operation will return the url for the uploaded file.
     
     
     
-    public class PosCart {
+    public class Feedback {
         
         var config: ApplicationConfig
 
@@ -8795,553 +8895,12 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Fetch all Items Added to  Cart
-        * Description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+        * Summary: Post a new abuse request
+        * Description: Use this API to report a specific entity (question/review/comment) for abuse.
         **/
-        public func getCart(
-            uid: Int?,
-            i: Bool?,
-            b: Bool?,
-            assignCardId: Int?,
-            
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-            if let value = assignCardId {
-                xQuery["assign_card_id"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/detail",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Fetch Last-Modified timestamp
-        * Description: Fetch Last-Modified timestamp in header metadata
-        **/
-        public func getCartLastModified(
-            uid: Int?,
-            
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "head",
-                url: "/service/application/pos/cart/v1.0/detail",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = data.dictionary 
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Add Items to Cart
-        * Description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
-        **/
-        public func addItems(
-            i: Bool?,
-            b: Bool?,
-            body: AddCartRequest,
-            onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/pos/cart/v1.0/detail",
-                query: xQuery,
-                extraHeaders:  [],
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(AddCartResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Update Items already added to Cart
-        * Description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-        **/
-        public func updateCart(
-            uid: Int?,
-            i: Bool?,
-            b: Bool?,
-            body: UpdateCartRequest,
-            onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/application/pos/cart/v1.0/detail",
-                query: xQuery,
-                extraHeaders:  [],
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateCartResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Cart item count
-        * Description: Get total count of item present in cart
-        **/
-        public func getItemCount(
-            uid: Int?,
-            
-            onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/basic",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartItemCountResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Fetch Coupon
-        * Description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
-        **/
-        public func getCoupons(
-            uid: Int?,
-            
-            onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/coupon",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCouponResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Apply Coupon
-        * Description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
-</ul>
-        **/
-        public func applyCoupon(
-            i: Bool?,
-            b: Bool?,
-            p: Bool?,
-            uid: Int?,
-            body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/pos/cart/v1.0/coupon",
-                query: xQuery,
-                extraHeaders:  [],
-                body: body.dictionary,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Remove Coupon Applied
-        * Description: Remove Coupon applied on the cart by passing uid in request body.
-        **/
-        public func removeCoupon(
-            uid: Int?,
-            
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "delete",
-                url: "/service/application/pos/cart/v1.0/coupon",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Get discount offers based on quantity
-        * Description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
-        **/
-        public func getBulkDiscountOffers(
-            itemId: Int?,
-            articleId: String?,
-            uid: Int?,
-            slug: String?,
-            
-            onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = itemId {
-                xQuery["item_id"] = value
-            }
-            
-            if let value = articleId {
-                xQuery["article_id"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = slug {
-                xQuery["slug"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/bulk-price",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(BulkPriceResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Fetch Address
-        * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-        **/
-        public func getAddresses(
-            uid: Int?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
-            
-            onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-            
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-            
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-            
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/address",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAddressesResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Add Address to the account
-        * Description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-        **/
-        public func addAddress(
-            body: Address,
-            onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
+        public func createAbuseReport(
+            body: ReportAbuseRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -9350,7 +8909,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/pos/cart/v1.0/address",
+                url: "/service/application/feedback/v1.0/abuse",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -9363,7 +8922,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SaveAddressResponse.self, from: data)
+                        let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9377,80 +8936,12 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Fetch Single Address
-        * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Summary: Update abuse details
+        * Description: Use this API to update the abuse details, i.e. status and description.
         **/
-        public func getAddressById(
-            id: Int,
-            uid: Int?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
-            
-            onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-            
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-            
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-            
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/address/\(id)",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Address.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Update Address alreay added to account
-        * Description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-        **/
-        public func updateAddress(
-            id: Int,
-            body: Address,
-            onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
+        public func updateAbuseReport(
+            body: UpdateAbuseStatusRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -9459,7 +8950,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/pos/cart/v1.0/address/\(id)",
+                url: "/service/application/feedback/v1.0/abuse",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -9472,7 +8963,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateAddressResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9486,13 +8977,611 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Remove Address Associated to the account
-        * Description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+        * Summary: Get a list of abuse data
+        * Description: Use this API to retrieve a list of abuse data from entity type and entity ID.
         **/
-        public func removeAddress(
-            id: Int,
+        public func getAbuseReports(
+            entityId: String,
+            entityType: String,
+            id: String?,
+            pageId: String?,
+            pageSize: Int?,
             
-            onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ReportAbuseGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/abuse/entity/\(entityType)/entityId/\(entityId)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ReportAbuseGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAbuseReports
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAbuseReportsPaginator(
+            entityId: String,
+            entityType: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ReportAbuseGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReportAbuseGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getAbuseReports(
+                        
+                        entityId: entityId,
+                        entityType: entityType,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get a list of attribute data
+        * Description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
+        **/
+        public func getAttributes(
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: AttributeResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/attributes",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AttributeResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAttributes
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAttributesPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<AttributeResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<AttributeResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAttributes(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Add a new attribute request
+        * Description: Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
+        **/
+        public func createAttribute(
+            body: SaveAttributeRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/attributes",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get data of a single attribute
+        * Description: Use this API to retrieve a single attribute data from a given slug.
+        **/
+        public func getAttribute(
+            slug: String,
+            
+            onResponse: @escaping (_ response: Attribute?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/attributes/\(slug)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(Attribute.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update details of an attribute 
+        * Description: Use this API update the attribute's name and description.
+        **/
+        public func updateAttribute(
+            slug: String,
+            body: UpdateAttributeRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/attributes/\(slug)",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Post a new comment
+        * Description: Use this API to add a new comment for a specific entity.
+        **/
+        public func createComment(
+            body: CommentRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/comment",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update the status of a comment
+        * Description: Use this API to update the comment status (active or approve) along with new comment if any.
+        **/
+        public func updateComment(
+            body: UpdateCommentRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/application/feedback/v1.0/comment",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get a list of comments
+        * Description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
+        **/
+        public func getComments(
+            entityType: String,
+            id: String?,
+            entityId: String?,
+            userId: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: CommentGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = entityId {
+                xQuery["entity_id"] = value
+            }
+            
+            if let value = userId {
+                xQuery["user_id"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/comment/entity/\(entityType)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CommentGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getComments
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCommentsPaginator(
+            entityType: String,
+            id: String?,
+            entityId: String?,
+            userId: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<CommentGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<CommentGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getComments(
+                        
+                        entityType: entityType,
+                        id: id,
+                        entityId: entityId,
+                        userId: userId,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Checks eligibility to rate and review, and shows the cloud media configuration
+        * Description: Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
+        **/
+        public func checkEligibility(
+            entityType: String,
+            entityId: String,
+            
+            onResponse: @escaping (_ response: CheckEligibilityResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/config/entity/\(entityType)/entityId/\(entityId)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CheckEligibilityResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Delete Media
+        * Description: Use this API to delete media for an entity ID.
+        **/
+        public func deleteMedia(
+            
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -9501,7 +9590,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
-                url: "/service/application/pos/cart/v1.0/address/\(id)",
+                url: "/service/application/feedback/v1.0/media/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
@@ -9514,7 +9603,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeleteAddressResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9528,37 +9617,22 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Select Address from All Addresses
-        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+        * Summary: Add Media
+        * Description: Use this API to add media to an entity, e.g. review.
         **/
-        public func selectAddress(
-            uid: Int?,
-            i: Bool?,
-            b: Bool?,
-            body: SelectCartAddressRequest,
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+        public func createMedia(
+            body: AddMediaListRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
+             
             
              
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/pos/cart/v1.0/select-address",
-                query: xQuery,
+                url: "/service/application/feedback/v1.0/media/",
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9570,7 +9644,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartResponse.self, from: data)
+                        let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9584,27 +9658,22 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Update Cart Payment
-        * Description: Update Cart Payment for Your Account
+        * Summary: Update Media
+        * Description: Use this API to update media (archive/approve) for an entity.
         **/
-        public func selectPaymentMode(
-            uid: String?,
-            body: UpdateCartPaymentRequest,
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+        public func updateMedia(
+            body: UpdateMediaListRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
+             
             
              
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/pos/cart/v1.0/payment",
-                query: xQuery,
+                url: "/service/application/feedback/v1.0/media/",
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9616,7 +9685,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9630,43 +9699,30 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get Cart Payment for valid coupon
-        * Description: Validate coupon for selected payment mode
+        * Summary: Get Media
+        * Description: Use this API to retrieve all media from an entity.
         **/
-        public func validateCouponForPayment(
-            uid: String?,
-            addressId: String?,
-            paymentMode: String?,
-            paymentIdentifier: String?,
-            aggregatorName: String?,
-            merchantCode: String?,
+        public func getMedias(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageId: String?,
+            pageSize: Int?,
             
-            onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: MediaGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
+            if let value = id {
+                xQuery["id"] = value
             }
             
-            if let value = addressId {
-                xQuery["address_id"] = value
+            if let value = pageId {
+                xQuery["page_id"] = value
             }
             
-            if let value = paymentMode {
-                xQuery["payment_mode"] = value
-            }
-            
-            if let value = paymentIdentifier {
-                xQuery["payment_identifier"] = value
-            }
-            
-            if let value = aggregatorName {
-                xQuery["aggregator_name"] = value
-            }
-            
-            if let value = merchantCode {
-                xQuery["merchant_code"] = value
+            if let value = pageSize {
+                xQuery["page_size"] = value
             }
             
              
@@ -9674,7 +9730,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/pos/cart/v1.0/payment/validate/",
+                url: "/service/application/feedback/v1.0/media/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -9687,7 +9743,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentCouponValidate.self, from: data)
+                        let response = Utility.decode(MediaGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9699,50 +9755,94 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get delivery date and options before checkout
-        * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+        * Summary: get paginator for getMedias
+        * Description: fetch the next page by calling .next(...) function
         **/
-        public func getShipments(
-            pickAtStoreUid: Int?,
-            orderingStoreId: Int?,
-            p: Bool?,
-            uid: Int?,
-            addressId: Int?,
-            areaCode: String?,
-            orderType: String?,
+        public func getMediasPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageSize: Int?
             
-            onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
+            ) -> Paginator<MediaGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<MediaGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getMedias(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get a review summary
+        * Description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
+        **/
+        public func getReviewSummaries(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ReviewMetricGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
-            if let value = pickAtStoreUid {
-                xQuery["pick_at_store_uid"] = value
+            if let value = id {
+                xQuery["id"] = value
             }
             
-            if let value = orderingStoreId {
-                xQuery["ordering_store_id"] = value
+            if let value = pageId {
+                xQuery["page_id"] = value
             }
             
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-            
-            if let value = areaCode {
-                xQuery["area_code"] = value
-            }
-            
-            if let value = orderType {
-                xQuery["order_type"] = value
+            if let value = pageSize {
+                xQuery["page_size"] = value
             }
             
              
@@ -9750,7 +9850,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/pos/cart/v1.0/shipment",
+                url: "/service/application/feedback/v1.0/rating/summary/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -9763,7 +9863,110 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartShipmentsResponse.self, from: data)
+                        let response = Utility.decode(ReviewMetricGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getReviewSummaries
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getReviewSummariesPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ReviewMetricGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReviewMetricGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviewSummaries(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Add customer reviews
+        * Description: Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
+        **/
+        public func createReview(
+            body: UpdateReviewRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/review/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9777,47 +9980,22 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Update shipment delivery type and quantity before checkout
-        * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+        * Summary: Update customer reviews
+        * Description: Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
         **/
-        public func updateShipments(
-            i: Bool?,
-            p: Bool?,
-            uid: Int?,
-            addressId: Int?,
-            orderType: String?,
-            body: UpdateCartShipmentRequest,
-            onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
+        public func updateReview(
+            body: UpdateReviewRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-            
-            if let value = orderType {
-                xQuery["order_type"] = value
-            }
+             
             
              
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/pos/cart/v1.0/shipment",
-                query: xQuery,
+                url: "/service/application/feedback/v1.0/review/",
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9829,7 +10007,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartShipmentsResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9843,29 +10021,81 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Checkout Cart
-        * Description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
+        * Summary: Get list of customer reviews
+        * Description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
         **/
-        public func checkoutCart(
-            uid: Int?,
-            body: CartPosCheckoutRequest,
-            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
+        public func getReviews(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            userId: String?,
+            media: String?,
+            rating: [Double]?,
+            attributeRating: [String]?,
+            facets: Bool?,
+            sort: String?,
+            active: Bool?,
+            approve: Bool?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ReviewGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = userId {
+                xQuery["user_id"] = value
+            }
+            
+            if let value = media {
+                xQuery["media"] = value
+            }
+            
+            if let value = rating {
+                xQuery["rating"] = value
+            }
+            
+            if let value = attributeRating {
+                xQuery["attribute_rating"] = value
+            }
+            
+            if let value = facets {
+                xQuery["facets"] = value
+            }
+            
+            if let value = sort {
+                xQuery["sort"] = value
+            }
+            
+            if let value = active {
+                xQuery["active"] = value
+            }
+            
+            if let value = approve {
+                xQuery["approve"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
             }
             
              
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/application/pos/cart/v1.0/checkout",
+                method: "get",
+                url: "/service/application/feedback/v1.0/review/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
-                body: body.dictionary,
+                body: nil,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -9875,7 +10105,173 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
+                        let response = Utility.decode(ReviewGetResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getReviews
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getReviewsPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            userId: String?,
+            media: String?,
+            rating: [Double]?,
+            attributeRating: [String]?,
+            facets: Bool?,
+            sort: String?,
+            active: Bool?,
+            approve: Bool?,
+            pageSize: Int?
+            
+            ) -> Paginator<ReviewGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReviewGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviews(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        userId: userId,
+                        media: media,
+                        rating: rating,
+                        attributeRating: attributeRating,
+                        facets: facets,
+                        sort: sort,
+                        active: active,
+                        approve: approve,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get the feedback templates for a product or l3
+        * Description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
+        **/
+        public func getTemplates(
+            templateId: String?,
+            entityId: String?,
+            entityType: String?,
+            
+            onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = templateId {
+                xQuery["template_id"] = value
+            }
+            
+            if let value = entityId {
+                xQuery["entity_id"] = value
+            }
+            
+            if let value = entityType {
+                xQuery["entity_type"] = value
+            }
+            
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/feedback/v1.0/template/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TemplateGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9889,27 +10285,63 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Update Cart Meta
-        * Description: Update cart meta like checkout_mode, gstin.
+        * Summary: Create a new question
+        * Description: Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
         **/
-        public func updateCartMeta(
-            uid: Int?,
-            body: CartMetaRequest,
-            onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
+        public func createQuestion(
+            body: CreateQNARequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
+             
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
+             
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/feedback/v1.0/template/qna/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InsertResponse.self, from: data)
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Update a question
+        * Description: Use this API to update the status of a question, its tags and its choices.
+        **/
+        public func updateQuestion(
+            body: UpdateQNARequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+             
             
              
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/pos/cart/v1.0/meta",
-                query: xQuery,
+                url: "/service/application/feedback/v1.0/template/qna/",
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
@@ -9921,7 +10353,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartMetaResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9935,21 +10367,40 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get available delivery modes for cart
-        * Description: Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
+        * Summary: Get a list of QnA
+        * Description: Use this API to retrieve a list of questions and answers for a given entity.
         **/
-        public func getAvailableDeliveryModes(
-            areaCode: String,
-            uid: Int?,
+        public func getQuestionAndAnswers(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            userId: String?,
+            showAnswer: Bool?,
+            pageId: String?,
+            pageSize: Int?,
             
-            onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: QNAGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
-            xQuery["area_code"] = areaCode
             
+            if let value = id {
+                xQuery["id"] = value
+            }
             
-            if let value = uid {
-                xQuery["uid"] = value
+            if let value = userId {
+                xQuery["user_id"] = value
+            }
+            
+            if let value = showAnswer {
+                xQuery["show_answer"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
             }
             
              
@@ -9957,7 +10408,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/pos/cart/v1.0/available-delivery-mode",
+                url: "/service/application/feedback/v1.0/template/qna/entity/\(entityType)/entityId/\(entityId)",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -9970,7 +10421,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartDeliveryModesResponse.self, from: data)
+                        let response = Utility.decode(QNAGetResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9982,26 +10433,117 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get list of stores for give uids
-        * Description: Get list of stores by providing pick up available store uids.
+        * Summary: get paginator for getQuestionAndAnswers
+        * Description: fetch the next page by calling .next(...) function
         **/
-        public func getStoreAddressByUid(
-            storeUid: Int,
+        public func getQuestionAndAnswersPaginator(
+            entityType: String,
+            entityId: String,
+            id: String?,
+            userId: String?,
+            showAnswer: Bool?,
+            pageSize: Int?
             
-            onResponse: @escaping (_ response: StoreDetailsResponse?, _ error: FDKError?) -> Void
+            ) -> Paginator<QNAGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<QNAGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getQuestionAndAnswers(
+                        
+                        entityType: entityType,
+                        entityId: entityId,
+                        id: id,
+                        userId: userId,
+                        showAnswer: showAnswer,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Get a list of votes
+        * Description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
+        **/
+        public func getVotes(
+            id: String?,
+            refType: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: VoteResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
-            xQuery["store_uid"] = storeUid
             
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = refType {
+                xQuery["ref_type"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
             
              
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/pos/cart/v1.0/store-address",
+                url: "/service/application/feedback/v1.0/vote/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -10014,7 +10556,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StoreDetailsResponse.self, from: data)
+                        let response = Utility.decode(VoteResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10026,14 +10568,69 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Generate Cart sharing link token
-        * Description: Generates shared cart snapshot and returns shortlink token
+        * Summary: get paginator for getVotes
+        * Description: fetch the next page by calling .next(...) function
         **/
-        public func getCartShareLink(
-            body: GetShareCartLinkRequest,
-            onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
+        public func getVotesPaginator(
+            id: String?,
+            refType: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<VoteResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<VoteResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getVotes(
+                        
+                        id: id,
+                        refType: refType,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        /**
+        *
+        * Summary: Create a new vote
+        * Description: Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
+        **/
+        public func createVote(
+            body: VoteRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -10042,7 +10639,7 @@ This operation will return the url for the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/pos/cart/v1.0/share-cart",
+                url: "/service/application/feedback/v1.0/vote/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -10055,7 +10652,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
+                        let response = Utility.decode(InsertResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10069,13 +10666,12 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get shared cart snapshot and cart response
-        * Description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+        * Summary: Update a vote
+        * Description: Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
         **/
-        public func getCartSharedItems(
-            token: String,
-            
-            onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
+        public func updateVote(
+            body: UpdateVoteRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -10083,11 +10679,11 @@ This operation will return the url for the uploaded file.
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
-                url: "/service/application/pos/cart/v1.0/share-cart/\(token)",
+                method: "put",
+                url: "/service/application/feedback/v1.0/vote/",
                 query: nil,
                 extraHeaders:  [],
-                body: nil,
+                body: body.dictionary,
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -10097,50 +10693,7 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SharedCartResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Merge or Replace existing cart
-        * Description: Merge or Replace cart based on `action` parameter with shared cart of `token`
-        **/
-        public func updateCartWithSharedItems(
-            token: String,
-            action: String,
-            
-            onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/pos/cart/v1.0/share-cart/\(token)/\(action)",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SharedCartResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10166,8 +10719,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get Tat Product
-        * Description: Get Tat Product
+        * Summary: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
+        * Description: Get TAT of a product
         **/
         public func getTatProduct(
             body: GetTatProductReqBody,
@@ -10207,8 +10760,8 @@ This operation will return the url for the uploaded file.
         
         /**
         *
-        * Summary: Get City from Pincode
-        * Description: Get City from Pincode
+        * Summary: Use this API to retrieve a city by its PIN Code.
+        * Description: Get city from PIN Code
         **/
         public func getPincodeCity(
             pincode: String,
