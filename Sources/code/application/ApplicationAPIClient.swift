@@ -1,10 +1,23 @@
 import Foundation
 class ApplicationAPIClient {
-    static func execute(config: ApplicationConfig, method: String, url: String, query: [String: Any]?, extraHeaders: [(key: String, value: String)] = [], body: [String: Any]?, onResponse: @escaping OnResponse) {
+    static func execute(config: ApplicationConfig,
+                        method: String,
+                        url: String,
+                        query: [String: Any]?,
+                        extraHeaders: [(key: String, value: String)] = [],
+                        body: [String: Any]?,
+                        responseType: String = "application/json",
+                        onResponse: @escaping OnResponse) {
         var headers = [
             (key: "Authorization", value: "Bearer " + "\(config.applicationId):\(config.applicationToken)".asBase64)
         ]
         headers.append(contentsOf: extraHeaders)
-        AlmofireHelper.request(config.domain.appendAsPath(url), query: query, parameters: body, type: method, headers: headers, onResponse: onResponse)
+        AlmofireHelper.request(config.domain.appendAsPath(url),
+                                query: query,
+                                parameters: body,
+                                type: method,
+                                headers: headers,
+                                responseType: responseType,
+                                onResponse: onResponse)
     }
 }

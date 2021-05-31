@@ -55,7 +55,7 @@ class RequestSigner {
         let finalSignatureData = [dateStr,
                                   signingData.joined(separator: "\n").sha256()]
         let signatureStr = finalSignatureData.joined(separator: "\n")
-        let signature = try? CryptoSwift.HMAC(key: signingkey, variant: .sha256).authenticate(signatureStr.bytes)
+        let signature = try? HMAC(key: signingkey, variant: .sha256).authenticate(signatureStr.bytes).toHexString()
         //let signature = signatureStr.hmac(algorithm: .SHA256, key: signingkey)
         if let hmacSignature = signature {
             finalHeaders.append((key: "x-fp-signature", value: "v1:\(hmacSignature)")) 

@@ -15,6 +15,7 @@
 * [Order](#Order) - Handles Platform websites OMS 
 * [Rewards](#Rewards) - Earn and redeem reward points 
 * [Feedback](#Feedback) - User Reviews and Rating System 
+* [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
 
 ----
@@ -274,6 +275,37 @@
     * [getVotes](#getvotes)
     * [createVote](#createvote)
     * [updateVote](#updatevote)
+    
+
+* [PosCart](#PosCart)
+  * Methods
+    * [getCart](#getcart)
+    * [getCartLastModified](#getcartlastmodified)
+    * [addItems](#additems)
+    * [updateCart](#updatecart)
+    * [getItemCount](#getitemcount)
+    * [getCoupons](#getcoupons)
+    * [applyCoupon](#applycoupon)
+    * [removeCoupon](#removecoupon)
+    * [getBulkDiscountOffers](#getbulkdiscountoffers)
+    * [applyRewardPoints](#applyrewardpoints)
+    * [getAddresses](#getaddresses)
+    * [addAddress](#addaddress)
+    * [getAddressById](#getaddressbyid)
+    * [updateAddress](#updateaddress)
+    * [removeAddress](#removeaddress)
+    * [selectAddress](#selectaddress)
+    * [selectPaymentMode](#selectpaymentmode)
+    * [validateCouponForPayment](#validatecouponforpayment)
+    * [getShipments](#getshipments)
+    * [updateShipments](#updateshipments)
+    * [checkoutCart](#checkoutcart)
+    * [updateCartMeta](#updatecartmeta)
+    * [getAvailableDeliveryModes](#getavailabledeliverymodes)
+    * [getStoreAddressByUid](#getstoreaddressbyuid)
+    * [getCartShareLink](#getcartsharelink)
+    * [getCartSharedItems](#getcartshareditems)
+    * [updateCartWithSharedItems](#updatecartwithshareditems)
     
 
 * [Logistic](#Logistic)
@@ -4349,10 +4381,10 @@ Use this API to get the details of a blog using its slug. Details include the ti
 
 
 
-Success. Returns a JSON object with blog details. Check the example shown below or refer `CustomBlogSchema` for more details.
+Success. Returns a JSON object with blog details. Check the example shown below or refer `BlogSchema` for more details.
 
 
-Schema: `CustomBlogSchema`
+Schema: `BlogSchema`
 
 
 
@@ -8949,6 +8981,969 @@ Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## PosCart
+
+
+#### getCart
+Fetch all Items Added to  Cart
+
+```swift
+poscart.getCart(uid: uid, i: i, b: b, assignCardId: assignCardId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |    
+| i | Bool? |  |    
+| b | Bool? |  |    
+| assignCardId | Int? |  |  
+
+Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+
+*Success Response:*
+
+
+
+The Cart object. See example below or refer CartResponse for details
+
+
+Schema: `CartResponse`
+
+
+
+
+
+
+---
+
+
+#### getCartLastModified
+Fetch Last-Modified timestamp
+
+```swift
+poscart.getCartLastModified(uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |  
+
+Fetch Last-Modified timestamp in header metadata
+
+*Success Response:*
+
+
+
+Fetch Last-Modified Timestamp Response
+
+
+
+
+
+
+---
+
+
+#### addItems
+Add Items to Cart
+
+```swift
+poscart.addItems(i: i, b: b, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| i | Bool? |  |    
+| b | Bool? |  |  
+
+<p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+
+*Success Response:*
+
+
+
+Response of the cart object including all item details included in .the cart,coupons etc.
+
+
+Schema: `AddCartResponse`
+
+
+
+
+
+
+---
+
+
+#### updateCart
+Update Items already added to Cart
+
+```swift
+poscart.updateCart(uid: uid, i: i, b: b, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |    
+| i | Bool? |  |    
+| b | Bool? |  |  
+
+Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+
+*Success Response:*
+
+
+
+Response of the cart object including all item with their updated details included in .the cart,coupons etc..
+
+
+Schema: `UpdateCartResponse`
+
+
+
+
+
+
+---
+
+
+#### getItemCount
+Cart item count
+
+```swift
+poscart.getItemCount(uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? | Cart id |  
+
+Get total count of item present in cart
+
+*Success Response:*
+
+
+
+OK
+
+
+Schema: `CartItemCountResponse`
+
+
+
+
+
+
+---
+
+
+#### getCoupons
+Fetch Coupon
+
+```swift
+poscart.getCoupons(uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |  
+
+Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+
+*Success Response:*
+
+
+
+Returns The Couppon object which has list of all available_coupon applicale for the cart. See example below or refer GetCouponResponse for details
+
+
+Schema: `GetCouponResponse`
+
+
+
+
+
+
+---
+
+
+#### applyCoupon
+Apply Coupon
+
+```swift
+poscart.applyCoupon(i: i, b: b, p: p, uid: uid, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| i | Bool? |  |    
+| b | Bool? |  |    
+| p | Bool? |  |    
+| uid | Int? |  |  
+
+<p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
+</ul>
+
+*Success Response:*
+
+
+
+Response of the Coupon object including all item details included in .the cart,coupons applied etc.
+
+
+Schema: `CartResponse`
+
+
+
+
+
+
+---
+
+
+#### removeCoupon
+Remove Coupon Applied
+
+```swift
+poscart.removeCoupon(uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? | Cart id |  
+
+Remove Coupon applied on the cart by passing uid in request body.
+
+*Success Response:*
+
+
+
+Response of the Coupon object including all item details included in .the cart,coupons removed etc.
+
+
+Schema: `CartResponse`
+
+
+
+
+
+
+---
+
+
+#### getBulkDiscountOffers
+Get discount offers based on quantity
+
+```swift
+poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| itemId | Int? | Item id |    
+| articleId | String? | Article mongo id |    
+| uid | Int? | Item id |    
+| slug | String? | Item unique url from product page |  
+
+List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+
+*Success Response:*
+
+
+
+Offers found or not found with valid input
+
+
+Schema: `BulkPriceResponse`
+
+
+
+
+
+Unhandled api error
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+---
+
+
+#### applyRewardPoints
+Fetch all Items Added to  Cart
+
+```swift
+poscart.applyRewardPoints(uid: uid, i: i, b: b) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |    
+| i | Bool? |  |    
+| b | Bool? |  |  
+
+Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+
+*Success Response:*
+
+
+
+The Cart object. See example below or refer CartResponse for details
+
+
+Schema: `CartResponse`
+
+
+
+
+
+
+---
+
+
+#### getAddresses
+Fetch Address
+
+```swift
+poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |    
+| mobileNo | String? |  |    
+| checkoutMode | String? |  |    
+| tags | String? |  |    
+| isDefault | Bool? |  |  
+
+Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+
+*Success Response:*
+
+
+
+Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressesResponse for details
+
+
+Schema: `GetAddressesResponse`
+
+
+
+
+
+
+---
+
+
+#### addAddress
+Add Address to the account
+
+```swift
+poscart.addAddress(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+<p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+
+*Success Response:*
+
+
+
+Return Address Id on successfull completion of the request.
+
+
+Schema: `SaveAddressResponse`
+
+
+
+
+
+
+---
+
+
+#### getAddressById
+Fetch Single Address
+
+```swift
+poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| id | Int? |  |    
+| uid | Int? |  |    
+| mobileNo | String? |  |    
+| checkoutMode | String? |  |    
+| tags | String? |  |    
+| isDefault | Bool? |  |  
+
+Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+
+*Success Response:*
+
+
+
+Returns The Address object which has list of all address saved for the account. See example below or refer Address for details
+
+
+Schema: `Address`
+
+
+
+
+
+
+---
+
+
+#### updateAddress
+Update Address alreay added to account
+
+```swift
+poscart.updateAddress(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| id | Int? | Address id |  
+
+Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+
+*Success Response:*
+
+
+
+Response of the Address object containing address_id and sucess message.
+
+
+Schema: `UpdateAddressResponse`
+
+
+
+
+
+
+---
+
+
+#### removeAddress
+Remove Address Associated to the account
+
+```swift
+poscart.removeAddress(id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| id | Int? | Address id |  
+
+Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer DeleteAddressResponse
+
+
+Schema: `DeleteAddressResponse`
+
+
+
+
+
+
+---
+
+
+#### selectAddress
+Select Address from All Addresses
+
+```swift
+poscart.selectAddress(uid: uid, i: i, b: b, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |    
+| i | Bool? |  |    
+| b | Bool? |  |  
+
+<p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+
+*Success Response:*
+
+
+
+Response of the Address object containing Cart Object and success message.  .
+
+
+Schema: `CartResponse`
+
+
+
+
+
+Address or Pincode Error
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+---
+
+
+#### selectPaymentMode
+Update Cart Payment
+
+```swift
+poscart.selectPaymentMode(uid: uid, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | String? |  |  
+
+Update Cart Payment for Your Account
+
+*Success Response:*
+
+
+
+Cart response with payment options
+
+
+Schema: `CartResponse`
+
+
+
+
+
+
+---
+
+
+#### validateCouponForPayment
+Get Cart Payment for valid coupon
+
+```swift
+poscart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | String? |  |    
+| addressId | String? |  |    
+| paymentMode | String? |  |    
+| paymentIdentifier | String? |  |    
+| aggregatorName | String? |  |    
+| merchantCode | String? |  |  
+
+Validate coupon for selected payment mode
+
+*Success Response:*
+
+
+
+Cart Affiliates.
+
+
+Schema: `PaymentCouponValidate`
+
+
+
+
+
+
+---
+
+
+#### getShipments
+Get delivery date and options before checkout
+
+```swift
+poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingStoreId, p: p, uid: uid, addressId: addressId, areaCode: areaCode, orderType: orderType) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| pickAtStoreUid | Int? |  |    
+| orderingStoreId | Int? |  |    
+| p | Bool? | Get payment options or not |    
+| uid | Int? | Cart id |    
+| addressId | Int? | Address id |    
+| areaCode | String? | Destination pincode. |    
+| orderType | String? | Order type of shipment |  
+
+Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+
+*Success Response:*
+
+
+
+OK
+
+
+Schema: `CartShipmentsResponse`
+
+
+
+
+
+Unhandled api error
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+---
+
+
+#### updateShipments
+Update shipment delivery type and quantity before checkout
+
+```swift
+poscart.updateShipments(i: i, p: p, uid: uid, addressId: addressId, orderType: orderType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| i | Bool? | Get items or not |    
+| p | Bool? | Get payment options or not |    
+| uid | Int? | Cart id |    
+| addressId | Int? | Address id |    
+| orderType | String? | Order is hand over or home delivery |  
+
+Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+
+*Success Response:*
+
+
+
+OK
+
+
+Schema: `CartShipmentsResponse`
+
+
+
+
+
+Unhandled api error
+
+
+Schema: `[String: Any]`
+
+
+
+
+
+
+---
+
+
+#### checkoutCart
+Checkout Cart
+
+```swift
+poscart.checkoutCart(uid: uid, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? |  |  
+
+Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
+
+*Success Response:*
+
+
+
+OK
+
+
+Schema: `CartCheckoutResponse`
+
+
+
+
+
+
+---
+
+
+#### updateCartMeta
+Update Cart Meta
+
+```swift
+poscart.updateCartMeta(uid: uid, body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| uid | Int? | Cart id received in get cart. |  
+
+Update cart meta like checkout_mode, gstin.
+
+*Success Response:*
+
+
+
+Cart meta updated successfully
+
+
+Schema: `CartMetaResponse`
+
+
+
+
+
+Missing required Field
+
+
+Schema: `CartMetaMissingResponse`
+
+
+
+
+
+
+---
+
+
+#### getAvailableDeliveryModes
+Get available delivery modes for cart
+
+```swift
+poscart.getAvailableDeliveryModes(areaCode: areaCode, uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| areaCode | String? |  |    
+| uid | Int? |  |  
+
+Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
+
+*Success Response:*
+
+
+
+Returns Available delivery modes for cart and pick up available store uid for current cart items
+
+
+Schema: `CartDeliveryModesResponse`
+
+
+
+
+
+
+---
+
+
+#### getStoreAddressByUid
+Get list of stores for give uids
+
+```swift
+poscart.getStoreAddressByUid(storeUid: storeUid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| storeUid | Int? |  |  
+
+Get list of stores by providing pick up available store uids.
+
+*Success Response:*
+
+
+
+Returns available store information with its address
+
+
+Schema: `StoreDetailsResponse`
+
+
+
+
+
+
+---
+
+
+#### getCartShareLink
+Generate Cart sharing link token
+
+```swift
+poscart.getCartShareLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Generates shared cart snapshot and returns shortlink token
+
+*Success Response:*
+
+
+
+Token Generated successfully
+
+
+Schema: `GetShareCartLinkResponse`
+
+
+
+
+
+
+---
+
+
+#### getCartSharedItems
+Get shared cart snapshot and cart response
+
+```swift
+poscart.getCartSharedItems(token: token) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| token | String? | Shared short link token. |  
+
+Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+
+*Success Response:*
+
+
+
+Cart for valid token
+
+
+Schema: `SharedCartResponse`
+
+
+
+
+
+No cart found for sent token
+
+
+Schema: `SharedCartResponse`
+
+
+
+
+
+
+---
+
+
+#### updateCartWithSharedItems
+Merge or Replace existing cart
+
+```swift
+poscart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| token | String? | Shared short link token. |    
+| action | String? | Operation to perform on existing cart, whether to merge or replace. |  
+
+Merge or Replace cart based on `action` parameter with shared cart of `token`
+
+*Success Response:*
+
+
+
+Success of Merge or Replace of cart with `shared_cart_details`                    containing shared cart details in response
+
+
+Schema: `SharedCartResponse`
 
 
 

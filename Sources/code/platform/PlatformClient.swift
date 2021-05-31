@@ -77,6 +77,8 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
         * Summary: Gets the list of company level tickets and/or ticket filters depending on query params
@@ -137,6 +139,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -147,6 +150,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(TicketList.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -258,6 +262,8 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
         * Summary: Creates a company level ticket
@@ -278,6 +284,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -288,6 +295,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Ticket.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -297,6 +305,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -322,6 +332,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -332,6 +343,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Ticket.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -341,6 +353,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -365,6 +379,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -375,6 +390,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Ticket.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -384,6 +400,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -410,6 +428,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -420,6 +439,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(TicketHistory.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -429,6 +449,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -453,6 +475,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -463,6 +486,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(TicketHistoryList.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -498,6 +522,8 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
         * Summary: Get invoices
@@ -518,6 +544,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -528,6 +555,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Invoices.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -537,6 +565,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -561,6 +591,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -571,6 +602,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Invoice.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -580,6 +612,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -603,6 +637,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -613,6 +648,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriptionCustomer.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -622,6 +658,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -645,6 +683,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -655,6 +694,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriptionCustomer.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -664,6 +704,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -688,6 +730,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -698,6 +741,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriptionStatus.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -707,6 +751,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -730,6 +776,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -740,6 +787,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriptionLimit.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -749,6 +797,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -772,6 +822,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -782,6 +833,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriptionActivateRes.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -791,6 +843,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -814,6 +868,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -824,6 +879,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CancelSubscriptionRes.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -847,6 +903,8 @@ public class PlatformClient {
             self.config = config
             self.companyId = config.companyId
         }
+        
+        
         
         
         
@@ -905,6 +963,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -915,6 +974,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SystemNotifications.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1005,6 +1065,8 @@ public class PlatformClient {
         
         
         
+        
+        
         /**
         *
         * Summary: Get All Payouts
@@ -1030,6 +1092,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1040,6 +1103,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PayoutsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1049,6 +1113,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1072,6 +1138,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1082,6 +1149,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PayoutResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1091,6 +1159,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1115,6 +1185,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1125,6 +1196,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UpdatePayoutResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1134,6 +1206,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1158,6 +1232,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1168,6 +1243,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UpdatePayoutResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1177,6 +1253,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1201,6 +1279,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1211,6 +1290,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DeletePayoutResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1220,6 +1300,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1243,6 +1325,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1253,6 +1336,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriptionPaymentMethodResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1262,6 +1346,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1289,6 +1375,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1299,6 +1386,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DeleteSubscriptionPaymentMethodResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1308,6 +1396,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1331,6 +1421,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1341,6 +1432,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriptionConfigResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1350,6 +1442,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1373,6 +1467,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1383,6 +1478,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SaveSubscriptionSetupIntentResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1392,6 +1488,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1421,6 +1519,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1431,6 +1530,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(IfscCodeResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1458,6 +1558,8 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
         * Summary: Update status of Shipment
@@ -1478,6 +1580,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1488,6 +1591,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UpdateShipmentStatusResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1497,6 +1601,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1522,6 +1628,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1532,6 +1639,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetActivityStatus.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1541,6 +1649,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1564,6 +1674,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1574,6 +1685,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UpdateProcessShipmenstRequestResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1583,6 +1695,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1607,6 +1721,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1616,7 +1731,8 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary 
+                        let response = data.dictionary
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1626,6 +1742,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1709,6 +1827,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1719,6 +1838,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OrderListing.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1728,6 +1848,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1766,6 +1888,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1776,6 +1899,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OrderDetails.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1785,6 +1909,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1868,6 +1994,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1878,6 +2005,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OrderPicklistListing.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1887,6 +2015,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1914,6 +2044,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1924,6 +2055,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetPingResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1933,6 +2065,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -1956,6 +2090,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1966,6 +2101,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetVoiceCallbackResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -1975,6 +2111,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2002,6 +2140,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2012,6 +2151,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetClickToCallResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2047,6 +2187,8 @@ public class PlatformClient {
         
         
         
+        
+        
         /**
         *
         * Summary: Create Product Bundle
@@ -2067,6 +2209,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2077,6 +2220,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2086,6 +2230,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2114,6 +2260,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2124,49 +2271,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetProductBundleListingResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get a particular Product Bundle details
-        * Description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-        **/
-        public func getProductBundleDetail(
-            id: String,
-            
-            onResponse: @escaping (_ response: GetProductBundleResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
                         
-                        let response = Utility.decode(GetProductBundleResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2176,6 +2281,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2200,6 +2307,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2210,6 +2318,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2219,6 +2328,55 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get a particular Product Bundle details
+        * Description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+        **/
+        public func getProductBundleDetail(
+            id: String,
+            
+            onResponse: @escaping (_ response: GetProductBundleResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetProductBundleResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -2242,6 +2400,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2252,6 +2411,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2261,6 +2421,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2309,6 +2471,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2319,49 +2482,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ListSizeGuide.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get a single size guide.
-        * Description: This API helps to get data associated to a size guide.
-        **/
-        public func getSizeGuide(
-            id: String,
-            
-            onResponse: @escaping (_ response: SizeGuideResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
                         
-                        let response = Utility.decode(SizeGuideResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2371,6 +2492,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2395,6 +2518,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2405,6 +2529,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2414,6 +2539,55 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get a single size guide.
+        * Description: This API helps to get data associated to a size guide.
+        **/
+        public func getSizeGuide(
+            id: String,
+            
+            onResponse: @escaping (_ response: SizeGuideResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SizeGuideResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -2452,6 +2626,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2462,6 +2637,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CrossSellingResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2471,6 +2647,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2495,6 +2673,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2505,6 +2684,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UpdatedResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2514,6 +2694,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2537,6 +2719,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2547,6 +2730,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetOptInPlatform.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2556,6 +2740,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2579,6 +2765,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2589,6 +2776,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OptinCompanyDetail.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2598,6 +2786,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2646,6 +2836,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2656,6 +2847,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OptinCompanyBrandDetailsView.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2665,6 +2857,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2688,6 +2882,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2698,6 +2893,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OptinCompanyMetrics.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2707,6 +2903,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2745,6 +2943,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2755,6 +2954,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OptinStoreDetails.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2764,6 +2964,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2788,6 +2990,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2798,6 +3001,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GenderDetail.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2807,6 +3011,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2834,6 +3040,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2844,6 +3051,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProdcutTemplateCategoriesResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2853,6 +3061,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2901,6 +3111,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2911,6 +3122,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DepartmentsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2920,6 +3132,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2944,6 +3158,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2954,6 +3169,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DepartmentsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -2963,6 +3179,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -2988,6 +3206,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -2998,6 +3217,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(TemplatesResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3007,6 +3227,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3031,6 +3253,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3041,6 +3264,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(TemplatesValidationResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3053,6 +3277,8 @@ public class PlatformClient {
         
         
         
+        
+        
         /**
         *
         * Summary: Download Product Template View
@@ -3061,7 +3287,7 @@ public class PlatformClient {
         public func downloadProductTemplateViews(
             slug: String,
             
-            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
              
             
@@ -3074,6 +3300,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "text/csv",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3083,7 +3310,8 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(String.self, from: data)
+                        let response = data
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3096,6 +3324,8 @@ public class PlatformClient {
         
         
         
+        
+        
         /**
         *
         * Summary: Download Product Template View
@@ -3104,7 +3334,7 @@ public class PlatformClient {
         public func downloadProductTemplateView(
             itemType: String,
             
-            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             xQuery["item_type"] = itemType
@@ -3118,6 +3348,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "text/csv",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3127,7 +3358,8 @@ public class PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(String.self, from: data)
+                        let response = data
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3137,6 +3369,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3162,6 +3396,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3172,6 +3407,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryValidationResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3181,6 +3417,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3204,6 +3442,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3214,6 +3453,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(HSNCodesResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3223,6 +3463,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3246,6 +3488,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3256,6 +3499,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProductDownloadsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3265,6 +3509,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3290,6 +3536,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3300,6 +3547,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProductConfigurationDownloads.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3309,6 +3557,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3332,6 +3582,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3342,6 +3593,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CategoryCreateResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3351,6 +3603,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3399,6 +3653,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3409,49 +3664,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CategoryResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get product category by uid
-        * Description: This API gets meta associated to product categories.
-        **/
-        public func getCategoryData(
-            uid: String,
-            
-            onResponse: @escaping (_ response: SingleCategoryResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
                         
-                        let response = Utility.decode(SingleCategoryResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3461,6 +3674,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3485,6 +3700,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3495,6 +3711,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CategoryUpdateResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3504,6 +3721,55 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get product category by uid
+        * Description: This API gets meta associated to product categories.
+        **/
+        public func getCategoryData(
+            uid: String,
+            
+            onResponse: @escaping (_ response: SingleCategoryResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SingleCategoryResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -3527,6 +3793,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3537,6 +3804,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3546,6 +3814,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3594,6 +3864,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3604,6 +3875,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProductListingResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3613,6 +3885,102 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a product.
+        * Description: This API allows to edit product.
+        **/
+        public func editProduct(
+            itemId: Int,
+            body: ProductCreateUpdate,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Delete a product.
+        * Description: This API allows to delete product.
+        **/
+        public func deleteProduct(
+            itemId: Int,
+            
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -3652,6 +4020,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3662,49 +4031,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Product.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Delete a product.
-        * Description: This API allows to delete product.
-        **/
-        public func deleteProduct(
-            itemId: Int,
-            
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "delete",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3716,47 +4043,6 @@ public class PlatformClient {
         }
         
         
-        
-        /**
-        *
-        * Summary: Edit a product.
-        * Description: This API allows to edit product.
-        **/
-        public func editProduct(
-            itemId: Int,
-            body: ProductCreateUpdate,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         
@@ -3780,6 +4066,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3790,6 +4077,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ValidateProduct.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3799,6 +4087,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3838,6 +4128,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3848,6 +4139,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProductListingResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3857,6 +4149,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3880,6 +4174,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3890,6 +4185,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3899,6 +4195,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3932,6 +4230,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3942,6 +4241,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProductBulkRequestList.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3951,6 +4251,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -3975,6 +4277,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -3985,6 +4288,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -3994,6 +4298,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4018,6 +4324,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4028,6 +4335,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4037,6 +4345,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4060,6 +4370,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4070,6 +4381,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProductTagsViewResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4079,6 +4391,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4102,6 +4416,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4112,6 +4427,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4121,6 +4437,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4154,6 +4472,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4164,6 +4483,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(BulkAssetResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4173,6 +4493,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4198,6 +4520,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4208,6 +4531,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ProductSizeDeleteResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4217,6 +4541,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4242,6 +4568,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4252,6 +4579,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4261,6 +4589,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4296,6 +4626,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4306,6 +4637,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4315,6 +4647,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4340,6 +4674,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4350,6 +4685,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryDelete.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4359,6 +4695,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4382,6 +4720,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4392,6 +4731,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CommonResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4401,6 +4741,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4434,6 +4776,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4444,6 +4787,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(BulkInventoryGet.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4453,6 +4797,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4476,6 +4822,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4486,6 +4833,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4495,6 +4843,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4518,6 +4868,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4528,6 +4879,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4537,6 +4889,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4560,6 +4914,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4570,6 +4925,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4579,6 +4935,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4602,6 +4960,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4612,6 +4971,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryExportJob.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4621,6 +4981,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4649,6 +5011,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4659,6 +5022,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryConfig.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4668,6 +5032,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4691,6 +5057,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4701,6 +5068,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(HsnCode.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4710,6 +5078,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4748,6 +5118,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4758,49 +5129,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(HsnCodesListingResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Fetch Hsn Code.
-        * Description: Fetch Hsn Code.
-        **/
-        public func getHsnCode(
-            id: String,
-            
-            onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
-                query: nil,
-                body: nil,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
                         
-                        let response = Utility.decode(HsnCode.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4810,6 +5139,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -4834,6 +5165,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4844,6 +5176,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(HsnCode.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4853,6 +5186,55 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Fetch Hsn Code.
+        * Description: Fetch Hsn Code.
+        **/
+        public func getHsnCode(
+            id: String,
+            
+            onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(HsnCode.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -4876,6 +5258,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4886,6 +5269,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(BulkHsnResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4916,46 +5300,6 @@ public class PlatformClient {
         }
         
         
-        /**
-        *
-        * Summary: Edit company profile
-        * Description: This API allows to edit the company profile of the seller account.
-        **/
-        public func updateCompany(
-            body: CompanyStoreSerializerRequest,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "patch",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
         
         
         /**
@@ -4978,6 +5322,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -4988,6 +5333,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -4997,6 +5343,54 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit company profile
+        * Description: This API allows to edit the company profile of the seller account.
+        **/
+        public func updateCompany(
+            body: CompanyStoreSerializerRequest,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "patch",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -5020,6 +5414,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5030,49 +5425,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MetricsSerializer.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Edit a brand.
-        * Description: This API allows to edit meta of a brand.
-        **/
-        public func editBrand(
-            brandId: String,
-            body: CreateUpdateBrandRequestSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponse.self, from: data)
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5082,6 +5435,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -5106,6 +5461,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5116,6 +5472,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5125,6 +5482,55 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a brand.
+        * Description: This API allows to edit meta of a brand.
+        **/
+        public func editBrand(
+            brandId: String,
+            body: CreateUpdateBrandRequestSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -5148,6 +5554,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5158,6 +5565,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5169,46 +5577,6 @@ public class PlatformClient {
         }
         
         
-        
-        /**
-        *
-        * Summary: Create a company brand mapping.
-        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
-        **/
-        public func createCompanyBrandMapping(
-            body: CompanyBrandPostRequestSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         
@@ -5242,6 +5610,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5252,6 +5621,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CompanyBrandListSerializer.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5315,13 +5685,15 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
-        * Summary: Create a location asscoiated to a company.
-        * Description: This API allows to create a location associated to a company.
+        * Summary: Create a company brand mapping.
+        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
         **/
-        public func createLocation(
-            body: LocationSerializer,
+        public func createCompanyBrandMapping(
+            body: CompanyBrandPostRequestSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
              
@@ -5331,10 +5703,11 @@ public class PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5345,6 +5718,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5354,6 +5728,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -5402,6 +5778,7 @@ public class PlatformClient {
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5412,6 +5789,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(LocationListSerializer.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5499,13 +5877,14 @@ public class PlatformClient {
         }
         
         
+        
+        
         /**
         *
-        * Summary: Edit a location asscoiated to a company.
-        * Description: This API allows to edit a location associated to a company.
+        * Summary: Create a location asscoiated to a company.
+        * Description: This API allows to create a location associated to a company.
         **/
-        public func updateLocation(
-            locationId: String,
+        public func createLocation(
             body: LocationSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5515,11 +5894,12 @@ public class PlatformClient {
             
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                method: "post",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5530,6 +5910,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5539,6 +5920,8 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
         
         
         
@@ -5563,6 +5946,7 @@ public class PlatformClient {
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5573,6 +5957,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetLocationSerializer.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5582,6 +5967,55 @@ public class PlatformClient {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
+        **/
+        public func updateLocation(
+            locationId: String,
+            body: LocationSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+             
+            
+             
+            
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
         
         
         
@@ -5605,6 +6039,7 @@ public class PlatformClient {
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5615,6 +6050,7 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5638,6 +6074,8 @@ public class PlatformClient {
             self.config = config
             self.companyId = config.companyId
         }
+        
+        
         
         
         /**
@@ -5679,6 +6117,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5689,6 +6128,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StartResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5698,6 +6138,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -5740,6 +6182,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5750,6 +6193,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CompleteResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5759,6 +6203,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -5784,6 +6230,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5794,6 +6241,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SignUrlResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5803,6 +6251,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -5831,6 +6281,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5841,6 +6292,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(BulkResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5850,6 +6302,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -5880,6 +6334,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5890,6 +6345,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(BrowseResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -5953,6 +6409,8 @@ This operation will return the url for the uploaded file.
         
         
         
+        
+        
         /**
         *
         * Summary: Proxy
@@ -5961,7 +6419,7 @@ This operation will return the url for the uploaded file.
         public func proxy(
             url: String,
             
-            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
             xQuery["url"] = url
@@ -5975,6 +6433,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/octet-stream",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -5984,7 +6443,8 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(String.self, from: data)
+                        let response = data
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6008,6 +6468,8 @@ This operation will return the url for the uploaded file.
             self.config = config
             self.companyId = config.companyId
         }
+        
+        
         
         
         /**
@@ -6040,6 +6502,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6050,6 +6513,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResponseEnvelopeListJobConfigRawDTO.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6059,6 +6523,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6087,6 +6553,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6097,6 +6564,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResponseEnvelopeString.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6106,6 +6574,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6134,6 +6604,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6144,6 +6615,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResponseEnvelopeString.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6153,6 +6625,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6187,6 +6661,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6197,6 +6672,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResponseEnvelopeListJobConfigDTO.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6206,6 +6682,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6229,6 +6707,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6239,6 +6718,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResponseEnvelopeJobConfigDTO.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6248,6 +6728,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6272,6 +6754,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6282,6 +6765,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResponseEnvelopeJobConfigDTO.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6291,6 +6775,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6325,6 +6811,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6335,6 +6822,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResponseEnvelopeListJobConfigListDTO.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6385,6 +6873,8 @@ This operation will return the url for the uploaded file.
         
         
         
+        
+        
         /**
         *
         * Summary: Create application
@@ -6405,6 +6895,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6415,6 +6906,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CreateAppResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6424,6 +6916,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6462,6 +6956,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6472,6 +6967,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ApplicationsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6544,6 +7040,8 @@ This operation will return the url for the uploaded file.
         
         
         
+        
+        
         /**
         *
         * Summary: Get all currencies
@@ -6564,6 +7062,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6574,6 +7073,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CurrenciesResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6583,6 +7083,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6606,6 +7108,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6616,6 +7119,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DomainSuggestionsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6625,6 +7129,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6649,6 +7155,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6659,6 +7166,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Integration.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6668,6 +7176,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6701,6 +7211,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6711,6 +7222,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetIntegrationsOptInsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6774,6 +7286,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Get company/store level integration opt-ins
@@ -6806,6 +7320,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6816,6 +7331,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetIntegrationsOptInsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6895,6 +7411,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Get integration level config
@@ -6927,6 +7445,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6937,6 +7456,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(IntegrationConfigResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6946,6 +7466,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -6972,6 +7494,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -6982,6 +7505,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(IntegrationLevel.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -6991,6 +7515,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7017,6 +7543,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7027,6 +7554,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OptedStoreIntegration.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7036,6 +7564,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7064,6 +7594,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7074,6 +7605,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(BrandsByCompanyResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7083,6 +7615,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7116,6 +7650,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7126,6 +7661,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CompanyByBrandsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7189,6 +7725,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Get stores by brand uids
@@ -7219,6 +7757,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7229,6 +7768,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StoreByBrandsResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7292,6 +7832,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Get other seller applications
@@ -7322,6 +7864,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7332,6 +7875,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OtherSellerApplications.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7395,6 +7939,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Get other seller applications
@@ -7416,6 +7962,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7426,6 +7973,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OptedApplicationResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7435,6 +7983,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7459,6 +8009,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7469,6 +8020,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7494,6 +8046,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Get available marketplace channels
@@ -7514,6 +8068,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7523,7 +8078,8 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary 
+                        let response = data.dictionary
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7533,6 +8089,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7556,6 +8114,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7565,7 +8124,8 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary 
+                        let response = data.dictionary
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7575,6 +8135,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7599,6 +8161,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7608,7 +8171,8 @@ This operation will return the url for the uploaded file.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary 
+                        let response = data.dictionary
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7618,6 +8182,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7641,6 +8207,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7651,6 +8218,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7660,6 +8228,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7683,6 +8253,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7693,6 +8264,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7702,6 +8274,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7725,6 +8299,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7735,6 +8310,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7744,6 +8320,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7767,6 +8345,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7777,6 +8356,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7786,6 +8366,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7810,6 +8392,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7820,6 +8403,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7829,6 +8413,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7853,6 +8439,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7863,6 +8450,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7872,6 +8460,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7896,6 +8486,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7906,6 +8497,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7915,6 +8507,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7939,6 +8533,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7949,6 +8544,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -7958,6 +8554,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -7981,6 +8579,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -7991,6 +8590,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8000,6 +8600,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8023,6 +8625,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8033,6 +8636,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8042,6 +8646,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8071,6 +8677,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8081,6 +8688,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MkpResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8090,6 +8698,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8114,6 +8724,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8124,6 +8735,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StoreMapping.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8133,6 +8745,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8157,6 +8771,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8167,6 +8782,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StoreMapping.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8176,6 +8792,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8200,6 +8818,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8210,6 +8829,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StatusPayload.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8219,6 +8839,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8243,6 +8865,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8253,6 +8876,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StatusResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8262,6 +8886,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8287,6 +8913,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8297,6 +8924,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SyncResp.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8330,6 +8958,8 @@ This operation will return the url for the uploaded file.
         
         
         
+        
+        
         /**
         *
         * Summary: Create data export job in required format
@@ -8351,6 +8981,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8361,6 +8992,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ExportJobRes.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8370,6 +9002,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8395,6 +9029,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8405,6 +9040,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ExportJobStatusRes.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8414,6 +9050,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8448,6 +9086,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8458,6 +9097,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetLogsListRes.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8529,6 +9169,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Search logs
@@ -8560,6 +9202,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8570,6 +9213,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SearchLogRes.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8654,6 +9298,8 @@ This operation will return the url for the uploaded file.
         }
         
         
+        
+        
         /**
         *
         * Summary: Fetch discount list.
@@ -8719,6 +9365,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8729,6 +9376,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ListOrCalender.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8738,6 +9386,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8761,6 +9411,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8771,6 +9422,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DiscountJob.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8780,6 +9432,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8804,6 +9458,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8814,6 +9469,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DiscountJob.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8823,6 +9479,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8847,6 +9505,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8857,6 +9516,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DiscountJob.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8866,6 +9526,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8894,6 +9556,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8904,6 +9567,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(FileJobResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8913,6 +9577,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8937,6 +9603,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8947,6 +9614,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(FileJobResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8956,6 +9624,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -8980,6 +9650,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -8990,6 +9661,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(FileJobResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -8999,6 +9671,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -9023,6 +9697,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -9033,6 +9708,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CancelJobResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9042,6 +9718,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -9066,6 +9744,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -9076,6 +9755,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(FileJobResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9085,6 +9765,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -9109,6 +9791,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -9119,6 +9802,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CancelJobResponse.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9142,6 +9826,8 @@ This operation will return the url for the uploaded file.
             self.config = config
             self.companyId = config.companyId
         }
+        
+        
         
         
         /**
@@ -9176,6 +9862,7 @@ This operation will return the url for the uploaded file.
                 query: xQuery,
                 body: nil,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -9186,6 +9873,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriberConfigList.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9195,6 +9883,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -9218,6 +9908,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -9228,6 +9919,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriberConfig.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9237,6 +9929,8 @@ This operation will return the url for the uploaded file.
                     }
             });
         }
+        
+        
         
         
         
@@ -9260,6 +9954,7 @@ This operation will return the url for the uploaded file.
                 query: nil,
                 body: body.dictionary,
                 headers: [],
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -9270,6 +9965,7 @@ This operation will return the url for the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscriberConfig.self, from: data)
+                        
                         onResponse(response, nil)
                     } else {
                         let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9388,6 +10084,8 @@ This operation will return the url for the uploaded file.
             
             
             
+            
+            
             /**
             *
             * Summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
@@ -9438,6 +10136,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9446,8 +10145,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketList.self, from: data)
+                            
+                            let response = Utility.decode(TicketList.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9457,6 +10157,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9483,6 +10185,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9491,8 +10194,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Ticket.self, from: data)
+                            
+                            let response = Utility.decode(Ticket.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9502,6 +10206,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9526,6 +10232,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9534,8 +10241,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Ticket.self, from: data)
+                            
+                            let response = Utility.decode(Ticket.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9545,6 +10253,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9571,6 +10281,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9579,8 +10290,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketHistory.self, from: data)
+                            
+                            let response = Utility.decode(TicketHistory.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9590,6 +10302,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9614,6 +10328,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9622,8 +10337,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketHistoryList.self, from: data)
+                            
+                            let response = Utility.decode(TicketHistoryList.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9633,6 +10349,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9657,6 +10375,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9665,8 +10384,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomForm.self, from: data)
+                            
+                            let response = Utility.decode(CustomForm.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9676,6 +10396,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9700,6 +10422,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9708,8 +10431,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomForm.self, from: data)
+                            
+                            let response = Utility.decode(CustomForm.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9719,6 +10443,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9742,6 +10468,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9750,8 +10477,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomFormList.self, from: data)
+                            
+                            let response = Utility.decode(CustomFormList.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9761,6 +10489,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9784,6 +10514,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9792,8 +10523,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomForm.self, from: data)
+                            
+                            let response = Utility.decode(CustomForm.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9803,6 +10535,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9827,6 +10561,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9835,8 +10570,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9846,6 +10582,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9870,6 +10608,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9878,8 +10617,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9889,6 +10629,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9912,6 +10654,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9920,8 +10663,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateVideoRoomResponse.self, from: data)
+                            
+                            let response = Utility.decode(CreateVideoRoomResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9931,6 +10675,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -9955,6 +10701,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -9963,8 +10710,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+                            
+                            let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -9990,6 +10738,8 @@ This operation will return the url for the uploaded file.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             /**
@@ -10022,6 +10772,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10030,8 +10781,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(FeedbackAttributes.self, from: data)
+                            
+                            let response = Utility.decode(FeedbackAttributes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10095,6 +10847,8 @@ This operation will return the url for the uploaded file.
                 }
                 return paginator
             }
+            
+            
             
             
             /**
@@ -10192,6 +10946,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10200,8 +10955,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetReviewResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetReviewResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10372,6 +11128,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: update approve details
@@ -10393,6 +11151,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10401,8 +11160,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateResponse.self, from: data)
+                            
+                            let response = Utility.decode(UpdateResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10412,6 +11172,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10436,6 +11198,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10444,8 +11207,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode([ActivityDump].self, from: data)
+                            
+                            let response = Utility.decode([ActivityDump].self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10455,6 +11219,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10488,6 +11254,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10496,8 +11263,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TemplateGetResponse.self, from: data)
+                            
+                            let response = Utility.decode(TemplateGetResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10564,6 +11332,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create a new template
@@ -10587,6 +11357,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10595,8 +11366,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(InsertResponse.self, from: data)
+                            
+                            let response = Utility.decode(InsertResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10606,6 +11378,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10630,6 +11404,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10638,8 +11413,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Template.self, from: data)
+                            
+                            let response = Utility.decode(Template.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10649,6 +11425,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10673,6 +11451,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10681,8 +11460,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateResponse.self, from: data)
+                            
+                            let response = Utility.decode(UpdateResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10692,6 +11472,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10716,6 +11498,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10724,8 +11507,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateResponse.self, from: data)
+                            
+                            let response = Utility.decode(UpdateResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10751,6 +11535,8 @@ This operation will return the url for the uploaded file.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             /**
@@ -10783,6 +11569,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10791,8 +11578,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesListingResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesListingResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10802,6 +11590,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10825,6 +11615,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10833,8 +11624,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10844,6 +11636,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10867,6 +11661,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10875,8 +11670,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10886,6 +11682,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10910,6 +11708,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10918,8 +11717,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpgradableThemeSchema.self, from: data)
+                            
+                            let response = Utility.decode(UpgradableThemeSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10929,6 +11729,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -10953,6 +11755,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -10961,8 +11764,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -10972,6 +11776,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11005,6 +11811,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11013,8 +11820,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesListingResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesListingResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11024,6 +11832,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11047,6 +11857,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11055,8 +11866,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11066,6 +11878,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11089,6 +11903,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11097,8 +11912,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11108,6 +11924,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11131,6 +11949,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11139,8 +11958,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(FontsSchema.self, from: data)
+                            
+                            let response = Utility.decode(FontsSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11150,6 +11970,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11174,6 +11996,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11182,8 +12005,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11193,6 +12017,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11217,6 +12043,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11225,8 +12052,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11236,6 +12064,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11260,6 +12090,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11268,8 +12099,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11279,6 +12111,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11303,6 +12137,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11311,8 +12146,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11322,6 +12158,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11346,6 +12184,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11354,8 +12193,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11365,6 +12205,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11389,6 +12231,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11397,8 +12240,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11408,6 +12252,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11432,6 +12278,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11440,8 +12287,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11451,6 +12299,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11475,6 +12325,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11483,8 +12334,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ThemesSchema.self, from: data)
+                            
+                            let response = Utility.decode(ThemesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11510,6 +12362,8 @@ This operation will return the url for the uploaded file.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             /**
@@ -11547,6 +12401,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11555,8 +12410,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomerListResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(CustomerListResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11566,6 +12422,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11594,6 +12452,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11602,8 +12461,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UserSearchResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(UserSearchResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11613,6 +12473,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11636,6 +12498,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11644,8 +12507,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PlatformSchema.self, from: data)
+                            
+                            let response = Utility.decode(PlatformSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11655,6 +12519,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11678,6 +12544,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11686,8 +12553,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PlatformSchema.self, from: data)
+                            
+                            let response = Utility.decode(PlatformSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11713,6 +12581,8 @@ This operation will return the url for the uploaded file.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             /**
@@ -11745,6 +12615,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11753,8 +12624,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAnnouncementListSchema.self, from: data)
+                            
+                            let response = Utility.decode(GetAnnouncementListSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11820,6 +12692,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create an annoucement
@@ -11840,6 +12714,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11848,8 +12723,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11859,6 +12735,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11883,6 +12761,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11891,8 +12770,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AdminAnnouncementSchema.self, from: data)
+                            
+                            let response = Utility.decode(AdminAnnouncementSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11902,6 +12782,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11926,6 +12808,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11934,8 +12817,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11945,6 +12829,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -11969,6 +12855,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -11977,8 +12864,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -11988,6 +12876,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12012,6 +12902,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12020,8 +12911,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateAnnouncementSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12031,6 +12923,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12054,6 +12948,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12062,8 +12957,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
+                            
+                            let response = Utility.decode(BlogSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12073,6 +12969,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12106,6 +13004,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12114,8 +13013,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogGetResponse.self, from: data)
+                            
+                            let response = Utility.decode(BlogGetResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12181,6 +13081,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Update blog
@@ -12202,6 +13104,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12210,8 +13113,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
+                            
+                            let response = Utility.decode(BlogSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12221,6 +13125,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12245,6 +13151,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12253,8 +13160,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
+                            
+                            let response = Utility.decode(BlogSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12264,6 +13172,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12288,6 +13198,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12296,8 +13207,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BlogSchema.self, from: data)
+                            
+                            let response = Utility.decode(BlogSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12307,6 +13219,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12330,6 +13244,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12338,8 +13253,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetFaqCategoriesSchema.self, from: data)
+                            
+                            let response = Utility.decode(GetFaqCategoriesSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12349,6 +13265,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12373,6 +13291,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12381,8 +13300,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetFaqCategoryBySlugSchema.self, from: data)
+                            
+                            let response = Utility.decode(GetFaqCategoryBySlugSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12392,6 +13312,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12415,6 +13337,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12423,8 +13346,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqCategorySchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateFaqCategorySchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12434,6 +13358,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12458,6 +13384,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12466,8 +13393,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqCategorySchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateFaqCategorySchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12477,6 +13405,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12501,6 +13431,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12509,8 +13440,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(FaqSchema.self, from: data)
+                            
+                            let response = Utility.decode(FaqSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12520,6 +13452,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12544,6 +13478,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12552,8 +13487,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetFaqSchema.self, from: data)
+                            
+                            let response = Utility.decode(GetFaqSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12563,6 +13499,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12587,6 +13525,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12595,8 +13534,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12606,6 +13546,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12631,6 +13573,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12639,8 +13582,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12650,6 +13594,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12675,6 +13621,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12683,8 +13630,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12694,6 +13642,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12718,6 +13668,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12726,8 +13677,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
+                            let response = Utility.decode(CreateFaqResponseSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12737,6 +13689,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12770,6 +13724,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12778,8 +13733,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageGetResponse.self, from: data)
+                            
+                            let response = Utility.decode(LandingPageGetResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12845,6 +13801,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create landing-page
@@ -12865,6 +13823,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12873,8 +13832,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageSchema.self, from: data)
+                            
+                            let response = Utility.decode(LandingPageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12884,6 +13844,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12908,6 +13870,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12916,8 +13879,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageSchema.self, from: data)
+                            
+                            let response = Utility.decode(LandingPageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12927,6 +13891,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12951,6 +13917,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -12959,8 +13926,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(LandingPageSchema.self, from: data)
+                            
+                            let response = Utility.decode(LandingPageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -12970,6 +13938,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -12993,6 +13963,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13001,8 +13972,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationLegal.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationLegal.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13012,6 +13984,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13035,6 +14009,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13043,8 +14018,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationLegal.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationLegal.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13054,6 +14030,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13089,6 +14067,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13097,8 +14076,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationGetResponse.self, from: data)
+                            
+                            let response = Utility.decode(NavigationGetResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13172,6 +14152,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create navigation
@@ -13192,6 +14174,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13200,8 +14183,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
+                            
+                            let response = Utility.decode(NavigationSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13211,6 +14195,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13234,6 +14220,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13242,8 +14229,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(DefaultNavigationResponse.self, from: data)
+                            
+                            let response = Utility.decode(DefaultNavigationResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13253,6 +14241,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13279,6 +14269,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13287,8 +14278,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
+                            
+                            let response = Utility.decode(NavigationSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13298,6 +14290,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13322,6 +14316,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13330,8 +14325,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
+                            
+                            let response = Utility.decode(NavigationSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13341,6 +14337,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13365,6 +14363,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13373,8 +14372,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(NavigationSchema.self, from: data)
+                            
+                            let response = Utility.decode(NavigationSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13384,6 +14384,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13407,6 +14409,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13415,8 +14418,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageMetaSchema.self, from: data)
+                            
+                            let response = Utility.decode(PageMetaSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13426,6 +14430,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13449,6 +14455,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13457,8 +14464,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSpec.self, from: data)
+                            
+                            let response = Utility.decode(PageSpec.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13468,6 +14476,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13491,6 +14501,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13499,8 +14510,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
+                            
+                            let response = Utility.decode(PageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13510,6 +14522,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13543,6 +14557,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13551,8 +14566,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageGetResponse.self, from: data)
+                            
+                            let response = Utility.decode(PageGetResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13618,6 +14634,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create page preview
@@ -13638,6 +14656,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13646,8 +14665,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
+                            
+                            let response = Utility.decode(PageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13657,6 +14677,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13681,6 +14703,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13689,8 +14712,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
+                            
+                            let response = Utility.decode(PageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13700,6 +14724,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13724,6 +14750,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13732,8 +14759,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
+                            
+                            let response = Utility.decode(PageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13743,6 +14771,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13767,6 +14797,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13775,8 +14806,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
+                            
+                            let response = Utility.decode(PageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13786,6 +14818,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13810,6 +14844,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13818,8 +14853,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
+                            
+                            let response = Utility.decode(PageSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13829,6 +14865,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13852,6 +14890,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13860,8 +14899,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SeoComponent.self, from: data)
+                            
+                            let response = Utility.decode(SeoComponent.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13871,6 +14911,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13894,6 +14936,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13902,8 +14945,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SeoSchema.self, from: data)
+                            
+                            let response = Utility.decode(SeoSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -13913,6 +14957,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -13948,6 +14994,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -13956,8 +15003,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowGetResponse.self, from: data)
+                            
+                            let response = Utility.decode(SlideshowGetResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14031,6 +15079,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create slideshow
@@ -14051,6 +15101,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14059,8 +15110,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
+                            let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14070,6 +15122,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14096,6 +15150,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14104,8 +15159,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
+                            let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14115,6 +15171,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14139,6 +15197,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14147,8 +15206,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
+                            let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14158,6 +15218,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14182,6 +15244,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14190,8 +15253,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
+                            let response = Utility.decode(SlideshowSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14201,6 +15265,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14224,6 +15290,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14232,8 +15299,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Support.self, from: data)
+                            
+                            let response = Utility.decode(Support.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14243,6 +15311,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14266,6 +15336,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14274,8 +15345,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Support.self, from: data)
+                            
+                            let response = Utility.decode(Support.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14285,6 +15357,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14308,6 +15382,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14316,8 +15391,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
+                            
+                            let response = Utility.decode(TagsSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14327,6 +15403,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14350,6 +15428,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14358,8 +15437,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
+                            
+                            let response = Utility.decode(TagsSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14369,6 +15449,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14392,6 +15474,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14400,8 +15483,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
+                            
+                            let response = Utility.decode(TagsSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14411,6 +15495,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14434,6 +15520,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14442,8 +15529,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
+                            
+                            let response = Utility.decode(TagsSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14453,6 +15541,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14476,6 +15566,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14484,8 +15575,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
+                            
+                            let response = Utility.decode(TagsSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14495,6 +15587,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14519,6 +15613,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14527,8 +15622,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TagsSchema.self, from: data)
+                            
+                            let response = Utility.decode(TagsSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14556,6 +15652,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: 
@@ -14577,6 +15675,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14585,8 +15684,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14596,6 +15696,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14635,6 +15737,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14643,8 +15746,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PickupPointResponse.self, from: data)
+                            
+                            let response = Utility.decode(PickupPointResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14718,6 +15822,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: 
@@ -14742,6 +15848,7 @@ a successful update.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14750,8 +15857,9 @@ a successful update.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14761,6 +15869,8 @@ a successful update.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14787,6 +15897,7 @@ store id passed.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14795,8 +15906,9 @@ store id passed.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PickupPointSchema.self, from: data)
+                            
+                            let response = Utility.decode(PickupPointSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14806,6 +15918,8 @@ store id passed.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14831,6 +15945,7 @@ created per application id.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14839,8 +15954,9 @@ created per application id.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14850,6 +15966,8 @@ created per application id.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14875,6 +15993,7 @@ the header to fetch the data.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14883,8 +16002,9 @@ the header to fetch the data.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PickupResponse.self, from: data)
+                            
+                            let response = Utility.decode(PickupResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14894,6 +16014,8 @@ the header to fetch the data.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14920,6 +16042,7 @@ configuration each. The endpoint requires an application id to get the data.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14928,8 +16051,9 @@ configuration each. The endpoint requires an application id to get the data.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ShippingResponse.self, from: data)
+                            
+                            let response = Utility.decode(ShippingResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14939,6 +16063,8 @@ configuration each. The endpoint requires an application id to get the data.
                         }
                 });
             }
+            
+            
             
             
             
@@ -14965,6 +16091,7 @@ application i.e, for an application configuration can be created only once.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -14973,8 +16100,9 @@ application i.e, for an application configuration can be created only once.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -14984,6 +16112,8 @@ application i.e, for an application configuration can be created only once.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15010,6 +16140,7 @@ a successful update.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15018,8 +16149,9 @@ a successful update.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15029,6 +16161,8 @@ a successful update.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15075,6 +16209,7 @@ API has support for pagination, filter by type and search by name.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15083,8 +16218,9 @@ API has support for pagination, filter by type and search by name.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(StoreListResponse.self, from: data)
+                            
+                            let response = Utility.decode(StoreListResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15166,6 +16302,8 @@ API has support for pagination, filter by type and search by name.
             }
             
             
+            
+            
             /**
             *
             * Summary: 
@@ -15190,6 +16328,7 @@ shipping configuration of the stores including store id and app id.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15198,8 +16337,9 @@ shipping configuration of the stores including store id and app id.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(StoreResponse.self, from: data)
+                            
+                            let response = Utility.decode(StoreResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15209,6 +16349,8 @@ shipping configuration of the stores including store id and app id.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15235,6 +16377,7 @@ and udpated request body are required to successfully update the store data.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15243,8 +16386,9 @@ and udpated request body are required to successfully update the store data.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15254,6 +16398,8 @@ and udpated request body are required to successfully update the store data.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15281,6 +16427,7 @@ tags while others are required to be.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15289,8 +16436,9 @@ tags while others are required to be.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15300,6 +16448,8 @@ tags while others are required to be.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15340,6 +16490,7 @@ of three different types, radius, pincode and country.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15348,8 +16499,9 @@ of three different types, radius, pincode and country.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ZoneListResponse.self, from: data)
+                            
+                            let response = Utility.decode(ZoneListResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15423,6 +16575,8 @@ of three different types, radius, pincode and country.
             }
             
             
+            
+            
             /**
             *
             * Summary: 
@@ -15446,6 +16600,7 @@ be passed, zone_detail, pincode and region.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15454,8 +16609,9 @@ be passed, zone_detail, pincode and region.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15465,6 +16621,8 @@ be passed, zone_detail, pincode and region.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15491,6 +16649,7 @@ not found if no data is found for the passed zone id.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15499,8 +16658,9 @@ not found if no data is found for the passed zone id.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ZoneSchema.self, from: data)
+                            
+                            let response = Utility.decode(ZoneSchema.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15510,6 +16670,8 @@ not found if no data is found for the passed zone id.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15536,6 +16698,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15544,8 +16707,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Success.self, from: data)
+                            
+                            let response = Utility.decode(Success.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15571,6 +16735,8 @@ data to update a zone.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             /**
@@ -15608,6 +16774,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15616,8 +16783,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Campaigns.self, from: data)
+                            
+                            let response = Utility.decode(Campaigns.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15691,6 +16859,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create campaign
@@ -15711,6 +16881,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15719,8 +16890,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Campaign.self, from: data)
+                            
+                            let response = Utility.decode(Campaign.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15730,6 +16902,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15754,6 +16928,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15762,8 +16937,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Campaign.self, from: data)
+                            
+                            let response = Utility.decode(Campaign.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15773,6 +16949,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15797,6 +16975,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15805,8 +16984,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Campaign.self, from: data)
+                            
+                            let response = Utility.decode(Campaign.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15816,6 +16996,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15840,6 +17022,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15848,8 +17031,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetStats.self, from: data)
+                            
+                            let response = Utility.decode(GetStats.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15859,6 +17043,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -15897,6 +17083,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -15905,8 +17092,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Audiences.self, from: data)
+                            
+                            let response = Utility.decode(Audiences.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -15980,6 +17168,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create audience
@@ -16000,6 +17190,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16008,8 +17199,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Audience.self, from: data)
+                            
+                            let response = Utility.decode(Audience.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16019,6 +17211,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16042,6 +17236,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16050,8 +17245,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BigqueryHeadersRes.self, from: data)
+                            
+                            let response = Utility.decode(BigqueryHeadersRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16061,6 +17257,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16085,6 +17283,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16093,8 +17292,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Audience.self, from: data)
+                            
+                            let response = Utility.decode(Audience.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16104,6 +17304,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16128,6 +17330,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16136,8 +17339,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Audience.self, from: data)
+                            
+                            let response = Utility.decode(Audience.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16147,6 +17351,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16170,6 +17376,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16178,8 +17385,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetNRecordsCsvRes.self, from: data)
+                            
+                            let response = Utility.decode(GetNRecordsCsvRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16189,6 +17397,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16227,6 +17437,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16235,8 +17446,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailProviders.self, from: data)
+                            
+                            let response = Utility.decode(EmailProviders.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16310,6 +17522,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create email provider
@@ -16330,6 +17544,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16338,8 +17553,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailProvider.self, from: data)
+                            
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16349,6 +17565,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16373,6 +17591,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16381,8 +17600,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailProvider.self, from: data)
+                            
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16392,6 +17612,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16416,6 +17638,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16424,8 +17647,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailProvider.self, from: data)
+                            
+                            let response = Utility.decode(EmailProvider.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16435,6 +17659,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16473,6 +17699,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16481,8 +17708,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailTemplates.self, from: data)
+                            
+                            let response = Utility.decode(EmailTemplates.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16556,6 +17784,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create email template
@@ -16576,6 +17806,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16584,8 +17815,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            
+                            let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16595,6 +17827,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16633,6 +17867,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16641,8 +17876,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SystemEmailTemplates.self, from: data)
+                            
+                            let response = Utility.decode(SystemEmailTemplates.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16716,6 +17952,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get email template by id
@@ -16737,6 +17975,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16745,8 +17984,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailTemplate.self, from: data)
+                            
+                            let response = Utility.decode(EmailTemplate.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16756,6 +17996,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16780,6 +18022,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16788,8 +18031,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            
+                            let response = Utility.decode(EmailTemplateRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16799,6 +18043,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16823,6 +18069,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16831,8 +18078,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EmailTemplateDeleteSuccessRes.self, from: data)
+                            
+                            let response = Utility.decode(EmailTemplateDeleteSuccessRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16842,6 +18090,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -16880,6 +18130,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -16888,8 +18139,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(EventSubscriptions.self, from: data)
+                            
+                            let response = Utility.decode(EventSubscriptions.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -16963,6 +18215,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get jobs
@@ -16998,6 +18252,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17006,8 +18261,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Jobs.self, from: data)
+                            
+                            let response = Utility.decode(Jobs.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17081,6 +18337,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Trigger campaign job
@@ -17101,6 +18359,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17109,8 +18368,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TriggerJobResponse.self, from: data)
+                            
+                            let response = Utility.decode(TriggerJobResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17120,6 +18380,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17158,6 +18420,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17166,8 +18429,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(JobLogs.self, from: data)
+                            
+                            let response = Utility.decode(JobLogs.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17241,6 +18505,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get communication logs
@@ -17281,6 +18547,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17289,8 +18556,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Logs.self, from: data)
+                            
+                            let response = Utility.decode(Logs.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17374,6 +18642,8 @@ data to update a zone.
             
             
             
+            
+            
             /**
             *
             * Summary: Get sms providers
@@ -17409,6 +18679,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17417,8 +18688,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsProviders.self, from: data)
+                            
+                            let response = Utility.decode(SmsProviders.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17492,6 +18764,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create sms provider
@@ -17512,6 +18786,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17520,8 +18795,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsProvider.self, from: data)
+                            
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17531,6 +18807,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17555,6 +18833,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17563,8 +18842,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsProvider.self, from: data)
+                            
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17574,6 +18854,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17598,6 +18880,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17606,8 +18889,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsProvider.self, from: data)
+                            
+                            let response = Utility.decode(SmsProvider.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17617,6 +18901,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17655,6 +18941,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17663,8 +18950,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsTemplates.self, from: data)
+                            
+                            let response = Utility.decode(SmsTemplates.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17738,6 +19026,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create sms template
@@ -17758,6 +19048,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17766,8 +19057,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            
+                            let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17777,6 +19069,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17801,6 +19095,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17809,8 +19104,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsTemplate.self, from: data)
+                            
+                            let response = Utility.decode(SmsTemplate.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17820,6 +19116,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17844,6 +19142,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17852,8 +19151,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            
+                            let response = Utility.decode(SmsTemplateRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17863,6 +19163,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17887,6 +19189,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17895,8 +19198,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SmsTemplateDeleteSuccessRes.self, from: data)
+                            
+                            let response = Utility.decode(SmsTemplateDeleteSuccessRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -17906,6 +19210,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -17944,6 +19250,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -17952,8 +19259,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SystemSmsTemplates.self, from: data)
+                            
+                            let response = Utility.decode(SystemSmsTemplates.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18042,6 +19350,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get All Brand Payment Gateway Config Secret
@@ -18062,6 +19372,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18070,8 +19381,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentGatewayConfigResponse.self, from: data)
+                            
+                            let response = Utility.decode(PaymentGatewayConfigResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18081,6 +19393,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18104,6 +19418,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18112,8 +19427,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentGatewayToBeReviewed.self, from: data)
+                            
+                            let response = Utility.decode(PaymentGatewayToBeReviewed.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18123,6 +19439,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18146,6 +19464,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18154,8 +19473,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentGatewayToBeReviewed.self, from: data)
+                            
+                            let response = Utility.decode(PaymentGatewayToBeReviewed.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18165,6 +19485,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18192,6 +19514,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18200,8 +19523,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentOptionsResponse.self, from: data)
+                            
+                            let response = Utility.decode(PaymentOptionsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18211,6 +19535,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18243,6 +19569,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18251,8 +19578,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(RefundAccountResponse.self, from: data)
+                            
+                            let response = Utility.decode(RefundAccountResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18262,6 +19590,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18288,6 +19618,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18296,8 +19627,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                            
+                            let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18307,6 +19639,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18332,6 +19666,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18340,8 +19675,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                            
+                            let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18376,6 +19712,8 @@ data to update a zone.
             
             
             
+            
+            
             /**
             *
             * Summary: Track Shipment by shipment id, for application based on application Id
@@ -18397,6 +19735,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18405,8 +19744,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PlatformShipmentTrack.self, from: data)
+                            
+                            let response = Utility.decode(PlatformShipmentTrack.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18416,6 +19756,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18440,6 +19782,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18448,8 +19791,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(PlatformOrderTrack.self, from: data)
+                            
+                            let response = Utility.decode(PlatformOrderTrack.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18459,6 +19803,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18482,6 +19828,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18490,8 +19837,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(FailedOrders.self, from: data)
+                            
+                            let response = Utility.decode(FailedOrders.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18501,6 +19849,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18525,6 +19875,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18533,8 +19884,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateOrderReprocessResponse.self, from: data)
+                            
+                            let response = Utility.decode(UpdateOrderReprocessResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18565,15 +19917,17 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
-            * Summary: Get a Search Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+            * Summary: Update Search Keyword
+            * Description: Update Search Keyword by its id. On successful request, returns the updated collection
             **/
-            public func getSearchKeywords(
+            public func updateSearchKeywords(
                 id: String,
-                
-                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
+                body: CreateSearchKeyword,
+                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -18581,11 +19935,12 @@ data to update a zone.
                 
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "get",
+                    method: "put",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18594,8 +19949,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetSearchWordsData.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18605,6 +19961,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18629,6 +19987,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18637,8 +19996,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeleteResponse.self, from: data)
+                            
+                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18651,15 +20011,17 @@ data to update a zone.
             
             
             
+            
+            
             /**
             *
-            * Summary: Update Search Keyword
-            * Description: Update Search Keyword by its id. On successful request, returns the updated collection
+            * Summary: Get a Search Keywords Details
+            * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
             **/
-            public func updateSearchKeywords(
+            public func getSearchKeywords(
                 id: String,
-                body: CreateSearchKeyword,
-                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
+                
+                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -18667,11 +20029,12 @@ data to update a zone.
                 
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "put",
+                    method: "get",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18680,8 +20043,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsData.self, from: data)
+                            
+                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18691,6 +20055,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18714,6 +20080,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18722,8 +20089,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsData.self, from: data)
+                            
+                            let response = Utility.decode(GetSearchWordsData.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18733,6 +20101,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18756,6 +20126,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18764,8 +20135,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetSearchWordsResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetSearchWordsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18777,90 +20149,6 @@ data to update a zone.
             }
             
             
-            
-            /**
-            *
-            * Summary: Get a Autocomplete Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-            **/
-            public func getAutocompleteKeywordDetail(
-                id: String,
-                
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a Autocomplete Keywords
-            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-            **/
-            public func deleteAutocompleteKeyword(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeleteResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
             
             
             
@@ -18885,6 +20173,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18893,8 +20182,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18904,6 +20194,102 @@ data to update a zone.
                         }
                 });
             }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Autocomplete Keywords
+            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+            **/
+            public func deleteAutocompleteKeyword(
+                id: String,
+                
+                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get a Autocomplete Keywords Details
+            * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+            **/
+            public func getAutocompleteKeywordDetail(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
             
             
             
@@ -18927,6 +20313,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18935,8 +20322,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateAutocompleteWordsResponse.self, from: data)
+                            
+                            let response = Utility.decode(CreateAutocompleteWordsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18946,6 +20334,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -18969,6 +20359,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -18977,8 +20368,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -18988,6 +20380,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19019,6 +20413,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19027,8 +20422,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCatalogConfigurationMetaData.self, from: data)
+                            
+                            let response = Utility.decode(GetCatalogConfigurationMetaData.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19038,6 +20434,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19061,6 +20459,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19069,8 +20468,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
+                            
+                            let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19080,6 +20480,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19103,6 +20505,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19111,8 +20514,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
+                            
+                            let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19122,6 +20526,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19146,6 +20552,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19154,8 +20561,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
+                            
+                            let response = Utility.decode(GetAppCatalogConfiguration.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19165,6 +20573,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19189,6 +20599,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19197,8 +20608,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetAppCatalogEntityConfiguration.self, from: data)
+                            
+                            let response = Utility.decode(GetAppCatalogEntityConfiguration.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19208,6 +20620,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19231,6 +20645,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19239,8 +20654,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCollectionQueryOptionResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetCollectionQueryOptionResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19250,6 +20666,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19273,6 +20691,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19281,8 +20700,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CollectionCreateResponse.self, from: data)
+                            
+                            let response = Utility.decode(CollectionCreateResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19292,6 +20712,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19315,6 +20737,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19323,8 +20746,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCollectionListingResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetCollectionListingResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19334,6 +20758,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19358,6 +20784,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19366,8 +20793,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CollectionDetailResponse.self, from: data)
+                            
+                            let response = Utility.decode(CollectionDetailResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19379,47 +20807,6 @@ data to update a zone.
             }
             
             
-            
-            /**
-            *
-            * Summary: Delete a Collection
-            * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-            **/
-            public func deleteCollection(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeleteResponse.self, from: data)
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
             
             
             
@@ -19444,6 +20831,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19452,8 +20840,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdateCollection.self, from: data)
+                            
+                            let response = Utility.decode(UpdateCollection.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19463,6 +20852,55 @@ data to update a zone.
                         }
                 });
             }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Collection
+            * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+            **/
+            public func deleteCollection(
+                id: String,
+                
+                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
+            ) {
+                 
+                 
+                 
+                
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
             
             
             
@@ -19487,6 +20925,7 @@ data to update a zone.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19495,8 +20934,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdatedResponse.self, from: data)
+                            
+                            let response = Utility.decode(UpdatedResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19506,6 +20946,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19545,6 +20987,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19553,8 +20996,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCollectionItemsResponse.self, from: data)
+                            
+                            let response = Utility.decode(GetCollectionItemsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19564,6 +21008,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19592,6 +21038,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19600,8 +21047,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CatalogInsightResponse.self, from: data)
+                            
+                            let response = Utility.decode(CatalogInsightResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19611,6 +21059,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19702,6 +21152,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19710,8 +21161,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BrandListingResponse.self, from: data)
+                            
+                            let response = Utility.decode(BrandListingResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19785,6 +21237,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: List all the departments
@@ -19805,6 +21259,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19813,8 +21268,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(DepartmentResponse.self, from: data)
+                            
+                            let response = Utility.decode(DepartmentResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19824,6 +21280,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19852,6 +21310,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19860,8 +21319,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CategoryListingResponse.self, from: data)
+                            
+                            let response = Utility.decode(CategoryListingResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -19871,6 +21331,8 @@ data to update a zone.
                         }
                 });
             }
+            
+            
             
             
             
@@ -19934,6 +21396,7 @@ data to update a zone.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -19942,8 +21405,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationProductListingResponse.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationProductListingResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20058,6 +21522,8 @@ data to update a zone.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get a product
@@ -20079,6 +21545,7 @@ data to update a zone.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20087,8 +21554,9 @@ data to update a zone.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ProductDetail.self, from: data)
+                            
+                            let response = Utility.decode(ProductDetail.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20114,6 +21582,8 @@ data to update a zone.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             
@@ -20157,6 +21627,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20165,8 +21636,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(StartResponse.self, from: data)
+                            
+                            let response = Utility.decode(StartResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20176,6 +21648,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20218,6 +21692,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20226,8 +21701,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CompleteResponse.self, from: data)
+                            
+                            let response = Utility.decode(CompleteResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20237,6 +21713,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20267,6 +21745,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20275,8 +21754,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BulkResponse.self, from: data)
+                            
+                            let response = Utility.decode(BulkResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20286,6 +21766,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20316,6 +21798,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20324,8 +21807,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BrowseResponse.self, from: data)
+                            
+                            let response = Utility.decode(BrowseResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20406,6 +21890,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create short link
@@ -20426,6 +21912,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20434,8 +21921,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ShortLinkRes.self, from: data)
+                            
+                            let response = Utility.decode(ShortLinkRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20445,6 +21933,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20493,6 +21983,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20501,8 +21992,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ShortLinkList.self, from: data)
+                            
+                            let response = Utility.decode(ShortLinkList.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20592,6 +22084,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get short link by hash
@@ -20613,6 +22107,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20621,8 +22116,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ShortLinkRes.self, from: data)
+                            
+                            let response = Utility.decode(ShortLinkRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20632,6 +22128,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20656,6 +22154,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20664,8 +22163,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ShortLinkRes.self, from: data)
+                            
+                            let response = Utility.decode(ShortLinkRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20693,6 +22193,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get latest build config
@@ -20714,6 +22216,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20722,8 +22225,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(MobileAppConfiguration.self, from: data)
+                            
+                            let response = Utility.decode(MobileAppConfiguration.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20733,6 +22237,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20757,6 +22263,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20765,8 +22272,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(MobileAppConfiguration.self, from: data)
+                            
+                            let response = Utility.decode(MobileAppConfiguration.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20776,6 +22284,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20800,6 +22310,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20808,8 +22319,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(BuildVersionHistory.self, from: data)
+                            
+                            let response = Utility.decode(BuildVersionHistory.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20819,6 +22331,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20842,6 +22356,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20850,8 +22365,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AppFeatureResponse.self, from: data)
+                            
+                            let response = Utility.decode(AppFeatureResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20861,6 +22377,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20884,6 +22402,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20892,8 +22411,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AppFeature.self, from: data)
+                            
+                            let response = Utility.decode(AppFeature.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20903,6 +22423,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20926,6 +22448,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20934,8 +22457,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationDetail.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationDetail.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20945,6 +22469,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -20968,6 +22494,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -20976,8 +22503,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationDetail.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationDetail.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -20987,6 +22515,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21010,6 +22540,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21018,8 +22549,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationInformation.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationInformation.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21029,6 +22561,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21052,6 +22586,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21060,8 +22595,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationInformation.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationInformation.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21071,6 +22607,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21094,6 +22632,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21102,8 +22641,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TokenResponse.self, from: data)
+                            
+                            let response = Utility.decode(TokenResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21113,6 +22653,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21136,6 +22678,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21144,8 +22687,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(TokenResponse.self, from: data)
+                            
+                            let response = Utility.decode(TokenResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21155,6 +22699,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21188,6 +22734,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21196,8 +22743,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CompaniesResponse.self, from: data)
+                            
+                            let response = Utility.decode(CompaniesResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21263,6 +22811,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Application inventory enabled stores
@@ -21293,6 +22843,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21301,8 +22852,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(StoresResponse.self, from: data)
+                            
+                            let response = Utility.decode(StoresResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21368,6 +22920,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get application configuration
@@ -21388,6 +22942,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21396,8 +22951,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationInventory.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationInventory.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21407,6 +22963,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21430,6 +22988,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21438,8 +22997,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationInventory.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationInventory.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21449,6 +23009,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21472,6 +23034,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21480,8 +23043,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(ApplicationInventory.self, from: data)
+                            
+                            let response = Utility.decode(ApplicationInventory.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21491,6 +23055,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21514,6 +23080,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21522,8 +23089,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AppSupportedCurrency.self, from: data)
+                            
+                            let response = Utility.decode(AppSupportedCurrency.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21533,6 +23101,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21556,6 +23126,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21564,8 +23135,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AppSupportedCurrency.self, from: data)
+                            
+                            let response = Utility.decode(AppSupportedCurrency.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21575,6 +23147,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21608,6 +23182,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21616,8 +23191,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrderingStores.self, from: data)
+                            
+                            let response = Utility.decode(OrderingStores.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21683,6 +23259,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Add/Update ordering store config
@@ -21703,6 +23281,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21711,8 +23290,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeploymentMeta.self, from: data)
+                            
+                            let response = Utility.decode(DeploymentMeta.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21722,6 +23302,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21745,6 +23327,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21753,8 +23336,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(DomainsResponse.self, from: data)
+                            
+                            let response = Utility.decode(DomainsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21764,6 +23348,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21787,6 +23373,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21795,8 +23382,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Domain.self, from: data)
+                            
+                            let response = Utility.decode(Domain.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21806,6 +23394,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21830,6 +23420,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21838,8 +23429,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                            
+                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21849,6 +23441,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21872,6 +23466,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21880,8 +23475,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(DomainsResponse.self, from: data)
+                            
+                            let response = Utility.decode(DomainsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21891,6 +23487,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21914,6 +23512,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21922,8 +23521,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(DomainStatusResponse.self, from: data)
+                            
+                            let response = Utility.decode(DomainStatusResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -21933,6 +23533,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -21958,6 +23560,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -21966,8 +23569,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Application.self, from: data)
+                            
+                            let response = Utility.decode(Application.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22007,6 +23611,8 @@ This operation will return the url for the uploaded file.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             /**
@@ -22069,6 +23675,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22077,8 +23684,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CouponsResponse.self, from: data)
+                            
+                            let response = Utility.decode(CouponsResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22192,6 +23800,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Create new coupon
@@ -22212,6 +23822,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22220,8 +23831,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessMessage.self, from: data)
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22231,6 +23843,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22255,6 +23869,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22263,8 +23878,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(CouponUpdate.self, from: data)
+                            
+                            let response = Utility.decode(CouponUpdate.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22274,6 +23890,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22298,6 +23916,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22306,8 +23925,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessMessage.self, from: data)
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22317,6 +23937,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22341,6 +23963,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22349,8 +23972,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessMessage.self, from: data)
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22376,6 +24000,8 @@ This operation will return the url for the uploaded file.
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             /**
@@ -22408,6 +24034,7 @@ This operation will return the url for the uploaded file.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22416,8 +24043,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(GiveawayResponse.self, from: data)
+                            
+                            let response = Utility.decode(GiveawayResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22484,6 +24112,8 @@ This operation will return the url for the uploaded file.
             }
             
             
+            
+            
             /**
             *
             * Summary: Adds a new giveaway.
@@ -22504,6 +24134,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22512,8 +24143,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Giveaway.self, from: data)
+                            
+                            let response = Utility.decode(Giveaway.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22523,6 +24155,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22547,6 +24181,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22555,8 +24190,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Giveaway.self, from: data)
+                            
+                            let response = Utility.decode(Giveaway.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22566,6 +24202,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22590,6 +24228,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22598,8 +24237,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Giveaway.self, from: data)
+                            
+                            let response = Utility.decode(Giveaway.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22609,6 +24249,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22632,6 +24274,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22640,8 +24283,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode([Offer].self, from: data)
+                            
+                            let response = Utility.decode([Offer].self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22651,6 +24295,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22677,6 +24323,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: xHeaders,
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22685,8 +24332,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Offer.self, from: data)
+                            
+                            let response = Utility.decode(Offer.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22696,6 +24344,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22720,6 +24370,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22728,8 +24379,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(Offer.self, from: data)
+                            
+                            let response = Utility.decode(Offer.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22739,6 +24391,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22763,6 +24417,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22771,8 +24426,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(UserRes.self, from: data)
+                            
+                            let response = Utility.decode(UserRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22782,6 +24438,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22806,6 +24464,7 @@ This operation will return the url for the uploaded file.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22814,8 +24473,9 @@ This operation will return the url for the uploaded file.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AppUser.self, from: data)
+                            
+                            let response = Utility.decode(AppUser.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22825,6 +24485,8 @@ This operation will return the url for the uploaded file.
                         }
                 });
             }
+            
+            
             
             
             
@@ -22865,6 +24527,7 @@ The list of points history is paginated.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -22873,8 +24536,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(HistoryRes.self, from: data)
+                            
+                            let response = Utility.decode(HistoryRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -22972,6 +24636,8 @@ The list of points history is paginated.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get statistics groups
@@ -22992,6 +24658,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23000,8 +24667,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(StatsGroups.self, from: data)
+                            
+                            let response = Utility.decode(StatsGroups.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23011,6 +24679,8 @@ The list of points history is paginated.
                         }
                 });
             }
+            
+            
             
             
             
@@ -23035,6 +24705,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23043,8 +24714,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(StatsGroupComponents.self, from: data)
+                            
+                            let response = Utility.decode(StatsGroupComponents.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23057,6 +24729,8 @@ The list of points history is paginated.
             
             
             
+            
+            
             /**
             *
             * Summary: Get component statistics csv
@@ -23065,7 +24739,7 @@ The list of points history is paginated.
             public func getComponentStatsCSV(
                 componentName: String,
                 
-                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -23078,6 +24752,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/csv",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23086,8 +24761,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(String.self, from: data)
+                            
+                            let response = data
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23100,6 +24776,8 @@ The list of points history is paginated.
             
             
             
+            
+            
             /**
             *
             * Summary: Get component statistics pdf
@@ -23108,7 +24786,7 @@ The list of points history is paginated.
             public func getComponentStatsPDF(
                 componentName: String,
                 
-                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -23121,6 +24799,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/pdf",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23129,8 +24808,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(String.self, from: data)
+                            
+                            let response = data
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23140,6 +24820,8 @@ The list of points history is paginated.
                         }
                 });
             }
+            
+            
             
             
             
@@ -23164,6 +24846,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23172,8 +24855,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(StatsRes.self, from: data)
+                            
+                            let response = Utility.decode(StatsRes.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23183,6 +24867,8 @@ The list of points history is paginated.
                         }
                 });
             }
+            
+            
             
             
             
@@ -23218,6 +24904,7 @@ The list of points history is paginated.
                     query: xQuery,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23226,8 +24913,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AbandonCartsList.self, from: data)
+                            
+                            let response = Utility.decode(AbandonCartsList.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23309,6 +24997,8 @@ The list of points history is paginated.
             }
             
             
+            
+            
             /**
             *
             * Summary: Get abandon carts csv
@@ -23318,7 +25008,7 @@ The list of points history is paginated.
                 fromDate: String,
                 toDate: String,
                 
-                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
             ) {
                  
                  
@@ -23331,6 +25021,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/csv",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23339,8 +25030,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(String.self, from: data)
+                            
+                            let response = data
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23350,6 +25042,8 @@ The list of points history is paginated.
                         }
                 });
             }
+            
+            
             
             
             
@@ -23374,6 +25068,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23382,8 +25077,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AbandonCartDetail.self, from: data)
+                            
+                            let response = Utility.decode(AbandonCartDetail.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23415,6 +25111,8 @@ The list of points history is paginated.
             }
             
             
+            
+            
             /**
             *
             * Summary: Add proxy path for external url
@@ -23436,6 +25134,7 @@ The list of points history is paginated.
                     query: nil,
                     body: body.dictionary,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23444,8 +25143,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(AddProxyResponse.self, from: data)
+                            
+                            let response = Utility.decode(AddProxyResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
@@ -23455,6 +25155,8 @@ The list of points history is paginated.
                         }
                 });
             }
+            
+            
             
             
             
@@ -23480,6 +25182,7 @@ The list of points history is paginated.
                     query: nil,
                     body: nil,
                     headers: [],
+                    responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
                             var err = Utility.decode(FDKError.self, from: data)
@@ -23488,8 +25191,9 @@ The list of points history is paginated.
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                        
-                        let response = Utility.decode(RemoveProxyResponse.self, from: data)
+                            
+                            let response = Utility.decode(RemoveProxyResponse.self, from: data)
+                            
                             onResponse(response, nil)
                         } else {
                             let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
