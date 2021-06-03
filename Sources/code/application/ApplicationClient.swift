@@ -242,12 +242,17 @@ public class ApplicationClient {
             slug: String,
             size: String,
             pincode: String,
+            strategy: String?,
             pageNo: Int?,
             pageSize: Int?,
             
             onResponse: @escaping (_ response: ProductSizeSellersResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
+            
+            if let value = strategy {
+                xQuery["strategy"] = value
+            }
             
             if let value = pageNo {
                 xQuery["page_no"] = value
@@ -314,6 +319,10 @@ public class ApplicationClient {
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getProductSellersBySlug
@@ -323,6 +332,7 @@ public class ApplicationClient {
             slug: String,
             size: String,
             pincode: String,
+            strategy: String?,
             pageSize: Int?
             
             ) -> Paginator<ProductSizeSellersResponse> {
@@ -334,6 +344,7 @@ public class ApplicationClient {
                         slug: slug,
                         size: size,
                         pincode: pincode,
+                        strategy: strategy,
                         pageNo: paginator.pageNo
                         ,
                         pageSize: paginator.pageSize
@@ -1773,10 +1784,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1788,7 +1799,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1820,10 +1831,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1835,7 +1846,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2636,7 +2647,7 @@ public class ApplicationClient {
             uid: Int?,
             i: Bool?,
             b: Bool?,
-            
+            body: RewardPointRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
@@ -2661,7 +2672,7 @@ public class ApplicationClient {
                 url: "/service/application/cart/v1.0/redeem/points/",
                 query: xQuery,
                 extraHeaders:  [],
-                body: nil,
+                body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -12031,7 +12042,7 @@ This operation will return the URL of the uploaded file.
             uid: Int?,
             i: Bool?,
             b: Bool?,
-            
+            body: RewardPointRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:] 
@@ -12056,7 +12067,7 @@ This operation will return the URL of the uploaded file.
                 url: "/service/application/pos/cart/v1.0/redeem/points/",
                 query: xQuery,
                 extraHeaders:  [],
-                body: nil,
+                body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
