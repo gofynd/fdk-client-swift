@@ -2129,8 +2129,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Fetch all Items Added to  Cart
-        * Description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+        * Summary: Fetch all items added to the cart
+        * Description: Use this API to get details of all the items added to a cart.
         **/
         public func getCart(
             uid: Int?,
@@ -2194,8 +2194,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Fetch Last-Modified timestamp
-        * Description: Fetch Last-Modified timestamp in header metadata
+        * Summary: Fetch last-modified timestamp
+        * Description: Use this API to fetch Last-Modified timestamp in header metadata.
         **/
         public func getCartLastModified(
             uid: Int?,
@@ -2244,8 +2244,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Add Items to Cart
-        * Description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+        * Summary: Add items to cart
+        * Description: Use this API to add items to the cart.
         **/
         public func addItems(
             i: Bool?,
@@ -2299,8 +2299,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Update Items already added to Cart
-        * Description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+        * Summary: Update items in the cart
+        * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
             uid: Int?,
@@ -2359,8 +2359,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Cart item count
-        * Description: Get total count of item present in cart
+        * Summary: Count items in the cart
+        * Description: Use this API to get the total number of items present in cart.
         **/
         public func getItemCount(
             uid: Int?,
@@ -2410,7 +2410,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Fetch Coupon
-        * Description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+        * Description: Use this API to get a list of available coupons along with their details.
         **/
         public func getCoupons(
             uid: Int?,
@@ -2460,8 +2460,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Apply Coupon
-        * Description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
-</ul>
+        * Description: Use this API to apply coupons on items in the cart.
         **/
         public func applyCoupon(
             i: Bool?,
@@ -2576,7 +2575,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get discount offers based on quantity
-        * Description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+        * Description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
         **/
         public func getBulkDiscountOffers(
             itemId: Int?,
@@ -2640,8 +2639,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Fetch all Items Added to  Cart
-        * Description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+        * Summary: Apply reward points at cart
+        * Description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
         **/
         public func applyRewardPoints(
             uid: Int?,
@@ -2700,8 +2699,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Fetch Address
-        * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Summary: Fetch address
+        * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddresses(
             uid: Int?,
@@ -2770,8 +2769,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Add Address to the account
-        * Description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+        * Summary: Add address to an account
+        * Description: Use this API to add an address to an account.
         **/
         public func addAddress(
             body: Address,
@@ -2815,8 +2814,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Fetch Single Address
-        * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Summary: Fetch a single address by its ID
+        * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddressById(
             id: Int,
@@ -2886,8 +2885,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Update Address alreay added to account
-        * Description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+        * Summary: Update address added to an account
+        * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
         **/
         public func updateAddress(
             id: Int,
@@ -2932,8 +2931,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Remove Address Associated to the account
-        * Description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+        * Summary: Remove address associated with an account
+        * Description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
         **/
         public func removeAddress(
             id: Int,
@@ -2978,8 +2977,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Select Address from All Addresses
-        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+        * Summary: Select an address from available addresses
+        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
         **/
         public func selectAddress(
             uid: Int?,
@@ -3038,8 +3037,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Update Cart Payment
-        * Description: Update Cart Payment for Your Account
+        * Summary: Update cart payment
+        * Description: Use this API to update cart payment.
         **/
         public func selectPaymentMode(
             uid: String?,
@@ -3088,8 +3087,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get Cart Payment for valid coupon
-        * Description: Validate coupon for selected payment mode
+        * Summary: Verify the coupon eligibility against the payment mode
+        * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
         **/
         public func validateCouponForPayment(
             uid: String?,
@@ -3164,7 +3163,7 @@ public class ApplicationClient {
         /**
         *
         * Summary: Get delivery date and options before checkout
-        * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+        * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
         **/
         public func getShipments(
             p: Bool?,
@@ -3228,8 +3227,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Checkout Cart
-        * Description: Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
+        * Summary: Checkout all items in the cart
+        * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
         **/
         public func checkoutCart(
             body: CartCheckoutRequest,
@@ -3273,8 +3272,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Update Cart Meta
-        * Description: Update cart meta like checkout_mode, gstin.
+        * Summary: Update the cart meta
+        * Description: Use this API to update cart meta like checkout_mode and gstin.
         **/
         public func updateCartMeta(
             uid: Int?,
@@ -3323,8 +3322,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Generate Cart sharing link token
-        * Description: Generates shared cart snapshot and returns shortlink token
+        * Summary: Generate token for sharing the cart
+        * Description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
         **/
         public func getCartShareLink(
             body: GetShareCartLinkRequest,
@@ -3368,8 +3367,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Get shared cart snapshot and cart response
-        * Description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+        * Summary: Get details of a shared cart
+        * Description: Use this API to get the shared cart details as per the token generated using the share-cart API.
         **/
         public func getCartSharedItems(
             token: String,
@@ -3414,8 +3413,8 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Merge or Replace existing cart
-        * Description: Merge or Replace cart based on `action` parameter with shared cart of `token`
+        * Summary: Merge or replace existing cart
+        * Description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
         **/
         public func updateCartWithSharedItems(
             token: String,
@@ -11524,8 +11523,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Fetch all Items Added to  Cart
-        * Description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+        * Summary: Fetch all items added to the cart
+        * Description: Use this API to get details of all the items added to a cart.
         **/
         public func getCart(
             uid: Int?,
@@ -11589,8 +11588,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Fetch Last-Modified timestamp
-        * Description: Fetch Last-Modified timestamp in header metadata
+        * Summary: Fetch last-modified timestamp
+        * Description: Use this API to fetch Last-Modified timestamp in header metadata.
         **/
         public func getCartLastModified(
             uid: Int?,
@@ -11639,8 +11638,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Add Items to Cart
-        * Description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+        * Summary: Add items to cart
+        * Description: Use this API to add items to the cart.
         **/
         public func addItems(
             i: Bool?,
@@ -11694,8 +11693,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Update Items already added to Cart
-        * Description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+        * Summary: Update items in the cart
+        * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
             uid: Int?,
@@ -11754,8 +11753,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Cart item count
-        * Description: Get total count of item present in cart
+        * Summary: Count items in the cart
+        * Description: Use this API to get the total number of items present in cart.
         **/
         public func getItemCount(
             uid: Int?,
@@ -11805,7 +11804,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Fetch Coupon
-        * Description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+        * Description: Use this API to get a list of available coupons along with their details.
         **/
         public func getCoupons(
             uid: Int?,
@@ -11855,8 +11854,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Apply Coupon
-        * Description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
-</ul>
+        * Description: Use this API to apply coupons on items in the cart.
         **/
         public func applyCoupon(
             i: Bool?,
@@ -11971,7 +11969,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Get discount offers based on quantity
-        * Description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+        * Description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
         **/
         public func getBulkDiscountOffers(
             itemId: Int?,
@@ -12035,8 +12033,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Fetch all Items Added to  Cart
-        * Description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+        * Summary: Apply reward points at cart
+        * Description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
         **/
         public func applyRewardPoints(
             uid: Int?,
@@ -12095,8 +12093,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Fetch Address
-        * Description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Summary: Fetch address
+        * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddresses(
             uid: Int?,
@@ -12165,8 +12163,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Add Address to the account
-        * Description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+        * Summary: Add address to an account
+        * Description: Use this API to add an address to an account.
         **/
         public func addAddress(
             body: Address,
@@ -12210,8 +12208,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Fetch Single Address
-        * Description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+        * Summary: Fetch a single address by its ID
+        * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddressById(
             id: Int,
@@ -12281,8 +12279,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Update Address alreay added to account
-        * Description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+        * Summary: Update address added to an account
+        * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
         **/
         public func updateAddress(
             id: Int,
@@ -12327,8 +12325,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Remove Address Associated to the account
-        * Description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+        * Summary: Remove address associated with an account
+        * Description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
         **/
         public func removeAddress(
             id: Int,
@@ -12373,8 +12371,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Select Address from All Addresses
-        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+        * Summary: Select an address from available addresses
+        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
         **/
         public func selectAddress(
             uid: Int?,
@@ -12433,8 +12431,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Update Cart Payment
-        * Description: Update Cart Payment for Your Account
+        * Summary: Update cart payment
+        * Description: Use this API to update cart payment.
         **/
         public func selectPaymentMode(
             uid: String?,
@@ -12483,8 +12481,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Get Cart Payment for valid coupon
-        * Description: Validate coupon for selected payment mode
+        * Summary: Verify the coupon eligibility against the payment mode
+        * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
         **/
         public func validateCouponForPayment(
             uid: String?,
@@ -12559,7 +12557,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Get delivery date and options before checkout
-        * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+        * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
         **/
         public func getShipments(
             pickAtStoreUid: Int?,
@@ -12639,7 +12637,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Update shipment delivery type and quantity before checkout
-        * Description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+        * Description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
         **/
         public func updateShipments(
             i: Bool?,
@@ -12708,8 +12706,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Checkout Cart
-        * Description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
+        * Summary: Checkout all items in the cart
+        * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
         **/
         public func checkoutCart(
             uid: Int?,
@@ -12758,8 +12756,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Update Cart Meta
-        * Description: Update cart meta like checkout_mode, gstin.
+        * Summary: Update the cart meta
+        * Description: Use this API to update cart meta like checkout_mode and gstin.
         **/
         public func updateCartMeta(
             uid: Int?,
@@ -12809,7 +12807,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Get available delivery modes for cart
-        * Description: Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
+        * Description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
         **/
         public func getAvailableDeliveryModes(
             areaCode: String,
@@ -12862,7 +12860,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Get list of stores for give uids
-        * Description: Get list of stores by providing pick up available store uids.
+        * Description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
         **/
         public func getStoreAddressByUid(
             storeUid: Int,
@@ -12909,8 +12907,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Generate Cart sharing link token
-        * Description: Generates shared cart snapshot and returns shortlink token
+        * Summary: Generate token for sharing the cart
+        * Description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
         **/
         public func getCartShareLink(
             body: GetShareCartLinkRequest,
@@ -12954,8 +12952,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Get shared cart snapshot and cart response
-        * Description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+        * Summary: Get details of a shared cart
+        * Description: Use this API to get the shared cart details as per the token generated using the share-cart API.
         **/
         public func getCartSharedItems(
             token: String,
@@ -13000,8 +12998,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Merge or Replace existing cart
-        * Description: Merge or Replace cart based on `action` parameter with shared cart of `token`
+        * Summary: Merge or replace existing cart
+        * Description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
         **/
         public func updateCartWithSharedItems(
             token: String,

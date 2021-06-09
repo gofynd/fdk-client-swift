@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-            .package(url: "https://github.com/Alamofire/Alamofire.git", .branch("feature/linux-support")),
+            .package(url: "https://github.com/Alamofire/Alamofire.git", .branch("master")),
             .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.3.8")),
             //.package(url: "https://github.com/jernejstrasner/SwiftCrypto.git", from: "1.0.1"),
             //.package(url: "https://github.com/kmussel/ccommoncrypto.git", from: "0.0.1"),//from: "5.0.2")
