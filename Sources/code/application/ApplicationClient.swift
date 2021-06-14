@@ -7959,7 +7959,7 @@ This operation will return the URL of the uploaded file.
         /**
         *
         * Summary: Attach a saved card to customer.
-        * Description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe.
+        * Description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
         **/
         public func attachCardToCustomer(
             body: AttachCardRequest,
@@ -8948,8 +8948,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to retrieve all the orders.
-        * Description: Get all orders
+        * Summary: Get all orders
+        * Description: Use this API to retrieve all the orders.
         **/
         public func getOrders(
             pageNo: Int?,
@@ -9018,8 +9018,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
-        * Description: Get details of an order
+        * Summary: Get details of an order
+        * Description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
         **/
         public func getOrderById(
             orderId: String,
@@ -9064,8 +9064,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
-        * Description: Get details of a shipment
+        * Summary: Get details of a shipment
+        * Description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
         **/
         public func getShipmentById(
             shipmentId: String,
@@ -9110,8 +9110,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-        * Description: Get reasons behind full or partial cancellation of a shipment
+        * Summary: Get reasons behind full or partial cancellation of a shipment
+        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -9156,8 +9156,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to update the status of a shipment using its shipment ID.
-        * Description: Update the shipment status
+        * Summary: Update the shipment status
+        * Description: Use this API to update the status of a shipment using its shipment ID.
         **/
         public func updateShipmentStatus(
             shipmentId: String,
@@ -9202,8 +9202,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to track a shipment using its shipment ID.
-        * Description: Track shipment
+        * Summary: Track shipment
+        * Description: Use this API to track a shipment using its shipment ID.
         **/
         public func trackShipment(
             shipmentId: String,
@@ -9248,8 +9248,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
-        * Description: Get POS Order
+        * Summary: Get POS Order
+        * Description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
         **/
         public func getPosOrderById(
             orderId: String,
