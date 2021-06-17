@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -334,9 +334,11 @@ catalog.getProductDetailBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+
 
 Use this API to retrieve a product by its slug value.
 
@@ -375,10 +377,12 @@ catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { (response, error) 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
 | storeId | Int? | The ID of the store that is selling the product, e.g. 1,2,3. |  
+
 
 A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
 
@@ -417,12 +421,14 @@ catalog.getProductPriceBySlug(slug: slug, size: size, pincode: pincode, storeId:
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
 | size | String? | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
 | pincode | String? | The PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
 | storeId | String? | The ID of the store that is selling the product, e.g. 1,2,3. |  
+
 
 Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
 
@@ -461,6 +467,7 @@ catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, strate
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
@@ -469,6 +476,7 @@ catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, strate
 | strategy | String? | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |    
 | pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
 
@@ -507,9 +515,11 @@ catalog.getProductComparisonBySlugs(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | [String]? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/. |  
+
 
 Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
 
@@ -548,9 +558,11 @@ catalog.getSimilarComparisonProductBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+
 
 Use this API to compare a given product automatically with similar products. Only one slug is needed.
 
@@ -589,9 +601,11 @@ catalog.getComparedFrequentlyProductBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+
 
 Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
 
@@ -630,10 +644,12 @@ catalog.getProductSimilarByIdentifier(slug: slug, similarType: similarType) { (r
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
 | similarType | String? | Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory. |  
+
 
 Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
 
@@ -672,9 +688,11 @@ catalog.getProductVariantsBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+
 
 A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
 
@@ -713,6 +731,7 @@ catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode: skuCode, ean: ea
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | itemId | String? | The Item ID of the product (Max. 50 allowed) |    
@@ -720,6 +739,7 @@ catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode: skuCode, ean: ea
 | skuCode | String? | Stock-keeping Unit of the product (limited upto 50 SKU Code in a single request) |    
 | ean | String? | European Article Number of the product (limited upto 50 EAN identifier in a single request) |    
 | upc | String? | Universal Product Code of the product (limited upto 50 UPC identifier in a single request) |  
+
 
 Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
 
@@ -758,11 +778,13 @@ catalog.getProductStockForTimeByIds(timestamp: timestamp, pageSize: pageSize, pa
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | timestamp | String? | Timestamp in UTC format (2020-07-23T10:27:50Z) |    
 | pageSize | Int? | The number of items to retrieve in each page. |    
 | pageId | String? | Page ID to retrieve next set of results. |  
+
 
 Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
 
@@ -801,6 +823,7 @@ catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | q | String? | The search query for entering partial or full name of product, brand, category, or collection. |    
@@ -811,6 +834,7 @@ catalog.getProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId
 | pageSize | Int? | The number of items to retrieve in each page. |    
 | pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageType | String? | Available pagination types are cursor or number. |  
+
 
 Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
 
@@ -849,11 +873,13 @@ catalog.getBrands(department: department, pageNo: pageNo, pageSize: pageSize) { 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |    
 | pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
 
@@ -892,9 +918,11 @@ catalog.getBrandDetailBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
+
 
 Fetch metadata of a brand such as name, information, logo, banner, etc.
 
@@ -933,9 +961,11 @@ catalog.getCategories(department: department) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | department | String? | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |  
+
 
 Use this API to list all the categories. You can also filter the categories by department.
 
@@ -974,9 +1004,11 @@ catalog.getCategoryDetailBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
+
 
 Fetch metadata of a category such as name, information, logo, banner, etc.
 
@@ -1015,11 +1047,13 @@ catalog.getHomeProducts(sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (r
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | sortOn | String? | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. |    
 | pageId | String? | Page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 List all the products associated with a brand, collection or category in a random order.
 
@@ -1058,8 +1092,7 @@ catalog.getDepartments() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
 
@@ -1098,9 +1131,11 @@ catalog.getSearchResults(q: q) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | q | String? | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |  
+
 
 Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
 
@@ -1139,10 +1174,12 @@ catalog.getCollections(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
 
@@ -1181,6 +1218,7 @@ catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sor
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |    
@@ -1189,6 +1227,7 @@ catalog.getCollectionItemsBySlug(slug: slug, f: f, filters: filters, sortOn: sor
 | sortOn | String? | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
 | pageId | String? | Page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Get items in a collection specified by its `slug`.
 
@@ -1227,9 +1266,11 @@ catalog.getCollectionDetailBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |  
+
 
 Get the details of a collection by its `slug`.
 
@@ -1268,11 +1309,13 @@ catalog.getFollowedListing(collectionType: collectionType, pageId: pageId, pageS
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
 | pageId | String? | Page ID to retrieve next set of results. |    
 | pageSize | Int? | Page ID to retrieve next set of results. |  
+
 
 Users can follow a product they like. This API retrieves the products the user have followed.
 
@@ -1302,21 +1345,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow an entity (product/brand/collection)
+#### unfollowById
+Unfollow an entity (product/brand/collection)
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
+
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
 | collectionId | String? | The ID of the collection type. |  
 
-Follow a particular entity such as product, brand, collection specified by its ID.
+
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 
@@ -1344,21 +1389,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-Unfollow an entity (product/brand/collection)
+#### followById
+Follow an entity (product/brand/collection)
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
+
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection followed, i.e. products, brands, or collections. |    
 | collectionId | String? | The ID of the collection type. |  
 
-You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
@@ -1395,10 +1442,12 @@ catalog.getFollowerCountById(collectionType: collectionType, collectionId: colle
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection, i.e. products, brands, or collections. |    
 | collectionId | String? | The ID of the collection type. |  
+
 
 Get the total count of followers for a given collection type and collection ID.
 
@@ -1437,9 +1486,11 @@ catalog.getFollowIds(collectionType: collectionType) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | collectionType | String? | Type of collection, i.e. products, brands, collections. |  
+
 
 You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
 
@@ -1478,6 +1529,7 @@ catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitu
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. |    
@@ -1486,6 +1538,7 @@ catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, range: range, latitu
 | range | Int? | Use this to retrieve stores within a particular range in meters, e.g. 10000, to indicate a 10km range |    
 | latitude | Double? | Latitude of the location from where one wants to retreive the nearest stores, e.g. 72.8691788 |    
 | longitude | Double? | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |  
+
 
 Use this API to get a list of stores in a specific application.
 
@@ -1531,12 +1584,14 @@ cart.getCart(uid: uid, i: i, b: b, assignCardId: assignCardId) { (response, erro
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |    
 | assignCardId | Int? |  |  
+
 
 Use this API to get details of all the items added to a cart.
 
@@ -1566,9 +1621,11 @@ cart.getCartLastModified(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |  
+
 
 Use this API to fetch Last-Modified timestamp in header metadata.
 
@@ -1595,10 +1652,12 @@ cart.addItems(i: i, b: b, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 Use this API to add items to the cart.
 
@@ -1628,11 +1687,13 @@ cart.updateCart(uid: uid, i: i, b: b, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -1662,9 +1723,11 @@ cart.getItemCount(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? | The unique identifier of the cart. |  
+
 
 Use this API to get the total number of items present in cart.
 
@@ -1694,9 +1757,11 @@ cart.getCoupons(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |  
+
 
 Use this API to get a list of available coupons along with their details.
 
@@ -1726,12 +1791,14 @@ cart.applyCoupon(i: i, b: b, p: p, uid: uid, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | i | Bool? |  |    
 | b | Bool? |  |    
 | p | Bool? |  |    
 | uid | Int? |  |  
+
 
 Use this API to apply coupons on items in the cart.
 
@@ -1761,9 +1828,11 @@ cart.removeCoupon(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? | The unique identifier of the cart |  
+
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -1793,12 +1862,14 @@ cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug:
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | itemId | Int? | The Item ID of the product |    
 | articleId | String? | Article Mongo ID |    
 | uid | Int? | UID of the product |    
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+
 
 Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
 
@@ -1837,11 +1908,13 @@ cart.applyRewardPoints(uid: uid, i: i, b: b, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 Use this API to redeem a fixed no. of reward points by applying it to the cart.
 
@@ -1871,6 +1944,7 @@ cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
@@ -1878,6 +1952,7 @@ cart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, tags
 | checkoutMode | String? |  |    
 | tags | String? |  |    
 | isDefault | Bool? |  |  
+
 
 Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -1907,8 +1982,7 @@ cart.addAddress(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to add an address to an account.
 
@@ -1938,6 +2012,7 @@ cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkout
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | Int? |  |    
@@ -1946,6 +2021,7 @@ cart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: checkout
 | checkoutMode | String? |  |    
 | tags | String? |  |    
 | isDefault | Bool? |  |  
+
 
 Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -1975,9 +2051,11 @@ cart.updateAddress(id: id, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | Int? | ID allotted to the selected address |  
+
 
 Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
@@ -2007,9 +2085,11 @@ cart.removeAddress(id: id) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | Int? | ID allotted to the selected address |  
+
 
 Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
 
@@ -2039,11 +2119,13 @@ cart.selectAddress(uid: uid, i: i, b: b, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
@@ -2082,9 +2164,11 @@ cart.selectPaymentMode(uid: uid, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | String? |  |  
+
 
 Use this API to update cart payment.
 
@@ -2114,6 +2198,7 @@ cart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: payme
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | String? |  |    
@@ -2122,6 +2207,7 @@ cart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: payme
 | paymentIdentifier | String? |  |    
 | aggregatorName | String? |  |    
 | merchantCode | String? |  |  
+
 
 Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
 
@@ -2151,12 +2237,14 @@ cart.getShipments(p: p, uid: uid, addressId: addressId, areaCode: areaCode) { (r
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | p | Bool? | This is a boolean value. Select `true` for getting a payment option in response. |    
 | uid | Int? | The unique identifier of the cart |    
 | addressId | Int? | ID allotted to the selected address |    
 | areaCode | String? | The PIN Code of the destination address, e.g. 400059 |  
+
 
 Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
 
@@ -2195,8 +2283,7 @@ cart.checkoutCart(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
 
@@ -2226,9 +2313,11 @@ cart.updateCartMeta(uid: uid, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? | The unique identifier of the cart |  
+
 
 Use this API to update cart meta like checkout_mode and gstin.
 
@@ -2267,8 +2356,7 @@ cart.getCartShareLink(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
 
@@ -2298,9 +2386,11 @@ cart.getCartSharedItems(token: token) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | token | String? | Token of the shared short link |  
+
 
 Use this API to get the shared cart details as per the token generated using the share-cart API.
 
@@ -2339,10 +2429,12 @@ cart.updateCartWithSharedItems(token: token, action: action) { (response, error)
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | token | String? | Token of the shared short link |    
 | action | String? | Operation to perform on the existing cart merge or replace. |  
+
 
 Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
 
@@ -2379,9 +2471,11 @@ lead.getTicket(id: id) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | String? | ID of ticket to be retrieved |  
+
 
 Get Ticket with the specific id, this is used to view the ticket details
 
@@ -2411,9 +2505,11 @@ lead.createHistory(id: id, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | String? | Ticket ID for which history is created |  
+
 
 Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -2443,8 +2539,7 @@ lead.createTicket(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 This is used to Create Ticket.
 
@@ -2474,9 +2569,11 @@ lead.getCustomForm(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | Slug of form whose response is getting submitted |  
+
 
 Get specific Custom Form using it's slug, this is used to view the form.
 
@@ -2506,9 +2603,11 @@ lead.submitCustomForm(slug: slug, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | Slug of form whose response is getting submitted |  
+
 
 Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
 
@@ -2538,9 +2637,11 @@ lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uniqueName | String? | Unique name of Video Room |  
+
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
@@ -2570,9 +2671,11 @@ lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uniqueName | String? | Unique name of Video Room |  
+
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
@@ -2609,9 +2712,11 @@ theme.getAllPages(themeId: themeId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | themeId | String? | ID of the theme to be retrieved |  
+
 
 Use this API to retrieve all the available pages of a theme by its ID.
 
@@ -2659,10 +2764,12 @@ theme.getPage(themeId: themeId, pageValue: pageValue) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | themeId | String? | ID of the theme to be retrieved |    
 | pageValue | String? | Value of the page to be retrieved |  
+
 
 Use this API to retrieve a page of a theme.
 
@@ -2710,8 +2817,7 @@ theme.getAppliedTheme() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
 
@@ -2759,9 +2865,11 @@ theme.getThemeForPreview(themeId: themeId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | themeId | String? | ID of the theme to be retrieved |  
+
 
 A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
 
@@ -2816,8 +2924,7 @@ user.loginWithFacebook(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to login or register using Facebook credentials.
 
@@ -2865,8 +2972,7 @@ user.loginWithGoogle(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to login or register using Google Account credentials.
 
@@ -2914,8 +3020,7 @@ user.loginWithGoogleAndroid(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to login or register in Android app using Google Account credentials.
 
@@ -2963,8 +3068,7 @@ user.loginWithGoogleIOS(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to login or register in iOS app using Google Account credentials.
 
@@ -3012,9 +3116,11 @@ user.loginWithOTP(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
 
@@ -3062,8 +3168,7 @@ user.loginWithEmailAndPassword(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to login or register using an email address and password.
 
@@ -3111,9 +3216,11 @@ user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to reset a password using the link sent on email.
 
@@ -3161,8 +3268,7 @@ user.forgotPassword(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to reset a password using the code sent on email or SMS.
 
@@ -3210,8 +3316,7 @@ user.sendResetToken(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to send code to reset password.
 
@@ -3259,8 +3364,7 @@ user.loginWithToken(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to login or register using a token for authentication.
 
@@ -3317,9 +3421,11 @@ user.registerWithForm(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to perform user registration by sending form data in the request body.
 
@@ -3367,8 +3473,7 @@ user.verifyEmail(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to send a verification code to verify an email.
 
@@ -3416,8 +3521,7 @@ user.verifyMobile(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to send a verification code to verify a mobile number.
 
@@ -3465,8 +3569,7 @@ user.hasPassword() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to check if user has created a password for login.
 
@@ -3514,8 +3617,7 @@ user.updatePassword(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update the password.
 
@@ -3563,8 +3665,7 @@ user.logout() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to check to logout a user from the app.
 
@@ -3612,9 +3713,11 @@ user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to send an OTP to a mobile number.
 
@@ -3662,9 +3765,11 @@ user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to verify the OTP received on a mobile number.
 
@@ -3712,9 +3817,11 @@ user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to send an OTP to an email ID.
 
@@ -3762,9 +3869,11 @@ user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to verify the OTP received on an email ID.
 
@@ -3812,8 +3921,7 @@ user.getLoggedInUser() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API  to get the details of a logged in user.
 
@@ -3861,8 +3969,7 @@ user.getListOfActiveSessions() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve all active sessions of a user.
 
@@ -3910,9 +4017,11 @@ user.getPlatformConfig(name: name) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | name | String? | Name of the application, e.g. Fynd |  
+
 
 Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
 
@@ -3960,9 +4069,11 @@ user.updateProfile(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
 
@@ -4010,9 +4121,11 @@ user.addMobileNumber(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to add a new mobile number to a profile.
 
@@ -4060,6 +4173,7 @@ user.deleteMobileNumber(platform: platform, active: active, primary: primary, ve
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |    
@@ -4068,6 +4182,7 @@ user.deleteMobileNumber(platform: platform, active: active, primary: primary, ve
 | verified | Bool? | This is a boolean value to check if mobile number is verified 1. True - Number is verified 2.False - Number is not verified yet |    
 | countryCode | String? | Country code of the phone number, e.g. 91 |    
 | phone | String? | Phone number |  
+
 
 Use this API to delete a mobile number from a profile.
 
@@ -4115,8 +4230,7 @@ user.setMobileNumberAsPrimary(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
 
@@ -4164,9 +4278,11 @@ user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, e
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to send a verification link to a mobile number
 
@@ -4214,9 +4330,11 @@ user.addEmail(platform: platform, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to add a new email address to a profile
 
@@ -4264,6 +4382,7 @@ user.deleteEmail(platform: platform, active: active, primary: primary, verified:
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |    
@@ -4271,6 +4390,7 @@ user.deleteEmail(platform: platform, active: active, primary: primary, verified:
 | primary | Bool? | This is a boolean value to check if email ID is primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is not primary |    
 | verified | Bool? | This is a boolean value to check if email ID is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet |    
 | email | String? | The email ID to delete |  
+
 
 Use this API to delete an email address from a profile
 
@@ -4318,8 +4438,7 @@ user.setEmailAsPrimary(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
 
@@ -4367,9 +4486,11 @@ user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, er
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | platform | String? | ID of the application |  
+
 
 Use this API to send verification link to an email address.
 
@@ -4424,8 +4545,7 @@ content.getAnnouncements() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
 
@@ -4473,10 +4593,12 @@ content.getBlog(slug: slug, rootId: rootId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a blog. You can get slug value from the endpoint /service/application/content/v1.0/blogs/. |    
 | rootId | String? | ID given to the HTML element |  
+
 
 Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
 
@@ -4524,10 +4646,12 @@ content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to get all the blogs.
 
@@ -4575,8 +4699,7 @@ content.getFaqs() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
 
@@ -4624,8 +4747,7 @@ content.getFaqCategories() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
@@ -4673,9 +4795,11 @@ content.getFaqBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. |  
+
 
 Use this API to get a particular FAQ by its slug.
 
@@ -4723,9 +4847,11 @@ content.getFaqCategoryBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
+
 
 FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
 
@@ -4773,9 +4899,11 @@ content.getFaqsByCategorySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
+
 
 FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
 
@@ -4823,8 +4951,7 @@ content.getLandingPage() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
 
@@ -4872,8 +4999,7 @@ content.getLegalInformation() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
 
@@ -4921,10 +5047,12 @@ content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
 
@@ -4972,10 +5100,12 @@ content.getPage(slug: slug, rootId: rootId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v1.0/pages/. |    
 | rootId | String? | ID given to the HTML element |  
+
 
 Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
 
@@ -5023,10 +5153,12 @@ content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to get a list of pages.
 
@@ -5074,8 +5206,7 @@ content.getSEOConfiguration() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
 
@@ -5123,10 +5254,12 @@ content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to get a list of slideshows along with their details.
 
@@ -5174,9 +5307,11 @@ content.getSlideshow(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. |  
+
 
 A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
 
@@ -5224,8 +5359,7 @@ content.getSupportInformation() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get contact details for customer support including emails and phone numbers.
 
@@ -5273,8 +5407,7 @@ content.getTags() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get all the CSS and JS injected in the application in the form of tags.
 
@@ -5329,8 +5462,7 @@ communication.getCommunicationConsent() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
@@ -5360,8 +5492,7 @@ communication.upsertCommunicationConsent(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
@@ -5400,8 +5531,7 @@ communication.upsertAppPushtoken(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update and insert the push token of the user.
 
@@ -5447,8 +5577,7 @@ share.getApplicationQRCode() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to create a QR code of an app for sharing it with users who want to use the app.
 
@@ -5478,9 +5607,11 @@ share.getProductQRCodeBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint. |  
+
 
 Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
 
@@ -5519,9 +5650,11 @@ share.getCollectionQRCodeBySlug(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint. |  
+
 
 Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
 
@@ -5560,9 +5693,11 @@ share.getUrlQRCode(url: url) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | url | String? | A link or a web address |  
+
 
 Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
 
@@ -5601,8 +5736,7 @@ share.createShortLink(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to create a short link that is easy to write/share/read as compared to long URLs.
 
@@ -5641,9 +5775,11 @@ share.getShortLinkByHash(hash: hash) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | hash | String? | A string value used for converting long URL to short URL and vice-versa. |  
+
 
 Use this API to get a short link by using a hash value.
 
@@ -5682,9 +5818,11 @@ share.getOriginalShortLinkByHash(hash: hash) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | hash | String? | A string value used for converting long URL to short URL and vice-versa. |  
+
 
 Use this API to retrieve the original link from a short-link by using a hash value.
 
@@ -5730,9 +5868,11 @@ filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | namespace | String? | Name of the bucket created for storing objects. |  
+
 
 Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
 
@@ -5789,9 +5929,11 @@ filestorage.completeUpload(namespace: namespace, body: body) { (response, error)
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | namespace | String? | Name of the bucket created for storing objects. |  
+
 
 Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
 
@@ -5855,8 +5997,7 @@ configuration.getApplication() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
 
@@ -5895,8 +6036,7 @@ configuration.getOwnerInfo() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
 
@@ -5926,8 +6066,7 @@ configuration.getBasicDetails() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
 
@@ -5957,8 +6096,7 @@ configuration.getIntegrationTokens() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
 
@@ -5988,11 +6126,13 @@ configuration.getOrderingStores(pageNo: pageNo, pageSize: pageSize, q: q) { (res
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |    
 | q | String? | Store code or name of the ordering store. |  
+
 
 Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
 
@@ -6031,8 +6171,7 @@ configuration.getFeatures() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
 
@@ -6071,8 +6210,7 @@ configuration.getContactInfo() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
 
@@ -6102,8 +6240,7 @@ configuration.getCurrencies() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
 
@@ -6133,9 +6270,11 @@ configuration.getCurrencyById(id: id) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | String? | Object ID assigned to the currency |  
+
 
 Use this API to retrieve a currency using its ID.
 
@@ -6165,8 +6304,7 @@ configuration.getLanguages() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get a list of languages supported in the application.
 
@@ -6196,8 +6334,7 @@ configuration.getOrderingStoreCookie(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
 
@@ -6236,8 +6373,7 @@ configuration.removeOrderingStoreCookie() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
 
@@ -6267,11 +6403,13 @@ configuration.getAppStaffs(orderIncent: orderIncent, orderingStore: orderingStor
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | orderIncent | Bool? | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
 | orderingStore | Int? | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
 | user | String? | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+
 
 Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
 
@@ -6317,10 +6455,12 @@ payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | xApiToken | String? | Used for basic authentication. |    
 | refresh | Bool? | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |  
+
 
 Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
 
@@ -6368,8 +6508,7 @@ payment.attachCardToCustomer(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
 
@@ -6417,9 +6556,11 @@ payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | refresh | Bool? |  |  
+
 
 Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
 
@@ -6467,9 +6608,11 @@ payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | forceRefresh | Bool? |  |  
+
 
 Use this API to retrieve a list of cards stored by user from an active payment gateway.
 
@@ -6517,8 +6660,7 @@ payment.deleteUserCard(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to delete a card added by a user on the payment gateway and clear the cache.
 
@@ -6566,8 +6708,7 @@ payment.verifyCustomerForPayment(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
 
@@ -6615,8 +6756,7 @@ payment.verifyAndChargePayment(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
 
@@ -6664,8 +6804,7 @@ payment.initialisePayment(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
 
@@ -6713,8 +6852,7 @@ payment.checkAndUpdatePaymentStatus(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to perform continuous polling at intervals to check the status of payment until timeout.
 
@@ -6762,6 +6900,7 @@ payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, c
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | amount | Int? | Payable amount. |    
@@ -6771,6 +6910,7 @@ payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, c
 | refresh | Bool? | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
 | assignCardId | String? | Token of user's debit or credit card. |    
 | userDetails | String? | URIencoded JSON containing details of an anonymous user. |  
+
 
 Use this API to get all valid payment options for doing a payment.
 
@@ -6818,6 +6958,7 @@ payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | amount | Int? | Payable amount. |    
@@ -6828,6 +6969,7 @@ payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode
 | assignCardId | String? | Token of user's debit or credit card. |    
 | orderType | String? | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |    
 | userDetails | String? | URIencoded JSON containing details of an anonymous user. |  
+
 
 Use this API to get all valid payment options for doing a payment in POS.
 
@@ -6875,8 +7017,7 @@ payment.getRupifiBannerDetails() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Get CreditLine Offer if user is tentatively approved by rupifi
 
@@ -6924,8 +7065,7 @@ payment.getActiveRefundTransferModes() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
 
@@ -6964,8 +7104,7 @@ payment.enableOrDisableRefundTransferMode(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
 
@@ -7004,9 +7143,11 @@ payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | orderId | String? | A unique number used for identifying and tracking your orders. |  
+
 
 Use this API to get the details of all active beneficiary added by a user for refund.
 
@@ -7054,9 +7195,11 @@ payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | ifscCode | String? | A 11-digit alphanumeric code that uniquely identifies a bank branch. |  
+
 
 Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
 
@@ -7104,9 +7247,11 @@ payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | orderId | String? | A unique number used for identifying and tracking your orders. |  
+
 
 Use this API to get the details of all active beneficiary added by a user for refund.
 
@@ -7154,8 +7299,7 @@ payment.verifyOtpAndAddBeneficiaryForBank(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
 
@@ -7203,8 +7347,7 @@ payment.addBeneficiaryDetails(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to save the bank details for a returned or cancelled order to refund the amount.
 
@@ -7252,8 +7395,7 @@ payment.verifyOtpAndAddBeneficiaryForWallet(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
 
@@ -7301,8 +7443,7 @@ payment.updateDefaultBeneficiary(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to set a default beneficiary for getting a refund.
 
@@ -7357,6 +7498,7 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |    
@@ -7364,6 +7506,7 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 | fromDate | String? | The date from which the orders should be retrieved. |    
 | toDate | String? | The date till which the orders should be retrieved. |    
 | orderStatus | Int? | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |  
+
 
 Use this API to retrieve all the orders.
 
@@ -7411,9 +7554,11 @@ order.getOrderById(orderId: orderId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | orderId | String? | A unique number used for identifying and tracking your orders. |  
+
 
 Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
 
@@ -7461,9 +7606,11 @@ order.getShipmentById(shipmentId: shipmentId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | shipmentId | String? | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
 
 Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
 
@@ -7511,9 +7658,11 @@ order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | shipmentId | String? | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
 
 Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
 
@@ -7561,9 +7710,11 @@ order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, erro
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | shipmentId | String? | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
 
 Use this API to update the status of a shipment using its shipment ID.
 
@@ -7611,9 +7762,11 @@ order.trackShipment(shipmentId: shipmentId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | shipmentId | String? | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
 
 Use this API to track a shipment using its shipment ID.
 
@@ -7661,9 +7814,11 @@ order.getPosOrderById(orderId: orderId) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | orderId | String? | A unique number used for identifying and tracking your orders. |  
+
 
 Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
 
@@ -7718,8 +7873,7 @@ rewards.getPointsOnProduct(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
 
@@ -7758,9 +7912,11 @@ rewards.getOfferByName(name: name) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | name | String? | The name given to the offer. |  
+
 
 Use this API to get the offer details and configuration by entering the name of the offer.
 
@@ -7799,8 +7955,7 @@ rewards.getOrderDiscount(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
 
@@ -7839,8 +7994,7 @@ rewards.getUserPoints() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve total available points of a user for current application
 
@@ -7879,10 +8033,12 @@ rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, er
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageId | String? | PageID is the ID of the requested page. For first request it should be kept empty. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to get a list of points transactions. The list of points history is paginated.
 
@@ -7921,8 +8077,7 @@ rewards.getUserReferralDetails() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to retrieve the referral details a user has configured in the application.
 
@@ -7961,8 +8116,7 @@ rewards.redeemReferralCode(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
 
@@ -8008,8 +8162,7 @@ feedback.createAbuseReport(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to report a specific entity (question/review/comment) for abuse.
 
@@ -8048,8 +8201,7 @@ feedback.updateAbuseReport(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update the abuse details, i.e. status and description.
 
@@ -8088,6 +8240,7 @@ feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pag
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | entityId | String? | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). |    
@@ -8095,6 +8248,7 @@ feedback.getAbuseReports(entityId: entityId, entityType: entityType, id: id, pag
 | id | String? | abuse id |    
 | pageId | String? | Pagination page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to retrieve a list of abuse data from entity type and entity ID.
 
@@ -8133,10 +8287,12 @@ feedback.getAttributes(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
 
@@ -8175,8 +8331,7 @@ feedback.createAttribute(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
 
@@ -8215,9 +8370,11 @@ feedback.getAttribute(slug: slug) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. |  
+
 
 Use this API to retrieve a single attribute data from a given slug.
 
@@ -8256,9 +8413,11 @@ feedback.updateAttribute(slug: slug, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | slug | String? | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. |  
+
 
 Use this API update the attribute's name and description.
 
@@ -8297,8 +8456,7 @@ feedback.createComment(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to add a new comment for a specific entity.
 
@@ -8337,8 +8495,7 @@ feedback.updateComment(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update the comment status (active or approve) along with new comment if any.
 
@@ -8377,6 +8534,7 @@ feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId:
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | entityType | String? | Type of entity, e.g. question, review or comment. |    
@@ -8385,6 +8543,7 @@ feedback.getComments(entityType: entityType, id: id, entityId: entityId, userId:
 | userId | String? | User ID - a flag/filter to get comments for a user. |    
 | pageId | String? | Pagination page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to retrieve a list of comments for a specific entity type, e.g. products.
 
@@ -8423,10 +8582,12 @@ feedback.checkEligibility(entityType: entityType, entityId: entityId) { (respons
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | entityType | String? | Type of entity, e.g. question, rate, review, answer, or comment. |    
 | entityId | String? | ID of the eligible entity as specified in the entity type. |  
+
 
 Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
 
@@ -8465,8 +8626,7 @@ feedback.deleteMedia() { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to delete media for an entity ID.
 
@@ -8505,8 +8665,7 @@ feedback.createMedia(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to add media to an entity, e.g. review.
 
@@ -8545,8 +8704,7 @@ feedback.updateMedia(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update media (archive/approve) for an entity.
 
@@ -8580,18 +8738,21 @@ Schema: `FeedbackError`
 Get Media
 
 ```swift
-feedback.getMedias(entityType: entityType, entityId: entityId, id: id, pageId: pageId, pageSize: pageSize) { (response, error) in
+feedback.getMedias(entityType: entityType, entityId: entityId, id: id, type: type, pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
+
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | entityType | String? | Type of entity, e.g. question or product. |    
 | entityId | String? | ID of the eligible entity as specified in the entity type(question ID/product ID). |    
 | id | String? | ID of the media. |    
+| type | String? | Media type. |    
 | pageId | String? | Pagination page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to retrieve all media from an entity.
 
@@ -8630,6 +8791,7 @@ feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | entityType | String? | Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template. |    
@@ -8637,6 +8799,7 @@ feedback.getReviewSummaries(entityType: entityType, entityId: entityId, id: id, 
 | id | String? | Review summary identifier. |    
 | pageId | String? | Pagination page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
 
@@ -8675,8 +8838,7 @@ feedback.createReview(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
 
@@ -8715,8 +8877,7 @@ feedback.updateReview(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
 
@@ -8755,6 +8916,7 @@ feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | entityType | String? | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template. |    
@@ -8770,6 +8932,7 @@ feedback.getReviews(entityType: entityType, entityId: entityId, id: id, userId: 
 | approve | Bool? | Get the approved reviews. |    
 | pageId | String? | Pagination page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to retrieve a list of customer reviews based on entity and filters provided.
 
@@ -8808,11 +8971,13 @@ feedback.getTemplates(templateId: templateId, entityId: entityId, entityType: en
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | templateId | String? | ID of the feedback template. |    
 | entityId | String? | ID of the eligible entity as specified in the entity type. |    
 | entityType | String? | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, or application. |  
+
 
 Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
 
@@ -8851,8 +9016,7 @@ feedback.createQuestion(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
 
@@ -8891,8 +9055,7 @@ feedback.updateQuestion(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update the status of a question, its tags and its choices.
 
@@ -8931,6 +9094,7 @@ feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: i
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | entityType | String? | Type of entity, e.g. product, l3, etc. |    
@@ -8940,6 +9104,7 @@ feedback.getQuestionAndAnswers(entityType: entityType, entityId: entityId, id: i
 | showAnswer | Bool? | This is a boolean value. Select *true* to display answers given. |    
 | pageId | String? | Pagination page ID to retrieve next set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to retrieve a list of questions and answers for a given entity.
 
@@ -8978,12 +9143,14 @@ feedback.getVotes(id: id, refType: refType, pageNo: pageNo, pageSize: pageSize) 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | String? | vote ID |    
 | refType | String? | Entity type, e.g. review | comment. |    
 | pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | Int? | The number of items to retrieve in each page. |  
+
 
 Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
 
@@ -9022,8 +9189,7 @@ feedback.createVote(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
 
@@ -9062,8 +9228,7 @@ feedback.updateVote(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
 
@@ -9109,12 +9274,14 @@ poscart.getCart(uid: uid, i: i, b: b, assignCardId: assignCardId) { (response, e
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |    
 | assignCardId | Int? |  |  
+
 
 Use this API to get details of all the items added to a cart.
 
@@ -9144,9 +9311,11 @@ poscart.getCartLastModified(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |  
+
 
 Use this API to fetch Last-Modified timestamp in header metadata.
 
@@ -9173,10 +9342,12 @@ poscart.addItems(i: i, b: b, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 Use this API to add items to the cart.
 
@@ -9206,11 +9377,13 @@ poscart.updateCart(uid: uid, i: i, b: b, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -9240,9 +9413,11 @@ poscart.getItemCount(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? | The unique identifier of the cart. |  
+
 
 Use this API to get the total number of items present in cart.
 
@@ -9272,9 +9447,11 @@ poscart.getCoupons(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |  
+
 
 Use this API to get a list of available coupons along with their details.
 
@@ -9304,12 +9481,14 @@ poscart.applyCoupon(i: i, b: b, p: p, uid: uid, body: body) { (response, error) 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | i | Bool? |  |    
 | b | Bool? |  |    
 | p | Bool? |  |    
 | uid | Int? |  |  
+
 
 Use this API to apply coupons on items in the cart.
 
@@ -9339,9 +9518,11 @@ poscart.removeCoupon(uid: uid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? | The unique identifier of the cart |  
+
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -9371,12 +9552,14 @@ poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, sl
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | itemId | Int? | The Item ID of the product |    
 | articleId | String? | Article Mongo ID |    
 | uid | Int? | UID of the product |    
 | slug | String? | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+
 
 Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
 
@@ -9415,11 +9598,13 @@ poscart.applyRewardPoints(uid: uid, i: i, b: b, body: body) { (response, error) 
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 Use this API to redeem a fixed no. of reward points by applying it to the cart.
 
@@ -9449,6 +9634,7 @@ poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, t
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
@@ -9456,6 +9642,7 @@ poscart.getAddresses(uid: uid, mobileNo: mobileNo, checkoutMode: checkoutMode, t
 | checkoutMode | String? |  |    
 | tags | String? |  |    
 | isDefault | Bool? |  |  
+
 
 Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -9485,8 +9672,7 @@ poscart.addAddress(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to add an address to an account.
 
@@ -9516,6 +9702,7 @@ poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: check
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | Int? |  |    
@@ -9524,6 +9711,7 @@ poscart.getAddressById(id: id, uid: uid, mobileNo: mobileNo, checkoutMode: check
 | checkoutMode | String? |  |    
 | tags | String? |  |    
 | isDefault | Bool? |  |  
+
 
 Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -9553,9 +9741,11 @@ poscart.updateAddress(id: id, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | Int? | ID allotted to the selected address |  
+
 
 Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
@@ -9585,9 +9775,11 @@ poscart.removeAddress(id: id) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | id | Int? | ID allotted to the selected address |  
+
 
 Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
 
@@ -9617,11 +9809,13 @@ poscart.selectAddress(uid: uid, i: i, b: b, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |    
 | i | Bool? |  |    
 | b | Bool? |  |  
+
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
@@ -9660,9 +9854,11 @@ poscart.selectPaymentMode(uid: uid, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | String? |  |  
+
 
 Use this API to update cart payment.
 
@@ -9692,6 +9888,7 @@ poscart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: pa
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | String? |  |    
@@ -9700,6 +9897,7 @@ poscart.validateCouponForPayment(uid: uid, addressId: addressId, paymentMode: pa
 | paymentIdentifier | String? |  |    
 | aggregatorName | String? |  |    
 | merchantCode | String? |  |  
+
 
 Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
 
@@ -9729,6 +9927,7 @@ poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingSt
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pickAtStoreUid | Int? |  |    
@@ -9738,6 +9937,7 @@ poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingSt
 | addressId | Int? | ID allotted to the selected address |    
 | areaCode | String? | The PIN Code of the destination address, e.g. 400059 |    
 | orderType | String? | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
+
 
 Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
 
@@ -9776,6 +9976,7 @@ poscart.updateShipments(i: i, p: p, uid: uid, addressId: addressId, orderType: o
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | i | Bool? | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
@@ -9783,6 +9984,7 @@ poscart.updateShipments(i: i, p: p, uid: uid, addressId: addressId, orderType: o
 | uid | Int? | The unique identifier of the cart |    
 | addressId | Int? | ID allotted to an address |    
 | orderType | String? | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
+
 
 Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
 
@@ -9821,9 +10023,11 @@ poscart.checkoutCart(uid: uid, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? |  |  
+
 
 Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
 
@@ -9853,9 +10057,11 @@ poscart.updateCartMeta(uid: uid, body: body) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | uid | Int? | The unique identifier of the cart |  
+
 
 Use this API to update cart meta like checkout_mode and gstin.
 
@@ -9894,10 +10100,12 @@ poscart.getAvailableDeliveryModes(areaCode: areaCode, uid: uid) { (response, err
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | areaCode | String? |  |    
 | uid | Int? |  |  
+
 
 Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
 
@@ -9927,9 +10135,11 @@ poscart.getStoreAddressByUid(storeUid: storeUid) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | storeUid | Int? |  |  
+
 
 Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
 
@@ -9959,8 +10169,7 @@ poscart.getCartShareLink(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
+
 
 Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
 
@@ -9990,9 +10199,11 @@ poscart.getCartSharedItems(token: token) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | token | String? | Token of the shared short link |  
+
 
 Use this API to get the shared cart details as per the token generated using the share-cart API.
 
@@ -10031,10 +10242,12 @@ poscart.updateCartWithSharedItems(token: token, action: action) { (response, err
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | token | String? | Token of the shared short link |    
 | action | String? | Operation to perform on the existing cart merge or replace. |  
+
 
 Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
 
@@ -10063,7 +10276,7 @@ Schema: `SharedCartResponse`
 
 
 #### getTatProduct
-Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
+Get TAT of a product
 
 ```swift
 logistic.getTatProduct(body: body) { (response, error) in
@@ -10071,10 +10284,9 @@ logistic.getTatProduct(body: body) { (response, error) in
 }
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
 
-Get TAT of a product
+
+Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
 
 *Success Response:*
 
@@ -10112,7 +10324,7 @@ Schema: `ApefaceApiError`
 
 
 #### getPincodeCity
-Use this API to retrieve a city by its PIN Code.
+Get city from PIN Code
 
 ```swift
 logistic.getPincodeCity(pincode: pincode) { (response, error) in
@@ -10120,11 +10332,13 @@ logistic.getPincodeCity(pincode: pincode) { (response, error) in
 }
 ```
 
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pincode | String? | The PIN Code of the area, e.g. 400059 |  
 
-Get city from PIN Code
+
+Use this API to retrieve a city by its PIN Code.
 
 *Success Response:*
 

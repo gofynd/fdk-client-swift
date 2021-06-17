@@ -1784,10 +1784,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1799,7 +1799,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1831,10 +1831,10 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1846,7 +1846,7 @@ public class ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -10555,6 +10555,7 @@ This operation will return the URL of the uploaded file.
             entityType: String,
             entityId: String,
             id: String?,
+            type: String?,
             pageId: String?,
             pageSize: Int?,
             
@@ -10564,6 +10565,10 @@ This operation will return the URL of the uploaded file.
             
             if let value = id {
                 xQuery["id"] = value
+            }
+            
+            if let value = type {
+                xQuery["type"] = value
             }
             
             if let value = pageId {
@@ -10631,6 +10636,10 @@ This operation will return the URL of the uploaded file.
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getMedias
@@ -10640,6 +10649,7 @@ This operation will return the URL of the uploaded file.
             entityType: String,
             entityId: String,
             id: String?,
+            type: String?,
             pageSize: Int?
             
             ) -> Paginator<MediaGetResponse> {
@@ -10651,6 +10661,7 @@ This operation will return the URL of the uploaded file.
                         entityType: entityType,
                         entityId: entityId,
                         id: id,
+                        type: type,
                         pageId: paginator.pageId
                         ,
                         pageSize: paginator.pageSize
@@ -13150,8 +13161,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
-        * Description: Get TAT of a product
+        * Summary: Get TAT of a product
+        * Description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
         **/
         public func getTatProduct(
             body: GetTatProductReqBody,
@@ -13195,8 +13206,8 @@ This operation will return the URL of the uploaded file.
         
         /**
         *
-        * Summary: Use this API to retrieve a city by its PIN Code.
-        * Description: Get city from PIN Code
+        * Summary: Get city from PIN Code
+        * Description: Use this API to retrieve a city by its PIN Code.
         **/
         public func getPincodeCity(
             pincode: String,
