@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [unfollowById](#unfollowbyid)
     * [followById](#followbyid)
+    * [unfollowById](#unfollowbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -1169,7 +1169,7 @@ Schema: `ErrorResponse`
 List all the collections
 
 ```swift
-catalog.getCollections(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+catalog.getCollections(pageNo: pageNo, pageSize: pageSize, tag: tag) { (response, error) in
     // Use response
 }
 ```
@@ -1178,7 +1178,8 @@ catalog.getCollections(pageNo: pageNo, pageSize: pageSize) { (response, error) i
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. |    
-| pageSize | Int? | The number of items to retrieve in each page. |  
+| pageSize | Int? | The number of items to retrieve in each page. |    
+| tag | String? | List of tags  to filter collections |  
 
 
 Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
@@ -1345,11 +1346,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-Unfollow an entity (product/brand/collection)
+#### followById
+Follow an entity (product/brand/collection)
 
 ```swift
-catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1361,7 +1362,7 @@ catalog.unfollowById(collectionType: collectionType, collectionId: collectionId)
 | collectionId | String? | The ID of the collection type. |  
 
 
-You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
@@ -1389,11 +1390,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow an entity (product/brand/collection)
+#### unfollowById
+Unfollow an entity (product/brand/collection)
 
 ```swift
-catalog.followById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
+catalog.unfollowById(collectionType: collectionType, collectionId: collectionId) { (response, error) in
     // Use response
 }
 ```
@@ -1405,7 +1406,7 @@ catalog.followById(collectionType: collectionType, collectionId: collectionId) {
 | collectionId | String? | The ID of the collection type. |  
 
 
-Follow a particular entity such as product, brand, collection specified by its ID.
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 

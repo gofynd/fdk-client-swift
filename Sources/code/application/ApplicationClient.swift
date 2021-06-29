@@ -93,10 +93,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductDetail?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -140,14 +142,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductSizes?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = storeId {
-                xQuery["store_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = storeId {
+    
+    xQuery["store_id"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -193,14 +200,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductSizePriceResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = storeId {
-                xQuery["store_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = storeId {
+    
+    xQuery["store_id"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -248,22 +260,33 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductSizeSellersResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = strategy {
-                xQuery["strategy"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = strategy {
+    
+    xQuery["strategy"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -373,12 +396,17 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductsComparisonResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["slug"] = slug
             
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["slug"] = slug
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -421,10 +449,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductCompareResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -467,10 +497,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductFrequentlyComparedSimilarResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -514,10 +546,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: SimilarProductByTypeResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -560,10 +594,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductVariantsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -610,30 +646,47 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductStockStatusResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = itemId {
-                xQuery["item_id"] = value
-            }
-            
-            if let value = alu {
-                xQuery["alu"] = value
-            }
-            
-            if let value = skuCode {
-                xQuery["sku_code"] = value
-            }
-            
-            if let value = ean {
-                xQuery["ean"] = value
-            }
-            
-            if let value = upc {
-                xQuery["upc"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = itemId {
+    
+    xQuery["item_id"] = value
+    
+}
+
+
+if let value = alu {
+    
+    xQuery["alu"] = value
+    
+}
+
+
+if let value = skuCode {
+    
+    xQuery["sku_code"] = value
+    
+}
+
+
+if let value = ean {
+    
+    xQuery["ean"] = value
+    
+}
+
+
+if let value = upc {
+    
+    xQuery["upc"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -678,20 +731,31 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductStockPolling?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["timestamp"] = timestamp
             
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["timestamp"] = timestamp
+
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -791,42 +855,68 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = f {
-                xQuery["f"] = value
-            }
-            
-            if let value = filters {
-                xQuery["filters"] = value
-            }
-            
-            if let value = sortOn {
-                xQuery["sort_on"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageType {
-                xQuery["page_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = f {
+    
+    xQuery["f"] = value
+    
+}
+
+
+if let value = filters {
+    
+    xQuery["filters"] = value
+    
+}
+
+
+if let value = sortOn {
+    
+    xQuery["sort_on"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageType {
+    
+    xQuery["page_type"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -951,22 +1041,33 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = department {
-                xQuery["department"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = department {
+    
+    xQuery["department"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1058,10 +1159,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: BrandDetailResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1104,14 +1207,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = department {
-                xQuery["department"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = department {
+    
+    xQuery["department"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1154,10 +1262,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CategoryMetaResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1202,22 +1312,33 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: HomeListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = sortOn {
-                xQuery["sort_on"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = sortOn {
+    
+    xQuery["sort_on"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1309,10 +1430,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1355,12 +1478,17 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: AutoCompleteResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["q"] = q
             
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["q"] = q
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1401,21 +1529,37 @@ public class ApplicationClient {
         public func getCollections(
             pageNo: Int?,
             pageSize: Int?,
+            tag: String?,
             
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = tag {
+    
+    xQuery["tag"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1459,13 +1603,18 @@ public class ApplicationClient {
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getCollections
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getCollectionsPaginator(
-            pageSize: Int?
+            pageSize: Int?,
+            tag: String?
             
             ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1476,7 +1625,8 @@ public class ApplicationClient {
                         pageNo: paginator.pageNo
                         ,
                         pageSize: paginator.pageSize
-                        
+                        ,
+                        tag: tag
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
@@ -1506,30 +1656,47 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = f {
-                xQuery["f"] = value
-            }
-            
-            if let value = filters {
-                xQuery["filters"] = value
-            }
-            
-            if let value = sortOn {
-                xQuery["sort_on"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = f {
+    
+    xQuery["f"] = value
+    
+}
+
+
+if let value = filters {
+    
+    xQuery["filters"] = value
+    
+}
+
+
+if let value = sortOn {
+    
+    xQuery["sort_on"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1640,10 +1807,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1688,18 +1857,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetFollowListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1784,22 +1961,24 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1831,22 +2010,24 @@ public class ApplicationClient {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1887,10 +2068,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: FollowerCountResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1933,14 +2116,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: FollowIdsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = collectionType {
-                xQuery["collection_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = collectionType {
+    
+    xQuery["collection_type"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1988,34 +2176,54 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = range {
-                xQuery["range"] = value
-            }
-            
-            if let value = latitude {
-                xQuery["latitude"] = value
-            }
-            
-            if let value = longitude {
-                xQuery["longitude"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = range {
+    
+    xQuery["range"] = value
+    
+}
+
+
+if let value = latitude {
+    
+    xQuery["latitude"] = value
+    
+}
+
+
+if let value = longitude {
+    
+    xQuery["longitude"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2140,26 +2348,40 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-            if let value = assignCardId {
-                xQuery["assign_card_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+if let value = assignCardId {
+    
+    xQuery["assign_card_id"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2202,14 +2424,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "head",
@@ -2253,18 +2480,26 @@ public class ApplicationClient {
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2309,22 +2544,33 @@ public class ApplicationClient {
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -2367,14 +2613,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2417,14 +2668,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2470,26 +2726,40 @@ public class ApplicationClient {
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+if let value = p {
+    
+    xQuery["p"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2532,14 +2802,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -2585,26 +2860,40 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = itemId {
-                xQuery["item_id"] = value
-            }
-            
-            if let value = articleId {
-                xQuery["article_id"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = slug {
-                xQuery["slug"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = itemId {
+    
+    xQuery["item_id"] = value
+    
+}
+
+
+if let value = articleId {
+    
+    xQuery["article_id"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = slug {
+    
+    xQuery["slug"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2649,22 +2938,33 @@ public class ApplicationClient {
             body: RewardPointRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2711,30 +3011,47 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-            
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-            
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-            
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = mobileNo {
+    
+    xQuery["mobile_no"] = value
+    
+}
+
+
+if let value = checkoutMode {
+    
+    xQuery["checkout_mode"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
+    
+}
+
+
+if let value = isDefault {
+    
+    xQuery["is_default"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2776,10 +3093,12 @@ public class ApplicationClient {
             body: Address,
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2827,30 +3146,47 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-            
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-            
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-            
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = mobileNo {
+    
+    xQuery["mobile_no"] = value
+    
+}
+
+
+if let value = checkoutMode {
+    
+    xQuery["checkout_mode"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
+    
+}
+
+
+if let value = isDefault {
+    
+    xQuery["is_default"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2893,10 +3229,12 @@ public class ApplicationClient {
             body: Address,
             onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -2939,10 +3277,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -2987,22 +3327,33 @@ public class ApplicationClient {
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3045,14 +3396,19 @@ public class ApplicationClient {
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -3100,34 +3456,54 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-            
-            if let value = paymentMode {
-                xQuery["payment_mode"] = value
-            }
-            
-            if let value = paymentIdentifier {
-                xQuery["payment_identifier"] = value
-            }
-            
-            if let value = aggregatorName {
-                xQuery["aggregator_name"] = value
-            }
-            
-            if let value = merchantCode {
-                xQuery["merchant_code"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = addressId {
+    
+    xQuery["address_id"] = value
+    
+}
+
+
+if let value = paymentMode {
+    
+    xQuery["payment_mode"] = value
+    
+}
+
+
+if let value = paymentIdentifier {
+    
+    xQuery["payment_identifier"] = value
+    
+}
+
+
+if let value = aggregatorName {
+    
+    xQuery["aggregator_name"] = value
+    
+}
+
+
+if let value = merchantCode {
+    
+    xQuery["merchant_code"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3173,26 +3549,40 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-            
-            if let value = areaCode {
-                xQuery["area_code"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = p {
+    
+    xQuery["p"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = addressId {
+    
+    xQuery["address_id"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3234,10 +3624,12 @@ public class ApplicationClient {
             body: CartCheckoutRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3280,14 +3672,19 @@ public class ApplicationClient {
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -3329,10 +3726,12 @@ public class ApplicationClient {
             body: GetShareCartLinkRequest,
             onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3375,10 +3774,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3422,10 +3823,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3480,10 +3883,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3526,10 +3931,12 @@ public class ApplicationClient {
             body: TicketHistoryPayload,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3571,10 +3978,12 @@ public class ApplicationClient {
             body: AddTicketPayload,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3617,10 +4026,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3663,10 +4074,12 @@ public class ApplicationClient {
             body: CustomFormSubmissionPayload,
             onResponse: @escaping (_ response: SubmitCustomFormResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3709,10 +4122,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3755,10 +4170,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3813,10 +4230,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: AllAvailablePageSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3860,10 +4279,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3905,10 +4326,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3951,10 +4374,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4008,10 +4433,12 @@ public class ApplicationClient {
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4053,10 +4480,12 @@ public class ApplicationClient {
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4098,10 +4527,12 @@ public class ApplicationClient {
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4143,10 +4574,12 @@ public class ApplicationClient {
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4189,14 +4622,19 @@ public class ApplicationClient {
             body: SendOtpRequestSchema,
             onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4238,10 +4676,12 @@ public class ApplicationClient {
             body: PasswordLoginRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4284,14 +4724,19 @@ public class ApplicationClient {
             body: SendResetPasswordEmailRequestSchema,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4333,10 +4778,12 @@ public class ApplicationClient {
             body: ForgotPasswordRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4378,10 +4825,12 @@ public class ApplicationClient {
             body: CodeRequestBodySchema,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4423,10 +4872,12 @@ public class ApplicationClient {
             body: TokenRequestBodySchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4469,14 +4920,19 @@ public class ApplicationClient {
             body: FormRegisterRequestSchema,
             onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4518,10 +4974,12 @@ public class ApplicationClient {
             body: CodeRequestBodySchema,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4563,10 +5021,12 @@ public class ApplicationClient {
             body: CodeRequestBodySchema,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4608,10 +5068,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: HasPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4653,10 +5115,12 @@ public class ApplicationClient {
             body: UpdatePasswordRequestSchema,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4698,10 +5162,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: LogoutSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4744,14 +5210,19 @@ public class ApplicationClient {
             body: SendMobileOtpRequestSchema,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4794,14 +5265,19 @@ public class ApplicationClient {
             body: VerifyOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4844,14 +5320,19 @@ public class ApplicationClient {
             body: SendEmailOtpRequestSchema,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4894,14 +5375,19 @@ public class ApplicationClient {
             body: VerifyEmailOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4943,10 +5429,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: UserObjectSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4988,10 +5476,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: SessionListSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5034,14 +5524,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = name {
-                xQuery["name"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = name {
+    
+    xQuery["name"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5084,14 +5579,19 @@ public class ApplicationClient {
             body: EditProfileRequestSchema,
             onResponse: @escaping (_ response: ProfileEditSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5134,14 +5634,19 @@ public class ApplicationClient {
             body: EditMobileRequestSchema,
             onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -5189,24 +5694,44 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            xQuery["active"] = active
-            
-            xQuery["primary"] = primary
-            
-            xQuery["verified"] = verified
-            
-            xQuery["country_code"] = countryCode
-            
-            xQuery["phone"] = phone
-            
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+
+    xQuery["active"] = active
+
+
+
+
+    xQuery["primary"] = primary
+
+
+
+
+    xQuery["verified"] = verified
+
+
+
+
+    xQuery["country_code"] = countryCode
+
+
+
+
+    xQuery["phone"] = phone
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -5248,10 +5773,12 @@ public class ApplicationClient {
             body: SendVerificationLinkMobileRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5294,14 +5821,19 @@ public class ApplicationClient {
             body: SendVerificationLinkMobileRequestSchema,
             onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5344,14 +5876,19 @@ public class ApplicationClient {
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -5398,22 +5935,39 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            xQuery["active"] = active
-            
-            xQuery["primary"] = primary
-            
-            xQuery["verified"] = verified
-            
-            xQuery["email"] = email
-            
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+
+    xQuery["active"] = active
+
+
+
+
+    xQuery["primary"] = primary
+
+
+
+
+    xQuery["verified"] = verified
+
+
+
+
+    xQuery["email"] = email
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -5455,10 +6009,12 @@ public class ApplicationClient {
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5501,14 +6057,19 @@ public class ApplicationClient {
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = platform {
-                xQuery["platform"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5562,10 +6123,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: AnnouncementsResponseSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5609,14 +6172,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = rootId {
-                xQuery["root_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = rootId {
+    
+    xQuery["root_id"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5660,18 +6228,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5756,10 +6332,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: FaqResponseSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5801,10 +6379,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5847,10 +6427,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5893,10 +6475,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetFaqCategoryBySlugSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5939,10 +6523,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5984,10 +6570,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6029,10 +6617,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6076,18 +6666,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6174,14 +6772,19 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CustomPageSchema?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = rootId {
-                xQuery["root_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = rootId {
+    
+    xQuery["root_id"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6225,18 +6828,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6321,10 +6932,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: SeoComponent?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6368,18 +6981,26 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6465,10 +7086,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6510,10 +7133,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6555,10 +7180,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6612,10 +7239,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: CommunicationConsent?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6657,10 +7286,12 @@ public class ApplicationClient {
             body: CommunicationConsentReq,
             onResponse: @escaping (_ response: CommunicationConsentRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6702,10 +7333,12 @@ public class ApplicationClient {
             body: PushtokenReq,
             onResponse: @escaping (_ response: PushtokenRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6759,10 +7392,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6805,10 +7440,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6851,10 +7488,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6897,12 +7536,17 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["url"] = url
             
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["url"] = url
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6944,10 +7588,12 @@ public class ApplicationClient {
             body: ShortLinkReq,
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6990,10 +7636,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7036,10 +7684,12 @@ public class ApplicationClient {
             
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7112,10 +7762,12 @@ This operation will return the URL of the uploaded file.
             body: StartRequest,
             onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7176,10 +7828,12 @@ This operation will return the URL of the uploaded file.
             body: StartResponse,
             onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7233,10 +7887,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7278,10 +7934,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7323,10 +7981,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7368,10 +8028,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: AppTokenResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7416,22 +8078,33 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7522,10 +8195,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7567,10 +8242,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7612,10 +8289,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7658,10 +8337,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7703,10 +8384,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7748,10 +8431,12 @@ This operation will return the URL of the uploaded file.
             body: OrderingStoreSelectRequest,
             onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7793,10 +8478,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -7841,22 +8528,33 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = orderIncent {
-                xQuery["order_incent"] = value
-            }
-            
-            if let value = orderingStore {
-                xQuery["ordering_store"] = value
-            }
-            
-            if let value = user {
-                xQuery["user"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = orderIncent {
+    
+    xQuery["order_incent"] = value
+    
+}
+
+
+if let value = orderingStore {
+    
+    xQuery["ordering_store"] = value
+    
+}
+
+
+if let value = user {
+    
+    xQuery["user"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7912,18 +8610,25 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = refresh {
-                xQuery["refresh"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = [] 
-            
-            if let value = xApiToken {
-                xHeaders.append((key: "x-api-token", value: value))
-            }
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = refresh {
+    
+    xQuery["refresh"] = value
+    
+}
+
+
+var xHeaders: [(key: String, value: String)] = [] 
+
+if let value = xApiToken {
+    
+    xHeaders.append((key: "x-api-token", value: value))
+    
+}
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7965,10 +8670,12 @@ This operation will return the URL of the uploaded file.
             body: AttachCardRequest,
             onResponse: @escaping (_ response: AttachCardsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8011,14 +8718,19 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = refresh {
-                xQuery["refresh"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = refresh {
+    
+    xQuery["refresh"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8061,14 +8773,19 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = forceRefresh {
-                xQuery["force_refresh"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = forceRefresh {
+    
+    xQuery["force_refresh"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8110,10 +8827,12 @@ This operation will return the URL of the uploaded file.
             body: DeletehCardRequest,
             onResponse: @escaping (_ response: DeleteCardsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8155,10 +8874,12 @@ This operation will return the URL of the uploaded file.
             body: ValidateCustomerRequest,
             onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8200,10 +8921,12 @@ This operation will return the URL of the uploaded file.
             body: ChargeCustomerRequest,
             onResponse: @escaping (_ response: ChargeCustomerResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8245,10 +8968,12 @@ This operation will return the URL of the uploaded file.
             body: PaymentInitializationRequest,
             onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8290,10 +9015,12 @@ This operation will return the URL of the uploaded file.
             body: PaymentStatusUpdateRequest,
             onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8342,30 +9069,53 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["amount"] = amount
             
-            xQuery["cart_id"] = cartId
-            
-            xQuery["pincode"] = pincode
-            
-            xQuery["checkout_mode"] = checkoutMode
-            
-            
-            if let value = refresh {
-                xQuery["refresh"] = value
-            }
-            
-            if let value = assignCardId {
-                xQuery["assign_card_id"] = value
-            }
-            
-            if let value = userDetails {
-                xQuery["user_details"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["amount"] = amount
+
+
+
+
+    xQuery["cart_id"] = cartId
+
+
+
+
+    xQuery["pincode"] = pincode
+
+
+
+
+    xQuery["checkout_mode"] = checkoutMode
+
+
+
+if let value = refresh {
+    
+    xQuery["refresh"] = value
+    
+}
+
+
+if let value = assignCardId {
+    
+    xQuery["assign_card_id"] = value
+    
+}
+
+
+if let value = userDetails {
+    
+    xQuery["user_details"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8415,32 +9165,58 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["amount"] = amount
             
-            xQuery["cart_id"] = cartId
-            
-            xQuery["pincode"] = pincode
-            
-            xQuery["checkout_mode"] = checkoutMode
-            
-            
-            if let value = refresh {
-                xQuery["refresh"] = value
-            }
-            
-            if let value = assignCardId {
-                xQuery["assign_card_id"] = value
-            }
-            xQuery["order_type"] = orderType
-            
-            
-            if let value = userDetails {
-                xQuery["user_details"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["amount"] = amount
+
+
+
+
+    xQuery["cart_id"] = cartId
+
+
+
+
+    xQuery["pincode"] = pincode
+
+
+
+
+    xQuery["checkout_mode"] = checkoutMode
+
+
+
+if let value = refresh {
+    
+    xQuery["refresh"] = value
+    
+}
+
+
+if let value = assignCardId {
+    
+    xQuery["assign_card_id"] = value
+    
+}
+
+
+
+    xQuery["order_type"] = orderType
+
+
+
+if let value = userDetails {
+    
+    xQuery["user_details"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8482,10 +9258,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: RupifiBannerResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8527,10 +9305,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: TransferModeResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8572,10 +9352,12 @@ This operation will return the URL of the uploaded file.
             body: UpdateRefundTransferModeRequest,
             onResponse: @escaping (_ response: UpdateRefundTransferModeResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -8618,12 +9400,17 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["order_id"] = orderId
             
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["order_id"] = orderId
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8666,14 +9453,19 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = ifscCode {
-                xQuery["ifsc_code"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = ifscCode {
+    
+    xQuery["ifsc_code"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8716,12 +9508,17 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["order_id"] = orderId
             
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["order_id"] = orderId
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8763,10 +9560,12 @@ This operation will return the URL of the uploaded file.
             body: AddBeneficiaryViaOtpVerificationRequest,
             onResponse: @escaping (_ response: AddBeneficiaryViaOtpVerificationResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8808,10 +9607,12 @@ This operation will return the URL of the uploaded file.
             body: AddBeneficiaryDetailsRequest,
             onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8853,10 +9654,12 @@ This operation will return the URL of the uploaded file.
             body: WalletOtpRequest,
             onResponse: @escaping (_ response: WalletOtpResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8898,10 +9701,12 @@ This operation will return the URL of the uploaded file.
             body: SetDefaultBeneficiaryRequest,
             onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8960,30 +9765,47 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
-            
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
-            
-            if let value = orderStatus {
-                xQuery["order_status"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
+
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
+    
+}
+
+
+if let value = orderStatus {
+    
+    xQuery["order_status"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9026,10 +9848,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9072,10 +9896,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ShipmentById?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9118,10 +9944,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ShipmentReasons?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9164,10 +9992,12 @@ This operation will return the URL of the uploaded file.
             body: ShipmentStatusUpdateBody,
             onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -9210,10 +10040,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ShipmentTrack?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9256,10 +10088,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: PosOrderById?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9313,10 +10147,12 @@ This operation will return the URL of the uploaded file.
             body: CatalogueOrderRequest,
             onResponse: @escaping (_ response: CatalogueOrderResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9359,10 +10195,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: Offer?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9404,10 +10242,12 @@ This operation will return the URL of the uploaded file.
             body: OrderDiscountRequest,
             onResponse: @escaping (_ response: OrderDiscountResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9449,10 +10289,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9496,18 +10338,26 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9593,10 +10443,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9638,10 +10490,12 @@ This operation will return the URL of the uploaded file.
             body: RedeemReferralCodeRequest,
             onResponse: @escaping (_ response: RedeemReferralCodeResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9695,14 +10549,16 @@ This operation will return the URL of the uploaded file.
             body: ReportAbuseRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/feedback/v1.0/abuse",
+                url: "/service/application/feedback/v1.0/abuse/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -9740,14 +10596,16 @@ This operation will return the URL of the uploaded file.
             body: UpdateAbuseStatusRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/feedback/v1.0/abuse",
+                url: "/service/application/feedback/v1.0/abuse/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -9790,22 +10648,33 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ReportAbuseGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9911,22 +10780,30 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: AttributeResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/attributes",
+                url: "/service/application/feedback/v1.0/attributes/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -10007,14 +10884,16 @@ This operation will return the URL of the uploaded file.
             body: SaveAttributeRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/feedback/v1.0/attributes",
+                url: "/service/application/feedback/v1.0/attributes/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -10053,10 +10932,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: Attribute?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10099,10 +10980,12 @@ This operation will return the URL of the uploaded file.
             body: UpdateAttributeRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -10144,14 +11027,16 @@ This operation will return the URL of the uploaded file.
             body: CommentRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/feedback/v1.0/comment",
+                url: "/service/application/feedback/v1.0/comment/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -10189,14 +11074,16 @@ This operation will return the URL of the uploaded file.
             body: UpdateCommentRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/feedback/v1.0/comment",
+                url: "/service/application/feedback/v1.0/comment/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -10240,30 +11127,47 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CommentGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = entityId {
-                xQuery["entity_id"] = value
-            }
-            
-            if let value = userId {
-                xQuery["user_id"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = entityId {
+    
+    xQuery["entity_id"] = value
+    
+}
+
+
+if let value = userId {
+    
+    xQuery["user_id"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10375,10 +11279,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CheckEligibilityResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10420,10 +11326,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -10465,10 +11373,12 @@ This operation will return the URL of the uploaded file.
             body: AddMediaListRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10510,10 +11420,12 @@ This operation will return the URL of the uploaded file.
             body: UpdateMediaListRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -10561,26 +11473,40 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: MediaGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = type {
-                xQuery["type"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10695,22 +11621,33 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ReviewMetricGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10814,10 +11751,12 @@ This operation will return the URL of the uploaded file.
             body: UpdateReviewRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10859,10 +11798,12 @@ This operation will return the URL of the uploaded file.
             body: UpdateReviewRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -10917,54 +11858,89 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: ReviewGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = userId {
-                xQuery["user_id"] = value
-            }
-            
-            if let value = media {
-                xQuery["media"] = value
-            }
-            
-            if let value = rating {
-                xQuery["rating"] = value
-            }
-            
-            if let value = attributeRating {
-                xQuery["attribute_rating"] = value
-            }
-            
-            if let value = facets {
-                xQuery["facets"] = value
-            }
-            
-            if let value = sort {
-                xQuery["sort"] = value
-            }
-            
-            if let value = active {
-                xQuery["active"] = value
-            }
-            
-            if let value = approve {
-                xQuery["approve"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = userId {
+    
+    xQuery["user_id"] = value
+    
+}
+
+
+if let value = media {
+    
+    xQuery["media"] = value
+    
+}
+
+
+if let value = rating {
+    
+    xQuery["rating"] = value
+    
+}
+
+
+if let value = attributeRating {
+    
+    xQuery["attribute_rating"] = value
+    
+}
+
+
+if let value = facets {
+    
+    xQuery["facets"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+if let value = active {
+    
+    xQuery["active"] = value
+    
+}
+
+
+if let value = approve {
+    
+    xQuery["approve"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11119,22 +12095,33 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = templateId {
-                xQuery["template_id"] = value
-            }
-            
-            if let value = entityId {
-                xQuery["entity_id"] = value
-            }
-            
-            if let value = entityType {
-                xQuery["entity_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = templateId {
+    
+    xQuery["template_id"] = value
+    
+}
+
+
+if let value = entityId {
+    
+    xQuery["entity_id"] = value
+    
+}
+
+
+if let value = entityType {
+    
+    xQuery["entity_type"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11176,10 +12163,12 @@ This operation will return the URL of the uploaded file.
             body: CreateQNARequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11221,10 +12210,12 @@ This operation will return the URL of the uploaded file.
             body: UpdateQNARequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -11273,30 +12264,47 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: QNAGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = userId {
-                xQuery["user_id"] = value
-            }
-            
-            if let value = showAnswer {
-                xQuery["show_answer"] = value
-            }
-            
-            if let value = pageId {
-                xQuery["page_id"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = userId {
+    
+    xQuery["user_id"] = value
+    
+}
+
+
+if let value = showAnswer {
+    
+    xQuery["show_answer"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11416,26 +12424,40 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: VoteResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = id {
-                xQuery["id"] = value
-            }
-            
-            if let value = refType {
-                xQuery["ref_type"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = refType {
+    
+    xQuery["ref_type"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11532,10 +12554,12 @@ This operation will return the URL of the uploaded file.
             body: VoteRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11577,10 +12601,12 @@ This operation will return the URL of the uploaded file.
             body: UpdateVoteRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -11638,26 +12664,40 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-            if let value = assignCardId {
-                xQuery["assign_card_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+if let value = assignCardId {
+    
+    xQuery["assign_card_id"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11700,14 +12740,19 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "head",
@@ -11751,18 +12796,26 @@ This operation will return the URL of the uploaded file.
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11807,22 +12860,33 @@ This operation will return the URL of the uploaded file.
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -11865,14 +12929,19 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11915,14 +12984,19 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11968,26 +13042,40 @@ This operation will return the URL of the uploaded file.
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+if let value = p {
+    
+    xQuery["p"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12030,14 +13118,19 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -12083,26 +13176,40 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = itemId {
-                xQuery["item_id"] = value
-            }
-            
-            if let value = articleId {
-                xQuery["article_id"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = slug {
-                xQuery["slug"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = itemId {
+    
+    xQuery["item_id"] = value
+    
+}
+
+
+if let value = articleId {
+    
+    xQuery["article_id"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = slug {
+    
+    xQuery["slug"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12147,22 +13254,33 @@ This operation will return the URL of the uploaded file.
             body: RewardPointRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12209,30 +13327,47 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-            
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-            
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-            
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = mobileNo {
+    
+    xQuery["mobile_no"] = value
+    
+}
+
+
+if let value = checkoutMode {
+    
+    xQuery["checkout_mode"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
+    
+}
+
+
+if let value = isDefault {
+    
+    xQuery["is_default"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12274,10 +13409,12 @@ This operation will return the URL of the uploaded file.
             body: Address,
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12325,30 +13462,47 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-            
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-            
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-            
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = mobileNo {
+    
+    xQuery["mobile_no"] = value
+    
+}
+
+
+if let value = checkoutMode {
+    
+    xQuery["checkout_mode"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
+    
+}
+
+
+if let value = isDefault {
+    
+    xQuery["is_default"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12391,10 +13545,12 @@ This operation will return the URL of the uploaded file.
             body: Address,
             onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -12437,10 +13593,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -12485,22 +13643,33 @@ This operation will return the URL of the uploaded file.
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = b {
-                xQuery["b"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = b {
+    
+    xQuery["b"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12543,14 +13712,19 @@ This operation will return the URL of the uploaded file.
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -12598,34 +13772,54 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-            
-            if let value = paymentMode {
-                xQuery["payment_mode"] = value
-            }
-            
-            if let value = paymentIdentifier {
-                xQuery["payment_identifier"] = value
-            }
-            
-            if let value = aggregatorName {
-                xQuery["aggregator_name"] = value
-            }
-            
-            if let value = merchantCode {
-                xQuery["merchant_code"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = addressId {
+    
+    xQuery["address_id"] = value
+    
+}
+
+
+if let value = paymentMode {
+    
+    xQuery["payment_mode"] = value
+    
+}
+
+
+if let value = paymentIdentifier {
+    
+    xQuery["payment_identifier"] = value
+    
+}
+
+
+if let value = aggregatorName {
+    
+    xQuery["aggregator_name"] = value
+    
+}
+
+
+if let value = merchantCode {
+    
+    xQuery["merchant_code"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12674,38 +13868,61 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pickAtStoreUid {
-                xQuery["pick_at_store_uid"] = value
-            }
-            
-            if let value = orderingStoreId {
-                xQuery["ordering_store_id"] = value
-            }
-            
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-            
-            if let value = areaCode {
-                xQuery["area_code"] = value
-            }
-            
-            if let value = orderType {
-                xQuery["order_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pickAtStoreUid {
+    
+    xQuery["pick_at_store_uid"] = value
+    
+}
+
+
+if let value = orderingStoreId {
+    
+    xQuery["ordering_store_id"] = value
+    
+}
+
+
+if let value = p {
+    
+    xQuery["p"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = addressId {
+    
+    xQuery["address_id"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
+    
+}
+
+
+if let value = orderType {
+    
+    xQuery["order_type"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12752,30 +13969,47 @@ This operation will return the URL of the uploaded file.
             body: UpdateCartShipmentRequest,
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = i {
-                xQuery["i"] = value
-            }
-            
-            if let value = p {
-                xQuery["p"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-            
-            if let value = orderType {
-                xQuery["order_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = i {
+    
+    xQuery["i"] = value
+    
+}
+
+
+if let value = p {
+    
+    xQuery["p"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+if let value = addressId {
+    
+    xQuery["address_id"] = value
+    
+}
+
+
+if let value = orderType {
+    
+    xQuery["order_type"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -12818,14 +14052,19 @@ This operation will return the URL of the uploaded file.
             body: CartPosCheckoutRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12868,14 +14107,19 @@ This operation will return the URL of the uploaded file.
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -12919,16 +14163,24 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["area_code"] = areaCode
             
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["area_code"] = areaCode
+
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12971,12 +14223,17 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: StoreDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["store_uid"] = storeUid
             
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["store_uid"] = storeUid
+
+
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -13018,10 +14275,12 @@ This operation will return the URL of the uploaded file.
             body: GetShareCartLinkRequest,
             onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -13064,10 +14323,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -13111,10 +14372,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -13168,10 +14431,12 @@ This operation will return the URL of the uploaded file.
             body: GetTatProductReqBody,
             onResponse: @escaping (_ response: GetTatProductResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -13214,10 +14479,12 @@ This operation will return the URL of the uploaded file.
             
             onResponse: @escaping (_ response: GetPincodeCityResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",

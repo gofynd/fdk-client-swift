@@ -287,24 +287,24 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [deleteSearchKeywords](#deletesearchkeywords)
-    * [getSearchKeywords](#getsearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
+    * [getSearchKeywords](#getsearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getProductBundle](#getproductbundle)
     * [createProductBundle](#createproductbundle)
-    * [getProductBundleDetail](#getproductbundledetail)
     * [updateProductBundle](#updateproductbundle)
+    * [getProductBundleDetail](#getproductbundledetail)
     * [getSizeGuides](#getsizeguides)
     * [createSizeGuide](#createsizeguide)
-    * [getSizeGuide](#getsizeguide)
     * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
     * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
@@ -314,8 +314,8 @@
     * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
+    * [deleteCollection](#deletecollection)
     * [getCollectionItems](#getcollectionitems)
     * [addCollectionItems](#addcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
@@ -340,13 +340,13 @@
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
     * [listCategories](#listcategories)
     * [createCategories](#createcategories)
-    * [getCategoryData](#getcategorydata)
     * [updateCategory](#updatecategory)
+    * [getCategoryData](#getcategorydata)
     * [getProducts](#getproducts)
     * [createProduct](#createproduct)
-    * [deleteProduct](#deleteproduct)
-    * [getProduct](#getproduct)
     * [editProduct](#editproduct)
+    * [getProduct](#getproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
@@ -369,8 +369,8 @@
     * [exportInventoryConfig](#exportinventoryconfig)
     * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
-    * [getHsnCode](#gethsncode)
     * [updateHsnCode](#updatehsncode)
+    * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -381,18 +381,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -1999,7 +1999,7 @@ Schema: `BlitzkriegInternalServerError`
 
 
 #### getThemeLibrary
-Gets list of themes in theme library
+Get a list of themes from the theme library
 
 ```swift
 theme.getThemeLibrary(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
@@ -2009,18 +2009,18 @@ theme.getThemeLibrary(companyId: companyId, applicationId: applicationId, pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
-| pageNo | Int? | Page number. Default is 1. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10.  |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |  
 
-Gets list of themes in theme library
+Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
 
 *Success Response:*
 
 
 
-Themes list
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 Schema: `ThemesListingResponseSchema`
@@ -2052,7 +2052,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### addToThemeLibrary
-Add theme to theme library
+Add a theme to the theme library
 
 ```swift
 theme.addToThemeLibrary(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -2062,16 +2062,16 @@ theme.addToThemeLibrary(companyId: companyId, applicationId: applicationId, body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Add theme to theme library
+Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2103,7 +2103,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### applyTheme
-Apply theme
+Apply a theme
 
 ```swift
 theme.applyTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -2113,16 +2113,16 @@ theme.applyTheme(companyId: companyId, applicationId: applicationId, body: body)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Apply theme
+Use this API to apply a theme to the website.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2164,17 +2164,17 @@ theme.isUpgradable(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String? | Theme ID |  
 
-Checks if theme is upgradable
+There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available.
 
 *Success Response:*
 
 
 
-Upgradable Theme
+Success. If the boolean value of `upgrade` returns **true**, the theme can be upgraded. Refer `UpgradableThemeSchema` for more details.
 
 
 Schema: `UpgradableThemeSchema`
@@ -2206,7 +2206,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### upgradeTheme
-Upgrades theme
+Upgrade a theme
 
 ```swift
 theme.upgradeTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
@@ -2216,17 +2216,17 @@ theme.upgradeTheme(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Upgrades theme
+Use this API to upgrade the current theme to its latest version.
 
 *Success Response:*
 
 
 
-Upgrades Theme
+Success. Upgrades the theme and shares the details of the new version in the response. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2258,7 +2258,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getPublicThemes
-Gets public themes
+Get all public themes
 
 ```swift
 theme.getPublicThemes(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
@@ -2268,18 +2268,18 @@ theme.getPublicThemes(companyId: companyId, applicationId: applicationId, pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
-| pageNo | Int? | Page number. Default is 1. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10.  |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |  
 
-Gets public themes
+Use this API to get a list of free themes that you can apply to your website.
 
 *Success Response:*
 
 
 
-Themes list
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 Schema: `ThemesListingResponseSchema`
@@ -2311,7 +2311,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### createTheme
-Create new theme
+Create a new theme
 
 ```swift
 theme.createTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -2321,10 +2321,10 @@ theme.createTheme(companyId: companyId, applicationId: applicationId, body: body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Create new theme
+Themes improve the look and appearance of a website. Use this API to create a theme.
 
 *Success Response:*
 
@@ -2362,7 +2362,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getAppliedTheme
-Get applied theme
+Get the applied theme
 
 ```swift
 theme.getAppliedTheme(companyId: companyId, applicationId: applicationId) { (response, error) in
@@ -2372,16 +2372,16 @@ theme.getAppliedTheme(companyId: companyId, applicationId: applicationId) { (res
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Get applied theme
+Use this API to retrieve the theme that is currently applied to the website along with its details.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2413,7 +2413,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getFonts
-Gets fonts
+Get all the supported fonts in a theme
 
 ```swift
 theme.getFonts(companyId: companyId, applicationId: applicationId) { (response, error) in
@@ -2423,16 +2423,16 @@ theme.getFonts(companyId: companyId, applicationId: applicationId) { (response, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Gets fonts
+Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
 
 *Success Response:*
 
 
 
-Fonts list
+Success. Refer `FontsSchema` for more details.
 
 
 Schema: `FontsSchema`
@@ -2474,17 +2474,17 @@ theme.getThemeById(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Gets theme by id
+Use this API to retrieve the details of a specific theme by using its ID.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2516,7 +2516,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### updateTheme
-Update theme
+Update a theme
 
 ```swift
 theme.updateTheme(companyId: companyId, applicationId: applicationId, themeId: themeId, body: body) { (response, error) in
@@ -2526,17 +2526,17 @@ theme.updateTheme(companyId: companyId, applicationId: applicationId, themeId: t
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Update theme
+Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2568,7 +2568,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### deleteTheme
-Delete theme
+Delete a theme
 
 ```swift
 theme.deleteTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
@@ -2578,17 +2578,17 @@ theme.deleteTheme(companyId: companyId, applicationId: applicationId, themeId: t
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Delete theme
+Use this API to delete a theme from the theme library.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2620,7 +2620,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getThemeForPreview
-Gets theme for preview
+Get a theme preview
 
 ```swift
 theme.getThemeForPreview(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
@@ -2630,17 +2630,17 @@ theme.getThemeForPreview(companyId: companyId, applicationId: applicationId, the
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Gets theme for preview
+A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2672,7 +2672,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### publishTheme
-Publish theme
+Publish a theme
 
 ```swift
 theme.publishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
@@ -2682,17 +2682,17 @@ theme.publishTheme(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Publish theme
+Use this API to publish a theme that is either newly created or edited.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2724,7 +2724,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### unpublishTheme
-Unpublish theme
+Unpublish a theme
 
 ```swift
 theme.unpublishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
@@ -2734,17 +2734,17 @@ theme.unpublishTheme(companyId: companyId, applicationId: applicationId, themeId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Unpublish theme
+Use this API to remove an existing theme from the list of available themes.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2776,7 +2776,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### archiveTheme
-Archive theme
+Archive a theme
 
 ```swift
 theme.archiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
@@ -2786,17 +2786,17 @@ theme.archiveTheme(companyId: companyId, applicationId: applicationId, themeId: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Archive theme
+Use this API to store an existing theme but not delete it so that it can be used in future if required. 
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2828,7 +2828,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### unarchiveTheme
-Unarchive theme
+Unarchive a theme
 
 ```swift
 theme.unarchiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
@@ -2838,17 +2838,17 @@ theme.unarchiveTheme(companyId: companyId, applicationId: applicationId, themeId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| themeId | String? | Theme ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | String? | ID allotted to the theme. |  
 
-Unarchive theme
+Use this API to restore an archived theme and bring it back for editing or publishing. 
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -2887,7 +2887,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getCustomers
-Gets list of customers
+Get a list of customers
 
 ```swift
 user.getCustomers(companyId: companyId, applicationId: applicationId, q: q, pageSize: pageSize, pageNo: pageNo) { (response, error) in
@@ -2897,19 +2897,19 @@ user.getCustomers(companyId: companyId, applicationId: applicationId, q: q, page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| q | String? | The search query. This can be a partial or complete name of a either a product, brand or category |   
-| pageSize | Int? | Number of items to retrieve in each page. Default is 10. |   
-| pageNo | Int? | Page number. Default is 1. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| q | String? | The search query. Mobile number or email ID of a customer. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1.  |  
 
-Used to get application customers list
+Use this API to retrieve a list of customers who have registered in the application.
 
 *Success Response:*
 
 
 
-Customer list
+Success. Refer `CustomerListResponseSchema` for more details.
 
 
 Schema: `CustomerListResponseSchema`
@@ -2941,7 +2941,7 @@ Schema: `AuthenticationApiError`
 
 
 #### searchUsers
-Search users
+Search an existing user.
 
 ```swift
 user.searchUsers(companyId: companyId, applicationId: applicationId, q: q) { (response, error) in
@@ -2951,17 +2951,17 @@ user.searchUsers(companyId: companyId, applicationId: applicationId, q: q) { (re
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| q | String? | The search query. This can be a partial or complete name of a either a product, brand or category |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| q | String? | The search query. Mobile number or email ID of a customer. |  
 
-Search users
+Use this API to retrieve an existing user from a list.
 
 *Success Response:*
 
 
 
-User list
+Success. Returns first name, last name, emails, phone number and gender of the user. Refer `UserSearchResponseSchema` for more details.
 
 
 Schema: `UserSearchResponseSchema`
@@ -2993,7 +2993,7 @@ Schema: `AuthenticationApiError`
 
 
 #### getPlatformConfig
-Get platform config
+Get platform configurations
 
 ```swift
 user.getPlatformConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
@@ -3003,16 +3003,16 @@ user.getPlatformConfig(companyId: companyId, applicationId: applicationId) { (re
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Used to get platform config
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
 
 *Success Response:*
 
 
 
-Platform Config
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
 
 
 Schema: `PlatformSchema`
@@ -3044,7 +3044,7 @@ Schema: `AuthenticationApiError`
 
 
 #### updatePlatformConfig
-Update platform config
+Update platform configurations
 
 ```swift
 user.updatePlatformConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -3054,16 +3054,16 @@ user.updatePlatformConfig(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Used to update platform config
+Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
 
 *Success Response:*
 
 
 
-Platform Config
+Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
 
 
 Schema: `PlatformSchema`
@@ -3102,7 +3102,7 @@ Schema: `AuthenticationApiError`
 
 
 #### getAnnouncementsList
-Get annoucements list
+Get a list of announcements
 
 ```swift
 content.getAnnouncementsList(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -3112,18 +3112,18 @@ content.getAnnouncementsList(companyId: companyId, applicationId: applicationId,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |  
 
-Get list of announcements
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `GetAnnouncementListSchema` for more details.
 
 
 Schema: `GetAnnouncementListSchema`
@@ -3132,7 +3132,7 @@ Schema: `GetAnnouncementListSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3141,7 +3141,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3155,7 +3155,7 @@ Schema: `APIError`
 
 
 #### createAnnouncement
-Create an annoucement
+Create an announcement
 
 ```swift
 content.createAnnouncement(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -3165,16 +3165,16 @@ content.createAnnouncement(companyId: companyId, applicationId: applicationId, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Create an announcement
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -3183,7 +3183,7 @@ Schema: `CreateAnnouncementSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3192,7 +3192,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3206,7 +3206,7 @@ Schema: `APIError`
 
 
 #### getAnnouncementById
-Get annoucement by id
+Get announcement by ID
 
 ```swift
 content.getAnnouncementById(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
@@ -3216,17 +3216,17 @@ content.getAnnouncementById(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| announcementId | String? | Announcement ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| announcementId | String? | ID allotted to the announcement. |  
 
-Get announcement by id
+Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `AdminAnnouncementSchema` for more details.
 
 
 Schema: `AdminAnnouncementSchema`
@@ -3235,7 +3235,7 @@ Schema: `AdminAnnouncementSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3244,7 +3244,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3258,7 +3258,7 @@ Schema: `APIError`
 
 
 #### updateAnnouncement
-Update an annoucement
+Update an announcement
 
 ```swift
 content.updateAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
@@ -3268,17 +3268,17 @@ content.updateAnnouncement(companyId: companyId, applicationId: applicationId, a
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| announcementId | String? | Announcement ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| announcementId | String? | ID allotted to the announcement. |  
 
-Update an announcement
+Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -3287,7 +3287,7 @@ Schema: `CreateAnnouncementSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3296,7 +3296,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3310,7 +3310,7 @@ Schema: `APIError`
 
 
 #### updateAnnouncementSchedule
-Update schedule or published status of an annoucement
+Update the schedule and the publish status of an announcement
 
 ```swift
 content.updateAnnouncementSchedule(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
@@ -3320,17 +3320,17 @@ content.updateAnnouncementSchedule(companyId: companyId, applicationId: applicat
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| announcementId | String? | Announcement ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| announcementId | String? | ID allotted to the announcement. |  
 
-Update schedule or published status of an announcement
+Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -3339,7 +3339,7 @@ Schema: `CreateAnnouncementSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3348,7 +3348,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3362,7 +3362,7 @@ Schema: `APIError`
 
 
 #### deleteAnnouncement
-Delete annoucement by id
+Delete announcement by id
 
 ```swift
 content.deleteAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
@@ -3372,17 +3372,17 @@ content.deleteAnnouncement(companyId: companyId, applicationId: applicationId, a
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| announcementId | String? | Announcement ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| announcementId | String? | ID allotted to the announcement. |  
 
-Delete announcement by id
+Use this API to delete an existing announcement.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -3391,7 +3391,7 @@ Schema: `CreateAnnouncementSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3400,7 +3400,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3414,7 +3414,7 @@ Schema: `APIError`
 
 
 #### createBlog
-Create blog
+Create a blog
 
 ```swift
 content.createBlog(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -3424,16 +3424,16 @@ content.createBlog(companyId: companyId, applicationId: applicationId, body: bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to create a blog.
+Use this API to create a blog.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `BlogSchema` for more details.
 
 
 Schema: `BlogSchema`
@@ -3442,7 +3442,7 @@ Schema: `BlogSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3451,7 +3451,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3475,18 +3475,18 @@ content.getBlogs(companyId: companyId, applicationId: applicationId, pageNo: pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |  
 
-Use this to get blogs.
+Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `BlogGetResponse` for more details.
 
 
 Schema: `BlogGetResponse`
@@ -3495,7 +3495,7 @@ Schema: `BlogGetResponse`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3504,7 +3504,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3518,7 +3518,7 @@ Schema: `APIError`
 
 
 #### updateBlog
-Update blog
+Update a blog
 
 ```swift
 content.updateBlog(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
@@ -3528,17 +3528,17 @@ content.updateBlog(companyId: companyId, applicationId: applicationId, id: id, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| id | String? | Blog Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the blog. |  
 
-Use this to update blog.
+Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `BlogSchema`
@@ -3547,7 +3547,7 @@ Schema: `BlogSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3556,7 +3556,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3580,17 +3580,17 @@ content.deleteBlog(companyId: companyId, applicationId: applicationId, id: id) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| id | String? | Blog Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the blog. |  
 
-Use this to delete blogs.
+Use this API to delete a blog.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `BlogSchema`
@@ -3599,7 +3599,7 @@ Schema: `BlogSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3608,7 +3608,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3622,7 +3622,7 @@ Schema: `APIError`
 
 
 #### getComponentById
-Get components by component Id
+Get components of a blog
 
 ```swift
 content.getComponentById(companyId: companyId, applicationId: applicationId, slug: slug) { (response, error) in
@@ -3632,17 +3632,17 @@ content.getComponentById(companyId: companyId, applicationId: applicationId, slu
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| slug | String? | slug of page to be fetched |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| slug | String? | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
 
-The endpoint fetches the component by component Id
+Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
 
 *Success Response:*
 
 
 
-A JSON object with components
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
 
 
 Schema: `BlogSchema`
@@ -3651,7 +3651,7 @@ Schema: `BlogSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3660,7 +3660,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3674,7 +3674,7 @@ Schema: `APIError`
 
 
 #### getFaqCategories
-Get FAQ categories list
+Get a list of FAQ categories
 
 ```swift
 content.getFaqCategories(companyId: companyId, applicationId: applicationId) { (response, error) in
@@ -3684,16 +3684,16 @@ content.getFaqCategories(companyId: companyId, applicationId: applicationId) { (
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Get list of FAQ categories
+FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Refer `GetFaqCategoriesSchema` for more details.
 
 
 Schema: `GetFaqCategoriesSchema`
@@ -3702,7 +3702,7 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3711,7 +3711,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3725,7 +3725,7 @@ Schema: `APIError`
 
 
 #### getFaqCategoryBySlugOrId
-Get FAQ category by slug or id
+Get an FAQ category by slug or id
 
 ```swift
 content.getFaqCategoryBySlugOrId(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
@@ -3735,17 +3735,17 @@ content.getFaqCategoryBySlugOrId(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| idOrSlug | String? | Slug or Id of FAQ Category |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| idOrSlug | String? | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
 
-Get FAQ category by slug or id
+FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Refer `GetFaqCategoryBySlugSchema` for more details.
 
 
 Schema: `GetFaqCategoryBySlugSchema`
@@ -3754,7 +3754,7 @@ Schema: `GetFaqCategoryBySlugSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3763,7 +3763,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3777,7 +3777,7 @@ Schema: `APIError`
 
 
 #### createFaqCategory
-Creates a FAQ category
+Create an FAQ category
 
 ```swift
 content.createFaqCategory(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -3787,16 +3787,16 @@ content.createFaqCategory(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Add Faq Category
+FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
 
 *Success Response:*
 
 
 
-Create a FAQ Category
+Success.
 
 
 Schema: `CreateFaqCategorySchema`
@@ -3805,7 +3805,7 @@ Schema: `CreateFaqCategorySchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3814,7 +3814,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3828,7 +3828,7 @@ Schema: `APIError`
 
 
 #### updateFaqCategory
-Updates a FAQ category
+Update an FAQ category
 
 ```swift
 content.updateFaqCategory(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
@@ -3838,17 +3838,17 @@ content.updateFaqCategory(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Faq category ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to an FAQ category. |  
 
-Update Faq Category
+Use this API to edit an existing FAQ category.
 
 *Success Response:*
 
 
 
-Update a FAQ Category
+Success.
 
 
 Schema: `CreateFaqCategorySchema`
@@ -3857,7 +3857,7 @@ Schema: `CreateFaqCategorySchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3866,7 +3866,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3880,7 +3880,7 @@ Schema: `APIError`
 
 
 #### deleteFaqCategory
-Deletes a FAQ category
+Delete an FAQ category
 
 ```swift
 content.deleteFaqCategory(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
@@ -3890,17 +3890,17 @@ content.deleteFaqCategory(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Faq category ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to an FAQ category. |  
 
-Delete Faq Category
+Use this API to delete an FAQ category.
 
 *Success Response:*
 
 
 
-Delete a FAQ Category
+Success.
 
 
 Schema: `FaqSchema`
@@ -3909,7 +3909,7 @@ Schema: `FaqSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3918,7 +3918,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3932,7 +3932,7 @@ Schema: `APIError`
 
 
 #### getFaqsByCategoryIdOrSlug
-Get FAQs of a Faq Category id or slug
+Get question and answers within an FAQ category
 
 ```swift
 content.getFaqsByCategoryIdOrSlug(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
@@ -3942,17 +3942,17 @@ content.getFaqsByCategoryIdOrSlug(companyId: companyId, applicationId: applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| idOrSlug | String? | Faq category ID or slug |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| idOrSlug | String? | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
 
-Get FAQs of a Faq Category `id` or `slug`
+Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
 
 *Success Response:*
 
 
 
-Get FAQs by slug/id of FAQ Category
+Success. Refer `GetFaqSchema` for more details.
 
 
 Schema: `GetFaqSchema`
@@ -3961,7 +3961,7 @@ Schema: `GetFaqSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3970,7 +3970,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -3984,7 +3984,7 @@ Schema: `APIError`
 
 
 #### addFaq
-Creates FAQs for category whose `id` is specified
+Create an FAQ
 
 ```swift
 content.addFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, body: body) { (response, error) in
@@ -3994,17 +3994,17 @@ content.addFaq(companyId: companyId, applicationId: applicationId, categoryId: c
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| categoryId | String? | Faq category ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| categoryId | String? | ID allotted to an FAQ category. |  
 
-Creates FAQs for category whose `id` is specified
+FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
 
 *Success Response:*
 
 
 
-Create a FAQ for FAQ Category
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -4013,7 +4013,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4022,7 +4022,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4036,7 +4036,7 @@ Schema: `APIError`
 
 
 #### updateFaq
-Updates FAQ
+Update an FAQ
 
 ```swift
 content.updateFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId, body: body) { (response, error) in
@@ -4046,18 +4046,18 @@ content.updateFaq(companyId: companyId, applicationId: applicationId, categoryId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| categoryId | String? | Faq category ID |   
-| faqId | String? | Faq ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| categoryId | String? | ID allotted to an FAQ category. |   
+| faqId | String? | ID allotted to an FAQ. |  
 
-Updates FAQ
+Use this API to edit an existing FAQ.
 
 *Success Response:*
 
 
 
-Update FAQ by id
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -4066,7 +4066,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4075,7 +4075,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4089,7 +4089,7 @@ Schema: `APIError`
 
 
 #### deleteFaq
-Delete FAQ
+Delete an FAQ
 
 ```swift
 content.deleteFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId) { (response, error) in
@@ -4099,18 +4099,18 @@ content.deleteFaq(companyId: companyId, applicationId: applicationId, categoryId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| categoryId | String? | Faq category ID |   
-| faqId | String? | Faq ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| categoryId | String? | ID allotted to an FAQ category. |   
+| faqId | String? | ID allotted to an FAQ. |  
 
-Delete FAQ
+Use this API to delete an existing FAQ.
 
 *Success Response:*
 
 
 
-Delete FAQ by id
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -4119,7 +4119,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4128,7 +4128,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4142,7 +4142,7 @@ Schema: `APIError`
 
 
 #### getFaqByIdOrSlug
-Get frequently asked question
+Get an FAQ
 
 ```swift
 content.getFaqByIdOrSlug(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
@@ -4152,17 +4152,17 @@ content.getFaqByIdOrSlug(companyId: companyId, applicationId: applicationId, idO
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| idOrSlug | String? | Slug or Id of FAQ |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| idOrSlug | String? | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
 
-Get frequently asked questions list. These will be helpful for users to using website.
+Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateFaqResponseSchema` for more details.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -4171,7 +4171,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4180,7 +4180,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4194,7 +4194,7 @@ Schema: `APIError`
 
 
 #### getLandingPages
-Get landing-pages
+Get landing pages
 
 ```swift
 content.getLandingPages(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -4204,18 +4204,18 @@ content.getLandingPages(companyId: companyId, applicationId: applicationId, page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |  
 
-Use this to get landing-pages.
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `LandingPageGetResponse` for more details.
 
 
 Schema: `LandingPageGetResponse`
@@ -4224,7 +4224,7 @@ Schema: `LandingPageGetResponse`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4233,7 +4233,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4247,7 +4247,7 @@ Schema: `APIError`
 
 
 #### createLandingPage
-Create landing-page
+Create a landing page
 
 ```swift
 content.createLandingPage(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -4257,16 +4257,16 @@ content.createLandingPage(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to create landing-page.
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -4275,7 +4275,7 @@ Schema: `LandingPageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4284,7 +4284,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4298,7 +4298,7 @@ Schema: `APIError`
 
 
 #### updateLandingPage
-Update landing-page
+Update a landing page
 
 ```swift
 content.updateLandingPage(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
@@ -4308,17 +4308,17 @@ content.updateLandingPage(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Landing page ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to a landing page. |  
 
-Use this to update landing-page.
+Use this API to edit the details of an existing landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -4327,7 +4327,7 @@ Schema: `LandingPageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4336,7 +4336,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4350,7 +4350,7 @@ Schema: `APIError`
 
 
 #### deleteLandingPage
-Delete landing-page
+Delete a landing page
 
 ```swift
 content.deleteLandingPage(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
@@ -4360,17 +4360,17 @@ content.deleteLandingPage(companyId: companyId, applicationId: applicationId, id
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Landing page ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to a landing page. |  
 
-Use this to delete landing-page.
+Use this API to delete an existing landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -4379,7 +4379,7 @@ Schema: `LandingPageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4388,7 +4388,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4412,16 +4412,16 @@ content.getLegalInformation(companyId: companyId, applicationId: applicationId) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -4430,7 +4430,7 @@ Schema: `ApplicationLegal`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4439,7 +4439,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4463,16 +4463,16 @@ content.updateLegalInformation(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -4481,7 +4481,7 @@ Schema: `ApplicationLegal`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4490,7 +4490,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4514,19 +4514,19 @@ content.getNavigations(companyId: companyId, applicationId: applicationId, devic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| devicePlatform | String? | Device platform |   
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| devicePlatform | String? | Filter navigations by platform. Acceptable values are: web, android, ios, all |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |  
 
-Use this to get navigations.
+Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `NavigationGetResponse` for more details.
 
 
 Schema: `NavigationGetResponse`
@@ -4535,7 +4535,7 @@ Schema: `NavigationGetResponse`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4544,7 +4544,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4558,7 +4558,7 @@ Schema: `APIError`
 
 
 #### createNavigation
-Create navigation
+Create a navigation
 
 ```swift
 content.createNavigation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -4568,16 +4568,16 @@ content.createNavigation(companyId: companyId, applicationId: applicationId, bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to create navigation.
+Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -4586,7 +4586,7 @@ Schema: `NavigationSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4595,7 +4595,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4619,16 +4619,16 @@ content.getDefaultNavigations(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to get default navigations.
+On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `DefaultNavigationResponse` for more details.
 
 
 Schema: `DefaultNavigationResponse`
@@ -4637,7 +4637,7 @@ Schema: `DefaultNavigationResponse`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4646,7 +4646,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4660,7 +4660,7 @@ Schema: `APIError`
 
 
 #### getNavigationBySlug
-Get navigation by slug
+Get a navigation by slug
 
 ```swift
 content.getNavigationBySlug(companyId: companyId, applicationId: applicationId, slug: slug, devicePlatform: devicePlatform) { (response, error) in
@@ -4670,18 +4670,18 @@ content.getNavigationBySlug(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| slug | String? | Slug |   
-| devicePlatform | String? | Device platform |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| slug | String? | A short, human-readable, URL-friendly identifier of a navigation. You can get slug value of a navigation from `getNavigations` API. |   
+| devicePlatform | String? | Filter navigations by platform. Acceptable values are: web, android, ios, all |  
 
-Use this to get navigation by slug.
+Use this API to retrieve a navigation by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `NavigationSchema` for more details.
 
 
 Schema: `NavigationSchema`
@@ -4690,7 +4690,7 @@ Schema: `NavigationSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4699,7 +4699,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4713,7 +4713,7 @@ Schema: `APIError`
 
 
 #### updateNavigation
-Update navigation
+Update a navigation
 
 ```swift
 content.updateNavigation(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
@@ -4723,17 +4723,17 @@ content.updateNavigation(companyId: companyId, applicationId: applicationId, id:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Navigation ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the navigation. |  
 
-Use this to update navigation.
+Use this API to edit the details of an existing navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -4742,7 +4742,7 @@ Schema: `NavigationSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4751,7 +4751,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4765,7 +4765,7 @@ Schema: `APIError`
 
 
 #### deleteNavigation
-Delete navigation
+Delete a navigation
 
 ```swift
 content.deleteNavigation(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
@@ -4775,17 +4775,17 @@ content.deleteNavigation(companyId: companyId, applicationId: applicationId, id:
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Navigation ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the navigation. |  
 
-Use this to delete navigation.
+Use this API to delete an existing navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -4794,7 +4794,7 @@ Schema: `NavigationSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4803,7 +4803,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4827,16 +4827,16 @@ content.getPageMeta(companyId: companyId, applicationId: applicationId) { (respo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to get Page Meta.
+Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageMetaSchema` for more details.
 
 
 Schema: `PageMetaSchema`
@@ -4845,7 +4845,7 @@ Schema: `PageMetaSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4854,7 +4854,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4878,16 +4878,16 @@ content.getPageSpec(companyId: companyId, applicationId: applicationId) { (respo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to get page spec.
+Use this API to get the specifications of a page, such as page type, display name, params and query.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSpec` for more details.
 
 
 Schema: `PageSpec`
@@ -4896,7 +4896,7 @@ Schema: `PageSpec`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4905,7 +4905,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4919,7 +4919,7 @@ Schema: `APIError`
 
 
 #### createPage
-Create page
+Create a page
 
 ```swift
 content.createPage(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -4929,16 +4929,16 @@ content.createPage(companyId: companyId, applicationId: applicationId, body: bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to create a page.
+Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -4947,7 +4947,7 @@ Schema: `PageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4956,7 +4956,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -4970,7 +4970,7 @@ Schema: `APIError`
 
 
 #### getPages
-Get pages
+Get a list of pages
 
 ```swift
 content.getPages(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
@@ -4980,18 +4980,18 @@ content.getPages(companyId: companyId, applicationId: applicationId, pageNo: pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |  
 
-Use this to get pages.
+Use this API to retrieve a list of pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageGetResponse` for more details.
 
 
 Schema: `PageGetResponse`
@@ -5000,7 +5000,7 @@ Schema: `PageGetResponse`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5009,7 +5009,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5023,7 +5023,7 @@ Schema: `APIError`
 
 
 #### createPagePreview
-Create page preview
+Create a page preview
 
 ```swift
 content.createPagePreview(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -5033,16 +5033,16 @@ content.createPagePreview(companyId: companyId, applicationId: applicationId, bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to create a page preview.
+Use this API to create a page preview to check the appearance of a custom page.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -5051,7 +5051,7 @@ Schema: `PageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5060,7 +5060,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5074,7 +5074,7 @@ Schema: `APIError`
 
 
 #### updatePagePreview
-Update page
+Change the publish status of a page
 
 ```swift
 content.updatePagePreview(companyId: companyId, applicationId: applicationId, slug: slug, body: body) { (response, error) in
@@ -5084,17 +5084,17 @@ content.updatePagePreview(companyId: companyId, applicationId: applicationId, sl
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| slug | String? | Page publish slug |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| slug | String? | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
 
-Use this to update page.
+Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `PageSchema`
@@ -5103,7 +5103,7 @@ Schema: `PageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5112,7 +5112,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5126,7 +5126,7 @@ Schema: `APIError`
 
 
 #### updatePage
-Update page
+Update a page
 
 ```swift
 content.updatePage(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
@@ -5136,17 +5136,17 @@ content.updatePage(companyId: companyId, applicationId: applicationId, id: id, b
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| id | String? | Page Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the page. |  
 
-Use this to update page.
+Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -5155,7 +5155,7 @@ Schema: `PageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5164,7 +5164,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5178,7 +5178,7 @@ Schema: `APIError`
 
 
 #### deletePage
-Delete page
+Delete a page
 
 ```swift
 content.deletePage(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
@@ -5188,17 +5188,17 @@ content.deletePage(companyId: companyId, applicationId: applicationId, id: id) {
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| id | String? | Page Id |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the page. |  
 
-Use this to delete page.
+Use this API to delete an existing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `PageSchema`
@@ -5207,7 +5207,7 @@ Schema: `PageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5216,7 +5216,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5240,17 +5240,17 @@ content.getPageBySlug(companyId: companyId, applicationId: applicationId, slug: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id |   
-| applicationId | String? | Application Id |   
-| slug | String? | Slug of page to be fetched |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| slug | String? | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
 
-The endpoint fetches the component by component Id
+Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
 *Success Response:*
 
 
 
-A JSON object with page
+Success. Returns a JSON object of components. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -5259,7 +5259,7 @@ Schema: `PageSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5268,7 +5268,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5282,7 +5282,7 @@ Schema: `APIError`
 
 
 #### getSEOConfiguration
-Get seo of application
+Get SEO configuration of an application
 
 ```swift
 content.getSEOConfiguration(companyId: companyId, applicationId: applicationId) { (response, error) in
@@ -5292,16 +5292,16 @@ content.getSEOConfiguration(companyId: companyId, applicationId: applicationId) 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Get seo of application
+Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SeoComponent` for more details.
 
 
 Schema: `SeoComponent`
@@ -5310,7 +5310,7 @@ Schema: `SeoComponent`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5319,7 +5319,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5333,7 +5333,7 @@ Schema: `APIError`
 
 
 #### updateSEOConfiguration
-Update seo of application
+Update SEO of application
 
 ```swift
 content.updateSEOConfiguration(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -5343,16 +5343,16 @@ content.updateSEOConfiguration(companyId: companyId, applicationId: applicationI
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Update seo of application
+Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SeoSchema` for more details.
 
 
 Schema: `SeoSchema`
@@ -5361,7 +5361,7 @@ Schema: `SeoSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5370,7 +5370,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5394,19 +5394,19 @@ content.getSlideshows(companyId: companyId, applicationId: applicationId, device
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| devicePlatform | String? | Device platform |   
-| pageNo | Int? | Each response will contain **page_no** param, which should be sent back to make pagination work. |   
-| pageSize | Int? | Number of items to retrieve in each page. |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| devicePlatform | String? | Filter slideshows by platform. Acceptable values are: web, android, ios and all |   
+| pageNo | Int? | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | The number of items to retrieve in each page. Default value is 10. |  
 
-Use this to get slideshows.
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowGetResponse` for more details.
 
 
 Schema: `SlideshowGetResponse`
@@ -5415,7 +5415,7 @@ Schema: `SlideshowGetResponse`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5424,7 +5424,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5438,7 +5438,7 @@ Schema: `APIError`
 
 
 #### createSlideshow
-Create slideshow
+Create a slideshow
 
 ```swift
 content.createSlideshow(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -5448,16 +5448,16 @@ content.createSlideshow(companyId: companyId, applicationId: applicationId, body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |  
 
-Use this to create slideshow.
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -5466,7 +5466,7 @@ Schema: `SlideshowSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5475,7 +5475,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5499,18 +5499,18 @@ content.getSlideshowBySlug(companyId: companyId, applicationId: applicationId, s
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| slug | String? | Slug |   
-| devicePlatform | String? | Device platform |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| slug | String? | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. |   
+| devicePlatform | String? | Filter slideshows by platform. Acceptable values are: web, android, ios and all |  
 
-Use this to get slideshow by slug.
+Use this API to retrieve the details of a slideshow by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -5519,7 +5519,7 @@ Schema: `SlideshowSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5528,7 +5528,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5542,7 +5542,7 @@ Schema: `APIError`
 
 
 #### updateSlideshow
-Update slideshow
+Update a slideshow
 
 ```swift
 content.updateSlideshow(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
@@ -5552,17 +5552,17 @@ content.updateSlideshow(companyId: companyId, applicationId: applicationId, id: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Slideshow ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the slideshow. |  
 
-Use this to update slideshow.
+Use this API to edit the details of an existing slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -5571,7 +5571,7 @@ Schema: `SlideshowSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5580,7 +5580,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5594,7 +5594,7 @@ Schema: `APIError`
 
 
 #### deleteSlideshow
-Delete slideshow
+Delete a slideshow
 
 ```swift
 content.deleteSlideshow(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
@@ -5604,17 +5604,17 @@ content.deleteSlideshow(companyId: companyId, applicationId: applicationId, id: 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| id | String? | Slideshow ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | String? | Numeric ID allotted to an application created within a business account. |   
+| id | String? | ID allotted to the slideshow. |  
 
-Use this to delete slideshow.
+Use this API to delete an existing slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `SlideshowSchema`
@@ -5623,7 +5623,7 @@ Schema: `SlideshowSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5632,7 +5632,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5656,16 +5656,16 @@ content.getSupportInformation(companyId: companyId, applicationId: applicationId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Get contact details for customer support. Including emails and phone numbers
+Use this API to get the contact details for customer support, including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `Support` for more details.
 
 
 Schema: `Support`
@@ -5674,7 +5674,7 @@ Schema: `Support`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5683,7 +5683,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5697,7 +5697,7 @@ Schema: `APIError`
 
 
 #### updateSupportInformation
-Update support data of application
+Update the support data of an application
 
 ```swift
 content.updateSupportInformation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -5707,16 +5707,16 @@ content.updateSupportInformation(companyId: companyId, applicationId: applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Update support data of application
+Use this API to edit the existing contact details for customer support, including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `Support` for more details.
 
 
 Schema: `Support`
@@ -5725,7 +5725,7 @@ Schema: `Support`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5734,7 +5734,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5748,7 +5748,7 @@ Schema: `APIError`
 
 
 #### updateInjectableTag
-Updates a Tag
+Update a tag
 
 ```swift
 content.updateInjectableTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -5758,16 +5758,16 @@ content.updateInjectableTag(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Update tag
+Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -5776,7 +5776,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5785,7 +5785,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5799,7 +5799,7 @@ Schema: `APIError`
 
 
 #### deleteAllInjectableTags
-Delete tags for application
+Delete tags in application
 
 ```swift
 content.deleteAllInjectableTags(companyId: companyId, applicationId: applicationId) { (response, error) in
@@ -5809,16 +5809,16 @@ content.deleteAllInjectableTags(companyId: companyId, applicationId: application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Delete tags for application
+Use this API to delete all the existing tags at once.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -5827,7 +5827,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5836,7 +5836,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5850,7 +5850,7 @@ Schema: `APIError`
 
 
 #### getInjectableTags
-Get tags for application
+Get all the tags in an application
 
 ```swift
 content.getInjectableTags(companyId: companyId, applicationId: applicationId) { (response, error) in
@@ -5860,16 +5860,16 @@ content.getInjectableTags(companyId: companyId, applicationId: applicationId) { 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Get tags for application
+Use this API to get all the CSS and JS injected in the application in the form of tags.
 
 *Success Response:*
 
 
 
-Tags Array
+Success. Refer `TagsSchema` for more details.
 
 
 Schema: `TagsSchema`
@@ -5878,7 +5878,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5887,7 +5887,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5901,7 +5901,7 @@ Schema: `APIError`
 
 
 #### addInjectableTag
-Adds a Tag
+Add a tag
 
 ```swift
 content.addInjectableTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -5911,16 +5911,16 @@ content.addInjectableTag(companyId: companyId, applicationId: applicationId, bod
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Add tag
+CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -5929,7 +5929,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5938,7 +5938,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5952,7 +5952,7 @@ Schema: `APIError`
 
 
 #### removeInjectableTag
-Removes a Tag
+Remove a tag
 
 ```swift
 content.removeInjectableTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
@@ -5962,16 +5962,16 @@ content.removeInjectableTag(companyId: companyId, applicationId: applicationId, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |  
 
-Remove a particular tag
+Use this API to delete an existing tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -5980,7 +5980,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -5989,7 +5989,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6003,7 +6003,7 @@ Schema: `APIError`
 
 
 #### editInjectableTag
-Edits a Tag by Id
+Edit a tag by id
 
 ```swift
 content.editInjectableTag(companyId: companyId, applicationId: applicationId, tagId: tagId, body: body) { (response, error) in
@@ -6013,17 +6013,17 @@ content.editInjectableTag(companyId: companyId, applicationId: applicationId, ta
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company ID |   
-| applicationId | String? | Application ID |   
-| tagId | String? | Tag ID |  
+| companyId | String? | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | String? | Alphanumeric ID allotted to an application created within a business account. |   
+| tagId | String? | ID allotted to the tag. |  
 
-Edits a particular tag
+Use this API to edit the details of an existing tag by its ID.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -6032,7 +6032,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6041,7 +6041,7 @@ Schema: `APIError`
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10582,11 +10582,11 @@ Schema: `ApefaceApiError`
 ## Catalog
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
+#### updateSearchKeywords
+Update Search Keyword
 
 ```swift
-catalog.deleteSearchKeywords(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10597,16 +10597,16 @@ catalog.deleteSearchKeywords(companyId: companyId, applicationId: applicationId,
 | applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Update Search Keyword by its id. On successful request, returns the updated collection
 
 *Success Response:*
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
 
 
-Schema: `DeleteResponse`
+Schema: `GetSearchWordsData`
 
 
 
@@ -10668,11 +10668,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateSearchKeywords
-Update Search Keyword
+#### deleteSearchKeywords
+Delete a Search Keywords
 
 ```swift
-catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+catalog.deleteSearchKeywords(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
@@ -10683,16 +10683,16 @@ catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId,
 | applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
-Update Search Keyword by its id. On successful request, returns the updated collection
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-Schema: `GetSearchWordsData`
+Schema: `DeleteResponse`
 
 
 
@@ -10795,11 +10795,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 ```swift
-catalog.deleteAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10810,16 +10810,16 @@ catalog.deleteAutocompleteKeyword(companyId: companyId, applicationId: applicati
 | applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Success Response:*
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
-Schema: `DeleteResponse`
+Schema: `GetAutocompleteWordsResponse`
 
 
 
@@ -10881,11 +10881,11 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
 
 ```swift
-catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+catalog.deleteAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
     // Use response
 }
 ```
@@ -10896,16 +10896,16 @@ catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicati
 | applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-Schema: `GetAutocompleteWordsResponse`
+Schema: `DeleteResponse`
 
 
 
@@ -11091,48 +11091,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getProductBundleDetail
-Get a particular Product Bundle details
-
-```swift
-catalog.getProductBundleDetail(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
-
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `GetProductBundleResponse` for details
-
-
-Schema: `GetProductBundleResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateProductBundle
 Update a Product Bundle
 
@@ -11157,6 +11115,48 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
 
 
 Schema: `GetProductBundleCreateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getProductBundleDetail
+Get a particular Product Bundle details
+
+```swift
+catalog.getProductBundleDetail(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| id | String? | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+
+Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+Schema: `GetProductBundleResponse`
 
 
 
@@ -11262,48 +11262,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getSizeGuide
-Get a single size guide.
-
-```swift
-catalog.getSizeGuide(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to size guide. |   
-| id | String? | Id of the size guide to be viewed. |  
-
-This API helps to get data associated to a size guide.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
-
-
-Schema: `SizeGuideResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateSizeGuide
 Edit a size guide.
 
@@ -11328,6 +11286,48 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getSizeGuide
+Get a single size guide.
+
+```swift
+catalog.getSizeGuide(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company associated to size guide. |   
+| id | String? | Id of the size guide to be viewed. |  
+
+This API helps to get data associated to a size guide.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+
+Schema: `SizeGuideResponse`
 
 
 
@@ -11727,49 +11727,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteCollection
-Delete a Collection
-
-```swift
-catalog.deleteCollection(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String? | A `id` is a unique identifier of a collection. |  
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateCollection
 Update a collection
 
@@ -11795,6 +11752,49 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 
 
 Schema: `UpdateCollection`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### deleteCollection
+Delete a Collection
+
+```swift
+catalog.deleteCollection(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String? | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String? | A `id` is a unique identifier of a collection. |  
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -12836,48 +12836,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getCategoryData
-Get product category by uid
-
-```swift
-catalog.getCategoryData(companyId: companyId, uid: uid) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
-| uid | String? | Category unique id |  
-
-This API gets meta associated to product categories.
-
-*Success Response:*
-
-
-
-Get Data for one category. See example below or refer `CategoryResponse` for details
-
-
-Schema: `SingleCategoryResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateCategory
 Update product categories
 
@@ -12902,6 +12860,48 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 Schema: `CategoryUpdateResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getCategoryData
+Get product category by uid
+
+```swift
+catalog.getCategoryData(companyId: companyId, uid: uid) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | String? | Category unique id |  
+
+This API gets meta associated to product categories.
+
+*Success Response:*
+
+
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
+
+
+Schema: `SingleCategoryResponse`
 
 
 
@@ -13007,21 +13007,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### editProduct
+Edit a product.
 
 ```swift
-catalog.deleteProduct(companyId: companyId, itemId: itemId) { (response, error) in
+catalog.editProduct(companyId: companyId, itemId: itemId, body: body) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Company Id of the company associated to product that is to be deleted. |   
+| companyId | String? | Id of the company associated to product that is to be viewed. |   
 | itemId | Int? | Id of the product to be updated. |  
 
-This API allows to delete product.
+This API allows to edit product.
 
 *Success Response:*
 
@@ -13094,21 +13094,21 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editProduct
-Edit a product.
+#### deleteProduct
+Delete a product.
 
 ```swift
-catalog.editProduct(companyId: companyId, itemId: itemId, body: body) { (response, error) in
+catalog.deleteProduct(companyId: companyId, itemId: itemId) { (response, error) in
     // Use response
 }
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to product that is to be viewed. |   
+| companyId | String? | Company Id of the company associated to product that is to be deleted. |   
 | itemId | Int? | Id of the product to be updated. |  
 
-This API allows to edit product.
+This API allows to delete product.
 
 *Success Response:*
 
@@ -14064,48 +14064,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getHsnCode
-Fetch Hsn Code.
-
-```swift
-catalog.getHsnCode(companyId: companyId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | company id |   
-| id | String? | Unique id |  
-
-Fetch Hsn Code.
-
-*Success Response:*
-
-
-
-See example below details
-
-
-Schema: `HsnCode`
-
-
-
-
-
-Bad request.
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateHsnCode
 Update Hsn Code.
 
@@ -14127,6 +14085,48 @@ Update Hsn Code.
 
 
 See example below for details
+
+
+Schema: `HsnCode`
+
+
+
+
+
+Bad request.
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getHsnCode
+Fetch Hsn Code.
+
+```swift
+catalog.getHsnCode(companyId: companyId, id: id) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | company id |   
+| id | String? | Unique id |  
+
+Fetch Hsn Code.
+
+*Success Response:*
+
+
+
+See example below details
 
 
 Schema: `HsnCode`
@@ -14419,47 +14419,6 @@ Schema: `ErrorResponse`
 ## CompanyProfile
 
 
-#### cbsOnboardGet
-Get company profile
-
-```swift
-companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateCompany
 Edit company profile
 
@@ -14483,6 +14442,47 @@ Returns a success message
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### cbsOnboardGet
+Get company profile
+
+```swift
+companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | A `company_id` is a unique identifier for a particular seller account. |  
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
 
 
 
@@ -14542,48 +14542,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```swift
-companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company associated to brand that is to be viewed. |   
-| brandId | String? | Id of the brand to be viewed. |  
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -14608,6 +14566,48 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getBrand
+Get a single brand.
+
+```swift
+companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company associated to brand that is to be viewed. |   
+| brandId | String? | Id of the brand to be viewed. |  
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -14838,48 +14838,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getLocationDetail
-Get details of a specific location.
-
-```swift
-companyprofile.getLocationDetail(companyId: companyId, locationId: locationId) { (response, error) in
-    // Use response
-}
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- | 
-| companyId | String? | Id of the company inside which the location lies. |   
-| locationId | String? | Id of the location which you want to view. |  
-
-This API helps to get data associated to a specific location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
----
-
-
 #### updateLocation
 Edit a location asscoiated to a company.
 
@@ -14904,6 +14862,48 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+---
+
+
+#### getLocationDetail
+Get details of a specific location.
+
+```swift
+companyprofile.getLocationDetail(companyId: companyId, locationId: locationId) { (response, error) in
+    // Use response
+}
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- | 
+| companyId | String? | Id of the company inside which the location lies. |   
+| locationId | String? | Id of the location which you want to view. |  
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 

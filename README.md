@@ -17,7 +17,7 @@ Get started with the Swift Development SDK for Fynd Platform
 
 ```swift
 guard let config = ApplicationConfig(
-    applicationID: "YOUR_APPLICATION_ID",
+    applicationId: "YOUR_APPLICATION_ID",
     applicationToken: "YOUR_APPLICATION_TOKEN") {
         return
 }

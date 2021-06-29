@@ -92,42 +92,68 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = items {
-                xQuery["items"] = value
-            }
-            
-            if let value = filters {
-                xQuery["filters"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = status {
-                xQuery["status"] = value
-            }
-            
-            if let value = priority {
-                xQuery["priority"] = value
-            }
-            
-            if let value = category {
-                xQuery["category"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = items {
+    
+    xQuery["items"] = value
+    
+}
+
+
+if let value = filters {
+    
+    xQuery["filters"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = status {
+    
+    xQuery["status"] = value
+    
+}
+
+
+if let value = priority {
+    
+    xQuery["priority"] = value
+    
+}
+
+
+if let value = category {
+    
+    xQuery["category"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -269,10 +295,12 @@ public class PlatformClient {
             body: AddTicketPayload,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -317,10 +345,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -364,10 +394,12 @@ public class PlatformClient {
             body: EditTicketPayload,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -413,10 +445,12 @@ public class PlatformClient {
             body: TicketHistoryPayload,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -460,10 +494,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -513,10 +549,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -561,10 +599,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -624,10 +664,12 @@ public class PlatformClient {
             body: CreateSubscriptionCharge,
             onResponse: @escaping (_ response: CreateSubscriptionResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -672,10 +714,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: EntitySubscription?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -720,10 +764,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: EntitySubscription?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -766,10 +812,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: Invoices?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -813,10 +861,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: Invoice?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -859,10 +909,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SubscriptionCustomer?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -905,10 +957,12 @@ public class PlatformClient {
             body: SubscriptionCustomerCreate,
             onResponse: @escaping (_ response: SubscriptionCustomer?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -952,10 +1006,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SubscriptionStatus?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -998,10 +1054,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SubscriptionLimit?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1044,10 +1102,12 @@ public class PlatformClient {
             body: SubscriptionActivateReq,
             onResponse: @escaping (_ response: SubscriptionActivateRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1090,10 +1150,12 @@ public class PlatformClient {
             body: CancelSubscriptionReq,
             onResponse: @escaping (_ response: CancelSubscriptionRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1177,18 +1239,26 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SystemNotifications?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1310,14 +1380,19 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: PayoutsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = uniqueExternalId {
-                xQuery["unique_external_id"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = uniqueExternalId {
+    
+    xQuery["unique_external_id"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1360,10 +1435,12 @@ public class PlatformClient {
             body: PayoutRequest,
             onResponse: @escaping (_ response: PayoutResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1407,10 +1484,12 @@ public class PlatformClient {
             body: PayoutRequest,
             onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -1454,10 +1533,12 @@ public class PlatformClient {
             body: UpdatePayoutRequest,
             onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "patch",
@@ -1501,10 +1582,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: DeletePayoutResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -1547,10 +1630,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SubscriptionPaymentMethodResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1595,12 +1680,22 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: DeleteSubscriptionPaymentMethodResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["unique_external_id"] = uniqueExternalId
-            xQuery["payment_method_id"] = paymentMethodId
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["unique_external_id"] = uniqueExternalId
+
+
+
+
+    xQuery["payment_method_id"] = paymentMethodId
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -1643,10 +1738,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SubscriptionConfigResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1689,10 +1786,12 @@ public class PlatformClient {
             body: SaveSubscriptionSetupIntentRequest,
             onResponse: @escaping (_ response: SaveSubscriptionSetupIntentResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1737,14 +1836,19 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = ifscCode {
-                xQuery["ifsc_code"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = ifscCode {
+    
+    xQuery["ifsc_code"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1802,10 +1906,12 @@ public class PlatformClient {
             body: UpdateShipmentStatusBody,
             onResponse: @escaping (_ response: UpdateShipmentStatusResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1849,11 +1955,17 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetActivityStatus?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["bag_id"] = bagId
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["bag_id"] = bagId
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1896,10 +2008,12 @@ public class PlatformClient {
             body: UpdateProcessShipmenstRequestBody,
             onResponse: @escaping (_ response: UpdateProcessShipmenstRequestResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1943,10 +2057,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2001,58 +2117,96 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OrderListing?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
-            
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = stage {
-                xQuery["stage"] = value
-            }
-            
-            if let value = salesChannels {
-                xQuery["sales_channels"] = value
-            }
-            
-            if let value = orderId {
-                xQuery["order_id"] = value
-            }
-            
-            if let value = stores {
-                xQuery["stores"] = value
-            }
-            
-            if let value = status {
-                xQuery["status"] = value
-            }
-            
-            if let value = shortenUrls {
-                xQuery["shorten_urls"] = value
-            }
-            
-            if let value = filterType {
-                xQuery["filter_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
+
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = stage {
+    
+    xQuery["stage"] = value
+    
+}
+
+
+if let value = salesChannels {
+    
+    xQuery["sales_channels"] = value
+    
+}
+
+
+if let value = orderId {
+    
+    xQuery["order_id"] = value
+    
+}
+
+
+if let value = stores {
+    
+    xQuery["stores"] = value
+    
+}
+
+
+if let value = status {
+    
+    xQuery["status"] = value
+    
+}
+
+
+if let value = shortenUrls {
+    
+    xQuery["shorten_urls"] = value
+    
+}
+
+
+if let value = filterType {
+    
+    xQuery["filter_type"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2098,22 +2252,33 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OrderDetails?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = orderId {
-                xQuery["order_id"] = value
-            }
-            
-            if let value = next {
-                xQuery["next"] = value
-            }
-            
-            if let value = previous {
-                xQuery["previous"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = orderId {
+    
+    xQuery["order_id"] = value
+    
+}
+
+
+if let value = next {
+    
+    xQuery["next"] = value
+    
+}
+
+
+if let value = previous {
+    
+    xQuery["previous"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2168,58 +2333,96 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OrderPicklistListing?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
-            
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = stage {
-                xQuery["stage"] = value
-            }
-            
-            if let value = salesChannels {
-                xQuery["sales_channels"] = value
-            }
-            
-            if let value = orderId {
-                xQuery["order_id"] = value
-            }
-            
-            if let value = stores {
-                xQuery["stores"] = value
-            }
-            
-            if let value = status {
-                xQuery["status"] = value
-            }
-            
-            if let value = shortenUrls {
-                xQuery["shorten_urls"] = value
-            }
-            
-            if let value = filterType {
-                xQuery["filter_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
+
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = stage {
+    
+    xQuery["stage"] = value
+    
+}
+
+
+if let value = salesChannels {
+    
+    xQuery["sales_channels"] = value
+    
+}
+
+
+if let value = orderId {
+    
+    xQuery["order_id"] = value
+    
+}
+
+
+if let value = stores {
+    
+    xQuery["stores"] = value
+    
+}
+
+
+if let value = status {
+    
+    xQuery["status"] = value
+    
+}
+
+
+if let value = shortenUrls {
+    
+    xQuery["shorten_urls"] = value
+    
+}
+
+
+if let value = filterType {
+    
+    xQuery["filter_type"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2271,10 +2474,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetShipmentAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2319,10 +2524,12 @@ public class PlatformClient {
             body: UpdateShipmentAddressRequest,
             onResponse: @escaping (_ response: UpdateShipmentAddressResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2365,10 +2572,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetPingResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2411,10 +2620,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetVoiceCallbackResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2459,12 +2670,22 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetClickToCallResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["caller"] = caller
-            xQuery["receiver"] = receiver
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["caller"] = caller
+
+
+
+
+    xQuery["receiver"] = receiver
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2531,14 +2752,19 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetProductBundleListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2581,14 +2807,65 @@ public class PlatformClient {
             body: ProductBundleRequest,
             onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update a Product Bundle
+        * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
+        **/
+        public func updateProductBundle(
+            id: String,
+            body: ProductBundleUpdateRequest,
+            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -2628,10 +2905,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetProductBundleResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2667,53 +2946,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Update a Product Bundle
-        * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
-        **/
-        public func updateProductBundle(
-            id: String,
-            body: ProductBundleUpdateRequest,
-            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Get list of size guides
         * Description: This API allows to view all the size guides associated to the seller.
         **/
@@ -2726,30 +2958,47 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ListSizeGuide?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = active {
-                xQuery["active"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = tag {
-                xQuery["tag"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = active {
+    
+    xQuery["active"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = tag {
+    
+    xQuery["tag"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2792,14 +3041,65 @@ public class PlatformClient {
             body: ValidateSizeGuide,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a size guide.
+        * Description: This API allows to edit a size guide.
+        **/
+        public func updateSizeGuide(
+            id: String,
+            body: ValidateSizeGuide,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -2839,10 +3139,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SizeGuideResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2861,53 +3163,6 @@ public class PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SizeGuideResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Edit a size guide.
-        * Description: This API allows to edit a size guide.
-        **/
-        public func updateSizeGuide(
-            id: String,
-            body: ValidateSizeGuide,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2947,10 +3202,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: CrossSellingResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2994,10 +3251,12 @@ public class PlatformClient {
             body: OptInPostRequest,
             onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3040,10 +3299,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetOptInPlatform?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3086,10 +3347,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OptinCompanyDetail?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3137,30 +3400,47 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OptinCompanyBrandDetailsView?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = isActive {
-                xQuery["is_active"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = marketplace {
-                xQuery["marketplace"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = marketplace {
+    
+    xQuery["marketplace"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3203,10 +3483,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OptinCompanyMetrics?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3252,22 +3534,33 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: OptinStoreDetails?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3311,10 +3604,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GenderDetail?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3359,12 +3654,22 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProdcutTemplateCategoriesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["departments"] = departments
-            xQuery["item_type"] = itemType
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["departments"] = departments
+
+
+
+
+    xQuery["item_type"] = itemType
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3412,30 +3717,47 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = name {
-                xQuery["name"] = value
-            }
-            
-            if let value = search {
-                xQuery["search"] = value
-            }
-            
-            if let value = isActive {
-                xQuery["is_active"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = name {
+    
+    xQuery["name"] = value
+    
+}
+
+
+if let value = search {
+    
+    xQuery["search"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3479,10 +3801,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3526,11 +3850,17 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: TemplatesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["departments"] = departments
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["departments"] = departments
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3574,10 +3904,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: TemplatesValidationResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3621,10 +3953,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3668,11 +4002,17 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["item_type"] = itemType
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["item_type"] = itemType
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3716,11 +4056,17 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: InventoryValidationResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["item_type"] = itemType
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["item_type"] = itemType
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3763,10 +4109,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: HSNCodesResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3809,10 +4157,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3856,11 +4206,17 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProductConfigurationDownloads?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["filter"] = filter
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["filter"] = filter
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3908,30 +4264,47 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: CategoryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = level {
-                xQuery["level"] = value
-            }
-            
-            if let value = departments {
-                xQuery["departments"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = level {
+    
+    xQuery["level"] = value
+    
+}
+
+
+if let value = departments {
+    
+    xQuery["departments"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3974,10 +4347,12 @@ public class PlatformClient {
             body: CategoryRequestBody,
             onResponse: @escaping (_ response: CategoryCreateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4013,53 +4388,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get product category by uid
-        * Description: This API gets meta associated to product categories.
-        **/
-        public func getCategoryData(
-            uid: String,
-            
-            onResponse: @escaping (_ response: SingleCategoryResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SingleCategoryResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Update product categories
         * Description: Update a product category using this apu
         **/
@@ -4068,10 +4396,12 @@ public class PlatformClient {
             body: CategoryRequestBody,
             onResponse: @escaping (_ response: CategoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -4107,6 +4437,55 @@ public class PlatformClient {
         
         /**
         *
+        * Summary: Get product category by uid
+        * Description: This API gets meta associated to product categories.
+        **/
+        public func getCategoryData(
+            uid: String,
+            
+            onResponse: @escaping (_ response: SingleCategoryResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SingleCategoryResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: Get product list
         * Description: This API gets meta associated to products.
         **/
@@ -4119,30 +4498,47 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = brandIds {
-                xQuery["brand_ids"] = value
-            }
-            
-            if let value = categoryIds {
-                xQuery["category_ids"] = value
-            }
-            
-            if let value = search {
-                xQuery["search"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = brandIds {
+    
+    xQuery["brand_ids"] = value
+    
+}
+
+
+if let value = categoryIds {
+    
+    xQuery["category_ids"] = value
+    
+}
+
+
+if let value = search {
+    
+    xQuery["search"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4185,10 +4581,12 @@ public class PlatformClient {
             body: ProductCreateUpdate,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4224,24 +4622,26 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Delete a product.
-        * Description: This API allows to delete product.
+        * Summary: Edit a product.
+        * Description: This API allows to edit product.
         **/
-        public func deleteProduct(
+        public func editProduct(
             itemId: Int,
-            
+            body: ProductCreateUpdate,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "put",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -4282,22 +4682,33 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: Product?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
-            
-            if let value = brandUid {
-                xQuery["brand_uid"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = itemCode {
+    
+    xQuery["item_code"] = value
+    
+}
+
+
+if let value = brandUid {
+    
+    xQuery["brand_uid"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4333,24 +4744,26 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Edit a product.
-        * Description: This API allows to edit product.
+        * Summary: Delete a product.
+        * Description: This API allows to delete product.
         **/
-        public func editProduct(
+        public func deleteProduct(
             itemId: Int,
-            body: ProductCreateUpdate,
+            
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "delete",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -4387,10 +4800,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ValidateProduct?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4437,22 +4852,33 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
-            
-            if let value = brandUid {
-                xQuery["brand_uid"] = value
-            }
-            
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = itemCode {
+    
+    xQuery["item_code"] = value
+    
+}
+
+
+if let value = brandUid {
+    
+    xQuery["brand_uid"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4497,18 +4923,26 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProductBulkRequestList?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4551,10 +4985,12 @@ public class PlatformClient {
             body: BulkJob,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4598,10 +5034,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -4645,10 +5083,12 @@ public class PlatformClient {
             body: BulkProductRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4691,10 +5131,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProductTagsViewResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4739,18 +5181,26 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: BulkAssetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4793,10 +5243,12 @@ public class PlatformClient {
             body: ProductBulkAssets,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4841,10 +5293,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: ProductSizeDeleteResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -4891,18 +5345,26 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: InventoryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4947,10 +5409,12 @@ public class PlatformClient {
             body: InventoryRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4995,10 +5459,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: InventoryDelete?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -5043,18 +5509,26 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: BulkInventoryGet?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5097,10 +5571,12 @@ public class PlatformClient {
             body: BulkJob,
             onResponse: @escaping (_ response: CommonResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5143,10 +5619,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -5189,10 +5667,12 @@ public class PlatformClient {
             body: InventoryBulkRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5235,10 +5715,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: InventoryExportJob?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5281,10 +5763,12 @@ public class PlatformClient {
             body: InventoryExportRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5328,14 +5812,19 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: InventoryConfig?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = filterType {
-                xQuery["filter_type"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = filterType {
+    
+    xQuery["filter_type"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5381,22 +5870,33 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: HsnCodesListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5439,14 +5939,65 @@ public class PlatformClient {
             body: HsnUpsert,
             onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(HsnCode.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update Hsn Code.
+        * Description: Update Hsn Code.
+        **/
+        public func updateHsnCode(
+            id: String,
+            body: HsnUpsert,
+            onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -5486,63 +6037,18 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
                 query: nil,
                 body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(HsnCode.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Update Hsn Code.
-        * Description: Update Hsn Code.
-        **/
-        public func updateHsnCode(
-            id: String,
-            body: HsnUpsert,
-            onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
-                query: nil,
-                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -5579,10 +6085,12 @@ public class PlatformClient {
             body: BulkHsnUpsert,
             onResponse: @escaping (_ response: BulkHsnResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5636,52 +6144,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get company profile
-        * Description: This API allows to view the company profile of the seller account.
-        **/
-        public func cbsOnboardGet(
-            
-            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Edit company profile
         * Description: This API allows to edit the company profile of the seller account.
         **/
@@ -5689,10 +6151,12 @@ public class PlatformClient {
             body: CompanyStoreSerializerRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "patch",
@@ -5728,6 +6192,54 @@ public class PlatformClient {
         
         /**
         *
+        * Summary: Get company profile
+        * Description: This API allows to view the company profile of the seller account.
+        **/
+        public func cbsOnboardGet(
+            
+            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: Get company metrics
         * Description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
         **/
@@ -5735,10 +6247,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: MetricsSerializer?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5774,53 +6288,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Get a single brand.
-        * Description: This API helps to get data associated to a particular brand.
-        **/
-        public func getBrand(
-            brandId: String,
-            
-            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Edit a brand.
         * Description: This API allows to edit meta of a brand.
         **/
@@ -5829,10 +6296,12 @@ public class PlatformClient {
             body: CreateUpdateBrandRequestSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -5868,6 +6337,55 @@ public class PlatformClient {
         
         /**
         *
+        * Summary: Get a single brand.
+        * Description: This API helps to get data associated to a particular brand.
+        **/
+        public func getBrand(
+            brandId: String,
+            
+            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: Create a Brand.
         * Description: This API allows to create a brand associated to a company.
         **/
@@ -5875,10 +6393,12 @@ public class PlatformClient {
             body: CreateUpdateBrandRequestSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5923,18 +6443,26 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6028,10 +6556,12 @@ public class PlatformClient {
             body: CompanyBrandPostRequestSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6079,30 +6609,47 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = storeType {
-                xQuery["store_type"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = stage {
-                xQuery["stage"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = storeType {
+    
+    xQuery["store_type"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = stage {
+    
+    xQuery["stage"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6220,14 +6767,65 @@ public class PlatformClient {
             body: LocationSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
+        **/
+        public func updateLocation(
+            locationId: String,
+            body: LocationSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -6267,10 +6865,12 @@ public class PlatformClient {
             
             onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6306,53 +6906,6 @@ public class PlatformClient {
         
         /**
         *
-        * Summary: Edit a location asscoiated to a company.
-        * Description: This API allows to edit a location associated to a company.
-        **/
-        public func updateLocation(
-            locationId: String,
-            body: LocationSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-             
-            
-             
-            
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Create a location asscoiated to a company in bulk.
         * Description: This API allows to create a location associated to a company.
         **/
@@ -6360,10 +6913,12 @@ public class PlatformClient {
             body: BulkLocationSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6438,10 +6993,12 @@ This operation will return the url for the uploaded file.
             body: StartRequest,
             onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6503,10 +7060,12 @@ This operation will return the url for the uploaded file.
             body: StartResponse,
             onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6551,10 +7110,12 @@ This operation will return the url for the uploaded file.
             body: SignUrlRequest,
             onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6598,14 +7159,19 @@ This operation will return the url for the uploaded file.
             body: BulkRequest,
             onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = sync {
-                xQuery["sync"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = sync {
+    
+    xQuery["sync"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6651,14 +7217,19 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6753,11 +7324,17 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
-            xQuery["url"] = url
             
-             
-            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["url"] = url
+
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6815,18 +7392,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigRawDTO?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6870,14 +7455,18 @@ This operation will return the url for the uploaded file.
             body: JobConfigDTO,
             onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
         ) {
-             
             
-            var xHeaders: [(key: String, value: String)] = [] 
-            
-            if let value = xUserData {
-                xHeaders.append((key: "x-user-data", value: value))
-            }
-            
+ 
+
+var xHeaders: [(key: String, value: String)] = [] 
+
+if let value = xUserData {
+    
+    xHeaders.append((key: "x-user-data", value: value))
+    
+}
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -6921,14 +7510,18 @@ This operation will return the url for the uploaded file.
             body: JobConfigDTO,
             onResponse: @escaping (_ response: ResponseEnvelopeString?, _ error: FDKError?) -> Void
         ) {
-             
             
-            var xHeaders: [(key: String, value: String)] = [] 
-            
-            if let value = xUserData {
-                xHeaders.append((key: "x-user-data", value: value))
-            }
-            
+ 
+
+var xHeaders: [(key: String, value: String)] = [] 
+
+if let value = xUserData {
+    
+    xHeaders.append((key: "x-user-data", value: value))
+    
+}
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6974,18 +7567,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigDTO?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7028,10 +7629,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7075,10 +7678,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ResponseEnvelopeJobConfigDTO?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7124,18 +7729,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ResponseEnvelopeListJobConfigListDTO?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7216,10 +7829,12 @@ This operation will return the url for the uploaded file.
             body: CreateApplicationRequest,
             onResponse: @escaping (_ response: CreateAppResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7265,22 +7880,33 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ApplicationsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7383,10 +8009,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7429,10 +8057,12 @@ This operation will return the url for the uploaded file.
             body: DomainSuggestionsRequest,
             onResponse: @escaping (_ response: DomainSuggestionsResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7476,10 +8106,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: Integration?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7524,18 +8156,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: GetIntegrationsOptInsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7633,18 +8273,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: GetIntegrationsOptInsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7758,18 +8406,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: IntegrationConfigResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = opted {
-                xQuery["opted"] = value
-            }
-            
-            if let value = checkPermission {
-                xQuery["check_permission"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = opted {
+    
+    xQuery["opted"] = value
+    
+}
+
+
+if let value = checkPermission {
+    
+    xQuery["check_permission"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7815,10 +8471,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: IntegrationLevel?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7864,10 +8522,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: OptedStoreIntegration?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7911,14 +8571,19 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: BrandsByCompanyResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7963,18 +8628,26 @@ This operation will return the url for the uploaded file.
             body: CompanyByBrandsRequest,
             onResponse: @escaping (_ response: CompanyByBrandsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8070,18 +8743,26 @@ This operation will return the url for the uploaded file.
             body: StoreByBrandsRequest,
             onResponse: @escaping (_ response: StoreByBrandsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8177,18 +8858,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: OtherSellerApplications?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8283,10 +8972,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: OptedApplicationResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8330,10 +9021,12 @@ This operation will return the url for the uploaded file.
             body: OptOutInventory,
             onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -8398,10 +9091,12 @@ This operation will return the url for the uploaded file.
             body: ExportJobReq,
             onResponse: @escaping (_ response: ExportJobRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8446,10 +9141,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ExportJobStatusRes?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8495,18 +9192,26 @@ This operation will return the url for the uploaded file.
             body: GetLogsListReq,
             onResponse: @escaping (_ response: GetLogsListRes?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8611,18 +9316,26 @@ This operation will return the url for the uploaded file.
             body: SearchLogReq,
             onResponse: @escaping (_ response: SearchLogRes?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8746,46 +9459,75 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: ListOrCalender?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = view {
-                xQuery["view"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = archived {
-                xQuery["archived"] = value
-            }
-            
-            if let value = month {
-                xQuery["month"] = value
-            }
-            
-            if let value = year {
-                xQuery["year"] = value
-            }
-            
-            if let value = type {
-                xQuery["type"] = value
-            }
-            
-            if let value = appIds {
-                xQuery["app_ids"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = view {
+    
+    xQuery["view"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = archived {
+    
+    xQuery["archived"] = value
+    
+}
+
+
+if let value = month {
+    
+    xQuery["month"] = value
+    
+}
+
+
+if let value = year {
+    
+    xQuery["year"] = value
+    
+}
+
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
+
+if let value = appIds {
+    
+    xQuery["app_ids"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8828,10 +9570,12 @@ This operation will return the url for the uploaded file.
             body: CreateUpdateDiscount,
             onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8875,10 +9619,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8922,10 +9668,12 @@ This operation will return the url for the uploaded file.
             body: CreateUpdateDiscount,
             onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -8969,14 +9717,19 @@ This operation will return the url for the uploaded file.
             body: DiscountJob,
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = discount {
-                xQuery["discount"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = discount {
+    
+    xQuery["discount"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9020,10 +9773,12 @@ This operation will return the url for the uploaded file.
             body: DownloadFileJob,
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9067,10 +9822,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9114,10 +9871,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -9161,10 +9920,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9208,10 +9969,12 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -9270,18 +10033,26 @@ This operation will return the url for the uploaded file.
             
             onResponse: @escaping (_ response: SubscriberConfigList?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:] 
             
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-             
-            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9324,10 +10095,12 @@ This operation will return the url for the uploaded file.
             body: SubscriberConfig,
             onResponse: @escaping (_ response: SubscriberConfig?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9370,10 +10143,12 @@ This operation will return the url for the uploaded file.
             body: SubscriberConfig,
             onResponse: @escaping (_ response: SubscriberConfig?, _ error: FDKError?) -> Void
         ) {
-             
             
-             
-            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -9528,34 +10303,54 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = items {
-                    xQuery["items"] = value
-                }
-                
-                if let value = filters {
-                    xQuery["filters"] = value
-                }
-                
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                
-                if let value = status {
-                    xQuery["status"] = value
-                }
-                
-                if let value = priority {
-                    xQuery["priority"] = value
-                }
-                
-                if let value = category {
-                    xQuery["category"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = items {
+    
+    xQuery["items"] = value
+    
+}
+
+
+if let value = filters {
+    
+    xQuery["filters"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = status {
+    
+    xQuery["status"] = value
+    
+}
+
+
+if let value = priority {
+    
+    xQuery["priority"] = value
+    
+}
+
+
+if let value = category {
+    
+    xQuery["category"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -9601,10 +10396,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -9648,10 +10445,12 @@ This operation will return the url for the uploaded file.
                 body: EditTicketPayload,
                 onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -9697,10 +10496,12 @@ This operation will return the url for the uploaded file.
                 body: TicketHistoryPayload,
                 onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -9744,10 +10545,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -9791,10 +10594,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -9838,10 +10643,12 @@ This operation will return the url for the uploaded file.
                 body: EditCustomFormPayload,
                 onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -9884,10 +10691,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CustomFormList?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -9930,10 +10739,12 @@ This operation will return the url for the uploaded file.
                 body: CreateCustomFormPayload,
                 onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -9978,10 +10789,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -10026,10 +10839,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -10072,10 +10887,12 @@ This operation will return the url for the uploaded file.
                 body: CreateVideoRoomPayload,
                 onResponse: @escaping (_ response: CreateVideoRoomResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -10119,10 +10936,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CloseVideoRoomResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -10182,18 +11001,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: FeedbackAttributes?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -10304,70 +11131,117 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: GetReviewResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = id {
-                    xQuery["id"] = value
-                }
-                
-                if let value = entityId {
-                    xQuery["entity_id"] = value
-                }
-                
-                if let value = entityType {
-                    xQuery["entity_type"] = value
-                }
-                
-                if let value = userId {
-                    xQuery["user_id"] = value
-                }
-                
-                if let value = media {
-                    xQuery["media"] = value
-                }
-                
-                if let value = rating {
-                    xQuery["rating"] = value
-                }
-                
-                if let value = attributeRating {
-                    xQuery["attribute_rating"] = value
-                }
-                
-                if let value = facets {
-                    xQuery["facets"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                
-                if let value = next {
-                    xQuery["next"] = value
-                }
-                
-                if let value = start {
-                    xQuery["start"] = value
-                }
-                
-                if let value = limit {
-                    xQuery["limit"] = value
-                }
-                
-                if let value = count {
-                    xQuery["count"] = value
-                }
-                
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = entityId {
+    
+    xQuery["entity_id"] = value
+    
+}
+
+
+if let value = entityType {
+    
+    xQuery["entity_type"] = value
+    
+}
+
+
+if let value = userId {
+    
+    xQuery["user_id"] = value
+    
+}
+
+
+if let value = media {
+    
+    xQuery["media"] = value
+    
+}
+
+
+if let value = rating {
+    
+    xQuery["rating"] = value
+    
+}
+
+
+if let value = attributeRating {
+    
+    xQuery["attribute_rating"] = value
+    
+}
+
+
+if let value = facets {
+    
+    xQuery["facets"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+if let value = next {
+    
+    xQuery["next"] = value
+    
+}
+
+
+if let value = start {
+    
+    xQuery["start"] = value
+    
+}
+
+
+if let value = limit {
+    
+    xQuery["limit"] = value
+    
+}
+
+
+if let value = count {
+    
+    xQuery["count"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -10569,10 +11443,12 @@ This operation will return the url for the uploaded file.
                 body: ApproveRequest,
                 onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -10616,10 +11492,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: [ActivityDump]?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -10664,18 +11542,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -10775,10 +11661,12 @@ This operation will return the url for the uploaded file.
                 body: TemplateRequestList,
                 onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -10822,10 +11710,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: Template?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -10869,10 +11759,12 @@ This operation will return the url for the uploaded file.
                 body: UpdateTemplateRequest,
                 onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -10916,14 +11808,16 @@ This operation will return the url for the uploaded file.
                 body: UpdateTemplateStatusRequest,
                 onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
-                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/status",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/status/",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -10978,10 +11872,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: AllAvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11025,10 +11921,12 @@ This operation will return the url for the uploaded file.
                 body: AvailablePageSchema,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -11072,10 +11970,12 @@ This operation will return the url for the uploaded file.
                 body: AllAvailablePageSchema,
                 onResponse: @escaping (_ response: AllAvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -11120,10 +12020,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11168,10 +12070,12 @@ This operation will return the url for the uploaded file.
                 body: AvailablePageSchema,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -11216,10 +12120,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -11255,8 +12161,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Gets list of themes in theme library
-            * Description: Gets list of themes in theme library
+            * Summary: Get a list of themes from the theme library
+            * Description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
             **/
             public func getThemeLibrary(
                 pageSize: Int?,
@@ -11264,18 +12170,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: ThemesListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11311,17 +12225,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Add theme to theme library
-            * Description: Add theme to theme library
+            * Summary: Add a theme to the theme library
+            * Description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
             **/
             public func addToThemeLibrary(
                 body: AddThemeRequestSchema,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -11357,17 +12273,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Apply theme
-            * Description: Apply theme
+            * Summary: Apply a theme
+            * Description: Use this API to apply a theme to the website.
             **/
             public func applyTheme(
                 body: AddThemeRequestSchema,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -11404,17 +12322,19 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Checks if theme is upgradable
-            * Description: Checks if theme is upgradable
+            * Description: There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available.
             **/
             public func isUpgradable(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: UpgradableThemeSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11450,18 +12370,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Upgrades theme
-            * Description: Upgrades theme
+            * Summary: Upgrade a theme
+            * Description: Use this API to upgrade the current theme to its latest version.
             **/
             public func upgradeTheme(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -11497,8 +12419,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Gets public themes
-            * Description: Gets public themes
+            * Summary: Get all public themes
+            * Description: Use this API to get a list of free themes that you can apply to your website.
             **/
             public func getPublicThemes(
                 pageSize: Int?,
@@ -11506,18 +12428,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: ThemesListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11553,17 +12483,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create new theme
-            * Description: Create new theme
+            * Summary: Create a new theme
+            * Description: Themes improve the look and appearance of a website. Use this API to create a theme.
             **/
             public func createTheme(
                 body: ThemesSchema,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -11599,17 +12531,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get applied theme
-            * Description: Get applied theme
+            * Summary: Get the applied theme
+            * Description: Use this API to retrieve the theme that is currently applied to the website along with its details.
             **/
             public func getAppliedTheme(
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -11645,17 +12579,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Gets fonts
-            * Description: Gets fonts
+            * Summary: Get all the supported fonts in a theme
+            * Description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
             **/
             public func getFonts(
                 
                 onResponse: @escaping (_ response: FontsSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11692,17 +12628,19 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Gets theme by id
-            * Description: Gets theme by id
+            * Description: Use this API to retrieve the details of a specific theme by using its ID.
             **/
             public func getThemeById(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11738,18 +12676,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update theme
-            * Description: Update theme
+            * Summary: Update a theme
+            * Description: Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
             **/
             public func updateTheme(
                 themeId: String,
                 body: ThemesSchema,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -11785,18 +12725,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete theme
-            * Description: Delete theme
+            * Summary: Delete a theme
+            * Description: Use this API to delete a theme from the theme library.
             **/
             public func deleteTheme(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -11832,18 +12774,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Gets theme for preview
-            * Description: Gets theme for preview
+            * Summary: Get a theme preview
+            * Description: A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID.
             **/
             public func getThemeForPreview(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -11879,18 +12823,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Publish theme
-            * Description: Publish theme
+            * Summary: Publish a theme
+            * Description: Use this API to publish a theme that is either newly created or edited.
             **/
             public func publishTheme(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -11926,18 +12872,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Unpublish theme
-            * Description: Unpublish theme
+            * Summary: Unpublish a theme
+            * Description: Use this API to remove an existing theme from the list of available themes.
             **/
             public func unpublishTheme(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -11973,18 +12921,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Archive theme
-            * Description: Archive theme
+            * Summary: Archive a theme
+            * Description: Use this API to store an existing theme but not delete it so that it can be used in future if required. 
             **/
             public func archiveTheme(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -12020,18 +12970,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Unarchive theme
-            * Description: Unarchive theme
+            * Summary: Unarchive a theme
+            * Description: Use this API to restore an archived theme and bring it back for editing or publishing. 
             **/
             public func unarchiveTheme(
                 themeId: String,
                 
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -12082,8 +13034,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Gets list of customers
-            * Description: Used to get application customers list
+            * Summary: Get a list of customers
+            * Description: Use this API to retrieve a list of customers who have registered in the application.
             **/
             public func getCustomers(
                 q: String?,
@@ -12092,22 +13044,33 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CustomerListResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12143,22 +13106,27 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Search users
-            * Description: Search users
+            * Summary: Search an existing user.
+            * Description: Use this API to retrieve an existing user from a list.
             **/
             public func searchUsers(
                 q: String?,
                 
                 onResponse: @escaping (_ response: UserSearchResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12194,17 +13162,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get platform config
-            * Description: Used to get platform config
+            * Summary: Get platform configurations
+            * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
             **/
             public func getPlatformConfig(
                 
                 onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12240,17 +13210,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update platform config
-            * Description: Used to update platform config
+            * Summary: Update platform configurations
+            * Description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
             **/
             public func updatePlatformConfig(
                 body: PlatformSchema,
                 onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -12301,8 +13273,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get annoucements list
-            * Description: Get list of announcements
+            * Summary: Get a list of announcements
+            * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
             **/
             public func getAnnouncementsList(
                 pageNo: Int?,
@@ -12310,18 +13282,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: GetAnnouncementListSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12410,17 +13390,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create an annoucement
-            * Description: Create an announcement
+            * Summary: Create an announcement
+            * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
             **/
             public func createAnnouncement(
                 body: AdminAnnouncementSchema,
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -12456,18 +13438,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get annoucement by id
-            * Description: Get announcement by id
+            * Summary: Get announcement by ID
+            * Description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
             **/
             public func getAnnouncementById(
                 announcementId: String,
                 
                 onResponse: @escaping (_ response: AdminAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12503,18 +13487,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update an annoucement
-            * Description: Update an announcement
+            * Summary: Update an announcement
+            * Description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
             **/
             public func updateAnnouncement(
                 announcementId: String,
                 body: AdminAnnouncementSchema,
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -12550,18 +13536,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update schedule or published status of an annoucement
-            * Description: Update schedule or published status of an announcement
+            * Summary: Update the schedule and the publish status of an announcement
+            * Description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
             **/
             public func updateAnnouncementSchedule(
                 announcementId: String,
                 body: ScheduleSchema,
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
@@ -12597,18 +13585,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete annoucement by id
-            * Description: Delete announcement by id
+            * Summary: Delete announcement by id
+            * Description: Use this API to delete an existing announcement.
             **/
             public func deleteAnnouncement(
                 announcementId: String,
                 
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -12644,17 +13634,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create blog
-            * Description: Use this to create a blog.
+            * Summary: Create a blog
+            * Description: Use this API to create a blog.
             **/
             public func createBlog(
                 body: BlogRequest,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -12691,7 +13683,7 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get blogs
-            * Description: Use this to get blogs.
+            * Description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
             **/
             public func getBlogs(
                 pageNo: Int?,
@@ -12699,18 +13691,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12799,18 +13799,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update blog
-            * Description: Use this to update blog.
+            * Summary: Update a blog
+            * Description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
             **/
             public func updateBlog(
                 id: String,
                 body: BlogRequest,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -12847,17 +13849,19 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Delete blogs
-            * Description: Use this to delete blogs.
+            * Description: Use this API to delete a blog.
             **/
             public func deleteBlog(
                 id: String,
                 
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -12893,18 +13897,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get components by component Id
-            * Description: The endpoint fetches the component by component Id
+            * Summary: Get components of a blog
+            * Description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
             **/
             public func getComponentById(
                 slug: String,
                 
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12940,17 +13946,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get FAQ categories list
-            * Description: Get list of FAQ categories
+            * Summary: Get a list of FAQ categories
+            * Description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
             **/
             public func getFaqCategories(
                 
                 onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -12986,18 +13994,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get FAQ category by slug or id
-            * Description: Get FAQ category by slug or id
+            * Summary: Get an FAQ category by slug or id
+            * Description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
             **/
             public func getFaqCategoryBySlugOrId(
                 idOrSlug: String,
                 
                 onResponse: @escaping (_ response: GetFaqCategoryBySlugSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -13033,17 +14043,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Creates a FAQ category
-            * Description: Add Faq Category
+            * Summary: Create an FAQ category
+            * Description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
             **/
             public func createFaqCategory(
                 body: CreateFaqCategoryRequestSchema,
                 onResponse: @escaping (_ response: CreateFaqCategorySchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -13079,18 +14091,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Updates a FAQ category
-            * Description: Update Faq Category
+            * Summary: Update an FAQ category
+            * Description: Use this API to edit an existing FAQ category.
             **/
             public func updateFaqCategory(
                 id: String,
                 body: UpdateFaqCategoryRequestSchema,
                 onResponse: @escaping (_ response: CreateFaqCategorySchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -13126,18 +14140,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Deletes a FAQ category
-            * Description: Delete Faq Category
+            * Summary: Delete an FAQ category
+            * Description: Use this API to delete an FAQ category.
             **/
             public func deleteFaqCategory(
                 id: String,
                 
                 onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -13173,18 +14189,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get FAQs of a Faq Category id or slug
-            * Description: Get FAQs of a Faq Category `id` or `slug`
+            * Summary: Get question and answers within an FAQ category
+            * Description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
             **/
             public func getFaqsByCategoryIdOrSlug(
                 idOrSlug: String,
                 
                 onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -13220,18 +14238,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Creates FAQs for category whose `id` is specified
-            * Description: Creates FAQs for category whose `id` is specified
+            * Summary: Create an FAQ
+            * Description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
             **/
             public func addFaq(
                 categoryId: String,
                 body: CreateFaqSchema,
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -13267,8 +14287,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Updates FAQ
-            * Description: Updates FAQ
+            * Summary: Update an FAQ
+            * Description: Use this API to edit an existing FAQ.
             **/
             public func updateFaq(
                 categoryId: String,
@@ -13276,10 +14296,12 @@ This operation will return the url for the uploaded file.
                 body: CreateFaqSchema,
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -13315,8 +14337,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete FAQ
-            * Description: Delete FAQ
+            * Summary: Delete an FAQ
+            * Description: Use this API to delete an existing FAQ.
             **/
             public func deleteFaq(
                 categoryId: String,
@@ -13324,10 +14346,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -13363,18 +14387,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get frequently asked question
-            * Description: Get frequently asked questions list. These will be helpful for users to using website.
+            * Summary: Get an FAQ
+            * Description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
             **/
             public func getFaqByIdOrSlug(
                 idOrSlug: String,
                 
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -13410,8 +14436,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get landing-pages
-            * Description: Use this to get landing-pages.
+            * Summary: Get landing pages
+            * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
             **/
             public func getLandingPages(
                 pageNo: Int?,
@@ -13419,18 +14445,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: LandingPageGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -13519,17 +14553,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create landing-page
-            * Description: Use this to create landing-page.
+            * Summary: Create a landing page
+            * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
             **/
             public func createLandingPage(
                 body: LandingPageSchema,
                 onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -13565,18 +14601,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update landing-page
-            * Description: Use this to update landing-page.
+            * Summary: Update a landing page
+            * Description: Use this API to edit the details of an existing landing page.
             **/
             public func updateLandingPage(
                 id: String,
                 body: LandingPageSchema,
                 onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -13612,18 +14650,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete landing-page
-            * Description: Use this to delete landing-page.
+            * Summary: Delete a landing page
+            * Description: Use this API to delete an existing landing page.
             **/
             public func deleteLandingPage(
                 id: String,
                 
                 onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -13660,16 +14700,18 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get legal information
-            * Description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+            * Description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
             **/
             public func getLegalInformation(
                 
                 onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -13706,16 +14748,18 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Save legal information
-            * Description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+            * Description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
             **/
             public func updateLegalInformation(
                 body: ApplicationLegal,
                 onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -13752,7 +14796,7 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get navigations
-            * Description: Use this to get navigations.
+            * Description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
             **/
             public func getNavigations(
                 devicePlatform: String,
@@ -13761,19 +14805,31 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["device_platform"] = devicePlatform
+
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -13870,17 +14926,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create navigation
-            * Description: Use this to create navigation.
+            * Summary: Create a navigation
+            * Description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
             **/
             public func createNavigation(
                 body: NavigationRequest,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -13917,16 +14975,18 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get default navigations
-            * Description: Use this to get default navigations.
+            * Description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
             **/
             public func getDefaultNavigations(
                 
                 onResponse: @escaping (_ response: DefaultNavigationResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -13962,8 +15022,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get navigation by slug
-            * Description: Use this to get navigation by slug.
+            * Summary: Get a navigation by slug
+            * Description: Use this API to retrieve a navigation by its slug.
             **/
             public func getNavigationBySlug(
                 slug: String,
@@ -13971,11 +15031,17 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                 
-                 
                 
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["device_platform"] = devicePlatform
+
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14011,18 +15077,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update navigation
-            * Description: Use this to update navigation.
+            * Summary: Update a navigation
+            * Description: Use this API to edit the details of an existing navigation.
             **/
             public func updateNavigation(
                 id: String,
                 body: NavigationRequest,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -14058,18 +15126,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete navigation
-            * Description: Use this to delete navigation.
+            * Summary: Delete a navigation
+            * Description: Use this API to delete an existing navigation.
             **/
             public func deleteNavigation(
                 id: String,
                 
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -14106,16 +15176,18 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get page meta
-            * Description: Use this to get Page Meta.
+            * Description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
             **/
             public func getPageMeta(
                 
                 onResponse: @escaping (_ response: PageMetaSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14152,16 +15224,18 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get page spec
-            * Description: Use this to get page spec.
+            * Description: Use this API to get the specifications of a page, such as page type, display name, params and query.
             **/
             public func getPageSpec(
                 
                 onResponse: @escaping (_ response: PageSpec?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14197,17 +15271,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create page
-            * Description: Use this to create a page.
+            * Summary: Create a page
+            * Description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
             **/
             public func createPage(
                 body: PageRequest,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -14243,8 +15319,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get pages
-            * Description: Use this to get pages.
+            * Summary: Get a list of pages
+            * Description: Use this API to retrieve a list of pages.
             **/
             public func getPages(
                 pageNo: Int?,
@@ -14252,18 +15328,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14352,17 +15436,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create page preview
-            * Description: Use this to create a page preview.
+            * Summary: Create a page preview
+            * Description: Use this API to create a page preview to check the appearance of a custom page.
             **/
             public func createPagePreview(
                 body: PageRequest,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -14398,18 +15484,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update page
-            * Description: Use this to update page.
+            * Summary: Change the publish status of a page
+            * Description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
             **/
             public func updatePagePreview(
                 slug: String,
                 body: PagePublishRequest,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -14445,18 +15533,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update page
-            * Description: Use this to update page.
+            * Summary: Update a page
+            * Description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
             **/
             public func updatePage(
                 id: String,
                 body: PageSchema,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -14492,18 +15582,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete page
-            * Description: Use this to delete page.
+            * Summary: Delete a page
+            * Description: Use this API to delete an existing page.
             **/
             public func deletePage(
                 id: String,
                 
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -14540,17 +15632,19 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get pages by component Id
-            * Description: The endpoint fetches the component by component Id
+            * Description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
             **/
             public func getPageBySlug(
                 slug: String,
                 
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14586,17 +15680,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get seo of application
-            * Description: Get seo of application
+            * Summary: Get SEO configuration of an application
+            * Description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
             **/
             public func getSEOConfiguration(
                 
                 onResponse: @escaping (_ response: SeoComponent?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14632,17 +15728,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update seo of application
-            * Description: Update seo of application
+            * Summary: Update SEO of application
+            * Description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
             **/
             public func updateSEOConfiguration(
                 body: SeoComponent,
                 onResponse: @escaping (_ response: SeoSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -14679,7 +15777,7 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get slideshows
-            * Description: Use this to get slideshows.
+            * Description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
             **/
             public func getSlideshows(
                 devicePlatform: String,
@@ -14688,19 +15786,31 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["device_platform"] = devicePlatform
+
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14797,17 +15907,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Create slideshow
-            * Description: Use this to create slideshow.
+            * Summary: Create a slideshow
+            * Description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
             **/
             public func createSlideshow(
                 body: SlideshowRequest,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -14844,7 +15956,7 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get slideshow by slug
-            * Description: Use this to get slideshow by slug.
+            * Description: Use this API to retrieve the details of a slideshow by its slug.
             **/
             public func getSlideshowBySlug(
                 slug: String,
@@ -14852,11 +15964,17 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                 
-                 
                 
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["device_platform"] = devicePlatform
+
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -14892,18 +16010,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update slideshow
-            * Description: Use this to update slideshow.
+            * Summary: Update a slideshow
+            * Description: Use this API to edit the details of an existing slideshow.
             **/
             public func updateSlideshow(
                 id: String,
                 body: SlideshowRequest,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -14939,18 +16059,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete slideshow
-            * Description: Use this to delete slideshow.
+            * Summary: Delete a slideshow
+            * Description: Use this API to delete an existing slideshow.
             **/
             public func deleteSlideshow(
                 id: String,
                 
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -14987,16 +16109,18 @@ This operation will return the url for the uploaded file.
             /**
             *
             * Summary: Get support information
-            * Description: Get contact details for customer support. Including emails and phone numbers
+            * Description: Use this API to get the contact details for customer support, including emails and phone numbers.
             **/
             public func getSupportInformation(
                 
                 onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -15032,17 +16156,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Update support data of application
-            * Description: Update support data of application
+            * Summary: Update the support data of an application
+            * Description: Use this API to edit the existing contact details for customer support, including emails and phone numbers.
             **/
             public func updateSupportInformation(
                 body: Support,
                 onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -15078,17 +16204,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Updates a Tag
-            * Description: Update tag
+            * Summary: Update a tag
+            * Description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
             **/
             public func updateInjectableTag(
                 body: CreateTagRequestSchema,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -15124,17 +16252,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Delete tags for application
-            * Description: Delete tags for application
+            * Summary: Delete tags in application
+            * Description: Use this API to delete all the existing tags at once.
             **/
             public func deleteAllInjectableTags(
                 
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -15170,17 +16300,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Get tags for application
-            * Description: Get tags for application
+            * Summary: Get all the tags in an application
+            * Description: Use this API to get all the CSS and JS injected in the application in the form of tags.
             **/
             public func getInjectableTags(
                 
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -15216,17 +16348,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Adds a Tag
-            * Description: Add tag
+            * Summary: Add a tag
+            * Description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
             **/
             public func addInjectableTag(
                 body: CreateTagRequestSchema,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -15262,17 +16396,19 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Removes a Tag
-            * Description: Remove a particular tag
+            * Summary: Remove a tag
+            * Description: Use this API to delete an existing tag.
             **/
             public func removeInjectableTag(
                 body: RemoveHandpickedSchema,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -15308,18 +16444,20 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Edits a Tag by Id
-            * Description: Edits a particular tag
+            * Summary: Edit a tag by id
+            * Description: Use this API to edit the details of an existing tag by its ID.
             **/
             public func editInjectableTag(
                 tagId: String,
                 body: UpdateHandpickedSchema,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -15378,10 +16516,12 @@ This operation will return the url for the uploaded file.
                 body: PickupPointSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -15428,22 +16568,33 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: PickupPointResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -15551,10 +16702,12 @@ a successful update.
                 body: PickupPointSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -15600,10 +16753,12 @@ store id passed.
                 
                 onResponse: @escaping (_ response: PickupPointSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -15648,10 +16803,12 @@ created per application id.
                 body: PickupConfiguration,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -15696,10 +16853,12 @@ the header to fetch the data.
                 
                 onResponse: @escaping (_ response: PickupResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -15745,10 +16904,12 @@ configuration each. The endpoint requires an application id to get the data.
                 
                 onResponse: @escaping (_ response: ShippingResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -15794,10 +16955,12 @@ application i.e, for an application configuration can be created only once.
                 body: ShippingSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -15843,10 +17006,12 @@ a successful update.
                 body: ShippingSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -15896,26 +17061,40 @@ API has support for pagination, filter by type and search by name.
                 
                 onResponse: @escaping (_ response: StoreListResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = type {
-                    xQuery["type"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16031,10 +17210,12 @@ shipping configuration of the stores including store id and app id.
                 
                 onResponse: @escaping (_ response: StoreResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16080,10 +17261,12 @@ and udpated request body are required to successfully update the store data.
                 body: StoreSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -16130,10 +17313,12 @@ tags while others are required to be.
                 body: StoreSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -16181,22 +17366,33 @@ of three different types, radius, pincode and country.
                 
                 onResponse: @escaping (_ response: ZoneListResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16303,10 +17499,12 @@ be passed, zone_detail, pincode and region.
                 body: ZoneSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -16352,10 +17550,12 @@ not found if no data is found for the passed zone id.
                 
                 onResponse: @escaping (_ response: ZoneSchema?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16401,10 +17601,12 @@ data to update a zone.
                 body: ZoneSchema,
                 onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -16465,22 +17667,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: Campaigns?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16584,10 +17797,12 @@ data to update a zone.
                 body: CampaignReq,
                 onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -16631,10 +17846,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16678,10 +17895,12 @@ data to update a zone.
                 body: CampaignReq,
                 onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -16725,10 +17944,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetStats?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16774,22 +17995,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: Audiences?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -16893,10 +18125,12 @@ data to update a zone.
                 body: AudienceReq,
                 onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -16939,10 +18173,12 @@ data to update a zone.
                 body: BigqueryHeadersReq,
                 onResponse: @escaping (_ response: BigqueryHeadersRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -16986,10 +18222,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -17033,10 +18271,12 @@ data to update a zone.
                 body: AudienceReq,
                 onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -17079,10 +18319,12 @@ data to update a zone.
                 body: GetNRecordsCsvReq,
                 onResponse: @escaping (_ response: GetNRecordsCsvRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -17128,22 +18370,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: EmailProviders?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -17247,10 +18500,12 @@ data to update a zone.
                 body: EmailProviderReq,
                 onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -17294,10 +18549,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -17341,10 +18598,12 @@ data to update a zone.
                 body: EmailProviderReq,
                 onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -17390,22 +18649,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: EmailTemplates?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -17509,10 +18779,12 @@ data to update a zone.
                 body: EmailTemplateReq,
                 onResponse: @escaping (_ response: EmailTemplateRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -17558,22 +18830,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: SystemEmailTemplates?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -17678,10 +18961,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: EmailTemplate?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -17725,10 +19010,12 @@ data to update a zone.
                 body: EmailTemplateReq,
                 onResponse: @escaping (_ response: EmailTemplateRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -17772,10 +19059,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: EmailTemplateDeleteSuccessRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -17821,22 +19110,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: EventSubscriptions?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = populate {
-                    xQuery["populate"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = populate {
+    
+    xQuery["populate"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -17943,22 +19243,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: Jobs?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -18062,10 +19373,12 @@ data to update a zone.
                 body: TriggerJobRequest,
                 onResponse: @escaping (_ response: TriggerJobResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -18111,22 +19424,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: JobLogs?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -18234,26 +19558,40 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: Logs?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                
-                if let value = query {
-                    xQuery["query"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+if let value = query {
+    
+    xQuery["query"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -18370,22 +19708,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: SmsProviders?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -18489,10 +19838,12 @@ data to update a zone.
                 body: SmsProviderReq,
                 onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -18536,10 +19887,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -18583,10 +19936,12 @@ data to update a zone.
                 body: SmsProviderReq,
                 onResponse: @escaping (_ response: SmsProvider?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -18632,22 +19987,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: SmsTemplates?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -18751,10 +20117,12 @@ data to update a zone.
                 body: SmsTemplateReq,
                 onResponse: @escaping (_ response: SmsTemplateRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -18798,10 +20166,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: SmsTemplate?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -18845,10 +20215,12 @@ data to update a zone.
                 body: SmsTemplateReq,
                 onResponse: @escaping (_ response: SmsTemplateRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -18892,10 +20264,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: SmsTemplateDeleteSuccessRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -18941,22 +20315,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: SystemSmsTemplates?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = sort {
-                    xQuery["sort"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19075,10 +20460,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: PaymentGatewayConfigResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19121,10 +20508,12 @@ data to update a zone.
                 body: PaymentGatewayConfigRequest,
                 onResponse: @escaping (_ response: PaymentGatewayToBeReviewed?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -19167,10 +20556,12 @@ data to update a zone.
                 body: PaymentGatewayConfigRequest,
                 onResponse: @escaping (_ response: PaymentGatewayToBeReviewed?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -19215,12 +20606,22 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["refresh"] = refresh
-                xQuery["request_type"] = requestType
-                 
-                 
                 
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["refresh"] = refresh
+
+
+
+
+    xQuery["request_type"] = requestType
+
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19272,10 +20673,12 @@ data to update a zone.
                 body: AddBeneficiaryDetailsRequest,
                 onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -19320,11 +20723,17 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["order_id"] = orderId
-                 
-                 
                 
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["order_id"] = orderId
+
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19368,11 +20777,17 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
-                xQuery["order_id"] = orderId
-                 
-                 
                 
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["order_id"] = orderId
+
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19438,10 +20853,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: PlatformShipmentTrack?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19485,10 +20902,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: PlatformOrderTrack?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -19531,10 +20950,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: FailedOrders?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19578,10 +20999,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: UpdateOrderReprocessResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -19625,10 +21048,12 @@ data to update a zone.
                 body: ShipmentUpdateRequest,
                 onResponse: @escaping (_ response: ShipmentUpdateResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -19671,10 +21096,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19719,10 +21146,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: ShipmentTrackResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19778,100 +21207,6 @@ data to update a zone.
             
             /**
             *
-            * Summary: Delete a Search Keywords
-            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-            **/
-            public func deleteSearchKeywords(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DeleteResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get a Search Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-            **/
-            public func getSearchKeywords(
-                id: String,
-                
-                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
             * Summary: Update Search Keyword
             * Description: Update Search Keyword by its id. On successful request, returns the updated collection
             **/
@@ -19880,10 +21215,12 @@ data to update a zone.
                 body: CreateSearchKeyword,
                 onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -19919,6 +21256,104 @@ data to update a zone.
             
             /**
             *
+            * Summary: Get a Search Keywords Details
+            * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+            **/
+            public func getSearchKeywords(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Search Keywords
+            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+            **/
+            public func deleteSearchKeywords(
+                id: String,
+                
+                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
             * Summary: List all Search Custom Keyword Listing
             * Description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
             **/
@@ -19926,10 +21361,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetSearchWordsResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -19972,10 +21409,12 @@ data to update a zone.
                 body: CreateSearchKeyword,
                 onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -20011,100 +21450,6 @@ data to update a zone.
             
             /**
             *
-            * Summary: Delete a Autocomplete Keywords
-            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-            **/
-            public func deleteAutocompleteKeyword(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DeleteResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get a Autocomplete Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-            **/
-            public func getAutocompleteKeywordDetail(
-                id: String,
-                
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
             * Summary: Create & Update Autocomplete Keyword
             * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
             **/
@@ -20113,10 +21458,12 @@ data to update a zone.
                 body: CreateAutocompleteKeyword,
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -20152,6 +21499,104 @@ data to update a zone.
             
             /**
             *
+            * Summary: Get a Autocomplete Keywords Details
+            * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+            **/
+            public func getAutocompleteKeywordDetail(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Autocomplete Keywords
+            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+            **/
+            public func deleteAutocompleteKeyword(
+                id: String,
+                
+                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
             * Summary: List all Autocomplete Keyword Listing
             * Description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
             **/
@@ -20159,10 +21604,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20205,10 +21652,12 @@ data to update a zone.
                 body: CreateAutocompleteKeyword,
                 onResponse: @escaping (_ response: CreateAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -20259,10 +21708,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetCatalogConfigurationMetaData?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20305,10 +21756,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20351,10 +21804,12 @@ data to update a zone.
                 body: AppConfiguration,
                 onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -20398,10 +21853,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetAppCatalogEntityConfiguration?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20445,10 +21902,12 @@ data to update a zone.
                 body: AppConfiguration,
                 onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -20491,10 +21950,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetCollectionQueryOptionResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20537,10 +21998,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20583,10 +22046,12 @@ data to update a zone.
                 body: CreateCollection,
                 onResponse: @escaping (_ response: CollectionCreateResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -20630,10 +22095,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20669,53 +22136,6 @@ data to update a zone.
             
             /**
             *
-            * Summary: Delete a Collection
-            * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-            **/
-            public func deleteCollection(
-                id: String,
-                
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
-            ) {
-                 
-                 
-                 
-                
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DeleteResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
             * Summary: Update a collection
             * Description: Update a collection by it's id. On successful request, returns the updated collection
             **/
@@ -20724,10 +22144,12 @@ data to update a zone.
                 body: UpdateCollection,
                 onResponse: @escaping (_ response: UpdateCollection?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -20763,6 +22185,55 @@ data to update a zone.
             
             /**
             *
+            * Summary: Delete a Collection
+            * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+            **/
+            public func deleteCollection(
+                id: String,
+                
+                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
             * Summary: Get the items for a collection
             * Description: Get items from a collection specified by its `id`.
             **/
@@ -20774,22 +22245,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: GetCollectionItemsResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = sortOn {
-                    xQuery["sort_on"] = value
-                }
-                
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = sortOn {
+    
+    xQuery["sort_on"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20833,10 +22315,12 @@ data to update a zone.
                 body: CollectionItemRequest,
                 onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -20880,14 +22364,19 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: CatalogInsightResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = brand {
-                    xQuery["brand"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = brand {
+    
+    xQuery["brand"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -20986,22 +22475,33 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = department {
-                    xQuery["department"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = department {
+    
+    xQuery["department"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -21105,10 +22605,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -21152,14 +22654,19 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = department {
-                    xQuery["department"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = department {
+    
+    xQuery["department"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -21210,42 +22717,68 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: ApplicationProductListingResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                
-                if let value = f {
-                    xQuery["f"] = value
-                }
-                
-                if let value = filters {
-                    xQuery["filters"] = value
-                }
-                
-                if let value = sortOn {
-                    xQuery["sort_on"] = value
-                }
-                
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageType {
-                    xQuery["page_type"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = f {
+    
+    xQuery["f"] = value
+    
+}
+
+
+if let value = filters {
+    
+    xQuery["filters"] = value
+    
+}
+
+
+if let value = sortOn {
+    
+    xQuery["sort_on"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageType {
+    
+    xQuery["page_type"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -21391,10 +22924,12 @@ data to update a zone.
                 
                 onResponse: @escaping (_ response: ProductDetail?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -21473,10 +23008,12 @@ This operation will return the url for the uploaded file.
                 body: StartRequest,
                 onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -21538,10 +23075,12 @@ This operation will return the url for the uploaded file.
                 body: StartResponse,
                 onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -21587,14 +23126,19 @@ This operation will return the url for the uploaded file.
                 body: BulkRequest,
                 onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = sync {
-                    xQuery["sync"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = sync {
+    
+    xQuery["sync"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -21640,14 +23184,19 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -21758,10 +23307,12 @@ This operation will return the url for the uploaded file.
                 body: ShortLinkReq,
                 onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -21809,30 +23360,47 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: ShortLinkList?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = createdBy {
-                    xQuery["created_by"] = value
-                }
-                
-                if let value = active {
-                    xQuery["active"] = value
-                }
-                
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = createdBy {
+    
+    xQuery["created_by"] = value
+    
+}
+
+
+if let value = active {
+    
+    xQuery["active"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -21953,10 +23521,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22000,10 +23570,12 @@ This operation will return the url for the uploaded file.
                 body: ShortLinkReq,
                 onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
@@ -22062,10 +23634,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: MobileAppConfiguration?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22109,10 +23683,12 @@ This operation will return the url for the uploaded file.
                 body: MobileAppConfigRequest,
                 onResponse: @escaping (_ response: MobileAppConfiguration?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -22156,10 +23732,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: BuildVersionHistory?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22202,10 +23780,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22248,10 +23828,12 @@ This operation will return the url for the uploaded file.
                 body: AppFeatureRequest,
                 onResponse: @escaping (_ response: AppFeature?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -22294,10 +23876,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22340,10 +23924,12 @@ This operation will return the url for the uploaded file.
                 body: ApplicationDetail,
                 onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -22386,10 +23972,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22432,10 +24020,12 @@ This operation will return the url for the uploaded file.
                 body: ApplicationInformation,
                 onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -22478,10 +24068,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22524,10 +24116,12 @@ This operation will return the url for the uploaded file.
                 body: TokenResponse,
                 onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -22572,18 +24166,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CompaniesResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22681,18 +24283,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: StoresResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22788,10 +24398,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: ApplicationInventory?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22834,10 +24446,12 @@ This operation will return the url for the uploaded file.
                 body: ApplicationInventory,
                 onResponse: @escaping (_ response: ApplicationInventory?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -22880,10 +24494,12 @@ This operation will return the url for the uploaded file.
                 body: AppInventoryPartialUpdate,
                 onResponse: @escaping (_ response: ApplicationInventory?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
@@ -22926,10 +24542,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: AppSupportedCurrency?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -22972,10 +24590,12 @@ This operation will return the url for the uploaded file.
                 body: AppSupportedCurrency,
                 onResponse: @escaping (_ response: AppSupportedCurrency?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -23020,18 +24640,26 @@ This operation will return the url for the uploaded file.
                 body: FilterOrderingStoreRequest,
                 onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -23127,10 +24755,12 @@ This operation will return the url for the uploaded file.
                 body: OrderingStoreConfig,
                 onResponse: @escaping (_ response: DeploymentMeta?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -23173,10 +24803,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -23219,10 +24851,12 @@ This operation will return the url for the uploaded file.
                 body: DomainAddRequest,
                 onResponse: @escaping (_ response: Domain?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -23266,10 +24900,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
@@ -23312,10 +24948,12 @@ This operation will return the url for the uploaded file.
                 body: UpdateDomainTypeRequest,
                 onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -23358,10 +24996,12 @@ This operation will return the url for the uploaded file.
                 body: DomainStatusRequest,
                 onResponse: @escaping (_ response: DomainStatusResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -23406,10 +25046,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -23489,42 +25131,68 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CouponsResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                if let value = isArchived {
-                    xQuery["is_archived"] = value
-                }
-                
-                if let value = title {
-                    xQuery["title"] = value
-                }
-                
-                if let value = isPublic {
-                    xQuery["is_public"] = value
-                }
-                
-                if let value = isDisplay {
-                    xQuery["is_display"] = value
-                }
-                
-                if let value = typeSlug {
-                    xQuery["type_slug"] = value
-                }
-                
-                if let value = code {
-                    xQuery["code"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = isArchived {
+    
+    xQuery["is_archived"] = value
+    
+}
+
+
+if let value = title {
+    
+    xQuery["title"] = value
+    
+}
+
+
+if let value = isPublic {
+    
+    xQuery["is_public"] = value
+    
+}
+
+
+if let value = isDisplay {
+    
+    xQuery["is_display"] = value
+    
+}
+
+
+if let value = typeSlug {
+    
+    xQuery["type_slug"] = value
+    
+}
+
+
+if let value = code {
+    
+    xQuery["code"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -23668,10 +25336,12 @@ This operation will return the url for the uploaded file.
                 body: CouponAdd,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -23715,10 +25385,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: CouponUpdate?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -23762,10 +25434,12 @@ This operation will return the url for the uploaded file.
                 body: CouponUpdate,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -23809,10 +25483,12 @@ This operation will return the url for the uploaded file.
                 body: CouponPartialUpdate,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
@@ -23872,18 +25548,26 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: GiveawayResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -23980,10 +25664,12 @@ This operation will return the url for the uploaded file.
                 body: Giveaway,
                 onResponse: @escaping (_ response: Giveaway?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -24027,10 +25713,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: Giveaway?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24074,10 +25762,12 @@ This operation will return the url for the uploaded file.
                 body: Giveaway,
                 onResponse: @escaping (_ response: Giveaway?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -24120,10 +25810,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: [Offer]?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24168,11 +25860,17 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: Offer?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                var xHeaders: [(key: String, value: String)] = [] 
-                xHeaders.append((key: "cookie", value: cookie))
                 
+ 
+
+var xHeaders: [(key: String, value: String)] = [] 
+
+
+xHeaders.append((key: "cookie", value: cookie))
+
+
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24216,10 +25914,12 @@ This operation will return the url for the uploaded file.
                 body: Offer,
                 onResponse: @escaping (_ response: Offer?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
@@ -24263,10 +25963,12 @@ This operation will return the url for the uploaded file.
                 
                 onResponse: @escaping (_ response: UserRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24310,10 +26012,12 @@ This operation will return the url for the uploaded file.
                 body: AppUser,
                 onResponse: @escaping (_ response: AppUser?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "patch",
@@ -24361,22 +26065,33 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: HistoryRes?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageId {
-                    xQuery["page_id"] = value
-                }
-                
-                if let value = pageLimit {
-                    xQuery["page_limit"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageLimit {
+    
+    xQuery["page_limit"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24504,10 +26219,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: StatsGroups?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24551,10 +26268,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: StatsGroupComponents?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24598,10 +26317,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24645,10 +26366,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24692,10 +26415,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: StatsRes?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24742,18 +26467,26 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: AbandonCartsList?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:] 
                 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                 
-                 
-                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24867,10 +26600,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24914,10 +26649,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: AbandonCartDetail?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
@@ -24980,10 +26717,12 @@ The list of points history is paginated.
                 body: AddProxyReq,
                 onResponse: @escaping (_ response: AddProxyResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
@@ -25028,10 +26767,12 @@ The list of points history is paginated.
                 
                 onResponse: @escaping (_ response: RemoveProxyResponse?, _ error: FDKError?) -> Void
             ) {
-                 
-                 
-                 
                 
+ 
+
+ 
+
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
