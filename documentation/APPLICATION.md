@@ -3,6 +3,7 @@
 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
+* [Common](#Common) - Application configuration apis 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
@@ -82,6 +83,11 @@
     * [getCartShareLink](#getcartsharelink)
     * [getCartSharedItems](#getcartshareditems)
     * [updateCartWithSharedItems](#updatecartwithshareditems)
+    
+
+* [Common](#Common)
+  * Methods
+    * [getLocations](#getlocations)
     
 
 * [Lead](#Lead)
@@ -1179,7 +1185,7 @@ catalog.getCollections(pageNo: pageNo, pageSize: pageSize, tag: tag) { (response
 | --------- | ----  | --- |  
 | pageNo | Int? | The page number to navigate through the given set of results. |    
 | pageSize | Int? | The number of items to retrieve in each page. |    
-| tag | String? | List of tags  to filter collections |  
+| tag | [String]? | List of tags  to filter collections |  
 
 
 Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
@@ -2447,6 +2453,48 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
 
 Schema: `SharedCartResponse`
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Common
+
+
+#### getLocations
+Get countries, states, cities
+
+```swift
+common.getLocations(locationType: locationType, id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| locationType | String? | Provide location type to query on |    
+| id | String? | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
+
+
+
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Locations`
 
 
 
@@ -8622,11 +8670,15 @@ Schema: `FeedbackError`
 Delete Media
 
 ```swift
-feedback.deleteMedia() { (response, error) in
+feedback.deleteMedia(ids: ids) { (response, error) in
     // Use response
 }
 ```
 
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |  
+| ids | [String]? | List of media ID |  
 
 
 Use this API to delete media for an entity ID.
