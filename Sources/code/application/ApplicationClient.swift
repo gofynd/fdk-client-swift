@@ -2728,7 +2728,7 @@ if let value = uid {
             p: Bool?,
             uid: Int?,
             body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -2781,7 +2781,7 @@ if let value = uid {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -3231,7 +3231,7 @@ if let value = isDefault {
         public func updateAddress(
             id: Int,
             body: Address,
-            onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -3256,7 +3256,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateAddressResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -3279,7 +3279,7 @@ if let value = isDefault {
         public func removeAddress(
             id: Int,
             
-            onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -3304,7 +3304,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeleteAddressResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -3329,7 +3329,7 @@ if let value = isDefault {
             i: Bool?,
             b: Bool?,
             body: SelectCartAddressRequest,
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -3375,7 +3375,7 @@ if let value = b {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -13125,7 +13125,7 @@ if let value = uid {
             p: Bool?,
             uid: Int?,
             body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -13178,7 +13178,7 @@ if let value = uid {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -13628,7 +13628,7 @@ if let value = isDefault {
         public func updateAddress(
             id: Int,
             body: Address,
-            onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -13653,7 +13653,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateAddressResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -13676,7 +13676,7 @@ if let value = isDefault {
         public func removeAddress(
             id: Int,
             
-            onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -13701,7 +13701,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeleteAddressResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -13726,7 +13726,7 @@ if let value = isDefault {
             i: Bool?,
             b: Bool?,
             body: SelectCartAddressRequest,
-            onResponse: @escaping (_ response: CartResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -13772,7 +13772,7 @@ if let value = b {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CartResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
