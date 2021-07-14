@@ -13,7 +13,6 @@
 * [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
-* [Order](#Order) - Handles Platform websites OMS 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [FileStorage](#FileStorage) - File Storage 
@@ -275,29 +274,6 @@
     * [getUserBeneficiaries](#getuserbeneficiaries)
     
 
-* [Order](#Order)
-  * Methods
-    * [shipmentStatusUpdate](#shipmentstatusupdate)
-    * [activityStatus](#activitystatus)
-    * [storeProcessShipmentUpdate](#storeprocessshipmentupdate)
-    * [checkRefund](#checkrefund)
-    * [getOrdersByCompanyId](#getordersbycompanyid)
-    * [getOrderDetails](#getorderdetails)
-    * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
-    * [trackShipmentPlatform](#trackshipmentplatform)
-    * [trackOrder](#trackorder)
-    * [failedOrders](#failedorders)
-    * [reprocessOrder](#reprocessorder)
-    * [updateShipment](#updateshipment)
-    * [getPlatformShipmentReasons](#getplatformshipmentreasons)
-    * [getShipmentTrackDetails](#getshipmenttrackdetails)
-    * [getShipmentAddress](#getshipmentaddress)
-    * [updateShipmentAddress](#updateshipmentaddress)
-    * [getPing](#getping)
-    * [voiceCallback](#voicecallback)
-    * [voiceClickToCall](#voiceclicktocall)
-    
-
 * [Catalog](#Catalog)
   * Methods
     * [deleteSearchKeywords](#deletesearchkeywords)
@@ -371,7 +347,8 @@
     * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [deleteSize](#deletesize)
     * [addInventory](#addinventory)
-    * [getInventory](#getinventory)
+    * [getInventoryBySize](#getinventorybysize)
+    * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
     * [deleteInventory](#deleteinventory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
     * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
@@ -394,16 +371,16 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
+    * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
     * [editBrand](#editbrand)
     * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
+    * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
@@ -496,6 +473,11 @@
     * [getCouponById](#getcouponbyid)
     * [updateCoupon](#updatecoupon)
     * [updateCouponPartially](#updatecouponpartially)
+    * [fetchCartItems](#fetchcartitems)
+    * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
+    * [checkCartServiceability](#checkcartserviceability)
+    * [checkoutCartItems](#checkoutcartitems)
+    * [updateCheckoutPaymentStatus](#updatecheckoutpaymentstatus)
     
 
 * [Rewards](#Rewards)
@@ -8334,746 +8316,6 @@ List User Beneficiary
 ---
 
 
-## Order
-
-
-#### shipmentStatusUpdate
-Update status of Shipment
-
-
-
-```swift
-order.shipmentStatusUpdate(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |  
-| body | UpdateShipmentStatusBody | yes | Request body |
-
-Update Shipment Status
-
-*Returned Response:*
-
-
-
-
-[UpdateShipmentStatusResponse](#UpdateShipmentStatusResponse)
-
-Success
-
-
-
-
-
-
----
-
-
-#### activityStatus
-Get Activity Status
-
-
-
-```swift
-order.activityStatus(companyId: companyId, bagId: bagId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| bagId | String? | no | Bag Id |  
-
-
-Get Activity Status
-
-*Returned Response:*
-
-
-
-
-[GetActivityStatus](#GetActivityStatus)
-
-Success
-
-
-
-
-
-
----
-
-
-#### storeProcessShipmentUpdate
-Update Store Process-Shipment
-
-
-
-```swift
-order.storeProcessShipmentUpdate(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |  
-| body | UpdateProcessShipmenstRequestBody | yes | Request body |
-
-Update Store Process-Shipment
-
-*Returned Response:*
-
-
-
-
-[UpdateProcessShipmenstRequestResponse](#UpdateProcessShipmenstRequestResponse)
-
-Success
-
-
-
-
-
-
----
-
-
-#### checkRefund
-Check Refund is available or not
-
-
-
-```swift
-order.checkRefund(companyId: companyId, shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| shipmentId | String? | no | Shipment Id |  
-
-
-Check Refund is available or not
-
-*Returned Response:*
-
-
-
-
-[[String: Any]](#[String: Any])
-
-Success
-
-
-
-
-
-
----
-
-
-#### getOrdersByCompanyId
-Get Orders for company based on Company Id
-
-
-
-```swift
-order.getOrdersByCompanyId(companyId: companyId, pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| pageNo | String? | no | Current page number |   
-| pageSize | String? | no | Page limit |   
-| fromDate | String? | no | From Date |   
-| toDate | String? | no | To Date |   
-| q | String? | no | Keyword for Search |   
-| stage | String? | no | Specefic Order Stage |   
-| salesChannels | String? | no | Selected Sales Channel |   
-| orderId | String? | no | Order Id |   
-| stores | String? | no | Selected Stores |   
-| status | String? | no | Status of order |   
-| shortenUrls | Bool? | no | Shorten URL option |   
-| filterType | String? | no | Filters |  
-
-
-Get Orders
-
-*Returned Response:*
-
-
-
-
-[OrderListing](#OrderListing)
-
-Success
-
-
-
-
-
-
----
-
-
-#### getOrderDetails
-Get Order Details for company based on Company Id and Order Id
-
-
-
-```swift
-order.getOrderDetails(companyId: companyId, orderId: orderId, next: next, previous: previous) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| orderId | String? | no | Order Id |   
-| next | String? | no | Next |   
-| previous | String? | no | Previous |  
-
-
-Get Orders
-
-*Returned Response:*
-
-
-
-
-[OrderDetails](#OrderDetails)
-
-Success
-
-
-
-
-
-
----
-
-
-#### getPicklistOrdersByCompanyId
-Get Orders for company based on Company Id
-
-
-
-```swift
-order.getPicklistOrdersByCompanyId(companyId: companyId, pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| pageNo | String? | no | Current page number |   
-| pageSize | String? | no | Page limit |   
-| fromDate | String? | no | From Date |   
-| toDate | String? | no | To Date |   
-| q | String? | no | Keyword for Search |   
-| stage | String? | no | Specefic Order Stage |   
-| salesChannels | String? | no | Selected Sales Channel |   
-| orderId | String? | no | Order Id |   
-| stores | String? | no | Selected Stores |   
-| status | String? | no | Status of order |   
-| shortenUrls | Bool? | no | Shorten URL option |   
-| filterType | String? | no | Filters |  
-
-
-Get Orders
-
-*Returned Response:*
-
-
-
-
-[OrderPicklistListing](#OrderPicklistListing)
-
-Success
-
-
-
-
-
-
----
-
-
-#### trackShipmentPlatform
-Track Shipment by shipment id, for application based on application Id
-
-
-
-```swift
-order.trackShipmentPlatform(companyId: companyId, applicationId: applicationId, shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| applicationId | String? | no | Application Id |   
-| shipmentId | String? | no | Shipment Id |  
-
-
-Shipment Track
-
-*Returned Response:*
-
-
-
-
-[PlatformShipmentTrack](#PlatformShipmentTrack)
-
-Success
-
-
-
-
-
-
----
-
-
-#### trackOrder
-Track Order by order id, for application based on application Id
-
-
-
-```swift
-order.trackOrder(companyId: companyId, applicationId: applicationId, orderId: orderId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| applicationId | String? | no | Application Id |   
-| orderId | String? | no | Order Id |  
-
-
-Order Track
-
-*Returned Response:*
-
-
-
-
-[PlatformOrderTrack](#PlatformOrderTrack)
-
-Success
-
-
-
-
-
-
----
-
-
-#### failedOrders
-Get all failed orders application wise
-
-
-
-```swift
-order.failedOrders(companyId: companyId, applicationId: applicationId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| applicationId | String? | no | Application Id |  
-
-
-Failed Orders
-
-*Returned Response:*
-
-
-
-
-[FailedOrders](#FailedOrders)
-
-Success
-
-
-
-
-
-
----
-
-
-#### reprocessOrder
-Reprocess order by order id
-
-
-
-```swift
-order.reprocessOrder(companyId: companyId, applicationId: applicationId, orderId: orderId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| applicationId | String? | no | Application Id |   
-| orderId | String? | no | Order Id |  
-
-
-Order Reprocess
-
-*Returned Response:*
-
-
-
-
-[UpdateOrderReprocessResponse](#UpdateOrderReprocessResponse)
-
-Success
-
-
-
-
-
-
----
-
-
-#### updateShipment
-Use this API to update the shipment using its shipment ID.
-
-
-
-```swift
-order.updateShipment(companyId: companyId, applicationId: applicationId, shipmentId: shipmentId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| applicationId | String? | no | Application Id |   
-| shipmentId | String? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-| body | ShipmentUpdateRequest | yes | Request body |
-
-Update the shipment
-
-*Returned Response:*
-
-
-
-
-[ShipmentUpdateResponse](#ShipmentUpdateResponse)
-
-Success. Check the example shown below or refer `ShipmentUpdateRequest` for more details.
-
-
-
-
-
-
----
-
-
-#### getPlatformShipmentReasons
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-
-
-
-```swift
-order.getPlatformShipmentReasons(companyId: companyId, applicationId: applicationId, action: action) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| applicationId | String? | no | Application Id |   
-| action | String? | no | Action |  
-
-
-Get reasons behind full or partial cancellation of a shipment
-
-*Returned Response:*
-
-
-
-
-[ShipmentReasonsResponse](#ShipmentReasonsResponse)
-
-Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
-
-
-
-
-
-
----
-
-
-#### getShipmentTrackDetails
-Use this API to track a shipment using its shipment ID.
-
-
-
-```swift
-order.getShipmentTrackDetails(companyId: companyId, applicationId: applicationId, orderId: orderId, shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| applicationId | String? | no | Application Id |   
-| orderId | String? | no | ID of the order. |   
-| shipmentId | String? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-Track shipment
-
-*Returned Response:*
-
-
-
-
-[ShipmentTrackResponse](#ShipmentTrackResponse)
-
-Success. Check the example shown below or refer `ShipmentTrackResponse` for more details.
-
-
-
-
-
-
----
-
-
-#### getShipmentAddress
-Use this API to get address of a shipment using its shipment ID and Address Category.
-
-
-
-```swift
-order.getShipmentAddress(companyId: companyId, shipmentId: shipmentId, addressCategory: addressCategory) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| shipmentId | String? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| addressCategory | String? | no | Category of the address it falls into(billing or delivery). |  
-
-
-Get Shipment Address
-
-*Returned Response:*
-
-
-
-
-[GetShipmentAddressResponse](#GetShipmentAddressResponse)
-
-Success. Check the example shown below or refer `GetShipmentAddressResponse` for more details.
-
-
-
-
-
-
----
-
-
-#### updateShipmentAddress
-Use this API to update address of a shipment using its shipment ID and Address Category.
-
-
-
-```swift
-order.updateShipmentAddress(companyId: companyId, shipmentId: shipmentId, addressCategory: addressCategory, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| shipmentId | String? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| addressCategory | String? | no | Category of the address it falls into(billing or delivery). |  
-| body | UpdateShipmentAddressRequest | yes | Request body |
-
-Update Shipment Address
-
-*Returned Response:*
-
-
-
-
-[UpdateShipmentAddressResponse](#UpdateShipmentAddressResponse)
-
-Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
-
-
-
-
-
-
----
-
-
-#### getPing
-Get Ping
-
-
-
-```swift
-order.getPing(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |  
-
-
-Get Ping
-
-*Returned Response:*
-
-
-
-
-[GetPingResponse](#GetPingResponse)
-
-Success
-
-
-
-
-
-
----
-
-
-#### voiceCallback
-Get Voice Callback
-
-
-
-```swift
-order.voiceCallback(companyId: companyId) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |  
-
-
-Voice Callback
-
-*Returned Response:*
-
-
-
-
-[GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
-
-Success
-
-
-
-
-
-
----
-
-
-#### voiceClickToCall
-Get Voice Click to Call
-
-
-
-```swift
-order.voiceClickToCall(companyId: companyId, caller: caller, receiver: receiver) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id |   
-| caller | String? | no | Caller contact number |   
-| receiver | String? | no | Receiver contact number |  
-
-
-Voice Click to Call
-
-*Returned Response:*
-
-
-
-
-[GetClickToCallResponse](#GetClickToCallResponse)
-
-Success
-
-
-
-
-
-
----
-
-
-
----
-
-
 ## Catalog
 
 
@@ -11182,7 +10424,7 @@ Get product list
 
 
 ```swift
-catalog.getProducts(companyId: companyId, brandIds: brandIds, categoryIds: categoryIds, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+catalog.getProducts(companyId: companyId, brandIds: brandIds, categoryIds: categoryIds, departmentIds: departmentIds, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -11191,8 +10433,9 @@ catalog.getProducts(companyId: companyId, brandIds: brandIds, categoryIds: categ
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Double? | no | Get list of products filtered by company Id |   
-| brandIds | Double? | no | Get multiple products filtered by brand Ids |   
-| categoryIds | Double? | no | Get multiple products filtered by category Ids |   
+| brandIds | [Double]? | no | Get multiple products filtered by Brand Ids |   
+| categoryIds | [Double]? | no | Get multiple products filtered by Category Ids |   
+| departmentIds | [Double]? | no | Get multiple products filtered by Department Ids |   
 | q | String? | no | Get multiple products filtered by q string |   
 | pageNo | Int? | no | The page number to navigate through the given set of results |   
 | pageSize | Int? | no | Number of items to retrieve in each page. Default is 10. |  
@@ -11741,13 +10984,13 @@ Returns a success response
 ---
 
 
-#### getInventory
+#### getInventoryBySize
 Get Inventory for company
 
 
 
 ```swift
-catalog.getInventory(companyId: companyId, itemId: itemId, size: size, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+catalog.getInventoryBySize(companyId: companyId, itemId: itemId, size: size, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -11759,7 +11002,50 @@ catalog.getInventory(companyId: companyId, itemId: itemId, size: size, pageNo: p
 | itemId | String? | no | Item code of the product of which size is to be get. |   
 | size | String? | no | Size of which inventory is to get. |   
 | pageNo | Int? | no | The page number to navigate through the given set of results |   
-| pageSize | Int? | no | Number of items to retrieve in each page. Default is 12. |  
+| pageSize | Int? | no | Number of items to retrieve in each page. Default is 12. |   
+| q | String? | no | Search with help of store code. |  
+
+
+This API allows get Inventory data for particular company grouped by size and store.
+
+*Returned Response:*
+
+
+
+
+[InventoryResponse](#InventoryResponse)
+
+returns a list of all inventory grouped by size and store
+
+
+
+
+
+
+---
+
+
+#### getInventoryBySizeIdentifier
+Get Inventory for company
+
+
+
+```swift
+catalog.getInventoryBySizeIdentifier(companyId: companyId, itemId: itemId, sizeIdentifier: sizeIdentifier, pageNo: pageNo, pageSize: pageSize, q: q, locationIds: locationIds) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | Id of the company associated to product that is to be viewed. |   
+| itemId | String? | no | Item code of the product of which size is to be get. |   
+| sizeIdentifier | String? | no | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |   
+| pageNo | Int? | no | The page number to navigate through the given set of results |   
+| pageSize | Int? | no | Number of items to retrieve in each page. Default is 12. |   
+| q | String? | no | Search with help of store code. |   
+| locationIds | [Int]? | no | Search by store ids. |  
 
 
 This API allows get Inventory data for particular company grouped by size and store.
@@ -11787,7 +11073,7 @@ Delete a Inventory.
 
 
 ```swift
-catalog.deleteInventory(companyId: companyId, itemId: itemId, locationId: locationId) { (response, error) in
+catalog.deleteInventory(companyId: companyId, size: size, itemId: itemId, locationId: locationId) { (response, error) in
     // Use response
 }
 ```
@@ -11796,6 +11082,7 @@ catalog.deleteInventory(companyId: companyId, itemId: itemId, locationId: locati
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String? | no | Company Id of the company associated with Inventory that is to be deleted. |   
+| size | String? | no | size that is to be deleted. |   
 | itemId | Int? | no | Id of the product associated with Inventory to be deleted. |   
 | locationId | Double? | no | Location ID of store of which inventory is to be deleted. |  
 
@@ -11899,7 +11186,7 @@ Delete Bulk Inventory job.
 
 
 ```swift
-catalog.deleteBulkInventoryJob(companyId: companyId) { (response, error) in
+catalog.deleteBulkInventoryJob(companyId: companyId, batchId: batchId) { (response, error) in
     // Use response
 }
 ```
@@ -11907,7 +11194,8 @@ catalog.deleteBulkInventoryJob(companyId: companyId) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Company Id of the company of which bulk Inventory job is to be deleted. |  
+| companyId | String? | no | Company Id of the company of which bulk Inventory job is to be deleted. |   
+| batchId | String? | no | Batch Id of the bulk delete job. |  
 
 
 This API allows to delete bulk Inventory job associated with company.
@@ -11935,7 +11223,7 @@ Create products in bulk associated with given batch Id.
 
 
 ```swift
-catalog.createBulkInventory(companyId: companyId, body: body) { (response, error) in
+catalog.createBulkInventory(companyId: companyId, batchId: batchId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11943,7 +11231,8 @@ catalog.createBulkInventory(companyId: companyId, body: body) { (response, error
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int? | no | Company Id in which Inventory is to be uploaded. |  
+| companyId | Int? | no | Company Id in which Inventory is to be uploaded. |   
+| batchId | String? | no | Batch Id of the bulk create job. |  
 | body | InventoryBulkRequest | yes | Request body |
 
 This API helps to create products in bulk push to kafka for approval/creation.
@@ -12464,42 +11753,6 @@ The Product object. See example below or refer `ProductDetail` for details.
 ## CompanyProfile
 
 
-#### updateCompany
-Edit company profile
-
-
-
-```swift
-companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | A `company_id` is a unique identifier for a particular seller account. |  
-| body | UpdateCompany | yes | Request body |
-
-This API allows to edit the company profile of the seller account.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success message
-
-
-
-
-
-
----
-
-
 #### cbsOnboardGet
 Get company profile
 
@@ -12527,6 +11780,42 @@ This API allows to view the company profile of the seller account.
 [GetCompanyProfileSerializerResponse](#GetCompanyProfileSerializerResponse)
 
 Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+
+
+
+
+---
+
+
+#### updateCompany
+Edit company profile
+
+
+
+```swift
+companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | A `company_id` is a unique identifier for a particular seller account. |  
+| body | UpdateCompany | yes | Request body |
+
+This API allows to edit the company profile of the seller account.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success message
 
 
 
@@ -12682,6 +11971,42 @@ Returns a success response
 ---
 
 
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+
+
+```swift
+companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | Id of the company inside which the brand is to be mapped. |  
+| body | CompanyBrandPostRequestSerializer | yes | Request body |
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+
+
+---
+
+
 #### getBrands
 Get brands associated to a company
 
@@ -12720,13 +12045,13 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 
 
 ```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12734,10 +12059,10 @@ companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (re
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Id of the company inside which the brand is to be mapped. |  
-| body | CompanyBrandPostRequestSerializer | yes | Request body |
+| companyId | String? | no | Id of the company inside which the location is to be created. |  
+| body | LocationSerializer | yes | Request body |
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Returned Response:*
 
@@ -12788,42 +12113,6 @@ This API allows to view all the locations asscoiated to a company.
 [LocationListSerializer](#LocationListSerializer)
 
 Company profile object. See example below or refer `LocationListSerializer` for details
-
-
-
-
-
-
----
-
-
-#### createLocation
-Create a location asscoiated to a company.
-
-
-
-```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String? | no | Id of the company inside which the location is to be created. |  
-| body | LocationSerializer | yes | Request body |
-
-This API allows to create a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
 
 
 
@@ -15119,7 +14408,7 @@ configuration.getIntegrationLevelConfig(companyId: companyId, id: id, level: lev
 | checkPermission | Bool? | no | Filter on if permissions are present |  
 
 
-Get integration level config
+Get integration/integration-opt-in level config
 
 *Returned Response:*
 
@@ -15626,6 +14915,192 @@ Update archive/unarchive and change schedule for coupon
 [SuccessMessage](#SuccessMessage)
 
 Coupon updated successfully
+
+
+
+
+
+
+---
+
+
+#### fetchCartItems
+Fetch Cart Details
+
+
+
+```swift
+cart.fetchCartItems(companyId: companyId, applicationId: applicationId, cartItems: cartItems) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | Current company id |   
+| applicationId | String? | no | Current Application _id |   
+| cartItems | [CartItem]? | no |  |  
+
+
+Get all the details of cart for a list of provided `cart_items`
+
+*Returned Response:*
+
+
+
+
+[CartDetail](#CartDetail)
+
+Cart details with breakup
+
+
+
+
+
+
+---
+
+
+#### fetchAndvalidateCartItems
+Fetch Cart Details
+
+
+
+```swift
+cart.fetchAndvalidateCartItems(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | Current company id |   
+| applicationId | String? | no | Current Application _id |  
+| body | OpenapiCartDetailsRequest | yes | Request body |
+
+Get all the details of cart for a list of provided `cart_items`
+
+*Returned Response:*
+
+
+
+
+[OpenapiCartDetailsResponse](#OpenapiCartDetailsResponse)
+
+Cart details with breakup
+
+
+
+
+
+
+---
+
+
+#### checkCartServiceability
+Check Pincode Serviceability
+
+
+
+```swift
+cart.checkCartServiceability(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | Current company id |   
+| applicationId | String? | no | Current Application _id |  
+| body | ServiceablityReqSerializer | yes | Request body |
+
+Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
+
+*Returned Response:*
+
+
+
+
+[CartDetailsResponseSerializer](#CartDetailsResponseSerializer)
+
+Cart details with pincode validity information at item level
+
+
+
+
+
+
+---
+
+
+#### checkoutCartItems
+Create Fynd order with cart details
+
+
+
+```swift
+cart.checkoutCartItems(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | Current company id |   
+| applicationId | String? | no | Current Application _id |  
+| body | OpenApiCheckoutReq | yes | Request body |
+
+Generate Fynd order for cart details send with provided `cart_items`
+
+*Returned Response:*
+
+
+
+
+[[String: Any]](#[String: Any])
+
+Checkout cart and create Fynd order id
+
+
+
+
+
+
+---
+
+
+#### updateCheckoutPaymentStatus
+Confirm payment on Fynd order id
+
+
+
+```swift
+cart.updateCheckoutPaymentStatus(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String? | no | Current company id |   
+| applicationId | String? | no | Current Application _id |  
+| body | ConfirmPaymentReqSerializer | yes | Request body |
+
+Confirm paymet successful status for sent `order_id`
+
+*Returned Response:*
+
+
+
+
+[[String: Any]](#[String: Any])
+
+Confirm payment successful status on Fynd order id
 
 
 
@@ -17086,8 +16561,8 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | params | [String: Any] |  |
- | type | String |  |
  | query | [String: Any] |  |
+ | type | String |  |
 
 ---
 
@@ -17098,8 +16573,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | page | ProductListingActionPage |  |
  | type | String |  |
+ | page | ProductListingActionPage |  |
 
 ---
 
@@ -17121,9 +16596,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | type | String |  |
- | url | String |  |
  | meta | Meta |  |
+ | url | String |  |
+ | type | String |  |
 
 ---
 
@@ -17134,36 +16609,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
+ | name | String |  |
  | action | ProductListingAction |  |
  | logo | Media |  |
- | name | String |  |
-
----
-
-
- 
- 
- #### [Price](#Price)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | min | Double |  |
- | currency_code | String |  |
- | max | Double |  |
- | currency_symbol | String |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | marked | Price |  |
- | effective | Price |  |
+ | uid | Int |  |
 
 ---
 
@@ -17174,9 +16623,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | value | String |  |
- | type | String |  |
  | key | String |  |
+ | type | String |  |
+ | value | String |  |
 
 ---
 
@@ -17195,36 +16644,62 @@ Success
 
  
  
+ #### [Price](#Price)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | min | Double |  |
+ | max | Double |  |
+ | currency_code | String |  |
+ | currency_symbol | String |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | effective | Price |  |
+ | marked | Price |  |
+
+---
+
+
+ 
+ 
  #### [ProductDetail](#ProductDetail)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | slug | String |  |
- | rating | Double |  |
- | categories | [ProductBrand] |  |
- | short_description | String |  |
- | teaser_tag | String |  |
- | image_nature | String |  |
- | color | String |  |
- | brand | ProductBrand |  |
- | uid | Int |  |
- | item_code | String |  |
- | medias | [Media] |  |
- | name | String |  |
- | highlights | [String] |  |
- | type | String |  |
- | has_variant | Bool |  |
- | rating_count | Int |  |
  | item_type | String |  |
- | similars | [String] |  |
- | description | String |  |
- | attributes | [String: Any] |  |
- | tryouts | [String] |  |
- | price | ProductListingPrice |  |
- | action | ProductListingAction |  |
- | grouped_attributes | [ProductDetailGroupedAttribute] |  |
+ | brand | ProductBrand |  |
+ | short_description | String |  |
  | discount | String |  |
+ | description | String |  |
+ | highlights | [String] |  |
+ | tryouts | [String] |  |
+ | grouped_attributes | [ProductDetailGroupedAttribute] |  |
+ | rating | Double |  |
+ | slug | String |  |
+ | name | String |  |
+ | color | String |  |
+ | item_code | String |  |
+ | categories | [ProductBrand] |  |
+ | type | String |  |
+ | uid | Int |  |
+ | price | ProductListingPrice |  |
+ | image_nature | String |  |
+ | rating_count | Int |  |
+ | teaser_tag | String |  |
+ | attributes | [String: Any] |  |
+ | action | ProductListingAction |  |
  | product_online_date | String |  |
+ | similars | [String] |  |
+ | medias | [Media] |  |
+ | has_variant | Bool |  |
 
 ---
 
@@ -17242,81 +16717,6 @@ Success
 
  
  
- #### [SizeChartValues](#SizeChartValues)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | col_4 | String |  |
- | col_3 | String |  |
- | col_6 | String |  |
- | col_2 | String |  |
- | col_1 | String |  |
- | col_5 | String |  |
-
----
-
-
- 
- 
- #### [ColumnHeader](#ColumnHeader)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | value | String |  |
- | convertable | Bool |  |
-
----
-
-
- 
- 
- #### [ColumnHeaders](#ColumnHeaders)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | col_4 | ColumnHeader |  |
- | col_3 | ColumnHeader |  |
- | col_6 | ColumnHeader |  |
- | col_2 | ColumnHeader |  |
- | col_1 | ColumnHeader |  |
- | col_5 | ColumnHeader |  |
-
----
-
-
- 
- 
- #### [SizeChart](#SizeChart)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | unit | String |  |
- | sizes | [SizeChartValues] |  |
- | image | String |  |
- | size_tip | String |  |
- | headers | ColumnHeaders |  |
- | description | String |  |
- | title | String |  |
-
----
-
-
- 
- 
- #### [ProductSize](#ProductSize)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | value | String |  |
- | is_available | Bool |  |
- | quantity | Int |  |
- | display | String |  |
-
----
-
-
- 
- 
  #### [ProductSizeStores](#ProductSizeStores)
 
  | Properties | Type | Description |
@@ -17328,16 +16728,104 @@ Success
 
  
  
+ #### [ProductSize](#ProductSize)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | value | String |  |
+ | display | String |  |
+ | is_available | Bool |  |
+ | quantity | Int |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChartValues](#SizeChartValues)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | col_6 | String |  |
+ | col_1 | String |  |
+ | col_4 | String |  |
+ | col_3 | String |  |
+ | col_2 | String |  |
+ | col_5 | String |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeader](#ColumnHeader)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | convertable | Bool |  |
+ | value | String |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeaders](#ColumnHeaders)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | col_6 | ColumnHeader |  |
+ | col_1 | ColumnHeader |  |
+ | col_4 | ColumnHeader |  |
+ | col_3 | ColumnHeader |  |
+ | col_2 | ColumnHeader |  |
+ | col_5 | ColumnHeader |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChart](#SizeChart)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | size_tip | String |  |
+ | title | String |  |
+ | sizes | [SizeChartValues] |  |
+ | image | String |  |
+ | description | String |  |
+ | headers | ColumnHeaders |  |
+ | unit | String |  |
+
+---
+
+
+ 
+ 
  #### [ProductSizes](#ProductSizes)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | size_chart | SizeChart |  |
- | price | ProductListingPrice |  |
- | sizes | [ProductSize] |  |
  | stores | ProductSizeStores |  |
  | discount | String |  |
+ | price | ProductListingPrice |  |
+ | sizes | [ProductSize] |  |
+ | size_chart | SizeChart |  |
  | sellable | Bool |  |
+
+---
+
+
+ 
+ 
+ #### [Seller](#Seller)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | name | String |  |
+ | count | Int |  |
+ | uid | Int |  |
 
 ---
 
@@ -17349,8 +16837,8 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | time | Int |  |
- | returnable | Bool |  |
  | unit | String |  |
+ | returnable | Bool |  |
 
 ---
 
@@ -17361,49 +16849,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | currency | String |  |
  | marked | Double |  |
  | effective | Double |  |
- | currency | String |  |
-
----
-
-
- 
- 
- #### [StrategyWiseListing](#StrategyWiseListing)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | tat | Int |  |
- | quantity | Int |  |
- | distance | Int |  |
- | pincode | Int |  |
-
----
-
-
- 
- 
- #### [Store](#Store)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | uid | Int |  |
- | count | Int |  |
- | name | String |  |
-
----
-
-
- 
- 
- #### [Seller](#Seller)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | uid | Int |  |
- | count | Int |  |
- | name | String |  |
 
 ---
 
@@ -17414,8 +16862,21 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | level | String |  |
  | strategy | String |  |
+ | level | String |  |
+
+---
+
+
+ 
+ 
+ #### [Store](#Store)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | name | String |  |
+ | count | Int |  |
+ | uid | Int |  |
 
 ---
 
@@ -17457,13 +16918,27 @@ Success
 
  
  
+ #### [StrategyWiseListing](#StrategyWiseListing)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | pincode | Int |  |
+ | distance | Int |  |
+ | tat | Int |  |
+ | quantity | Int |  |
+
+---
+
+
+ 
+ 
  #### [Details](#Details)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | value | String |  |
- | type | String |  |
  | key | String |  |
+ | type | String |  |
+ | value | String |  |
 
 ---
 
@@ -17487,22 +16962,22 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | pincode | Int |  |
- | article_id | String |  |
- | return_config | ReturnConfig |  |
- | price | ProductStockPrice |  |
- | strategy_wise_listing | [StrategyWiseListing] |  |
- | store | Store |  |
- | seller_count | Int |  |
- | seller | Seller |  |
- | special_badge | String |  |
- | discount | String |  |
- | quantity | Int |  |
  | item_type | String |  |
- | long_lat | [Double] |  |
- | article_assignment | ArticleAssignment |  |
- | set | ProductSet |  |
- | marketplace_attributes | [MarketPlaceSttributes] |  |
+ | seller | Seller |  |
+ | return_config | ReturnConfig |  |
+ | discount | String |  |
+ | price | ProductStockPrice |  |
+ | quantity | Int |  |
  | price_per_price | ProductStockPrice |  |
+ | article_id | String |  |
+ | article_assignment | ArticleAssignment |  |
+ | store | Store |  |
+ | set | ProductSet |  |
+ | strategy_wise_listing | [StrategyWiseListing] |  |
+ | special_badge | String |  |
+ | marketplace_attributes | [MarketPlaceSttributes] |  |
+ | long_lat | [Double] |  |
+ | seller_count | Int |  |
 
 ---
 
@@ -17513,9 +16988,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | name | String |  |
  | value | String |  |
  | is_selected | Bool |  |
- | name | String |  |
 
 ---
 
@@ -17526,8 +17001,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | page | Page |  |
  | items | [ProductSizePriceResponse] |  |
+ | page | Page |  |
  | sort_on | [ProductSizeSellerFilter] |  |
 
 ---
@@ -17540,9 +17015,9 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | key | String |  |
+ | display | String |  |
  | logo | String |  |
  | description | String |  |
- | display | String |  |
 
 ---
 
@@ -17577,10 +17052,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | items | [ProductDetail] |  |
+ | attributes_metadata | [AttributeMetadata] |  |
  | subtitle | String |  |
  | title | String |  |
- | attributes_metadata | [AttributeMetadata] |  |
+ | items | [ProductDetail] |  |
 
 ---
 
@@ -17602,9 +17077,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | items | [ProductDetail] |  |
  | subtitle | String |  |
  | title | String |  |
+ | items | [ProductDetail] |  |
 
 ---
 
@@ -17626,15 +17101,15 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
- | slug | String |  |
- | medias | [Media] |  |
- | color_name | String |  |
- | name | String |  |
  | action | ProductListingAction |  |
+ | name | String |  |
+ | color | String |  |
+ | medias | [Media] |  |
+ | uid | Int |  |
  | value | String |  |
  | is_available | Bool |  |
- | color | String |  |
+ | slug | String |  |
+ | color_name | String |  |
 
 ---
 
@@ -17645,10 +17120,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | items | [ProductVariantItemResponse] |  |
+ | header | String |  |
  | key | String |  |
  | display_type | String |  |
- | header | String |  |
+ | items | [ProductVariantItemResponse] |  |
 
 ---
 
@@ -17670,8 +17145,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | id | Int |  |
  | name | String |  |
+ | id | Int |  |
 
 ---
 
@@ -17682,10 +17157,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | name | String |  |
+ | city | String |  |
  | code | String |  |
  | id | Int |  |
- | city | String |  |
- | name | String |  |
 
 ---
 
@@ -17696,15 +17171,15 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | String |  |
+ | size | String |  |
  | item_id | Int |  |
+ | seller | Seller |  |
  | company | CompanyDetail |  |
  | price | ProductStockPrice |  |
- | store | StoreDetail |  |
- | seller | Seller |  |
+ | uid | String |  |
  | quantity | Int |  |
+ | store | StoreDetail |  |
  | identifier | [String: Any] |  |
- | size | String |  |
 
 ---
 
@@ -17734,50 +17209,22 @@ Success
 
  
  
- #### [ProductSortOn](#ProductSortOn)
+ #### [ProductFiltersValue](#ProductFiltersValue)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | value | String |  |
+ | currency_code | String |  |
  | is_selected | Bool |  |
- | name | String |  |
-
----
-
-
- 
- 
- #### [ProductListingDetail](#ProductListingDetail)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | slug | String |  |
- | rating | Double |  |
- | categories | [ProductBrand] |  |
- | short_description | String |  |
- | teaser_tag | String |  |
- | image_nature | String |  |
- | color | String |  |
- | brand | ProductBrand |  |
- | uid | Int |  |
- | item_code | String |  |
- | medias | [Media] |  |
- | name | String |  |
- | highlights | [String] |  |
- | type | String |  |
- | has_variant | Bool |  |
- | rating_count | Int |  |
- | item_type | String |  |
- | similars | [String] |  |
- | sellable | Bool |  |
- | description | String |  |
- | attributes | [String: Any] |  |
- | tryouts | [String] |  |
- | price | ProductListingPrice |  |
- | action | ProductListingAction |  |
- | grouped_attributes | [ProductDetailGroupedAttribute] |  |
- | discount | String |  |
- | product_online_date | String |  |
+ | query_format | String |  |
+ | selected_min | Int |  |
+ | display_format | String |  |
+ | value | String |  |
+ | max | Int |  |
+ | selected_max | Int |  |
+ | currency_symbol | String |  |
+ | min | Int |  |
+ | display | String |  |
+ | count | Int |  |
 
 ---
 
@@ -17789,31 +17236,9 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | name | String |  |
+ | display | String |  |
  | kind | String |  |
  | logo | String |  |
- | display | String |  |
-
----
-
-
- 
- 
- #### [ProductFiltersValue](#ProductFiltersValue)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | currency_code | String |  |
- | is_selected | Bool |  |
- | display_format | String |  |
- | selected_min | Int |  |
- | count | Int |  |
- | min | Int |  |
- | query_format | String |  |
- | selected_max | Int |  |
- | currency_symbol | String |  |
- | value | String |  |
- | max | Int |  |
- | display | String |  |
 
 ---
 
@@ -17824,8 +17249,58 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | key | ProductFiltersKey |  |
  | values | [ProductFiltersValue] |  |
+ | key | ProductFiltersKey |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingDetail](#ProductListingDetail)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | item_type | String |  |
+ | brand | ProductBrand |  |
+ | short_description | String |  |
+ | discount | String |  |
+ | description | String |  |
+ | highlights | [String] |  |
+ | tryouts | [String] |  |
+ | grouped_attributes | [ProductDetailGroupedAttribute] |  |
+ | rating | Double |  |
+ | slug | String |  |
+ | name | String |  |
+ | color | String |  |
+ | item_code | String |  |
+ | categories | [ProductBrand] |  |
+ | type | String |  |
+ | uid | Int |  |
+ | price | ProductListingPrice |  |
+ | image_nature | String |  |
+ | rating_count | Int |  |
+ | teaser_tag | String |  |
+ | attributes | [String: Any] |  |
+ | action | ProductListingAction |  |
+ | product_online_date | String |  |
+ | similars | [String] |  |
+ | medias | [Media] |  |
+ | has_variant | Bool |  |
+ | sellable | Bool |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSortOn](#ProductSortOn)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | name | String |  |
+ | value | String |  |
+ | is_selected | Bool |  |
 
 ---
 
@@ -17836,10 +17311,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | filters | [ProductFilters] |  |
+ | items | [ProductListingDetail] |  |
  | page | Page |  |
  | sort_on | [ProductSortOn] |  |
- | items | [ProductListingDetail] |  |
- | filters | [ProductFilters] |  |
 
 ---
 
@@ -17862,14 +17337,14 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
- | slug | String |  |
  | action | ProductListingAction |  |
- | name | String |  |
  | departments | [String] |  |
- | discount | String |  |
  | logo | Media |  |
+ | name | String |  |
+ | discount | String |  |
+ | uid | Int |  |
  | banners | ImageUrls |  |
+ | slug | String |  |
 
 ---
 
@@ -17892,10 +17367,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
  | banners | ImageUrls |  |
- | logo | Media |  |
  | name | String |  |
+ | uid | Int |  |
+ | logo | Media |  |
 
 ---
 
@@ -17906,8 +17381,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
  | slug | String |  |
+ | uid | Int |  |
 
 ---
 
@@ -17918,13 +17393,13 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
- | slug | String |  |
- | name | String |  |
  | action | ProductListingAction |  |
- | childs | [[String: Any]] |  |
+ | name | String |  |
  | _custom_json | [String: Any] |  |
+ | uid | Int |  |
  | banners | ImageUrls |  |
+ | childs | [[String: Any]] |  |
+ | slug | String |  |
 
 ---
 
@@ -17935,13 +17410,13 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
- | slug | String |  |
- | name | String |  |
  | action | ProductListingAction |  |
- | childs | [ThirdLevelChild] |  |
+ | name | String |  |
  | _custom_json | [String: Any] |  |
+ | uid | Int |  |
  | banners | ImageUrls |  |
+ | childs | [ThirdLevelChild] |  |
+ | slug | String |  |
 
 ---
 
@@ -17952,13 +17427,13 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
- | slug | String |  |
- | name | String |  |
  | action | ProductListingAction |  |
- | childs | [SecondLevelChild] |  |
+ | name | String |  |
  | _custom_json | [String: Any] |  |
+ | uid | Int |  |
  | banners | ImageUrls |  |
+ | childs | [SecondLevelChild] |  |
+ | slug | String |  |
 
 ---
 
@@ -17969,12 +17444,12 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
- | slug | String |  |
  | action | ProductListingAction |  |
  | name | String |  |
- | childs | [Child] |  |
+ | uid | Int |  |
  | banners | ImageUrls |  |
+ | childs | [Child] |  |
+ | slug | String |  |
 
 ---
 
@@ -18009,10 +17484,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
  | banners | ImageUrls |  |
- | logo | Media |  |
  | name | String |  |
+ | uid | Int |  |
+ | logo | Media |  |
 
 ---
 
@@ -18023,8 +17498,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | items | [ProductListingDetail] |  |
  | message | String |  |
+ | items | [ProductListingDetail] |  |
  | page | Page |  |
 
 ---
@@ -18036,11 +17511,11 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
- | slug | String |  |
- | name | String |  |
  | priority_order | Int |  |
  | logo | Media |  |
+ | name | String |  |
+ | uid | Int |  |
+ | slug | String |  |
 
 ---
 
@@ -18062,10 +17537,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | type | String |  |
- | logo | Media |  |
  | display | String |  |
  | action | ProductListingAction |  |
+ | type | String |  |
+ | logo | Media |  |
 
 ---
 
@@ -18083,29 +17558,13 @@ Success
 
  
  
- #### [GetCollectionDetailNest](#GetCollectionDetailNest)
+ #### [CollectionListingFilterTag](#CollectionListingFilterTag)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | slug | String |  |
- | is_active | Bool |  |
- | logo | Media |  |
- | uid | String |  |
  | name | String |  |
- | type | String |  |
- | allow_sort | Bool |  |
- | tag | [String] |  |
- | visible_facets_keys | [String] |  |
- | banners | ImageUrls |  |
- | query | [String: Any] |  |
- | description | String |  |
- | _schedule | [String: Any] |  |
- | badge | [String: Any] |  |
- | app_id | String |  |
- | action | ProductListingAction |  |
- | allow_facets | Bool |  |
- | cron | [String: Any] |  |
- | meta | [String: Any] |  |
+ | display | String |  |
+ | is_selected | Bool |  |
 
 ---
 
@@ -18116,22 +17575,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | is_selected | Bool |  |
- | display | String |  |
  | name | String |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterTag](#CollectionListingFilterTag)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | is_selected | Bool |  |
  | display | String |  |
- | name | String |  |
+ | is_selected | Bool |  |
 
 ---
 
@@ -18142,8 +17588,37 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | type | [CollectionListingFilterType] |  |
  | tags | [CollectionListingFilterTag] |  |
+ | type | [CollectionListingFilterType] |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionDetailNest](#GetCollectionDetailNest)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | description | String |  |
+ | allow_sort | Bool |  |
+ | badge | [String: Any] |  |
+ | allow_facets | Bool |  |
+ | slug | String |  |
+ | _schedule | [String: Any] |  |
+ | cron | [String: Any] |  |
+ | name | String |  |
+ | query | [String: Any] |  |
+ | type | String |  |
+ | uid | String |  |
+ | banners | ImageUrls |  |
+ | visible_facets_keys | [String] |  |
+ | meta | [String: Any] |  |
+ | action | ProductListingAction |  |
+ | app_id | String |  |
+ | logo | Media |  |
+ | tag | [String] |  |
+ | is_active | Bool |  |
 
 ---
 
@@ -18154,9 +17629,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | filters | CollectionListingFilter |  |
  | items | [GetCollectionDetailNest] |  |
  | page | Page |  |
- | filters | CollectionListingFilter |  |
 
 ---
 
@@ -18167,23 +17642,23 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | visible_facets_keys | [String] |  |
- | slug | String |  |
- | query | [String: Any] |  |
- | name | String |  |
- | badge | [String: Any] |  |
- | type | String |  |
- | allow_sort | Bool |  |
- | is_active | Bool |  |
- | description | String |  |
- | logo | Media |  |
- | tag | [String] |  |
- | allow_facets | Bool |  |
+ | meta | [String: Any] |  |
  | _schedule | [String: Any] |  |
  | app_id | String |  |
- | banners | ImageUrls |  |
- | meta | [String: Any] |  |
  | cron | [String: Any] |  |
+ | allow_facets | Bool |  |
+ | logo | Media |  |
+ | name | String |  |
+ | query | [String: Any] |  |
+ | type | String |  |
+ | badge | [String: Any] |  |
+ | banners | ImageUrls |  |
+ | description | String |  |
+ | tag | [String] |  |
+ | allow_sort | Bool |  |
+ | slug | String |  |
+ | is_active | Bool |  |
+ | visible_facets_keys | [String] |  |
 
 ---
 
@@ -18194,8 +17669,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | page | Page |  |
  | items | [ProductListingDetail] |  |
+ | page | Page |  |
 
 ---
 
@@ -18229,9 +17704,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | products | [Int] |  |
  | brands | [Int] |  |
  | collections | [Int] |  |
- | products | [Int] |  |
 
 ---
 
@@ -18265,16 +17740,16 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int |  |
+ | pincode | Int |  |
+ | city | String |  |
+ | store_email | String |  |
+ | name | String |  |
  | store_code | String |  |
+ | country | String |  |
+ | state | String |  |
+ | uid | Int |  |
  | lat_long | LatLong |  |
  | address | String |  |
- | name | String |  |
- | country | String |  |
- | store_email | String |  |
- | state | String |  |
- | city | String |  |
- | pincode | Int |  |
 
 ---
 
@@ -18298,13 +17773,72 @@ Success
 
  
  
- #### [PaymentSelectionLock](#PaymentSelectionLock)
+ #### [PromiseTimestamp](#PromiseTimestamp)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | enabled | Bool |  |
- | payment_identifier | String |  |
- | default_options | String |  |
+ | max | Double |  |
+ | min | Double |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseFormatted](#PromiseFormatted)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | max | String |  |
+ | min | String |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPromise](#ShipmentPromise)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | timestamp | PromiseTimestamp |  |
+ | formatted | PromiseFormatted |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | message | String |  |
+
+---
+
+
+ 
+ 
+ #### [Image](#Image)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | url | String |  |
+ | secure_url | String |  |
+ | aspect_ratio | String |  |
+
+---
+
+
+ 
+ 
+ #### [BaseInfo](#BaseInfo)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | name | String |  |
+ | uid | Int |  |
 
 ---
 
@@ -18326,22 +17860,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | type | String |  |
  | url | String |  |
  | query | ActionQuery |  |
-
----
-
-
- 
- 
- #### [Image](#Image)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | aspect_ratio | String |  |
- | secure_url | String |  |
- | url | String |  |
+ | type | String |  |
 
 ---
 
@@ -18352,20 +17873,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | name | String |  |
  | uid | Int | Product Category Id |
- | name | String |  |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | uid | Int |  |
- | name | String |  |
 
 ---
 
@@ -18376,14 +17885,25 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | action | ProductAction |  |
  | type | String |  |
- | images | [Image] |  |
- | categories | [CategoryInfo] |  |
+ | slug | String | Unique product url name generated via product name and other meta data |
  | name | String |  |
+ | images | [Image] |  |
  | uid | Int |  |
  | brand | BaseInfo |  |
- | slug | String | Unique product url name generated via product name and other meta data |
+ | action | ProductAction |  |
+ | categories | [CategoryInfo] |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | identifier | String | Article idenfier generated by cart |
 
 ---
 
@@ -18394,12 +17914,12 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | currency_symbol | String |  |
- | selling | Double |  |
- | currency_code | String |  |
  | effective | Double |  |
+ | selling | Double |  |
+ | currency_symbol | String |  |
  | add_on | Double |  |
  | marked | Double |  |
+ | currency_code | String |  |
 
 ---
 
@@ -18448,14 +17968,14 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | price | ArticlePriceInfo |  |
- | type | String |  |
- | size | String |  |
- | store | BaseInfo |  |
  | seller | BaseInfo |  |
  | extra_meta | [String: Any] |  |
- | uid | String |  |
+ | type | String |  |
+ | size | String |  |
  | quantity | Int |  |
+ | uid | String |  |
+ | store | BaseInfo |  |
+ | price | ArticlePriceInfo |  |
 
 ---
 
@@ -18467,32 +17987,10 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | sizes | [String] |  |
- | out_of_stock | Bool |  |
  | is_valid | Bool |  |
  | deliverable | Bool |  |
+ | out_of_stock | Bool |  |
  | other_store_quantity | Int |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | message | String |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | identifier | String | Article idenfier generated by cart |
 
 ---
 
@@ -18503,20 +18001,115 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | discount | String |  |
- | product | Product |  |
- | coupon_message | String |  |
- | price | ProductPriceInfo |  |
- | price_per_unit | ProductPriceInfo |  |
- | key | String |  |
- | article | ProductArticle |  |
- | message | String |  |
- | is_set | Bool |  |
- | availability | ProductAvailability |  |
  | promo_meta | PromoMeta |  |
- | bulk_offer | [String: Any] |  |
+ | product | Product |  |
  | identifiers | CartProductIdentifer |  |
+ | price_per_unit | ProductPriceInfo |  |
+ | article | ProductArticle |  |
  | quantity | Int |  |
+ | availability | ProductAvailability |  |
+ | coupon_message | String |  |
+ | message | String |  |
+ | bulk_offer | [String: Any] |  |
+ | key | String |  |
+ | is_set | Bool |  |
+ | price | ProductPriceInfo |  |
+ | discount | String |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentSelectionLock](#PaymentSelectionLock)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | default_options | String |  |
+ | payment_identifier | String |  |
+ | enabled | Bool |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | is_applied | Bool |  |
+ | description | String |  |
+ | applicable | Double |  |
+ | total | Double |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | fynd_cash | Double |  |
+ | convenience_fee | Double |  |
+ | coupon | Double |  |
+ | delivery_charge | Double |  |
+ | discount | Double |  |
+ | gst_charges | Double |  |
+ | mrp_total | String |  |
+ | vog | Double |  |
+ | cod_charge | Double |  |
+ | you_saved | Double |  |
+ | subtotal | Double |  |
+ | total | Double |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | type | String |  |
+ | uid | String |  |
+ | is_applied | Bool |  |
+ | message | String |  |
+ | code | String |  |
+ | value | Double |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | display | String |  |
+ | currency_symbol | String |  |
+ | key | String |  |
+ | message | [String] |  |
+ | currency_code | String |  |
+ | value | Double |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | loyalty_points | LoyaltyPoints |  |
+ | raw | RawBreakup |  |
+ | coupon | CouponBreakup |  |
+ | display | [DisplayBreakup] |  |
 
 ---
 
@@ -18535,144 +18128,25 @@ Success
 
  
  
- #### [PromiseFormatted](#PromiseFormatted)
+ #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | min | String |  |
- | max | String |  |
-
----
-
-
- 
- 
- #### [PromiseTimestamp](#PromiseTimestamp)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | min | Double |  |
- | max | Double |  |
-
----
-
-
- 
- 
- #### [ShipmentPromise](#ShipmentPromise)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | formatted | PromiseFormatted |  |
- | timestamp | PromiseTimestamp |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | currency_symbol | String |  |
- | value | Double |  |
- | key | String |  |
- | display | String |  |
- | message | [String] |  |
- | currency_code | String |  |
-
----
-
-
- 
- 
- #### [RawBreakup](#RawBreakup)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | discount | Double |  |
- | delivery_charge | Double |  |
- | convenience_fee | Double |  |
- | fynd_cash | Double |  |
- | cod_charge | Double |  |
- | mrp_total | String |  |
- | gst_charges | Double |  |
- | vog | Double |  |
- | you_saved | Double |  |
- | subtotal | Double |  |
- | total | Double |  |
- | coupon | Double |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | applicable | Double |  |
- | description | String |  |
- | is_applied | Bool |  |
- | total | Double |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | value | Double |  |
- | type | String |  |
- | code | String |  |
- | message | String |  |
- | uid | String |  |
- | is_applied | Bool |  |
-
----
-
-
- 
- 
- #### [CartBreakup](#CartBreakup)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | display | [DisplayBreakup] |  |
- | raw | RawBreakup |  |
- | loyalty_points | LoyaltyPoints |  |
- | coupon | CouponBreakup |  |
-
----
-
-
- 
- 
- #### [CartResponse](#CartResponse)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
+ | restrict_checkout | Bool |  |
+ | delivery_promise | ShipmentPromise |  |
+ | items | [CartProductInfo] |  |
+ | is_valid | Bool |  |
+ | payment_selection_lock | PaymentSelectionLock |  |
+ | gstin | String |  |
+ | id | String |  |
  | comment | String |  |
  | checkout_mode | String |  |
- | uid | String |  |
- | payment_selection_lock | PaymentSelectionLock |  |
- | last_modified | String |  |
- | coupon_text | String |  |
- | items | [CartProductInfo] |  |
- | cart_id | Int |  |
- | delivery_charge_info | String |  |
- | message | String |  |
- | restrict_checkout | Bool |  |
- | is_valid | Bool |  |
- | currency | CartCurrency |  |
- | delivery_promise | ShipmentPromise |  |
  | breakup_values | CartBreakup |  |
- | gstin | String |  |
+ | last_modified | String |  |
+ | currency | CartCurrency |  |
+ | message | String |  |
+ | delivery_charge_info | String |  |
+ | coupon_text | String |  |
 
 ---
 
@@ -18683,16 +18157,16 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | article_assignment | [String: Any] |  |
- | store_id | Int |  |
- | item_size | String |  |
- | seller_id | Int |  |
- | item_id | Int |  |
- | display | String |  |
  | extra_meta | [String: Any] |  |
- | pos | Bool |  |
- | article_id | String |  |
+ | article_assignment | [String: Any] |  |
  | quantity | Int |  |
+ | article_id | String |  |
+ | display | String |  |
+ | seller_id | Int |  |
+ | store_id | Int |  |
+ | pos | Bool |  |
+ | item_id | Int |  |
+ | item_size | String |  |
 
 ---
 
@@ -18710,14 +18184,14 @@ Success
 
  
  
- #### [AddCartResponse](#AddCartResponse)
+ #### [AddCartDetailResponse](#AddCartDetailResponse)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | cart | CartResponse |  |
- | partial | Bool | When adding multiple items check if all added. True if only few are added. |
  | success | Bool | True if all items are added successfully. False if partially added or not added. |
+ | cart | CartDetailResponse |  |
  | message | String |  |
+ | partial | Bool | When adding multiple items check if all added. True if only few are added. |
 
 ---
 
@@ -18728,13 +18202,13 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | item_size | String |  |
+ | extra_meta | [String: Any] |  |
+ | identifiers | CartProductIdentifer |  |
+ | quantity | Int |  |
+ | article_id | String |  |
  | item_index | Int |  |
  | item_id | Int |  |
- | identifiers | CartProductIdentifer |  |
- | extra_meta | [String: Any] |  |
- | article_id | String |  |
- | quantity | Int |  |
+ | item_size | String |  |
 
 ---
 
@@ -18753,12 +18227,12 @@ Success
 
  
  
- #### [UpdateCartResponse](#UpdateCartResponse)
+ #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | cart | CartResponse |  |
  | success | Bool | True if all items are added successfully. False if partially added or not added. |
+ | cart | CartDetailResponse |  |
  | message | String |  |
 
 ---
@@ -18777,35 +18251,35 @@ Success
 
  
  
- #### [Coupon](#Coupon)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | coupon_value | Double |  |
- | expires_on | String |  |
- | title | String |  |
- | coupon_code | String |  |
- | max_discount_value | Double |  |
- | minimum_cart_value | Double |  |
- | sub_title | String |  |
- | message | String |  |
- | is_applicable | Bool |  |
- | is_applied | Bool |  |
-
----
-
-
- 
- 
  #### [PageCoupon](#PageCoupon)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | total_item_count | Int |  |
  | current | Int |  |
- | has_next | Bool |  |
  | has_previous | Bool |  |
+ | has_next | Bool |  |
  | total | Int |  |
+
+---
+
+
+ 
+ 
+ #### [Coupon](#Coupon)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | title | String |  |
+ | is_applicable | Bool |  |
+ | max_discount_value | Double |  |
+ | coupon_value | Double |  |
+ | expires_on | String |  |
+ | coupon_code | String |  |
+ | sub_title | String |  |
+ | is_applied | Bool |  |
+ | minimum_cart_value | Double |  |
+ | message | String |  |
 
 ---
 
@@ -18816,8 +18290,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | available_coupon_list | [Coupon] |  |
  | page | PageCoupon |  |
+ | available_coupon_list | [Coupon] |  |
 
 ---
 
@@ -18835,15 +18309,27 @@ Success
 
  
  
+ #### [OfferSeller](#OfferSeller)
+
+ | Properties | Type | Description |
+ | ---------- | ---- | ----------- |
+ | name | String |  |
+ | uid | Int | Seller id |
+
+---
+
+
+ 
+ 
  #### [OfferPrice](#OfferPrice)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | currency_symbol | String | Currency symbol for currency |
- | bulk_effective | Double | Discounted per unit price for current offer object |
- | currency_code | String | Currency code for all amounts |
  | effective | Int | Current per unit price of product after existing deductions |
+ | bulk_effective | Double | Discounted per unit price for current offer object |
+ | currency_symbol | String | Currency symbol for currency |
  | marked | Int | Original price of product |
+ | currency_code | String | Currency code for all amounts |
 
 ---
 
@@ -18854,25 +18340,13 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | price | OfferPrice |  |
- | type | String | Offer type |
- | margin | Int | Percentage value of discount |
- | best | Bool | Is true for best offer from all offers present for all sellers |
- | quantity | Int | Quantity on which offer is applicable |
- | total | Double | Total price of offer quantity with discount |
  | auto_applied | Bool |  |
-
----
-
-
- 
- 
- #### [OfferSeller](#OfferSeller)
-
- | Properties | Type | Description |
- | ---------- | ---- | ----------- |
- | uid | Int | Seller id |
- | name | String |  |
+ | type | String | Offer type |
+ | quantity | Int | Quantity on which offer is applicable |
+ | best | Bool | Is true for best offer from all offers present for all sellers |
+ | margin | Int | Percentage value of discount |
+ | price | OfferPrice |  |
+ | total | Double | Total price of offer quantity with discount |
 
 ---
 
@@ -18883,8 +18357,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | offers | [OfferItem] |  |
  | seller | OfferSeller |  |
+ | offers | [OfferItem] |  |
 
 ---
 
@@ -18929,28 +18403,28 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | address_type | String |  |
- | area_code | String |  |
- | address | String |  |
- | state | String |  |
  | google_map_point | [String: Any] |  |
- | tags | [String] |  |
- | geo_location | GeoLocation |  |
- | email | String |  |
- | landmark | String |  |
- | meta | [String: Any] |  |
- | phone | String |  |
- | checkout_mode | String |  |
- | country | String |  |
- | area_code_slug | String |  |
- | is_active | Bool |  |
- | uid | Int |  |
- | country_code | String |  |
- | area | String |  |
+ | state | String |  |
  | user_id | String |  |
+ | country_code | String |  |
+ | is_active | Bool |  |
+ | address | String |  |
+ | area_code_slug | String |  |
+ | checkout_mode | String |  |
+ | address_type | String |  |
  | city | String |  |
- | name | String |  |
+ | tags | [String] |  |
+ | landmark | String |  |
+ | country | String |  |
+ | meta | [String: Any] |  |
  | is_default_address | Bool |  |
+ | geo_location | GeoLocation |  |
+ | phone | String |  |
+ | id | String |  |
+ | name | String |  |
+ | area_code | String |  |
+ | area | String |  |
+ | email | String |  |
 
 ---
 
@@ -18972,9 +18446,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | success | Bool |  |
  | is_default_address | Bool |  |
- | success | String |  |
- | address_id | Int |  |
+ | id | String |  |
 
 ---
 
@@ -18985,10 +18459,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | is_default_address | Bool |  |
  | success | Bool |  |
+ | is_default_address | Bool |  |
  | is_updated | Bool |  |
- | address_id | Int |  |
+ | id | String |  |
 
 ---
 
@@ -19000,7 +18474,7 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | is_deleted | Bool |  |
- | address_id | Int |  |
+ | id | String |  |
 
 ---
 
@@ -19011,9 +18485,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | String |  |
- | billing_address_id | Int |  |
- | address_id | String |  |
+ | cart_id | String |  |
+ | id | String |  |
+ | billing_address_id | String |  |
 
 ---
 
@@ -19025,11 +18499,11 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | payment_mode | String |  |
- | payment_identifier | String |  |
- | merchant_code | String |  |
- | uid | Int |  |
  | aggregator_name | String |  |
- | address_id | Int |  |
+ | payment_identifier | String |  |
+ | address_id | String |  |
+ | id | String |  |
+ | merchant_code | String |  |
 
 ---
 
@@ -19040,11 +18514,11 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | discount | Double |  |
  | title | String |  |
- | display_message_en | String |  |
- | code | String |  |
  | valid | Bool |  |
+ | code | String |  |
+ | display_message_en | String |  |
+ | discount | Double |  |
 
 ---
 
@@ -19055,9 +18529,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | message | String |  |
  | success | Bool |  |
  | coupon_validity | CouponValidity |  |
+ | message | String |  |
 
 ---
 
@@ -19068,16 +18542,16 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | shipment_type | String |  |
- | fulfillment_type | String |  |
  | items | [CartProductInfo] |  |
- | fulfillment_id | Int |  |
- | order_type | String |  |
- | promise | ShipmentPromise |  |
  | box_type | String |  |
- | shipments | Int |  |
  | dp_options | [String: Any] |  |
+ | shipments | Int |  |
  | dp_id | Int |  |
+ | fulfillment_id | Int |  |
+ | fulfillment_type | String |  |
+ | promise | ShipmentPromise |  |
+ | shipment_type | String |  |
+ | order_type | String |  |
 
 ---
 
@@ -19088,49 +18562,50 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | restrict_checkout | Bool |  |
+ | last_modified | String |  |
+ | message | String |  |
+ | is_valid | Bool |  |
  | comment | String |  |
  | checkout_mode | String |  |
- | uid | String |  |
- | payment_selection_lock | PaymentSelectionLock |  |
- | last_modified | String |  |
- | coupon_text | String |  |
- | cart_id | Int |  |
+ | breakup_values | CartBreakup |  |
  | delivery_charge_info | String |  |
- | message | String |  |
- | restrict_checkout | Bool |  |
- | is_valid | Bool |  |
+ | payment_selection_lock | PaymentSelectionLock |  |
+ | gstin | String |  |
+ | shipments | [ShipmentResponse] |  |
+ | error | Bool |  |
+ | uid | String |  |
+ | coupon_text | String |  |
+ | id | String |  |
+ | cart_id | Int |  |
  | currency | CartCurrency |  |
  | delivery_promise | ShipmentPromise |  |
- | error | Bool |  |
- | breakup_values | CartBreakup |  |
- | shipments | [ShipmentResponse] |  |
- | gstin | String |  |
 
 ---
 
 
  
  
- #### [CartCheckoutRequest](#CartCheckoutRequest)
+ #### [CartCheckoutDetailRequest](#CartCheckoutDetailRequest)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | payment_params | [String: Any] |  |
+ | extra_meta | [String: Any] |  |
  | payment_mode | String |  |
  | ordering_store | Int |  |
- | billing_address_id | Int |  |
- | delivery_address | [String: Any] |  |
- | fyndstore_emp_id | String |  |
- | payment_auto_confirm | Bool |  |
  | staff | [String: Any] |  |
- | billing_address | [String: Any] |  |
- | payment_identifier | String |  |
- | merchant_code | String |  |
- | meta | [String: Any] |  |
  | callback_url | String |  |
- | extra_meta | [String: Any] |  |
+ | delivery_address | [String: Any] |  |
+ | payment_identifier | String |  |
+ | address_id | String |  |
+ | fyndstore_emp_id | String |  |
  | aggregator | String |  |
- | address_id | Int |  |
+ | payment_params | [String: Any] |  |
+ | billing_address | [String: Any] |  |
+ | meta | [String: Any] |  |
+ | merchant_code | String |  |
+ | payment_auto_confirm | Bool |  |
+ | billing_address_id | String |  |
 
 ---
 
@@ -19141,33 +18616,34 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | payment_selection_lock | PaymentSelectionLock |  |
- | order_id | String |  |
- | currency | CartCurrency |  |
- | store_code | String |  |
- | delivery_charges | Int |  |
- | gstin | String |  |
- | cod_message | String |  |
- | cod_charges | Int |  |
- | items | [CartProductInfo] |  |
- | delivery_promise | ShipmentPromise |  |
- | checkout_mode | String |  |
- | delivery_charge_info | String |  |
  | restrict_checkout | Bool |  |
- | is_valid | Bool |  |
- | uid | String |  |
- | delivery_charge_order_value | Int |  |
- | comment | String |  |
- | user_type | String |  |
- | last_modified | String |  |
- | coupon_text | String |  |
- | store_emps | [[String: Any]] |  |
- | cart_id | Int |  |
- | error_message | String |  |
- | message | String |  |
- | breakup_values | CartBreakup |  |
  | success | Bool |  |
+ | items | [CartProductInfo] |  |
+ | user_type | String |  |
+ | error_message | String |  |
  | cod_available | Bool |  |
+ | last_modified | String |  |
+ | message | String |  |
+ | is_valid | Bool |  |
+ | store_emps | [[String: Any]] |  |
+ | comment | String |  |
+ | checkout_mode | String |  |
+ | store_code | String |  |
+ | breakup_values | CartBreakup |  |
+ | delivery_charge_info | String |  |
+ | cod_charges | Int |  |
+ | payment_selection_lock | PaymentSelectionLock |  |
+ | gstin | String |  |
+ | delivery_charges | Int |  |
+ | delivery_charge_order_value | Int |  |
+ | uid | String |  |
+ | coupon_text | String |  |
+ | order_id | String |  |
+ | id | String |  |
+ | cart_id | Int |  |
+ | currency | CartCurrency |  |
+ | cod_message | String |  |
+ | delivery_promise | ShipmentPromise |  |
 
 ---
 
@@ -19178,13 +18654,13 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | data | [String: Any] |  |
+ | success | Bool |  |
+ | app_intercept_url | String |  |
  | order_id | String |  |
+ | callback_url | String |  |
  | cart | CheckCart |  |
  | message | String |  |
- | callback_url | String |  |
- | app_intercept_url | String |  |
- | success | Bool |  |
+ | data | [String: Any] |  |
 
 ---
 
@@ -19195,10 +18671,10 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | comment | String |  |
  | checkout_mode | String |  |
- | gstin | String |  |
  | pick_up_customer_details | [String: Any] | Customer contact details for customer pickup at store |
+ | gstin | String |  |
+ | comment | String |  |
 
 ---
 
@@ -19231,8 +18707,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | uid | Int | Cart uid for generating sharing |
  | meta | [String: Any] | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ | uid | Int | Cart uid for generating sharing |
+ | id | String | Cart uid for generating sharing |
 
 ---
 
@@ -19256,9 +18733,9 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | token | String | Short link id |
+ | source | [String: Any] | Share link device and other source information |
  | created_on | String |  |
  | meta | [String: Any] | Meta data sent while generating share cart link |
- | source | [String: Any] | Share link device and other source information |
  | user | [String: Any] | User details of who generated share link |
 
 ---
@@ -19270,23 +18747,24 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | comment | String |  |
- | checkout_mode | String |  |
- | uid | String |  |
- | payment_selection_lock | PaymentSelectionLock |  |
- | shared_cart_details | SharedCartDetails |  |
- | last_modified | String |  |
- | coupon_text | String |  |
- | items | [CartProductInfo] |  |
- | cart_id | Int |  |
- | delivery_charge_info | String |  |
- | message | String |  |
  | restrict_checkout | Bool |  |
- | is_valid | Bool |  |
- | currency | CartCurrency |  |
  | delivery_promise | ShipmentPromise |  |
- | breakup_values | CartBreakup |  |
+ | shared_cart_details | SharedCartDetails |  |
+ | items | [CartProductInfo] |  |
+ | is_valid | Bool |  |
+ | payment_selection_lock | PaymentSelectionLock |  |
  | gstin | String |  |
+ | id | String |  |
+ | comment | String |  |
+ | cart_id | Int |  |
+ | checkout_mode | String |  |
+ | breakup_values | CartBreakup |  |
+ | uid | String |  |
+ | last_modified | String |  |
+ | currency | CartCurrency |  |
+ | message | String |  |
+ | delivery_charge_info | String |  |
+ | coupon_text | String |  |
 
 ---
 
@@ -19297,8 +18775,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | error | String |  |
  | cart | SharedCart |  |
+ | error | String |  |
 
 ---
 
@@ -24776,16 +24254,16 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | api | String | Payment gateway api endpoint |
- | merchant_key | String | Unique merchant key |
- | merchant_id | String | Unique merchant id |
- | key | String | Payment gateway api key |
+ | sdk | Bool | SDK |
  | verify_api | String | Payment gateway verify payment api endpoint |
  | config_type | String | Fynd or self payment gateway |
- | sdk | Bool | SDK |
+ | merchant_key | String | Unique merchant key |
+ | merchant_id | String | Unique merchant id |
  | secret | String | Masked payment gateway api secret |
  | user_id | String | Registered User id |
+ | key | String | Payment gateway api key |
  | pin | String | Masked pin |
+ | api | String | Payment gateway api endpoint |
 
 ---
 
@@ -24796,16 +24274,16 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | rupifi | AggregatorConfigDetail |  |
- | ccavenue | AggregatorConfigDetail |  |
- | stripe | AggregatorConfigDetail |  |
- | payumoney | AggregatorConfigDetail |  |
- | mswipe | AggregatorConfigDetail |  |
- | simpl | AggregatorConfigDetail |  |
- | razorpay | AggregatorConfigDetail |  |
  | juspay | AggregatorConfigDetail |  |
  | success | Bool |  |
+ | rupifi | AggregatorConfigDetail |  |
+ | payumoney | AggregatorConfigDetail |  |
+ | stripe | AggregatorConfigDetail |  |
+ | simpl | AggregatorConfigDetail |  |
  | env | String | Environment i.e Live or Test |
+ | razorpay | AggregatorConfigDetail |  |
+ | ccavenue | AggregatorConfigDetail |  |
+ | mswipe | AggregatorConfigDetail |  |
 
 ---
 
@@ -24828,8 +24306,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | success | Bool | Response is successful or not |
  | error | ErrorCodeAndDescription |  |
+ | success | Bool | Response is successful or not |
 
 ---
 
@@ -24840,9 +24318,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | name_on_card | String |  |
  | card_id | String | Card token of payment gateway. |
  | refresh | Bool | Refresh cache flag. |
- | name_on_card | String |  |
  | nickname | String |  |
 
 ---
@@ -24854,9 +24332,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | message | String | Human readable message. |
- | success | Bool | Response is successful or not. |
  | data | [String: Any] | List of cards of customer. |
+ | success | Bool | Response is successful or not. |
+ | message | String | Human readable message. |
 
 ---
 
@@ -24868,8 +24346,8 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | aggregator | String | Payment gateway name. |
- | api | String | Payment gateway CARD api endpoint |
  | customer_id | String | Payment gateway customer id. |
+ | api | String | Payment gateway CARD api endpoint |
 
 ---
 
@@ -24880,9 +24358,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | message | String | Human readable message. |
- | success | Bool | Response is successful or not. |
  | cards | CardPaymentGateway | Card's payment gateway with customer id. |
+ | success | Bool | Response is successful or not. |
+ | message | String | Human readable message. |
 
 ---
 
@@ -24893,22 +24371,22 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | card_isin | String | card_isin |
  | card_id | String | card_id |
  | card_reference | String | card_reference |
- | card_type | String | card_type |
+ | card_token | String | card_token |
+ | card_issuer | String | card_issuer |
  | card_name | String | card_name |
  | nickname | String | nickname |
- | card_token | String | card_token |
- | exp_year | Int | exp_year |
- | card_brand_image | String | card_brand_image |
- | expired | Bool | expired |
  | card_fingerprint | String | card_fingerprint |
- | card_brand | String | card_brand |
- | exp_month | Int | exp_month |
  | card_number | String | card_number |
+ | card_type | String | card_type |
+ | card_brand | String | card_brand |
  | aggregator_name | String | aggregator_name |
- | card_issuer | String | card_issuer |
+ | card_isin | String | card_isin |
+ | expired | Bool | expired |
+ | exp_year | Int | exp_year |
+ | exp_month | Int | exp_month |
+ | card_brand_image | String | card_brand_image |
 
 ---
 
@@ -24919,9 +24397,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | message | String | Human readable message. |
- | success | Bool | Response is successful or not. |
  | data | [Card] | List of cards of customer. |
+ | success | Bool | Response is successful or not. |
+ | message | String | Human readable message. |
 
 ---
 
@@ -24943,8 +24421,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | message | String | Human readable message. |
  | success | Bool | Response is successful or not. |
+ | message | String | Human readable message. |
 
 ---
 
@@ -24955,11 +24433,11 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | payload | String | Hashed payload string. |
  | aggregator | String | Payment gateway name in camel case i.e Simpl, Rupifi |
- | transaction_amount_in_paise | Int | Payable amount in paise |
- | merchant_params | [String: Any] | Extra meta fields. |
  | phone_number | String | User mobile number without country code. |
+ | transaction_amount_in_paise | Int | Payable amount in paise |
+ | payload | String | Hashed payload string. |
+ | merchant_params | [String: Any] | Extra meta fields. |
 
 ---
 
@@ -24970,9 +24448,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | message | String | Error or success message. |
- | success | Bool | Response is successful or not |
  | data | [String: Any] | Payment gateway response data |
+ | success | Bool | Response is successful or not |
+ | message | String | Error or success message. |
 
 ---
 
@@ -24983,11 +24461,11 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | amount | Int | Chargable amount of order. |
  | aggregator | String | Payment gateway name i.e Simpl, Mswipe |
- | transaction_token | String | Transaction token of payment gateway. |
  | verified | Bool | Already Verified flag from payment gateway i.e Mswipe |
  | order_id | String | Unique order id. |
- | amount | Int | Chargable amount of order. |
+ | transaction_token | String | Transaction token of payment gateway. |
 
 ---
 
@@ -24998,13 +24476,13 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | cart_id | String | Cart id of customer |
  | aggregator | String | Payment gateway name i.e Simpl, Mswipe |
- | delivery_address_id | String | Delivery adddress id of customer |
- | order_id | String | Unique order id. |
- | status | String | Status of charged payment. |
- | message | String | Human readable message. |
  | success | Bool | Response is successful or not. |
+ | order_id | String | Unique order id. |
+ | message | String | Human readable message. |
+ | cart_id | String | Cart id of customer |
+ | delivery_address_id | String | Delivery adddress id of customer |
+ | status | String | Status of charged payment. |
 
 ---
 
@@ -25015,15 +24493,15 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | razorpay_payment_id | String | Payment gateway payment id |
  | aggregator | String | Payment gateway name |
- | method | String | Payment method |
- | polling_url | String | Polling url to check payment status |
  | aggregator_order_id | String | Payment gateway order id |
  | customer_id | String | Payment gateway customer id. |
- | timeout | Int | Payment polling timeout if not recieved response |
- | virtual_id | String | Bharat QR code virtual id |
+ | polling_url | String | Polling url to check payment status |
  | merchant_order_id | String | Unique fynd order id |
+ | timeout | Int | Payment polling timeout if not recieved response |
+ | razorpay_payment_id | String | Payment gateway payment id |
+ | virtual_id | String | Bharat QR code virtual id |
+ | method | String | Payment method |
 
 ---
 
@@ -25034,21 +24512,21 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | razorpay_payment_id | String | Payment  id. |
- | aggregator | String | Payment gateway name |
- | method | String | Payment method |
- | vpa | String | Customer vpa address |
- | polling_url | String | Polling url. |
- | aggregator_order_id | String | Payment order id |
- | customer_id | String | Payment gateway customer id. |
- | bqr_image | String | Bharath qr image url. |
- | currency | String | Currency code. |
- | status | String | Status of payment. |
  | amount | Int | Payable amount. |
+ | aggregator | String | Payment gateway name |
+ | aggregator_order_id | String | Payment order id |
  | success | Bool | Response is successful or not. |
- | virtual_id | String | Payment virtual address. |
+ | currency | String | Currency code. |
+ | customer_id | String | Payment gateway customer id. |
+ | polling_url | String | Polling url. |
  | merchant_order_id | String | order id |
  | timeout | Int | timeout. |
+ | razorpay_payment_id | String | Payment  id. |
+ | virtual_id | String | Payment virtual address. |
+ | bqr_image | String | Bharath qr image url. |
+ | status | String | Status of payment. |
+ | method | String | Payment method |
+ | vpa | String | Customer vpa address |
 
 ---
 
@@ -25059,17 +24537,17 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | aggregator | String | Payment gateway name |
- | method | String | Payment method |
- | email | String | Customer valid email |
- | vpa | String | Customer vpa address |
- | customer_id | String | Payment gateway customer id. |
- | order_id | String | Payment gateway order id |
- | currency | String | Currency code. |
- | status | String | Status of payment. |
  | amount | Int | Payable amount. |
+ | aggregator | String | Payment gateway name |
+ | currency | String | Currency code. |
+ | customer_id | String | Payment gateway customer id. |
  | contact | String | Customer valid mobile number |
+ | order_id | String | Payment gateway order id |
  | merchant_order_id | String | Unique fynd order id |
+ | email | String | Customer valid email |
+ | status | String | Status of payment. |
+ | method | String | Payment method |
+ | vpa | String | Customer vpa address |
 
 ---
 
@@ -25081,8 +24559,8 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | retry | Bool | Response is successful or not. |
- | aggregator_name | String | Payment gateway name |
  | status | String | Payment status |
+ | aggregator_name | String | Payment gateway name |
 
 ---
 
@@ -25093,8 +24571,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | large | String | large |
  | small | String | smalll |
+ | large | String | large |
 
 ---
 
@@ -25105,33 +24583,33 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | intent_flow | String | intent_flow |
- | nickname | String | nickname |
- | card_token | String | card_token |
- | fynd_vpa | String | fynd_vpa |
- | name | String | name |
- | aggregator_name | String | aggregator_name |
- | display_priority | Int | Dispaly Priority |
  | card_id | String | card_id |
- | exp_year | Int | exp_year |
- | intent_app_error_list | [String] | intent_app_error_list |
- | card_number | String | card_number |
+ | intent_flow | String | intent_flow |
  | card_reference | String | card_reference |
- | retry_count | Int | retry_count |
- | card_name | String | card_name |
- | merchant_code | String | merchant code |
- | card_fingerprint | String | card_fingerprint |
- | code | String | code |
- | card_issuer | String | card_issuer |
- | card_isin | String | card_isin |
- | card_type | String | card_type |
- | card_brand_image | String | card_brand_image |
- | expired | Bool | expired |
- | display_name | String | display name |
- | card_brand | String | card_brand |
  | timeout | Int | timeout |
- | exp_month | Int | exp_month |
+ | nickname | String | nickname |
+ | card_fingerprint | String | card_fingerprint |
+ | card_brand | String | card_brand |
+ | card_isin | String | card_isin |
+ | card_name | String | card_name |
+ | display_priority | Int | Dispaly Priority |
  | logo_url | PaymentModeLogo | Logo |
+ | fynd_vpa | String | fynd_vpa |
+ | display_name | String | display name |
+ | code | String | code |
+ | retry_count | Int | retry_count |
+ | aggregator_name | String | aggregator_name |
+ | name | String | name |
+ | exp_year | Int | exp_year |
+ | card_issuer | String | card_issuer |
+ | card_token | String | card_token |
+ | card_number | String | card_number |
+ | card_type | String | card_type |
+ | intent_app_error_list | [String] | intent_app_error_list |
+ | merchant_code | String | merchant code |
+ | expired | Bool | expired |
+ | exp_month | Int | exp_month |
+ | card_brand_image | String | card_brand_image |
 
 ---
 
@@ -25143,12 +24621,12 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | list | [PaymentModeList] | Payment mode |
- | display_priority | Int | Dispaly Priority |
- | display_name | String | Payment mode display name |
  | add_card_enabled | Bool | Annonymous card flag |
- | name | String | Payment mode name |
- | aggregator_name | String | Dispaly Priority |
+ | display_name | String | Payment mode display name |
  | anonymous_enable | Bool | Annonymous card flag |
+ | aggregator_name | String | Dispaly Priority |
+ | name | String | Payment mode name |
+ | display_priority | Int | Dispaly Priority |
 
 ---
 
@@ -25159,9 +24637,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | api_link | String | api_link |
  | data | [String: Any] | Data |
  | payment_flow | String | payment_flow |
+ | api_link | String | api_link |
 
 ---
 
@@ -25172,17 +24650,17 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | rupifi | AggregatorRoute | Rupifi |
- | upi_razorpay | AggregatorRoute | UPI_Razorpay |
- | msipe | AggregatorRoute | mswipe |
+ | juspay | AggregatorRoute | Juspay |
  | bqr_razorpay | AggregatorRoute | BQR_Razorpay |
- | payubiz | AggregatorRoute | Payubiz |
- | ccavenue | AggregatorRoute | Ccavenue |
+ | rupifi | AggregatorRoute | Rupifi |
+ | fynd | AggregatorRoute | Fynd |
  | stripe | AggregatorRoute | Stripe |
  | simpl | AggregatorRoute | simpl |
+ | msipe | AggregatorRoute | mswipe |
+ | payubiz | AggregatorRoute | Payubiz |
  | razorpay | AggregatorRoute | Razorpay |
- | juspay | AggregatorRoute | Juspay |
- | fynd | AggregatorRoute | Fynd |
+ | ccavenue | AggregatorRoute | Ccavenue |
+ | upi_razorpay | AggregatorRoute | UPI_Razorpay |
 
 ---
 
@@ -25217,8 +24695,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | kyc_url | String | Rupifi KYC banner url. |
  | status | String | Rupifi KYC status |
+ | kyc_url | String | Rupifi KYC banner url. |
 
 ---
 
@@ -25229,8 +24707,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | success | Bool | Successful or not. |
  | data | RupifiBannerData | Rupifi KYC banner details. |
+ | success | Bool | Successful or not. |
 
 ---
 
@@ -25241,11 +24719,11 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | logo_small | String | Beneficiary small Logo |
  | id | String |   |
  | display_name | Bool | Beneficiary Display Name |
- | name | String |  Beneficiary Name |
  | logo_large | String | Beneficiary large Logo |
+ | logo_small | String | Beneficiary small Logo |
+ | name | String |  Beneficiary Name |
 
 ---
 
@@ -25279,8 +24757,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | transfer_mode | String | Transfer Mode of the Beneficiary to be added |
  | enable | Bool | True for enabling the Transfer Mode |
+ | transfer_mode | String | Transfer Mode of the Beneficiary to be added |
 
 ---
 
@@ -25302,25 +24780,25 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | id | Int |   |
- | address | String | Address of User |
- | title | String | Title Of Account |
- | email | String | EMail of User |
- | ifsc_code | String | Ifsc Code Of Account |
- | mobile | Bool | MObile no of User |
- | transfer_mode | String | Transfer Mode Of Account |
- | account_no | String | Account Number |
  | beneficiary_id | String | Benenficiary Id |
- | branch_name | Bool | Branch Name Of Account |
+ | mobile | Bool | MObile no of User |
  | account_holder | String | Account Holder Name |
- | subtitle | String | SHort Title Of Account |
- | is_active | Bool | Boolean Flag whether Beneficiary set or not |
  | comment | Bool | Remarks |
+ | id | Int |   |
  | display_name | String | Display Name Of Account |
- | bank_name | String | Bank Name Of Account |
+ | transfer_mode | String | Transfer Mode Of Account |
+ | is_active | Bool | Boolean Flag whether Beneficiary set or not |
  | created_on | String | Creation Date of Beneficiary |
+ | ifsc_code | String | Ifsc Code Of Account |
  | delights_user_name | String | User Id Who filled the Beneficiary  |
  | modified_on | String | MOdification Date of Beneficiary |
+ | subtitle | String | SHort Title Of Account |
+ | address | String | Address of User |
+ | branch_name | Bool | Branch Name Of Account |
+ | account_no | String | Account Number |
+ | email | String | EMail of User |
+ | title | String | Title Of Account |
+ | bank_name | String | Bank Name Of Account |
 
 ---
 
@@ -25382,9 +24860,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | hash_key | String | Hash key of the beneficiary Id |
- | otp | String | Otp sent to the given Mobile No |
  | request_id | String | Request Id sent in  |
+ | otp | String | Otp sent to the given Mobile No |
+ | hash_key | String | Hash key of the beneficiary Id |
 
 ---
 
@@ -25395,9 +24873,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | hash_key | String | Hash key of the beneficiary Id |
- | otp | String | Otp sent to the given Mobile No |
  | request_id | String | Request Id of the otp  |
+ | otp | String | Otp sent to the given Mobile No |
+ | hash_key | String | Hash key of the beneficiary Id |
 
 ---
 
@@ -25420,17 +24898,17 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | address | String | Address of the User |
  | branch_name | String | Branch Name of the Account |
  | wallet | String |  |
- | comment | String | Remarks added by The user |
- | vpa | String |  |
- | account_holder | String | Name of the Account Holder |
- | bank_name | String | Bank Name of the Account |
- | email | String | Email of the Account Holder |
- | ifsc_code | String | Ifsc Code of the Account |
  | mobile | String | Moblie Number of the User |
  | account_no | String | Account NUmber of the Account Holder |
+ | account_holder | String | Name of the Account Holder |
+ | email | String | Email of the Account Holder |
+ | address | String | Address of the User |
+ | comment | String | Remarks added by The user |
+ | ifsc_code | String | Ifsc Code of the Account |
+ | bank_name | String | Bank Name of the Account |
+ | vpa | String |  |
 
 ---
 
@@ -25442,12 +24920,12 @@ Success
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
  | delights | Bool | True if  beneficiary to be added by delights or False if by User |
- | request_id | String |  |
+ | otp | String |  |
  | shipment_id | String | Shipment Id of the respective Merchant Order Id |
  | transfer_mode | String | Transfer Mode of the Beneficiary to be added |
- | details | BeneficiaryModeDetails | Beneficiary bank details |
  | order_id | String | Merchant Order Id |
- | otp | String |  |
+ | request_id | String |  |
+ | details | BeneficiaryModeDetails | Beneficiary bank details |
 
 ---
 
@@ -25458,9 +24936,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | message | String | Response message |
- | success | Bool | Success or failure flag. |
  | data | [String: Any] | Refund account data. |
+ | success | Bool | Success or failure flag. |
+ | message | String | Response message |
 
 ---
 
@@ -25483,9 +24961,9 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
+ | request_id | String | request id  |
  | is_verified_flag | String | Boolean Flag whether OTP Validation is already done or not |
  | success | Bool | Response is successful or not |
- | request_id | String | request id  |
 
 ---
 
@@ -27460,8 +26938,8 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | quantity | Int | Quantity of product in shipment |
  | article_uid | String | Article mongo id |
+ | quantity | Int | Quantity of product in shipment |
  | shipment_type | String | Shipment delivery type |
 
 ---
@@ -27484,38 +26962,38 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | key | String |  |
  | values | [String] |  |
+ | key | String |  |
 
 ---
 
 
  
  
- #### [CartPosCheckoutRequest](#CartPosCheckoutRequest)
+ #### [CartPosCheckoutDetailRequest](#CartPosCheckoutDetailRequest)
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | staff | [String: Any] |  |
- | payment_mode | String |  |
+ | meta | [String: Any] |  |
+ | delivery_address | [String: Any] |  |
+ | extra_meta | [String: Any] |  |
  | pos | Bool |  |
  | ordering_store | Int |  |
- | billing_address_id | Int |  |
- | delivery_address | [String: Any] |  |
- | merchant_code | String |  |
- | callback_url | String |  |
- | payment_auto_confirm | Bool |  |
- | payment_params | [String: Any] |  |
+ | payment_mode | String |  |
  | billing_address | [String: Any] |  |
+ | payment_identifier | String |  |
+ | billing_address_id | String |  |
+ | fyndstore_emp_id | String |  |
+ | payment_params | [String: Any] |  |
+ | merchant_code | String |  |
  | pick_at_store_uid | Int |  |
- | meta | [String: Any] |  |
- | address_id | Int |  |
  | aggregator | String |  |
  | files | [Files] | List of file url |
- | extra_meta | [String: Any] |  |
+ | address_id | String |  |
+ | callback_url | String |  |
+ | payment_auto_confirm | Bool |  |
  | order_type | String |  |
- | fyndstore_emp_id | String |  |
- | payment_identifier | String |  |
+ | staff | [String: Any] |  |
 
 ---
 
@@ -27538,21 +27016,22 @@ Success
 
  | Properties | Type | Description |
  | ---------- | ---- | ----------- |
- | address | String |  |
- | pincode | Int |  |
- | area_code_slug | String |  |
- | name | String |  |
  | city | String |  |
- | store_code | String |  |
+ | state | String |  |
+ | country | String |  |
+ | pincode | Int |  |
+ | id | Int |  |
  | address_type | String |  |
+ | area_code_slug | String |  |
  | email | String |  |
  | area_code | String |  |
  | landmark | String |  |
- | state | String |  |
- | uid | Int |  |
- | area | String |  |
  | phone | String |  |
- | country | String |  |
+ | store_code | String |  |
+ | name | String |  |
+ | uid | Int |  |
+ | address | String |  |
+ | area | String |  |
 
 ---
 
