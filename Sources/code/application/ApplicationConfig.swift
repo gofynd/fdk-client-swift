@@ -3,11 +3,13 @@ public class ApplicationConfig {
     var applicationId: String
     var applicationToken: String
     var domain: String
+    var userAgent: String?
 
-    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com") {
+    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil) {
         self.applicationId = applicationId
         self.applicationToken = applicationToken
         self.domain = domain
+        self.userAgent = userAgent
         //let regex = "^[0-9a-fA-F]{24}$"
         let regex = try? NSRegularExpression(pattern: "^[0-9a-fA-F]{24}$",
                 options: [.caseInsensitive])

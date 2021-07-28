@@ -11,6 +11,9 @@ class ApplicationAPIClient {
         var headers = [
             (key: "Authorization", value: "Bearer " + "\(config.applicationId):\(config.applicationToken)".asBase64)
         ]
+        if let userAgent = config.userAgent {
+            headers.append((key: "User-Agent", value: userAgent))
+        }
         headers.append(contentsOf: extraHeaders)
         AlmofireHelper.request(config.domain.appendAsPath(url),
                                 query: query,
