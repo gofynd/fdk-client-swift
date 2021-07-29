@@ -2728,7 +2728,7 @@ if let value = id {
             p: Bool?,
             id: String?,
             body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -2781,7 +2781,7 @@ if let value = id {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3231,7 +3231,7 @@ if let value = isDefault {
         public func updateAddress(
             id: String,
             body: Address,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -3256,7 +3256,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(UpdateAddressResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3279,7 +3279,7 @@ if let value = isDefault {
         public func removeAddress(
             id: String,
             
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -3304,7 +3304,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(DeleteAddressResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3329,7 +3329,7 @@ if let value = isDefault {
             i: Bool?,
             b: Bool?,
             body: SelectCartAddressRequest,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -3375,7 +3375,7 @@ if let value = b {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4509,11 +4509,19 @@ if let value = id {
         * Description: Use this API to login or register using Facebook credentials.
         **/
         public func loginWithFacebook(
+            platform: String?,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
 
  
 
@@ -4522,7 +4530,7 @@ if let value = id {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/login/facebook-token",
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -4556,11 +4564,19 @@ if let value = id {
         * Description: Use this API to login or register using Google Account credentials.
         **/
         public func loginWithGoogle(
+            platform: String?,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
 
  
 
@@ -4569,7 +4585,7 @@ if let value = id {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/login/google-token",
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -4603,11 +4619,19 @@ if let value = id {
         * Description: Use this API to login or register in Android app using Google Account credentials.
         **/
         public func loginWithGoogleAndroid(
+            platform: String?,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
 
  
 
@@ -4616,7 +4640,7 @@ if let value = id {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/login/google-android",
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -4650,11 +4674,19 @@ if let value = id {
         * Description: Use this API to login or register in iOS app using Google Account credentials.
         **/
         public func loginWithGoogleIOS(
+            platform: String?,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
 
  
 
@@ -4663,7 +4695,7 @@ if let value = id {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/login/google-ios",
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -6849,7 +6881,7 @@ if let value = pageSize {
             slug: String,
             rootId: String?,
             
-            onResponse: @escaping (_ response: CustomPageSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -6881,7 +6913,7 @@ if let value = rootId {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomPageSchema.self, from: data)
+                        let response = Utility.decode(PageSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -13125,7 +13157,7 @@ if let value = id {
             p: Bool?,
             id: String?,
             body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -13178,7 +13210,7 @@ if let value = id {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -13628,7 +13660,7 @@ if let value = isDefault {
         public func updateAddress(
             id: String,
             body: Address,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -13653,7 +13685,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(UpdateAddressResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -13676,7 +13708,7 @@ if let value = isDefault {
         public func removeAddress(
             id: String,
             
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -13701,7 +13733,7 @@ if let value = isDefault {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(DeleteAddressResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -13726,7 +13758,7 @@ if let value = isDefault {
             i: Bool?,
             b: Bool?,
             body: SelectCartAddressRequest,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -13772,7 +13804,7 @@ if let value = b {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(CartDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
