@@ -74385,7 +74385,7 @@
             
             public var expiresOn: String?
             
-            public var meta: String?
+            public var meta: [String: Any]?
             
             public var points: Double?
             
@@ -74436,7 +74436,7 @@
                 
             }
 
-            public init(applicationId: String?, claimed: Bool?, createdAt: String?, expiresOn: String?, meta: String?, points: Double?, remainingPoints: Double?, text1: String?, text2: String?, text3: String?, txnName: String?, updatedAt: String?, userId: String?, id: String?) {
+            public init(applicationId: String?, claimed: Bool?, createdAt: String?, expiresOn: String?, meta: [String: Any]?, points: Double?, remainingPoints: Double?, text1: String?, text2: String?, text3: String?, txnName: String?, updatedAt: String?, userId: String?, id: String?) {
                 
                 self.id = id
                 
@@ -74533,7 +74533,7 @@
                 
                 
                 do {
-                    meta = try container.decode(String.self, forKey: .meta)
+                    meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74710,22 +74710,22 @@
         */
         class PointsHistoryResponse: Codable {
             
-            public var history: [PointsHistory]?
+            public var items: [PointsHistory]?
             
             public var page: Page?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case history = "history"
+                case items = "items"
                 
                 case page = "page"
                 
             }
 
-            public init(history: [PointsHistory]?, page: Page?) {
+            public init(items: [PointsHistory]?, page: Page?) {
                 
-                self.history = history
+                self.items = items
                 
                 self.page = page
                 
@@ -74736,7 +74736,7 @@
                 
                 
                 do {
-                    history = try container.decode([PointsHistory].self, forKey: .history)
+                    items = try container.decode([PointsHistory].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74764,7 +74764,7 @@
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 
                 
-                try? container.encodeIfPresent(history, forKey: .history)
+                try? container.encodeIfPresent(items, forKey: .items)
                 
                 
                 

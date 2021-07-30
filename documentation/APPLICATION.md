@@ -18332,7 +18332,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | claimed | Bool? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | expiresOn | String? |  yes  |  |
- | meta | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | points | Double? |  yes  |  |
  | remainingPoints | Double? |  yes  |  |
  | text1 | String? |  yes  |  |
@@ -18351,7 +18351,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | history | [[PointsHistory](#PointsHistory)]? |  yes  | History is the list of points transaction. |
+ | items | [[PointsHistory](#PointsHistory)]? |  yes  | History is the list of points transaction. |
  | page | [Page](#Page)? |  yes  |  |
 
 ---
