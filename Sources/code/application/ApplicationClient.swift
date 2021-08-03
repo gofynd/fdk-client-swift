@@ -2174,6 +2174,7 @@ if let value = collectionType {
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
+            city: String?,
             range: Int?,
             latitude: Double?,
             longitude: Double?,
@@ -2200,6 +2201,13 @@ if let value = pageSize {
 if let value = q {
     
     xQuery["q"] = value
+    
+}
+
+
+if let value = city {
+    
+    xQuery["city"] = value
     
 }
 
@@ -2287,6 +2295,10 @@ if let value = longitude {
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getStores
@@ -2295,6 +2307,7 @@ if let value = longitude {
         public func getStoresPaginator(
             pageSize: Int?,
             q: String?,
+            city: String?,
             range: Int?,
             latitude: Double?,
             longitude: Double?
@@ -2310,6 +2323,7 @@ if let value = longitude {
                         pageSize: paginator.pageSize
                         ,
                         q: q,
+                        city: city,
                         range: range,
                         latitude: latitude,
                         longitude: longitude
@@ -9175,7 +9189,7 @@ if let value = forceRefresh {
             pincode: String,
             checkoutMode: String,
             refresh: Bool?,
-            assignCardId: String?,
+            cardReference: String?,
             userDetails: String?,
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
@@ -9210,9 +9224,9 @@ if let value = refresh {
 }
 
 
-if let value = assignCardId {
+if let value = cardReference {
     
-    xQuery["assign_card_id"] = value
+    xQuery["card_reference"] = value
     
 }
 
@@ -9270,7 +9284,7 @@ if let value = userDetails {
             pincode: String,
             checkoutMode: String,
             refresh: Bool?,
-            assignCardId: String?,
+            cardReference: String?,
             orderType: String,
             userDetails: String?,
             
@@ -9306,9 +9320,9 @@ if let value = refresh {
 }
 
 
-if let value = assignCardId {
+if let value = cardReference {
     
-    xQuery["assign_card_id"] = value
+    xQuery["card_reference"] = value
     
 }
 
