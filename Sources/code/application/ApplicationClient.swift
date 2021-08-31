@@ -2346,7 +2346,7 @@ if let value = longitude {
         * Summary: Get store meta information.
         * Description: Use this API to get a list of stores in a specific application.
         **/
-        public func getAppStores(
+        public func getInStockLocations(
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
@@ -2415,7 +2415,7 @@ if let value = longitude {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/app-locations/",
+                url: "/service/application/catalog/v1.0/in-stock-locations/",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -2477,10 +2477,10 @@ if let value = longitude {
         
         /**
         *
-        * Summary: get paginator for getAppStores
+        * Summary: get paginator for getInStockLocations
         * Description: fetch the next page by calling .next(...) function
         **/
-        public func getAppStoresPaginator(
+        public func getInStockLocationsPaginator(
             pageSize: Int?,
             q: String?,
             city: String?,
@@ -2492,7 +2492,7 @@ if let value = longitude {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<ApplicationStoreListing>(pageSize: pageSize, type: "number")
             paginator.onPage = {
-                self.getAppStores(
+                self.getInStockLocations(
                         
                         pageNo: paginator.pageNo
                         ,
