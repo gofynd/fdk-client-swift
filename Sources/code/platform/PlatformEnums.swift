@@ -17,6 +17,8 @@ public extension PlatformClient {
         
         case high = "high"
         
+        case urgent = "urgent"
+        
     }
 
     

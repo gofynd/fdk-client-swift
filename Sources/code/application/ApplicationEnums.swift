@@ -19,6 +19,8 @@ public extension ApplicationClient {
         
         case high = "high"
         
+        case urgent = "urgent"
+        
     }
 
     
