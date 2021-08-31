@@ -8313,6 +8313,54 @@ if let value = q {
         
         /**
         *
+        * Summary: Get ordering store details
+        * Description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
+        **/
+        public func getStoreDetailById(
+            storeId: Int,
+            
+            onResponse: @escaping (_ response: OrderingStore?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/ordering-store/stores/\(storeId)",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OrderingStore.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: Get features of application
         * Description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
         **/
@@ -8407,8 +8455,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get currencies enabled in the application
-        * Description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+        * Summary: Get all currencies list
+        * Description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
         **/
         public func getCurrencies(
             
@@ -8486,6 +8534,53 @@ if let value = q {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(Currency.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get currencies enabled in the application
+        * Description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+        **/
+        public func getAppCurrencies(
+            
+            onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/configuration/v1.0/currency",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AppCurrencyResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -9772,6 +9867,53 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
+        * Summary: Save bank details for cancelled/returned order
+        * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+        **/
+        public func addRefundBankAccountUsingOTP(
+            body: AddBeneficiaryDetailsOTPRequest,
+            onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/payment/v1.0/refund/account/otp",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RefundAccountResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: Send OTP on adding a wallet beneficiary
         * Description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
         **/
@@ -10237,6 +10379,153 @@ if let value = status {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PosOrderById.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get Customer Details by Shipment Id
+        * Description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+        **/
+        public func getCustomerDetailsByShipmentId(
+            orderId: String,
+            shipmentId: String,
+            
+            onResponse: @escaping (_ response: CustomerDetailsByShipmentId?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/order/v1.0/orders/\(orderId)/shipments/\(shipmentId)/customer-details",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomerDetailsByShipmentId.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Send and Resend Otp code to Order-Shipment customer
+        * Description: Use this API to send OTP to the customer of the mapped Shipment.
+        **/
+        public func sendOtpToShipmentCustomer(
+            orderId: String,
+            shipmentId: String,
+            
+            onResponse: @escaping (_ response: sendOTPApplicationResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/order/v1.0/orders/\(orderId)/shipments/\(shipmentId)/otp/send/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(sendOTPApplicationResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Verify Otp code
+        * Description: Use this API to verify OTP and create a session token with custom payload.
+        **/
+        public func verifyOtpShipmentCustomer(
+            orderId: String,
+            shipmentId: String,
+            body: ReqBodyVerifyOTPShipment,
+            onResponse: @escaping (_ response: ResponseVerifyOTPShipment?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/order/v1.0/orders/\(orderId)/shipments/\(shipmentId)/otp/verify",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ResponseVerifyOTPShipment.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

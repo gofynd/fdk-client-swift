@@ -17,6 +17,8 @@ public extension PlatformClient {
         
         case high = "high"
         
+        case urgent = "urgent"
+        
     }
 
     
@@ -98,5 +100,18 @@ public extension PlatformClient {
     
     
     
+    
+    /*
+        Enum: SubscriberStatus
+        Used By: Webhook
+    */
+    enum SubscriberStatus: String, Codable {
+        
+        case active = "active"
+        
+        case inactive = "inactive"
+        
+    }
+
     
 }
