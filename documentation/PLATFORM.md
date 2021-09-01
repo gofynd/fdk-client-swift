@@ -377,18 +377,18 @@
 
 * ## [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
+    * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -29774,6 +29774,61 @@ The Product object. See example below or refer `ApplicationProductListingRespons
 ## CompanyProfile
 
 
+#### updateCompany
+Edit company profile
+
+
+
+```swift
+companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | UpdateCompany |  yes  | Request body |
+
+
+This API allows to edit the company profile of the seller account.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success message
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### cbsOnboardGet
 Get company profile
 
@@ -29887,61 +29942,6 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 ---
 
 
-#### updateCompany
-Edit company profile
-
-
-
-```swift
-companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | UpdateCompany |  yes  | Request body |
-
-
-This API allows to edit the company profile of the seller account.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success message
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyMetrics
 Get company metrics
 
@@ -30002,6 +30002,62 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
     "verified": 0,
     "pending": 2
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+
+
+```swift
+companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Id of the company associated to brand that is to be viewed. |   
+| brandId | String | yes | Id of the brand to be viewed. |  
+| body | CreateUpdateBrandRequestSerializer |  yes  | Request body |
+
+
+This API allows to edit meta of a brand.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
 }
 ```
 </details>
@@ -30098,62 +30154,6 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 ---
 
 
-#### editBrand
-Edit a brand.
-
-
-
-```swift
-companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company associated to brand that is to be viewed. |   
-| brandId | String | yes | Id of the brand to be viewed. |  
-| body | CreateUpdateBrandRequestSerializer |  yes  | Request body |
-
-
-This API allows to edit meta of a brand.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### createBrand
 Create a Brand.
 
@@ -30193,6 +30193,60 @@ Returns a success response
 ```json
 {
   "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+
+
+```swift
+companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Id of the company inside which the brand is to be mapped. |  
+| body | CompanyBrandPostRequestSerializer |  yes  | Request body |
+
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
   "success": true
 }
 ```
@@ -30351,13 +30405,13 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 
 
 ```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -30366,11 +30420,11 @@ companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (re
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company inside which the brand is to be mapped. |  
-| body | CompanyBrandPostRequestSerializer |  yes  | Request body |
+| companyId | String | yes | Id of the company inside which the location is to be created. |  
+| body | LocationSerializer |  yes  | Request body |
 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Returned Response:*
 
@@ -30389,6 +30443,7 @@ Returns a success response
 
 ```json
 {
+  "uid": 1,
   "success": true
 }
 ```
@@ -30645,13 +30700,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### updateLocation
+Edit a location asscoiated to a company.
 
 
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -30660,11 +30715,12 @@ companyprofile.createLocation(companyId: companyId, body: body) { (response, err
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company inside which the location is to be created. |  
+| companyId | String | yes | Id of the company inside which the location is to be created. |   
+| locationId | String | yes | Id of the location which you want to edit. |  
 | body | LocationSerializer |  yes  | Request body |
 
 
-This API allows to create a location associated to a company.
+This API allows to edit a location associated to a company.
 
 *Returned Response:*
 
@@ -30923,62 +30979,6 @@ Brand object. See example below or refer `GetLocationSerializer` for details
     "order": "pulse"
   },
   "notification_emails": []
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateLocation
-Edit a location asscoiated to a company.
-
-
-
-```swift
-companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company inside which the location is to be created. |   
-| locationId | String | yes | Id of the location which you want to edit. |  
-| body | LocationSerializer |  yes  | Request body |
-
-
-This API allows to edit a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
 }
 ```
 </details>
@@ -46955,12 +46955,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | excludedFields | [String] |  no  | List of all excluded  options with their Details. |
- | created | Bool |  no  | Response is created or not |
- | aggregators | [[String: Any]]? |  yes  | List of all speceific Payment options with their Details. |
- | success | Bool |  no  | Response is successful or not |
- | appId | String |  no  | Application Id to which Payment config Mapped |
  | displayFields | [String] |  no  | List of all included  options with their Details. |
+ | success | Bool |  no  | Response is successful or not |
+ | created | Bool |  no  | Response is created or not |
+ | appId | String |  no  | Application Id to which Payment config Mapped |
+ | excludedFields | [String] |  no  | List of all excluded  options with their Details. |
+ | aggregators | [[String: Any]]? |  yes  | List of all speceific Payment options with their Details. |
 
 ---
 
@@ -46971,9 +46971,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  | Error descrption code. |
- | description | String |  no  | Error human understandable description. |
  | success | Bool |  no  | Response is successful or not |
+ | description | String |  no  | Error human understandable description. |
+ | code | String |  no  | Error descrption code. |
 
 ---
 
@@ -46984,10 +46984,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secret | String |  no  | Secret Key of the payment aggregator |
  | isActive | Bool? |  yes  | Enable/ Disable Flag |
  | configType | String |  no  | Config Type of the aggregator |
  | key | String |  no  | Api key of the payment aggregator |
+ | secret | String |  no  | Secret Key of the payment aggregator |
  | merchantSalt | String |  no  | Merchant key of the payment aggregator |
 
 ---
@@ -46999,9 +46999,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isActive | Bool? |  yes  | Enable/ Disable Flag |
- | appId | String |  no  | Application Id to which Payment config Mapped |
  | aggregatorName | [PaymentGatewayConfig](#PaymentGatewayConfig)? |  yes  |  |
+ | appId | String |  no  | Application Id to which Payment config Mapped |
+ | isActive | Bool? |  yes  | Enable/ Disable Flag |
 
 ---
 
@@ -47024,8 +47024,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  | Error descrption code. |
  | description | String |  no  | Error human understandable description. |
+ | code | String |  no  | Error descrption code. |
 
 ---
 
@@ -47036,8 +47036,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
  | success | Bool |  no  | Response is successful or not |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
 
 ---
 
@@ -47048,8 +47048,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | small | String |  no  | smalll |
  | large | String |  no  | large |
+ | small | String |  no  | smalll |
 
 ---
 
@@ -47060,33 +47060,33 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cardIsin | String? |  yes  | card_isin |
- | cardNumber | String? |  yes  | card_number |
- | cardBrand | String? |  yes  | card_brand |
- | cardId | String? |  yes  | card_id |
+ | expYear | Int? |  yes  | exp_year |
  | cardReference | String? |  yes  | card_reference |
- | expired | Bool? |  yes  | expired |
- | timeout | Int? |  yes  | timeout |
- | name | String? |  yes  | name |
- | fyndVpa | String? |  yes  | fynd_vpa |
- | cardFingerprint | String? |  yes  | card_fingerprint |
- | cardToken | String? |  yes  | card_token |
- | displayPriority | Int? |  yes  | Dispaly Priority |
- | code | String? |  yes  | code |
- | cardBrandImage | String? |  yes  | card_brand_image |
+ | cardIssuer | String? |  yes  | card_issuer |
  | aggregatorName | String |  no  | aggregator_name |
+ | cardFingerprint | String? |  yes  | card_fingerprint |
+ | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | code | String? |  yes  | code |
+ | displayPriority | Int? |  yes  | Dispaly Priority |
+ | fyndVpa | String? |  yes  | fynd_vpa |
+ | timeout | Int? |  yes  | timeout |
+ | cardNumber | String? |  yes  | card_number |
+ | cardIsin | String? |  yes  | card_isin |
+ | merchantCode | String? |  yes  | merchant code |
+ | intentAppErrorList | [String]? |  yes  | intent_app_error_list |
+ | cardToken | String? |  yes  | card_token |
+ | expMonth | Int? |  yes  | exp_month |
+ | name | String? |  yes  | name |
  | intentFlow | String? |  yes  | intent_flow |
  | cardType | String? |  yes  | card_type |
  | cardName | String? |  yes  | card_name |
- | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | expired | Bool? |  yes  | expired |
+ | cardId | String? |  yes  | card_id |
  | displayName | String? |  yes  | display name |
- | expMonth | Int? |  yes  | exp_month |
- | merchantCode | String? |  yes  | merchant code |
  | retryCount | Int? |  yes  | retry_count |
+ | cardBrandImage | String? |  yes  | card_brand_image |
  | nickname | String? |  yes  | nickname |
- | intentAppErrorList | [String]? |  yes  | intent_app_error_list |
- | cardIssuer | String? |  yes  | card_issuer |
- | expYear | Int? |  yes  | exp_year |
+ | cardBrand | String? |  yes  | card_brand |
 
 ---
 
@@ -47097,10 +47097,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayPriority | Int |  no  | Dispaly Priority |
+ | name | String |  no  | Payment mode name |
  | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
  | aggregatorName | String? |  yes  | Dispaly Priority |
- | name | String |  no  | Payment mode name |
+ | displayPriority | Int |  no  | Dispaly Priority |
  | anonymousEnable | Bool? |  yes  | Annonymous card flag |
  | addCardEnabled | Bool? |  yes  | Annonymous card flag |
  | displayName | String |  no  | Payment mode display name |
@@ -47125,8 +47125,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentOptions | [PaymentOptions](#PaymentOptions) |  no  | Payment options |
  | success | Bool |  no  | Response is successful or not |
+ | paymentOptions | [PaymentOptions](#PaymentOptions) |  no  | Payment options |
 
 ---
 
@@ -47137,13 +47137,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isDefault | Bool |  no  | default or not  |
- | customers | [String: Any] |  no  | customers details object |
- | moreAttributes | [String: Any] |  no  | bank details object |
- | payoutsAggregators | [[String: Any]] |  no  | payout aggregator object |
  | uniqueTransferNo | [String: Any] |  no  | display priority of the payment mode |
+ | payoutsAggregators | [[String: Any]] |  no  | payout aggregator object |
+ | customers | [String: Any] |  no  | customers details object |
+ | isDefault | Bool |  no  | default or not  |
  | isActive | Bool |  no  | Enable/DIsable Flag Payout |
  | transferType | String |  no  | transafer type |
+ | moreAttributes | [String: Any] |  no  | bank details object |
 
 ---
 
@@ -47155,15 +47155,15 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country | String? |  yes  |  |
- | state | String? |  yes  |  |
- | accountNo | String? |  yes  |  |
  | accountHolder | String? |  yes  |  |
- | branchName | String? |  yes  |  |
+ | accountType | String |  no  |  |
+ | pincode | Int? |  yes  |  |
  | bankName | String? |  yes  |  |
  | city | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | accountType | String |  no  |  |
+ | state | String? |  yes  |  |
+ | branchName | String? |  yes  |  |
  | ifscCode | String |  no  |  |
+ | accountNo | String? |  yes  |  |
 
 ---
 
@@ -47174,12 +47174,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | users | [String: Any] |  no  | payout users object |
  | aggregator | String |  no  | Aggregator Name |
  | uniqueExternalId | String |  no  | Unique Id of Payout |
- | bankDetails | [PayoutBankDetails](#PayoutBankDetails) |  no  | payout bank details object |
- | transferType | String |  no  | transafer type |
  | isActive | Bool |  no  | Enable/Disable Flag Payout |
+ | users | [String: Any] |  no  | payout users object |
+ | transferType | String |  no  | transafer type |
+ | bankDetails | [PayoutBankDetails](#PayoutBankDetails) |  no  | payout bank details object |
 
 ---
 
@@ -47190,16 +47190,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentStatus | String |  no  | status of payment |
- | created | Bool |  no  | created flag |
- | success | Bool |  no  | Response is successful or not |
  | payouts | [String: Any] |  no  | payout  object |
- | users | [String: Any] |  no  | users details object |
- | aggregator | String |  no  | Aggregator Name |
- | bankDetails | [String: Any] |  no  | payout bank_details object |
  | uniqueTransferNo | String |  no  | unique transfer no |
+ | aggregator | String |  no  | Aggregator Name |
+ | success | Bool |  no  | Response is successful or not |
  | isActive | Bool |  no  | Enable/DIsable Flag Payout |
+ | users | [String: Any] |  no  | users details object |
  | transferType | String |  no  | transfer type |
+ | created | Bool |  no  | created flag |
+ | paymentStatus | String |  no  | status of payment |
+ | bankDetails | [String: Any] |  no  | payout bank_details object |
 
 ---
 
@@ -47210,9 +47210,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isActive | Bool |  no  | Enable/DIsable Flag Payout |
- | isDefault | Bool |  no  | Enable/Disable Default Payout |
  | success | Bool |  no  | Response is successful or not |
+ | isDefault | Bool |  no  | Enable/Disable Default Payout |
+ | isActive | Bool |  no  | Enable/DIsable Flag Payout |
 
 ---
 
@@ -47223,8 +47223,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isActive | Bool |  no  | Enable/Disable Flag Payout |
  | isDefault | Bool |  no  | Enable/Disable Default Payout |
+ | isActive | Bool |  no  | Enable/Disable Flag Payout |
  | uniqueExternalId | String |  no  | Unique Id of Payout |
 
 ---
@@ -47247,8 +47247,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[String: Any]] |  no  | Subscription Payment Method Object |
  | success | Bool |  no  | Response is successful or not |
+ | data | [[String: Any]] |  no  | Subscription Payment Method Object |
 
 ---
 
@@ -47270,9 +47270,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config | [String: Any] |  no  | Aggregator Config |
  | aggregator | String |  no  | Aggregator Name |
  | success | Bool |  no  | Response is successful or not |
+ | config | [String: Any] |  no  | Aggregator Config |
 
 ---
 
@@ -47294,8 +47294,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [String: Any] |  no  | Subscription Payment Method Object |
  | success | Bool |  no  | Response is successful or not |
+ | data | [String: Any] |  no  | Subscription Payment Method Object |
 
 ---
 
@@ -47306,17 +47306,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | String |  no  | Moblie Number of the User |
- | accountNo | String |  no  | Account NUmber of the Account Holder |
- | wallet | String? |  yes  |  |
- | ifscCode | String |  no  | Ifsc Code of the Account |
- | accountHolder | String |  no  | Name of the Account Holder |
  | comment | String? |  yes  | Remarks added by The user |
- | bankName | String |  no  | Bank Name of the Account |
- | branchName | String |  no  | Branch Name of the Account |
  | email | String |  no  | Email of the Account Holder |
+ | accountHolder | String |  no  | Name of the Account Holder |
+ | wallet | String? |  yes  |  |
+ | bankName | String |  no  | Bank Name of the Account |
  | address | String? |  yes  | Address of the User |
  | vpa | String? |  yes  |  |
+ | branchName | String |  no  | Branch Name of the Account |
+ | mobile | String |  no  | Moblie Number of the User |
+ | ifscCode | String |  no  | Ifsc Code of the Account |
+ | accountNo | String |  no  | Account NUmber of the Account Holder |
 
 ---
 
@@ -47327,10 +47327,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderId | String |  no  | Merchant Order Id |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
  | requestId | String? |  yes  |  |
  | otp | String? |  yes  |  |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
+ | orderId | String |  no  | Merchant Order Id |
  | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
  | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
  | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
@@ -47344,9 +47344,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Success or failure flag. |
  | message | String |  no  | Response message |
  | data | [String: Any]? |  yes  | Refund account data. |
- | success | Bool |  no  | Success or failure flag. |
 
 ---
 
@@ -47357,9 +47357,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  | Bad Request Data |
- | description | String |  no  | Not Found |
  | success | Bool |  no  | Response is successful or not |
+ | description | String |  no  | Not Found |
+ | code | String |  no  | Bad Request Data |
 
 ---
 
@@ -47370,9 +47370,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bankName | String |  no  | Bank Name Of Account |
  | branchName | String |  no  | Branch Name Of Account |
  | success | Bool? |  yes  | Response is successful or not |
+ | bankName | String |  no  | Bank Name Of Account |
 
 ---
 
@@ -47384,24 +47384,24 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | createdOn | String |  no  | Creation Date of Beneficiary |
- | modifiedOn | String |  no  | MOdification Date of Beneficiary |
- | mobile | Bool? |  yes  | MObile no of User |
- | subtitle | String |  no  | SHort Title Of Account |
- | delightsUserName | String |  no  | User Id Who filled the Beneficiary  |
- | title | String |  no  | Title Of Account |
- | accountNo | String |  no  | Account Number |
- | comment | Bool? |  yes  | Remarks |
- | bankName | String |  no  | Bank Name Of Account |
  | email | String |  no  | EMail of User |
- | address | String |  no  | Address of User |
- | ifscCode | String |  no  | Ifsc Code Of Account |
- | displayName | String |  no  | Display Name Of Account |
  | accountHolder | String |  no  | Account Holder Name |
- | id | Int |  no  |   |
+ | title | String |  no  | Title Of Account |
  | beneficiaryId | String |  no  | Benenficiary Id |
- | branchName | Bool? |  yes  | Branch Name Of Account |
+ | id | Int |  no  |   |
  | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
+ | branchName | Bool? |  yes  | Branch Name Of Account |
+ | comment | Bool? |  yes  | Remarks |
+ | displayName | String |  no  | Display Name Of Account |
+ | accountNo | String |  no  | Account Number |
+ | modifiedOn | String |  no  | MOdification Date of Beneficiary |
+ | bankName | String |  no  | Bank Name Of Account |
+ | address | String |  no  | Address of User |
+ | delightsUserName | String |  no  | User Id Who filled the Beneficiary  |
  | transferMode | String |  no  | Transfer Mode Of Account |
+ | subtitle | String |  no  | SHort Title Of Account |
+ | mobile | Bool? |  yes  | MObile no of User |
+ | ifscCode | String |  no  | Ifsc Code Of Account |
 
 ---
 
@@ -47412,8 +47412,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | showBeneficiaryDetails | Bool? |  yes  | Show beneficiary details or not. |
  | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
+ | showBeneficiaryDetails | Bool? |  yes  | Show beneficiary details or not. |
 
 ---
 
@@ -47424,11 +47424,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderId | String? |  yes  |  |
  | currentStatus | String? |  yes  |  |
+ | paymentGateway | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
  | paymentId | String? |  yes  |  |
  | extraMeta | [String: Any]? |  yes  |  |
- | paymentGateway | String? |  yes  |  |
 
 ---
 
@@ -47439,10 +47439,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  | Payment mode name |
- | mode | String |  no  |  |
  | amount | Double |  no  | Payment amount |
  | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)? |  yes  |  |
+ | name | String? |  yes  | Payment mode name |
+ | mode | String |  no  |  |
 
 ---
 
@@ -47466,8 +47466,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | orderId | String |  no  | Unique order id |
- | message | String |  no  | Message |
  | success | Bool |  no  | Payment confirmation updated or not. |
+ | message | String |  no  | Message |
 
 ---
 
@@ -49887,9 +49887,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | status | Int? |  yes  |  |
  | code | String? |  yes  |  |
+ | status | Int? |  yes  |  |
+ | message | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
 
 ---
@@ -49901,10 +49901,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | words | [String]? |  yes  |  |
- | result | [String: Any]? |  yes  |  |
- | uid | String? |  yes  |  |
  | appId | String? |  yes  |  |
+ | result | [String: Any]? |  yes  |  |
+ | words | [String]? |  yes  |  |
+ | uid | String? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
 
 ---
@@ -49916,8 +49916,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [GetSearchWordsData](#GetSearchWordsData)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -49940,10 +49940,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | appId | String? |  yes  |  |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  no  |  |
  | words | [String]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
- | result | [SearchKeywordResult](#SearchKeywordResult) |  no  |  |
- | appId | String? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
 
 ---
@@ -49955,8 +49955,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[GetSearchWordsData](#GetSearchWordsData)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -49967,10 +49967,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | results | [[String: Any]]? |  yes  |  |
- | words | [String]? |  yes  |  |
- | uid | String? |  yes  |  |
  | appId | String? |  yes  |  |
+ | words | [String]? |  yes  |  |
+ | results | [[String: Any]]? |  yes  |  |
+ | uid | String? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
 
 ---
@@ -49982,8 +49982,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -49994,9 +49994,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | url | String? |  yes  |  |
  | params | [String: Any]? |  yes  |  |
  | type | String |  no  |  |
- | url | String? |  yes  |  |
  | query | [String: Any] |  no  |  |
 
 ---
@@ -50008,8 +50008,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
  | page | [AutocompletePageAction](#AutocompletePageAction)? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -50032,8 +50032,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [AutocompleteAction](#AutocompleteAction)? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | action | [AutocompleteAction](#AutocompleteAction)? |  yes  |  |
  | display | String? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
 
@@ -50046,10 +50046,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | results | [[AutocompleteResult](#AutocompleteResult)]? |  yes  |  |
+ | appId | String? |  yes  |  |
  | words | [String]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
- | appId | String? |  yes  |  |
+ | results | [[AutocompleteResult](#AutocompleteResult)]? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
 
 ---
@@ -50061,10 +50061,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | words | [String]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
  | appId | String? |  yes  |  |
+ | words | [String]? |  yes  |  |
  | results | [[String: Any]]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50075,12 +50075,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | productUid | Int |  no  |  |
- | autoAddToCart | Bool? |  yes  |  |
- | maxQuantity | Int |  no  |  |
- | autoSelect | Bool? |  yes  |  |
  | allowRemove | Bool? |  yes  |  |
  | minQuantity | Int |  no  |  |
+ | autoSelect | Bool? |  yes  |  |
+ | autoAddToCart | Bool? |  yes  |  |
+ | maxQuantity | Int |  no  |  |
+ | productUid | Int |  no  |  |
 
 ---
 
@@ -50091,19 +50091,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedBy | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | sameStoreAssignment | Bool? |  yes  |  |
- | choice | String |  no  |  |
  | slug | String |  no  |  |
- | name | String |  no  |  |
- | isActive | Bool |  no  |  |
- | createdBy | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | pageVisibility | [String]? |  yes  |  |
- | logo | String? |  yes  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | sameStoreAssignment | Bool? |  yes  |  |
+ | isActive | Bool |  no  |  |
  | meta | [String: Any]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | choice | String |  no  |  |
+ | name | String |  no  |  |
+ | pageVisibility | [String]? |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | logo | String? |  yes  |  |
 
 ---
 
@@ -50114,21 +50114,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedBy | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | sameStoreAssignment | Bool? |  yes  |  |
- | choice | String |  no  |  |
  | slug | String |  no  |  |
- | name | String |  no  |  |
- | isActive | Bool |  no  |  |
- | createdBy | [String: Any]? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | pageVisibility | [String]? |  yes  |  |
- | id | String? |  yes  |  |
- | logo | String? |  yes  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | sameStoreAssignment | Bool? |  yes  |  |
+ | isActive | Bool |  no  |  |
  | meta | [String: Any]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | choice | String |  no  |  |
+ | name | String |  no  |  |
+ | pageVisibility | [String]? |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | logo | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -50139,30 +50139,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [LimitedProductData](#LimitedProductData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemCode | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | name | String? |  yes  |  |
- | price | [String: Any]? |  yes  |  |
- | shortDescription | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | identifier | [String: Any]? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | images | [String]? |  yes  |  |
- | countryOfOrigin | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | sizes | [String]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -50173,11 +50151,33 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | minEffective | Double? |  yes  |  |
  | maxEffective | Double? |  yes  |  |
  | currency | String? |  yes  |  |
+ | minEffective | Double? |  yes  |  |
  | maxMarked | Double? |  yes  |  |
  | minMarked | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LimitedProductData](#LimitedProductData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | String? |  yes  |  |
+ | price | [String: Any]? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | identifier | [String: Any]? |  yes  |  |
+ | sizes | [String]? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | countryOfOrigin | String? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | images | [String]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
 
 ---
 
@@ -50188,10 +50188,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
  | isAvailable | Bool? |  yes  |  |
  | display | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
@@ -50202,15 +50202,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | productUid | Int? |  yes  |  |
- | productDetails | [LimitedProductData](#LimitedProductData)? |  yes  |  |
- | autoAddToCart | Bool? |  yes  |  |
- | maxQuantity | Int? |  yes  |  |
  | allowRemove | Bool? |  yes  |  |
- | autoSelect | Bool? |  yes  |  |
- | price | [Price](#Price)? |  yes  |  |
  | minQuantity | Int? |  yes  |  |
+ | price | [Price](#Price)? |  yes  |  |
+ | autoSelect | Bool? |  yes  |  |
+ | autoAddToCart | Bool? |  yes  |  |
+ | productDetails | [LimitedProductData](#LimitedProductData)? |  yes  |  |
+ | maxQuantity | Int? |  yes  |  |
  | sizes | [[Size](#Size)]? |  yes  |  |
+ | productUid | Int? |  yes  |  |
 
 ---
 
@@ -50221,16 +50221,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | slug | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
  | sameStoreAssignment | Bool? |  yes  |  |
- | slug | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | choice | String? |  yes  |  |
  | name | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
  | pageVisibility | [String]? |  yes  |  |
- | logo | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
  | products | [[GetProducts](#GetProducts)]? |  yes  |  |
+ | logo | String? |  yes  |  |
 
 ---
 
@@ -50241,17 +50241,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedBy | [String: Any]? |  yes  |  |
+ | slug | String |  no  |  |
  | modifiedOn | String? |  yes  |  |
  | sameStoreAssignment | Bool? |  yes  |  |
- | choice | String |  no  |  |
- | slug | String |  no  |  |
- | name | String |  no  |  |
  | isActive | Bool |  no  |  |
- | pageVisibility | [String]? |  yes  |  |
- | logo | String? |  yes  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
  | meta | [String: Any]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | choice | String |  no  |  |
+ | name | String |  no  |  |
+ | pageVisibility | [String]? |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | logo | String? |  yes  |  |
 
 ---
 
@@ -50262,8 +50262,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | headers | [String: Any]? |  yes  |  |
  | values | [[String: Any]]? |  yes  |  |
+ | headers | [String: Any]? |  yes  |  |
  | unit | String? |  yes  |  |
 
 ---
@@ -50286,20 +50286,20 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | image | String? |  yes  |  |
- | description | String? |  yes  |  |
- | tag | String? |  yes  |  |
- | guide | [Guide](#Guide)? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
- | active | Bool? |  yes  |  |
+ | tag | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | guide | [Guide](#Guide)? |  yes  |  |
  | createdOn | String? |  yes  |  |
+ | image | String? |  yes  |  |
+ | title | String |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | brandId | Int? |  yes  |  |
  | createdBy | [String: Any]? |  yes  |  |
+ | active | Bool? |  yes  |  |
  | name | String |  no  |  |
  | id | String? |  yes  |  |
- | brandId | Int? |  yes  |  |
- | title | String |  no  |  |
  | subtitle | String? |  yes  |  |
 
 ---
@@ -50323,8 +50323,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [String: Any]? |  yes  |  |
  | items | [[String: Any]]? |  yes  |  |
+ | page | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50335,18 +50335,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | guide | [String: Any]? |  yes  |  |
- | tag | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
- | active | Bool? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | tag | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
+ | guide | [String: Any]? |  yes  |  |
+ | title | String? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
  | createdBy | [String: Any]? |  yes  |  |
+ | brandId | Int? |  yes  |  |
+ | active | Bool? |  yes  |  |
  | name | String? |  yes  |  |
  | id | String? |  yes  |  |
- | brandId | Int? |  yes  |  |
- | title | String? |  yes  |  |
  | subtitle | String? |  yes  |  |
 
 ---
@@ -50358,33 +50358,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | variant | [String: Any]? |  yes  |  |
+ | similar | [String: Any]? |  yes  |  |
  | detail | [String: Any]? |  yes  |  |
  | compare | [String: Any]? |  yes  |  |
- | similar | [String: Any]? |  yes  |  |
- | variant | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String? |  yes  |  |
- | display | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [MetaDataListingSortResponse](#MetaDataListingSortResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)]? |  yes  |  |
 
 ---
 
@@ -50395,10 +50372,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filterTypes | [String]? |  yes  |  |
- | key | String? |  yes  |  |
  | display | String? |  yes  |  |
  | units | [[String: Any]]? |  yes  |  |
+ | filterTypes | [String]? |  yes  |  |
+ | key | String? |  yes  |  |
 
 ---
 
@@ -50416,12 +50393,35 @@ Success
 
  
  
+ #### [MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | String? |  yes  |  |
+ | key | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaDataListingSortResponse](#MetaDataListingSortResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [MetaDataListingResponse](#MetaDataListingResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort | [MetaDataListingSortResponse](#MetaDataListingSortResponse) |  no  |  |
  | filter | [MetaDataListingFilterResponse](#MetaDataListingFilterResponse) |  no  |  |
+ | sort | [MetaDataListingSortResponse](#MetaDataListingSortResponse) |  no  |  |
 
 ---
 
@@ -50434,101 +50434,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)? |  yes  |  |
  | listing | [MetaDataListingResponse](#MetaDataListingResponse)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingSortConfig](#ConfigurationListingSortConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | Int |  no  |  |
- | name | String? |  yes  |  |
- | isActive | Bool |  no  |  |
- | logo | String? |  yes  |  |
- | key | String |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingSort](#ConfigurationListingSort)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | defaultKey | String |  no  |  |
- | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [ConfigurationBucketPoints](#ConfigurationBucketPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | Double? |  yes  |  |
- | end | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | condition | String? |  yes  |  |
- | sort | String? |  yes  |  |
- | map | [String: Any]? |  yes  |  |
- | bucketPoints | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | valueConfig | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)? |  yes  |  |
- | priority | Int |  no  |  |
- | name | String? |  yes  |  |
- | isActive | Bool |  no  |  |
- | logo | String? |  yes  |  |
- | type | String |  no  |  |
- | key | String |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingFilter](#ConfigurationListingFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | allowSingle | Bool |  no  |  |
- | attributeConfig | [[ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListing](#ConfigurationListing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort | [ConfigurationListingSort](#ConfigurationListingSort) |  no  |  |
- | filter | [ConfigurationListingFilter](#ConfigurationListingFilter) |  no  |  |
 
 ---
 
@@ -50551,12 +50456,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priority | Int |  no  |  |
- | isActive | Bool |  no  |  |
  | size | [ProductSize](#ProductSize)? |  yes  |  |
- | logo | String? |  yes  |  |
- | key | String |  no  |  |
+ | priority | Int |  no  |  |
  | title | String? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | key | String |  no  |  |
+ | logo | String? |  yes  |  |
  | subtitle | String? |  yes  |  |
 
 ---
@@ -50579,13 +50484,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priority | Int |  no  |  |
- | name | String |  no  |  |
- | isActive | Bool |  no  |  |
  | size | [ProductSize](#ProductSize) |  no  |  |
  | displayType | String |  no  |  |
- | logo | String? |  yes  |  |
+ | priority | Int |  no  |  |
+ | isActive | Bool |  no  |  |
  | key | String |  no  |  |
+ | name | String |  no  |  |
+ | logo | String? |  yes  |  |
 
 ---
 
@@ -50615,15 +50520,110 @@ Success
 
  
  
+ #### [ConfigurationBucketPoints](#ConfigurationBucketPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | Double? |  yes  |  |
+ | start | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bucketPoints | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)]? |  yes  |  |
+ | value | String? |  yes  |  |
+ | sort | String? |  yes  |  |
+ | map | [String: Any]? |  yes  |  |
+ | condition | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | Int |  no  |  |
+ | type | String |  no  |  |
+ | isActive | Bool |  no  |  |
+ | key | String |  no  |  |
+ | valueConfig | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilter](#ConfigurationListingFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowSingle | Bool |  no  |  |
+ | attributeConfig | [[ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingSortConfig](#ConfigurationListingSortConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | Int |  no  |  |
+ | isActive | Bool |  no  |  |
+ | key | String |  no  |  |
+ | name | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingSort](#ConfigurationListingSort)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)]? |  yes  |  |
+ | defaultKey | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListing](#ConfigurationListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filter | [ConfigurationListingFilter](#ConfigurationListingFilter) |  no  |  |
+ | sort | [ConfigurationListingSort](#ConfigurationListingSort) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [AppConfiguration](#AppConfiguration)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | configId | String? |  yes  |  |
- | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
- | configType | String |  no  |  |
  | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
  | appId | String |  no  |  |
+ | configType | String |  no  |  |
+ | configId | String? |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
 
 ---
 
@@ -50634,12 +50634,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | configId | String? |  yes  |  |
- | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
- | configType | String |  no  |  |
- | id | String? |  yes  |  |
  | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
  | appId | String |  no  |  |
+ | configType | String |  no  |  |
+ | configId | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
 
 ---
 
@@ -50662,8 +50662,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort | [String: Any]? |  yes  |  |
  | filter | [String: Any]? |  yes  |  |
+ | sort | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50674,12 +50674,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | configId | String? |  yes  |  |
- | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing)? |  yes  |  |
- | configType | String |  no  |  |
- | id | String? |  yes  |  |
  | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)? |  yes  |  |
  | appId | String |  no  |  |
+ | configType | String |  no  |  |
+ | configId | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing)? |  yes  |  |
 
 ---
 
@@ -50698,13 +50698,22 @@ Success
 
  
  
- #### [ProductSortOn](#ProductSortOn)
+ #### [ProductFiltersValue](#ProductFiltersValue)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | name | String? |  yes  |  |
- | isSelected | Bool? |  yes  |  |
+ | min | Int? |  yes  |  |
+ | queryFormat | String? |  yes  |  |
+ | selectedMin | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
+ | isSelected | Bool |  no  |  |
+ | display | String |  no  |  |
+ | value | String |  no  |  |
+ | displayFormat | String? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | selectedMax | Int? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | count | Int? |  yes  |  |
 
 ---
 
@@ -50715,32 +50724,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | kind | String? |  yes  |  |
  | name | String |  no  |  |
- | display | String |  no  |  |
  | logo | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersValue](#ProductFiltersValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | Int? |  yes  |  |
- | max | Int? |  yes  |  |
- | queryFormat | String? |  yes  |  |
- | displayFormat | String? |  yes  |  |
- | value | String |  no  |  |
  | display | String |  no  |  |
- | selectedMin | Int? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | min | Int? |  yes  |  |
- | isSelected | Bool |  no  |  |
- | selectedMax | Int? |  yes  |  |
- | currencyCode | String? |  yes  |  |
+ | kind | String? |  yes  |  |
 
 ---
 
@@ -50751,8 +50738,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | [ProductFiltersKey](#ProductFiltersKey) |  no  |  |
  | values | [[ProductFiltersValue](#ProductFiltersValue)] |  no  |  |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSortOn](#ProductSortOn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | isSelected | Bool? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
@@ -50763,8 +50763,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
 
 ---
 
@@ -50785,6 +50785,56 @@ Success
 
  
  
+ #### [CollectionBadge](#CollectionBadge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | color | String? |  yes  |  |
+ | text | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionImage](#CollectionImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspectRatio | String |  no  |  |
+ | url | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionBanner](#CollectionBanner)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | portrait | [CollectionImage](#CollectionImage) |  no  |  |
+ | landscape | [CollectionImage](#CollectionImage) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Schedule](#Schedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | Int? |  yes  |  |
+ | cron | String? |  yes  |  |
+ | end | String? |  yes  |  |
+ | start | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [SeoDetail](#SeoDetail)
 
  | Properties | Type | Nullable | Description |
@@ -50797,83 +50847,33 @@ Success
 
  
  
- #### [Schedule](#Schedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cron | String? |  yes  |  |
- | start | String? |  yes  |  |
- | end | String? |  yes  |  |
- | duration | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionBadge](#CollectionBadge)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | String? |  yes  |  |
- | color | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionImage](#CollectionImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String |  no  |  |
- | aspectRatio | String |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionBanner](#CollectionBanner)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | landscape | [CollectionImage](#CollectionImage) |  no  |  |
- | portrait | [CollectionImage](#CollectionImage) |  no  |  |
-
----
-
-
- 
- 
  #### [CreateCollection](#CreateCollection)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | [UserInfo](#UserInfo)? |  yes  |  |
- | published | Bool? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | description | String? |  yes  |  |
- | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
- | schedule | [Schedule](#Schedule)? |  yes  |  |
- | tags | [String]? |  yes  |  |
  | appId | String |  no  |  |
- | allowSort | Bool? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
  | localeLanguage | [String: Any]? |  yes  |  |
- | type | String |  no  |  |
- | sortOn | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
- | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
+ | tags | [String]? |  yes  |  |
+ | createdBy | [UserInfo](#UserInfo)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
  | slug | String |  no  |  |
  | allowFacets | Bool? |  yes  |  |
- | name | String |  no  |  |
- | isActive | Bool? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | query | [String: Any]? |  yes  |  |
  | logo | [CollectionImage](#CollectionImage) |  no  |  |
+ | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
+ | schedule | [Schedule](#Schedule)? |  yes  |  |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
+ | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | sortOn | String? |  yes  |  |
+ | type | String |  no  |  |
+ | isActive | Bool? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | published | Bool? |  yes  |  |
 
 ---
 
@@ -50884,8 +50884,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
  | aspectRatio | String? |  yes  |  |
+ | url | String? |  yes  |  |
 
 ---
 
@@ -50908,23 +50908,61 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | appId | String? |  yes  |  |
+ | slug | String? |  yes  |  |
  | tag | [String]? |  yes  |  |
+ | schedule | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
  | cron | [String: Any]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | type | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | logo | [BannerImage](#BannerImage)? |  yes  |  |
  | query | [String: Any]? |  yes  |  |
  | name | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | slug | String? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
- | schedule | [String: Any]? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
- | appId | String? |  yes  |  |
- | logo | [BannerImage](#BannerImage)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | allowSort | Bool? |  yes  |  |
- | type | String? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterTag](#CollectionListingFilterTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | isSelected | Bool? |  yes  |  |
+ | display | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterType](#CollectionListingFilterType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | isSelected | Bool? |  yes  |  |
+ | display | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilter](#CollectionListingFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)]? |  yes  |  |
+ | type | [[CollectionListingFilterType](#CollectionListingFilterType)]? |  yes  |  |
 
 ---
 
@@ -50947,8 +50985,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
  | page | [ProductListingActionPage](#ProductListingActionPage)? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -50959,9 +50997,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | meta | [String: Any]? |  yes  |  |
  | type | String? |  yes  |  |
  | url | String |  no  |  |
- | meta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50972,63 +51010,25 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tag | [String]? |  yes  |  |
- | uid | String? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | description | String? |  yes  |  |
- | cron | [String: Any]? |  yes  |  |
- | schedule | [String: Any]? |  yes  |  |
  | appId | String? |  yes  |  |
- | allowSort | Bool? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | tag | [String]? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
+ | query | [String: Any]? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | schedule | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | cron | [String: Any]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
  | type | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | slug | String? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterType](#CollectionListingFilterType)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | display | String? |  yes  |  |
- | isSelected | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterTag](#CollectionListingFilterTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | display | String? |  yes  |  |
- | isSelected | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilter](#CollectionListingFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | [[CollectionListingFilterType](#CollectionListingFilterType)]? |  yes  |  |
- | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)]? |  yes  |  |
 
 ---
 
@@ -51039,9 +51039,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)]? |  yes  |  |
  | filters | [CollectionListingFilter](#CollectionListingFilter)? |  yes  |  |
+ | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51052,23 +51052,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | appId | String? |  yes  |  |
+ | slug | String? |  yes  |  |
  | tag | [String]? |  yes  |  |
+ | schedule | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
  | cron | [String: Any]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | type | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
  | query | [String: Any]? |  yes  |  |
  | name | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | slug | String? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
- | schedule | [String: Any]? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
- | appId | String? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | allowSort | Bool? |  yes  |  |
- | type | String? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -51079,26 +51079,26 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | published | Bool? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | description | String? |  yes  |  |
- | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
- | schedule | [Schedule](#Schedule)? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | allowSort | Bool? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
  | localeLanguage | [String: Any]? |  yes  |  |
- | sortOn | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
- | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
  | slug | String? |  yes  |  |
  | allowFacets | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | query | [String: Any]? |  yes  |  |
  | logo | [CollectionImage](#CollectionImage)? |  yes  |  |
+ | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
+ | schedule | [Schedule](#Schedule)? |  yes  |  |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
+ | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | sortOn | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | published | Bool? |  yes  |  |
 
 ---
 
@@ -51109,8 +51109,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pageNo | Int |  no  |  |
  | pageSize | Int |  no  |  |
+ | pageNo | Int |  no  |  |
 
 ---
 
@@ -51128,14 +51128,39 @@ Success
 
  
  
+ #### [ProductDetailAttribute](#ProductDetailAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | key | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  |  |
+ | title | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ProductBrand](#ProductBrand)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | logo | [Media1](#Media1)? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
 
 ---
 
@@ -51168,61 +51193,36 @@ Success
 
  
  
- #### [ProductDetailAttribute](#ProductDetailAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | key | String? |  yes  |  |
- | value | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  |  |
- | title | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [ProductListingDetail](#ProductListingDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hasVariant | Bool? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | promoMeta | [String: Any]? |  yes  |  |
- | productOnlineDate | String? |  yes  |  |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | description | String? |  yes  |  |
- | itemType | String? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | medias | [[Media1](#Media1)]? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
- | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
- | ratingCount | Int? |  yes  |  |
- | color | String? |  yes  |  |
- | teaserTag | [String: Any]? |  yes  |  |
- | type | String? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | slug | String |  no  |  |
- | name | String? |  yes  |  |
- | similars | [String]? |  yes  |  |
- | shortDescription | String? |  yes  |  |
- | rating | Double? |  yes  |  |
  | sellable | Bool? |  yes  |  |
+ | similars | [String]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | tryouts | [String]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | slug | String |  no  |  |
  | discount | String? |  yes  |  |
  | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | hasVariant | Bool? |  yes  |  |
+ | teaserTag | [String: Any]? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | rating | Double? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
+ | ratingCount | Int? |  yes  |  |
+ | promoMeta | [String: Any]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | color | String? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | productOnlineDate | String? |  yes  |  |
+ | medias | [[Media1](#Media1)]? |  yes  |  |
 
 ---
 
@@ -51233,23 +51233,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
- | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CatalogInsightItem](#CatalogInsightItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | Int? |  yes  |  |
- | sellableCount | Int? |  yes  |  |
- | outOfStockCount | Int? |  yes  |  |
+ | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51260,12 +51247,25 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableSizes | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | availableArticles | Int? |  yes  |  |
- | totalSizes | Int? |  yes  |  |
- | articleFreshness | Int? |  yes  |  |
  | totalArticles | Int? |  yes  |  |
+ | articleFreshness | Int? |  yes  |  |
+ | availableArticles | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | totalSizes | Int? |  yes  |  |
+ | availableSizes | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogInsightItem](#CatalogInsightItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | outOfStockCount | Int? |  yes  |  |
+ | sellableCount | Int? |  yes  |  |
+ | count | Int? |  yes  |  |
 
 ---
 
@@ -51276,8 +51276,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item | [CatalogInsightItem](#CatalogInsightItem)? |  yes  |  |
  | brandDistribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
+ | item | [CatalogInsightItem](#CatalogInsightItem)? |  yes  |  |
 
 ---
 
@@ -51288,8 +51288,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | Int? |  yes  |  |
  | products | Int? |  yes  |  |
+ | articles | Int? |  yes  |  |
 
 ---
 
@@ -51312,10 +51312,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | optLevel | String |  no  |  |
  | brandIds | [Int]? |  yes  |  |
  | storeIds | [Int]? |  yes  |  |
- | optLevel | String |  no  |  |
+ | enabled | Bool? |  yes  |  |
 
 ---
 
@@ -51326,16 +51326,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | Int |  no  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
  | companyId | Int |  no  |  |
+ | modifiedOn | Int |  no  |  |
  | createdOn | Int |  no  |  |
- | createdBy | [String: Any]? |  yes  |  |
- | enabled | Bool |  no  |  |
- | platform | String |  no  |  |
  | brandIds | [Int] |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | platform | String |  no  |  |
+ | createdBy | [String: Any]? |  yes  |  |
  | storeIds | [Int] |  no  |  |
  | optLevel | String |  no  |  |
+ | enabled | Bool |  no  |  |
 
 ---
 
@@ -51346,8 +51346,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
  | items | [[CompanyOptIn](#CompanyOptIn)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -51358,9 +51358,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | businessType | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | businessType | String? |  yes  |  |
  | companyType | String? |  yes  |  |
 
 ---
@@ -51372,10 +51372,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandName | String? |  yes  |  |
- | brandId | Int? |  yes  |  |
- | totalArticle | Int? |  yes  |  |
  | companyId | Int? |  yes  |  |
+ | brandId | Int? |  yes  |  |
+ | brandName | String? |  yes  |  |
+ | totalArticle | Int? |  yes  |  |
 
 ---
 
@@ -51386,8 +51386,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[CompanyBrandDetail](#CompanyBrandDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51411,17 +51411,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | additionalContacts | [[String: Any]]? |  yes  |  |
- | timing | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
+ | displayName | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
- | storeCode | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
+ | documents | [[String: Any]]? |  yes  |  |
+ | timing | [String: Any]? |  yes  |  |
+ | storeType | String? |  yes  |  |
  | name | String? |  yes  |  |
  | uid | Int? |  yes  |  |
- | documents | [[String: Any]]? |  yes  |  |
- | displayName | String? |  yes  |  |
- | storeType | String? |  yes  |  |
+ | storeCode | String? |  yes  |  |
+ | additionalContacts | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -51432,21 +51432,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[StoreDetail](#StoreDetail)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [AttributeMasterFilter](#AttributeMasterFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | indexing | Bool |  no  |  |
- | priority | Int? |  yes  |  |
- | dependsOn | [String]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51458,6 +51445,42 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | displayType | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | l3Keys | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterMeta](#AttributeMasterMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mandatoryDetails | [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails) |  no  |  |
+ | enriched | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterFilter](#AttributeMasterFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | Int? |  yes  |  |
+ | indexing | Bool |  no  |  |
+ | dependsOn | [String]? |  yes  |  |
 
 ---
 
@@ -51480,35 +51503,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | multi | Bool? |  yes  |  |
- | format | String? |  yes  |  |
- | allowedValues | [String]? |  yes  |  |
  | mandatory | Bool? |  yes  |  |
- | type | String |  no  |  |
+ | format | String? |  yes  |  |
  | range | [AttributeSchemaRange](#AttributeSchemaRange)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | l3Keys | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [AttributeMasterMeta](#AttributeMasterMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enriched | Bool? |  yes  |  |
- | mandatoryDetails | [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails) |  no  |  |
+ | allowedValues | [String]? |  yes  |  |
+ | type | String |  no  |  |
+ | multi | Bool? |  yes  |  |
 
 ---
 
@@ -51519,18 +51519,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isNested | Bool? |  yes  |  |
- | description | String? |  yes  |  |
- | departments | [String]? |  yes  |  |
- | filters | [AttributeMasterFilter](#AttributeMasterFilter)? |  yes  |  |
  | slug | String? |  yes  |  |
- | name | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
  | details | [AttributeMasterDetails](#AttributeMasterDetails)? |  yes  |  |
- | logo | String? |  yes  |  |
- | schema | [AttributeMaster](#AttributeMaster)? |  yes  |  |
  | meta | [AttributeMasterMeta](#AttributeMasterMeta)? |  yes  |  |
+ | filters | [AttributeMasterFilter](#AttributeMasterFilter)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | logo | String? |  yes  |  |
  | enabledForEndConsumer | Bool? |  yes  |  |
+ | isNested | Bool? |  yes  |  |
+ | schema | [AttributeMaster](#AttributeMaster)? |  yes  |  |
 
 ---
 
@@ -51541,8 +51541,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[String: Any]]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51553,11 +51553,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | status | Int? |  yes  |  |
  | code | String? |  yes  |  |
- | errors | [String: Any]? |  yes  |  |
+ | message | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | errors | [String: Any]? |  yes  |  |
+ | status | Int? |  yes  |  |
 
 ---
 
@@ -51581,21 +51581,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pageSize | Int? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | itemType | String? |  yes  |  |
  | slug | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | name | String? |  yes  |  |
+ | itemType | String? |  yes  |  |
  | isActive | Bool? |  yes  |  |
- | priorityOrder | Int? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
+ | pageNo | Int? |  yes  |  |
+ | pageSize | Int? |  yes  |  |
+ | search | String? |  yes  |  |
  | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | priorityOrder | Int? |  yes  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | name | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | logo | String? |  yes  |  |
- | pageNo | Int? |  yes  |  |
- | search | String? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
 
 ---
 
@@ -51606,8 +51606,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[GetDepartment](#GetDepartment)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51618,11 +51618,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | status | Int? |  yes  |  |
  | code | String? |  yes  |  |
- | errors | [String: Any]? |  yes  |  |
+ | message | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | errors | [String: Any]? |  yes  |  |
+ | status | Int? |  yes  |  |
 
 ---
 
@@ -51633,21 +51633,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | tag | String? |  yes  |  |
- | departments | [String]? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | isPhysical | Bool |  no  |  |
  | slug | String |  no  |  |
- | categories | [String]? |  yes  |  |
- | name | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | createdBy | [String: Any]? |  yes  |  |
+ | departments | [String]? |  yes  |  |
+ | tag | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | isArchived | Bool? |  yes  |  |
+ | isPhysical | Bool |  no  |  |
+ | isActive | Bool? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
  | attributes | [String]? |  yes  |  |
+ | name | String? |  yes  |  |
  | logo | String? |  yes  |  |
+ | isArchived | Bool? |  yes  |  |
+ | categories | [String]? |  yes  |  |
 
 ---
 
@@ -51658,8 +51658,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [ProductTemplate](#ProductTemplate)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51670,36 +51670,36 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandUid | [String: Any]? |  yes  |  |
- | itemCode | [String: Any]? |  yes  |  |
- | variants | [String: Any]? |  yes  |  |
- | countryOfOrigin | [String: Any]? |  yes  |  |
- | hsnCode | [String: Any]? |  yes  |  |
- | moq | [String: Any]? |  yes  |  |
- | sizes | [String: Any]? |  yes  |  |
- | description | [String: Any]? |  yes  |  |
- | isDependent | [String: Any]? |  yes  |  |
- | categorySlug | [String: Any]? |  yes  |  |
- | itemType | [String: Any]? |  yes  |  |
+ | sizeGuide | [String: Any]? |  yes  |  |
  | multiSize | [String: Any]? |  yes  |  |
  | tags | [String: Any]? |  yes  |  |
- | media | [String: Any]? |  yes  |  |
- | teaserTag | [String: Any]? |  yes  |  |
- | currency | [String: Any]? |  yes  |  |
- | trader | [String: Any]? |  yes  |  |
- | productPublish | [String: Any]? |  yes  |  |
- | noOfBoxes | [String: Any]? |  yes  |  |
- | productGroupTag | [String: Any]? |  yes  |  |
- | highlights | [String: Any]? |  yes  |  |
- | customOrder | [String: Any]? |  yes  |  |
- | slug | [String: Any]? |  yes  |  |
- | command | [String: Any]? |  yes  |  |
- | name | [String: Any]? |  yes  |  |
- | isActive | [String: Any]? |  yes  |  |
- | shortDescription | [String: Any]? |  yes  |  |
- | sizeGuide | [String: Any]? |  yes  |  |
- | traderType | [String: Any]? |  yes  |  |
+ | isDependent | [String: Any]? |  yes  |  |
+ | sizes | [String: Any]? |  yes  |  |
  | returnConfig | [String: Any]? |  yes  |  |
+ | description | [String: Any]? |  yes  |  |
+ | brandUid | [String: Any]? |  yes  |  |
+ | name | [String: Any]? |  yes  |  |
+ | itemCode | [String: Any]? |  yes  |  |
+ | slug | [String: Any]? |  yes  |  |
+ | hsnCode | [String: Any]? |  yes  |  |
+ | media | [String: Any]? |  yes  |  |
+ | shortDescription | [String: Any]? |  yes  |  |
+ | trader | [String: Any]? |  yes  |  |
+ | command | [String: Any]? |  yes  |  |
+ | teaserTag | [String: Any]? |  yes  |  |
+ | highlights | [String: Any]? |  yes  |  |
+ | traderType | [String: Any]? |  yes  |  |
+ | moq | [String: Any]? |  yes  |  |
+ | currency | [String: Any]? |  yes  |  |
+ | noOfBoxes | [String: Any]? |  yes  |  |
+ | categorySlug | [String: Any]? |  yes  |  |
+ | productPublish | [String: Any]? |  yes  |  |
+ | countryOfOrigin | [String: Any]? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
+ | itemType | [String: Any]? |  yes  |  |
+ | variants | [String: Any]? |  yes  |  |
+ | isActive | [String: Any]? |  yes  |  |
+ | productGroupTag | [String: Any]? |  yes  |  |
 
 ---
 
@@ -51710,11 +51710,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
  | properties | [Properties](#Properties)? |  yes  |  |
- | type | String? |  yes  |  |
  | required | [String]? |  yes  |  |
  | title | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | description | String? |  yes  |  |
  | definitions | [String: Any]? |  yes  |  |
 
 ---
@@ -51726,8 +51726,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | templateValidation | [String: Any]? |  yes  |  |
  | globalValidation | [GlobalValidation](#GlobalValidation)? |  yes  |  |
+ | templateValidation | [String: Any]? |  yes  |  |
 
 ---
 
@@ -51738,18 +51738,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | tag | String? |  yes  |  |
- | departments | [String]? |  yes  |  |
- | isPhysical | Bool |  no  |  |
  | slug | String |  no  |  |
- | categories | [String]? |  yes  |  |
- | name | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
+ | tag | String? |  yes  |  |
+ | isPhysical | Bool |  no  |  |
  | isActive | Bool? |  yes  |  |
+ | description | String? |  yes  |  |
+ | attributes | [String]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | logo | String? |  yes  |  |
  | id | String? |  yes  |  |
  | isArchived | Bool? |  yes  |  |
- | attributes | [String]? |  yes  |  |
- | logo | String? |  yes  |  |
+ | categories | [String]? |  yes  |  |
 
 ---
 
@@ -51772,8 +51772,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | data | [String: Any]? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -51784,8 +51784,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | countryOfOrigin | [String]? |  yes  |  |
  | hsnCode | [String]? |  yes  |  |
+ | countryOfOrigin | [String]? |  yes  |  |
 
 ---
 
@@ -51796,8 +51796,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | data | [HSNData](#HSNData)? |  yes  |  |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDownloadItemsData](#ProductDownloadItemsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [String]? |  yes  |  |
+ | templates | [String]? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -51816,33 +51829,20 @@ Success
 
  
  
- #### [ProductDownloadItemsData](#ProductDownloadItemsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | templates | [String]? |  yes  |  |
- | brand | [String]? |  yes  |  |
-
----
-
-
- 
- 
  #### [ProductDownloadsItems](#ProductDownloadsItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | data | [ProductDownloadItemsData](#ProductDownloadItemsData)? |  yes  |  |
+ | createdBy | [VerifiedBy](#VerifiedBy)? |  yes  |  |
  | templateTags | [String: Any]? |  yes  |  |
  | status | String? |  yes  |  |
- | createdBy | [VerifiedBy](#VerifiedBy)? |  yes  |  |
- | triggerOn | String? |  yes  |  |
- | id | String? |  yes  |  |
- | taskId | String? |  yes  |  |
- | url | String? |  yes  |  |
- | data | [ProductDownloadItemsData](#ProductDownloadItemsData)? |  yes  |  |
- | completedOn | String? |  yes  |  |
  | sellerId | Double? |  yes  |  |
+ | url | String? |  yes  |  |
+ | triggerOn | String? |  yes  |  |
+ | taskId | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | completedOn | String? |  yes  |  |
 
 ---
 
@@ -51853,8 +51853,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [ProductDownloadsItems](#ProductDownloadsItems)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -51865,8 +51865,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | multivalue | Bool? |  yes  |  |
  | data | [[String: Any]]? |  yes  |  |
+ | multivalue | Bool? |  yes  |  |
 
 ---
 
@@ -51877,8 +51877,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | catalogId | Int? |  yes  |  |
  | name | String |  no  |  |
+ | catalogId | Int? |  yes  |  |
 
 ---
 
@@ -51889,22 +51889,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | facebook | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
- | ajio | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
  | google | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Hierarchy](#Hierarchy)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | department | Int |  no  |  |
- | l2 | Int |  no  |  |
- | l1 | Int |  no  |  |
+ | ajio | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
+ | facebook | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
 
 ---
 
@@ -51916,8 +51903,21 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | landscape | String |  no  |  |
- | portrait | String |  no  |  |
  | logo | String |  no  |  |
+ | portrait | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Hierarchy](#Hierarchy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | l1 | Int |  no  |  |
+ | department | Int |  no  |  |
+ | l2 | Int |  no  |  |
 
 ---
 
@@ -51928,17 +51928,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [Int] |  no  |  |
  | slug | String? |  yes  |  |
- | priority | Int? |  yes  |  |
- | name | String |  no  |  |
- | level | Int |  no  |  |
+ | departments | [Int] |  no  |  |
  | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
+ | priority | Int? |  yes  |  |
  | isActive | Bool |  no  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
  | media | [Media2](#Media2)? |  yes  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
+ | name | String |  no  |  |
  | tryouts | [String]? |  yes  |  |
  | synonyms | [String]? |  yes  |  |
+ | level | Int |  no  |  |
 
 ---
 
@@ -51949,8 +51949,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -51961,23 +51961,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [Int] |  no  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
  | slug | String? |  yes  |  |
- | priority | Int? |  yes  |  |
- | name | String |  no  |  |
- | level | Int |  no  |  |
+ | departments | [Int] |  no  |  |
+ | modifiedOn | String? |  yes  |  |
  | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | isActive | Bool |  no  |  |
- | createdBy | [String: Any]? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | id | String? |  yes  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
- | media | [Media2](#Media2)? |  yes  |  |
  | tryouts | [String]? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | media | [Media2](#Media2)? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String |  no  |  |
+ | uid | Int? |  yes  |  |
  | synonyms | [String]? |  yes  |  |
+ | level | Int |  no  |  |
 
 ---
 
@@ -51988,8 +51988,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[Category](#Category)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -52011,70 +52011,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | success | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderQuantity](#OrderQuantity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isSet | Bool? |  yes  |  |
- | maximum | Int? |  yes  |  |
- | minimum | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [TeaserTag](#TeaserTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | tag | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Trader](#Trader)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | String |  no  |  |
- | name | String |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPublish](#ProductPublish)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | productOnlineDate | String? |  yes  |  |
- | isSet | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomOrder](#CustomOrder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | manufacturingTime | Int? |  yes  |  |
- | isCustomOrder | Bool? |  yes  |  |
- | manufacturingTimeUnit | String? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -52094,74 +52032,109 @@ Success
 
  
  
+ #### [Trader](#Trader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | address | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TeaserTag](#TeaserTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tag | String? |  yes  |  |
+ | url | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderQuantity](#OrderQuantity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isSet | Bool? |  yes  |  |
+ | maximum | Int? |  yes  |  |
+ | minimum | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPublish](#ProductPublish)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isSet | Bool? |  yes  |  |
+ | productOnlineDate | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomOrder](#CustomOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isCustomOrder | Bool? |  yes  |  |
+ | manufacturingTimeUnit | String? |  yes  |  |
+ | manufacturingTime | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ProductCreateUpdate](#ProductCreateUpdate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandUid | Int |  no  |  |
- | itemCode | String |  no  |  |
- | changeRequestId | String? |  yes  |  |
- | templateTag | String |  no  |  |
- | variants | [String: Any]? |  yes  |  |
- | isImageLessProduct | Bool? |  yes  |  |
- | uid | Int? |  yes  |  |
- | countryOfOrigin | String |  no  |  |
- | hsnCode | String |  no  |  |
- | moq | [OrderQuantity](#OrderQuantity)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | description | String? |  yes  |  |
- | isDependent | Bool? |  yes  |  |
+ | companyId | Int |  no  |  |
  | departments | [Int] |  no  |  |
- | categorySlug | String |  no  |  |
- | itemType | String |  no  |  |
+ | sizeGuide | String? |  yes  |  |
  | multiSize | Bool? |  yes  |  |
  | tags | [String]? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | companyId | Int |  no  |  |
- | teaserTag | [TeaserTag](#TeaserTag)? |  yes  |  |
- | currency | String |  no  |  |
- | trader | [Trader](#Trader)? |  yes  |  |
- | requester | String? |  yes  |  |
- | noOfBoxes | Int? |  yes  |  |
- | productPublish | [ProductPublish](#ProductPublish)? |  yes  |  |
- | productGroupTag | [String]? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | customOrder | [CustomOrder](#CustomOrder)? |  yes  |  |
- | slug | String |  no  |  |
- | name | String |  no  |  |
- | isActive | Bool? |  yes  |  |
- | shortDescription | String? |  yes  |  |
- | sizeGuide | String? |  yes  |  |
- | traderType | String? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | brandUid | Int |  no  |  |
+ | description | String? |  yes  |  |
  | returnConfig | [ReturnConfig](#ReturnConfig)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Logo](#Logo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
- | aspectRatioF | Int? |  yes  |  |
- | secureUrl | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Brand](#Brand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | changeRequestId | String? |  yes  |  |
+ | name | String |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | itemCode | String |  no  |  |
+ | slug | String |  no  |  |
+ | hsnCode | String |  no  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | trader | [Trader](#Trader)? |  yes  |  |
+ | teaserTag | [TeaserTag](#TeaserTag)? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
+ | isImageLessProduct | Bool? |  yes  |  |
+ | templateTag | String |  no  |  |
+ | requester | String? |  yes  |  |
+ | traderType | String? |  yes  |  |
+ | moq | [OrderQuantity](#OrderQuantity)? |  yes  |  |
+ | currency | String |  no  |  |
+ | noOfBoxes | Int? |  yes  |  |
+ | categorySlug | String |  no  |  |
+ | productPublish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | countryOfOrigin | String |  no  |  |
  | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | logo | [Logo](#Logo)? |  yes  |  |
+ | customOrder | [CustomOrder](#CustomOrder)? |  yes  |  |
+ | itemType | String |  no  |  |
+ | variants | [String: Any]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | productGroupTag | [String]? |  yes  |  |
 
 ---
 
@@ -52172,10 +52145,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secureUrl | String? |  yes  |  |
  | aspectRatio | String? |  yes  |  |
  | aspectRatioF | Double? |  yes  |  |
  | url | String? |  yes  |  |
+ | secureUrl | String? |  yes  |  |
 
 ---
 
@@ -52186,8 +52159,35 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | productOnlineDate | Int? |  yes  |  |
  | isSet | Bool? |  yes  |  |
+ | productOnlineDate | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Logo](#Logo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspectRatio | String? |  yes  |  |
+ | aspectRatioF | Int? |  yes  |  |
+ | secureUrl | String? |  yes  |  |
+ | url | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Brand](#Brand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | logo | [Logo](#Logo)? |  yes  |  |
 
 ---
 
@@ -52198,43 +52198,43 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandUid | Int? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | templateTag | String? |  yes  |  |
- | variants | [String: Any]? |  yes  |  |
- | brand | [Brand](#Brand)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | countryOfOrigin | String? |  yes  |  |
- | images | [[Image](#Image)]? |  yes  |  |
- | hsnCode | String? |  yes  |  |
- | moq | [String: Any]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | allSizes | [[String: Any]]? |  yes  |  |
- | sizes | [[String: Any]]? |  yes  |  |
- | description | String? |  yes  |  |
- | l3Mapping | [String]? |  yes  |  |
- | departments | [Int]? |  yes  |  |
- | isDependent | Bool? |  yes  |  |
- | categorySlug | String? |  yes  |  |
- | itemType | String? |  yes  |  |
- | multiSize | Bool? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | color | String? |  yes  |  |
- | isPhysical | Bool? |  yes  |  |
- | currency | String? |  yes  |  |
- | productPublish | [ProductPublished](#ProductPublished)? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | categoryUid | Int? |  yes  |  |
- | customOrder | [String: Any]? |  yes  |  |
- | primaryColor | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | name | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | shortDescription | String? |  yes  |  |
  | sizeGuide | String? |  yes  |  |
+ | departments | [Int]? |  yes  |  |
+ | multiSize | Bool? |  yes  |  |
+ | l3Mapping | [String]? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | sizes | [[String: Any]]? |  yes  |  |
+ | brandUid | Int? |  yes  |  |
+ | description | String? |  yes  |  |
+ | allSizes | [[String: Any]]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | images | [[Image](#Image)]? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | hsnCode | String? |  yes  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
  | id | String? |  yes  |  |
+ | templateTag | String? |  yes  |  |
+ | moq | [String: Any]? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | categorySlug | String? |  yes  |  |
+ | productPublish | [ProductPublished](#ProductPublished)? |  yes  |  |
+ | countryOfOrigin | String? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | color | String? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | isPhysical | Bool? |  yes  |  |
+ | categoryUid | Int? |  yes  |  |
+ | variants | [String: Any]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | primaryColor | String? |  yes  |  |
 
 ---
 
@@ -52245,8 +52245,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[Product](#Product)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -52282,23 +52282,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | companyId | Int |  no  |  |
  | modifiedOn | String? |  yes  |  |
+ | cancelled | Int? |  yes  |  |
+ | createdOn | String |  no  |  |
+ | cancelledRecords | [[String: Any]]? |  yes  |  |
+ | trackingUrl | String? |  yes  |  |
  | modifiedBy | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | succeed | Int? |  yes  |  |
+ | createdBy | [UserInfo1](#UserInfo1)? |  yes  |  |
  | filePath | String? |  yes  |  |
  | customTemplateTag | String? |  yes  |  |
- | companyId | Int |  no  |  |
- | templateTag | String? |  yes  |  |
- | createdOn | String |  no  |  |
- | createdBy | [UserInfo1](#UserInfo1)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | stage | String? |  yes  |  |
- | cancelledRecords | [[String: Any]]? |  yes  |  |
- | failed | Int? |  yes  |  |
  | total | Int |  no  |  |
- | succeed | Int? |  yes  |  |
- | trackingUrl | String? |  yes  |  |
- | cancelled | Int? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | failed | Int? |  yes  |  |
  | failedRecords | [[String: Any]]? |  yes  |  |
+ | templateTag | String? |  yes  |  |
 
 ---
 
@@ -52310,8 +52310,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | username | String? |  yes  |  |
- | userId | String? |  yes  |  |
  | fullName | String? |  yes  |  |
+ | userId | String? |  yes  |  |
 
 ---
 
@@ -52322,22 +52322,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | filePath | String? |  yes  |  |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
  | companyId | Int? |  yes  |  |
- | templateTag | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | stage | String? |  yes  |  |
- | cancelledRecords | [String]? |  yes  |  |
- | failed | Int? |  yes  |  |
- | total | Int? |  yes  |  |
- | succeed | Int? |  yes  |  |
- | template | [ProductTemplate](#ProductTemplate)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | cancelled | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | template | [ProductTemplate](#ProductTemplate)? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | succeed | Int? |  yes  |  |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | filePath | String? |  yes  |  |
+ | cancelledRecords | [String]? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | failed | Int? |  yes  |  |
  | failedRecords | [String]? |  yes  |  |
+ | templateTag | String? |  yes  |  |
 
 ---
 
@@ -52348,8 +52348,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [ProductBulkRequest](#ProductBulkRequest)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -52360,10 +52360,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | templateTag | String |  no  |  |
  | data | [[String: Any]] |  no  |  |
- | batchId | String |  no  |  |
  | companyId | Int |  no  |  |
+ | batchId | String |  no  |  |
+ | templateTag | String |  no  |  |
 
 ---
 
@@ -52396,9 +52396,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | companyId | Int? |  yes  |  |
  | user | [String: Any] |  no  |  |
  | url | String |  no  |  |
- | companyId | Int? |  yes  |  |
 
 ---
 
@@ -52410,8 +52410,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | username | String? |  yes  |  |
- | userId | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
+ | userId | String? |  yes  |  |
 
 ---
 
@@ -52422,23 +52422,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filePath | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | modifiedBy | [UserCommon](#UserCommon)? |  yes  |  |
  | companyId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | createdBy | [UserCommon](#UserCommon)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | stage | String? |  yes  |  |
- | cancelledRecords | [String]? |  yes  |  |
- | id | String? |  yes  |  |
- | failed | Int? |  yes  |  |
- | retry | Int? |  yes  |  |
- | succeed | Int? |  yes  |  |
- | total | Int? |  yes  |  |
- | trackingUrl | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | cancelled | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | retry | Int? |  yes  |  |
+ | trackingUrl | String? |  yes  |  |
+ | modifiedBy | [UserCommon](#UserCommon)? |  yes  |  |
+ | succeed | Int? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | createdBy | [UserCommon](#UserCommon)? |  yes  |  |
+ | filePath | String? |  yes  |  |
+ | cancelledRecords | [String]? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | failed | Int? |  yes  |  |
  | failedRecords | [String]? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -52449,8 +52449,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[Items](#Items)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -52461,9 +52461,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
  | companyId | Int? |  yes  |  |
+ | size | String? |  yes  |  |
 
 ---
 
@@ -52522,8 +52522,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  |  |
  | sizeDistribution | [SizeDistribution](#SizeDistribution) |  no  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -52534,22 +52534,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isSet | Bool? |  yes  |  |
- | priceTransfer | Double? |  yes  |  |
- | itemWeightUnitOfMeasure | String? |  yes  |  |
- | quantity | Int |  no  |  |
- | priceEffective | Double |  no  |  |
- | itemWidth | Double? |  yes  |  |
- | identifiers | [[GTIN](#GTIN)] |  no  |  |
- | storeCode | String |  no  |  |
- | itemDimensionsUnitOfMeasure | String? |  yes  |  |
- | currency | String |  no  |  |
+ | price | Double |  no  |  |
  | size | String |  no  |  |
- | set | [InventorySet](#InventorySet)? |  yes  |  |
  | itemHeight | Double? |  yes  |  |
  | itemLength | Double? |  yes  |  |
+ | identifiers | [[GTIN](#GTIN)] |  no  |  |
+ | quantity | Int |  no  |  |
+ | currency | String |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | priceTransfer | Double? |  yes  |  |
+ | storeCode | String |  no  |  |
+ | itemDimensionsUnitOfMeasure | String? |  yes  |  |
  | itemWeight | Double? |  yes  |  |
- | price | Double |  no  |  |
+ | isSet | Bool? |  yes  |  |
+ | set | [InventorySet](#InventorySet)? |  yes  |  |
+ | itemWidth | Double? |  yes  |  |
+ | itemWeightUnitOfMeasure | String? |  yes  |  |
 
 ---
 
@@ -52560,8 +52560,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
  | brandUid | Int? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | itemCode | String? |  yes  |  |
 
 ---
@@ -52573,9 +52573,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | companyId | Int |  no  |  |
  | sizes | [[InvSize](#InvSize)] |  no  |  |
  | item | [ItemQuery](#ItemQuery) |  no  |  |
- | companyId | Int |  no  |  |
 
 ---
 
@@ -52586,19 +52586,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priceTransfer | Int? |  yes  |  |
- | sellerIdentifier | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | priceEffective | Int? |  yes  |  |
- | identifiers | [String: Any]? |  yes  |  |
- | currency | String? |  yes  |  |
- | size | String? |  yes  |  |
- | uid | String? |  yes  |  |
- | inventoryUpdatedOn | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
- | sellableQuantity | Int? |  yes  |  |
+ | inventoryUpdatedOn | String? |  yes  |  |
  | price | Int? |  yes  |  |
+ | size | String? |  yes  |  |
+ | sellerIdentifier | Int? |  yes  |  |
+ | identifiers | [String: Any]? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | priceEffective | Int? |  yes  |  |
+ | priceTransfer | Int? |  yes  |  |
+ | sellableQuantity | Int? |  yes  |  |
  | store | [String: Any]? |  yes  |  |
+ | uid | String? |  yes  |  |
 
 ---
 
@@ -52609,8 +52609,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
+ | size | String? |  yes  |  |
  | locationId | Int? |  yes  |  |
 
 ---
@@ -52645,21 +52645,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filePath | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | createdBy | [String: Any]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | stage | String? |  yes  |  |
- | cancelledRecords | [String]? |  yes  |  |
- | id | String? |  yes  |  |
- | failed | Int? |  yes  |  |
- | succeed | Int? |  yes  |  |
- | total | Int? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | cancelled | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | succeed | Int? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | filePath | String? |  yes  |  |
+ | cancelledRecords | [String]? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | failed | Int? |  yes  |  |
  | failedRecords | [String]? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -52670,8 +52670,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[BulkInventoryGetItems](#BulkInventoryGetItems)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -52682,23 +52682,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isSet | Bool? |  yes  |  |
- | priceTransfer | Double? |  yes  |  |
- | sellerIdentifier | String |  no  |  |
- | itemWeightUnitOfMeasure | String? |  yes  |  |
- | quantity | Int |  no  |  |
- | priceEffective | Double |  no  |  |
- | itemWidth | Double? |  yes  |  |
- | identifiers | [[String: Any]]? |  yes  |  |
- | storeCode | String |  no  |  |
- | itemDimensionsUnitOfMeasure | String? |  yes  |  |
- | currency | String |  no  |  |
+ | price | Double |  no  |  |
  | size | String? |  yes  |  |
- | set | [InventorySet](#InventorySet)? |  yes  |  |
  | itemHeight | Double? |  yes  |  |
  | itemLength | Double? |  yes  |  |
+ | identifiers | [[String: Any]]? |  yes  |  |
+ | quantity | Int |  no  |  |
+ | currency | String |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | priceTransfer | Double? |  yes  |  |
+ | storeCode | String |  no  |  |
+ | sellerIdentifier | String |  no  |  |
+ | itemDimensionsUnitOfMeasure | String? |  yes  |  |
  | itemWeight | Double? |  yes  |  |
- | price | Double |  no  |  |
+ | isSet | Bool? |  yes  |  |
+ | set | [InventorySet](#InventorySet)? |  yes  |  |
+ | itemWidth | Double? |  yes  |  |
+ | itemWeightUnitOfMeasure | String? |  yes  |  |
 
 ---
 
@@ -52709,10 +52709,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | [[Size1](#Size1)] |  no  |  |
- | user | [String: Any]? |  yes  |  |
  | batchId | String |  no  |  |
  | companyId | Int |  no  |  |
+ | user | [String: Any]? |  yes  |  |
+ | sizes | [[Size1](#Size1)] |  no  |  |
 
 ---
 
@@ -52723,8 +52723,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
  | brand | [Int]? |  yes  |  |
+ | type | String? |  yes  |  |
  | store | [Int]? |  yes  |  |
 
 ---
@@ -52736,13 +52736,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | completedOn | String? |  yes  |  |
  | status | String? |  yes  |  |
+ | sellerId | Int |  no  |  |
+ | requestParams | [String: Any]? |  yes  |  |
  | triggerOn | String? |  yes  |  |
  | taskId | String |  no  |  |
  | url | String? |  yes  |  |
- | requestParams | [String: Any]? |  yes  |  |
- | completedOn | String? |  yes  |  |
- | sellerId | Int |  no  |  |
 
 ---
 
@@ -52753,8 +52753,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
  | display | String? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
@@ -52777,16 +52777,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | threshold1 | Double |  no  |  |
  | companyId | Int |  no  |  |
- | tax1 | Double |  no  |  |
- | hs2Code | String |  no  |  |
- | taxOnEsp | Bool? |  yes  |  |
  | threshold2 | Double? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | tax1 | Double |  no  |  |
  | hsnCode | String |  no  |  |
  | taxOnMrp | Bool |  no  |  |
+ | threshold1 | Double |  no  |  |
+ | uid | Int? |  yes  |  |
  | tax2 | Double? |  yes  |  |
+ | taxOnEsp | Bool? |  yes  |  |
+ | hs2Code | String |  no  |  |
 
 ---
 
@@ -52797,17 +52797,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | threshold1 | Double? |  yes  |  |
  | companyId | Int? |  yes  |  |
- | tax1 | Double? |  yes  |  |
- | hs2Code | String? |  yes  |  |
- | taxOnEsp | Bool? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | threshold2 | Double? |  yes  |  |
- | id | String? |  yes  |  |
+ | tax1 | Double? |  yes  |  |
  | hsnCode | String? |  yes  |  |
  | taxOnMrp | Bool? |  yes  |  |
+ | threshold1 | Double? |  yes  |  |
  | tax2 | Double? |  yes  |  |
+ | taxOnEsp | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | hs2Code | String? |  yes  |  |
 
 ---
 
@@ -52829,11 +52829,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | String? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
  | size | Int? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | current | String? |  yes  |  |
  | itemTotal | Int? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
 
 ---
 
@@ -52844,8 +52844,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [PageResponse](#PageResponse)? |  yes  |  |
  | items | [[HsnCodesObject](#HsnCodesObject)]? |  yes  |  |
+ | page | [PageResponse](#PageResponse)? |  yes  |  |
 
 ---
 
@@ -52878,14 +52878,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [String]? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | slug | String? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | departments | [String]? |  yes  |  |
  | name | String? |  yes  |  |
  | uid | Int? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
- | discount | String? |  yes  |  |
 
 ---
 
@@ -52896,8 +52896,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
  | items | [[BrandItem](#BrandItem)]? |  yes  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -52930,29 +52930,17 @@ Success
 
  
  
- #### [DepartmentIdentifier](#DepartmentIdentifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | slug | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [ThirdLevelChild](#ThirdLevelChild)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | slug | String? |  yes  |  |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | childs | [[String: Any]]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52963,13 +52951,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | slug | String? |  yes  |  |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | childs | [[ThirdLevelChild](#ThirdLevelChild)]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52980,13 +52968,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | slug | String? |  yes  |  |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | childs | [[SecondLevelChild](#SecondLevelChild)]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52997,12 +52985,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | slug | String? |  yes  |  |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | childs | [[Child](#Child)]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -53013,8 +53001,20 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | department | String? |  yes  |  |
  | items | [[CategoryItems](#CategoryItems)]? |  yes  |  |
+ | department | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentIdentifier](#DepartmentIdentifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -53025,8 +53025,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [[DepartmentIdentifier](#DepartmentIdentifier)]? |  yes  |  |
  | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)]? |  yes  |  |
+ | departments | [[DepartmentIdentifier](#DepartmentIdentifier)]? |  yes  |  |
 
 ---
 
@@ -53037,10 +53037,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
- | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -53051,33 +53051,78 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hasVariant | Bool? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | promoMeta | [String: Any]? |  yes  |  |
- | productOnlineDate | String? |  yes  |  |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | description | String? |  yes  |  |
- | itemType | String? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | medias | [[Media1](#Media1)]? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
- | ratingCount | Int? |  yes  |  |
- | color | String? |  yes  |  |
- | teaserTag | [String: Any]? |  yes  |  |
- | type | String? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | slug | String |  no  |  |
- | name | String? |  yes  |  |
  | similars | [String]? |  yes  |  |
- | shortDescription | String? |  yes  |  |
- | rating | Double? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | tryouts | [String]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | slug | String |  no  |  |
  | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | hasVariant | Bool? |  yes  |  |
+ | teaserTag | [String: Any]? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | rating | Double? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
+ | ratingCount | Int? |  yes  |  |
+ | promoMeta | [String: Any]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | color | String? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | productOnlineDate | String? |  yes  |  |
+ | medias | [[Media1](#Media1)]? |  yes  |  |
 
 ---
 
 
+
+
+ 
+ 
+ #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landmark | String? |  yes  |  |
+ | country | String |  no  |  |
+ | state | String |  no  |  |
+ | pincode | Int |  no  |  |
+ | address1 | String |  no  |  |
+ | latitude | Double |  no  |  |
+ | longitude | Double |  no  |  |
+ | addressType | String |  no  |  |
+ | countryCode | String? |  yes  |  |
+ | city | String |  no  |  |
+ | address2 | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SellerPhoneNumber](#SellerPhoneNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | number | String |  no  |  |
+ | countryCode | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ContactDetails](#ContactDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | emails | [String]? |  yes  |  |
+ | phone | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+
+---
 
 
  
@@ -53086,23 +53131,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
  | url | String? |  yes  |  |
  | legalName | String? |  yes  |  |
- | value | String |  no  |  |
  | verified | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [BusinessCountryInfo](#BusinessCountryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | countryCode | String? |  yes  |  |
- | country | String? |  yes  |  |
+ | value | String |  no  |  |
+ | type | String |  no  |  |
 
 ---
 
@@ -53131,45 +53164,55 @@ Success
 
  
  
+ #### [UpdateCompany](#UpdateCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rejectReason | String? |  yes  |  |
+ | businessType | String? |  yes  |  |
+ | companyType | String? |  yes  |  |
+ | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)]? |  yes  |  |
+ | businessInfo | String? |  yes  |  |
+ | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | franchiseEnabled | Bool? |  yes  |  |
+ | name | String? |  yes  |  |
+ | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BusinessCountryInfo](#BusinessCountryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | countryCode | String? |  yes  |  |
+ | country | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [GetAddressSerializer](#GetAddressSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | state | String? |  yes  |  |
- | longitude | Double? |  yes  |  |
+ | landmark | String? |  yes  |  |
  | country | String? |  yes  |  |
- | address2 | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
  | address1 | String? |  yes  |  |
  | latitude | Double? |  yes  |  |
+ | longitude | Double? |  yes  |  |
  | addressType | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
  | countryCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
  | city | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SellerPhoneNumber](#SellerPhoneNumber)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | countryCode | Int |  no  |  |
- | number | String |  no  |  |
-
----
-
-
- 
- 
- #### [ContactDetails](#ContactDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | phone | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | emails | [String]? |  yes  |  |
+ | address2 | String? |  yes  |  |
 
 ---
 
@@ -53180,70 +53223,27 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | documents | [[Document](#Document)]? |  yes  |  |
- | name | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
- | businessInfo | String? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
- | uid | Int |  no  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
  | stage | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | businessType | String |  no  |  |
- | mode | String? |  yes  |  |
- | companyType | String |  no  |  |
-
----
-
-
- 
- 
- #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | state | String |  no  |  |
- | longitude | Double |  no  |  |
- | country | String |  no  |  |
- | address1 | String |  no  |  |
- | address2 | String? |  yes  |  |
- | latitude | Double |  no  |  |
- | addressType | String |  no  |  |
- | pincode | Int |  no  |  |
- | countryCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | city | String |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateCompany](#UpdateCompany)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | documents | [[Document](#Document)]? |  yes  |  |
- | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
  | businessInfo | String? |  yes  |  |
- | name | String? |  yes  |  |
- | rejectReason | String? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)]? |  yes  |  |
+ | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
  | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
- | businessType | String? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | businessType | String |  no  |  |
+ | companyType | String |  no  |  |
+ | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | franchiseEnabled | Bool? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | uid | Int |  no  |  |
+ | mode | String? |  yes  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | notificationEmails | [String]? |  yes  |  |
- | companyType | String? |  yes  |  |
 
 ---
 
@@ -53267,12 +53267,44 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | product | [DocumentsObj](#DocumentsObj)? |  yes  |  |
- | brand | [DocumentsObj](#DocumentsObj)? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | companyDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | stage | String? |  yes  |  |
  | store | [DocumentsObj](#DocumentsObj)? |  yes  |  |
  | storeDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
- | stage | String? |  yes  |  |
- | companyDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | brand | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandBannerSerializer](#BrandBannerSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | portrait | String? |  yes  |  |
+ | landscape | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | synonyms | [String]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | brandTier | String? |  yes  |  |
+ | logo | String |  no  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | localeLanguage | [String: Any]? |  yes  |  |
+ | name | String |  no  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -53284,20 +53316,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | userId | String? |  yes  |  |
- | username | String? |  yes  |  |
  | contact | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [BrandBannerSerializer](#BrandBannerSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | landscape | String? |  yes  |  |
- | portrait | String? |  yes  |  |
+ | username | String? |  yes  |  |
 
 ---
 
@@ -53308,44 +53328,37 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdOn | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | logo | String? |  yes  |  |
- | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
- | slugKey | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | name | String |  no  |  |
- | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | rejectReason | String? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
  | modifiedOn | String? |  yes  |  |
+ | rejectReason | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | slugKey | String? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | description | String? |  yes  |  |
  | localeLanguage | [String: Any]? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
- | stage | String? |  yes  |  |
+ | name | String |  no  |  |
+ | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer)
+ #### [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | String |  no  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | name | String |  no  |  |
+ | company | Int |  no  |  |
  | uid | Int? |  yes  |  |
- | brandTier | String? |  yes  |  |
- | description | String? |  yes  |  |
- | localeLanguage | [String: Any]? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
- | companyId | Int? |  yes  |  |
+ | brands | [Int] |  no  |  |
 
 ---
 
@@ -53356,19 +53369,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | uid | Int? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | name | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | businessType | String? |  yes  |  |
+ | companyType | String? |  yes  |  |
  | rejectReason | String? |  yes  |  |
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
- | uid | Int? |  yes  |  |
- | businessType | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
  | stage | String? |  yes  |  |
- | companyType | String? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -53379,18 +53392,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdOn | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer)? |  yes  |  |
- | rejectReason | String? |  yes  |  |
  | uid | Int? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | stage | String? |  yes  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | rejectReason | String? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer)? |  yes  |  |
+ | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -53409,25 +53422,26 @@ Success
 
  
  
- #### [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer)
+ #### [LocationTimingSerializer](#LocationTimingSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | company | Int |  no  |  |
- | brands | [Int] |  no  |  |
+ | hour | Int? |  yes  |  |
+ | minute | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [LocationIntegrationType](#LocationIntegrationType)
+ #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | inventory | String? |  yes  |  |
- | order | String? |  yes  |  |
+ | opening | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
+ | open | Bool |  no  |  |
+ | closing | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
+ | weekday | String |  no  |  |
 
 ---
 
@@ -53446,52 +53460,13 @@ Success
 
  
  
- #### [LocationManagerSerializer](#LocationManagerSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | String? |  yes  |  |
- | name | String? |  yes  |  |
- | mobileNo | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
-
----
-
-
- 
- 
- #### [LocationTimingSerializer](#LocationTimingSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minute | Int? |  yes  |  |
- | hour | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | open | Bool |  no  |  |
- | opening | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
- | closing | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
- | weekday | String |  no  |  |
-
----
-
-
- 
- 
  #### [InvoiceCredSerializer](#InvoiceCredSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
  | password | String? |  yes  |  |
  | username | String? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
 
 ---
 
@@ -53502,8 +53477,81 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | eInvoice | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
  | eWaybill | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
+ | eInvoice | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationManagerSerializer](#LocationManagerSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobileNo | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
+ | email | String? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer1](#GetAddressSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landmark | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
+ | longitude | Double? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | address2 | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationSerializer](#LocationSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company | Int |  no  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | code | String |  no  |  |
+ | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
+ | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
+ | displayName | String |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | storeType | String? |  yes  |  |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | name | String |  no  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | address | [GetAddressSerializer1](#GetAddressSerializer1) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationIntegrationType](#LocationIntegrationType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order | String? |  yes  |  |
+ | inventory | String? |  yes  |  |
 
 ---
 
@@ -53514,31 +53562,31 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | documents | [[Document](#Document)]? |  yes  |  |
- | integrationType | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
- | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | name | String |  no  |  |
- | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | displayName | String |  no  |  |
- | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | phoneNumber | String |  no  |  |
- | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
  | stage | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | code | String |  no  |  |
- | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
+ | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
  | storeType | String? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
+ | phoneNumber | String |  no  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | integrationType | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | name | String |  no  |  |
+ | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | code | String |  no  |  |
+ | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
 
 ---
 
@@ -53551,54 +53599,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[GetLocationSerializer](#GetLocationSerializer)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetAddressSerializer1](#GetAddressSerializer1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | state | String? |  yes  |  |
- | longitude | Double? |  yes  |  |
- | country | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | address1 | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
- | addressType | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | city | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [LocationSerializer](#LocationSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | String |  no  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
- | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | name | String |  no  |  |
- | notificationEmails | [String]? |  yes  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | uid | Int? |  yes  |  |
- | address | [GetAddressSerializer1](#GetAddressSerializer1) |  no  |  |
- | warnings | [String: Any]? |  yes  |  |
- | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | storeType | String? |  yes  |  |
- | stage | String? |  yes  |  |
- | company | Int |  no  |  |
- | displayName | String |  no  |  |
 
 ---
 
