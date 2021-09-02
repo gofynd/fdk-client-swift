@@ -281,37 +281,37 @@
 
 * ## [Catalog](#Catalog)
   * Methods
-    * [deleteSearchKeywords](#deletesearchkeywords)
-    * [updateSearchKeywords](#updatesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
-    * [createCustomKeyword](#createcustomkeyword)
+    * [updateSearchKeywords](#updatesearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [createCustomKeyword](#createcustomkeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [createCustomAutocompleteRule](#createcustomautocompleterule)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteConfig](#getautocompleteconfig)
-    * [createProductBundle](#createproductbundle)
+    * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getProductBundle](#getproductbundle)
-    * [updateProductBundle](#updateproductbundle)
+    * [createProductBundle](#createproductbundle)
     * [getProductBundleDetail](#getproductbundledetail)
-    * [createSizeGuide](#createsizeguide)
+    * [updateProductBundle](#updateproductbundle)
     * [getSizeGuides](#getsizeguides)
-    * [updateSizeGuide](#updatesizeguide)
+    * [createSizeGuide](#createsizeguide)
     * [getSizeGuide](#getsizeguide)
+    * [updateSizeGuide](#updatesizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurations](#getconfigurations)
-    * [createConfigurationByType](#createconfigurationbytype)
+    * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurationByType](#getconfigurationbytype)
+    * [createConfigurationByType](#createconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [createCollection](#createcollection)
     * [getAllCollections](#getallcollections)
+    * [createCollection](#createcollection)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
-    * [addCollectionItems](#addcollectionitems)
+    * [deleteCollection](#deletecollection)
     * [getCollectionItems](#getcollectionitems)
+    * [addCollectionItems](#addcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -332,40 +332,40 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [createCategories](#createcategories)
     * [listCategories](#listcategories)
-    * [updateCategory](#updatecategory)
+    * [createCategories](#createcategories)
     * [getCategoryData](#getcategorydata)
-    * [createProduct](#createproduct)
+    * [updateCategory](#updatecategory)
     * [getProducts](#getproducts)
-    * [deleteProduct](#deleteproduct)
-    * [editProduct](#editproduct)
+    * [createProduct](#createproduct)
     * [getProduct](#getproduct)
+    * [editProduct](#editproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
-    * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [createProductsInBulk](#createproductsinbulk)
+    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [getCompanyTags](#getcompanytags)
-    * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [getProductAssetsInBulk](#getproductassetsinbulk)
+    * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [addInventory](#addinventory)
     * [getInventoryBySize](#getinventorybysize)
+    * [addInventory](#addinventory)
     * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
     * [deleteInventory](#deleteinventory)
-    * [createBulkInventoryJob](#createbulkinventoryjob)
     * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
-    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
+    * [createBulkInventoryJob](#createbulkinventoryjob)
     * [createBulkInventory](#createbulkinventory)
-    * [createInventoryExportJob](#createinventoryexportjob)
+    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [getInventoryExport](#getinventoryexport)
+    * [createInventoryExportJob](#createinventoryexportjob)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [createHsnCode](#createhsncode)
     * [getAllHsnCodes](#getallhsncodes)
-    * [updateHsnCode](#updatehsncode)
+    * [createHsnCode](#createhsncode)
     * [getHsnCode](#gethsncode)
+    * [updateHsnCode](#updatehsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -377,18 +377,18 @@
 
 * ## [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
+    * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -556,6 +556,7 @@ Get countries, states, cities
 
 
 
+
 ```swift
 common.getLocations(locationType: locationType, id: id) { (response, error) in
     // Use response
@@ -614,8 +615,9 @@ Gets the list of company level tickets and/or ticket filters depending on query 
 
 
 
+
 ```swift
-lead.getTickets(companyId: companyId, items: items, filters: filters, q: q, status: status, priority: priority, category: category, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -629,7 +631,7 @@ lead.getTickets(companyId: companyId, items: items, filters: filters, q: q, stat
 | filters | Bool? | no | Decides that the reponse will contain the ticket filters |   
 | q | String? | no | Search through ticket titles and description |   
 | status | String? | no | Filter tickets on status |   
-| priority | PriorityEnum? | no | Filter tickets on priority |   
+| priority | [String: Any]? | no | Filter tickets on priority |   
 | category | String? | no | Filter tickets on category |   
 | pageNo | Int? | no | The page number to navigate through the given set of results. |   
 | pageSize | Int? | no | Number of items to retrieve in each page. Default is 12. |  
@@ -1048,8 +1050,9 @@ Creates a company level ticket
 
 
 
+
 ```swift
-lead.createTicket(companyId: companyId, body: body) { (response, error) in
+client.lead.createTicket(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1059,7 +1062,7 @@ lead.createTicket(companyId: companyId, body: body) { (response, error) in
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID for which the data will be returned |  
-| body | AddTicketPayload |  no  | Request body |
+| body | AddTicketPayload | yes | Request body |
 
 
 Creates a company level ticket
@@ -1298,8 +1301,9 @@ Gets the list of Application level Tickets and/or ticket filters depending on qu
 
 
 
+
 ```swift
-lead.getTickets(companyId: companyId, applicationId: applicationId, items: items, filters: filters, q: q, status: status, priority: priority, category: category) { (response, error) in
+client.application("<APPLICATION_ID>").lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category) { (response, error) in
     // Use response
 }
 ```
@@ -1314,7 +1318,7 @@ lead.getTickets(companyId: companyId, applicationId: applicationId, items: items
 | filters | Bool? | no | Decides that the reponse will contain the ticket filters |   
 | q | String? | no | Search through ticket titles and description |   
 | status | String? | no | Filter tickets on status |   
-| priority | PriorityEnum? | no | Filter tickets on priority |   
+| priority | [String: Any]? | no | Filter tickets on priority |   
 | category | String? | no | Filter tickets on category |  
 
 
@@ -1731,8 +1735,9 @@ Retreives ticket details of a company level ticket with ticket ID
 
 
 
+
 ```swift
-lead.getTicket(companyId: companyId, id: id) { (response, error) in
+client.lead.getTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1982,8 +1987,9 @@ Edits ticket details of a company level ticket
 
 
 
+
 ```swift
-lead.editTicket(companyId: companyId, id: id, body: body) { (response, error) in
+client.lead.editTicket(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1994,7 +2000,7 @@ lead.editTicket(companyId: companyId, id: id, body: body) { (response, error) in
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID of ticket to be edited |  
-| body | EditTicketPayload |  no  | Request body |
+| body | EditTicketPayload | yes | Request body |
 
 
 Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
@@ -2233,8 +2239,9 @@ Retreives ticket details of a application level ticket
 
 
 
+
 ```swift
-lead.getTicket(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").lead.getTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -2486,8 +2493,9 @@ Edits ticket details of a application level ticket
 
 
 
+
 ```swift
-lead.editTicket(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").lead.editTicket(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2499,7 +2507,7 @@ lead.editTicket(companyId: companyId, applicationId: applicationId, id: id, body
 | companyId | String | yes | Company ID of the application |   
 | applicationId | String | yes | Application ID for ticket |   
 | id | String | yes | Ticket ID of ticket to be edited |  
-| body | EditTicketPayload |  no  | Request body |
+| body | EditTicketPayload | yes | Request body |
 
 
 Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
@@ -2739,8 +2747,9 @@ Create history for specific company level ticket
 
 
 
+
 ```swift
-lead.createHistory(companyId: companyId, id: id, body: body) { (response, error) in
+client.lead.createHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2751,7 +2760,7 @@ lead.createHistory(companyId: companyId, id: id, body: body) { (response, error)
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID for which history is created |  
-| body | TicketHistoryPayload |  no  | Request body |
+| body | TicketHistoryPayload | yes | Request body |
 
 
 Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
@@ -2834,8 +2843,9 @@ Gets history list for specific company level ticket
 
 
 
+
 ```swift
-lead.getTicketHistory(companyId: companyId, id: id) { (response, error) in
+client.lead.getTicketHistory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3033,8 +3043,9 @@ Gets a list of feedback submitted against that ticket
 
 
 
+
 ```swift
-lead.getFeedbacks(companyId: companyId, id: id) { (response, error) in
+client.lead.getFeedbacks(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3115,8 +3126,9 @@ Submit a response for feeback form against that ticket
 
 
 
+
 ```swift
-lead.submitFeedback(companyId: companyId, id: id, body: body) { (response, error) in
+client.lead.submitFeedback(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3127,7 +3139,7 @@ lead.submitFeedback(companyId: companyId, id: id, body: body) { (response, error
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID for which feedback is to be submitted |  
-| body | TicketFeedbackPayload |  no  | Request body |
+| body | TicketFeedbackPayload | yes | Request body |
 
 
 Submit a response for feeback form against that ticket
@@ -3193,8 +3205,9 @@ Create history for specific application level ticket
 
 
 
+
 ```swift
-lead.createHistory(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").lead.createHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3206,7 +3219,7 @@ lead.createHistory(companyId: companyId, applicationId: applicationId, id: id, b
 | companyId | String | yes | Company ID of the application |   
 | applicationId | String | yes | Application ID for ticket |   
 | id | String | yes | Ticket ID for which history is created |  
-| body | TicketHistoryPayload |  no  | Request body |
+| body | TicketHistoryPayload | yes | Request body |
 
 
 Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
@@ -3289,8 +3302,9 @@ Gets history list for specific application level ticket
 
 
 
+
 ```swift
-lead.getTicketHistory(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").lead.getTicketHistory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3489,8 +3503,9 @@ Get specific custom form using it's slug
 
 
 
+
 ```swift
-lead.getCustomForm(companyId: companyId, applicationId: applicationId, slug: slug) { (response, error) in
+client.application("<APPLICATION_ID>").lead.getCustomForm(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -3595,8 +3610,9 @@ Edit the given custom form
 
 
 
+
 ```swift
-lead.editCustomForm(companyId: companyId, applicationId: applicationId, slug: slug, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").lead.editCustomForm(slug: slug, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3608,7 +3624,7 @@ lead.editCustomForm(companyId: companyId, applicationId: applicationId, slug: sl
 | companyId | String | yes | Company ID of the application |   
 | applicationId | String | yes | Application ID for the form |   
 | slug | String | yes | Slug of form whose response is getting submitted |  
-| body | EditCustomFormPayload |  no  | Request body |
+| body | EditCustomFormPayload | yes | Request body |
 
 
 Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
@@ -3711,8 +3727,9 @@ Get list of custom form
 
 
 
+
 ```swift
-lead.getCustomForms(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").lead.getCustomForms() { (response, error) in
     // Use response
 }
 ```
@@ -3905,8 +3922,9 @@ Creates a new custom form
 
 
 
+
 ```swift
-lead.createCustomForm(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").lead.createCustomForm(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3917,7 +3935,7 @@ lead.createCustomForm(companyId: companyId, applicationId: applicationId, body: 
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID of the application |   
 | applicationId | String | yes | Application ID for the form |  
-| body | CreateCustomFormPayload |  no  | Request body |
+| body | CreateCustomFormPayload | yes | Request body |
 
 
 Creates a new custom form for given application
@@ -4020,8 +4038,9 @@ Get Token to join a specific Video Room using it's unqiue name
 
 
 
+
 ```swift
-lead.getTokenForVideoRoom(companyId: companyId, uniqueName: uniqueName) { (response, error) in
+client.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -4083,8 +4102,9 @@ Get Token to join a specific Video Room using it's unqiue name
 
 
 
+
 ```swift
-lead.getTokenForVideoRoom(companyId: companyId, applicationId: applicationId, uniqueName: uniqueName) { (response, error) in
+client.application("<APPLICATION_ID>").lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -4147,8 +4167,9 @@ Get participants of a specific Video Room using it's unique name
 
 
 
+
 ```swift
-lead.getVideoParticipants(companyId: companyId, uniqueName: uniqueName) { (response, error) in
+client.lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -4210,8 +4231,9 @@ Get participants of a specific Video Room using it's unique name
 
 
 
+
 ```swift
-lead.getVideoParticipants(companyId: companyId, applicationId: applicationId, uniqueName: uniqueName) { (response, error) in
+client.application("<APPLICATION_ID>").lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -4274,8 +4296,9 @@ Open a video room.
 
 
 
+
 ```swift
-lead.openVideoRoom(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").lead.openVideoRoom(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4286,7 +4309,7 @@ lead.openVideoRoom(companyId: companyId, applicationId: applicationId, body: bod
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID of the application |   
 | applicationId | String | yes | Application ID for video room |  
-| body | CreateVideoRoomPayload |  no  | Request body |
+| body | CreateVideoRoomPayload | yes | Request body |
 
 
 Open a video room.
@@ -4337,8 +4360,9 @@ Close the video room and force all participants to leave.
 
 
 
+
 ```swift
-lead.closeVideoRoom(companyId: companyId, applicationId: applicationId, uniqueName: uniqueName) { (response, error) in
+client.application("<APPLICATION_ID>").lead.closeVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -4406,8 +4430,9 @@ Get list of attribute data
 
 
 
+
 ```swift
-feedback.getAttributes(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.getAttributes(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -4461,8 +4486,9 @@ Get list of customer reviews [admin]
 
 
 
+
 ```swift
-feedback.getCustomerReviews(companyId: companyId, applicationId: applicationId, id: id, entityId: entityId, entityType: entityType, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, next: next, start: start, limit: limit, count: count, pageId: pageId, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.getCustomerReviews(id: id, entityId: entityId, entityType: entityType, userId: userId, media: media, rating: rating, attributeRating: attributeRating, facets: facets, sort: sort, next: next, start: start, limit: limit, count: count, pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -4529,8 +4555,9 @@ update approve details
 
 
 
+
 ```swift
-feedback.updateApprove(companyId: companyId, applicationId: applicationId, reviewId: reviewId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.updateApprove(reviewId: reviewId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4542,7 +4569,7 @@ feedback.updateApprove(companyId: companyId, applicationId: applicationId, revie
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |   
 | reviewId | String | yes | review id |  
-| body | ApproveRequest |  yes  | Request body |
+| body | ApproveRequest | yes | Request body |
 
 
 The is used to update approve details like status and description text
@@ -4583,8 +4610,9 @@ get history details
 
 
 
+
 ```swift
-feedback.getHistory(companyId: companyId, applicationId: applicationId, reviewId: reviewId) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.getHistory(reviewId: reviewId) { (response, error) in
     // Use response
 }
 ```
@@ -4637,8 +4665,9 @@ Get list of templates
 
 
 
+
 ```swift
-feedback.getApplicationTemplates(companyId: companyId, applicationId: applicationId, pageId: pageId, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.getApplicationTemplates(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -4692,8 +4721,9 @@ Create a new template
 
 
 
+
 ```swift
-feedback.createTemplate(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.createTemplate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4704,7 +4734,7 @@ feedback.createTemplate(companyId: companyId, applicationId: applicationId, body
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |  
-| body | TemplateRequestList |  yes  | Request body |
+| body | TemplateRequestList | yes | Request body |
 
 
 Create a new template for review with following data:
@@ -4748,8 +4778,9 @@ Get a template by ID
 
 
 
+
 ```swift
-feedback.getTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.getTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -4802,8 +4833,9 @@ Update a template's status
 
 
 
+
 ```swift
-feedback.updateTemplate(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.updateTemplate(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4815,7 +4847,7 @@ feedback.updateTemplate(companyId: companyId, applicationId: applicationId, id: 
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |   
 | id | String | yes | template id |  
-| body | UpdateTemplateRequest |  yes  | Request body |
+| body | UpdateTemplateRequest | yes | Request body |
 
 
 Update existing template status, active/archive
@@ -4856,8 +4888,9 @@ Update a template's status
 
 
 
+
 ```swift
-feedback.updateTemplateStatus(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").feedback.updateTemplateStatus(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4869,7 +4902,7 @@ feedback.updateTemplateStatus(companyId: companyId, applicationId: applicationId
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |   
 | id | String | yes | template id |  
-| body | UpdateTemplateStatusRequest |  yes  | Request body |
+| body | UpdateTemplateStatusRequest | yes | Request body |
 
 
 Update existing template status, active/archive
@@ -4915,8 +4948,9 @@ Get all pages of a theme
 
 
 
+
 ```swift
-theme.getAllPages(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getAllPages(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -4977,8 +5011,9 @@ Create a page
 
 
 
+
 ```swift
-theme.createPage(companyId: companyId, applicationId: applicationId, themeId: themeId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").theme.createPage(themeId: themeId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4990,7 +5025,7 @@ theme.createPage(companyId: companyId, applicationId: applicationId, themeId: th
 | companyId | String | yes | Company ID |   
 | applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme |  
-| body | AvailablePageSchema |  no  | Request body |
+| body | AvailablePageSchema | yes | Request body |
 
 
 Use this API to create a page for a theme by its ID.
@@ -5039,8 +5074,9 @@ Update multiple pages of a theme
 
 
 
+
 ```swift
-theme.updateMultiplePages(companyId: companyId, applicationId: applicationId, themeId: themeId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").theme.updateMultiplePages(themeId: themeId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5052,7 +5088,7 @@ theme.updateMultiplePages(companyId: companyId, applicationId: applicationId, th
 | companyId | String | yes | Company ID |   
 | applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme to be retrieved |  
-| body | AllAvailablePageSchema |  no  | Request body |
+| body | AllAvailablePageSchema | yes | Request body |
 
 
 Use this API to update multiple pages of a theme by its ID.
@@ -5101,8 +5137,9 @@ Get page of a theme
 
 
 
+
 ```swift
-theme.getPage(companyId: companyId, applicationId: applicationId, themeId: themeId, pageValue: pageValue) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getPage(themeId: themeId, pageValue: pageValue) { (response, error) in
     // Use response
 }
 ```
@@ -5164,8 +5201,9 @@ Updates a page
 
 
 
+
 ```swift
-theme.updatePage(companyId: companyId, applicationId: applicationId, themeId: themeId, pageValue: pageValue, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").theme.updatePage(themeId: themeId, pageValue: pageValue, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5178,7 +5216,7 @@ theme.updatePage(companyId: companyId, applicationId: applicationId, themeId: th
 | applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme |   
 | pageValue | String | yes | Value of the page to be updated |  
-| body | AvailablePageSchema |  no  | Request body |
+| body | AvailablePageSchema | yes | Request body |
 
 
 Use this API to update a page for a theme by its ID.
@@ -5227,8 +5265,9 @@ Deletes a page
 
 
 
+
 ```swift
-theme.deletePage(companyId: companyId, applicationId: applicationId, themeId: themeId, pageValue: pageValue) { (response, error) in
+client.application("<APPLICATION_ID>").theme.deletePage(themeId: themeId, pageValue: pageValue) { (response, error) in
     // Use response
 }
 ```
@@ -5290,8 +5329,9 @@ Get a list of themes from the theme library
 
 
 
+
 ```swift
-theme.getThemeLibrary(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getThemeLibrary(pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -5353,8 +5393,9 @@ Add a theme to the theme library
 
 
 
+
 ```swift
-theme.addToThemeLibrary(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").theme.addToThemeLibrary(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5365,7 +5406,7 @@ theme.addToThemeLibrary(companyId: companyId, applicationId: applicationId, body
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | AddThemeRequestSchema |  no  | Request body |
+| body | AddThemeRequestSchema | yes | Request body |
 
 
 Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
@@ -5414,8 +5455,9 @@ Apply a theme
 
 
 
+
 ```swift
-theme.applyTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").theme.applyTheme(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5426,7 +5468,7 @@ theme.applyTheme(companyId: companyId, applicationId: applicationId, body: body)
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | AddThemeRequestSchema |  no  | Request body |
+| body | AddThemeRequestSchema | yes | Request body |
 
 
 Use this API to apply a theme to the website.
@@ -5475,8 +5517,9 @@ Checks if theme is upgradable
 
 
 
+
 ```swift
-theme.isUpgradable(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.isUpgradable(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -5537,8 +5580,9 @@ Upgrade a theme
 
 
 
+
 ```swift
-theme.upgradeTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.upgradeTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -5599,8 +5643,9 @@ Get all public themes
 
 
 
+
 ```swift
-theme.getPublicThemes(companyId: companyId, applicationId: applicationId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getPublicThemes(pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -5662,8 +5707,9 @@ Create a new theme
 
 
 
+
 ```swift
-theme.createTheme(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").theme.createTheme(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5674,7 +5720,7 @@ theme.createTheme(companyId: companyId, applicationId: applicationId, body: body
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | ThemesSchema |  no  | Request body |
+| body | ThemesSchema | yes | Request body |
 
 
 Themes improve the look and appearance of a website. Use this API to create a theme.
@@ -5723,8 +5769,9 @@ Get the applied theme
 
 
 
+
 ```swift
-theme.getAppliedTheme(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getAppliedTheme() { (response, error) in
     // Use response
 }
 ```
@@ -5784,8 +5831,9 @@ Get all the supported fonts in a theme
 
 
 
+
 ```swift
-theme.getFonts(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getFonts() { (response, error) in
     // Use response
 }
 ```
@@ -5845,8 +5893,9 @@ Gets theme by id
 
 
 
+
 ```swift
-theme.getThemeById(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getThemeById(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -5907,8 +5956,9 @@ Update a theme
 
 
 
+
 ```swift
-theme.updateTheme(companyId: companyId, applicationId: applicationId, themeId: themeId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").theme.updateTheme(themeId: themeId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5920,7 +5970,7 @@ theme.updateTheme(companyId: companyId, applicationId: applicationId, themeId: t
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
-| body | ThemesSchema |  no  | Request body |
+| body | ThemesSchema | yes | Request body |
 
 
 Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
@@ -5969,8 +6019,9 @@ Delete a theme
 
 
 
+
 ```swift
-theme.deleteTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.deleteTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -6031,8 +6082,9 @@ Get a theme preview
 
 
 
+
 ```swift
-theme.getThemeForPreview(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.getThemeForPreview(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -6093,8 +6145,9 @@ Publish a theme
 
 
 
+
 ```swift
-theme.publishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.publishTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -6155,8 +6208,9 @@ Unpublish a theme
 
 
 
+
 ```swift
-theme.unpublishTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.unpublishTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -6217,8 +6271,9 @@ Archive a theme
 
 
 
+
 ```swift
-theme.archiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.archiveTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -6279,8 +6334,9 @@ Unarchive a theme
 
 
 
+
 ```swift
-theme.unarchiveTheme(companyId: companyId, applicationId: applicationId, themeId: themeId) { (response, error) in
+client.application("<APPLICATION_ID>").theme.unarchiveTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -6346,8 +6402,9 @@ Get a list of customers
 
 
 
+
 ```swift
-user.getCustomers(companyId: companyId, applicationId: applicationId, q: q, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+client.application("<APPLICATION_ID>").user.getCustomers(q: q, pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -6410,8 +6467,9 @@ Search an existing user.
 
 
 
+
 ```swift
-user.searchUsers(companyId: companyId, applicationId: applicationId, q: q) { (response, error) in
+client.application("<APPLICATION_ID>").user.searchUsers(q: q) { (response, error) in
     // Use response
 }
 ```
@@ -6507,8 +6565,9 @@ Create user
 
 
 
+
 ```swift
-user.createUser(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").user.createUser(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6519,7 +6578,7 @@ user.createUser(companyId: companyId, applicationId: applicationId, body: body) 
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID |   
 | applicationId | String | yes | Application ID |  
-| body | CreateUserRequestSchema |  yes  | Request body |
+| body | CreateUserRequestSchema | yes | Request body |
 
 
 Create user
@@ -6602,8 +6661,9 @@ Update user
 
 
 
+
 ```swift
-user.updateUser(companyId: companyId, applicationId: applicationId, userId: userId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").user.updateUser(userId: userId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6615,7 +6675,7 @@ user.updateUser(companyId: companyId, applicationId: applicationId, userId: user
 | companyId | String | yes | Company ID |   
 | applicationId | String | yes | Application ID |   
 | userId | String | yes | User ID |  
-| body | UpdateUserRequestSchema |  yes  | Request body |
+| body | UpdateUserRequestSchema | yes | Request body |
 
 
 Update user
@@ -6698,8 +6758,9 @@ Create user session
 
 
 
+
 ```swift
-user.createUserSession(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").user.createUserSession(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6710,7 +6771,7 @@ user.createUserSession(companyId: companyId, applicationId: applicationId, body:
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company ID |   
 | applicationId | String | yes | Application ID |  
-| body | CreateUserSessionRequestSchema |  yes  | Request body |
+| body | CreateUserSessionRequestSchema | yes | Request body |
 
 
 Create user session
@@ -6759,8 +6820,9 @@ Get platform configurations
 
 
 
+
 ```swift
-user.getPlatformConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").user.getPlatformConfig() { (response, error) in
     // Use response
 }
 ```
@@ -6877,8 +6939,9 @@ Update platform configurations
 
 
 
+
 ```swift
-user.updatePlatformConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").user.updatePlatformConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6889,7 +6952,7 @@ user.updatePlatformConfig(companyId: companyId, applicationId: applicationId, bo
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | PlatformSchema |  yes  | Request body |
+| body | PlatformSchema | yes | Request body |
 
 
 Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
@@ -7000,8 +7063,9 @@ Get a list of announcements
 
 
 
+
 ```swift
-content.getAnnouncementsList(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getAnnouncementsList(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -7063,8 +7127,9 @@ Create an announcement
 
 
 
+
 ```swift
-content.createAnnouncement(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createAnnouncement(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7075,7 +7140,7 @@ content.createAnnouncement(companyId: companyId, applicationId: applicationId, b
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | AdminAnnouncementSchema |  yes  | Request body |
+| body | AdminAnnouncementSchema | yes | Request body |
 
 
 Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
@@ -7124,8 +7189,9 @@ Get announcement by ID
 
 
 
+
 ```swift
-content.getAnnouncementById(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getAnnouncementById(announcementId: announcementId) { (response, error) in
     // Use response
 }
 ```
@@ -7186,8 +7252,9 @@ Update an announcement
 
 
 
+
 ```swift
-content.updateAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateAnnouncement(announcementId: announcementId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7199,7 +7266,7 @@ content.updateAnnouncement(companyId: companyId, applicationId: applicationId, a
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | announcementId | String | yes | ID allotted to the announcement. |  
-| body | AdminAnnouncementSchema |  yes  | Request body |
+| body | AdminAnnouncementSchema | yes | Request body |
 
 
 Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
@@ -7248,8 +7315,9 @@ Update the schedule and the publish status of an announcement
 
 
 
+
 ```swift
-content.updateAnnouncementSchedule(companyId: companyId, applicationId: applicationId, announcementId: announcementId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateAnnouncementSchedule(announcementId: announcementId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7261,7 +7329,7 @@ content.updateAnnouncementSchedule(companyId: companyId, applicationId: applicat
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | announcementId | String | yes | ID allotted to the announcement. |  
-| body | ScheduleSchema |  yes  | Request body |
+| body | ScheduleSchema | yes | Request body |
 
 
 Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
@@ -7310,8 +7378,9 @@ Delete announcement by id
 
 
 
+
 ```swift
-content.deleteAnnouncement(companyId: companyId, applicationId: applicationId, announcementId: announcementId) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteAnnouncement(announcementId: announcementId) { (response, error) in
     // Use response
 }
 ```
@@ -7372,8 +7441,9 @@ Create a blog
 
 
 
+
 ```swift
-content.createBlog(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createBlog(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7384,7 +7454,7 @@ content.createBlog(companyId: companyId, applicationId: applicationId, body: bod
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | BlogRequest |  yes  | Request body |
+| body | BlogRequest | yes | Request body |
 
 
 Use this API to create a blog.
@@ -7433,8 +7503,9 @@ Get blogs
 
 
 
+
 ```swift
-content.getBlogs(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -7496,8 +7567,9 @@ Update a blog
 
 
 
+
 ```swift
-content.updateBlog(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateBlog(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7509,7 +7581,7 @@ content.updateBlog(companyId: companyId, applicationId: applicationId, id: id, b
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | id | String | yes | ID allotted to the blog. |  
-| body | BlogRequest |  yes  | Request body |
+| body | BlogRequest | yes | Request body |
 
 
 Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
@@ -7558,8 +7630,9 @@ Delete blogs
 
 
 
+
 ```swift
-content.deleteBlog(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteBlog(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -7620,8 +7693,9 @@ Get components of a blog
 
 
 
+
 ```swift
-content.getComponentById(companyId: companyId, applicationId: applicationId, slug: slug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getComponentById(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -7682,8 +7756,9 @@ Get a list of FAQ categories
 
 
 
+
 ```swift
-content.getFaqCategories(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqCategories() { (response, error) in
     // Use response
 }
 ```
@@ -7748,8 +7823,9 @@ Get an FAQ category by slug or id
 
 
 
+
 ```swift
-content.getFaqCategoryBySlugOrId(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId(idOrSlug: idOrSlug) { (response, error) in
     // Use response
 }
 ```
@@ -7819,8 +7895,9 @@ Create an FAQ category
 
 
 
+
 ```swift
-content.createFaqCategory(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createFaqCategory(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7831,7 +7908,7 @@ content.createFaqCategory(companyId: companyId, applicationId: applicationId, bo
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | CreateFaqCategoryRequestSchema |  no  | Request body |
+| body | CreateFaqCategoryRequestSchema | yes | Request body |
 
 
 FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
@@ -7881,8 +7958,9 @@ Update an FAQ category
 
 
 
+
 ```swift
-content.updateFaqCategory(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateFaqCategory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7894,7 +7972,7 @@ content.updateFaqCategory(companyId: companyId, applicationId: applicationId, id
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | id | String | yes | ID allotted to an FAQ category. |  
-| body | UpdateFaqCategoryRequestSchema |  no  | Request body |
+| body | UpdateFaqCategoryRequestSchema | yes | Request body |
 
 
 Use this API to edit an existing FAQ category.
@@ -7944,8 +8022,9 @@ Delete an FAQ category
 
 
 
+
 ```swift
-content.deleteFaqCategory(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteFaqCategory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -8008,8 +8087,9 @@ Get question and answers within an FAQ category
 
 
 
+
 ```swift
-content.getFaqsByCategoryIdOrSlug(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
     // Use response
 }
 ```
@@ -8072,8 +8152,9 @@ Create an FAQ
 
 
 
+
 ```swift
-content.addFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.addFaq(categoryId: categoryId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8085,7 +8166,7 @@ content.addFaq(companyId: companyId, applicationId: applicationId, categoryId: c
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | categoryId | String | yes | ID allotted to an FAQ category. |  
-| body | CreateFaqSchema |  no  | Request body |
+| body | CreateFaqSchema | yes | Request body |
 
 
 FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
@@ -8134,8 +8215,9 @@ Update an FAQ
 
 
 
+
 ```swift
-content.updateFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateFaq(categoryId: categoryId, faqId: faqId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8148,7 +8230,7 @@ content.updateFaq(companyId: companyId, applicationId: applicationId, categoryId
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | categoryId | String | yes | ID allotted to an FAQ category. |   
 | faqId | String | yes | ID allotted to an FAQ. |  
-| body | CreateFaqSchema |  no  | Request body |
+| body | CreateFaqSchema | yes | Request body |
 
 
 Use this API to edit an existing FAQ.
@@ -8197,8 +8279,9 @@ Delete an FAQ
 
 
 
+
 ```swift
-content.deleteFaq(companyId: companyId, applicationId: applicationId, categoryId: categoryId, faqId: faqId) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteFaq(categoryId: categoryId, faqId: faqId) { (response, error) in
     // Use response
 }
 ```
@@ -8260,8 +8343,9 @@ Get an FAQ
 
 
 
+
 ```swift
-content.getFaqByIdOrSlug(companyId: companyId, applicationId: applicationId, idOrSlug: idOrSlug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqByIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
     // Use response
 }
 ```
@@ -8322,8 +8406,9 @@ Get landing pages
 
 
 
+
 ```swift
-content.getLandingPages(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getLandingPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -8385,8 +8470,9 @@ Create a landing page
 
 
 
+
 ```swift
-content.createLandingPage(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createLandingPage(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8397,7 +8483,7 @@ content.createLandingPage(companyId: companyId, applicationId: applicationId, bo
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | LandingPageSchema |  yes  | Request body |
+| body | LandingPageSchema | yes | Request body |
 
 
 Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
@@ -8446,8 +8532,9 @@ Update a landing page
 
 
 
+
 ```swift
-content.updateLandingPage(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateLandingPage(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8459,7 +8546,7 @@ content.updateLandingPage(companyId: companyId, applicationId: applicationId, id
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | id | String | yes | ID allotted to a landing page. |  
-| body | LandingPageSchema |  yes  | Request body |
+| body | LandingPageSchema | yes | Request body |
 
 
 Use this API to edit the details of an existing landing page.
@@ -8508,8 +8595,9 @@ Delete a landing page
 
 
 
+
 ```swift
-content.deleteLandingPage(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteLandingPage(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -8593,8 +8681,9 @@ Get legal information
 
 
 
+
 ```swift
-content.getLegalInformation(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getLegalInformation() { (response, error) in
     // Use response
 }
 ```
@@ -8654,8 +8743,9 @@ Save legal information
 
 
 
+
 ```swift
-content.updateLegalInformation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateLegalInformation(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8666,7 +8756,7 @@ content.updateLegalInformation(companyId: companyId, applicationId: applicationI
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | ApplicationLegal |  yes  | Request body |
+| body | ApplicationLegal | yes | Request body |
 
 
 Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
@@ -8716,8 +8806,9 @@ Get navigations
 
 
 
+
 ```swift
-content.getNavigations(companyId: companyId, applicationId: applicationId, devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getNavigations(devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -8780,8 +8871,9 @@ Create a navigation
 
 
 
+
 ```swift
-content.createNavigation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createNavigation(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8792,7 +8884,7 @@ content.createNavigation(companyId: companyId, applicationId: applicationId, bod
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | NavigationRequest |  yes  | Request body |
+| body | NavigationRequest | yes | Request body |
 
 
 Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
@@ -8841,8 +8933,9 @@ Get default navigations
 
 
 
+
 ```swift
-content.getDefaultNavigations(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getDefaultNavigations() { (response, error) in
     // Use response
 }
 ```
@@ -8902,8 +8995,9 @@ Get a navigation by slug
 
 
 
+
 ```swift
-content.getNavigationBySlug(companyId: companyId, applicationId: applicationId, slug: slug, devicePlatform: devicePlatform) { (response, error) in
+client.application("<APPLICATION_ID>").content.getNavigationBySlug(slug: slug, devicePlatform: devicePlatform) { (response, error) in
     // Use response
 }
 ```
@@ -8965,8 +9059,9 @@ Update a navigation
 
 
 
+
 ```swift
-content.updateNavigation(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateNavigation(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8978,7 +9073,7 @@ content.updateNavigation(companyId: companyId, applicationId: applicationId, id:
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | id | String | yes | ID allotted to the navigation. |  
-| body | NavigationRequest |  yes  | Request body |
+| body | NavigationRequest | yes | Request body |
 
 
 Use this API to edit the details of an existing navigation.
@@ -9027,8 +9122,9 @@ Delete a navigation
 
 
 
+
 ```swift
-content.deleteNavigation(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteNavigation(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -9269,8 +9365,9 @@ Get page meta
 
 
 
+
 ```swift
-content.getPageMeta(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageMeta() { (response, error) in
     // Use response
 }
 ```
@@ -9330,8 +9427,9 @@ Get page spec
 
 
 
+
 ```swift
-content.getPageSpec(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageSpec() { (response, error) in
     // Use response
 }
 ```
@@ -9417,8 +9515,9 @@ Create a page
 
 
 
+
 ```swift
-content.createPage(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createPage(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -9429,7 +9528,7 @@ content.createPage(companyId: companyId, applicationId: applicationId, body: bod
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | PageRequest |  yes  | Request body |
+| body | PageRequest | yes | Request body |
 
 
 Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
@@ -9478,8 +9577,9 @@ Get a list of pages
 
 
 
+
 ```swift
-content.getPages(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -9541,8 +9641,9 @@ Create a page preview
 
 
 
+
 ```swift
-content.createPagePreview(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createPagePreview(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -9553,7 +9654,7 @@ content.createPagePreview(companyId: companyId, applicationId: applicationId, bo
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | PageRequest |  yes  | Request body |
+| body | PageRequest | yes | Request body |
 
 
 Use this API to create a page preview to check the appearance of a custom page.
@@ -9602,8 +9703,9 @@ Change the publish status of a page
 
 
 
+
 ```swift
-content.updatePagePreview(companyId: companyId, applicationId: applicationId, slug: slug, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updatePagePreview(slug: slug, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -9615,7 +9717,7 @@ content.updatePagePreview(companyId: companyId, applicationId: applicationId, sl
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | slug | String | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
-| body | PagePublishRequest |  yes  | Request body |
+| body | PagePublishRequest | yes | Request body |
 
 
 Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
@@ -9664,8 +9766,9 @@ Update a page
 
 
 
+
 ```swift
-content.updatePage(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updatePage(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -9677,7 +9780,7 @@ content.updatePage(companyId: companyId, applicationId: applicationId, id: id, b
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | id | String | yes | ID allotted to the page. |  
-| body | PageSchema |  yes  | Request body |
+| body | PageSchema | yes | Request body |
 
 
 Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
@@ -9726,8 +9829,9 @@ Delete a page
 
 
 
+
 ```swift
-content.deletePage(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deletePage(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -9788,8 +9892,9 @@ Get pages by component Id
 
 
 
+
 ```swift
-content.getPageBySlug(companyId: companyId, applicationId: applicationId, slug: slug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -9850,8 +9955,9 @@ Get SEO configuration of an application
 
 
 
+
 ```swift
-content.getSEOConfiguration(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getSEOConfiguration() { (response, error) in
     // Use response
 }
 ```
@@ -9911,8 +10017,9 @@ Update SEO of application
 
 
 
+
 ```swift
-content.updateSEOConfiguration(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateSEOConfiguration(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -9923,7 +10030,7 @@ content.updateSEOConfiguration(companyId: companyId, applicationId: applicationI
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | SeoComponent |  yes  | Request body |
+| body | SeoComponent | yes | Request body |
 
 
 Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
@@ -9995,8 +10102,9 @@ Get slideshows
 
 
 
+
 ```swift
-content.getSlideshows(companyId: companyId, applicationId: applicationId, devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getSlideshows(devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -10059,8 +10167,9 @@ Create a slideshow
 
 
 
+
 ```swift
-content.createSlideshow(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createSlideshow(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10071,7 +10180,7 @@ content.createSlideshow(companyId: companyId, applicationId: applicationId, body
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |  
-| body | SlideshowRequest |  yes  | Request body |
+| body | SlideshowRequest | yes | Request body |
 
 
 A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
@@ -10120,8 +10229,9 @@ Get slideshow by slug
 
 
 
+
 ```swift
-content.getSlideshowBySlug(companyId: companyId, applicationId: applicationId, slug: slug, devicePlatform: devicePlatform) { (response, error) in
+client.application("<APPLICATION_ID>").content.getSlideshowBySlug(slug: slug, devicePlatform: devicePlatform) { (response, error) in
     // Use response
 }
 ```
@@ -10183,8 +10293,9 @@ Update a slideshow
 
 
 
+
 ```swift
-content.updateSlideshow(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateSlideshow(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10196,7 +10307,7 @@ content.updateSlideshow(companyId: companyId, applicationId: applicationId, id: 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | String | yes | Numeric ID allotted to an application created within a business account. |   
 | id | String | yes | ID allotted to the slideshow. |  
-| body | SlideshowRequest |  yes  | Request body |
+| body | SlideshowRequest | yes | Request body |
 
 
 Use this API to edit the details of an existing slideshow.
@@ -10245,8 +10356,9 @@ Delete a slideshow
 
 
 
+
 ```swift
-content.deleteSlideshow(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteSlideshow(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -10346,8 +10458,9 @@ Get support information
 
 
 
+
 ```swift
-content.getSupportInformation(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getSupportInformation() { (response, error) in
     // Use response
 }
 ```
@@ -10407,8 +10520,9 @@ Update the support data of an application
 
 
 
+
 ```swift
-content.updateSupportInformation(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateSupportInformation(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10419,7 +10533,7 @@ content.updateSupportInformation(companyId: companyId, applicationId: applicatio
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | Support |  yes  | Request body |
+| body | Support | yes | Request body |
 
 
 Use this API to edit the existing contact details for customer support, including emails and phone numbers.
@@ -10468,8 +10582,9 @@ Update a tag
 
 
 
+
 ```swift
-content.updateInjectableTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateInjectableTag(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10480,7 +10595,7 @@ content.updateInjectableTag(companyId: companyId, applicationId: applicationId, 
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | CreateTagRequestSchema |  no  | Request body |
+| body | CreateTagRequestSchema | yes | Request body |
 
 
 Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
@@ -10543,8 +10658,9 @@ Delete tags in application
 
 
 
+
 ```swift
-content.deleteAllInjectableTags(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteAllInjectableTags() { (response, error) in
     // Use response
 }
 ```
@@ -10618,8 +10734,9 @@ Get all the tags in an application
 
 
 
+
 ```swift
-content.getInjectableTags(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getInjectableTags() { (response, error) in
     // Use response
 }
 ```
@@ -10693,8 +10810,9 @@ Add a tag
 
 
 
+
 ```swift
-content.addInjectableTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.addInjectableTag(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10705,7 +10823,7 @@ content.addInjectableTag(companyId: companyId, applicationId: applicationId, bod
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | CreateTagRequestSchema |  no  | Request body |
+| body | CreateTagRequestSchema | yes | Request body |
 
 
 CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
@@ -10760,8 +10878,9 @@ Remove a tag
 
 
 
+
 ```swift
-content.removeInjectableTag(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.removeInjectableTag(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10772,7 +10891,7 @@ content.removeInjectableTag(companyId: companyId, applicationId: applicationId, 
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | RemoveHandpickedSchema |  no  | Request body |
+| body | RemoveHandpickedSchema | yes | Request body |
 
 
 Use this API to delete an existing tag.
@@ -10815,8 +10934,9 @@ Edit a tag by id
 
 
 
+
 ```swift
-content.editInjectableTag(companyId: companyId, applicationId: applicationId, tagId: tagId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.editInjectableTag(tagId: tagId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10828,7 +10948,7 @@ content.editInjectableTag(companyId: companyId, applicationId: applicationId, ta
 | companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | tagId | String | yes | ID allotted to the tag. |  
-| body | UpdateHandpickedSchema |  no  | Request body |
+| body | UpdateHandpickedSchema | yes | Request body |
 
 
 Use this API to edit the details of an existing tag by its ID.
@@ -10888,8 +11008,9 @@ Create subscription charge
 
 
 
+
 ```swift
-billing.createSubscriptionCharge(companyId: companyId, extensionId: extensionId, body: body) { (response, error) in
+client.billing.createSubscriptionCharge(extensionId: extensionId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -10900,7 +11021,7 @@ billing.createSubscriptionCharge(companyId: companyId, extensionId: extensionId,
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | String | yes | Extension _id |  
-| body | CreateSubscriptionCharge |  no  | Request body |
+| body | CreateSubscriptionCharge | yes | Request body |
 
 
 Register subscription charge for a seller of your extension.
@@ -10941,8 +11062,9 @@ Get subscription charge details
 
 
 
+
 ```swift
-billing.getSubscriptionCharge(companyId: companyId, extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
+client.billing.getSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
     // Use response
 }
 ```
@@ -10995,8 +11117,9 @@ Cancel subscription charge
 
 
 
+
 ```swift
-billing.cancelSubscriptionCharge(companyId: companyId, extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
+client.billing.cancelSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
     // Use response
 }
 ```
@@ -11049,8 +11172,9 @@ Get invoices
 
 
 
+
 ```swift
-billing.getInvoices(companyId: companyId) { (response, error) in
+client.billing.getInvoices() { (response, error) in
     // Use response
 }
 ```
@@ -11109,8 +11233,9 @@ Get invoice by id
 
 
 
+
 ```swift
-billing.getInvoiceById(companyId: companyId, invoiceId: invoiceId) { (response, error) in
+client.billing.getInvoiceById(invoiceId: invoiceId) { (response, error) in
     // Use response
 }
 ```
@@ -11170,8 +11295,9 @@ Get subscription customer detail
 
 
 
+
 ```swift
-billing.getCustomerDetail(companyId: companyId) { (response, error) in
+client.billing.getCustomerDetail() { (response, error) in
     // Use response
 }
 ```
@@ -11230,8 +11356,9 @@ Upsert subscription customer detail
 
 
 
+
 ```swift
-billing.upsertCustomerDetail(companyId: companyId, body: body) { (response, error) in
+client.billing.upsertCustomerDetail(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11241,7 +11368,7 @@ billing.upsertCustomerDetail(companyId: companyId, body: body) { (response, erro
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Customer unique id. In case of company it will be company id. |  
-| body | SubscriptionCustomerCreate |  yes  | Request body |
+| body | SubscriptionCustomerCreate | yes | Request body |
 
 
 Upsert subscription customer detail.
@@ -11290,8 +11417,9 @@ Get current subscription detail
 
 
 
+
 ```swift
-billing.getSubscription(companyId: companyId) { (response, error) in
+client.billing.getSubscription() { (response, error) in
     // Use response
 }
 ```
@@ -11361,8 +11489,9 @@ Get subscription subscription limits
 
 
 
+
 ```swift
-billing.getFeatureLimitConfig(companyId: companyId) { (response, error) in
+client.billing.getFeatureLimitConfig() { (response, error) in
     // Use response
 }
 ```
@@ -11421,8 +11550,9 @@ Activate subscription
 
 
 
+
 ```swift
-billing.activateSubscriptionPlan(companyId: companyId, body: body) { (response, error) in
+client.billing.activateSubscriptionPlan(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11432,7 +11562,7 @@ billing.activateSubscriptionPlan(companyId: companyId, body: body) { (response, 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Customer unique id. In case of company it will be company id. |  
-| body | SubscriptionActivateReq |  yes  | Request body |
+| body | SubscriptionActivateReq | yes | Request body |
 
 
 It will activate subscription plan for customer
@@ -11481,8 +11611,9 @@ Cancel subscription
 
 
 
+
 ```swift
-billing.cancelSubscriptionPlan(companyId: companyId, body: body) { (response, error) in
+client.billing.cancelSubscriptionPlan(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11492,7 +11623,7 @@ billing.cancelSubscriptionPlan(companyId: companyId, body: body) { (response, er
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Customer unique id. In case of company it will be company id. |  
-| body | CancelSubscriptionReq |  yes  | Request body |
+| body | CancelSubscriptionReq | yes | Request body |
 
 
 It will cancel current active subscription.
@@ -11546,8 +11677,9 @@ Get campaigns
 
 
 
+
 ```swift
-communication.getCampaigns(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getCampaigns(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -11610,8 +11742,9 @@ Create campaign
 
 
 
+
 ```swift
-communication.createCampaign(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createCampaign(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11622,7 +11755,7 @@ communication.createCampaign(companyId: companyId, applicationId: applicationId,
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | CampaignReq |  yes  | Request body |
+| body | CampaignReq | yes | Request body |
 
 
 Create campaign
@@ -11671,8 +11804,9 @@ Get campaign by id
 
 
 
+
 ```swift
-communication.getCampaignById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getCampaignById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -11733,8 +11867,9 @@ Update campaign by id
 
 
 
+
 ```swift
-communication.updateCampaignById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateCampaignById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11746,7 +11881,7 @@ communication.updateCampaignById(companyId: companyId, applicationId: applicatio
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |   
 | id | String | yes | Campaign id |  
-| body | CampaignReq |  yes  | Request body |
+| body | CampaignReq | yes | Request body |
 
 
 Update campaign by id
@@ -11795,8 +11930,9 @@ Get stats of campaign by id
 
 
 
+
 ```swift
-communication.getStatsOfCampaignById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -11857,8 +11993,9 @@ Get audiences
 
 
 
+
 ```swift
-communication.getAudiences(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getAudiences(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -11921,8 +12058,9 @@ Create audience
 
 
 
+
 ```swift
-communication.createAudience(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createAudience(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11933,7 +12071,7 @@ communication.createAudience(companyId: companyId, applicationId: applicationId,
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | AudienceReq |  yes  | Request body |
+| body | AudienceReq | yes | Request body |
 
 
 Create audience
@@ -11982,8 +12120,9 @@ Get bigquery headers
 
 
 
+
 ```swift
-communication.getBigqueryHeaders(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getBigqueryHeaders(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -11994,7 +12133,7 @@ communication.getBigqueryHeaders(companyId: companyId, applicationId: applicatio
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | BigqueryHeadersReq |  yes  | Request body |
+| body | BigqueryHeadersReq | yes | Request body |
 
 
 Get bigquery headers
@@ -12043,8 +12182,9 @@ Get audience by id
 
 
 
+
 ```swift
-communication.getAudienceById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getAudienceById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -12105,8 +12245,9 @@ Update audience by id
 
 
 
+
 ```swift
-communication.updateAudienceById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateAudienceById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12118,7 +12259,7 @@ communication.updateAudienceById(companyId: companyId, applicationId: applicatio
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |   
 | id | String | yes | Audience id |  
-| body | AudienceReq |  yes  | Request body |
+| body | AudienceReq | yes | Request body |
 
 
 Update audience by id
@@ -12167,8 +12308,9 @@ Get n sample records from csv
 
 
 
+
 ```swift
-communication.getNSampleRecordsFromCsv(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12179,7 +12321,7 @@ communication.getNSampleRecordsFromCsv(companyId: companyId, applicationId: appl
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | GetNRecordsCsvReq |  yes  | Request body |
+| body | GetNRecordsCsvReq | yes | Request body |
 
 
 Get n sample records from csv
@@ -12228,8 +12370,9 @@ Get email providers
 
 
 
+
 ```swift
-communication.getEmailProviders(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailProviders(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -12292,8 +12435,9 @@ Create email provider
 
 
 
+
 ```swift
-communication.createEmailProvider(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createEmailProvider(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12304,7 +12448,7 @@ communication.createEmailProvider(companyId: companyId, applicationId: applicati
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | EmailProviderReq |  yes  | Request body |
+| body | EmailProviderReq | yes | Request body |
 
 
 Create email provider
@@ -12353,8 +12497,9 @@ Get email provider by id
 
 
 
+
 ```swift
-communication.getEmailProviderById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailProviderById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -12415,8 +12560,9 @@ Update email provider by id
 
 
 
+
 ```swift
-communication.updateEmailProviderById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateEmailProviderById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12428,7 +12574,7 @@ communication.updateEmailProviderById(companyId: companyId, applicationId: appli
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |   
 | id | String | yes | Email provider id |  
-| body | EmailProviderReq |  yes  | Request body |
+| body | EmailProviderReq | yes | Request body |
 
 
 Update email provider by id
@@ -12477,8 +12623,9 @@ Get email templates
 
 
 
+
 ```swift
-communication.getEmailTemplates(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -12541,8 +12688,9 @@ Create email template
 
 
 
+
 ```swift
-communication.createEmailTemplate(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createEmailTemplate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12553,7 +12701,7 @@ communication.createEmailTemplate(companyId: companyId, applicationId: applicati
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | EmailTemplateReq |  yes  | Request body |
+| body | EmailTemplateReq | yes | Request body |
 
 
 Create email template
@@ -12602,8 +12750,9 @@ Get system email templates
 
 
 
+
 ```swift
-communication.getSystemEmailTemplates(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -12666,8 +12815,9 @@ Get email template by id
 
 
 
+
 ```swift
-communication.getEmailTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -12728,8 +12878,9 @@ Update email template by id
 
 
 
+
 ```swift
-communication.updateEmailTemplateById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateEmailTemplateById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12741,7 +12892,7 @@ communication.updateEmailTemplateById(companyId: companyId, applicationId: appli
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |   
 | id | String | yes | Email template id |  
-| body | EmailTemplateReq |  yes  | Request body |
+| body | EmailTemplateReq | yes | Request body |
 
 
 Update email template by id
@@ -12790,8 +12941,9 @@ Delete email template by id
 
 
 
+
 ```swift
-communication.deleteEmailTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -12852,8 +13004,9 @@ Get event subscriptions
 
 
 
+
 ```swift
-communication.getEventSubscriptions(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, populate: populate) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEventSubscriptions(pageNo: pageNo, pageSize: pageSize, populate: populate) { (response, error) in
     // Use response
 }
 ```
@@ -12916,8 +13069,9 @@ Get jobs
 
 
 
+
 ```swift
-communication.getJobs(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getJobs(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -12980,8 +13134,9 @@ Trigger campaign job
 
 
 
+
 ```swift
-communication.triggerCampaignJob(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.triggerCampaignJob(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -12992,7 +13147,7 @@ communication.triggerCampaignJob(companyId: companyId, applicationId: applicatio
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | TriggerJobRequest |  yes  | Request body |
+| body | TriggerJobRequest | yes | Request body |
 
 
 Trigger campaign job
@@ -13041,8 +13196,9 @@ Get job logs
 
 
 
+
 ```swift
-communication.getJobLogs(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getJobLogs(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -13105,8 +13261,9 @@ Get communication logs
 
 
 
+
 ```swift
-communication.getCommunicationLogs(companyId: companyId, applicationId: applicationId, pageId: pageId, pageSize: pageSize, sort: sort, query: query) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getCommunicationLogs(pageId: pageId, pageSize: pageSize, sort: sort, query: query) { (response, error) in
     // Use response
 }
 ```
@@ -13170,8 +13327,9 @@ Get system notifications
 
 
 
+
 ```swift
-communication.getSystemNotifications(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.communication.getSystemNotifications(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -13232,8 +13390,9 @@ Get sms providers
 
 
 
+
 ```swift
-communication.getSmsProviders(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsProviders(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -13296,8 +13455,9 @@ Create sms provider
 
 
 
+
 ```swift
-communication.createSmsProvider(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createSmsProvider(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -13308,7 +13468,7 @@ communication.createSmsProvider(companyId: companyId, applicationId: application
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | SmsProviderReq |  yes  | Request body |
+| body | SmsProviderReq | yes | Request body |
 
 
 Create sms provider
@@ -13357,8 +13517,9 @@ Get sms provider by id
 
 
 
+
 ```swift
-communication.getSmsProviderById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsProviderById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -13419,8 +13580,9 @@ Update sms provider by id
 
 
 
+
 ```swift
-communication.updateSmsProviderById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateSmsProviderById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -13432,7 +13594,7 @@ communication.updateSmsProviderById(companyId: companyId, applicationId: applica
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |   
 | id | String | yes | Sms provider id |  
-| body | SmsProviderReq |  yes  | Request body |
+| body | SmsProviderReq | yes | Request body |
 
 
 Update sms provider by id
@@ -13481,8 +13643,9 @@ Get sms templates
 
 
 
+
 ```swift
-communication.getSmsTemplates(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -13545,8 +13708,9 @@ Create sms template
 
 
 
+
 ```swift
-communication.createSmsTemplate(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createSmsTemplate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -13557,7 +13721,7 @@ communication.createSmsTemplate(companyId: companyId, applicationId: application
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |  
-| body | SmsTemplateReq |  yes  | Request body |
+| body | SmsTemplateReq | yes | Request body |
 
 
 Create sms template
@@ -13606,8 +13770,9 @@ Get sms template by id
 
 
 
+
 ```swift
-communication.getSmsTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -13668,8 +13833,9 @@ Update sms template by id
 
 
 
+
 ```swift
-communication.updateSmsTemplateById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateSmsTemplateById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -13681,7 +13847,7 @@ communication.updateSmsTemplateById(companyId: companyId, applicationId: applica
 | companyId | String | yes | Company id |   
 | applicationId | String | yes | Application id |   
 | id | String | yes | Sms template id |  
-| body | SmsTemplateReq |  yes  | Request body |
+| body | SmsTemplateReq | yes | Request body |
 
 
 Update sms template by id
@@ -13730,8 +13896,9 @@ Delete sms template by id
 
 
 
+
 ```swift
-communication.deleteSmsTemplateById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -13792,8 +13959,9 @@ Get system sms templates
 
 
 
+
 ```swift
-communication.getSystemSystemTemplates(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -13861,8 +14029,9 @@ Get All Brand Payment Gateway Config Secret
 
 
 
+
 ```swift
-payment.getBrandPaymentGatewayConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig() { (response, error) in
     // Use response
 }
 ```
@@ -14031,8 +14200,9 @@ Save Config Secret For Brand Payment Gateway
 
 
 
+
 ```swift
-payment.saveBrandPaymentGatewayConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -14043,7 +14213,7 @@ payment.saveBrandPaymentGatewayConfig(companyId: companyId, applicationId: appli
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |   
 | applicationId | String | yes | Application id |  
-| body | PaymentGatewayConfigRequest |  no  | Request body |
+| body | PaymentGatewayConfigRequest | yes | Request body |
 
 
 Save Config Secret For Brand Payment Gateway
@@ -14089,8 +14259,9 @@ Save Config Secret For Brand Payment Gateway
 
 
 
+
 ```swift
-payment.updateBrandPaymentGatewayConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -14101,7 +14272,7 @@ payment.updateBrandPaymentGatewayConfig(companyId: companyId, applicationId: app
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |   
 | applicationId | String | yes | Application id |  
-| body | PaymentGatewayConfigRequest |  no  | Request body |
+| body | PaymentGatewayConfigRequest | yes | Request body |
 
 
 Save Config Secret For Brand Payment Gateway
@@ -14147,8 +14318,9 @@ Get All Valid Payment Options
 
 
 
+
 ```swift
-payment.getPaymentModeRoutes(companyId: companyId, applicationId: applicationId, refresh: refresh, requestType: requestType) { (response, error) in
+client.application("<APPLICATION_ID>").payment.getPaymentModeRoutes(refresh: refresh, requestType: requestType) { (response, error) in
     // Use response
 }
 ```
@@ -15329,8 +15501,9 @@ Get All Payouts
 
 
 
+
 ```swift
-payment.getAllPayouts(companyId: companyId, uniqueExternalId: uniqueExternalId) { (response, error) in
+client.payment.getAllPayouts(uniqueExternalId: uniqueExternalId) { (response, error) in
     // Use response
 }
 ```
@@ -15445,8 +15618,9 @@ Save Payout
 
 
 
+
 ```swift
-payment.savePayout(companyId: companyId, body: body) { (response, error) in
+client.payment.savePayout(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -15456,7 +15630,7 @@ payment.savePayout(companyId: companyId, body: body) { (response, error) in
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |  
-| body | PayoutRequest |  no  | Request body |
+| body | PayoutRequest | yes | Request body |
 
 
 Save Payout
@@ -15525,8 +15699,9 @@ Update Payout
 
 
 
+
 ```swift
-payment.updatePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo, body: body) { (response, error) in
+client.payment.updatePayout(uniqueTransferNo: uniqueTransferNo, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -15537,7 +15712,7 @@ payment.updatePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo, b
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |   
 | uniqueTransferNo | String | yes | Unique transfer id |  
-| body | PayoutRequest |  no  | Request body |
+| body | PayoutRequest | yes | Request body |
 
 
 Update Payout
@@ -15582,8 +15757,9 @@ Partial Update Payout
 
 
 
+
 ```swift
-payment.activateAndDectivatePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo, body: body) { (response, error) in
+client.payment.activateAndDectivatePayout(uniqueTransferNo: uniqueTransferNo, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -15594,7 +15770,7 @@ payment.activateAndDectivatePayout(companyId: companyId, uniqueTransferNo: uniqu
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |   
 | uniqueTransferNo | String | yes | Unique transfer id |  
-| body | UpdatePayoutRequest |  no  | Request body |
+| body | UpdatePayoutRequest | yes | Request body |
 
 
 Partial Update Payout
@@ -15639,8 +15815,9 @@ Delete Payout
 
 
 
+
 ```swift
-payment.deletePayout(companyId: companyId, uniqueTransferNo: uniqueTransferNo) { (response, error) in
+client.payment.deletePayout(uniqueTransferNo: uniqueTransferNo) { (response, error) in
     // Use response
 }
 ```
@@ -15694,8 +15871,9 @@ List Subscription Payment Method
 
 
 
+
 ```swift
-payment.getSubscriptionPaymentMethod(companyId: companyId) { (response, error) in
+client.payment.getSubscriptionPaymentMethod() { (response, error) in
     // Use response
 }
 ```
@@ -15874,8 +16052,9 @@ Delete Subscription Payment Method
 
 
 
+
 ```swift
-payment.deleteSubscriptionPaymentMethod(companyId: companyId, uniqueExternalId: uniqueExternalId, paymentMethodId: paymentMethodId) { (response, error) in
+client.payment.deleteSubscriptionPaymentMethod(uniqueExternalId: uniqueExternalId, paymentMethodId: paymentMethodId) { (response, error) in
     // Use response
 }
 ```
@@ -15930,8 +16109,9 @@ List Subscription Config
 
 
 
+
 ```swift
-payment.getSubscriptionConfig(companyId: companyId) { (response, error) in
+client.payment.getSubscriptionConfig() { (response, error) in
     // Use response
 }
 ```
@@ -15988,8 +16168,9 @@ Save Subscription Setup Intent
 
 
 
+
 ```swift
-payment.saveSubscriptionSetupIntent(companyId: companyId, body: body) { (response, error) in
+client.payment.saveSubscriptionSetupIntent(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -15999,7 +16180,7 @@ payment.saveSubscriptionSetupIntent(companyId: companyId, body: body) { (respons
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |  
-| body | SaveSubscriptionSetupIntentRequest |  no  | Request body |
+| body | SaveSubscriptionSetupIntentRequest | yes | Request body |
 
 
 Uses this api to Save Subscription Setup Intent
@@ -16049,8 +16230,9 @@ Save bank details for cancelled/returned order
 
 
 
+
 ```swift
-payment.addBeneficiaryDetails(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").payment.addBeneficiaryDetails(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -16061,7 +16243,7 @@ payment.addBeneficiaryDetails(companyId: companyId, applicationId: applicationId
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |   
 | applicationId | String | yes | Application id |  
-| body | AddBeneficiaryDetailsRequest |  no  | Request body |
+| body | AddBeneficiaryDetailsRequest | yes | Request body |
 
 
 Use this API to save bank details for returned/cancelled order to refund amount in his account.
@@ -16106,8 +16288,9 @@ Ifsc Code Verification
 
 
 
+
 ```swift
-payment.verifyIfscCode(companyId: companyId, ifscCode: ifscCode) { (response, error) in
+client.payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
     // Use response
 }
 ```
@@ -16179,8 +16362,9 @@ List Order Beneficiary
 
 
 
+
 ```swift
-payment.getUserOrderBeneficiaries(orderId: orderId, companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -16257,8 +16441,9 @@ List User Beneficiary
 
 
 
+
 ```swift
-payment.getUserBeneficiaries(orderId: orderId, companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").payment.getUserBeneficiaries(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -16336,8 +16521,9 @@ Confirm payment after successful payment from payment gateway
 
 
 
+
 ```swift
-payment.confirmPayment(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").payment.confirmPayment(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -16348,7 +16534,7 @@ payment.confirmPayment(companyId: companyId, applicationId: applicationId, body:
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |   
 | applicationId | String | yes | Application id |  
-| body | PaymentConfirmationRequest |  no  | Request body |
+| body | PaymentConfirmationRequest | yes | Request body |
 
 
 Use this API to confirm payment after payment gateway accepted payment.
@@ -16398,8 +16584,9 @@ Update status of Shipment
 
 
 
+
 ```swift
-order.shipmentStatusUpdate(companyId: companyId, body: body) { (response, error) in
+client.order.shipmentStatusUpdate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -16409,7 +16596,7 @@ order.shipmentStatusUpdate(companyId: companyId, body: body) { (response, error)
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company Id |  
-| body | UpdateShipmentStatusBody |  yes  | Request body |
+| body | UpdateShipmentStatusBody | yes | Request body |
 
 
 Update Shipment Status
@@ -16450,8 +16637,9 @@ Get Activity Status
 
 
 
+
 ```swift
-order.activityStatus(companyId: companyId, bagId: bagId) { (response, error) in
+client.order.activityStatus(bagId: bagId) { (response, error) in
     // Use response
 }
 ```
@@ -16503,8 +16691,9 @@ Update Store Process-Shipment
 
 
 
+
 ```swift
-order.storeProcessShipmentUpdate(companyId: companyId, body: body) { (response, error) in
+client.order.storeProcessShipmentUpdate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -16514,7 +16703,7 @@ order.storeProcessShipmentUpdate(companyId: companyId, body: body) { (response, 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company Id |  
-| body | UpdateProcessShipmenstRequestBody |  yes  | Request body |
+| body | UpdateProcessShipmenstRequestBody | yes | Request body |
 
 
 Update Store Process-Shipment
@@ -16555,8 +16744,9 @@ Check Refund is available or not
 
 
 
+
 ```swift
-order.checkRefund(companyId: companyId, shipmentId: shipmentId) { (response, error) in
+client.order.checkRefund(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -16608,8 +16798,9 @@ Get Orders for company based on Company Id
 
 
 
+
 ```swift
-order.getOrdersByCompanyId(companyId: companyId, pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -16672,8 +16863,9 @@ Get Order Lanes Count for company based on Company Id
 
 
 
+
 ```swift
-order.getOrderLanesCountByCompanyId(companyId: companyId, pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrderLanesCountByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -16736,8 +16928,9 @@ Get Order Details for company based on Company Id and Order Id
 
 
 
+
 ```swift
-order.getOrderDetails(companyId: companyId, orderId: orderId, next: next, previous: previous) { (response, error) in
+client.order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
     // Use response
 }
 ```
@@ -16791,8 +16984,9 @@ Get Orders for company based on Company Id
 
 
 
+
 ```swift
-order.getPicklistOrdersByCompanyId(companyId: companyId, pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -16855,8 +17049,9 @@ Track Shipment by shipment id, for application based on application Id
 
 
 
+
 ```swift
-order.trackShipmentPlatform(companyId: companyId, applicationId: applicationId, shipmentId: shipmentId) { (response, error) in
+client.application("<APPLICATION_ID>").order.trackShipmentPlatform(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -16909,8 +17104,9 @@ Track Order by order id, for application based on application Id
 
 
 
+
 ```swift
-order.trackOrder(companyId: companyId, applicationId: applicationId, orderId: orderId) { (response, error) in
+client.application("<APPLICATION_ID>").order.trackOrder(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -16963,8 +17159,9 @@ Get all failed orders application wise
 
 
 
+
 ```swift
-order.failedOrders(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").order.failedOrders() { (response, error) in
     // Use response
 }
 ```
@@ -17016,8 +17213,9 @@ Reprocess order by order id
 
 
 
+
 ```swift
-order.reprocessOrder(companyId: companyId, applicationId: applicationId, orderId: orderId) { (response, error) in
+client.application("<APPLICATION_ID>").order.reprocessOrder(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -17070,8 +17268,9 @@ Use this API to update the shipment using its shipment ID.
 
 
 
+
 ```swift
-order.updateShipment(companyId: companyId, applicationId: applicationId, shipmentId: shipmentId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").order.updateShipment(shipmentId: shipmentId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -17083,7 +17282,7 @@ order.updateShipment(companyId: companyId, applicationId: applicationId, shipmen
 | companyId | String | yes | Company Id |   
 | applicationId | String | yes | Application Id |   
 | shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-| body | ShipmentUpdateRequest |  yes  | Request body |
+| body | ShipmentUpdateRequest | yes | Request body |
 
 
 Update the shipment
@@ -17124,8 +17323,9 @@ Use this API to retrieve the issues that led to the cancellation of bags within 
 
 
 
+
 ```swift
-order.getPlatformShipmentReasons(companyId: companyId, applicationId: applicationId, action: action) { (response, error) in
+client.application("<APPLICATION_ID>").order.getPlatformShipmentReasons(action: action) { (response, error) in
     // Use response
 }
 ```
@@ -17178,8 +17378,9 @@ Use this API to track a shipment using its shipment ID.
 
 
 
+
 ```swift
-order.getShipmentTrackDetails(companyId: companyId, applicationId: applicationId, orderId: orderId, shipmentId: shipmentId) { (response, error) in
+client.application("<APPLICATION_ID>").order.getShipmentTrackDetails(orderId: orderId, shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -17233,8 +17434,9 @@ Use this API to get address of a shipment using its shipment ID and Address Cate
 
 
 
+
 ```swift
-order.getShipmentAddress(companyId: companyId, shipmentId: shipmentId, addressCategory: addressCategory) { (response, error) in
+client.order.getShipmentAddress(shipmentId: shipmentId, addressCategory: addressCategory) { (response, error) in
     // Use response
 }
 ```
@@ -17287,8 +17489,9 @@ Use this API to update address of a shipment using its shipment ID and Address C
 
 
 
+
 ```swift
-order.updateShipmentAddress(companyId: companyId, shipmentId: shipmentId, addressCategory: addressCategory, body: body) { (response, error) in
+client.order.updateShipmentAddress(shipmentId: shipmentId, addressCategory: addressCategory, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -17300,7 +17503,7 @@ order.updateShipmentAddress(companyId: companyId, shipmentId: shipmentId, addres
 | companyId | String | yes | Company Id |   
 | shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
 | addressCategory | String | yes | Category of the address it falls into(billing or delivery). |  
-| body | UpdateShipmentAddressRequest |  yes  | Request body |
+| body | UpdateShipmentAddressRequest | yes | Request body |
 
 
 Update Shipment Address
@@ -17341,8 +17544,9 @@ Get Ping
 
 
 
+
 ```swift
-order.getPing(companyId: companyId) { (response, error) in
+client.order.getPing() { (response, error) in
     // Use response
 }
 ```
@@ -17393,8 +17597,9 @@ Get Voice Callback
 
 
 
+
 ```swift
-order.voiceCallback(companyId: companyId) { (response, error) in
+client.order.voiceCallback() { (response, error) in
     // Use response
 }
 ```
@@ -17445,8 +17650,9 @@ Get Voice Click to Call
 
 
 
+
 ```swift
-order.voiceClickToCall(companyId: companyId, caller: caller, receiver: receiver) { (response, error) in
+client.order.voiceClickToCall(caller: caller, receiver: receiver) { (response, error) in
     // Use response
 }
 ```
@@ -17499,123 +17705,14 @@ Success
 ## Catalog
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
-
-
-
-```swift
-catalog.deleteSearchKeywords(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Returned Response:*
-
-
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Words Deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateSearchKeywords
-Update Search Keyword
-
-
-
-```swift
-catalog.updateSearchKeywords(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | CreateSearchKeyword |  yes  | Request body |
-
-
-Update Search Keyword by its id. On successful request, returns the updated collection
-
-*Returned Response:*
-
-
-
-
-[GetSearchWordsData](#GetSearchWordsData)
-
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSearchKeywords
 Get a Search Keywords Details
 
 
 
+
 ```swift
-catalog.getSearchKeywords(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getSearchKeywords(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -17679,13 +17776,14 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 ---
 
 
-#### createCustomKeyword
-Add a Custom Search Keywords
+#### updateSearchKeywords
+Update Search Keyword
+
 
 
 
 ```swift
-catalog.createCustomKeyword(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.updateSearchKeywords(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -17695,11 +17793,12 @@ catalog.createCustomKeyword(companyId: companyId, applicationId: applicationId, 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-| body | CreateSearchKeyword |  yes  | Request body |
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | CreateSearchKeyword | yes | Request body |
 
 
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+Update Search Keyword by its id. On successful request, returns the updated collection
 
 *Returned Response:*
 
@@ -17708,7 +17807,62 @@ Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of
 
 [GetSearchWordsData](#GetSearchWordsData)
 
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").catalog.deleteSearchKeywords(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -17718,21 +17872,7 @@ Get keyword object with id that is added. See example below or refer `GetSearchW
 
 ```json
 {
-  "uid": "602fa1e9a596ce349563f6b9",
-  "words": [
-    "sds"
-  ],
-  "app_id": "000000000000000000000001",
-  "is_active": true,
-  "result": {
-    "query": {
-      "department": [
-        "men"
-      ]
-    },
-    "sort_on": "popular"
-  },
-  "_custom_json": {}
+  "message": "Words Deleted"
 }
 ```
 </details>
@@ -17753,8 +17893,9 @@ List all Search Custom Keyword Listing
 
 
 
+
 ```swift
-catalog.getAllSearchKeyword(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getAllSearchKeyword() { (response, error) in
     // Use response
 }
 ```
@@ -17828,13 +17969,14 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
+#### createCustomKeyword
+Add a Custom Search Keywords
+
 
 
 
 ```swift
-catalog.deleteAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.createCustomKeyword(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -17844,21 +17986,20 @@ catalog.deleteAutocompleteKeyword(companyId: companyId, applicationId: applicati
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | CreateSearchKeyword | yes | Request body |
 
 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
 *Returned Response:*
 
 
 
 
-[DeleteResponse](#DeleteResponse)
+[GetSearchWordsData](#GetSearchWordsData)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
 
@@ -17868,62 +18009,22 @@ Status object. Tells whether the operation was successful. See example below or 
 
 ```json
 {
-  "message": "Words Deleted"
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ],
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "result": {
+    "query": {
+      "department": [
+        "men"
+      ]
+    },
+    "sort_on": "popular"
+  },
+  "_custom_json": {}
 }
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
-
-
-
-```swift
-catalog.updateAutocompleteKeyword(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | CreateAutocompleteKeyword |  yes  | Request body |
-
-
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-
-*Returned Response:*
-
-
-
-
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
 ```
 </details>
 
@@ -17943,8 +18044,9 @@ Get a Autocomplete Keywords Details
 
 
 
+
 ```swift
-catalog.getAutocompleteKeywordDetail(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -18020,13 +18122,14 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 ---
 
 
-#### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
+
 
 
 
 ```swift
-catalog.createCustomAutocompleteRule(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -18036,20 +18139,21 @@ catalog.createCustomAutocompleteRule(companyId: companyId, applicationId: applic
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-| body | CreateAutocompleteKeyword |  yes  | Request body |
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | CreateAutocompleteKeyword | yes | Request body |
 
 
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Returned Response:*
 
 
 
 
-[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 
@@ -18073,13 +18177,71 @@ List of all the collections including the one you added. See example below or re
 ---
 
 
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Words Deleted"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getAutocompleteConfig
 List all Autocomplete Keyword Listing
 
 
 
+
 ```swift
-catalog.getAutocompleteConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getAutocompleteConfig() { (response, error) in
     // Use response
 }
 ```
@@ -18165,13 +18327,14 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
 ---
 
 
-#### createProductBundle
-Create Product Bundle
+#### createCustomAutocompleteRule
+Add a Custom Autocomplete Keywords
+
 
 
 
 ```swift
-catalog.createProductBundle(companyId: companyId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -18180,20 +18343,21 @@ catalog.createProductBundle(companyId: companyId, body: body) { (response, error
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | ProductBundleRequest |  yes  | Request body |
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | CreateAutocompleteKeyword | yes | Request body |
 
 
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
 
 *Returned Response:*
 
 
 
 
-[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
 
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
 
 
 
@@ -18202,40 +18366,7 @@ Get bundle with id that is added. See example below or refer `GetProductBundleCr
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "slug": "bag",
-  "logo": "http://g.com/poo.png/",
-  "name": "Bag",
-  "choice": "multi",
-  "products": [
-    {
-      "product_uid": 7500001,
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "allow_remove": true
-    }
-  ],
-  "meta": {},
-  "same_store_assignment": true,
-  "is_active": true,
-  "page_visibility": [
-    "pdp"
-  ],
-  "created_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "company_id": 1,
-  "created_on": "2021-02-19 16:40:26.310007",
-  "modified_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "modified_on": "2021-02-19 16:40:26.310027",
-  "id": "602f9ca2a596ce312f5956f9"
-}
+
 ```
 </details>
 
@@ -18255,8 +18386,9 @@ List all Product Bundles
 
 
 
+
 ```swift
-catalog.getProductBundle(companyId: companyId, q: q) { (response, error) in
+client.catalog.getProductBundle(q: q) { (response, error) in
     // Use response
 }
 ```
@@ -18449,13 +18581,14 @@ List of bundle configured for a company. See example below or refer `GetProductB
 ---
 
 
-#### updateProductBundle
-Update a Product Bundle
+#### createProductBundle
+Create Product Bundle
+
 
 
 
 ```swift
-catalog.updateProductBundle(companyId: companyId, id: id, body: body) { (response, error) in
+client.catalog.createProductBundle(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -18464,12 +18597,11 @@ catalog.updateProductBundle(companyId: companyId, id: id, body: body) { (respons
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | ProductBundleUpdateRequest |  yes  | Request body |
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | ProductBundleRequest | yes | Request body |
 
 
-Update a Product Bundle by its id. On successful request, returns the updated product bundle
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
 
 *Returned Response:*
 
@@ -18478,7 +18610,7 @@ Update a Product Bundle by its id. On successful request, returns the updated pr
 
 [GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
 
-The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
 
 
 
@@ -18540,8 +18672,9 @@ Get a particular Product Bundle details
 
 
 
+
 ```swift
-catalog.getProductBundleDetail(companyId: companyId, id: id) { (response, error) in
+client.catalog.getProductBundleDetail(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -18622,13 +18755,14 @@ The Collection object. See example below or refer `GetProductBundleResponse` for
 ---
 
 
-#### createSizeGuide
-Create a size guide.
+#### updateProductBundle
+Update a Product Bundle
+
 
 
 
 ```swift
-catalog.createSizeGuide(companyId: companyId, body: body) { (response, error) in
+client.catalog.updateProductBundle(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -18637,20 +18771,21 @@ catalog.createSizeGuide(companyId: companyId, body: body) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company inside which the size guide is to be created. |  
-| body | ValidateSizeGuide |  yes  | Request body |
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| id | String | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | ProductBundleUpdateRequest | yes | Request body |
 
 
-This API allows to create a size guide associated to a brand.
+Update a Product Bundle by its id. On successful request, returns the updated product bundle
 
 *Returned Response:*
 
 
 
 
-[SuccessResponse](#SuccessResponse)
+[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
 
-Returns a success response
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
 
 
 
@@ -18660,7 +18795,38 @@ Returns a success response
 
 ```json
 {
-  "success": true
+  "slug": "bag",
+  "logo": "http://g.com/poo.png/",
+  "name": "Bag",
+  "choice": "multi",
+  "products": [
+    {
+      "product_uid": 7500001,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "allow_remove": true
+    }
+  ],
+  "meta": {},
+  "same_store_assignment": true,
+  "is_active": true,
+  "page_visibility": [
+    "pdp"
+  ],
+  "created_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "company_id": 1,
+  "created_on": "2021-02-19 16:40:26.310007",
+  "modified_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "id": "602f9ca2a596ce312f5956f9"
 }
 ```
 </details>
@@ -18681,8 +18847,9 @@ Get list of size guides
 
 
 
+
 ```swift
-catalog.getSizeGuides(companyId: companyId, active: active, q: q, tag: tag, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.catalog.getSizeGuides(active: active, q: q, tag: tag, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -18792,13 +18959,14 @@ Size guide object. See example below or refer `ListSizeGuide` for details
 ---
 
 
-#### updateSizeGuide
-Edit a size guide.
+#### createSizeGuide
+Create a size guide.
+
 
 
 
 ```swift
-catalog.updateSizeGuide(companyId: companyId, id: id, body: body) { (response, error) in
+client.catalog.createSizeGuide(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -18807,12 +18975,11 @@ catalog.updateSizeGuide(companyId: companyId, id: id, body: body) { (response, e
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company. |   
-| id | String | yes | Mongo id of the size guide to be edited |  
-| body | ValidateSizeGuide |  yes  | Request body |
+| companyId | String | yes | Id of the company inside which the size guide is to be created. |  
+| body | ValidateSizeGuide | yes | Request body |
 
 
-This API allows to edit a size guide.
+This API allows to create a size guide associated to a brand.
 
 *Returned Response:*
 
@@ -18852,8 +19019,9 @@ Get a single size guide.
 
 
 
+
 ```swift
-catalog.getSizeGuide(companyId: companyId, id: id) { (response, error) in
+client.catalog.getSizeGuide(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -18948,13 +19116,70 @@ Brand object. See example below or refer `SizeGuideResponseSchema` for details
 ---
 
 
+#### updateSizeGuide
+Edit a size guide.
+
+
+
+
+```swift
+client.catalog.updateSizeGuide(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Id of the company. |   
+| id | String | yes | Mongo id of the size guide to be edited |  
+| body | ValidateSizeGuide | yes | Request body |
+
+
+This API allows to edit a size guide.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCatalogConfiguration
 Get configuration meta  details for catalog for admin panel
 
 
 
+
 ```swift
-catalog.getCatalogConfiguration(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getCatalogConfiguration() { (response, error) in
     // Use response
 }
 ```
@@ -19001,66 +19226,14 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 ---
 
 
-#### createConfigurationProductListing
-Add configuration for products & listings
-
-
-
-```swift
-catalog.createConfigurationProductListing(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-| body | AppConfiguration |  yes  | Request body |
-
-
-Add configuration for products & listing.
-
-*Returned Response:*
-
-
-
-
-[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getConfigurations
 Get configured details for catalog
 
 
 
+
 ```swift
-catalog.getConfigurations(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getConfigurations() { (response, error) in
     // Use response
 }
 ```
@@ -19419,13 +19592,14 @@ Get application level configured catalog details. See example below or refer `Ge
 ---
 
 
-#### createConfigurationByType
-Add configuration for categories and brands
+#### createConfigurationProductListing
+Add configuration for products & listings
+
 
 
 
 ```swift
-catalog.createConfigurationByType(companyId: companyId, applicationId: applicationId, type: type, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.createConfigurationProductListing(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -19435,12 +19609,11 @@ catalog.createConfigurationByType(companyId: companyId, applicationId: applicati
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| type | String | yes | type can be brands, categories etc. |  
-| body | AppConfiguration |  yes  | Request body |
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | AppConfiguration | yes | Request body |
 
 
-Add configuration for categories & brands.
+Add configuration for products & listing.
 
 *Returned Response:*
 
@@ -19478,8 +19651,9 @@ Get configured details for catalog
 
 
 
+
 ```swift
-catalog.getConfigurationByType(companyId: companyId, applicationId: applicationId, type: type) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getConfigurationByType(type: type) { (response, error) in
     // Use response
 }
 ```
@@ -19527,13 +19701,69 @@ Get application level configured catalog details. See example below or refer `Ge
 ---
 
 
+#### createConfigurationByType
+Add configuration for categories and brands
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").catalog.createConfigurationByType(type: type, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | String | yes | type can be brands, categories etc. |  
+| body | AppConfiguration | yes | Request body |
+
+
+Add configuration for categories & brands.
+
+*Returned Response:*
+
+
+
+
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
+
+success flag will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getQueryFilters
 Get query filters to configure a collection
 
 
 
+
 ```swift
-catalog.getQueryFilters(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getQueryFilters() { (response, error) in
     // Use response
 }
 ```
@@ -19930,126 +20160,14 @@ The attached items of an collection. See example below or refer `GetCollectionQu
 ---
 
 
-#### createCollection
-Add a Collection
-
-
-
-```swift
-catalog.createCollection(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-| body | CreateCollection |  yes  | Request body |
-
-
-Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-
-*Returned Response:*
-
-
-
-
-[CollectionCreateResponse](#CollectionCreateResponse)
-
-List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": "604f585a7051e30001173ac1",
-  "type": "query",
-  "query": {},
-  "name": "New",
-  "banners": {
-    "portrait": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    },
-    "landscape": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    }
-  },
-  "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "published": true,
-  "description": "",
-  "is_active": true,
-  "tags": [],
-  "slug": "new",
-  "action": {
-    "page": {
-      "type": "collection",
-      "query": {
-        "collection": [
-          "new"
-        ]
-      }
-    },
-    "type": "page"
-  },
-  "allow_facets": true,
-  "allow_sort": true,
-  "visible_facets_keys": [],
-  "meta": {},
-  "badge": {
-    "color": "#ffffff",
-    "text": ""
-  },
-  "sort_on": "depth_desc",
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "start": "2021-03-15T12:51:21.333000+00:00Z",
-    "next_schedule": [
-      {
-        "start": "2021-03-15T12:51:21.333000+00:00Z",
-        "end": null
-      }
-    ],
-    "end": null
-  },
-  "seo": {
-    "title": "Test",
-    "description": "Test description"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getAllCollections
 List all the collections
 
 
 
+
 ```swift
-catalog.getAllCollections(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getAllCollections() { (response, error) in
     // Use response
 }
 ```
@@ -20351,13 +20469,128 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 ---
 
 
+#### createCollection
+Add a Collection
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").catalog.createCollection(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | CreateCollection | yes | Request body |
+
+
+Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+
+*Returned Response:*
+
+
+
+
+[CollectionCreateResponse](#CollectionCreateResponse)
+
+List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "604f585a7051e30001173ac1",
+  "type": "query",
+  "query": {},
+  "name": "New",
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    }
+  },
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "published": true,
+  "description": "",
+  "is_active": true,
+  "tags": [],
+  "slug": "new",
+  "action": {
+    "page": {
+      "type": "collection",
+      "query": {
+        "collection": [
+          "new"
+        ]
+      }
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "visible_facets_keys": [],
+  "meta": {},
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "sort_on": "depth_desc",
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "start": "2021-03-15T12:51:21.333000+00:00Z",
+    "next_schedule": [
+      {
+        "start": "2021-03-15T12:51:21.333000+00:00Z",
+        "end": null
+      }
+    ],
+    "end": null
+  },
+  "seo": {
+    "title": "Test",
+    "description": "Test description"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCollectionDetail
 Get a particular collection
 
 
 
+
 ```swift
-catalog.getCollectionDetail(companyId: companyId, applicationId: applicationId, slug: slug) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getCollectionDetail(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -20466,69 +20699,14 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 ---
 
 
-#### deleteCollection
-Delete a Collection
-
-
-
-```swift
-catalog.deleteCollection(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | String | yes | A `id` is a unique identifier of a collection. |  
-
-
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Returned Response:*
-
-
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Collection Deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCollection
 Update a collection
 
 
 
+
 ```swift
-catalog.updateCollection(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.updateCollection(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -20540,7 +20718,7 @@ catalog.updateCollection(companyId: companyId, applicationId: applicationId, id:
 | companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
 | applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | String | yes | A `id` is a unique identifier of a collection. |  
-| body | UpdateCollection |  yes  | Request body |
+| body | UpdateCollection | yes | Request body |
 
 
 Update a collection by it's id. On successful request, returns the updated collection
@@ -20636,13 +20814,14 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 ---
 
 
-#### addCollectionItems
-Add items to a collection
+#### deleteCollection
+Delete a Collection
+
 
 
 
 ```swift
-catalog.addCollectionItems(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.deleteCollection(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -20654,19 +20833,19 @@ catalog.addCollectionItems(companyId: companyId, applicationId: applicationId, i
 | companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
 | applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | String | yes | A `id` is a unique identifier of a collection. |  
-| body | CollectionItemRequest |  yes  | Request body |
 
 
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
 
 *Returned Response:*
 
 
 
 
-[UpdatedResponse](#UpdatedResponse)
+[DeleteResponse](#DeleteResponse)
 
-Status object. Tells whether the operation was successful.
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -20676,7 +20855,7 @@ Status object. Tells whether the operation was successful.
 
 ```json
 {
-  "message": "items updated"
+  "message": "Collection Deleted"
 }
 ```
 </details>
@@ -20697,8 +20876,9 @@ Get the items for a collection
 
 
 
+
 ```swift
-catalog.getCollectionItems(companyId: companyId, applicationId: applicationId, id: id, sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getCollectionItems(id: id, sortOn: sortOn, pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -20749,13 +20929,71 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 ---
 
 
+#### addCollectionItems
+Add items to a collection
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").catalog.addCollectionItems(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | String | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | String | yes | A `id` is a unique identifier of a collection. |  
+| body | CollectionItemRequest | yes | Request body |
+
+
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+
+*Returned Response:*
+
+
+
+
+[UpdatedResponse](#UpdatedResponse)
+
+Status object. Tells whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "items updated"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCatalogInsights
 Analytics data of catalog and inventory.
 
 
 
+
 ```swift
-catalog.getCatalogInsights(companyId: companyId, applicationId: applicationId, brand: brand) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getCatalogInsights(brand: brand) { (response, error) in
     // Use response
 }
 ```
@@ -20814,8 +21052,9 @@ Analytics data of catalog and inventory that are being cross-selled.
 
 
 
+
 ```swift
-catalog.getSellerInsights(companyId: companyId, sellerAppId: sellerAppId) { (response, error) in
+client.catalog.getSellerInsights(sellerAppId: sellerAppId) { (response, error) in
     // Use response
 }
 ```
@@ -20870,8 +21109,9 @@ Create/Update opt-in infomation.
 
 
 
+
 ```swift
-catalog.createMarketplaceOptin(companyId: companyId, marketplace: marketplace, body: body) { (response, error) in
+client.catalog.createMarketplaceOptin(marketplace: marketplace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -20882,7 +21122,7 @@ catalog.createMarketplaceOptin(companyId: companyId, marketplace: marketplace, b
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | The company id for which the detail needs to be retrieved. |   
 | marketplace | String | yes | The marketplace for which the detail needs to be retrieved. |  
-| body | OptInPostRequest |  yes  | Request body |
+| body | OptInPostRequest | yes | Request body |
 
 
 Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
@@ -20923,8 +21163,9 @@ Get opt-in infomation.
 
 
 
+
 ```swift
-catalog.getMarketplaceOptinDetail(companyId: companyId) { (response, error) in
+client.catalog.getMarketplaceOptinDetail() { (response, error) in
     // Use response
 }
 ```
@@ -20975,8 +21216,9 @@ Get the Company details.
 
 
 
+
 ```swift
-catalog.getCompanyDetail(companyId: companyId) { (response, error) in
+client.catalog.getCompanyDetail() { (response, error) in
     // Use response
 }
 ```
@@ -21027,8 +21269,9 @@ Get the Company Brand details of Optin.
 
 
 
+
 ```swift
-catalog.getCompanyBrandDetail(companyId: companyId, isActive: isActive, q: q, pageNo: pageNo, pageSize: pageSize, marketplace: marketplace) { (response, error) in
+client.catalog.getCompanyBrandDetail(isActive: isActive, q: q, pageNo: pageNo, pageSize: pageSize, marketplace: marketplace) { (response, error) in
     // Use response
 }
 ```
@@ -21084,8 +21327,9 @@ Get the Company metrics
 
 
 
+
 ```swift
-catalog.getCompanyMetrics(companyId: companyId) { (response, error) in
+client.catalog.getCompanyMetrics() { (response, error) in
     // Use response
 }
 ```
@@ -21136,8 +21380,9 @@ Get the Store details.
 
 
 
+
 ```swift
-catalog.getStoreDetail(companyId: companyId, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.catalog.getStoreDetail(q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -21191,8 +21436,9 @@ Get gender attribute details
 
 
 
+
 ```swift
-catalog.getGenderAttribute(companyId: companyId, attributeSlug: attributeSlug) { (response, error) in
+client.catalog.getGenderAttribute(attributeSlug: attributeSlug) { (response, error) in
     // Use response
 }
 ```
@@ -21285,8 +21531,9 @@ List Department specifiec product categories
 
 
 
+
 ```swift
-catalog.listProductTemplateCategories(companyId: companyId, departments: departments, itemType: itemType) { (response, error) in
+client.catalog.listProductTemplateCategories(departments: departments, itemType: itemType) { (response, error) in
     // Use response
 }
 ```
@@ -21342,8 +21589,9 @@ List all Departments
 
 
 
+
 ```swift
-catalog.listDepartmentsData(companyId: companyId, pageNo: pageNo, pageSize: pageSize, name: name, search: search, isActive: isActive) { (response, error) in
+client.catalog.listDepartmentsData(pageNo: pageNo, pageSize: pageSize, name: name, search: search, isActive: isActive) { (response, error) in
     // Use response
 }
 ```
@@ -21717,8 +21965,9 @@ Get specific departments details by passing in unique id of the department
 
 
 
+
 ```swift
-catalog.getDepartmentData(companyId: companyId, uid: uid) { (response, error) in
+client.catalog.getDepartmentData(uid: uid) { (response, error) in
     // Use response
 }
 ```
@@ -22082,8 +22331,9 @@ List all Templates
 
 
 
+
 ```swift
-catalog.listProductTemplate(companyId: companyId, departments: departments) { (response, error) in
+client.catalog.listProductTemplate(departments: departments) { (response, error) in
     // Use response
 }
 ```
@@ -23986,8 +24236,9 @@ Validate Product Template Schema
 
 
 
+
 ```swift
-catalog.validateProductTemplate(companyId: companyId, slug: slug) { (response, error) in
+client.catalog.validateProductTemplate(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -24039,8 +24290,9 @@ Download Product Template View
 
 
 
+
 ```swift
-catalog.downloadProductTemplateViews(companyId: companyId, slug: slug) { (response, error) in
+client.catalog.downloadProductTemplateViews(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -24092,8 +24344,9 @@ Download Product Template View
 
 
 
+
 ```swift
-catalog.downloadProductTemplateView(companyId: companyId, itemType: itemType) { (response, error) in
+client.catalog.downloadProductTemplateView(itemType: itemType) { (response, error) in
     // Use response
 }
 ```
@@ -24145,8 +24398,9 @@ Validate Product Template Schema
 
 
 
+
 ```swift
-catalog.validateProductTemplateSchema(companyId: companyId, itemType: itemType) { (response, error) in
+client.catalog.validateProductTemplateSchema(itemType: itemType) { (response, error) in
     // Use response
 }
 ```
@@ -24298,8 +24552,9 @@ List HSN Codes
 
 
 
+
 ```swift
-catalog.listHSNCodes(companyId: companyId) { (response, error) in
+client.catalog.listHSNCodes() { (response, error) in
     // Use response
 }
 ```
@@ -24360,8 +24615,9 @@ Allows you to list all product templates export list details
 
 
 
+
 ```swift
-catalog.listProductTemplateExportDetails(companyId: companyId) { (response, error) in
+client.catalog.listProductTemplateExportDetails() { (response, error) in
     // Use response
 }
 ```
@@ -24444,8 +24700,9 @@ Allows you to list all values for Templates, Brands or Type
 
 
 
+
 ```swift
-catalog.listTemplateBrandTypeValues(companyId: companyId, filter: filter) { (response, error) in
+client.catalog.listTemplateBrandTypeValues(filter: filter) { (response, error) in
     // Use response
 }
 ```
@@ -24504,68 +24761,14 @@ See example below or refer `ProductConfigurationDownloadsSchema` for details
 ---
 
 
-#### createCategories
-Create product categories
-
-
-
-```swift
-catalog.createCategories(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | CategoryRequestBody |  yes  | Request body |
-
-
-This API lets user create product categories
-
-*Returned Response:*
-
-
-
-
-[CategoryCreateResponse](#CategoryCreateResponse)
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Success",
-  "uid": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### listCategories
 Get product categories list
 
 
 
+
 ```swift
-catalog.listCategories(companyId: companyId, level: level, departments: departments, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.catalog.listCategories(level: level, departments: departments, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -25014,13 +25217,14 @@ Category Meta. See example below or refer `CategoryResponse` for details
 ---
 
 
-#### updateCategory
-Update product categories
+#### createCategories
+Create product categories
+
 
 
 
 ```swift
-catalog.updateCategory(companyId: companyId, uid: uid, body: body) { (response, error) in
+client.catalog.createCategories(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -25029,21 +25233,20 @@ catalog.updateCategory(companyId: companyId, uid: uid, body: body) { (response, 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| uid | String | yes | Category unique id |  
-| body | CategoryRequestBody |  yes  | Request body |
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | CategoryRequestBody | yes | Request body |
 
 
-Update a product category using this apu
+This API lets user create product categories
 
 *Returned Response:*
 
 
 
 
-[CategoryUpdateResponse](#CategoryUpdateResponse)
+[CategoryCreateResponse](#CategoryCreateResponse)
 
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
+Category Meta. See example below or refer `CategoryCreateResponse` for details
 
 
 
@@ -25052,7 +25255,10 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "message": "Success",
+  "uid": 0
+}
 ```
 </details>
 
@@ -25072,8 +25278,9 @@ Get product category by uid
 
 
 
+
 ```swift
-catalog.getCategoryData(companyId: companyId, uid: uid) { (response, error) in
+client.catalog.getCategoryData(uid: uid) { (response, error) in
     // Use response
 }
 ```
@@ -25158,13 +25365,14 @@ Get Data for one category. See example below or refer `CategoryResponse` for det
 ---
 
 
-#### createProduct
-Create a product.
+#### updateCategory
+Update product categories
+
 
 
 
 ```swift
-catalog.createProduct(companyId: companyId, body: body) { (response, error) in
+client.catalog.updateCategory(uid: uid, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -25173,20 +25381,21 @@ catalog.createProduct(companyId: companyId, body: body) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company associated to product that is to be viewed. |  
-| body | ProductCreateUpdate |  yes  | Request body |
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | String | yes | Category unique id |  
+| body | CategoryRequestBody | yes | Request body |
 
 
-This API allows to create product.
+Update a product category using this apu
 
 *Returned Response:*
 
 
 
 
-[SuccessResponse](#SuccessResponse)
+[CategoryUpdateResponse](#CategoryUpdateResponse)
 
-Returns a success response
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 
@@ -25195,9 +25404,7 @@ Returns a success response
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "success": true
-}
+
 ```
 </details>
 
@@ -25217,8 +25424,9 @@ Get product list
 
 
 
+
 ```swift
-catalog.getProducts(companyId: companyId, brandIds: brandIds, categoryIds: categoryIds, itemIds: itemIds, departmentIds: departmentIds, itemCode: itemCode, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.catalog.getProducts(brandIds: brandIds, categoryIds: categoryIds, itemIds: itemIds, departmentIds: departmentIds, itemCode: itemCode, q: q, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -25438,13 +25646,14 @@ Product Meta. See example below for details
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### createProduct
+Create a product.
+
 
 
 
 ```swift
-catalog.deleteProduct(companyId: companyId, itemId: itemId) { (response, error) in
+client.catalog.createProduct(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -25453,12 +25662,11 @@ catalog.deleteProduct(companyId: companyId, itemId: itemId) { (response, error) 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company Id of the company associated to product that is to be deleted. |   
-| itemId | Int | yes | Id of the product to be updated. |  
+| companyId | String | yes | Id of the company associated to product that is to be viewed. |  
+| body | ProductCreateUpdate | yes | Request body |
 
 
-
-This API allows to delete product.
+This API allows to create product.
 
 *Returned Response:*
 
@@ -25477,62 +25685,6 @@ Returns a success response
 
 ```json
 {
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### editProduct
-Edit a product.
-
-
-
-```swift
-catalog.editProduct(companyId: companyId, itemId: itemId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company associated to product that is to be viewed. |   
-| itemId | Int | yes | Id of the product to be updated. |  
-| body | ProductCreateUpdate |  yes  | Request body |
-
-
-This API allows to edit product.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
   "success": true
 }
 ```
@@ -25554,8 +25706,9 @@ Get a single product.
 
 
 
+
 ```swift
-catalog.getProduct(itemCode: itemCode, companyId: companyId, itemId: itemId, brandUid: brandUid, uid: uid) { (response, error) in
+client.catalog.getProduct(itemCode: itemCode, itemId: itemId, brandUid: brandUid, uid: uid) { (response, error) in
     // Use response
 }
 ```
@@ -25726,13 +25879,127 @@ Product object. See example below or refer `product.utils.format_product_respons
 ---
 
 
+#### editProduct
+Edit a product.
+
+
+
+
+```swift
+client.catalog.editProduct(itemId: itemId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | Int | yes | Id of the product to be updated. |  
+| body | ProductCreateUpdate | yes | Request body |
+
+
+This API allows to edit product.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteProduct
+Delete a product.
+
+
+
+
+```swift
+client.catalog.deleteProduct(itemId: itemId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Company Id of the company associated to product that is to be deleted. |   
+| itemId | Int | yes | Id of the product to be updated. |  
+
+
+
+This API allows to delete product.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductValidation
 Validate product/size data
 
 
 
+
 ```swift
-catalog.getProductValidation(companyId: companyId) { (response, error) in
+client.catalog.getProductValidation() { (response, error) in
     // Use response
 }
 ```
@@ -25785,8 +26052,9 @@ Get a single product size.
 
 
 
+
 ```swift
-catalog.getProductSize(itemCode: itemCode, companyId: companyId, itemId: itemId, brandUid: brandUid, uid: uid) { (response, error) in
+client.catalog.getProductSize(itemCode: itemCode, itemId: itemId, brandUid: brandUid, uid: uid) { (response, error) in
     // Use response
 }
 ```
@@ -25936,67 +26204,14 @@ Product object. See example below for details
 ---
 
 
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-
-
-```swift
-catalog.updateProductAssetsInBulk(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | Company Id in which assets to be uploaded. |  
-| body | BulkJob |  yes  | Request body |
-
-
-This API helps to create a bulk asset upload job.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getProductBulkUploadHistory
 Get a list of all bulk product upload jobs.
 
 
 
+
 ```swift
-catalog.getProductBulkUploadHistory(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.catalog.getProductBulkUploadHistory(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -26092,13 +26307,125 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 ---
 
 
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+
+
+
+```swift
+client.catalog.updateProductAssetsInBulk(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | Int | yes | Company Id in which assets to be uploaded. |  
+| body | BulkJob | yes | Request body |
+
+
+This API helps to create a bulk asset upload job.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductsInBulk
+Create products in bulk associated with given batch Id.
+
+
+
+
+```swift
+client.catalog.createProductsInBulk(batchId: batchId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | Int | yes | Company Id in which assets to be uploaded. |   
+| batchId | String | yes | Batch Id in which assets to be uploaded. |  
+| body | BulkProductRequest | yes | Request body |
+
+
+This API helps to create products in bulk push to kafka for approval/creation.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### deleteProductBulkJob
 Delete Bulk product job.
 
 
 
+
 ```swift
-catalog.deleteProductBulkJob(companyId: companyId, batchId: batchId) { (response, error) in
+client.catalog.deleteProductBulkJob(batchId: batchId) { (response, error) in
     // Use response
 }
 ```
@@ -26147,68 +26474,14 @@ Returns a success response
 ---
 
 
-#### createProductsInBulk
-Create products in bulk associated with given batch Id.
-
-
-
-```swift
-catalog.createProductsInBulk(companyId: companyId, batchId: batchId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | Company Id in which assets to be uploaded. |   
-| batchId | String | yes | Batch Id in which assets to be uploaded. |  
-| body | BulkProductRequest |  yes  | Request body |
-
-
-This API helps to create products in bulk push to kafka for approval/creation.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyTags
 Get a list of all tags associated with company.
 
 
 
+
 ```swift
-catalog.getCompanyTags(companyId: companyId) { (response, error) in
+client.catalog.getCompanyTags() { (response, error) in
     // Use response
 }
 ```
@@ -26261,67 +26534,14 @@ Tag List. See example below for details
 ---
 
 
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-
-
-```swift
-catalog.createProductAssetsInBulk(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | Company Id in which assets to be uploaded. |  
-| body | ProductBulkAssets |  yes  | Request body |
-
-
-This API helps to create a bulk asset upload job.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getProductAssetsInBulk
 Get a list of all bulk asset jobs.
 
 
 
+
 ```swift
-catalog.getProductAssetsInBulk(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.catalog.getProductAssetsInBulk(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -26405,13 +26625,69 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
 ---
 
 
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+
+
+
+```swift
+client.catalog.createProductAssetsInBulk(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | Int | yes | Company Id in which assets to be uploaded. |  
+| body | ProductBulkAssets | yes | Request body |
+
+
+This API helps to create a bulk asset upload job.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### deleteSize
 Delete a Size associated with product.
 
 
 
+
 ```swift
-catalog.deleteSize(companyId: companyId, itemId: itemId, size: size) { (response, error) in
+client.catalog.deleteSize(itemId: itemId, size: size) { (response, error) in
     // Use response
 }
 ```
@@ -26461,69 +26737,14 @@ Returns a success response
 ---
 
 
-#### addInventory
-Add Inventory for particular size and store.
-
-
-
-```swift
-catalog.addInventory(companyId: companyId, itemId: itemId, size: size, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company associated to product that is to be viewed. |   
-| itemId | Double | yes | Item code of the product of which size is to be get. |   
-| size | String | yes | Size in which inventory is to be added. |  
-| body | InventoryRequest |  yes  | Request body |
-
-
-This API allows add Inventory for particular size and store.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getInventoryBySize
 Get Inventory for company
 
 
 
+
 ```swift
-catalog.getInventoryBySize(companyId: companyId, itemId: itemId, size: size, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+client.catalog.getInventoryBySize(itemId: itemId, size: size, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -26856,13 +27077,71 @@ returns a list of all inventory grouped by size and store
 ---
 
 
+#### addInventory
+Add Inventory for particular size and store.
+
+
+
+
+```swift
+client.catalog.addInventory(itemId: itemId, size: size, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | Double | yes | Item code of the product of which size is to be get. |   
+| size | String | yes | Size in which inventory is to be added. |  
+| body | InventoryRequest | yes | Request body |
+
+
+This API allows add Inventory for particular size and store.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getInventoryBySizeIdentifier
 Get Inventory for company
 
 
 
+
 ```swift
-catalog.getInventoryBySizeIdentifier(companyId: companyId, itemId: itemId, sizeIdentifier: sizeIdentifier, pageNo: pageNo, pageSize: pageSize, q: q, locationIds: locationIds) { (response, error) in
+client.catalog.getInventoryBySizeIdentifier(itemId: itemId, sizeIdentifier: sizeIdentifier, pageNo: pageNo, pageSize: pageSize, q: q, locationIds: locationIds) { (response, error) in
     // Use response
 }
 ```
@@ -27201,8 +27480,9 @@ Delete a Inventory.
 
 
 
+
 ```swift
-catalog.deleteInventory(companyId: companyId, size: size, itemId: itemId, locationId: locationId) { (response, error) in
+client.catalog.deleteInventory(size: size, itemId: itemId, locationId: locationId) { (response, error) in
     // Use response
 }
 ```
@@ -27253,67 +27533,14 @@ Returns a success response
 ---
 
 
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
-
-
-
-```swift
-catalog.createBulkInventoryJob(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | Company Id in which Inventory to be uploaded. |  
-| body | BulkJob |  yes  | Request body |
-
-
-This API helps to create a bulk Inventory upload job.
-
-*Returned Response:*
-
-
-
-
-[CommonResponse](#CommonResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getInventoryBulkUploadHistory
 Get a list of all bulk Inventory upload jobs.
 
 
 
+
 ```swift
-catalog.getInventoryBulkUploadHistory(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.catalog.getInventoryBulkUploadHistory(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -27666,13 +27893,125 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 ---
 
 
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
+
+
+
+
+```swift
+client.catalog.createBulkInventoryJob(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | Int | yes | Company Id in which Inventory to be uploaded. |  
+| body | BulkJob | yes | Request body |
+
+
+This API helps to create a bulk Inventory upload job.
+
+*Returned Response:*
+
+
+
+
+[CommonResponse](#CommonResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBulkInventory
+Create products in bulk associated with given batch Id.
+
+
+
+
+```swift
+client.catalog.createBulkInventory(batchId: batchId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | Int | yes | Company Id in which Inventory is to be uploaded. |   
+| batchId | String | yes | Batch Id of the bulk create job. |  
+| body | InventoryBulkRequest | yes | Request body |
+
+
+This API helps to create products in bulk push to kafka for approval/creation.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### deleteBulkInventoryJob
 Delete Bulk Inventory job.
 
 
 
+
 ```swift
-catalog.deleteBulkInventoryJob(companyId: companyId, batchId: batchId) { (response, error) in
+client.catalog.deleteBulkInventoryJob(batchId: batchId) { (response, error) in
     // Use response
 }
 ```
@@ -27721,122 +28060,14 @@ Returns a success response
 ---
 
 
-#### createBulkInventory
-Create products in bulk associated with given batch Id.
-
-
-
-```swift
-catalog.createBulkInventory(companyId: companyId, batchId: batchId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | Company Id in which Inventory is to be uploaded. |   
-| batchId | String | yes | Batch Id of the bulk create job. |  
-| body | InventoryBulkRequest |  yes  | Request body |
-
-
-This API helps to create products in bulk push to kafka for approval/creation.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### createInventoryExportJob
-Create a Inventory export Job.
-
-
-
-```swift
-catalog.createInventoryExportJob(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | Company Id in which assets to be uploaded. |  
-| body | InventoryExportRequest |  yes  | Request body |
-
-
-This API helps to create a Inventory export job.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getInventoryExport
 Get Inventory export history.
 
 
 
+
 ```swift
-catalog.getInventoryExport(companyId: companyId) { (response, error) in
+client.catalog.getInventoryExport() { (response, error) in
     // Use response
 }
 ```
@@ -27882,13 +28113,69 @@ Returns a list of inventory export jobs
 ---
 
 
+#### createInventoryExportJob
+Create a Inventory export Job.
+
+
+
+
+```swift
+client.catalog.createInventoryExportJob(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | Int | yes | Company Id in which assets to be uploaded. |  
+| body | InventoryExportRequest | yes | Request body |
+
+
+This API helps to create a Inventory export job.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### exportInventoryConfig
 Get List of different filters for inventory export
 
 
 
+
 ```swift
-catalog.exportInventoryConfig(companyId: companyId, filterType: filterType) { (response, error) in
+client.catalog.exportInventoryConfig(filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -27944,87 +28231,14 @@ returns filters configuration for inventory export
 ---
 
 
-#### createHsnCode
-Create Hsn Code.
-
-
-
-```swift
-catalog.createHsnCode(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |  
-| body | HsnUpsert |  yes  | Request body |
-
-
-Create Hsn Code.
-
-*Returned Response:*
-
-
-
-
-[HsnCode](#HsnCode)
-
-See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "company_id": 1,
-    "hs2_code": "xx",
-    "modified_by": {
-      "username": "narutouzumaki",
-      "user_id": "0"
-    },
-    "id": "xxxxxxxxxxxx",
-    "tax_on": "esp",
-    "slabs": [
-      {
-        "tax": 0,
-        "threshold": 999999
-      },
-      {
-        "tax": 0,
-        "threshold": 0
-      }
-    ],
-    "hsn_code": "xxxxxxxx"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getAllHsnCodes
 Hsn Code List.
 
 
 
+
 ```swift
-catalog.getAllHsnCodes(companyId: companyId, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+client.catalog.getAllHsnCodes(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -28095,13 +28309,14 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
 ---
 
 
-#### updateHsnCode
-Update Hsn Code.
+#### createHsnCode
+Create Hsn Code.
+
 
 
 
 ```swift
-catalog.updateHsnCode(companyId: companyId, id: id, body: body) { (response, error) in
+client.catalog.createHsnCode(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -28110,12 +28325,11 @@ catalog.updateHsnCode(companyId: companyId, id: id, body: body) { (response, err
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| id | String | yes | Unique id |  
-| body | HsnUpsert |  yes  | Request body |
+| companyId | String | yes | company id |  
+| body | HsnUpsert | yes | Request body |
 
 
-Update Hsn Code.
+Create Hsn Code.
 
 *Returned Response:*
 
@@ -28175,8 +28389,9 @@ Fetch Hsn Code.
 
 
 
+
 ```swift
-catalog.getHsnCode(companyId: companyId, id: id) { (response, error) in
+client.catalog.getHsnCode(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -28245,13 +28460,90 @@ See example below details
 ---
 
 
+#### updateHsnCode
+Update Hsn Code.
+
+
+
+
+```swift
+client.catalog.updateHsnCode(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | company id |   
+| id | String | yes | Unique id |  
+| body | HsnUpsert | yes | Request body |
+
+
+Update Hsn Code.
+
+*Returned Response:*
+
+
+
+
+[HsnCode](#HsnCode)
+
+See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "modified_by": {
+      "username": "narutouzumaki",
+      "user_id": "0"
+    },
+    "id": "xxxxxxxxxxxx",
+    "tax_on": "esp",
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "hsn_code": "xxxxxxxx"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### bulkHsnCode
 Bulk Create or Update Hsn Code.
 
 
 
+
 ```swift
-catalog.bulkHsnCode(companyId: companyId, body: body) { (response, error) in
+client.catalog.bulkHsnCode(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -28261,7 +28553,7 @@ catalog.bulkHsnCode(companyId: companyId, body: body) { (response, error) in
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | company id |  
-| body | BulkHsnUpsert |  yes  | Request body |
+| body | BulkHsnUpsert | yes | Request body |
 
 
 Bulk Create or Update Hsn Code.
@@ -28304,8 +28596,9 @@ List all the brands
 
 
 
+
 ```swift
-catalog.getApplicationBrands(companyId: companyId, applicationId: applicationId, department: department, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getApplicationBrands(department: department, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -28398,8 +28691,9 @@ List all the departments
 
 
 
+
 ```swift
-catalog.getDepartments(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getDepartments() { (response, error) in
     // Use response
 }
 ```
@@ -28554,8 +28848,9 @@ List all the categories
 
 
 
+
 ```swift
-catalog.getCategories(companyId: companyId, applicationId: applicationId, department: department) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getCategories(department: department) { (response, error) in
     // Use response
 }
 ```
@@ -28696,8 +28991,9 @@ List the products
 
 
 
+
 ```swift
-catalog.getAppicationProducts(companyId: companyId, applicationId: applicationId, q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId, pageSize: pageSize, pageNo: pageNo, pageType: pageType) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getAppicationProducts(q: q, f: f, filters: filters, sortOn: sortOn, pageId: pageId, pageSize: pageSize, pageNo: pageNo, pageType: pageType) { (response, error) in
     // Use response
 }
 ```
@@ -29372,8 +29668,9 @@ Get a product
 
 
 
+
 ```swift
-catalog.getProductDetailBySlug(companyId: companyId, applicationId: applicationId, slug: slug) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getProductDetailBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -29543,8 +29840,9 @@ Get applicationwise products
 
 
 
+
 ```swift
-catalog.getAppProducts(companyId: companyId, applicationId: applicationId, brandIds: brandIds, categoryIds: categoryIds, departmentIds: departmentIds, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+client.application("<APPLICATION_ID>").catalog.getAppProducts(brandIds: brandIds, categoryIds: categoryIds, departmentIds: departmentIds, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -29768,13 +30066,70 @@ The Product object. See example below or refer `ApplicationProductListingRespons
 ## CompanyProfile
 
 
+#### updateCompany
+Edit company profile
+
+
+
+
+```swift
+client.companyprofile.updateCompany(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | UpdateCompany | yes | Request body |
+
+
+This API allows to edit the company profile of the seller account.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success message
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### cbsOnboardGet
 Get company profile
 
 
 
+
 ```swift
-companyprofile.cbsOnboardGet(companyId: companyId) { (response, error) in
+client.companyprofile.cbsOnboardGet() { (response, error) in
     // Use response
 }
 ```
@@ -29881,68 +30236,14 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 ---
 
 
-#### updateCompany
-Edit company profile
-
-
-
-```swift
-companyprofile.updateCompany(companyId: companyId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | UpdateCompany |  yes  | Request body |
-
-
-This API allows to edit the company profile of the seller account.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success message
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyMetrics
 Get company metrics
 
 
 
+
 ```swift
-companyprofile.getCompanyMetrics(companyId: companyId) { (response, error) in
+client.companyprofile.getCompanyMetrics() { (response, error) in
     // Use response
 }
 ```
@@ -30011,13 +30312,71 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 ---
 
 
+#### editBrand
+Edit a brand.
+
+
+
+
+```swift
+client.companyprofile.editBrand(brandId: brandId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Id of the company associated to brand that is to be viewed. |   
+| brandId | String | yes | Id of the brand to be viewed. |  
+| body | CreateUpdateBrandRequestSerializer | yes | Request body |
+
+
+This API allows to edit meta of a brand.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getBrand
 Get a single brand.
 
 
 
+
 ```swift
-companyprofile.getBrand(companyId: companyId, brandId: brandId) { (response, error) in
+client.companyprofile.getBrand(brandId: brandId) { (response, error) in
     // Use response
 }
 ```
@@ -30092,69 +30451,14 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 ---
 
 
-#### editBrand
-Edit a brand.
-
-
-
-```swift
-companyprofile.editBrand(companyId: companyId, brandId: brandId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company associated to brand that is to be viewed. |   
-| brandId | String | yes | Id of the brand to be viewed. |  
-| body | CreateUpdateBrandRequestSerializer |  yes  | Request body |
-
-
-This API allows to edit meta of a brand.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### createBrand
 Create a Brand.
 
 
 
+
 ```swift
-companyprofile.createBrand(companyId: companyId, body: body) { (response, error) in
+client.companyprofile.createBrand(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -30164,7 +30468,7 @@ companyprofile.createBrand(companyId: companyId, body: body) { (response, error)
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Id of the company. |  
-| body | CreateUpdateBrandRequestSerializer |  yes  | Request body |
+| body | CreateUpdateBrandRequestSerializer | yes | Request body |
 
 
 This API allows to create a brand associated to a company.
@@ -30203,13 +30507,69 @@ Returns a success response
 ---
 
 
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+
+
+
+```swift
+client.companyprofile.createCompanyBrandMapping(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| companyId | String | yes | Id of the company inside which the brand is to be mapped. |  
+| body | CompanyBrandPostRequestSerializer | yes | Request body |
+
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getBrands
 Get brands associated to a company
 
 
 
+
 ```swift
-companyprofile.getBrands(companyId: companyId, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+client.companyprofile.getBrands(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -30345,13 +30705,14 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
+
 
 
 
 ```swift
-companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (response, error) in
+client.companyprofile.createLocation(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -30360,11 +30721,11 @@ companyprofile.createCompanyBrandMapping(companyId: companyId, body: body) { (re
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company inside which the brand is to be mapped. |  
-| body | CompanyBrandPostRequestSerializer |  yes  | Request body |
+| companyId | String | yes | Id of the company inside which the location is to be created. |  
+| body | LocationSerializer | yes | Request body |
 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Returned Response:*
 
@@ -30383,6 +30744,7 @@ Returns a success response
 
 ```json
 {
+  "uid": 1,
   "success": true
 }
 ```
@@ -30404,8 +30766,9 @@ Get list of locations
 
 
 
+
 ```swift
-companyprofile.getLocations(companyId: companyId, storeType: storeType, q: q, stage: stage, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.companyprofile.getLocations(storeType: storeType, q: q, stage: stage, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -30639,13 +31002,14 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### updateLocation
+Edit a location asscoiated to a company.
+
 
 
 
 ```swift
-companyprofile.createLocation(companyId: companyId, body: body) { (response, error) in
+client.companyprofile.updateLocation(locationId: locationId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -30654,11 +31018,12 @@ companyprofile.createLocation(companyId: companyId, body: body) { (response, err
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company inside which the location is to be created. |  
-| body | LocationSerializer |  yes  | Request body |
+| companyId | String | yes | Id of the company inside which the location is to be created. |   
+| locationId | String | yes | Id of the location which you want to edit. |  
+| body | LocationSerializer | yes | Request body |
 
 
-This API allows to create a location associated to a company.
+This API allows to edit a location associated to a company.
 
 *Returned Response:*
 
@@ -30699,8 +31064,9 @@ Get details of a specific location.
 
 
 
+
 ```swift
-companyprofile.getLocationDetail(companyId: companyId, locationId: locationId) { (response, error) in
+client.companyprofile.getLocationDetail(locationId: locationId) { (response, error) in
     // Use response
 }
 ```
@@ -30932,69 +31298,14 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
-
-
-
-```swift
-companyprofile.updateLocation(companyId: companyId, locationId: locationId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Id of the company inside which the location is to be created. |   
-| locationId | String | yes | Id of the location which you want to edit. |  
-| body | LocationSerializer |  yes  | Request body |
-
-
-This API allows to edit a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### createLocationBulk
 Create a location asscoiated to a company in bulk.
 
 
 
+
 ```swift
-companyprofile.createLocationBulk(companyId: companyId, body: body) { (response, error) in
+client.companyprofile.createLocationBulk(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31004,7 +31315,7 @@ companyprofile.createLocationBulk(companyId: companyId, body: body) { (response,
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Id of the company inside which the location is to be created. |  
-| body | BulkLocationSerializer |  yes  | Request body |
+| body | BulkLocationSerializer | yes | Request body |
 
 
 This API allows to create a location associated to a company.
@@ -31053,8 +31364,9 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 
 
+
 ```swift
-filestorage.startUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
+client.filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31065,7 +31377,7 @@ filestorage.startUpload(namespace: namespace, companyId: companyId, body: body) 
 | -------- | ---- | -------- | ----------- | 
 | namespace | String | yes | bucket name |   
 | companyId | Int | yes | company_id |  
-| body | StartRequest |  no  | Request body |
+| body | StartRequest | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -31124,8 +31436,9 @@ This will complete the upload process. After successfully uploading file, you ca
 
 
 
+
 ```swift
-filestorage.completeUpload(namespace: namespace, companyId: companyId, body: body) { (response, error) in
+client.filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31136,7 +31449,7 @@ filestorage.completeUpload(namespace: namespace, companyId: companyId, body: bod
 | -------- | ---- | -------- | ----------- | 
 | namespace | String | yes | bucket name |   
 | companyId | Int | yes | company_id |  
-| body | StartResponse |  no  | Request body |
+| body | StartResponse | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -31195,8 +31508,9 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 
 
+
 ```swift
-filestorage.appStartUpload(namespace: namespace, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.appStartUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31208,7 +31522,7 @@ filestorage.appStartUpload(namespace: namespace, companyId: companyId, applicati
 | namespace | String | yes | bucket name |   
 | companyId | Int | yes | company_id |   
 | applicationId | String | yes | application id |  
-| body | StartRequest |  no  | Request body |
+| body | StartRequest | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -31267,8 +31581,9 @@ This will complete the upload process. After successfully uploading file, you ca
 
 
 
+
 ```swift
-filestorage.appCompleteUpload(namespace: namespace, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.appCompleteUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31280,7 +31595,7 @@ filestorage.appCompleteUpload(namespace: namespace, companyId: companyId, applic
 | namespace | String | yes | bucket name |   
 | companyId | Int | yes | company_id |   
 | applicationId | String | yes | application id |  
-| body | StartResponse |  no  | Request body |
+| body | StartResponse | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -31339,8 +31654,9 @@ Explain here
 
 
 
+
 ```swift
-filestorage.getSignUrls(companyId: companyId, body: body) { (response, error) in
+client.filestorage.getSignUrls(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31350,7 +31666,7 @@ filestorage.getSignUrls(companyId: companyId, body: body) { (response, error) in
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | company_id |  
-| body | SignUrlRequest |  no  | Request body |
+| body | SignUrlRequest | yes | Request body |
 
 
 Describe here
@@ -31391,8 +31707,9 @@ Copy Files
 
 
 
+
 ```swift
-filestorage.copyFiles(sync: sync, companyId: companyId, body: body) { (response, error) in
+client.filestorage.copyFiles(sync: sync, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31403,7 +31720,7 @@ filestorage.copyFiles(sync: sync, companyId: companyId, body: body) { (response,
 | -------- | ---- | -------- | ----------- | 
 | sync | Bool? | no | sync |   
 | companyId | Int | yes | company_id |  
-| body | BulkRequest |  no  | Request body |
+| body | BulkRequest | yes | Request body |
 
 
 Copy Files
@@ -31471,8 +31788,9 @@ Copy Files
 
 
 
+
 ```swift
-filestorage.appCopyFiles(sync: sync, companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.appCopyFiles(sync: sync, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31484,7 +31802,7 @@ filestorage.appCopyFiles(sync: sync, companyId: companyId, applicationId: applic
 | sync | Bool? | no | sync |   
 | companyId | Int | yes | company_id |   
 | applicationId | Int | yes | application_id |  
-| body | BulkRequest |  no  | Request body |
+| body | BulkRequest | yes | Request body |
 
 
 Copy Files
@@ -31552,8 +31870,9 @@ Browse Files
 
 
 
+
 ```swift
-filestorage.browse(namespace: namespace, companyId: companyId, pageNo: pageNo) { (response, error) in
+client.filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -31606,8 +31925,9 @@ Browse Files
 
 
 
+
 ```swift
-filestorage.browse(namespace: namespace, companyId: companyId, applicationId: applicationId, pageNo: pageNo) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -31661,8 +31981,9 @@ Proxy
 
 
 
+
 ```swift
-filestorage.proxy(companyId: companyId, url: url) { (response, error) in
+client.filestorage.proxy(url: url) { (response, error) in
     // Use response
 }
 ```
@@ -31719,8 +32040,9 @@ Create short link
 
 
 
+
 ```swift
-share.createShortLink(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").share.createShortLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -31731,7 +32053,7 @@ share.createShortLink(companyId: companyId, applicationId: applicationId, body: 
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company Id |   
 | applicationId | String | yes | Application Id |  
-| body | ShortLinkReq |  no  | Request body |
+| body | ShortLinkReq | yes | Request body |
 
 
 Create short link
@@ -31810,8 +32132,9 @@ Get short links
 
 
 
+
 ```swift
-share.getShortLinks(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, createdBy: createdBy, active: active, q: q) { (response, error) in
+client.application("<APPLICATION_ID>").share.getShortLinks(pageNo: pageNo, pageSize: pageSize, createdBy: createdBy, active: active, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -31917,8 +32240,9 @@ Get short link by hash
 
 
 
+
 ```swift
-share.getShortLinkByHash(companyId: companyId, applicationId: applicationId, hash: hash) { (response, error) in
+client.application("<APPLICATION_ID>").share.getShortLinkByHash(hash: hash) { (response, error) in
     // Use response
 }
 ```
@@ -32009,8 +32333,9 @@ Update short link by id
 
 
 
+
 ```swift
-share.updateShortLinkById(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").share.updateShortLinkById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -32022,7 +32347,7 @@ share.updateShortLinkById(companyId: companyId, applicationId: applicationId, id
 | companyId | String | yes | Company Id |   
 | applicationId | String | yes | Application Id |   
 | id | String | yes | Short link document identifier |  
-| body | ShortLinkReq |  no  | Request body |
+| body | ShortLinkReq | yes | Request body |
 
 
 Update short link by id
@@ -32106,8 +32431,9 @@ Get Job Configs For A Company
 
 
 
+
 ```swift
-inventory.getJobsByCompany(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.inventory.getJobsByCompany(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -32160,8 +32486,9 @@ Updates An Existing Job Config
 
 
 
+
 ```swift
-inventory.updateJob(companyId: companyId, body: body) { (response, error) in
+client.inventory.updateJob(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -32171,7 +32498,7 @@ inventory.updateJob(companyId: companyId, body: body) { (response, error) in
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |  
-| body | JobConfigDTO |  yes  | Request body |
+| body | JobConfigDTO | yes | Request body |
 
 
 REST Endpoint that updates a job config
@@ -32212,8 +32539,9 @@ Creates A New Job Config
 
 
 
+
 ```swift
-inventory.createJob(companyId: companyId, body: body) { (response, error) in
+client.inventory.createJob(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -32223,7 +32551,7 @@ inventory.createJob(companyId: companyId, body: body) { (response, error) in
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id |  
-| body | JobConfigDTO |  yes  | Request body |
+| body | JobConfigDTO | yes | Request body |
 
 
 REST Endpoint that creates a new job config
@@ -32264,8 +32592,9 @@ Get Job Configs By Company And Integration
 
 
 
+
 ```swift
-inventory.getJobByCompanyAndIntegration(companyId: companyId, integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.inventory.getJobByCompanyAndIntegration(integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -32319,8 +32648,9 @@ Get Job Configs Defaults
 
 
 
+
 ```swift
-inventory.getJobConfigDefaults(companyId: companyId) { (response, error) in
+client.inventory.getJobConfigDefaults() { (response, error) in
     // Use response
 }
 ```
@@ -32371,8 +32701,9 @@ Get Job Config By Code
 
 
 
+
 ```swift
-inventory.getJobByCode(companyId: companyId, code: code) { (response, error) in
+client.inventory.getJobByCode(code: code) { (response, error) in
     // Use response
 }
 ```
@@ -32424,8 +32755,9 @@ Get Job Metrics
 
 
 
+
 ```swift
-inventory.getJobCodeMetrics(companyId: companyId, code: code, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.inventory.getJobCodeMetrics(code: code, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -32479,8 +32811,9 @@ Get Job Codes By Company And Integration
 
 
 
+
 ```swift
-inventory.getJobCodesByCompanyAndIntegration(companyId: companyId, integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.inventory.getJobCodesByCompanyAndIntegration(integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -32539,8 +32872,9 @@ Get latest build config
 
 
 
+
 ```swift
-configuration.getBuildConfig(companyId: companyId, applicationId: applicationId, platformType: platformType) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getBuildConfig(platformType: platformType) { (response, error) in
     // Use response
 }
 ```
@@ -32611,8 +32945,9 @@ Update build config for next build
 
 
 
+
 ```swift
-configuration.updateBuildConfig(companyId: companyId, applicationId: applicationId, platformType: platformType, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateBuildConfig(platformType: platformType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -32624,7 +32959,7 @@ configuration.updateBuildConfig(companyId: companyId, applicationId: application
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |   
 | platformType | String | yes | Current platform name |  
-| body | MobileAppConfigRequest |  no  | Request body |
+| body | MobileAppConfigRequest | yes | Request body |
 
 
 Update build config for next build
@@ -32683,8 +33018,9 @@ Get previous build versions
 
 
 
+
 ```swift
-configuration.getPreviousVersions(companyId: companyId, applicationId: applicationId, platformType: platformType) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getPreviousVersions(platformType: platformType) { (response, error) in
     // Use response
 }
 ```
@@ -32752,8 +33088,9 @@ Get features of application
 
 
 
+
 ```swift
-configuration.getAppFeatures(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppFeatures() { (response, error) in
     // Use response
 }
 ```
@@ -32901,8 +33238,9 @@ Update features of application
 
 
 
+
 ```swift
-configuration.updateAppFeatures(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateAppFeatures(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -32913,7 +33251,7 @@ configuration.updateAppFeatures(companyId: companyId, applicationId: application
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | AppFeatureRequest |  yes  | Request body |
+| body | AppFeatureRequest | yes | Request body |
 
 
 Update features of application
@@ -33038,8 +33376,9 @@ Get basic application details
 
 
 
+
 ```swift
-configuration.getAppBasicDetails(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppBasicDetails() { (response, error) in
     // Use response
 }
 ```
@@ -33089,7 +33428,6 @@ Success
   "domain": {
     "verified": true,
     "is_primary": true,
-    "is_default": true,
     "is_shortlink": false,
     "_id": "5eb1177748312a3bd55d0f1e",
     "name": "uniket.hostx0.de"
@@ -33098,7 +33436,6 @@ Success
     {
       "verified": true,
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
@@ -33106,7 +33443,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -33134,8 +33470,9 @@ Add or update application's basic details
 
 
 
+
 ```swift
-configuration.updateAppBasicDetails(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateAppBasicDetails(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -33146,7 +33483,7 @@ configuration.updateAppBasicDetails(companyId: companyId, applicationId: applica
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | ApplicationDetail |  yes  | Request body |
+| body | ApplicationDetail | yes | Request body |
 
 
 Add or update application's basic details
@@ -33185,7 +33522,6 @@ Success
   "domain": {
     "verified": true,
     "is_primary": true,
-    "is_default": true,
     "is_shortlink": false,
     "_id": "5eb1177748312a3bd55d0f1e",
     "name": "uniket.hostx0.de"
@@ -33194,7 +33530,6 @@ Success
     {
       "verified": true,
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
@@ -33202,7 +33537,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -33228,8 +33562,9 @@ Get application information
 
 
 
+
 ```swift
-configuration.getAppContactInfo(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppContactInfo() { (response, error) in
     // Use response
 }
 ```
@@ -33396,8 +33731,9 @@ Get application information
 
 
 
+
 ```swift
-configuration.updateAppContactInfo(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateAppContactInfo(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -33408,7 +33744,7 @@ configuration.updateAppContactInfo(companyId: companyId, applicationId: applicat
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | ApplicationInformation |  yes  | Request body |
+| body | ApplicationInformation | yes | Request body |
 
 
 Save Application Current Information. This includes information about social links, address and contact information of an application.
@@ -33557,8 +33893,9 @@ Get social tokens
 
 
 
+
 ```swift
-configuration.getAppApiTokens(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppApiTokens() { (response, error) in
     // Use response
 }
 ```
@@ -33688,8 +34025,9 @@ Add social tokens
 
 
 
+
 ```swift
-configuration.updateAppApiTokens(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateAppApiTokens(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -33700,7 +34038,7 @@ configuration.updateAppApiTokens(companyId: companyId, applicationId: applicatio
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | TokenResponse |  no  | Request body |
+| body | TokenResponse | yes | Request body |
 
 
 Add social tokens.
@@ -33819,8 +34157,9 @@ Application inventory enabled companies
 
 
 
+
 ```swift
-configuration.getAppCompanies(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppCompanies(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -33899,8 +34238,9 @@ Application inventory enabled stores
 
 
 
+
 ```swift
-configuration.getAppStores(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppStores(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -33992,8 +34332,9 @@ Get application configuration
 
 
 
+
 ```swift
-configuration.getInventoryConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getInventoryConfig() { (response, error) in
     // Use response
 }
 ```
@@ -34229,8 +34570,9 @@ Update application configuration
 
 
 
+
 ```swift
-configuration.updateInventoryConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateInventoryConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -34241,7 +34583,7 @@ configuration.updateInventoryConfig(companyId: companyId, applicationId: applica
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | ApplicationInventory |  no  | Request body |
+| body | ApplicationInventory | yes | Request body |
 
 
 Update application configuration for various features and data
@@ -34466,8 +34808,9 @@ Partially update application configuration
 
 
 
+
 ```swift
-configuration.partiallyUpdateInventoryConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -34478,7 +34821,7 @@ configuration.partiallyUpdateInventoryConfig(companyId: companyId, applicationId
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | AppInventoryPartialUpdate |  no  | Request body |
+| body | AppInventoryPartialUpdate | yes | Request body |
 
 
 Partially update application configuration for various features and data
@@ -34703,8 +35046,9 @@ Get application enabled currency list
 
 
 
+
 ```swift
-configuration.getAppCurrencyConfig(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig() { (response, error) in
     // Use response
 }
 ```
@@ -34772,8 +35116,9 @@ Add initial application supported currency
 
 
 
+
 ```swift
-configuration.updateAppCurrencyConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -34784,7 +35129,7 @@ configuration.updateAppCurrencyConfig(companyId: companyId, applicationId: appli
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | AppSupportedCurrency |  no  | Request body |
+| body | AppSupportedCurrency | yes | Request body |
 
 
 Add initial application supported currency for various features and data. Default INR will be enabled.
@@ -34841,8 +35186,9 @@ Get ordering store by filter
 
 
 
+
 ```swift
-configuration.getOrderingStoresByFilter(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -34855,7 +35201,7 @@ configuration.getOrderingStoresByFilter(companyId: companyId, applicationId: app
 | applicationId | String | yes | Current application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |  
-| body | FilterOrderingStoreRequest |  no  | Request body |
+| body | FilterOrderingStoreRequest | yes | Request body |
 
 
 Get ordering store by filter
@@ -34980,8 +35326,9 @@ Add/Update ordering store config
 
 
 
+
 ```swift
-configuration.updateOrderingStoreConfig(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -34992,7 +35339,7 @@ configuration.updateOrderingStoreConfig(companyId: companyId, applicationId: app
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | OrderingStoreConfig |  no  | Request body |
+| body | OrderingStoreConfig | yes | Request body |
 
 
 Add/Update ordering store config.
@@ -35044,8 +35391,9 @@ Get attached domain list
 
 
 
+
 ```swift
-configuration.getDomains(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getDomains() { (response, error) in
     // Use response
 }
 ```
@@ -35084,13 +35432,11 @@ Success
       "verified": true,
       "name": "uniket.hostx0.de",
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false
     },
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -35098,7 +35444,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": false,
       "_id": "6048497e87f5730423149190",
       "name": "testdm.hostx0.de"
@@ -35124,8 +35469,9 @@ Add new domain to application
 
 
 
+
 ```swift
-configuration.addDomain(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.addDomain(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -35136,7 +35482,7 @@ configuration.addDomain(companyId: companyId, applicationId: applicationId, body
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | DomainAddRequest |  no  | Request body |
+| body | DomainAddRequest | yes | Request body |
 
 
 Add new domain to application.
@@ -35163,7 +35509,6 @@ Success
   "txtRecords": [],
   "message": "New domain added successfully",
   "is_primary": false,
-  "is_default": false,
   "is_shortlink": false,
   "_id": "6048497e87f5730423149190"
 }
@@ -35186,8 +35531,9 @@ Remove attached domain
 
 
 
+
 ```swift
-configuration.removeDomainById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.removeDomainById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -35242,8 +35588,9 @@ Change domain type
 
 
 
+
 ```swift
-configuration.changeDomainType(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.changeDomainType(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -35254,7 +35601,7 @@ configuration.changeDomainType(companyId: companyId, applicationId: applicationI
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | UpdateDomainTypeRequest |  no  | Request body |
+| body | UpdateDomainTypeRequest | yes | Request body |
 
 
 Change a domain to Primary or Shortlink domain
@@ -35282,13 +35629,11 @@ Success
       "verified": true,
       "name": "uniket.hostx0.de",
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false
     },
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -35296,7 +35641,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": false,
       "_id": "6048497e87f5730423149190",
       "name": "testdm.hostx0.de"
@@ -35322,8 +35666,9 @@ Get domain connected status.
 
 
 
+
 ```swift
-configuration.getDomainStatus(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getDomainStatus(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -35334,7 +35679,7 @@ configuration.getDomainStatus(companyId: companyId, applicationId: applicationId
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |  
-| body | DomainStatusRequest |  no  | Request body |
+| body | DomainStatusRequest | yes | Request body |
 
 
 Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
@@ -35391,8 +35736,9 @@ Create application
 
 
 
+
 ```swift
-configuration.createApplication(companyId: companyId, body: body) { (response, error) in
+client.configuration.createApplication(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -35402,7 +35748,7 @@ configuration.createApplication(companyId: companyId, body: body) { (response, e
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |  
-| body | CreateApplicationRequest |  no  | Request body |
+| body | CreateApplicationRequest | yes | Request body |
 
 
 Create new application
@@ -35443,8 +35789,9 @@ Get list of application under company
 
 
 
+
 ```swift
-configuration.getApplications(companyId: companyId, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+client.configuration.getApplications(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -35498,8 +35845,9 @@ Get application data from id
 
 
 
+
 ```swift
-configuration.getApplicationById(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getApplicationById() { (response, error) in
     // Use response
 }
 ```
@@ -35551,8 +35899,9 @@ Get all currencies
 
 
 
+
 ```swift
-configuration.getCurrencies(companyId: companyId) { (response, error) in
+client.configuration.getCurrencies() { (response, error) in
     // Use response
 }
 ```
@@ -35616,8 +35965,9 @@ Check domain availibility before linking to application
 
 
 
+
 ```swift
-configuration.getDomainAvailibility(companyId: companyId, body: body) { (response, error) in
+client.configuration.getDomainAvailibility(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -35627,7 +35977,7 @@ configuration.getDomainAvailibility(companyId: companyId, body: body) { (respons
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |  
-| body | DomainSuggestionsRequest |  no  | Request body |
+| body | DomainSuggestionsRequest | yes | Request body |
 
 
 Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
@@ -35712,8 +36062,9 @@ Get integration data
 
 
 
+
 ```swift
-configuration.getIntegrationById(companyId: companyId, id: id) { (response, error) in
+client.configuration.getIntegrationById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -35852,8 +36203,9 @@ Get all available integration opt-ins
 
 
 
+
 ```swift
-configuration.getAvailableOptIns(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.configuration.getAvailableOptIns(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -36013,8 +36365,9 @@ Get company/store level integration opt-ins
 
 
 
+
 ```swift
-configuration.getSelectedOptIns(companyId: companyId, level: level, uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.configuration.getSelectedOptIns(level: level, uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -36176,8 +36529,9 @@ Get integration level config
 
 
 
+
 ```swift
-configuration.getIntegrationLevelConfig(companyId: companyId, id: id, level: level, opted: opted, checkPermission: checkPermission) { (response, error) in
+client.configuration.getIntegrationLevelConfig(id: id, level: level, opted: opted, checkPermission: checkPermission) { (response, error) in
     // Use response
 }
 ```
@@ -36253,8 +36607,9 @@ Get level data for integration
 
 
 
+
 ```swift
-configuration.getIntegrationByLevelId(companyId: companyId, id: id, level: level, uid: uid) { (response, error) in
+client.configuration.getIntegrationByLevelId(id: id, level: level, uid: uid) { (response, error) in
     // Use response
 }
 ```
@@ -36325,8 +36680,9 @@ Check store has active integration
 
 
 
+
 ```swift
-configuration.getLevelActiveIntegrations(companyId: companyId, id: id, level: level, uid: uid) { (response, error) in
+client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid) { (response, error) in
     // Use response
 }
 ```
@@ -36397,8 +36753,9 @@ Get brands by company
 
 
 
+
 ```swift
-configuration.getBrandsByCompany(companyId: companyId, q: q) { (response, error) in
+client.configuration.getBrandsByCompany(q: q) { (response, error) in
     // Use response
 }
 ```
@@ -36467,8 +36824,9 @@ Get company by brand uids
 
 
 
+
 ```swift
-configuration.getCompanyByBrands(companyId: companyId, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+client.configuration.getCompanyByBrands(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -36480,7 +36838,7 @@ configuration.getCompanyByBrands(companyId: companyId, pageNo: pageNo, pageSize:
 | companyId | String | yes | Current company id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |  
-| body | CompanyByBrandsRequest |  no  | Request body |
+| body | CompanyByBrandsRequest | yes | Request body |
 
 
 Get company by brand uids
@@ -36543,8 +36901,9 @@ Get stores by brand uids
 
 
 
+
 ```swift
-configuration.getStoreByBrands(companyId: companyId, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+client.configuration.getStoreByBrands(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -36556,7 +36915,7 @@ configuration.getStoreByBrands(companyId: companyId, pageNo: pageNo, pageSize: p
 | companyId | String | yes | Current company id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |  
-| body | StoreByBrandsRequest |  no  | Request body |
+| body | StoreByBrandsRequest | yes | Request body |
 
 
 Get stores by brand uids
@@ -36658,8 +37017,9 @@ Get other seller applications
 
 
 
+
 ```swift
-configuration.getOtherSellerApplications(companyId: companyId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.configuration.getOtherSellerApplications(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -36755,8 +37115,9 @@ Get other seller applications
 
 
 
+
 ```swift
-configuration.getOtherSellerApplicationById(companyId: companyId, id: id) { (response, error) in
+client.configuration.getOtherSellerApplicationById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -36855,8 +37216,9 @@ Opt out company or store from other seller application
 
 
 
+
 ```swift
-configuration.optOutFromApplication(companyId: companyId, id: id, body: body) { (response, error) in
+client.configuration.optOutFromApplication(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -36867,7 +37229,7 @@ configuration.optOutFromApplication(companyId: companyId, id: id, body: body) { 
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | id | String | yes | Application Id |  
-| body | OptOutInventory |  no  | Request body |
+| body | OptOutInventory | yes | Request body |
 
 
 Opt out company or store from other seller application
@@ -36915,8 +37277,9 @@ Get with single coupon details or coupon list
 
 
 
+
 ```swift
-cart.getCoupons(companyId: companyId, applicationId: applicationId, pageNo: pageNo, pageSize: pageSize, isArchived: isArchived, title: title, isPublic: isPublic, isDisplay: isDisplay, typeSlug: typeSlug, code: code) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getCoupons(pageNo: pageNo, pageSize: pageSize, isArchived: isArchived, title: title, isPublic: isPublic, isDisplay: isDisplay, typeSlug: typeSlug, code: code) { (response, error) in
     // Use response
 }
 ```
@@ -37028,8 +37391,9 @@ Create new coupon
 
 
 
+
 ```swift
-cart.createCoupon(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.createCoupon(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -37040,7 +37404,7 @@ cart.createCoupon(companyId: companyId, applicationId: applicationId, body: body
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current Application _id |  
-| body | CouponAdd |  no  | Request body |
+| body | CouponAdd | yes | Request body |
 
 
 Create new coupon
@@ -37084,8 +37448,9 @@ Get with single coupon details or coupon list
 
 
 
+
 ```swift
-cart.getCouponById(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getCouponById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -37278,8 +37643,9 @@ Update existing coupon configuration
 
 
 
+
 ```swift
-cart.updateCoupon(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.updateCoupon(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -37291,7 +37657,7 @@ cart.updateCoupon(companyId: companyId, applicationId: applicationId, id: id, bo
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current Application _id |   
 | id | String | yes |  |  
-| body | CouponUpdate |  no  | Request body |
+| body | CouponUpdate | yes | Request body |
 
 
 Update coupon with id sent in `id`
@@ -37335,8 +37701,9 @@ Update coupon archive state and schedule
 
 
 
+
 ```swift
-cart.updateCouponPartially(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.updateCouponPartially(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -37348,7 +37715,7 @@ cart.updateCouponPartially(companyId: companyId, applicationId: applicationId, i
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current Application _id |   
 | id | String | yes |  |  
-| body | CouponPartialUpdate |  no  | Request body |
+| body | CouponPartialUpdate | yes | Request body |
 
 
 Update archive/unarchive and change schedule for coupon
@@ -37413,8 +37780,9 @@ Fetch Cart Details
 
 
 
+
 ```swift
-cart.fetchAndvalidateCartItems(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -37425,7 +37793,7 @@ cart.fetchAndvalidateCartItems(companyId: companyId, applicationId: applicationI
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current Application _id |  
-| body | OpenapiCartDetailsRequest |  no  | Request body |
+| body | OpenapiCartDetailsRequest | yes | Request body |
 
 
 Get all the details of cart for a list of provided `cart_items`
@@ -37740,8 +38108,9 @@ Check Pincode Serviceability
 
 
 
+
 ```swift
-cart.checkCartServiceability(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.checkCartServiceability(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -37752,7 +38121,7 @@ cart.checkCartServiceability(companyId: companyId, applicationId: applicationId,
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current Application _id |  
-| body | OpenApiCartServiceabilityRequest |  no  | Request body |
+| body | OpenApiCartServiceabilityRequest | yes | Request body |
 
 
 Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
@@ -38323,8 +38692,9 @@ Create Fynd order with cart details
 
 
 
+
 ```swift
-cart.checkoutCart(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.checkoutCart(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -38335,7 +38705,7 @@ cart.checkoutCart(companyId: companyId, applicationId: applicationId, body: body
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current Application _id |  
-| body | OpenApiPlatformCheckoutReq |  no  | Request body |
+| body | OpenApiPlatformCheckoutReq | yes | Request body |
 
 
 Generate Fynd order for cart details send with provided `cart_items`
@@ -38386,8 +38756,9 @@ List of giveaways of the current application.
 
 
 
+
 ```swift
-rewards.getGiveaways(companyId: companyId, applicationId: applicationId, pageId: pageId, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getGiveaways(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -38441,8 +38812,9 @@ Adds a new giveaway.
 
 
 
+
 ```swift
-rewards.createGiveaway(companyId: companyId, applicationId: applicationId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.createGiveaway(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -38453,7 +38825,7 @@ rewards.createGiveaway(companyId: companyId, applicationId: applicationId, body:
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |  
-| body | Giveaway |  yes  | Request body |
+| body | Giveaway | yes | Request body |
 
 
 Adds a new giveaway.
@@ -38494,8 +38866,9 @@ Get giveaway by ID.
 
 
 
+
 ```swift
-rewards.getGiveawayByID(companyId: companyId, applicationId: applicationId, id: id) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getGiveawayByID(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -38548,8 +38921,9 @@ Updates the giveaway by it's ID.
 
 
 
+
 ```swift
-rewards.updateGiveaway(companyId: companyId, applicationId: applicationId, id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.updateGiveaway(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -38561,7 +38935,7 @@ rewards.updateGiveaway(companyId: companyId, applicationId: applicationId, id: i
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |   
 | id | String | yes | Giveaway ID |  
-| body | Giveaway |  yes  | Request body |
+| body | Giveaway | yes | Request body |
 
 
 Updates the giveaway by it's ID.
@@ -38602,8 +38976,9 @@ List of offer of the current application.
 
 
 
+
 ```swift
-rewards.getOffers(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getOffers() { (response, error) in
     // Use response
 }
 ```
@@ -38655,8 +39030,9 @@ Get offer by name.
 
 
 
+
 ```swift
-rewards.getOfferByName(companyId: companyId, applicationId: applicationId, cookie: cookie, name: name) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getOfferByName(cookie: cookie, name: name) { (response, error) in
     // Use response
 }
 ```
@@ -38710,8 +39086,9 @@ Updates the offer by name.
 
 
 
+
 ```swift
-rewards.updateOfferByName(companyId: companyId, applicationId: applicationId, name: name, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.updateOfferByName(name: name, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -38723,7 +39100,7 @@ rewards.updateOfferByName(companyId: companyId, applicationId: applicationId, na
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |   
 | name | String | yes | Offer name |  
-| body | Offer |  yes  | Request body |
+| body | Offer | yes | Request body |
 
 
 Updates the offer by name.
@@ -38764,8 +39141,9 @@ User's reward details.
 
 
 
+
 ```swift
-rewards.getUserAvailablePoints(companyId: companyId, applicationId: applicationId, userId: userId) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getUserAvailablePoints(userId: userId) { (response, error) in
     // Use response
 }
 ```
@@ -38818,8 +39196,9 @@ Update User status
 
 
 
+
 ```swift
-rewards.updateUserStatus(companyId: companyId, applicationId: applicationId, userId: userId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.updateUserStatus(userId: userId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -38831,7 +39210,7 @@ rewards.updateUserStatus(companyId: companyId, applicationId: applicationId, use
 | companyId | String | yes | company id |   
 | applicationId | String | yes | application id |   
 | userId | String | yes | user id |  
-| body | AppUser |  yes  | Request body |
+| body | AppUser | yes | Request body |
 
 
 Update user status, active/archive
@@ -38872,8 +39251,9 @@ Get list of points transactions.
 
 
 
+
 ```swift
-rewards.getUserPointsHistory(companyId: companyId, applicationId: applicationId, userId: userId, pageId: pageId, pageLimit: pageLimit, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: userId, pageId: pageId, pageLimit: pageLimit, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -38935,8 +39315,9 @@ Get statistics groups
 
 
 
+
 ```swift
-analytics.getStatiscticsGroups(companyId: companyId, applicationId: applicationId) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups() { (response, error) in
     // Use response
 }
 ```
@@ -38996,8 +39377,9 @@ Get statistics group components
 
 
 
+
 ```swift
-analytics.getStatiscticsGroupComponents(companyId: companyId, applicationId: applicationId, groupName: groupName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents(groupName: groupName) { (response, error) in
     // Use response
 }
 ```
@@ -39061,8 +39443,9 @@ Get component statistics csv
 
 
 
+
 ```swift
-analytics.getComponentStatsCSV(companyId: companyId, applicationId: applicationId, componentName: componentName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV(componentName: componentName) { (response, error) in
     // Use response
 }
 ```
@@ -39115,8 +39498,9 @@ Get component statistics pdf
 
 
 
+
 ```swift
-analytics.getComponentStatsPDF(companyId: companyId, applicationId: applicationId, componentName: componentName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF(componentName: componentName) { (response, error) in
     // Use response
 }
 ```
@@ -39169,8 +39553,9 @@ Get component statistics
 
 
 
+
 ```swift
-analytics.getComponentStats(companyId: companyId, applicationId: applicationId, componentName: componentName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getComponentStats(componentName: componentName) { (response, error) in
     // Use response
 }
 ```
@@ -39270,8 +39655,9 @@ Get abandon carts list
 
 
 
+
 ```swift
-analytics.getAbandonCartList(companyId: companyId, applicationId: applicationId, fromDate: fromDate, toDate: toDate, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getAbandonCartList(fromDate: fromDate, toDate: toDate, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -39347,8 +39733,9 @@ Get abandon carts csv
 
 
 
+
 ```swift
-analytics.getAbandonCartsCSV(companyId: companyId, applicationId: applicationId, fromDate: fromDate, toDate: toDate) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV(fromDate: fromDate, toDate: toDate) { (response, error) in
     // Use response
 }
 ```
@@ -39402,8 +39789,9 @@ Get abandon carts details
 
 
 
+
 ```swift
-analytics.getAbandonCartDetail(companyId: companyId, applicationId: applicationId, cartId: cartId) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail(cartId: cartId) { (response, error) in
     // Use response
 }
 ```
@@ -39456,8 +39844,9 @@ Create data export job in required format
 
 
 
+
 ```swift
-analytics.createExportJob(companyId: companyId, exportType: exportType, body: body) { (response, error) in
+client.analytics.createExportJob(exportType: exportType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -39468,7 +39857,7 @@ analytics.createExportJob(companyId: companyId, exportType: exportType, body: bo
 | -------- | ---- | -------- | ----------- | 
 | companyId | String | yes | Company Id |   
 | exportType | String | yes | Export type / format |  
-| body | ExportJobReq |  no  | Request body |
+| body | ExportJobReq | yes | Request body |
 
 
 Create data export job in required format
@@ -39512,8 +39901,9 @@ Get data export job status
 
 
 
+
 ```swift
-analytics.getExportJobStatus(companyId: companyId, exportType: exportType, jobId: jobId) { (response, error) in
+client.analytics.getExportJobStatus(exportType: exportType, jobId: jobId) { (response, error) in
     // Use response
 }
 ```
@@ -39570,8 +39960,9 @@ Get logs list
 
 
 
+
 ```swift
-analytics.getLogsList(companyId: companyId, logType: logType, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+client.analytics.getLogsList(logType: logType, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -39584,7 +39975,7 @@ analytics.getLogsList(companyId: companyId, logType: logType, pageNo: pageNo, pa
 | logType | String | yes | Log type |   
 | pageNo | Int? | no | Current page number |   
 | pageSize | Int? | no | Current page size |  
-| body | GetLogsListReq |  no  | Request body |
+| body | GetLogsListReq | yes | Request body |
 
 
 Get logs list
@@ -39643,8 +40034,9 @@ Search logs
 
 
 
+
 ```swift
-analytics.searchLogs(companyId: companyId, pageNo: pageNo, pageSize: pageSize, logType: logType, body: body) { (response, error) in
+client.analytics.searchLogs(pageNo: pageNo, pageSize: pageSize, logType: logType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -39657,7 +40049,7 @@ analytics.searchLogs(companyId: companyId, pageNo: pageNo, pageSize: pageSize, l
 | pageNo | Int? | no | Current page number |   
 | pageSize | Int? | no | Current page size |   
 | logType | String | yes | Log type |  
-| body | SearchLogReq |  no  | Request body |
+| body | SearchLogReq | yes | Request body |
 
 
 Search logs
@@ -39727,8 +40119,9 @@ Fetch discount list.
 
 
 
+
 ```swift
-discount.getDiscounts(companyId: companyId, view: view, q: q, pageNo: pageNo, pageSize: pageSize, archived: archived, month: month, year: year, type: type, appIds: appIds) { (response, error) in
+client.discount.getDiscounts(view: view, q: q, pageNo: pageNo, pageSize: pageSize, archived: archived, month: month, year: year, type: type, appIds: appIds) { (response, error) in
     // Use response
 }
 ```
@@ -39788,8 +40181,9 @@ Create Discount.
 
 
 
+
 ```swift
-discount.createDiscount(companyId: companyId, body: body) { (response, error) in
+client.discount.createDiscount(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -39799,7 +40193,7 @@ discount.createDiscount(companyId: companyId, body: body) { (response, error) in
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | company_id |  
-| body | CreateUpdateDiscount |  yes  | Request body |
+| body | CreateUpdateDiscount | yes | Request body |
 
 
 Create Discount.
@@ -39840,8 +40234,9 @@ Fetch discount.
 
 
 
+
 ```swift
-discount.getDiscount(companyId: companyId, id: id) { (response, error) in
+client.discount.getDiscount(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -39893,8 +40288,9 @@ Create Discount.
 
 
 
+
 ```swift
-discount.updateDiscount(companyId: companyId, id: id, body: body) { (response, error) in
+client.discount.updateDiscount(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -39905,7 +40301,7 @@ discount.updateDiscount(companyId: companyId, id: id, body: body) { (response, e
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | company_id |   
 | id | String | yes | id |  
-| body | CreateUpdateDiscount |  yes  | Request body |
+| body | CreateUpdateDiscount | yes | Request body |
 
 
 Create Discount.
@@ -39946,8 +40342,9 @@ Validate File.
 
 
 
+
 ```swift
-discount.validateDiscountFile(companyId: companyId, discount: discount, body: body) { (response, error) in
+client.discount.validateDiscountFile(discount: discount, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -39958,7 +40355,7 @@ discount.validateDiscountFile(companyId: companyId, discount: discount, body: bo
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | company_id |   
 | discount | String? | no | discount |  
-| body | DiscountJob |  yes  | Request body |
+| body | DiscountJob | yes | Request body |
 
 
 Validate File.
@@ -39999,8 +40396,9 @@ Validate File.
 
 
 
+
 ```swift
-discount.downloadDiscountFile(companyId: companyId, type: type, body: body) { (response, error) in
+client.discount.downloadDiscountFile(type: type, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -40011,7 +40409,7 @@ discount.downloadDiscountFile(companyId: companyId, type: type, body: body) { (r
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | company_id |   
 | type | String | yes | type |  
-| body | DownloadFileJob |  yes  | Request body |
+| body | DownloadFileJob | yes | Request body |
 
 
 Validate File.
@@ -40052,8 +40450,9 @@ Validate File Job.
 
 
 
+
 ```swift
-discount.getValidationJob(companyId: companyId, id: id) { (response, error) in
+client.discount.getValidationJob(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -40105,8 +40504,9 @@ Cancel Validation Job.
 
 
 
+
 ```swift
-discount.cancelValidationJob(companyId: companyId, id: id) { (response, error) in
+client.discount.cancelValidationJob(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -40158,8 +40558,9 @@ Download File Job.
 
 
 
+
 ```swift
-discount.getDownloadJob(companyId: companyId, id: id) { (response, error) in
+client.discount.getDownloadJob(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -40211,8 +40612,9 @@ Cancel Download Job.
 
 
 
+
 ```swift
-discount.cancelDownloadJob(companyId: companyId, id: id) { (response, error) in
+client.discount.cancelDownloadJob(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -40269,8 +40671,9 @@ Add proxy path for external url
 
 
 
+
 ```swift
-partner.addProxyPath(companyId: companyId, applicationId: applicationId, extensionId: extensionId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").partner.addProxyPath(extensionId: extensionId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -40282,7 +40685,7 @@ partner.addProxyPath(companyId: companyId, applicationId: applicationId, extensi
 | companyId | String | yes | Current company id |   
 | applicationId | String | yes | Current application id |   
 | extensionId | String | yes | Extension id |  
-| body | AddProxyReq |  no  | Request body |
+| body | AddProxyReq | yes | Request body |
 
 
 Add proxy path for external url
@@ -40332,8 +40735,9 @@ Remove proxy path for external url
 
 
 
+
 ```swift
-partner.removeProxyPath(companyId: companyId, applicationId: applicationId, extensionId: extensionId, attachedPath: attachedPath) { (response, error) in
+client.application("<APPLICATION_ID>").partner.removeProxyPath(extensionId: extensionId, attachedPath: attachedPath) { (response, error) in
     // Use response
 }
 ```
@@ -40404,8 +40808,9 @@ Get Subscribers By Company ID
 
 
 
+
 ```swift
-webhook.getSubscribersByCompany(pageNo: pageNo, pageSize: pageSize, companyId: companyId) { (response, error) in
+client.webhook.getSubscribersByCompany(pageNo: pageNo, pageSize: pageSize, extensionId: extensionId) { (response, error) in
     // Use response
 }
 ```
@@ -40416,7 +40821,8 @@ webhook.getSubscribersByCompany(pageNo: pageNo, pageSize: pageSize, companyId: c
 | -------- | ---- | -------- | ----------- | 
 | pageNo | Int? | no | Page Number |   
 | pageSize | Int? | no | Page Size |   
-| companyId | Int | yes | Company ID of the application |  
+| companyId | Int | yes | Company ID of the application |   
+| extensionId | String? | no | Extension ID |  
 
 
 
@@ -40458,8 +40864,9 @@ Register Subscriber
 
 
 
+
 ```swift
-webhook.registerSubscriberToEvent(companyId: companyId, body: body) { (response, error) in
+client.webhook.registerSubscriberToEvent(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -40469,7 +40876,7 @@ webhook.registerSubscriberToEvent(companyId: companyId, body: body) { (response,
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company Id of the application |  
-| body | SubscriberConfig |  no  | Request body |
+| body | SubscriberConfig | yes | Request body |
 
 
 Register Subscriber
@@ -40510,8 +40917,9 @@ Update Subscriber
 
 
 
+
 ```swift
-webhook.updateSubscriberConfig(companyId: companyId, body: body) { (response, error) in
+client.webhook.updateSubscriberConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -40521,7 +40929,7 @@ webhook.updateSubscriberConfig(companyId: companyId, body: body) { (response, er
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | companyId | Int | yes | Company ID of the application |  
-| body | SubscriberConfig |  no  | Request body |
+| body | SubscriberConfig | yes | Request body |
 
 
 Update Subscriber
@@ -40562,8 +40970,9 @@ Get Subscriber By Subscriber ID
 
 
 
+
 ```swift
-webhook.getSubscriberById(companyId: companyId, subscriberId: subscriberId) { (response, error) in
+client.webhook.getSubscriberById(subscriberId: subscriberId) { (response, error) in
     // Use response
 }
 ```
@@ -40615,8 +41024,9 @@ Get All Webhook Events
 
 
 
+
 ```swift
-webhook.fetchAllEventConfigurations(companyId: companyId) { (response, error) in
+client.webhook.fetchAllEventConfigurations() { (response, error) in
     // Use response
 }
 ```
@@ -40793,7 +41203,7 @@ Success
  | inputs | [[String: Any]] |  no  | List of all the form components |
  | description | String? |  yes  | Description of the form |
  | headerImage | String? |  yes  | Header image that is to be shown for the form |
- | priority | [String: Any] |  no  | Describes the priority of the tickets created by the form |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  | Describes the priority of the tickets created by the form |
  | shouldNotify | Bool? |  yes  | Indicates if staff should be notified when a response is received |
  | successMessage | String? |  yes  | Success message that will be shown on submission |
  | pollForAssignment | [PollForAssignment](#PollForAssignment)? |  yes  | Describes how polling will be done for the tickets createds |
@@ -40810,7 +41220,7 @@ Success
  | title | String |  no  | Title for the form |
  | inputs | [[String: Any]] |  no  | List of all the form components |
  | description | String? |  yes  | Description of the form |
- | priority | [String: Any] |  no  | Describes the priority of the tickets created by the form |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  | Describes the priority of the tickets created by the form |
  | headerImage | String? |  yes  | Header image that is to be shown for the form |
  | shouldNotify | Bool? |  yes  | Indicates if staff should be notified when a response is received |
  | loginRequired | Bool? |  yes  | Denotes if login is required to make a form response submission |
@@ -40831,7 +41241,7 @@ Success
  | subCategory | String? |  yes  | Sub-category assigned to the ticket |
  | source | String? |  yes  | Denotes if the ticket was created at company or application level |
  | status | String? |  yes  | Denotes in what state is the ticket |
- | priority | [String: Any]? |  yes  | Denotes the priority of ticket |
+ | priority | [PriorityEnum](#PriorityEnum)? |  yes  | Denotes the priority of ticket |
  | assignedTo | [AgentChangePayload](#AgentChangePayload)? |  yes  | Details of support staff to whom ticket is assigned |
  | tags | [String]? |  yes  | Tags relevant to ticket |
 
@@ -40916,7 +41326,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | [String: Any] |  no  | Details of history event |
- | type | [String: Any] |  no  | Type of history event |
+ | type | [HistoryTypeEnum](#HistoryTypeEnum) |  no  | Type of history event |
 
 ---
 
@@ -41089,7 +41499,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | createdBy | [String: Any]? |  yes  | Creator of the ticket |
  | status | String? |  yes  | Status of the ticket |
- | priority | [String: Any]? |  yes  | Priority of the ticket |
+ | priority | [PriorityEnum](#PriorityEnum)? |  yes  | Priority of the ticket |
  | category | String |  no  | Category of the ticket |
  | content | [TicketContent](#TicketContent) |  no  | Content for the ticket |
 
@@ -41297,7 +41707,7 @@ Success
  | ticketId | String |  no  | Readable ticket number |
  | category | [TicketCategory](#TicketCategory) |  no  | Category assigned to the ticket |
  | subCategory | [TicketSubCategory](#TicketSubCategory)? |  yes  | Sub-category assigned to the ticket |
- | source | [String: Any] |  no  | Denotes if the ticket was created at company or application level |
+ | source | [TicketSourceEnum](#TicketSourceEnum) |  no  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  no  | Denotes in what state is the ticket |
  | priority | [Priority](#Priority) |  no  | Denotes the priority of ticket |
  | createdBy | [String: Any]? |  yes  | User details of ticket creator |
@@ -49756,67 +50166,15 @@ Success
 
  
  
- #### [DeleteResponse](#DeleteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | [String: Any]? |  yes  |  |
- | message | String? |  yes  |  |
- | status | Int? |  yes  |  |
- | code | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SearchKeywordResult](#SearchKeywordResult)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [String: Any] |  no  |  |
- | sortOn | String |  no  |  |
-
----
-
-
- 
- 
- #### [CreateSearchKeyword](#CreateSearchKeyword)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | result | [SearchKeywordResult](#SearchKeywordResult) |  no  |  |
- | isActive | Bool? |  yes  |  |
- | appId | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | words | [String]? |  yes  |  |
-
----
-
-
- 
- 
  #### [GetSearchWordsData](#GetSearchWordsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | result | [String: Any]? |  yes  |  |
  | appId | String? |  yes  |  |
+ | uid | String? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
  | words | [String]? |  yes  |  |
- | uid | String? |  yes  |  |
 
 ---
 
@@ -49835,6 +50193,58 @@ Success
 
  
  
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | String? |  yes  |  |
+ | status | Int? |  yes  |  |
+ | message | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SearchKeywordResult](#SearchKeywordResult)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sortOn | String |  no  |  |
+ | query | [String: Any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateSearchKeyword](#CreateSearchKeyword)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | words | [String]? |  yes  |  |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  no  |  |
+ | isActive | Bool? |  yes  |  |
+ | appId | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteResponse](#DeleteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [GetSearchWordsResponse](#GetSearchWordsResponse)
 
  | Properties | Type | Nullable | Description |
@@ -49847,12 +50257,39 @@ Success
 
  
  
+ #### [GetAutocompleteWordsData](#GetAutocompleteWordsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | appId | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | results | [[String: Any]]? |  yes  |  |
+ | words | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [Media](#Media)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
  | type | String? |  yes  |  |
+ | url | String? |  yes  |  |
 
 ---
 
@@ -49863,10 +50300,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | [String: Any] |  no  |  |
+ | type | String |  no  |  |
  | url | String? |  yes  |  |
  | params | [String: Any]? |  yes  |  |
- | type | String |  no  |  |
+ | query | [String: Any] |  no  |  |
 
 ---
 
@@ -49889,9 +50326,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customJson | [String: Any]? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
  | display | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
  | action | [AutocompleteAction](#AutocompleteAction)? |  yes  |  |
 
 ---
@@ -49903,38 +50340,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | words | [String]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
+ | appId | String? |  yes  |  |
  | results | [[AutocompleteResult](#AutocompleteResult)]? |  yes  |  |
- | appId | String? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
- | words | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetAutocompleteWordsData](#GetAutocompleteWordsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | results | [[String: Any]]? |  yes  |  |
- | appId | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | words | [String]? |  yes  |  |
- | uid | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -49945,10 +50355,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | appId | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
  | words | [String]? |  yes  |  |
  | results | [[String: Any]]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | appId | String? |  yes  |  |
 
 ---
 
@@ -49959,35 +50369,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | allowRemove | Bool? |  yes  |  |
  | minQuantity | Int |  no  |  |
  | autoAddToCart | Bool? |  yes  |  |
- | allowRemove | Bool? |  yes  |  |
  | maxQuantity | Int |  no  |  |
  | autoSelect | Bool? |  yes  |  |
  | productUid | Int |  no  |  |
-
----
-
-
- 
- 
- #### [ProductBundleRequest](#ProductBundleRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | createdBy | [String: Any]? |  yes  |  |
- | choice | String |  no  |  |
- | pageVisibility | [String]? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | slug | String |  no  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
- | meta | [String: Any]? |  yes  |  |
- | logo | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | isActive | Bool |  no  |  |
- | modifiedOn | String? |  yes  |  |
- | sameStoreAssignment | Bool? |  yes  |  |
- | name | String |  no  |  |
 
 ---
 
@@ -49998,21 +50385,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | [String: Any]? |  yes  |  |
- | choice | String |  no  |  |
- | companyId | Int? |  yes  |  |
  | pageVisibility | [String]? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | slug | String |  no  |  |
+ | createdBy | [String: Any]? |  yes  |  |
  | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
- | meta | [String: Any]? |  yes  |  |
- | logo | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | isActive | Bool |  no  |  |
- | modifiedOn | String? |  yes  |  |
+ | choice | String |  no  |  |
+ | createdOn | String? |  yes  |  |
  | sameStoreAssignment | Bool? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | slug | String |  no  |  |
  | id | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | name | String |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | companyId | Int? |  yes  |  |
 
 ---
 
@@ -50031,43 +50418,23 @@ Success
 
  
  
- #### [ProductBundleUpdateRequest](#ProductBundleUpdateRequest)
+ #### [ProductBundleRequest](#ProductBundleRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | String |  no  |  |
  | pageVisibility | [String]? |  yes  |  |
- | slug | String |  no  |  |
+ | createdBy | [String: Any]? |  yes  |  |
  | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
- | meta | [String: Any]? |  yes  |  |
- | logo | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | isActive | Bool |  no  |  |
- | modifiedOn | String? |  yes  |  |
+ | choice | String |  no  |  |
+ | createdOn | String? |  yes  |  |
  | sameStoreAssignment | Bool? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | slug | String |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | name | String |  no  |  |
-
----
-
-
- 
- 
- #### [LimitedProductData](#LimitedProductData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shortDescription | String? |  yes  |  |
- | name | String? |  yes  |  |
- | images | [String]? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | countryOfOrigin | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | sizes | [String]? |  yes  |  |
- | slug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | identifier | [String: Any]? |  yes  |  |
- | price | [String: Any]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50078,10 +50445,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isAvailable | Bool? |  yes  |  |
- | display | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
  | value | String? |  yes  |  |
+ | isAvailable | Bool? |  yes  |  |
+ | display | String? |  yes  |  |
 
 ---
 
@@ -50092,11 +50459,33 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | minEffective | Double? |  yes  |  |
  | minMarked | Double? |  yes  |  |
+ | minEffective | Double? |  yes  |  |
  | maxMarked | Double? |  yes  |  |
- | currency | String? |  yes  |  |
  | maxEffective | Double? |  yes  |  |
+ | currency | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LimitedProductData](#LimitedProductData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | countryOfOrigin | String? |  yes  |  |
+ | identifier | [String: Any]? |  yes  |  |
+ | sizes | [String]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | price | [String: Any]? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | images | [String]? |  yes  |  |
 
 ---
 
@@ -50107,15 +50496,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | minQuantity | Int? |  yes  |  |
- | autoAddToCart | Bool? |  yes  |  |
  | allowRemove | Bool? |  yes  |  |
- | maxQuantity | Int? |  yes  |  |
- | productDetails | [LimitedProductData](#LimitedProductData)? |  yes  |  |
+ | minQuantity | Int? |  yes  |  |
  | sizes | [[Size](#Size)]? |  yes  |  |
+ | price | [Price](#Price)? |  yes  |  |
+ | productDetails | [LimitedProductData](#LimitedProductData)? |  yes  |  |
+ | autoAddToCart | Bool? |  yes  |  |
+ | maxQuantity | Int? |  yes  |  |
  | autoSelect | Bool? |  yes  |  |
  | productUid | Int? |  yes  |  |
- | price | [Price](#Price)? |  yes  |  |
 
 ---
 
@@ -50126,16 +50515,49 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
  | pageVisibility | [String]? |  yes  |  |
- | slug | String? |  yes  |  |
+ | name | String? |  yes  |  |
  | products | [[GetProducts](#GetProducts)]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
+ | choice | String? |  yes  |  |
+ | sameStoreAssignment | Bool? |  yes  |  |
  | logo | String? |  yes  |  |
  | isActive | Bool? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBundleUpdateRequest](#ProductBundleUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pageVisibility | [String]? |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | choice | String |  no  |  |
  | sameStoreAssignment | Bool? |  yes  |  |
- | name | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | slug | String |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | name | String |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ListSizeGuide](#ListSizeGuide)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[String: Any]]? |  yes  |  |
+ | page | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50146,9 +50568,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | headers | [String: Any]? |  yes  |  |
  | values | [[String: Any]]? |  yes  |  |
  | unit | String? |  yes  |  |
- | headers | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50170,21 +50592,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | createdBy | [String: Any]? |  yes  |  |
- | tag | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
  | guide | [Guide](#Guide)? |  yes  |  |
- | active | Bool? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | image | String? |  yes  |  |
- | id | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | title | String |  no  |  |
- | subtitle | String? |  yes  |  |
- | name | String |  no  |  |
  | brandId | Int? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | title | String |  no  |  |
+ | createdOn | String? |  yes  |  |
+ | subtitle | String? |  yes  |  |
+ | image | String? |  yes  |  |
+ | tag | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | name | String |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | active | Bool? |  yes  |  |
+ | description | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
 
 ---
 
@@ -50203,35 +50625,37 @@ Success
 
  
  
- #### [ListSizeGuide](#ListSizeGuide)
+ #### [SizeGuideResponse](#SizeGuideResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[String: Any]]? |  yes  |  |
- | page | [String: Any]? |  yes  |  |
+ | guide | [String: Any]? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | active | Bool? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | subtitle | String? |  yes  |  |
+ | tag | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | brandId | Int? |  yes  |  |
+ | companyId | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [SizeGuideResponse](#SizeGuideResponse)
+ #### [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | [String: Any]? |  yes  |  |
- | tag | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | guide | [String: Any]? |  yes  |  |
- | active | Bool? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | id | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | title | String? |  yes  |  |
- | subtitle | String? |  yes  |  |
- | name | String? |  yes  |  |
- | brandId | Int? |  yes  |  |
+ | compare | [String: Any]? |  yes  |  |
+ | variant | [String: Any]? |  yes  |  |
+ | detail | [String: Any]? |  yes  |  |
+ | similar | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50242,10 +50666,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filterTypes | [String]? |  yes  |  |
  | display | String? |  yes  |  |
- | key | String? |  yes  |  |
  | units | [[String: Any]]? |  yes  |  |
+ | key | String? |  yes  |  |
+ | filterTypes | [String]? |  yes  |  |
 
 ---
 
@@ -50298,26 +50722,12 @@ Success
 
  
  
- #### [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | variant | [String: Any]? |  yes  |  |
- | detail | [String: Any]? |  yes  |  |
- | compare | [String: Any]? |  yes  |  |
- | similar | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
  #### [GetCatalogConfigurationMetaData](#GetCatalogConfigurationMetaData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | listing | [MetaDataListingResponse](#MetaDataListingResponse)? |  yes  |  |
  | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)? |  yes  |  |
+ | listing | [MetaDataListingResponse](#MetaDataListingResponse)? |  yes  |  |
 
 ---
 
@@ -50340,13 +50750,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | String |  no  |  |
  | logo | String? |  yes  |  |
- | isActive | Bool |  no  |  |
  | size | [ProductSize](#ProductSize) |  no  |  |
  | displayType | String |  no  |  |
- | priority | Int |  no  |  |
+ | isActive | Bool |  no  |  |
+ | key | String |  no  |  |
  | name | String |  no  |  |
+ | priority | Int |  no  |  |
 
 ---
 
@@ -50368,13 +50778,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | String |  no  |  |
- | logo | String? |  yes  |  |
- | isActive | Bool |  no  |  |
- | size | [ProductSize](#ProductSize)? |  yes  |  |
- | priority | Int |  no  |  |
  | title | String? |  yes  |  |
+ | logo | String? |  yes  |  |
  | subtitle | String? |  yes  |  |
+ | size | [ProductSize](#ProductSize)? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | key | String |  no  |  |
+ | priority | Int |  no  |  |
 
 ---
 
@@ -50420,11 +50830,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | map | [String: Any]? |  yes  |  |
  | condition | String? |  yes  |  |
  | bucketPoints | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)]? |  yes  |  |
- | sort | String? |  yes  |  |
+ | map | [String: Any]? |  yes  |  |
  | value | String? |  yes  |  |
+ | sort | String? |  yes  |  |
 
 ---
 
@@ -50435,13 +50845,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | valueConfig | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)? |  yes  |  |
- | type | String |  no  |  |
- | key | String |  no  |  |
  | logo | String? |  yes  |  |
+ | type | String |  no  |  |
+ | valueConfig | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)? |  yes  |  |
  | isActive | Bool |  no  |  |
- | priority | Int |  no  |  |
+ | key | String |  no  |  |
  | name | String? |  yes  |  |
+ | priority | Int |  no  |  |
 
 ---
 
@@ -50464,11 +50874,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | String |  no  |  |
  | logo | String? |  yes  |  |
  | isActive | Bool |  no  |  |
- | priority | Int |  no  |  |
+ | key | String |  no  |  |
  | name | String? |  yes  |  |
+ | priority | Int |  no  |  |
 
 ---
 
@@ -50479,8 +50889,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | defaultKey | String |  no  |  |
  | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)]? |  yes  |  |
+ | defaultKey | String |  no  |  |
 
 ---
 
@@ -50499,31 +50909,16 @@ Success
 
  
  
- #### [AppConfiguration](#AppConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
- | configId | String? |  yes  |  |
- | configType | String |  no  |  |
- | appId | String |  no  |  |
- | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
-
----
-
-
- 
- 
  #### [AppCatalogConfiguration](#AppCatalogConfiguration)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
  | configId | String? |  yes  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
  | configType | String |  no  |  |
  | id | String? |  yes  |  |
  | appId | String |  no  |  |
- | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
 
 ---
 
@@ -50536,6 +50931,21 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | isDefault | Bool? |  yes  |  |
  | data | [AppCatalogConfiguration](#AppCatalogConfiguration)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppConfiguration](#AppConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | configId | String? |  yes  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
+ | configType | String |  no  |  |
+ | appId | String |  no  |  |
 
 ---
 
@@ -50558,12 +50968,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)? |  yes  |  |
  | configId | String? |  yes  |  |
+ | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)? |  yes  |  |
+ | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing)? |  yes  |  |
  | configType | String |  no  |  |
  | id | String? |  yes  |  |
  | appId | String |  no  |  |
- | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing)? |  yes  |  |
 
 ---
 
@@ -50582,35 +50992,22 @@ Success
 
  
  
- #### [ProductSortOn](#ProductSortOn)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isSelected | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | value | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [ProductFiltersValue](#ProductFiltersValue)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currencyCode | String? |  yes  |  |
- | queryFormat | String? |  yes  |  |
- | selectedMax | Int? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | display | String |  no  |  |
- | displayFormat | String? |  yes  |  |
- | max | Int? |  yes  |  |
- | isSelected | Bool |  no  |  |
- | count | Int? |  yes  |  |
- | min | Int? |  yes  |  |
- | selectedMin | Int? |  yes  |  |
  | value | String |  no  |  |
+ | selectedMin | Int? |  yes  |  |
+ | min | Int? |  yes  |  |
+ | isSelected | Bool |  no  |  |
+ | max | Int? |  yes  |  |
+ | display | String |  no  |  |
+ | selectedMax | Int? |  yes  |  |
+ | queryFormat | String? |  yes  |  |
+ | displayFormat | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | count | Int? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
 
 ---
 
@@ -50621,10 +51018,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
  | logo | String? |  yes  |  |
  | display | String |  no  |  |
  | kind | String? |  yes  |  |
- | name | String |  no  |  |
 
 ---
 
@@ -50643,121 +51040,38 @@ Success
 
  
  
+ #### [ProductSortOn](#ProductSortOn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | isSelected | Bool? |  yes  |  |
+ | value | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [GetCollectionQueryOptionResponse](#GetCollectionQueryOptionResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [CollectionBadge](#CollectionBadge)
+ #### [Media1](#Media1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text | String? |  yes  |  |
- | color | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionImage](#CollectionImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
  | url | String |  no  |  |
- | aspectRatio | String |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionBanner](#CollectionBanner)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | landscape | [CollectionImage](#CollectionImage) |  no  |  |
- | portrait | [CollectionImage](#CollectionImage) |  no  |  |
-
----
-
-
- 
- 
- #### [SeoDetail](#SeoDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | title | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [UserInfo](#UserInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | email | String? |  yes  |  |
- | username | String? |  yes  |  |
- | userId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Schedule](#Schedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cron | String? |  yes  |  |
- | end | String? |  yes  |  |
- | start | String? |  yes  |  |
- | duration | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateCollection](#CreateCollection)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | localeLanguage | [String: Any]? |  yes  |  |
- | allowSort | Bool? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
- | published | Bool? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
- | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
- | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
- | appId | String |  no  |  |
- | sortOn | String? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
- | createdBy | [UserInfo](#UserInfo)? |  yes  |  |
- | description | String? |  yes  |  |
- | logo | [CollectionImage](#CollectionImage) |  no  |  |
  | meta | [String: Any]? |  yes  |  |
- | name | String |  no  |  |
- | type | String |  no  |  |
- | slug | String |  no  |  |
- | schedule | [Schedule](#Schedule)? |  yes  |  |
- | tags | [String]? |  yes  |  |
 
 ---
 
@@ -50780,48 +51094,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [BannerImage](#BannerImage)? |  yes  |  |
  | portrait | [BannerImage](#BannerImage)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionCreateResponse](#CollectionCreateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
- | tag | [String]? |  yes  |  |
- | type | String? |  yes  |  |
- | allowSort | Bool? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
- | slug | String? |  yes  |  |
- | schedule | [String: Any]? |  yes  |  |
- | logo | [BannerImage](#BannerImage)? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | appId | String? |  yes  |  |
- | cron | [String: Any]? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Media1](#Media1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | [String: Any]? |  yes  |  |
- | url | String |  no  |  |
- | type | String? |  yes  |  |
+ | landscape | [BannerImage](#BannerImage)? |  yes  |  |
 
 ---
 
@@ -50832,8 +51106,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | [String: Any]? |  yes  |  |
  | type | String? |  yes  |  |
+ | query | [String: Any]? |  yes  |  |
 
 ---
 
@@ -50856,38 +51130,25 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allowSort | Bool? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | appId | String? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
- | description | String? |  yes  |  |
  | query | [String: Any]? |  yes  |  |
- | tag | [String]? |  yes  |  |
  | logo | [Media1](#Media1)? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | uid | String? |  yes  |  |
+ | appId | String? |  yes  |  |
  | name | String? |  yes  |  |
- | type | String? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | slug | String? |  yes  |  |
- | schedule | [String: Any]? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | cron | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterTag](#CollectionListingFilterTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isSelected | Bool? |  yes  |  |
- | display | String? |  yes  |  |
- | name | String? |  yes  |  |
+ | schedule | [String: Any]? |  yes  |  |
+ | tag | [String]? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
 
 ---
 
@@ -50898,9 +51159,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
  | isSelected | Bool? |  yes  |  |
  | display | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterTag](#CollectionListingFilterTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | name | String? |  yes  |  |
+ | isSelected | Bool? |  yes  |  |
+ | display | String? |  yes  |  |
 
 ---
 
@@ -50911,8 +51185,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)]? |  yes  |  |
  | type | [[CollectionListingFilterType](#CollectionListingFilterType)]? |  yes  |  |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)]? |  yes  |  |
 
 ---
 
@@ -50932,27 +51206,163 @@ Success
 
  
  
+ #### [CollectionImage](#CollectionImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | String |  no  |  |
+ | aspectRatio | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | String? |  yes  |  |
+ | email | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | username | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionBanner](#CollectionBanner)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | portrait | [CollectionImage](#CollectionImage) |  no  |  |
+ | landscape | [CollectionImage](#CollectionImage) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Schedule](#Schedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | Int? |  yes  |  |
+ | end | String? |  yes  |  |
+ | cron | String? |  yes  |  |
+ | start | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionBadge](#CollectionBadge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | color | String? |  yes  |  |
+ | text | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SeoDetail](#SeoDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | String? |  yes  |  |
+ | description | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateCollection](#CreateCollection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | [String: Any]? |  yes  |  |
+ | logo | [CollectionImage](#CollectionImage) |  no  |  |
+ | published | Bool? |  yes  |  |
+ | appId | String |  no  |  |
+ | name | String |  no  |  |
+ | createdBy | [UserInfo](#UserInfo)? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
+ | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
+ | schedule | [Schedule](#Schedule)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | type | String |  no  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | slug | String |  no  |  |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | localeLanguage | [String: Any]? |  yes  |  |
+ | sortOn | String? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionCreateResponse](#CollectionCreateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | schedule | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | query | [String: Any]? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
+ | logo | [BannerImage](#BannerImage)? |  yes  |  |
+ | type | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | cron | [String: Any]? |  yes  |  |
+ | tag | [String]? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | appId | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CollectionDetailResponse](#CollectionDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
- | tag | [String]? |  yes  |  |
- | type | String? |  yes  |  |
- | allowSort | Bool? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
- | slug | String? |  yes  |  |
  | schedule | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | query | [String: Any]? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
  | logo | [Media1](#Media1)? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
+ | type | String? |  yes  |  |
  | isActive | Bool? |  yes  |  |
- | appId | String? |  yes  |  |
+ | slug | String? |  yes  |  |
  | cron | [String: Any]? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
+ | tag | [String]? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | appId | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
 
 ---
 
@@ -50963,26 +51373,141 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | localeLanguage | [String: Any]? |  yes  |  |
- | allowSort | Bool? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | published | Bool? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
- | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
- | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
- | sortOn | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | allowFacets | Bool? |  yes  |  |
- | description | String? |  yes  |  |
  | query | [String: Any]? |  yes  |  |
  | logo | [CollectionImage](#CollectionImage)? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
+ | published | Bool? |  yes  |  |
  | name | String? |  yes  |  |
- | slug | String? |  yes  |  |
+ | allowSort | Bool? |  yes  |  |
+ | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
  | schedule | [Schedule](#Schedule)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | modifiedBy | [UserInfo](#UserInfo)? |  yes  |  |
+ | description | String? |  yes  |  |
  | tags | [String]? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | localeLanguage | [String: Any]? |  yes  |  |
+ | sortOn | String? |  yes  |  |
+ | allowFacets | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailAttribute](#ProductDetailAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | key | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  |  |
+ | title | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Price1](#Price1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | max | Double? |  yes  |  |
+ | min | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | [Price1](#Price1)? |  yes  |  |
+ | effective | [Price1](#Price1)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBrand](#ProductBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingDetail](#ProductListingDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | highlights | [String]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | productOnlineDate | String? |  yes  |  |
+ | sellable | Bool? |  yes  |  |
+ | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
+ | hasVariant | Bool? |  yes  |  |
+ | rating | Double? |  yes  |  |
+ | description | String? |  yes  |  |
+ | similars | [String]? |  yes  |  |
+ | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | type | String? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | teaserTag | [String: Any]? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | color | String? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | slug | String |  no  |  |
+ | itemType | String? |  yes  |  |
+ | ratingCount | Int? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | medias | [[Media1](#Media1)]? |  yes  |  |
+ | promoMeta | [String: Any]? |  yes  |  |
+ | tryouts | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionItemsResponse](#GetCollectionItemsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
 
 ---
 
@@ -51012,115 +51537,13 @@ Success
 
  
  
- #### [ProductBrand](#ProductBrand)
+ #### [CatalogInsightItem](#CatalogInsightItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
- | name | String? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductDetailAttribute](#ProductDetailAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | key | String? |  yes  |  |
- | value | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [Price1](#Price1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | Double? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | min | Double? |  yes  |  |
- | currencyCode | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marked | [Price1](#Price1)? |  yes  |  |
- | effective | [Price1](#Price1)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductListingDetail](#ProductListingDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shortDescription | String? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | hasVariant | Bool? |  yes  |  |
- | color | String? |  yes  |  |
- | promoMeta | [String: Any]? |  yes  |  |
- | discount | String? |  yes  |  |
- | productOnlineDate | String? |  yes  |  |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
- | teaserTag | [String: Any]? |  yes  |  |
- | description | String? |  yes  |  |
- | similars | [String]? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | medias | [[Media1](#Media1)]? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | ratingCount | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | sellable | Bool? |  yes  |  |
- | type | String? |  yes  |  |
- | itemType | String? |  yes  |  |
- | slug | String |  no  |  |
- | rating | Double? |  yes  |  |
- | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetCollectionItemsResponse](#GetCollectionItemsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
- | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | sellableCount | Int? |  yes  |  |
+ | count | Int? |  yes  |  |
+ | outOfStockCount | Int? |  yes  |  |
 
 ---
 
@@ -51131,25 +51554,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableSizes | Int? |  yes  |  |
- | articleFreshness | Int? |  yes  |  |
- | availableArticles | Int? |  yes  |  |
- | totalSizes | Int? |  yes  |  |
  | totalArticles | Int? |  yes  |  |
+ | availableSizes | Int? |  yes  |  |
+ | totalSizes | Int? |  yes  |  |
+ | articleFreshness | Int? |  yes  |  |
  | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CatalogInsightItem](#CatalogInsightItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | outOfStockCount | Int? |  yes  |  |
- | sellableCount | Int? |  yes  |  |
- | count | Int? |  yes  |  |
+ | availableArticles | Int? |  yes  |  |
 
 ---
 
@@ -51160,8 +51570,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandDistribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
  | item | [CatalogInsightItem](#CatalogInsightItem)? |  yes  |  |
+ | brandDistribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
 
 ---
 
@@ -51197,9 +51607,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | storeIds | [Int]? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
  | brandIds | [Int]? |  yes  |  |
  | optLevel | String |  no  |  |
- | enabled | Bool? |  yes  |  |
 
 ---
 
@@ -51211,15 +51621,15 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | createdBy | [String: Any]? |  yes  |  |
- | optLevel | String |  no  |  |
- | platform | String |  no  |  |
- | enabled | Bool |  no  |  |
- | companyId | Int |  no  |  |
- | brandIds | [Int] |  no  |  |
  | createdOn | Int |  no  |  |
- | modifiedOn | Int |  no  |  |
  | modifiedBy | [String: Any]? |  yes  |  |
+ | platform | String |  no  |  |
+ | brandIds | [Int] |  no  |  |
+ | enabled | Bool |  no  |  |
+ | optLevel | String |  no  |  |
  | storeIds | [Int] |  no  |  |
+ | companyId | Int |  no  |  |
+ | modifiedOn | Int |  no  |  |
 
 ---
 
@@ -51242,9 +51652,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | businessType | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | businessType | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | companyType | String? |  yes  |  |
 
 ---
@@ -51258,8 +51668,8 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | companyId | Int? |  yes  |  |
  | totalArticle | Int? |  yes  |  |
- | brandName | String? |  yes  |  |
  | brandId | Int? |  yes  |  |
+ | brandName | String? |  yes  |  |
 
 ---
 
@@ -51282,8 +51692,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store | Int? |  yes  |  |
  | brand | Int? |  yes  |  |
+ | store | Int? |  yes  |  |
  | company | String? |  yes  |  |
 
 ---
@@ -51295,17 +51705,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | storeType | String? |  yes  |  |
- | documents | [[String: Any]]? |  yes  |  |
- | displayName | String? |  yes  |  |
  | storeCode | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
+ | documents | [[String: Any]]? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
  | additionalContacts | [[String: Any]]? |  yes  |  |
+ | storeType | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | timing | [String: Any]? |  yes  |  |
+ | displayName | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
 
 ---
 
@@ -51318,6 +51728,34 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[StoreDetail](#StoreDetail)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeSchemaRange](#AttributeSchemaRange)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | Int? |  yes  |  |
+ | min | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMaster](#AttributeMaster)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | range | [AttributeSchemaRange](#AttributeSchemaRange)? |  yes  |  |
+ | type | String |  no  |  |
+ | allowedValues | [String]? |  yes  |  |
+ | multi | Bool? |  yes  |  |
+ | mandatory | Bool? |  yes  |  |
+ | format | String? |  yes  |  |
 
 ---
 
@@ -51371,50 +51809,22 @@ Success
 
  
  
- #### [AttributeSchemaRange](#AttributeSchemaRange)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | Int? |  yes  |  |
- | min | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [AttributeMaster](#AttributeMaster)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
- | mandatory | Bool? |  yes  |  |
- | allowedValues | [String]? |  yes  |  |
- | format | String? |  yes  |  |
- | multi | Bool? |  yes  |  |
- | range | [AttributeSchemaRange](#AttributeSchemaRange)? |  yes  |  |
-
----
-
-
- 
- 
  #### [GenderDetail](#GenderDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | details | [AttributeMasterDetails](#AttributeMasterDetails)? |  yes  |  |
- | departments | [String]? |  yes  |  |
- | filters | [AttributeMasterFilter](#AttributeMasterFilter)? |  yes  |  |
- | slug | String? |  yes  |  |
+ | isNested | Bool? |  yes  |  |
  | enabledForEndConsumer | Bool? |  yes  |  |
- | meta | [AttributeMasterMeta](#AttributeMasterMeta)? |  yes  |  |
  | schema | [AttributeMaster](#AttributeMaster)? |  yes  |  |
  | logo | String? |  yes  |  |
+ | details | [AttributeMasterDetails](#AttributeMasterDetails)? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | filters | [AttributeMasterFilter](#AttributeMasterFilter)? |  yes  |  |
+ | departments | [String]? |  yes  |  |
+ | meta | [AttributeMasterMeta](#AttributeMasterMeta)? |  yes  |  |
  | id | String? |  yes  |  |
- | isNested | Bool? |  yes  |  |
  | name | String? |  yes  |  |
+ | description | String? |  yes  |  |
 
 ---
 
@@ -51437,11 +51847,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | code | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
  | status | Int? |  yes  |  |
  | errors | [String: Any]? |  yes  |  |
+ | message | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | code | String? |  yes  |  |
 
 ---
 
@@ -51452,9 +51862,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | String? |  yes  |  |
  | contact | String? |  yes  |  |
  | userId | String? |  yes  |  |
+ | username | String? |  yes  |  |
 
 ---
 
@@ -51465,21 +51875,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | pageSize | Int? |  yes  |  |
  | priorityOrder | Int? |  yes  |  |
- | itemType | String? |  yes  |  |
- | pageNo | Int? |  yes  |  |
- | search | String? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | logo | String? |  yes  |  |
  | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | pageNo | Int? |  yes  |  |
  | isActive | Bool? |  yes  |  |
- | uid | Int? |  yes  |  |
  | synonyms | [String]? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | name | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | pageSize | Int? |  yes  |  |
+ | search | String? |  yes  |  |
 
 ---
 
@@ -51502,11 +51912,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | code | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
  | status | Int? |  yes  |  |
  | errors | [String: Any]? |  yes  |  |
+ | message | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | code | String? |  yes  |  |
 
 ---
 
@@ -51517,21 +51927,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
  | createdBy | [String: Any]? |  yes  |  |
- | isPhysical | Bool |  no  |  |
- | tag | String? |  yes  |  |
- | categories | [String]? |  yes  |  |
- | attributes | [String]? |  yes  |  |
- | isArchived | Bool? |  yes  |  |
- | departments | [String]? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | slug | String |  no  |  |
- | modifiedOn | String? |  yes  |  |
+ | attributes | [String]? |  yes  |  |
  | logo | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
+ | categories | [String]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
+ | slug | String |  no  |  |
+ | tag | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
+ | isArchived | Bool? |  yes  |  |
  | name | String? |  yes  |  |
+ | isPhysical | Bool |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | description | String? |  yes  |  |
 
 ---
 
@@ -51554,18 +51964,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | isPhysical | Bool |  no  |  |
- | tag | String? |  yes  |  |
- | categories | [String]? |  yes  |  |
  | attributes | [String]? |  yes  |  |
- | isArchived | Bool? |  yes  |  |
- | departments | [String]? |  yes  |  |
- | slug | String |  no  |  |
  | logo | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | categories | [String]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
+ | slug | String |  no  |  |
+ | tag | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
+ | isArchived | Bool? |  yes  |  |
  | name | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | isPhysical | Bool |  no  |  |
+ | description | String? |  yes  |  |
 
 ---
 
@@ -51576,36 +51986,36 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shortDescription | [String: Any]? |  yes  |  |
  | countryOfOrigin | [String: Any]? |  yes  |  |
- | categorySlug | [String: Any]? |  yes  |  |
- | noOfBoxes | [String: Any]? |  yes  |  |
- | isActive | [String: Any]? |  yes  |  |
- | customOrder | [String: Any]? |  yes  |  |
- | media | [String: Any]? |  yes  |  |
- | command | [String: Any]? |  yes  |  |
- | moq | [String: Any]? |  yes  |  |
  | highlights | [String: Any]? |  yes  |  |
- | productGroupTag | [String: Any]? |  yes  |  |
- | sizes | [String: Any]? |  yes  |  |
- | teaserTag | [String: Any]? |  yes  |  |
  | multiSize | [String: Any]? |  yes  |  |
- | description | [String: Any]? |  yes  |  |
- | isDependent | [String: Any]? |  yes  |  |
- | itemCode | [String: Any]? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
  | sizeGuide | [String: Any]? |  yes  |  |
- | currency | [String: Any]? |  yes  |  |
+ | itemCode | [String: Any]? |  yes  |  |
+ | trader | [String: Any]? |  yes  |  |
  | productPublish | [String: Any]? |  yes  |  |
  | name | [String: Any]? |  yes  |  |
- | traderType | [String: Any]? |  yes  |  |
- | returnConfig | [String: Any]? |  yes  |  |
- | brandUid | [String: Any]? |  yes  |  |
- | itemType | [String: Any]? |  yes  |  |
- | slug | [String: Any]? |  yes  |  |
- | trader | [String: Any]? |  yes  |  |
+ | media | [String: Any]? |  yes  |  |
  | hsnCode | [String: Any]? |  yes  |  |
  | variants | [String: Any]? |  yes  |  |
+ | productGroupTag | [String: Any]? |  yes  |  |
+ | moq | [String: Any]? |  yes  |  |
+ | currency | [String: Any]? |  yes  |  |
+ | description | [String: Any]? |  yes  |  |
  | tags | [String: Any]? |  yes  |  |
+ | sizes | [String: Any]? |  yes  |  |
+ | noOfBoxes | [String: Any]? |  yes  |  |
+ | shortDescription | [String: Any]? |  yes  |  |
+ | teaserTag | [String: Any]? |  yes  |  |
+ | categorySlug | [String: Any]? |  yes  |  |
+ | traderType | [String: Any]? |  yes  |  |
+ | isActive | [String: Any]? |  yes  |  |
+ | slug | [String: Any]? |  yes  |  |
+ | command | [String: Any]? |  yes  |  |
+ | itemType | [String: Any]? |  yes  |  |
+ | brandUid | [String: Any]? |  yes  |  |
+ | isDependent | [String: Any]? |  yes  |  |
+ | returnConfig | [String: Any]? |  yes  |  |
 
 ---
 
@@ -51616,12 +52026,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
+ | properties | [Properties](#Properties)? |  yes  |  |
+ | required | [String]? |  yes  |  |
+ | title | String? |  yes  |  |
  | type | String? |  yes  |  |
  | definitions | [String: Any]? |  yes  |  |
- | required | [String]? |  yes  |  |
- | properties | [Properties](#Properties)? |  yes  |  |
- | title | String? |  yes  |  |
+ | description | String? |  yes  |  |
 
 ---
 
@@ -51632,8 +52042,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | templateValidation | [String: Any]? |  yes  |  |
  | globalValidation | [GlobalValidation](#GlobalValidation)? |  yes  |  |
+ | templateValidation | [String: Any]? |  yes  |  |
 
 ---
 
@@ -51688,25 +52098,25 @@ Success
 
  
  
- #### [VerifiedBy](#VerifiedBy)
+ #### [ProductDownloadItemsData](#ProductDownloadItemsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | String? |  yes  |  |
- | userId | String? |  yes  |  |
+ | templates | [String]? |  yes  |  |
+ | type | String? |  yes  |  |
+ | brand | [String]? |  yes  |  |
 
 ---
 
 
  
  
- #### [ProductDownloadItemsData](#ProductDownloadItemsData)
+ #### [VerifiedBy](#VerifiedBy)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | templates | [String]? |  yes  |  |
- | brand | [String]? |  yes  |  |
- | type | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | username | String? |  yes  |  |
 
 ---
 
@@ -51717,16 +52127,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | [VerifiedBy](#VerifiedBy)? |  yes  |  |
- | url | String? |  yes  |  |
+ | status | String? |  yes  |  |
  | sellerId | Double? |  yes  |  |
  | templateTags | [String: Any]? |  yes  |  |
- | id | String? |  yes  |  |
- | status | String? |  yes  |  |
- | triggerOn | String? |  yes  |  |
- | completedOn | String? |  yes  |  |
- | data | [ProductDownloadItemsData](#ProductDownloadItemsData)? |  yes  |  |
  | taskId | String? |  yes  |  |
+ | triggerOn | String? |  yes  |  |
+ | data | [ProductDownloadItemsData](#ProductDownloadItemsData)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | createdBy | [VerifiedBy](#VerifiedBy)? |  yes  |  |
+ | completedOn | String? |  yes  |  |
+ | url | String? |  yes  |  |
 
 ---
 
@@ -51737,8 +52147,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductDownloadsItems](#ProductDownloadsItems)? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ | items | [ProductDownloadsItems](#ProductDownloadsItems)? |  yes  |  |
 
 ---
 
@@ -51749,21 +52159,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[String: Any]]? |  yes  |  |
  | multivalue | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Hierarchy](#Hierarchy)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | l2 | Int |  no  |  |
- | l1 | Int |  no  |  |
- | department | Int |  no  |  |
+ | data | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -51774,8 +52171,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | catalogId | Int? |  yes  |  |
  | name | String |  no  |  |
+ | catalogId | Int? |  yes  |  |
 
 ---
 
@@ -51786,9 +52183,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | facebook | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
- | google | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
  | ajio | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
+ | google | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
+ | facebook | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Hierarchy](#Hierarchy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | l1 | Int |  no  |  |
+ | department | Int |  no  |  |
+ | l2 | Int |  no  |  |
 
 ---
 
@@ -51800,41 +52210,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | String |  no  |  |
- | landscape | String |  no  |  |
  | portrait | String |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryRequestBody](#CategoryRequestBody)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
- | priority | Int? |  yes  |  |
- | departments | [Int] |  no  |  |
- | level | Int |  no  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | slug | String? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
- | isActive | Bool |  no  |  |
- | synonyms | [String]? |  yes  |  |
- | media | [Media2](#Media2)? |  yes  |  |
- | name | String |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryCreateResponse](#CategoryCreateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | message | String? |  yes  |  |
+ | landscape | String |  no  |  |
 
 ---
 
@@ -51846,22 +52223,22 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | createdBy | [String: Any]? |  yes  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
- | priority | Int? |  yes  |  |
- | departments | [Int] |  no  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
  | createdOn | String? |  yes  |  |
  | level | Int |  no  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | slug | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
- | isActive | Bool |  no  |  |
  | modifiedBy | [String: Any]? |  yes  |  |
- | uid | Int? |  yes  |  |
  | synonyms | [String]? |  yes  |  |
- | media | [Media2](#Media2)? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | slug | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | departments | [Int] |  no  |  |
+ | tryouts | [String]? |  yes  |  |
  | name | String |  no  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
  | id | String? |  yes  |  |
+ | media | [Media2](#Media2)? |  yes  |  |
 
 ---
 
@@ -51880,11 +52257,32 @@ Success
 
  
  
- #### [CategoryUpdateResponse](#CategoryUpdateResponse)
+ #### [CategoryRequestBody](#CategoryRequestBody)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
+ | level | Int |  no  |  |
+ | synonyms | [String]? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | slug | String? |  yes  |  |
+ | departments | [Int] |  no  |  |
+ | tryouts | [String]? |  yes  |  |
+ | name | String |  no  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | media | [Media2](#Media2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryCreateResponse](#CategoryCreateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | Int? |  yes  |  |
  | message | String? |  yes  |  |
 
 ---
@@ -51903,12 +52301,136 @@ Success
 
  
  
+ #### [CategoryUpdateResponse](#CategoryUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPublished](#ProductPublished)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | productOnlineDate | Int? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Image](#Image)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secureUrl | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | aspectRatioF | Double? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Logo](#Logo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secureUrl | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | aspectRatioF | Int? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Brand](#Brand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | logo | [Logo](#Logo)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Product](#Product)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | countryOfOrigin | String? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
+ | multiSize | Bool? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
+ | sizeGuide | String? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | templateTag | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | productPublish | [ProductPublished](#ProductPublished)? |  yes  |  |
+ | images | [[Image](#Image)]? |  yes  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | hsnCode | String? |  yes  |  |
+ | variants | [String: Any]? |  yes  |  |
+ | moq | [String: Any]? |  yes  |  |
+ | departments | [Int]? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | isPhysical | Bool? |  yes  |  |
+ | primaryColor | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | l3Mapping | [String]? |  yes  |  |
+ | sizes | [[String: Any]]? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | categoryUid | Int? |  yes  |  |
+ | id | String? |  yes  |  |
+ | color | String? |  yes  |  |
+ | categorySlug | String? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | brandUid | Int? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | allSizes | [[String: Any]]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingResponse](#ProductListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Product](#Product)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CustomOrder](#CustomOrder)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturingTimeUnit | String? |  yes  |  |
  | isCustomOrder | Bool? |  yes  |  |
+ | manufacturingTimeUnit | String? |  yes  |  |
  | manufacturingTime | Int? |  yes  |  |
 
 ---
@@ -51916,25 +52438,12 @@ Success
 
  
  
- #### [OrderQuantity](#OrderQuantity)
+ #### [Trader](#Trader)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | minimum | Int? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | maximum | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [TeaserTag](#TeaserTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | tag | String? |  yes  |  |
+ | name | String |  no  |  |
+ | address | String |  no  |  |
 
 ---
 
@@ -51957,21 +52466,34 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | String? |  yes  |  |
- | time | Int? |  yes  |  |
  | returnable | Bool? |  yes  |  |
+ | time | Int? |  yes  |  |
+ | unit | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [Trader](#Trader)
+ #### [OrderQuantity](#OrderQuantity)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | String |  no  |  |
- | name | String |  no  |  |
+ | maximum | Int? |  yes  |  |
+ | minimum | Int? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TeaserTag](#TeaserTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | String? |  yes  |  |
+ | tag | String? |  yes  |  |
 
 ---
 
@@ -51982,155 +52504,43 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shortDescription | String? |  yes  |  |
- | isImageLessProduct | Bool? |  yes  |  |
- | companyId | Int |  no  |  |
  | countryOfOrigin | String |  no  |  |
- | changeRequestId | String? |  yes  |  |
- | templateTag | String |  no  |  |
- | categorySlug | String |  no  |  |
- | noOfBoxes | Int? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | customOrder | [CustomOrder](#CustomOrder)? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | moq | [OrderQuantity](#OrderQuantity)? |  yes  |  |
  | highlights | [String]? |  yes  |  |
- | productGroupTag | [String]? |  yes  |  |
- | departments | [Int] |  no  |  |
- | teaserTag | [TeaserTag](#TeaserTag)? |  yes  |  |
  | multiSize | Bool? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | requester | String? |  yes  |  |
- | description | String? |  yes  |  |
- | isDependent | Bool? |  yes  |  |
- | itemCode | String |  no  |  |
+ | customOrder | [CustomOrder](#CustomOrder)? |  yes  |  |
  | sizeGuide | String? |  yes  |  |
- | currency | String |  no  |  |
- | productPublish | [ProductPublish](#ProductPublish)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | name | String |  no  |  |
- | brandUid | Int |  no  |  |
- | traderType | String? |  yes  |  |
- | returnConfig | [ReturnConfig](#ReturnConfig)? |  yes  |  |
- | itemType | String |  no  |  |
- | slug | String |  no  |  |
+ | itemCode | String |  no  |  |
+ | requester | String? |  yes  |  |
  | trader | [Trader](#Trader)? |  yes  |  |
+ | isImageLessProduct | Bool? |  yes  |  |
+ | name | String |  no  |  |
+ | productPublish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | returnConfig | [ReturnConfig](#ReturnConfig)? |  yes  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
  | hsnCode | String |  no  |  |
  | variants | [String: Any]? |  yes  |  |
- | tags | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [Image](#Image)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
- | aspectRatioF | Double? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Logo](#Logo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
- | aspectRatioF | Int? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Brand](#Brand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | logo | [Logo](#Logo)? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPublished](#ProductPublished)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | productOnlineDate | Int? |  yes  |  |
- | isSet | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Product](#Product)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shortDescription | String? |  yes  |  |
- | images | [[Image](#Image)]? |  yes  |  |
- | countryOfOrigin | String? |  yes  |  |
- | color | String? |  yes  |  |
- | primaryColor | String? |  yes  |  |
- | templateTag | String? |  yes  |  |
- | categorySlug | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | customOrder | [String: Any]? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | brand | [Brand](#Brand)? |  yes  |  |
- | moq | [String: Any]? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | allSizes | [[String: Any]]? |  yes  |  |
- | departments | [Int]? |  yes  |  |
- | sizes | [[String: Any]]? |  yes  |  |
- | id | String? |  yes  |  |
- | multiSize | Bool? |  yes  |  |
- | l3Mapping | [String]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
+ | productGroupTag | [String]? |  yes  |  |
+ | moq | [OrderQuantity](#OrderQuantity)? |  yes  |  |
+ | departments | [Int] |  no  |  |
+ | currency | String |  no  |  |
  | description | String? |  yes  |  |
- | isPhysical | Bool? |  yes  |  |
- | categoryUid | Int? |  yes  |  |
- | isDependent | Bool? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | sizeGuide | String? |  yes  |  |
- | currency | String? |  yes  |  |
- | productPublish | [ProductPublished](#ProductPublished)? |  yes  |  |
- | imageNature | String? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | noOfBoxes | Int? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | teaserTag | [TeaserTag](#TeaserTag)? |  yes  |  |
+ | companyId | Int |  no  |  |
+ | categorySlug | String |  no  |  |
+ | traderType | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | slug | String |  no  |  |
+ | brandUid | Int |  no  |  |
+ | itemType | String |  no  |  |
  | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | brandUid | Int? |  yes  |  |
- | itemType | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | hsnCode | String? |  yes  |  |
- | variants | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductListingResponse](#ProductListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Product](#Product)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | changeRequestId | String? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | templateTag | String |  no  |  |
 
 ---
 
@@ -52148,54 +52558,13 @@ Success
 
  
  
- #### [UserInfo1](#UserInfo1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | email | String? |  yes  |  |
- | username | String? |  yes  |  |
- | userId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [BulkJob](#BulkJob)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | createdBy | [UserInfo1](#UserInfo1)? |  yes  |  |
- | stage | String? |  yes  |  |
- | failedRecords | [[String: Any]]? |  yes  |  |
- | failed | Int? |  yes  |  |
- | companyId | Int |  no  |  |
- | createdOn | String |  no  |  |
- | templateTag | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | customTemplateTag | String? |  yes  |  |
- | cancelled | Int? |  yes  |  |
- | modifiedBy | [UserInfo1](#UserInfo1)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | cancelledRecords | [[String: Any]]? |  yes  |  |
- | succeed | Int? |  yes  |  |
- | filePath | String? |  yes  |  |
- | total | Int |  no  |  |
- | trackingUrl | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [UserDetail](#UserDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | String? |  yes  |  |
- | fullName | String? |  yes  |  |
  | userId | String? |  yes  |  |
+ | fullName | String? |  yes  |  |
+ | username | String? |  yes  |  |
 
 ---
 
@@ -52206,22 +52575,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
- | stage | String? |  yes  |  |
- | failedRecords | [String]? |  yes  |  |
- | failed | Int? |  yes  |  |
- | companyId | Int? |  yes  |  |
  | template | [ProductTemplate](#ProductTemplate)? |  yes  |  |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | total | Int? |  yes  |  |
  | createdOn | String? |  yes  |  |
+ | failed | Int? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | failedRecords | [String]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | filePath | String? |  yes  |  |
+ | succeed | Int? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | cancelledRecords | [String]? |  yes  |  |
  | templateTag | String? |  yes  |  |
  | modifiedOn | String? |  yes  |  |
  | cancelled | Int? |  yes  |  |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | cancelledRecords | [String]? |  yes  |  |
- | succeed | Int? |  yes  |  |
- | filePath | String? |  yes  |  |
- | total | Int? |  yes  |  |
 
 ---
 
@@ -52240,14 +52609,55 @@ Success
 
  
  
+ #### [UserInfo1](#UserInfo1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | String? |  yes  |  |
+ | email | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | username | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkJob](#BulkJob)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customTemplateTag | String? |  yes  |  |
+ | total | Int |  no  |  |
+ | createdOn | String |  no  |  |
+ | failed | Int? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | failedRecords | [[String: Any]]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | filePath | String? |  yes  |  |
+ | trackingUrl | String? |  yes  |  |
+ | succeed | Int? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | createdBy | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | cancelledRecords | [[String: Any]]? |  yes  |  |
+ | templateTag | String? |  yes  |  |
+ | modifiedBy | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | cancelled | Int? |  yes  |  |
+ | companyId | Int |  no  |  |
+
+---
+
+
+ 
+ 
  #### [BulkProductRequest](#BulkProductRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | companyId | Int |  no  |  |
- | data | [[String: Any]] |  no  |  |
- | batchId | String |  no  |  |
  | templateTag | String |  no  |  |
+ | batchId | String |  no  |  |
+ | data | [[String: Any]] |  no  |  |
 
 ---
 
@@ -52276,26 +52686,13 @@ Success
 
  
  
- #### [ProductBulkAssets](#ProductBulkAssets)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | companyId | Int? |  yes  |  |
- | url | String |  no  |  |
- | user | [String: Any] |  no  |  |
-
----
-
-
- 
- 
  #### [UserCommon](#UserCommon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
  | userId | String? |  yes  |  |
+ | username | String? |  yes  |  |
 
 ---
 
@@ -52306,23 +52703,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | [UserCommon](#UserCommon)? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | modifiedBy | [UserCommon](#UserCommon)? |  yes  |  |
+ | failed | Int? |  yes  |  |
  | stage | String? |  yes  |  |
  | failedRecords | [String]? |  yes  |  |
- | failed | Int? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | total | Int? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | filePath | String? |  yes  |  |
+ | retry | Int? |  yes  |  |
+ | id | String? |  yes  |  |
+ | succeed | Int? |  yes  |  |
+ | createdBy | [UserCommon](#UserCommon)? |  yes  |  |
+ | cancelledRecords | [String]? |  yes  |  |
+ | trackingUrl | String? |  yes  |  |
  | modifiedOn | String? |  yes  |  |
  | cancelled | Int? |  yes  |  |
- | retry | Int? |  yes  |  |
- | modifiedBy | [UserCommon](#UserCommon)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | cancelledRecords | [String]? |  yes  |  |
- | id | String? |  yes  |  |
- | filePath | String? |  yes  |  |
- | succeed | Int? |  yes  |  |
- | trackingUrl | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
 
 ---
 
@@ -52341,13 +52738,26 @@ Success
 
  
  
+ #### [ProductBulkAssets](#ProductBulkAssets)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | companyId | Int? |  yes  |  |
+ | user | [String: Any] |  no  |  |
+ | url | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | companyId | Int? |  yes  |  |
  | size | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
- | companyId | Int? |  yes  |  |
 
 ---
 
@@ -52366,26 +52776,36 @@ Success
 
  
  
- #### [ItemQuery](#ItemQuery)
+ #### [InventoryResponse](#InventoryResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | brandUid | Int? |  yes  |  |
+ | price | Int? |  yes  |  |
+ | size | String? |  yes  |  |
+ | priceTransfer | Int? |  yes  |  |
+ | identifiers | [String: Any]? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | priceEffective | Int? |  yes  |  |
+ | inventoryUpdatedOn | String? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | store | [String: Any]? |  yes  |  |
+ | itemId | Int? |  yes  |  |
+ | sellerIdentifier | Int? |  yes  |  |
+ | sellableQuantity | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [GTIN](#GTIN)
+ #### [ItemQuery](#ItemQuery)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gtinType | String |  no  |  |
- | primary | Bool? |  yes  |  |
- | gtinValue | String |  no  |  |
+ | itemCode | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | brandUid | Int? |  yes  |  |
 
 ---
 
@@ -52419,8 +52839,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizeDistribution | [SizeDistribution](#SizeDistribution) |  no  |  |
  | quantity | Int? |  yes  |  |
+ | sizeDistribution | [SizeDistribution](#SizeDistribution) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GTIN](#GTIN)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gtinValue | String |  no  |  |
+ | gtinType | String |  no  |  |
+ | primary | Bool? |  yes  |  |
 
 ---
 
@@ -52431,22 +52864,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemHeight | Double? |  yes  |  |
- | itemWeightUnitOfMeasure | String? |  yes  |  |
  | storeCode | String |  no  |  |
- | quantity | Int |  no  |  |
- | itemWeight | Double? |  yes  |  |
- | identifiers | [[GTIN](#GTIN)] |  no  |  |
- | itemLength | Double? |  yes  |  |
- | currency | String |  no  |  |
- | priceEffective | Double |  no  |  |
- | itemDimensionsUnitOfMeasure | String? |  yes  |  |
- | price | Double |  no  |  |
- | priceTransfer | Double? |  yes  |  |
- | size | String |  no  |  |
- | isSet | Bool? |  yes  |  |
  | set | [InventorySet](#InventorySet)? |  yes  |  |
  | itemWidth | Double? |  yes  |  |
+ | price | Double |  no  |  |
+ | size | String |  no  |  |
+ | itemDimensionsUnitOfMeasure | String? |  yes  |  |
+ | priceTransfer | Double? |  yes  |  |
+ | itemWeight | Double? |  yes  |  |
+ | identifiers | [[GTIN](#GTIN)] |  no  |  |
+ | quantity | Int |  no  |  |
+ | itemLength | Double? |  yes  |  |
+ | priceEffective | Double |  no  |  |
+ | currency | String |  no  |  |
+ | itemHeight | Double? |  yes  |  |
+ | itemWeightUnitOfMeasure | String? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
 
 ---
 
@@ -52466,36 +52899,13 @@ Success
 
  
  
- #### [InventoryResponse](#InventoryResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store | [String: Any]? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | sellerIdentifier | Int? |  yes  |  |
- | identifiers | [String: Any]? |  yes  |  |
- | currency | String? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | priceEffective | Int? |  yes  |  |
- | sellableQuantity | Int? |  yes  |  |
- | priceTransfer | Int? |  yes  |  |
- | uid | String? |  yes  |  |
- | size | String? |  yes  |  |
- | inventoryUpdatedOn | String? |  yes  |  |
- | price | Int? |  yes  |  |
-
----
-
-
- 
- 
  #### [InventoryDeleteData](#InventoryDeleteData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | locationId | Int? |  yes  |  |
  | size | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
+ | locationId | Int? |  yes  |  |
 
 ---
 
@@ -52514,36 +52924,25 @@ Success
 
  
  
- #### [CommonResponse](#CommonResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [BulkInventoryGetItems](#BulkInventoryGetItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | createdBy | [String: Any]? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | failed | Int? |  yes  |  |
  | stage | String? |  yes  |  |
  | failedRecords | [String]? |  yes  |  |
- | failed | Int? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | total | Int? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | cancelled | Int? |  yes  |  |
- | id | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
- | cancelledRecords | [String]? |  yes  |  |
  | filePath | String? |  yes  |  |
+ | id | String? |  yes  |  |
  | succeed | Int? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | cancelledRecords | [String]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | cancelled | Int? |  yes  |  |
 
 ---
 
@@ -52562,27 +52961,38 @@ Success
 
  
  
+ #### [CommonResponse](#CommonResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [Size1](#Size1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemHeight | Double? |  yes  |  |
- | itemWeightUnitOfMeasure | String? |  yes  |  |
  | storeCode | String |  no  |  |
- | quantity | Int |  no  |  |
- | sellerIdentifier | String |  no  |  |
- | itemWeight | Double? |  yes  |  |
- | identifiers | [[String: Any]]? |  yes  |  |
- | itemLength | Double? |  yes  |  |
- | currency | String |  no  |  |
- | priceEffective | Double |  no  |  |
- | itemDimensionsUnitOfMeasure | String? |  yes  |  |
- | price | Double |  no  |  |
- | priceTransfer | Double? |  yes  |  |
- | size | String? |  yes  |  |
- | isSet | Bool? |  yes  |  |
  | set | [InventorySet](#InventorySet)? |  yes  |  |
  | itemWidth | Double? |  yes  |  |
+ | price | Double |  no  |  |
+ | size | String? |  yes  |  |
+ | itemDimensionsUnitOfMeasure | String? |  yes  |  |
+ | priceTransfer | Double? |  yes  |  |
+ | itemWeight | Double? |  yes  |  |
+ | identifiers | [[String: Any]]? |  yes  |  |
+ | quantity | Int |  no  |  |
+ | itemLength | Double? |  yes  |  |
+ | priceEffective | Double |  no  |  |
+ | currency | String |  no  |  |
+ | sellerIdentifier | String |  no  |  |
+ | itemHeight | Double? |  yes  |  |
+ | itemWeightUnitOfMeasure | String? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
 
 ---
 
@@ -52594,22 +53004,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | companyId | Int |  no  |  |
- | batchId | String |  no  |  |
  | user | [String: Any]? |  yes  |  |
+ | batchId | String |  no  |  |
  | sizes | [[Size1](#Size1)] |  no  |  |
-
----
-
-
- 
- 
- #### [InventoryExportRequest](#InventoryExportRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store | [Int]? |  yes  |  |
- | brand | [Int]? |  yes  |  |
- | type | String? |  yes  |  |
 
 ---
 
@@ -52620,13 +53017,26 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | sellerId | Int |  no  |  |
  | status | String? |  yes  |  |
- | triggerOn | String? |  yes  |  |
+ | sellerId | Int |  no  |  |
  | requestParams | [String: Any]? |  yes  |  |
- | completedOn | String? |  yes  |  |
  | taskId | String |  no  |  |
+ | triggerOn | String? |  yes  |  |
+ | completedOn | String? |  yes  |  |
+ | url | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryExportRequest](#InventoryExportRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | store | [Int]? |  yes  |  |
+ | brand | [Int]? |  yes  |  |
 
 ---
 
@@ -52637,8 +53047,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  |  |
  | value | String? |  yes  |  |
+ | display | String? |  yes  |  |
 
 ---
 
@@ -52657,52 +53067,21 @@ Success
 
  
  
- #### [HsnUpsert](#HsnUpsert)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tax2 | Double? |  yes  |  |
- | taxOnMrp | Bool |  no  |  |
- | companyId | Int |  no  |  |
- | threshold2 | Double? |  yes  |  |
- | threshold1 | Double |  no  |  |
- | hs2Code | String |  no  |  |
- | uid | Int? |  yes  |  |
- | hsnCode | String |  no  |  |
- | taxOnEsp | Bool? |  yes  |  |
- | tax1 | Double |  no  |  |
-
----
-
-
- 
- 
  #### [HsnCodesObject](#HsnCodesObject)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tax2 | Double? |  yes  |  |
- | taxOnMrp | Bool? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | threshold2 | Double? |  yes  |  |
- | threshold1 | Double? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | hs2Code | String? |  yes  |  |
- | id | String? |  yes  |  |
  | hsnCode | String? |  yes  |  |
- | taxOnEsp | Bool? |  yes  |  |
+ | tax2 | Double? |  yes  |  |
+ | threshold2 | Double? |  yes  |  |
  | tax1 | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [HsnCode](#HsnCode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [HsnCodesObject](#HsnCodesObject)? |  yes  |  |
+ | taxOnMrp | Bool? |  yes  |  |
+ | taxOnEsp | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | threshold1 | Double? |  yes  |  |
+ | hs2Code | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
 
 ---
 
@@ -52713,10 +53092,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | String? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
  | size | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | current | String? |  yes  |  |
  | hasPrevious | Bool? |  yes  |  |
 
 ---
@@ -52730,6 +53109,37 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[HsnCodesObject](#HsnCodesObject)]? |  yes  |  |
  | page | [PageResponse](#PageResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnUpsert](#HsnUpsert)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hsnCode | String |  no  |  |
+ | tax2 | Double? |  yes  |  |
+ | threshold2 | Double? |  yes  |  |
+ | tax1 | Double |  no  |  |
+ | taxOnMrp | Bool |  no  |  |
+ | taxOnEsp | Bool? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | companyId | Int |  no  |  |
+ | threshold1 | Double |  no  |  |
+ | hs2Code | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnCode](#HsnCode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [HsnCodesObject](#HsnCodesObject)? |  yes  |  |
 
 ---
 
@@ -52762,14 +53172,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | departments | [String]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | slug | String? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
- | discount | String? |  yes  |  |
+ | slug | String? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
  | name | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52793,8 +53203,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | priorityOrder | Int? |  yes  |  |
- | slug | String? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
+ | slug | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | name | String? |  yes  |  |
 
@@ -52830,13 +53240,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | childs | [[String: Any]]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | childs | [[String: Any]]? |  yes  |  |
  | slug | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
  | name | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52847,13 +53257,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)]? |  yes  |  |
  | slug | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
  | name | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52864,13 +53274,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)]? |  yes  |  |
  | slug | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
  | name | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52881,12 +53291,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | childs | [[Child](#Child)]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | childs | [[Child](#Child)]? |  yes  |  |
  | slug | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | name | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
 
 ---
 
@@ -52921,10 +53331,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
- | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
- | page | [Page](#Page) |  no  |  |
  | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | page | [Page](#Page) |  no  |  |
+ | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
 
 ---
 
@@ -52935,29 +53345,29 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shortDescription | String? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | hasVariant | Bool? |  yes  |  |
- | color | String? |  yes  |  |
- | promoMeta | [String: Any]? |  yes  |  |
- | productOnlineDate | String? |  yes  |  |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
  | highlights | [String]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | productOnlineDate | String? |  yes  |  |
  | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
- | teaserTag | [String: Any]? |  yes  |  |
+ | hasVariant | Bool? |  yes  |  |
+ | rating | Double? |  yes  |  |
  | description | String? |  yes  |  |
  | similars | [String]? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | medias | [[Media1](#Media1)]? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | ratingCount | Int? |  yes  |  |
- | name | String? |  yes  |  |
  | type | String? |  yes  |  |
- | itemType | String? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | teaserTag | [String: Any]? |  yes  |  |
+ | color | String? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | imageNature | String? |  yes  |  |
  | slug | String |  no  |  |
- | rating | Double? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | ratingCount | Int? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | medias | [[Media1](#Media1)]? |  yes  |  |
+ | promoMeta | [String: Any]? |  yes  |  |
+ | tryouts | [String]? |  yes  |  |
 
 ---
 
@@ -52966,12 +53376,36 @@ Success
 
  
  
- #### [BusinessCountryInfo](#BusinessCountryInfo)
+ #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | latitude | Double |  no  |  |
+ | city | String |  no  |  |
+ | state | String |  no  |  |
+ | country | String |  no  |  |
  | countryCode | String? |  yes  |  |
- | country | String? |  yes  |  |
+ | pincode | Int |  no  |  |
+ | address1 | String |  no  |  |
+ | addressType | String |  no  |  |
+ | address2 | String? |  yes  |  |
+ | longitude | Double |  no  |  |
+ | landmark | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Document](#Document)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified | Bool? |  yes  |  |
+ | url | String? |  yes  |  |
+ | legalName | String? |  yes  |  |
+ | type | String |  no  |  |
+ | value | String |  no  |  |
 
 ---
 
@@ -53000,48 +53434,12 @@ Success
 
  
  
- #### [GetAddressSerializer](#GetAddressSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | countryCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | country | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
- | longitude | Double? |  yes  |  |
- | state | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | address1 | String? |  yes  |  |
- | city | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | address2 | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Document](#Document)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | legalName | String? |  yes  |  |
- | url | String? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | value | String |  no  |  |
- | type | String |  no  |  |
-
----
-
-
- 
- 
  #### [SellerPhoneNumber](#SellerPhoneNumber)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | number | String |  no  |  |
  | countryCode | Int |  no  |  |
+ | number | String |  no  |  |
 
 ---
 
@@ -53052,60 +53450,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | emails | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetCompanyProfileSerializerResponse](#GetCompanyProfileSerializerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | businessInfo | String? |  yes  |  |
- | name | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | uid | Int |  no  |  |
- | warnings | [String: Any]? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
- | mode | String? |  yes  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
- | businessType | String |  no  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
- | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
- | companyType | String |  no  |  |
- | notificationEmails | [String]? |  yes  |  |
- | stage | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | countryCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | country | String |  no  |  |
- | latitude | Double |  no  |  |
- | longitude | Double |  no  |  |
- | state | String |  no  |  |
- | addressType | String |  no  |  |
- | address1 | String |  no  |  |
- | city | String |  no  |  |
- | pincode | Int |  no  |  |
- | address2 | String? |  yes  |  |
+ | phone | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
 
 ---
 
@@ -53116,18 +53462,82 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | businessInfo | String? |  yes  |  |
- | businessType | String? |  yes  |  |
- | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
- | name | String? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
- | companyType | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
- | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)]? |  yes  |  |
  | warnings | [String: Any]? |  yes  |  |
+ | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)]? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | franchiseEnabled | Bool? |  yes  |  |
+ | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
+ | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
+ | companyType | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | businessInfo | String? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | businessType | String? |  yes  |  |
  | rejectReason | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BusinessCountryInfo](#BusinessCountryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer](#GetAddressSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | Double? |  yes  |  |
+ | city | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | longitude | Double? |  yes  |  |
+ | landmark | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCompanyProfileSerializerResponse](#GetCompanyProfileSerializerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | warnings | [String: Any]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | mode | String? |  yes  |  |
+ | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | businessInfo | String? |  yes  |  |
+ | businessType | String |  no  |  |
+ | uid | Int |  no  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | companyType | String |  no  |  |
+ | modifiedOn | String? |  yes  |  |
+ | franchiseEnabled | Bool? |  yes  |  |
+ | createdOn | String? |  yes  |  |
 
 ---
 
@@ -53138,8 +53548,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pending | Int? |  yes  |  |
  | verified | Int? |  yes  |  |
+ | pending | Int? |  yes  |  |
 
 ---
 
@@ -53150,13 +53560,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stage | String? |  yes  |  |
- | product | [DocumentsObj](#DocumentsObj)? |  yes  |  |
- | brand | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | storeDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
  | companyDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
  | uid | Int? |  yes  |  |
  | store | [DocumentsObj](#DocumentsObj)? |  yes  |  |
- | storeDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | product | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | brand | [DocumentsObj](#DocumentsObj)? |  yes  |  |
 
 ---
 
@@ -53167,8 +53577,28 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | String? |  yes  |  |
  | portrait | String? |  yes  |  |
+ | landscape | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | synonyms | [String]? |  yes  |  |
+ | logo | String |  no  |  |
+ | uid | Int? |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | brandTier | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | localeLanguage | [String: Any]? |  yes  |  |
+ | name | String |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
 
 ---
 
@@ -53179,8 +53609,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | String? |  yes  |  |
  | userId | String? |  yes  |  |
+ | contact | String? |  yes  |  |
  | username | String? |  yes  |  |
 
 ---
@@ -53192,23 +53622,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
- | stage | String? |  yes  |  |
- | name | String |  no  |  |
- | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | localeLanguage | [String: Any]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | logo | String? |  yes  |  |
- | description | String? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
- | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | slugKey | String? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | localeLanguage | [String: Any]? |  yes  |  |
+ | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | name | String |  no  |  |
+ | modifiedOn | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | createdOn | String? |  yes  |  |
  | rejectReason | String? |  yes  |  |
 
 ---
@@ -53216,20 +53646,13 @@ Success
 
  
  
- #### [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer)
+ #### [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
- | name | String |  no  |  |
- | brandTier | String? |  yes  |  |
- | localeLanguage | [String: Any]? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | logo | String |  no  |  |
- | description | String? |  yes  |  |
+ | company | Int |  no  |  |
  | uid | Int? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
+ | brands | [Int] |  no  |  |
 
 ---
 
@@ -53240,18 +53663,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | businessType | String? |  yes  |  |
- | stage | String? |  yes  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
- | name | String? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
  | uid | Int? |  yes  |  |
- | companyType | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
  | verifiedOn | String? |  yes  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
+ | stage | String? |  yes  |  |
  | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | companyType | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | businessType | String? |  yes  |  |
+ | createdOn | String? |  yes  |  |
  | rejectReason | String? |  yes  |  |
 
 ---
@@ -53263,17 +53686,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | warnings | [String: Any]? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer)? |  yes  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modifiedOn | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | stage | String? |  yes  |  |
- | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer)? |  yes  |  |
- | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
- | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | rejectReason | String? |  yes  |  |
 
 ---
@@ -53285,21 +53708,132 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[CompanyBrandSerializer](#CompanyBrandSerializer)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
 
  
  
- #### [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer)
+ #### [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [Int] |  no  |  |
- | company | Int |  no  |  |
+ | onSameStore | Bool? |  yes  |  |
+ | storeUid | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationTimingSerializer](#LocationTimingSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | Int? |  yes  |  |
+ | minute | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | weekday | String |  no  |  |
+ | open | Bool |  no  |  |
+ | opening | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
+ | closing | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceCredSerializer](#InvoiceCredSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | String? |  yes  |  |
+ | password | String? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | eInvoice | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
+ | eWaybill | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer1](#GetAddressSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | Double? |  yes  |  |
+ | city | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | longitude | Double? |  yes  |  |
+ | landmark | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationManagerSerializer](#LocationManagerSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | mobileNo | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
+ | email | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationSerializer](#LocationSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | displayName | String |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | code | String |  no  |  |
+ | warnings | [String: Any]? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
+ | company | Int |  no  |  |
+ | stage | String? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | storeType | String? |  yes  |  |
+ | name | String |  no  |  |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
+ | address | [GetAddressSerializer1](#GetAddressSerializer1) |  no  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
 
 ---
 
@@ -53318,111 +53852,35 @@ Success
 
  
  
- #### [LocationManagerSerializer](#LocationManagerSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mobileNo | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
- | email | String? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [InvoiceCredSerializer](#InvoiceCredSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | password | String? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | username | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | eWaybill | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
- | eInvoice | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | storeUid | Int? |  yes  |  |
- | onSameStore | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [LocationTimingSerializer](#LocationTimingSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minute | Int? |  yes  |  |
- | hour | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | open | Bool |  no  |  |
- | closing | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
- | opening | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
- | weekday | String |  no  |  |
-
----
-
-
- 
- 
  #### [GetLocationSerializer](#GetLocationSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | name | String |  no  |  |
- | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
- | displayName | String |  no  |  |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | uid | Int? |  yes  |  |
  | warnings | [String: Any]? |  yes  |  |
  | verifiedOn | String? |  yes  |  |
- | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | code | String |  no  |  |
- | integrationType | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | storeType | String? |  yes  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
  | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
  | phoneNumber | String |  no  |  |
  | notificationEmails | [String]? |  yes  |  |
- | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | stage | String? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
+ | integrationType | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | name | String |  no  |  |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | displayName | String |  no  |  |
+ | code | String |  no  |  |
+ | uid | Int? |  yes  |  |
+ | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | storeType | String? |  yes  |  |
+ | verifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | createdOn | String? |  yes  |  |
 
 ---
 
@@ -53433,56 +53891,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [[GetLocationSerializer](#GetLocationSerializer)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetAddressSerializer1](#GetAddressSerializer1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | countryCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | country | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
- | longitude | Double? |  yes  |  |
- | state | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | address1 | String? |  yes  |  |
- | city | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | address2 | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [LocationSerializer](#LocationSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
- | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
- | name | String |  no  |  |
- | code | String |  no  |  |
- | address | [GetAddressSerializer1](#GetAddressSerializer1) |  no  |  |
- | storeType | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | uid | Int? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | company | Int |  no  |  |
- | stage | String? |  yes  |  |
- | displayName | String |  no  |  |
- | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -56557,7 +56967,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | verified | Bool? |  yes  |  |
  | isPrimary | Bool? |  yes  |  |
- | isDefault | Bool? |  yes  |  |
  | isShortlink | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
