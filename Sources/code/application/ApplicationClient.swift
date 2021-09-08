@@ -2339,6 +2339,230 @@ if let value = longitude {
         }
         
         
+        
+        
+        /**
+        *
+        * Summary: Get store meta information.
+        * Description: Use this API to get a list of stores in a specific application.
+        **/
+        public func getInStockLocations(
+            pageNo: Int?,
+            pageSize: Int?,
+            q: String?,
+            city: String?,
+            range: Int?,
+            latitude: Double?,
+            longitude: Double?,
+            
+            onResponse: @escaping (_ response: ApplicationStoreListing?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = city {
+    
+    xQuery["city"] = value
+    
+}
+
+
+if let value = range {
+    
+    xQuery["range"] = value
+    
+}
+
+
+if let value = latitude {
+    
+    xQuery["latitude"] = value
+    
+}
+
+
+if let value = longitude {
+    
+    xQuery["longitude"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v1.0/in-stock/locations/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ApplicationStoreListing.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getInStockLocations
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getInStockLocationsPaginator(
+            pageSize: Int?,
+            q: String?,
+            city: String?,
+            range: Int?,
+            latitude: Double?,
+            longitude: Double?
+            
+            ) -> Paginator<ApplicationStoreListing> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ApplicationStoreListing>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getInStockLocations(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        city: city,
+                        range: range,
+                        latitude: latitude,
+                        longitude: longitude
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get store meta information.
+        * Description: Use this API to get meta details for a store.
+        **/
+        public func getLocationDetailsById(
+            locationId: Int,
+            
+            onResponse: @escaping (_ response: StoreDetails?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v1.0/locations/\(locationId)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(StoreDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
     }
     
     
