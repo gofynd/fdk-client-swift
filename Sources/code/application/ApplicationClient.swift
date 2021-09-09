@@ -2536,7 +2536,7 @@ if let value = longitude {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/catalog/v1.0/in-stock/locations/\(locationId)/",
+                url: "/service/application/catalog/v1.0/locations/\(locationId)/",
                 query: nil,
                 extraHeaders:  [],
                 body: nil,
