@@ -5473,9 +5473,9 @@ if let value = pageSize {
         /**
         *
         * Summary: Get a list of all tags associated with company.
-        * Description: This API helps to get tags data associated to a particular copmpany.
+        * Description: This API helps to get tags data associated to a particular company.
         **/
-        public func getCompanyTags(
+        public func getProductTags(
             
             onResponse: @escaping (_ response: ProductTagsViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -6586,54 +6586,6 @@ if let value = q {
         
         /**
         *
-        * Summary: Edit company profile
-        * Description: This API allows to edit the company profile of the seller account.
-        **/
-        public func updateCompany(
-            body: UpdateCompany,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "patch",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Get company profile
         * Description: This API allows to view the company profile of the seller account.
         **/
@@ -6665,6 +6617,54 @@ if let value = q {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit company profile
+        * Description: This API allows to edit the company profile of the seller account.
+        **/
+        public func updateCompany(
+            body: UpdateCompany,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "patch",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -22567,6 +22567,7 @@ if let value = department {
                 pageSize: Int?,
                 pageNo: Int?,
                 pageType: String?,
+                itemIds: [String]?,
                 
                 onResponse: @escaping (_ response: ApplicationProductListingResponse?, _ error: FDKError?) -> Void
             ) {
@@ -22625,6 +22626,13 @@ if let value = pageNo {
 if let value = pageType {
     
     xQuery["page_type"] = value
+    
+}
+
+
+if let value = itemIds {
+    
+    xQuery["item_ids"] = value
     
 }
 
@@ -22722,6 +22730,12 @@ if let value = pageType {
             
             
             
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getAppicationProducts
@@ -22732,7 +22746,8 @@ if let value = pageType {
                 f: String?,
                 filters: Bool?,
                 sortOn: String?,
-                pageSize: Int?
+                pageSize: Int?,
+                itemIds: [String]?
                 
                 ) -> Paginator<ApplicationProductListingResponse> {
                 let pageSize = pageSize ?? 20
@@ -22751,7 +22766,8 @@ if let value = pageType {
                             pageNo: paginator.pageNo
                             ,
                             pageType: paginator.type
-                            
+                            ,
+                            itemIds: itemIds
                         ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page.hasNext ?? false
@@ -22825,6 +22841,7 @@ if let value = pageType {
                 brandIds: [Int]?,
                 categoryIds: [Int]?,
                 departmentIds: [Int]?,
+                tags: [String]?,
                 pageNo: Int?,
                 pageSize: Int?,
                 q: String?,
@@ -22851,6 +22868,13 @@ if let value = categoryIds {
 if let value = departmentIds {
     
     xQuery["department_ids"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
     
 }
 
