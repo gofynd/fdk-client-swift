@@ -4,6 +4,7 @@ public class PlatformConfig {
     var apiKey: String?
     var apiSecret: String?
     var domain: String
+
     public lazy var oauthClient = PlatformOAuthClient(config: self)
 
     public init?(companyId: String, domain: String = "https://api.fynd.com") {

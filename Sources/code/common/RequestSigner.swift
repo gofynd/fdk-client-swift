@@ -58,7 +58,7 @@ class RequestSigner {
         let signature = try? HMAC(key: signingkey, variant: .sha256).authenticate(signatureStr.bytes).toHexString()
         //let signature = signatureStr.hmac(algorithm: .SHA256, key: signingkey)
         if let hmacSignature = signature {
-            finalHeaders.append((key: "x-fp-signature", value: "v1:\(hmacSignature)")) 
+            finalHeaders.append((key: "x-fp-signature", value: "v1.1:\(hmacSignature)")) 
         }
         return finalHeaders
     }
