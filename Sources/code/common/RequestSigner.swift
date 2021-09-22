@@ -35,6 +35,7 @@ class RequestSigner {
         guard let components = self.components else { return finalHeaders }
         finalHeaders.append((key: "host", value: components.host ?? "api.fynd.com"))
         finalHeaders.append((key: "x-fp-date", value: dateStr))
+        finalHeaders = finalHeaders.sorted{ $0.key < $1.key}
         var reqHash = "".sha256()
         if let data = reqData {
             reqHash = data.pretty.sha256()
