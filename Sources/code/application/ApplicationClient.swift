@@ -1965,10 +1965,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1982,7 +1982,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2014,10 +2014,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -2031,7 +2031,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -8966,14 +8966,31 @@ if let value = q {
         * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
         **/
         public func getAppStaffs(
+            pageNo: Int?,
+            pageSize: Int?,
             orderIncent: Bool?,
             orderingStore: Int?,
             user: String?,
+            permission: String?,
             
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
 
 if let value = orderIncent {
     
@@ -8992,6 +9009,13 @@ if let value = orderingStore {
 if let value = user {
     
     xQuery["user"] = value
+    
+}
+
+
+if let value = permission {
+    
+    xQuery["permission"] = value
     
 }
 
@@ -9026,6 +9050,73 @@ if let value = user {
                         onResponse(nil, err)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAppStaffs
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAppStaffsPaginator(
+            pageSize: Int?,
+            orderIncent: Bool?,
+            orderingStore: Int?,
+            user: String?,
+            permission: String?
+            
+            ) -> Paginator<AppStaffResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<AppStaffResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAppStaffs(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        orderIncent: orderIncent,
+                        orderingStore: orderingStore,
+                        user: user,
+                        permission: permission
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         

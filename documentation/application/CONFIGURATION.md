@@ -1274,7 +1274,7 @@ Get a list of staff.
 
 
 ```swift
-configuration.getAppStaffs(orderIncent: orderIncent, orderingStore: orderingStore, user: user) { (response, error) in
+configuration.getAppStaffs(pageNo: pageNo, pageSize: pageSize, orderIncent: orderIncent, orderingStore: orderingStore, user: user, permission: permission) { (response, error) in
     // Use response
 }
 ```
@@ -1283,9 +1283,12 @@ configuration.getAppStaffs(orderIncent: orderIncent, orderingStore: orderingStor
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
+| pageNo | Int? | no | Current page no |   
+| pageSize | Int? | no | Current request items count |   
 | orderIncent | Bool? | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |   
 | orderingStore | Int? | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |   
-| user | String? | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+| user | String? | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |   
+| permission | String? | no | Get Staff members with specific permissions |  
 
 
 
@@ -1477,7 +1480,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | staffUsers | [[AppStaff](#AppStaff)]? |  yes  |  |
+ | items | [[AppStaff](#AppStaff)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
