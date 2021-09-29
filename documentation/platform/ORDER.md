@@ -307,7 +307,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -327,6 +327,7 @@ client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: 
 | orderId | String? | no | Order Id |   
 | stores | String? | no | Selected Stores |   
 | status | String? | no | Status of order |   
+| dp | String? | no | Delivery Partners |   
 | shortenUrls | Bool? | no | Shorten URL option |   
 | filterType | String? | no | Filters |  
 
@@ -1913,11 +1914,11 @@ Success
  | zip | String? |  yes  |  |
  | lastName | String? |  yes  |  |
  | address2 | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
  | longitude | Double? |  yes  |  |
  | provinceCode | String? |  yes  |  |
  | phone | String? |  yes  |  |
  | company | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
  | name | String? |  yes  |  |
  | country | String? |  yes  |  |
  | countryCode | String? |  yes  |  |
@@ -2069,11 +2070,11 @@ Success
  | countryCode | String? |  yes  |  |
  | country | String? |  yes  |  |
  | lastName | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
  | provinceCode | String? |  yes  |  |
  | firstName | String? |  yes  |  |
  | phone | String? |  yes  |  |
  | province | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
  | longitude | Double? |  yes  |  |
  | city | String? |  yes  |  |
  | company | String? |  yes  |  |
@@ -2144,7 +2145,6 @@ Success
  | country | String? |  yes  |  |
  | version | String? |  yes  |  |
  | address1 | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | city | String? |  yes  |  |
  | landmark | String? |  yes  |  |
@@ -2152,6 +2152,7 @@ Success
  | name | String? |  yes  |  |
  | address | String? |  yes  |  |
  | phone | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
  | longitude | Double? |  yes  |  |
  | addressType | String? |  yes  |  |
  | email | String? |  yes  |  |
@@ -2399,6 +2400,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | stage | String? |  yes  |  |
  | stores | [String]? |  yes  |  |
+ | dp | [Int]? |  yes  |  |
  | fromDate | String? |  yes  |  |
  | toDate | String? |  yes  |  |
 
@@ -2497,6 +2499,10 @@ Success
  | pod | [String: Any]? |  yes  |  |
  | lockStatus | Bool? |  yes  |  |
  | orderingChannel | String? |  yes  |  |
+ | creditNoteId | String? |  yes  |  |
+ | autoTriggerDpAssignment | Bool? |  yes  |  |
+ | packagingType | String? |  yes  |  |
+ | dates | [ShipmentDates](#ShipmentDates)? |  yes  |  |
 
 ---
 
@@ -2869,7 +2875,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | area | String? |  yes  |  |
  | state | String? |  yes  |  |
@@ -2878,6 +2883,7 @@ Success
  | pincode | String? |  yes  |  |
  | address1 | String? |  yes  |  |
  | address2 | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
  | longitude | Double? |  yes  |  |
  | email | String? |  yes  |  |
  | phone | String? |  yes  |  |
@@ -3150,6 +3156,17 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | next | String? |  yes  |  |
  | previous | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentDates](#ShipmentDates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dueDate | String? |  yes  |  |
 
 ---
 
