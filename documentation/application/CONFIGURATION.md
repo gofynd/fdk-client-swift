@@ -2154,7 +2154,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | from | String? |  yes  |  |
+ | redirectFrom | String? |  yes  |  |
  | redirectTo | String? |  yes  |  |
  | type | String? |  yes  |  |
 

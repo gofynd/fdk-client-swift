@@ -6330,7 +6330,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | from | String? |  yes  |  |
+ | redirectFrom | String? |  yes  |  |
  | redirectTo | String? |  yes  |  |
  | type | String? |  yes  |  |
 

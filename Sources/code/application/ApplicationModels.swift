@@ -63833,7 +63833,7 @@
         */
         class ApplicationRedirections: Codable {
             
-            public var from: String?
+            public var redirectFrom: String?
             
             public var redirectTo: String?
             
@@ -63842,7 +63842,7 @@
 
             public enum CodingKeys: String, CodingKey {
                 
-                case from = "from"
+                case redirectFrom = "redirect_from"
                 
                 case redirectTo = "redirect_to"
                 
@@ -63850,9 +63850,9 @@
                 
             }
 
-            public init(from: String?, redirectTo: String?, type: String?) {
+            public init(redirectFrom: String?, redirectTo: String?, type: String?) {
                 
-                self.from = from
+                self.redirectFrom = redirectFrom
                 
                 self.redirectTo = redirectTo
                 
@@ -63871,7 +63871,7 @@
                 
                 
                 do {
-                    from = try container.decode(String.self, forKey: .from)
+                    redirectFrom = try container.decode(String.self, forKey: .redirectFrom)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63912,7 +63912,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(from, forKey: .from)
+                try? container.encodeIfPresent(redirectFrom, forKey: .redirectFrom)
                 
                 
                 

@@ -8,6 +8,8 @@
 Authentication Service
 * [loginWithFacebook](#loginwithfacebook)
 * [loginWithGoogle](#loginwithgoogle)
+* [loginWithGoogleOauth](#loginwithgoogleoauth)
+* [loginWithGoogleAndRedirect](#loginwithgoogleandredirect)
 * [loginWithGoogleAndroid](#loginwithgoogleandroid)
 * [loginWithGoogleIOS](#loginwithgoogleios)
 * [loginWithOTP](#loginwithotp)
@@ -123,6 +125,128 @@ user.loginWithGoogle(platform: platform, body: body) { (response, error) in
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
 | body | OAuthRequestSchema | yes | Request body |
+
+
+Use this API to login or register using Google Account credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleOauth
+Login or Register using Google
+
+
+
+
+```swift
+user.loginWithGoogleOauth(platform: platform) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| platform | String? | no | ID of the application |  
+
+
+
+Use this API to login or register using Google Account credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a google url and redirect to same
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleAndRedirect
+Login or Register using Google
+
+
+
+
+```swift
+user.loginWithGoogleAndRedirect(platform: platform) { (response, error) in
+    // Use response
+}
+```
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| platform | String? | no | ID of the application |  
+
 
 
 Use this API to login or register using Google Account credentials.
