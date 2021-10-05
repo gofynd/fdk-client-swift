@@ -27,6 +27,8 @@ common.getLocations(locationType: locationType, id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | locationType | String? | no | Provide location type to query on. Possible values : country, state, city |   

@@ -49,10 +49,10 @@ client.application("<APPLICATION_ID>").theme.getAllPages(themeId: themeId) { (re
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme to be retrieved |  
 
 
@@ -112,10 +112,10 @@ client.application("<APPLICATION_ID>").theme.createPage(themeId: themeId, body: 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme |  
 | body | AvailablePageSchema | yes | Request body |
 
@@ -175,10 +175,10 @@ client.application("<APPLICATION_ID>").theme.updateMultiplePages(themeId: themeI
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme to be retrieved |  
 | body | AllAvailablePageSchema | yes | Request body |
 
@@ -238,10 +238,10 @@ client.application("<APPLICATION_ID>").theme.getPage(themeId: themeId, pageValue
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme to be retrieved |   
 | pageValue | String | yes | Value of the page to be retrieved |  
 
@@ -302,10 +302,10 @@ client.application("<APPLICATION_ID>").theme.updatePage(themeId: themeId, pageVa
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme |   
 | pageValue | String | yes | Value of the page to be updated |  
 | body | AvailablePageSchema | yes | Request body |
@@ -366,10 +366,10 @@ client.application("<APPLICATION_ID>").theme.deletePage(themeId: themeId, pageVa
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |   
 | themeId | String | yes | ID of the theme |   
 | pageValue | String | yes | Value of the page to be updated |  
 
@@ -430,10 +430,10 @@ client.application("<APPLICATION_ID>").theme.getThemeLibrary(pageSize: pageSize,
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10.  |   
 | pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |  
 
@@ -494,10 +494,10 @@ client.application("<APPLICATION_ID>").theme.addToThemeLibrary(body: body) { (re
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| -------- | ---- | -------- | ----------- |
 | body | AddThemeRequestSchema | yes | Request body |
 
 
@@ -556,10 +556,10 @@ client.application("<APPLICATION_ID>").theme.applyTheme(body: body) { (response,
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| -------- | ---- | -------- | ----------- |
 | body | AddThemeRequestSchema | yes | Request body |
 
 
@@ -618,10 +618,10 @@ client.application("<APPLICATION_ID>").theme.isUpgradable(themeId: themeId) { (r
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | Theme ID |  
 
 
@@ -681,10 +681,10 @@ client.application("<APPLICATION_ID>").theme.upgradeTheme(themeId: themeId) { (r
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 
@@ -744,10 +744,10 @@ client.application("<APPLICATION_ID>").theme.getPublicThemes(pageSize: pageSize,
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10.  |   
 | pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -808,10 +808,10 @@ client.application("<APPLICATION_ID>").theme.createTheme(body: body) { (response
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| -------- | ---- | -------- | ----------- |
 | body | ThemesSchema | yes | Request body |
 
 
@@ -870,10 +870,6 @@ client.application("<APPLICATION_ID>").theme.getAppliedTheme() { (response, erro
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -932,10 +928,6 @@ client.application("<APPLICATION_ID>").theme.getFonts() { (response, error) in
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -994,10 +986,10 @@ client.application("<APPLICATION_ID>").theme.getThemeById(themeId: themeId) { (r
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 
@@ -1057,10 +1049,10 @@ client.application("<APPLICATION_ID>").theme.updateTheme(themeId: themeId, body:
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 | body | ThemesSchema | yes | Request body |
 
@@ -1120,10 +1112,10 @@ client.application("<APPLICATION_ID>").theme.deleteTheme(themeId: themeId) { (re
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 
@@ -1183,10 +1175,10 @@ client.application("<APPLICATION_ID>").theme.getThemeForPreview(themeId: themeId
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 
@@ -1246,10 +1238,10 @@ client.application("<APPLICATION_ID>").theme.publishTheme(themeId: themeId) { (r
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 
@@ -1309,10 +1301,10 @@ client.application("<APPLICATION_ID>").theme.unpublishTheme(themeId: themeId) { 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 
@@ -1372,10 +1364,10 @@ client.application("<APPLICATION_ID>").theme.archiveTheme(themeId: themeId) { (r
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 
@@ -1435,10 +1427,10 @@ client.application("<APPLICATION_ID>").theme.unarchiveTheme(themeId: themeId) { 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | String | yes | ID allotted to the theme. |  
 
 

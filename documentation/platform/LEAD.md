@@ -49,14 +49,15 @@ client.lead.getTickets(items: items, filters: filters, q: q, status: status, pri
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for which the data will be returned |   
 | items | Bool? | no | Decides that the reponse will contain the list of tickets |   
 | filters | Bool? | no | Decides that the reponse will contain the ticket filters |   
 | q | String? | no | Search through ticket titles and description |   
 | status | String? | no | Filter tickets on status |   
-| priority | [String: Any]? | no | Filter tickets on priority |   
+| priority | PriorityEnum? | no | Filter tickets on priority |   
 | category | String? | no | Filter tickets on category |   
 | pageNo | Int? | no | The page number to navigate through the given set of results. |   
 | pageSize | Int? | no | Number of items to retrieve in each page. Default is 12. |  
@@ -484,9 +485,10 @@ client.lead.createTicket(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for which the data will be returned |  
+| -------- | ---- | -------- | ----------- |
 | body | AddTicketPayload | yes | Request body |
 
 
@@ -735,15 +737,15 @@ client.application("<APPLICATION_ID>").lead.getTickets(items: items, filters: fi
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for which the data will be returned |   
 | items | Bool? | no | Decides that the reponse will contain the list of tickets |   
 | filters | Bool? | no | Decides that the reponse will contain the ticket filters |   
 | q | String? | no | Search through ticket titles and description |   
 | status | String? | no | Filter tickets on status |   
-| priority | [String: Any]? | no | Filter tickets on priority |   
+| priority | PriorityEnum? | no | Filter tickets on priority |   
 | category | String? | no | Filter tickets on category |  
 
 
@@ -1169,9 +1171,10 @@ client.lead.getTicket(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for which the data will be returned |   
 | id | String | yes | Tiket ID of the ticket to be fetched |  
 
 
@@ -1421,9 +1424,10 @@ client.lead.editTicket(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID of ticket to be edited |  
 | body | EditTicketPayload | yes | Request body |
 
@@ -1673,10 +1677,10 @@ client.application("<APPLICATION_ID>").lead.getTicket(id: id) { (response, error
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for which the data will be returned |   
 | id | String | yes | Tiket ID of the ticket to be fetched |  
 
 
@@ -1927,10 +1931,10 @@ client.application("<APPLICATION_ID>").lead.editTicket(id: id, body: body) { (re
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for ticket |   
 | id | String | yes | Ticket ID of ticket to be edited |  
 | body | EditTicketPayload | yes | Request body |
 
@@ -2181,9 +2185,10 @@ client.lead.createHistory(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID for which history is created |  
 | body | TicketHistoryPayload | yes | Request body |
 
@@ -2277,9 +2282,10 @@ client.lead.getTicketHistory(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID for which history is to be fetched |  
 
 
@@ -2477,9 +2483,10 @@ client.lead.getFeedbacks(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID for which feedbacks are to be fetched |  
 
 
@@ -2560,9 +2567,10 @@ client.lead.submitFeedback(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID for ticket |   
 | id | String | yes | Ticket ID for which feedback is to be submitted |  
 | body | TicketFeedbackPayload | yes | Request body |
 
@@ -2639,10 +2647,10 @@ client.application("<APPLICATION_ID>").lead.createHistory(id: id, body: body) { 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for ticket |   
 | id | String | yes | Ticket ID for which history is created |  
 | body | TicketHistoryPayload | yes | Request body |
 
@@ -2736,10 +2744,10 @@ client.application("<APPLICATION_ID>").lead.getTicketHistory(id: id) { (response
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of application |   
-| applicationId | String | yes | Application ID for ticket |   
 | id | String | yes | Ticket ID for which history is to be fetched |  
 
 
@@ -2937,10 +2945,10 @@ client.application("<APPLICATION_ID>").lead.getCustomForm(slug: slug) { (respons
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for the form |   
 | slug | String | yes | Slug of form whose response is getting submitted |  
 
 
@@ -3044,10 +3052,10 @@ client.application("<APPLICATION_ID>").lead.editCustomForm(slug: slug, body: bod
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for the form |   
 | slug | String | yes | Slug of form whose response is getting submitted |  
 | body | EditCustomFormPayload | yes | Request body |
 
@@ -3161,10 +3169,6 @@ client.application("<APPLICATION_ID>").lead.getCustomForms() { (response, error)
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for the form |  
 
 
 
@@ -3356,10 +3360,10 @@ client.application("<APPLICATION_ID>").lead.createCustomForm(body: body) { (resp
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for the form |  
+| -------- | ---- | -------- | ----------- |
 | body | CreateCustomFormPayload | yes | Request body |
 
 
@@ -3472,9 +3476,10 @@ client.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company Id for video room |   
 | uniqueName | String | yes | Unique name of video room |  
 
 
@@ -3536,10 +3541,10 @@ client.application("<APPLICATION_ID>").lead.getTokenForVideoRoom(uniqueName: uni
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for video room |   
 | uniqueName | String | yes | Unique name of video room |  
 
 
@@ -3601,9 +3606,10 @@ client.lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company Id for video room |   
 | uniqueName | String | yes | Unique name of Video Room |  
 
 
@@ -3665,10 +3671,10 @@ client.application("<APPLICATION_ID>").lead.getVideoParticipants(uniqueName: uni
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for video room |   
 | uniqueName | String | yes | Unique name of Video Room |  
 
 
@@ -3730,10 +3736,10 @@ client.application("<APPLICATION_ID>").lead.openVideoRoom(body: body) { (respons
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for video room |  
+| -------- | ---- | -------- | ----------- |
 | body | CreateVideoRoomPayload | yes | Request body |
 
 
@@ -3794,10 +3800,10 @@ client.application("<APPLICATION_ID>").lead.closeVideoRoom(uniqueName: uniqueNam
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID of the application |   
-| applicationId | String | yes | Application ID for video room |   
 | uniqueName | String | yes | Unique name of Video Room |  
 
 

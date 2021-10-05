@@ -33,6 +33,8 @@ rewards.getPointsOnProduct(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | CatalogueOrderRequest | yes | Request body |
@@ -82,6 +84,8 @@ rewards.getOfferByName(name: name) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -138,6 +142,8 @@ rewards.getOrderDiscount(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | OrderDiscountRequest | yes | Request body |
@@ -191,6 +197,8 @@ rewards.getUserPoints() { (response, error) in
 
 
 
+
+
 Use this API to retrieve total available points of a user for current application
 
 *Returned Response:*
@@ -235,6 +243,8 @@ rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, er
     // Use response
 }
 ```
+
+
 
 
 
@@ -293,6 +303,8 @@ rewards.getUserReferralDetails() { (response, error) in
 
 
 
+
+
 Use this API to retrieve the referral details a user has configured in the application.
 
 *Returned Response:*
@@ -337,6 +349,8 @@ rewards.redeemReferralCode(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 

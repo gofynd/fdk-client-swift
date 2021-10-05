@@ -33,10 +33,10 @@ client.application("<APPLICATION_ID>").user.getCustomers(q: q, pageSize: pageSiz
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | q | String? | no | The search query. Mobile number or email ID of a customer. |   
 | pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |   
 | pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |  
@@ -98,10 +98,10 @@ client.application("<APPLICATION_ID>").user.searchUsers(q: q) { (response, error
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | q | String? | no | The search query. Mobile number or email ID of a customer. |  
 
 
@@ -196,10 +196,10 @@ client.application("<APPLICATION_ID>").user.createUser(body: body) { (response, 
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |  
+| -------- | ---- | -------- | ----------- |
 | body | CreateUserRequestSchema | yes | Request body |
 
 
@@ -292,10 +292,10 @@ client.application("<APPLICATION_ID>").user.updateUser(userId: userId, body: bod
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |   
 | userId | String | yes | User ID |  
 | body | UpdateUserRequestSchema | yes | Request body |
 
@@ -389,10 +389,10 @@ client.application("<APPLICATION_ID>").user.createUserSession(body: body) { (res
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company ID |   
-| applicationId | String | yes | Application ID |  
+| -------- | ---- | -------- | ----------- |
 | body | CreateUserSessionRequestSchema | yes | Request body |
 
 
@@ -451,10 +451,6 @@ client.application("<APPLICATION_ID>").user.getPlatformConfig() { (response, err
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -570,10 +566,10 @@ client.application("<APPLICATION_ID>").user.updatePlatformConfig(body: body) { (
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | String | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| -------- | ---- | -------- | ----------- |
 | body | PlatformSchema | yes | Request body |
 
 

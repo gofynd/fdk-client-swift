@@ -35,10 +35,10 @@ client.application("<APPLICATION_ID>").feedback.getAttributes(pageNo: pageNo, pa
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | pageNo | Int? | no | pagination page no |   
 | pageSize | Int? | no | pagination page size |  
 
@@ -91,10 +91,10 @@ client.application("<APPLICATION_ID>").feedback.getCustomerReviews(id: id, entit
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | id | String? | no | review id |   
 | entityId | String? | no | entity id |   
 | entityType | String? | no | entity type |   
@@ -160,10 +160,10 @@ client.application("<APPLICATION_ID>").feedback.updateApprove(reviewId: reviewId
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | reviewId | String | yes | review id |  
 | body | ApproveRequest | yes | Request body |
 
@@ -215,10 +215,10 @@ client.application("<APPLICATION_ID>").feedback.getHistory(reviewId: reviewId) {
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | reviewId | String | yes | review id |  
 
 
@@ -270,10 +270,10 @@ client.application("<APPLICATION_ID>").feedback.getApplicationTemplates(pageId: 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | pageId | String? | no | pagination page id |   
 | pageSize | Int? | no | pagination page size |  
 
@@ -326,10 +326,10 @@ client.application("<APPLICATION_ID>").feedback.createTemplate(body: body) { (re
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |  
+| -------- | ---- | -------- | ----------- |
 | body | TemplateRequestList | yes | Request body |
 
 
@@ -383,10 +383,10 @@ client.application("<APPLICATION_ID>").feedback.getTemplateById(id: id) { (respo
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | id | String | yes | template id |  
 
 
@@ -438,10 +438,10 @@ client.application("<APPLICATION_ID>").feedback.updateTemplate(id: id, body: bod
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | id | String | yes | template id |  
 | body | UpdateTemplateRequest | yes | Request body |
 
@@ -493,10 +493,10 @@ client.application("<APPLICATION_ID>").feedback.updateTemplateStatus(id: id, bod
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | company id |   
-| applicationId | String | yes | application id |   
 | id | String | yes | template id |  
 | body | UpdateTemplateStatusRequest | yes | Request body |
 

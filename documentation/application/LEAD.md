@@ -33,6 +33,8 @@ lead.getTicket(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | ID of ticket to be retrieved |  
@@ -285,6 +287,8 @@ lead.createHistory(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | Ticket ID for which history is created |  
@@ -377,6 +381,8 @@ lead.createTicket(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -631,6 +637,8 @@ lead.getCustomForm(slug: slug) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | slug | String | yes | Slug of form whose response is getting submitted |  
@@ -733,6 +741,8 @@ lead.submitCustomForm(slug: slug, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -990,6 +1000,8 @@ lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | uniqueName | String | yes | Unique name of Video Room |  
@@ -1050,6 +1062,8 @@ lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 

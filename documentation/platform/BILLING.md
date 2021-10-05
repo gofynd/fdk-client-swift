@@ -37,9 +37,10 @@ client.billing.createSubscriptionCharge(extensionId: extensionId, body: body) { 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | String | yes | Extension _id |  
 | body | CreateSubscriptionCharge | yes | Request body |
 
@@ -91,9 +92,10 @@ client.billing.getSubscriptionCharge(extensionId: extensionId, subscriptionId: s
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | String | yes | Extension _id |   
 | subscriptionId | String | yes | Subscription charge _id |  
 
@@ -146,9 +148,10 @@ client.billing.cancelSubscriptionCharge(extensionId: extensionId, subscriptionId
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | String | yes | Extension _id |   
 | subscriptionId | String | yes | Subscription charge _id |  
 
@@ -201,9 +204,6 @@ client.billing.getInvoices() { (response, error) in
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -262,9 +262,10 @@ client.billing.getInvoiceById(invoiceId: invoiceId) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |   
 | invoiceId | String | yes | Invoice id |  
 
 
@@ -324,9 +325,6 @@ client.billing.getCustomerDetail() { (response, error) in
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -385,9 +383,10 @@ client.billing.upsertCustomerDetail(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |  
+| -------- | ---- | -------- | ----------- |
 | body | SubscriptionCustomerCreate | yes | Request body |
 
 
@@ -446,9 +445,6 @@ client.billing.getSubscription() { (response, error) in
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -518,9 +514,6 @@ client.billing.getFeatureLimitConfig() { (response, error) in
 
 
 
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -579,9 +572,10 @@ client.billing.activateSubscriptionPlan(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |  
+| -------- | ---- | -------- | ----------- |
 | body | SubscriptionActivateReq | yes | Request body |
 
 
@@ -640,9 +634,10 @@ client.billing.cancelSubscriptionPlan(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Customer unique id. In case of company it will be company id. |  
+| -------- | ---- | -------- | ----------- |
 | body | CancelSubscriptionReq | yes | Request body |
 
 

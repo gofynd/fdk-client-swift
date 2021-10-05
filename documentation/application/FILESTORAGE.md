@@ -28,6 +28,8 @@ filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | namespace | String | yes | Name of the bucket created for storing objects. |  
@@ -96,6 +98,8 @@ filestorage.completeUpload(namespace: namespace, body: body) { (response, error)
     // Use response
 }
 ```
+
+
 
 
 

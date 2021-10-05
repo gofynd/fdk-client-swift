@@ -34,6 +34,8 @@ share.getApplicationQRCode() { (response, error) in
 
 
 
+
+
 Use this API to create a QR code of an app for sharing it with users who want to use the app.
 
 *Returned Response:*
@@ -81,6 +83,8 @@ share.getProductQRCodeBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -140,6 +144,8 @@ share.getCollectionQRCodeBySlug(slug: slug) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | slug | String | yes | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint. |  
@@ -196,6 +202,8 @@ share.getUrlQRCode(url: url) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | url | String | yes | A link or a web address |  
@@ -249,6 +257,8 @@ share.createShortLink(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -342,6 +352,8 @@ share.getShortLinkByHash(hash: hash) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | hash | String | yes | A string value used for converting long URL to short URL and vice-versa. |  
@@ -430,6 +442,8 @@ share.getOriginalShortLinkByHash(hash: hash) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 

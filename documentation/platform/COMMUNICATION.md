@@ -63,10 +63,10 @@ client.application("<APPLICATION_ID>").communication.getCampaigns(pageNo: pageNo
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -128,10 +128,10 @@ client.application("<APPLICATION_ID>").communication.createCampaign(body: body) 
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | CampaignReq | yes | Request body |
 
 
@@ -190,10 +190,10 @@ client.application("<APPLICATION_ID>").communication.getCampaignById(id: id) { (
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Campaign id |  
 
 
@@ -253,10 +253,10 @@ client.application("<APPLICATION_ID>").communication.updateCampaignById(id: id, 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Campaign id |  
 | body | CampaignReq | yes | Request body |
 
@@ -316,10 +316,10 @@ client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById(id: 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Campaign id |  
 
 
@@ -379,10 +379,10 @@ client.application("<APPLICATION_ID>").communication.getAudiences(pageNo: pageNo
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -444,10 +444,10 @@ client.application("<APPLICATION_ID>").communication.createAudience(body: body) 
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | AudienceReq | yes | Request body |
 
 
@@ -506,10 +506,10 @@ client.application("<APPLICATION_ID>").communication.getBigqueryHeaders(body: bo
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | BigqueryHeadersReq | yes | Request body |
 
 
@@ -568,10 +568,10 @@ client.application("<APPLICATION_ID>").communication.getAudienceById(id: id) { (
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Audience id |  
 
 
@@ -631,10 +631,10 @@ client.application("<APPLICATION_ID>").communication.updateAudienceById(id: id, 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Audience id |  
 | body | AudienceReq | yes | Request body |
 
@@ -694,10 +694,10 @@ client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv(bo
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | GetNRecordsCsvReq | yes | Request body |
 
 
@@ -756,10 +756,10 @@ client.application("<APPLICATION_ID>").communication.getEmailProviders(pageNo: p
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -821,10 +821,10 @@ client.application("<APPLICATION_ID>").communication.createEmailProvider(body: b
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | EmailProviderReq | yes | Request body |
 
 
@@ -883,10 +883,10 @@ client.application("<APPLICATION_ID>").communication.getEmailProviderById(id: id
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Email provider id |  
 
 
@@ -946,10 +946,10 @@ client.application("<APPLICATION_ID>").communication.updateEmailProviderById(id:
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Email provider id |  
 | body | EmailProviderReq | yes | Request body |
 
@@ -1009,10 +1009,10 @@ client.application("<APPLICATION_ID>").communication.getEmailTemplates(pageNo: p
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -1074,10 +1074,10 @@ client.application("<APPLICATION_ID>").communication.createEmailTemplate(body: b
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | EmailTemplateReq | yes | Request body |
 
 
@@ -1136,10 +1136,10 @@ client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates(pag
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -1201,10 +1201,10 @@ client.application("<APPLICATION_ID>").communication.getEmailTemplateById(id: id
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Email template id |  
 
 
@@ -1264,10 +1264,10 @@ client.application("<APPLICATION_ID>").communication.updateEmailTemplateById(id:
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Email template id |  
 | body | EmailTemplateReq | yes | Request body |
 
@@ -1327,10 +1327,10 @@ client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById(id:
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Email template id |  
 
 
@@ -1390,10 +1390,10 @@ client.application("<APPLICATION_ID>").communication.getEventSubscriptions(pageN
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | populate | String? | no | populate fields |  
@@ -1455,10 +1455,10 @@ client.application("<APPLICATION_ID>").communication.getJobs(pageNo: pageNo, pag
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -1520,10 +1520,10 @@ client.application("<APPLICATION_ID>").communication.triggerCampaignJob(body: bo
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | TriggerJobRequest | yes | Request body |
 
 
@@ -1582,10 +1582,10 @@ client.application("<APPLICATION_ID>").communication.getJobLogs(pageNo: pageNo, 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -1647,10 +1647,10 @@ client.application("<APPLICATION_ID>").communication.getCommunicationLogs(pageId
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageId | String? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on _id |   
@@ -1713,9 +1713,10 @@ client.communication.getSystemNotifications(pageNo: pageNo, pageSize: pageSize) 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
 | pageNo | Int? | no |  |   
 | pageSize | Int? | no |  |  
 
@@ -1776,10 +1777,10 @@ client.application("<APPLICATION_ID>").communication.getSmsProviders(pageNo: pag
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -1841,10 +1842,10 @@ client.application("<APPLICATION_ID>").communication.createSmsProvider(body: bod
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | SmsProviderReq | yes | Request body |
 
 
@@ -1903,10 +1904,10 @@ client.application("<APPLICATION_ID>").communication.getSmsProviderById(id: id) 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Sms provider id |  
 
 
@@ -1966,10 +1967,10 @@ client.application("<APPLICATION_ID>").communication.updateSmsProviderById(id: i
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Sms provider id |  
 | body | SmsProviderReq | yes | Request body |
 
@@ -2029,10 +2030,10 @@ client.application("<APPLICATION_ID>").communication.getSmsTemplates(pageNo: pag
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
@@ -2094,10 +2095,10 @@ client.application("<APPLICATION_ID>").communication.createSmsTemplate(body: bod
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |  
+| -------- | ---- | -------- | ----------- |
 | body | SmsTemplateReq | yes | Request body |
 
 
@@ -2156,10 +2157,10 @@ client.application("<APPLICATION_ID>").communication.getSmsTemplateById(id: id) 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Sms template id |  
 
 
@@ -2219,10 +2220,10 @@ client.application("<APPLICATION_ID>").communication.updateSmsTemplateById(id: i
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Sms template id |  
 | body | SmsTemplateReq | yes | Request body |
 
@@ -2282,10 +2283,10 @@ client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById(id: i
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | id | String | yes | Sms template id |  
 
 
@@ -2345,10 +2346,10 @@ client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates(pa
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Company id |   
-| applicationId | String | yes | Application id |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
 | sort | [String: Any]? | no | To sort based on created_at |  
