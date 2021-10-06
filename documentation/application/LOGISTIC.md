@@ -28,6 +28,8 @@ logistic.getTatProduct(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | GetTatProductReqBody | yes | Request body |
@@ -77,6 +79,8 @@ logistic.getPincodeCity(pincode: pincode) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 

@@ -34,10 +34,10 @@ client.application("<APPLICATION_ID>").cart.getCoupons(pageNo: pageNo, pageSize:
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |   
 | pageNo | Int? | no |  |   
 | pageSize | Int? | no |  |   
 | isArchived | Bool? | no |  |   
@@ -148,10 +148,10 @@ client.application("<APPLICATION_ID>").cart.createCoupon(body: body) { (response
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |  
+| -------- | ---- | -------- | ----------- |
 | body | CouponAdd | yes | Request body |
 
 
@@ -205,10 +205,10 @@ client.application("<APPLICATION_ID>").cart.getCouponById(id: id) { (response, e
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |   
 | id | String | yes |  |  
 
 
@@ -400,10 +400,10 @@ client.application("<APPLICATION_ID>").cart.updateCoupon(id: id, body: body) { (
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |   
 | id | String | yes |  |  
 | body | CouponUpdate | yes | Request body |
 
@@ -458,10 +458,10 @@ client.application("<APPLICATION_ID>").cart.updateCouponPartially(id: id, body: 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |   
 | id | String | yes |  |  
 | body | CouponPartialUpdate | yes | Request body |
 
@@ -537,10 +537,10 @@ client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems(body: body
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |  
+| -------- | ---- | -------- | ----------- |
 | body | OpenapiCartDetailsRequest | yes | Request body |
 
 
@@ -865,10 +865,10 @@ client.application("<APPLICATION_ID>").cart.checkCartServiceability(body: body) 
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |  
+| -------- | ---- | -------- | ----------- |
 | body | OpenApiCartServiceabilityRequest | yes | Request body |
 
 
@@ -1449,10 +1449,10 @@ client.application("<APPLICATION_ID>").cart.checkoutCart(body: body) { (response
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | String | yes | Current company id |   
-| applicationId | String | yes | Current Application _id |  
+| -------- | ---- | -------- | ----------- |
 | body | OpenApiPlatformCheckoutReq | yes | Request body |
 
 

@@ -36,9 +36,10 @@ client.discount.getDiscounts(view: view, q: q, pageNo: pageNo, pageSize: pageSiz
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | view | String? | no | listing or calender.  Default is listing. |   
 | q | String? | no | The search query. This can be a partial or complete name of a discount. |   
 | pageNo | Int? | no | page number. Default is 1. |   
@@ -98,9 +99,10 @@ client.discount.createDiscount(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |  
+| -------- | ---- | -------- | ----------- |
 | body | CreateUpdateDiscount | yes | Request body |
 
 
@@ -151,9 +153,10 @@ client.discount.getDiscount(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | id | String | yes | unique id. |  
 
 
@@ -205,9 +208,10 @@ client.discount.updateDiscount(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | id | String | yes | id |  
 | body | CreateUpdateDiscount | yes | Request body |
 
@@ -259,9 +263,10 @@ client.discount.validateDiscountFile(discount: discount, body: body) { (response
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | discount | String? | no | discount |  
 | body | DiscountJob | yes | Request body |
 
@@ -313,9 +318,10 @@ client.discount.downloadDiscountFile(type: type, body: body) { (response, error)
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | type | String | yes | type |  
 | body | DownloadFileJob | yes | Request body |
 
@@ -367,9 +373,10 @@ client.discount.getValidationJob(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | id | String | yes | id |  
 
 
@@ -421,9 +428,10 @@ client.discount.cancelValidationJob(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | id | String | yes | id |  
 
 
@@ -475,9 +483,10 @@ client.discount.getDownloadJob(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | id | String | yes | id |  
 
 
@@ -529,9 +538,10 @@ client.discount.cancelDownloadJob(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| companyId | Int | yes | company_id |   
 | id | String | yes | id |  
 
 

@@ -58,6 +58,8 @@ user.loginWithFacebook(platform: platform, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -116,6 +118,8 @@ user.loginWithGoogle(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -180,6 +184,8 @@ user.loginWithGoogleAndroid(platform: platform, body: body) { (response, error) 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -238,6 +244,8 @@ user.loginWithGoogleIOS(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -302,6 +310,8 @@ user.loginWithOTP(platform: platform, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -360,6 +370,8 @@ user.loginWithEmailAndPassword(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -423,6 +435,8 @@ user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -475,6 +489,8 @@ user.forgotPassword(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -538,6 +554,8 @@ user.sendResetToken(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | CodeRequestBodySchema | yes | Request body |
@@ -589,6 +607,8 @@ user.loginWithToken(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -649,6 +669,8 @@ user.registerWithForm(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -716,6 +738,8 @@ user.verifyEmail(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | CodeRequestBodySchema | yes | Request body |
@@ -767,6 +791,8 @@ user.verifyMobile(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -825,6 +851,8 @@ user.hasPassword() { (response, error) in
 
 
 
+
+
 Use this API to check if user has created a password for login.
 
 *Returned Response:*
@@ -869,6 +897,8 @@ user.updatePassword(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -927,6 +957,8 @@ user.logout() { (response, error) in
 
 
 
+
+
 Use this API to check to logout a user from the app.
 
 *Returned Response:*
@@ -971,6 +1003,8 @@ user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1035,6 +1069,8 @@ user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -1096,6 +1132,8 @@ user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -1148,6 +1186,8 @@ user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1213,6 +1253,8 @@ user.getLoggedInUser() { (response, error) in
 
 
 
+
+
 Use this API  to get the details of a logged in user.
 
 *Returned Response:*
@@ -1269,6 +1311,8 @@ user.getListOfActiveSessions() { (response, error) in
 
 
 
+
+
 Use this API to retrieve all active sessions of a user.
 
 *Returned Response:*
@@ -1318,6 +1362,8 @@ user.getPlatformConfig(name: name) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1439,6 +1485,8 @@ user.updateProfile(platform: platform, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -1500,6 +1548,8 @@ user.addMobileNumber(platform: platform, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -1558,6 +1608,8 @@ user.deleteMobileNumber(platform: platform, active: active, primary: primary, ve
     // Use response
 }
 ```
+
+
 
 
 
@@ -1627,6 +1679,8 @@ user.setMobileNumberAsPrimary(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | SendVerificationLinkMobileRequestSchema | yes | Request body |
@@ -1684,6 +1738,8 @@ user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, e
     // Use response
 }
 ```
+
+
 
 
 
@@ -1748,6 +1804,8 @@ user.addEmail(platform: platform, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | platform | String? | no | ID of the application |  
@@ -1806,6 +1864,8 @@ user.deleteEmail(platform: platform, active: active, primary: primary, verified:
     // Use response
 }
 ```
+
+
 
 
 
@@ -1874,6 +1934,8 @@ user.setEmailAsPrimary(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | EditEmailRequestSchema | yes | Request body |
@@ -1931,6 +1993,8 @@ user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, er
     // Use response
 }
 ```
+
+
 
 
 

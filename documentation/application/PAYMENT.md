@@ -48,6 +48,8 @@ payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | xApiToken | String? | no | Used for basic authentication. |   
@@ -138,6 +140,8 @@ payment.attachCardToCustomer(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | AttachCardRequest | yes | Request body |
@@ -219,6 +223,8 @@ payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | refresh | Bool? | no |  |  
@@ -277,6 +283,8 @@ payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -356,6 +364,8 @@ payment.deleteUserCard(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | DeletehCardRequest | yes | Request body |
@@ -407,6 +417,8 @@ payment.verifyCustomerForPayment(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -474,6 +486,8 @@ payment.verifyAndChargePayment(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | ChargeCustomerRequest | yes | Request body |
@@ -531,6 +545,8 @@ payment.initialisePayment(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -598,6 +614,8 @@ payment.checkAndUpdatePaymentStatus(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | PaymentStatusUpdateRequest | yes | Request body |
@@ -651,6 +669,8 @@ payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, c
     // Use response
 }
 ```
+
+
 
 
 
@@ -1083,6 +1103,8 @@ payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | amount | Int | yes | Payable amount. |   
@@ -1299,6 +1321,8 @@ payment.getRupifiBannerDetails() { (response, error) in
 
 
 
+
+
 Get CreditLine Offer if user is tentatively approved by rupifi
 
 *Returned Response:*
@@ -1349,6 +1373,8 @@ payment.getActiveRefundTransferModes() { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1415,6 +1441,8 @@ payment.enableOrDisableRefundTransferMode(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | UpdateRefundTransferModeRequest | yes | Request body |
@@ -1466,6 +1494,8 @@ payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1547,6 +1577,8 @@ payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | ifscCode | String? | no | A 11-digit alphanumeric code that uniquely identifies a bank branch. |  
@@ -1617,6 +1649,8 @@ payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1697,6 +1731,8 @@ payment.verifyOtpAndAddBeneficiaryForBank(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | AddBeneficiaryViaOtpVerificationRequest | yes | Request body |
@@ -1750,6 +1786,8 @@ payment.addBeneficiaryDetails(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1809,6 +1847,8 @@ payment.addRefundBankAccountUsingOTP(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | AddBeneficiaryDetailsOTPRequest | yes | Request body |
@@ -1865,6 +1905,8 @@ payment.verifyOtpAndAddBeneficiaryForWallet(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | WalletOtpRequest | yes | Request body |
@@ -1918,6 +1960,8 @@ payment.updateDefaultBeneficiary(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 

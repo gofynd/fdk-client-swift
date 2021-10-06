@@ -53,6 +53,8 @@ poscart.getCart(id: id, i: i, b: b, assignCardId: assignCardId) { (response, err
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
@@ -275,6 +277,8 @@ poscart.getCartLastModified(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |  
@@ -306,6 +310,8 @@ poscart.addItems(i: i, b: b, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -996,6 +1002,8 @@ poscart.updateCart(id: id, i: i, b: b, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
@@ -1413,6 +1421,8 @@ poscart.getItemCount(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no | The unique identifier of the cart. |  
@@ -1465,6 +1475,8 @@ poscart.getCoupons(id: id) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1554,6 +1566,8 @@ poscart.applyCoupon(i: i, b: b, p: p, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -2149,6 +2163,8 @@ poscart.removeCoupon(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no | The unique identifier of the cart |  
@@ -2359,6 +2375,8 @@ poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, sl
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | itemId | Int? | no | The Item ID of the product |   
@@ -2483,6 +2501,8 @@ poscart.applyRewardPoints(id: id, i: i, b: b, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -2707,6 +2727,8 @@ poscart.getAddresses(cartId: cartId, mobileNo: mobileNo, checkoutMode: checkoutM
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | cartId | String? | no |  |   
@@ -2794,6 +2816,8 @@ poscart.addAddress(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | Address | yes | Request body |
@@ -2847,6 +2871,8 @@ poscart.getAddressById(id: id, cartId: cartId, mobileNo: mobileNo, checkoutMode:
     // Use response
 }
 ```
+
+
 
 
 
@@ -2935,6 +2961,8 @@ poscart.updateAddress(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | ID allotted to the selected address |  
@@ -2993,6 +3021,8 @@ poscart.removeAddress(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | ID allotted to the selected address |  
@@ -3046,6 +3076,8 @@ poscart.selectAddress(cartId: cartId, i: i, b: b, body: body) { (response, error
     // Use response
 }
 ```
+
+
 
 
 
@@ -3356,6 +3388,8 @@ poscart.selectPaymentMode(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -3679,6 +3713,8 @@ poscart.validateCouponForPayment(id: id, addressId: addressId, paymentMode: paym
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
@@ -3744,6 +3780,8 @@ poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingSt
     // Use response
 }
 ```
+
+
 
 
 
@@ -4446,6 +4484,8 @@ poscart.updateShipments(i: i, p: p, id: id, addressId: addressId, orderType: ord
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | i | Bool? | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |   
@@ -5144,6 +5184,8 @@ poscart.checkoutCart(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |  
@@ -5577,6 +5619,8 @@ poscart.updateCartMeta(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no | The unique identifier of the cart |  
@@ -5629,6 +5673,8 @@ poscart.getAvailableDeliveryModes(areaCode: areaCode, id: id) { (response, error
     // Use response
 }
 ```
+
+
 
 
 
@@ -5691,6 +5737,8 @@ poscart.getStoreAddressByUid(storeUid: storeUid) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -5771,6 +5819,8 @@ poscart.getCartShareLink(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | GetShareCartLinkRequest | yes | Request body |
@@ -5831,6 +5881,8 @@ poscart.getCartSharedItems(token: token) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -6160,6 +6212,8 @@ poscart.updateCartWithSharedItems(token: token, action: action) { (response, err
     // Use response
 }
 ```
+
+
 
 
 

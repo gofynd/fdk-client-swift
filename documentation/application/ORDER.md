@@ -36,6 +36,8 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
@@ -93,6 +95,8 @@ order.getOrderById(orderId: orderId) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | orderId | String | yes | A unique number used for identifying and tracking your orders. |  
@@ -143,6 +147,8 @@ order.getShipmentById(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -199,6 +205,8 @@ order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
@@ -249,6 +257,8 @@ order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, erro
     // Use response
 }
 ```
+
+
 
 
 
@@ -305,6 +315,8 @@ order.trackShipment(shipmentId: shipmentId) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
@@ -358,6 +370,8 @@ order.getPosOrderById(orderId: orderId) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | orderId | String | yes | A unique number used for identifying and tracking your orders. |  
@@ -408,6 +422,8 @@ order.getCustomerDetailsByShipmentId(orderId: orderId, shipmentId: shipmentId) {
     // Use response
 }
 ```
+
+
 
 
 
@@ -465,6 +481,8 @@ order.sendOtpToShipmentCustomer(orderId: orderId, shipmentId: shipmentId) { (res
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | orderId | String | yes | A unique number used for identifying and tracking your orders. |   
@@ -516,6 +534,8 @@ order.verifyOtpShipmentCustomer(orderId: orderId, shipmentId: shipmentId, body: 
     // Use response
 }
 ```
+
+
 
 
 

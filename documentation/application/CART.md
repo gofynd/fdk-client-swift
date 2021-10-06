@@ -50,6 +50,8 @@ cart.getCart(id: id, i: i, b: b, assignCardId: assignCardId) { (response, error)
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
@@ -272,6 +274,8 @@ cart.getCartLastModified(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |  
@@ -303,6 +307,8 @@ cart.addItems(i: i, b: b, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -993,6 +999,8 @@ cart.updateCart(id: id, i: i, b: b, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
@@ -1410,6 +1418,8 @@ cart.getItemCount(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no | The unique identifier of the cart. |  
@@ -1462,6 +1472,8 @@ cart.getCoupons(id: id) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -1551,6 +1563,8 @@ cart.applyCoupon(i: i, b: b, p: p, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -2146,6 +2160,8 @@ cart.removeCoupon(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no | The unique identifier of the cart |  
@@ -2356,6 +2372,8 @@ cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug:
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | itemId | Int? | no | The Item ID of the product |   
@@ -2480,6 +2498,8 @@ cart.applyRewardPoints(id: id, i: i, b: b, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -2704,6 +2724,8 @@ cart.getAddresses(cartId: cartId, mobileNo: mobileNo, checkoutMode: checkoutMode
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | cartId | String? | no |  |   
@@ -2791,6 +2813,8 @@ cart.addAddress(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | Address | yes | Request body |
@@ -2844,6 +2868,8 @@ cart.getAddressById(id: id, cartId: cartId, mobileNo: mobileNo, checkoutMode: ch
     // Use response
 }
 ```
+
+
 
 
 
@@ -2932,6 +2958,8 @@ cart.updateAddress(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | ID allotted to the selected address |  
@@ -2990,6 +3018,8 @@ cart.removeAddress(id: id) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | ID allotted to the selected address |  
@@ -3043,6 +3073,8 @@ cart.selectAddress(cartId: cartId, i: i, b: b, body: body) { (response, error) i
     // Use response
 }
 ```
+
+
 
 
 
@@ -3353,6 +3385,8 @@ cart.selectPaymentMode(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -3676,6 +3710,8 @@ cart.validateCouponForPayment(id: id, addressId: addressId, paymentMode: payment
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
@@ -3741,6 +3777,8 @@ cart.getShipments(p: p, id: id, addressId: addressId, areaCode: areaCode) { (res
     // Use response
 }
 ```
+
+
 
 
 
@@ -4440,6 +4478,8 @@ cart.checkoutCart(body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
 | body | CartCheckoutDetailRequest | yes | Request body |
@@ -4872,6 +4912,8 @@ cart.updateCartMeta(id: id, body: body) { (response, error) in
 
 
 
+
+
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no | The unique identifier of the cart |  
@@ -4924,6 +4966,8 @@ cart.getCartShareLink(body: body) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -4987,6 +5031,8 @@ cart.getCartSharedItems(token: token) { (response, error) in
     // Use response
 }
 ```
+
+
 
 
 
@@ -5316,6 +5362,8 @@ cart.updateCartWithSharedItems(token: token, action: action) { (response, error)
     // Use response
 }
 ```
+
+
 
 
 
