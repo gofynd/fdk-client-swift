@@ -4858,6 +4858,7 @@ if let value = platform {
         **/
         public func loginWithGoogleOauth(
             platform: String?,
+            redirectUrl: String?,
             
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -4867,6 +4868,13 @@ var xQuery: [String: Any] = [:]
 if let value = platform {
     
     xQuery["platform"] = value
+    
+}
+
+
+if let value = redirectUrl {
+    
+    xQuery["redirect_url"] = value
     
 }
 
@@ -9021,31 +9029,14 @@ if let value = q {
         * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
         **/
         public func getAppStaffs(
-            pageNo: Int?,
-            pageSize: Int?,
             orderIncent: Bool?,
             orderingStore: Int?,
             user: String?,
-            permission: String?,
             
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
 
 if let value = orderIncent {
     
@@ -9064,13 +9055,6 @@ if let value = orderingStore {
 if let value = user {
     
     xQuery["user"] = value
-    
-}
-
-
-if let value = permission {
-    
-    xQuery["permission"] = value
     
 }
 
@@ -9105,73 +9089,6 @@ if let value = permission {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getAppStaffs
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getAppStaffsPaginator(
-            pageSize: Int?,
-            orderIncent: Bool?,
-            orderingStore: Int?,
-            user: String?,
-            permission: String?
-            
-            ) -> Paginator<AppStaffResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<AppStaffResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getAppStaffs(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        orderIncent: orderIncent,
-                        orderingStore: orderingStore,
-                        user: user,
-                        permission: permission
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
         }
         
         

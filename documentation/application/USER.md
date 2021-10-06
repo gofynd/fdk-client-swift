@@ -178,7 +178,7 @@ Login or Register using Google
 
 
 ```swift
-user.loginWithGoogleOauth(platform: platform) { (response, error) in
+user.loginWithGoogleOauth(platform: platform, redirectUrl: redirectUrl) { (response, error) in
     // Use response
 }
 ```
@@ -189,7 +189,8 @@ user.loginWithGoogleOauth(platform: platform) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| platform | String? | no | ID of the application |  
+| platform | String? | no | ID of the application |   
+| redirectUrl | String? | no | Url to redirect after login |  
 
 
 

@@ -527,3 +527,17 @@ Success
 
 
 
+ #### [SubscriberStatus](#SubscriberStatus)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | active | active | Status is active |
+ | inactive | inactive | Status is inactive |
+
+---
+
+
+
+
+
