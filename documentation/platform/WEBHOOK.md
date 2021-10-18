@@ -514,6 +514,7 @@ Success
  | companyId | Int? |  yes  |  |
  | applicationId | [String]? |  yes  |  |
  | extensionId | String? |  yes  |  |
+ | criteria | String? |  yes  |  |
 
 ---
 
@@ -521,6 +522,20 @@ Success
 
 
 ### Enums
+
+
+
+
+
+ #### [SubscriberStatus](#SubscriberStatus)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | active | active | Status is active |
+ | inactive | inactive | Status is inactive |
+
+---
 
 
 
