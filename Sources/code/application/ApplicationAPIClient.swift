@@ -15,7 +15,7 @@ class ApplicationAPIClient {
             headers.append((key: "User-Agent", value: userAgent))
         }
         
-        headers.append((key: "x-fp-sdk-version", value: "0.1.7"))
+        headers.append((key: "x-fp-sdk-version", value: "0.1.8"))
 
         if let language = config.language {
             headers.append((key: "Accept-Language", value: language))
