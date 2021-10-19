@@ -13,7 +13,7 @@ public class PlatformAPIClient {
             if let token = token {
                 var finalHeaders = headers
                 finalHeaders.append((key: "Authorization", value: "Bearer " + token.accessToken))
-                finalHeaders.append((key: "x-fp-sdk-version", value: "0.1.7"))
+                finalHeaders.append((key: "x-fp-sdk-version", value: "0.1.8"))
 
                 AlmofireHelper.request(config.domain.appendAsPath(url),
                                         query: query,

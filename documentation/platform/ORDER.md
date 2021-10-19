@@ -2506,6 +2506,7 @@ Success
  | coupon | [String: Any]? |  yes  |  |
  | orderSource | String? |  yes  |  |
  | isNotFyndSource | Bool? |  yes  |  |
+ | canBreak | Bool? |  yes  |  |
  | comment | String? |  yes  |  |
  | promise | [Promise](#Promise)? |  yes  |  |
  | trackingDetails | [ShipmentTrackingDetails](#ShipmentTrackingDetails)? |  yes  |  |
