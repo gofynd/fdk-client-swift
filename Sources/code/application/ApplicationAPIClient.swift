@@ -14,6 +14,17 @@ class ApplicationAPIClient {
         if let userAgent = config.userAgent {
             headers.append((key: "User-Agent", value: userAgent))
         }
+        
+        headers.append((key: "x-fp-sdk-version", value: "0.1.8"))
+
+        if let language = config.language {
+            headers.append((key: "Accept-Language", value: language))
+        }
+        
+        if let currency = config.currency {
+            headers.append((key: "x-currency-code",value: currency))
+        }
+
         headers.append(contentsOf: extraHeaders)
         AlmofireHelper.request(config.domain.appendAsPath(url),
                                 query: query,

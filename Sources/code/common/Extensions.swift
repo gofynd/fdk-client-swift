@@ -27,6 +27,22 @@ extension String {
     }
 }
 
+extension Array {
+    func getIfExists(index: Int) -> Element? {
+        if count > index {
+            return self[index]
+        }
+        return nil
+    }
+    
+    mutating func removeIfExists(index: Int) -> Element? {
+        if count > index {
+            return remove(at: index)
+        }
+        return nil
+    }
+}
+
 extension Decodable {
     init?(dictionary: [String: Any]) {
         do {
@@ -224,26 +240,30 @@ extension UnkeyedDecodingContainer {
 
 extension KeyedEncodingContainer {
     
-    mutating func encode(_ value: [String: Any], forKey key: KeyedEncodingContainer<K>.Key) throws {
+    mutating func encode(_ value: [String: Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         var container = self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
-        for item in value {
-            if let val = item.value as? Int {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? String {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Double {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Float {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Bool {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? [Any] {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? [String: Any] {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else {
-                try self.encodeNil(forKey: key)
+        if let value = value {
+            for item in value {
+                if let val = item.value as? Int {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? String {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? Double {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? Float {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? Bool {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? [Any] {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? [String: Any] {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else {
+                    try self.encodeNil(forKey: key)
+                }
             }
+        } else {
+            try self.encodeNil(forKey: key)
         }
     }
     
@@ -291,7 +311,7 @@ extension KeyedEncodingContainer {
         }
     }
     
-    mutating func encode(_ value: [Any], forKey key: KeyedEncodingContainer<K>.Key) throws {
+    mutating func encode(_ value: [Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         if let val = value as? [Int] {
             try self.encode(val, forKey: key)
         } else if let val = value as? [String] {
