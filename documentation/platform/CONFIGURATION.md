@@ -4063,7 +4063,7 @@ client.configuration.updateLevelIntegration(id: id, level: level, body: body) { 
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | Integration id |   
 | level | String | yes | Integration level |  
-| body | IntegrationLevel | yes | Request body |
+| body | UpdateIntegrationLevelRequest | yes | Request body |
 
 
 Update a store level opt-in for integration
@@ -5576,6 +5576,17 @@ Success
  | updatedAt | String? |  yes  |  |
  | v | Int? |  yes  |  |
  | data | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateIntegrationLevelRequest](#UpdateIntegrationLevelRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[IntegrationLevel](#IntegrationLevel)]? |  yes  |  |
 
 ---
 
