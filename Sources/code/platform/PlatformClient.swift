@@ -9316,7 +9316,7 @@ if let value = checkPermission {
         public func updateLevelIntegration(
             id: String,
             level: String,
-            body: IntegrationLevel,
+            body: UpdateIntegrationLevelRequest,
             onResponse: @escaping (_ response: IntegrationLevel?, _ error: FDKError?) -> Void
         ) {
             
