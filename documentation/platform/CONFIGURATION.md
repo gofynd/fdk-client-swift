@@ -5476,7 +5476,7 @@ Success
  | support | [String]? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
- | meta | [IntegrationMeta](#IntegrationMeta)? |  yes  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
  | icon | String? |  yes  |  |
  | owner | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
@@ -5512,7 +5512,7 @@ Success
  | integration | String? |  yes  |  |
  | level | String? |  yes  |  |
  | uid | Int? |  yes  |  |
- | meta | [[String: Any]]? |  yes  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
  | token | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
