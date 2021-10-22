@@ -5392,7 +5392,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | jsonSchema | [JsonSchema](#JsonSchema)? |  yes  |  |
+ | jsonSchema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
  | browserScript | String? |  yes  |  |
 
 ---
