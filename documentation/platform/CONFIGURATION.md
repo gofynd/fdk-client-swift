@@ -5418,7 +5418,7 @@ Success
  | support | [String]? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
- | meta | [IntegrationMeta](#IntegrationMeta)? |  yes  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
  | icon | String? |  yes  |  |
  | owner | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
@@ -5450,7 +5450,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | jsonSchema | [JsonSchema](#JsonSchema)? |  yes  |  |
+ | jsonSchema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
  | browserScript | String? |  yes  |  |
 
 ---
@@ -5565,7 +5565,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | opted | Bool? |  yes  |  |
  | permissions | [[String: Any]]? |  yes  |  |
- | lastPatch | [[String: Any]]? |  yes  |  |
+ | lastPatch | [[LastPatch](#LastPatch)]? |  yes  |  |
  | id | String? |  yes  |  |
  | integration | String? |  yes  |  |
  | level | String? |  yes  |  |
@@ -5612,7 +5612,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | opted | Bool? |  yes  |  |
  | permissions | [String]? |  yes  |  |
- | lastPatch | [LastPatch](#LastPatch)? |  yes  |  |
+ | lastPatch | [[LastPatch](#LastPatch)]? |  yes  |  |
  | id | String? |  yes  |  |
  | integration | String? |  yes  |  |
  | level | String? |  yes  |  |
