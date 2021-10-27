@@ -24,8 +24,10 @@ Application configuration apis
 * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
 * [getAppCurrencyConfig](#getappcurrencyconfig)
 * [updateAppCurrencyConfig](#updateappcurrencyconfig)
+* [getAppSupportedCurrency](#getappsupportedcurrency)
 * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
 * [updateOrderingStoreConfig](#updateorderingstoreconfig)
+* [getStaffOrderingStores](#getstafforderingstores)
 * [getDomains](#getdomains)
 * [addDomain](#adddomain)
 * [removeDomainById](#removedomainbyid)
@@ -2346,6 +2348,74 @@ Success
 ---
 
 
+#### getAppSupportedCurrency
+Get currencies enabled in the application
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+
+*Returned Response:*
+
+
+
+
+[AppCurrencyResponse](#AppCurrencyResponse)
+
+Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application": "000000000000000000000001",
+  "default_currency": {
+    "ref": "5ecf6122d953d4242c044907",
+    "code": "INR"
+  },
+  "supported_currency": [
+    {
+      "_id": "5ecf6122d953d4242c044907",
+      "is_active": true,
+      "name": "Indian Rupee",
+      "code": "INR",
+      "decimal_digits": 2,
+      "symbol": "₹",
+      "created_at": "2020-05-28T06:58:42.532Z",
+      "modified_at": "2021-04-05T16:44:14.358Z"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getOrderingStoresByFilter
 Get ordering store by filter
 
@@ -2537,6 +2607,63 @@ Success
   "app": "000000000000000000000004",
   "__v": 6
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStaffOrderingStores
+Get deployment stores
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").configuration.getStaffOrderingStores(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |   
+| q | String? | no | Store code or name of the ordering store. |  
+
+
+
+Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStoresResponse](#OrderingStoresResponse)
+
+Success. Check the example shown below or refer `OrderingStoresResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -7056,6 +7183,18 @@ Success
  | id | String? |  yes  |  |
  | app | String? |  yes  |  |
  | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderingStoresResponse](#OrderingStoresResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page)? |  yes  |  |
+ | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
 
 ---
 
