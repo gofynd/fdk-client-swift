@@ -24,6 +24,7 @@ Application configuration apis
 * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
 * [getAppCurrencyConfig](#getappcurrencyconfig)
 * [updateAppCurrencyConfig](#updateappcurrencyconfig)
+* [getAppSupportedCurrency](#getappsupportedcurrency)
 * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
 * [updateOrderingStoreConfig](#updateorderingstoreconfig)
 * [getStaffOrderingStores](#getstafforderingstores)
@@ -2332,6 +2333,74 @@ Success
   },
   "created_at": "2020-05-22T10:24:25.984Z",
   "modified_at": "2021-03-09T10:47:32.664Z"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppSupportedCurrency
+Get currencies enabled in the application
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+
+*Returned Response:*
+
+
+
+
+[AppCurrencyResponse](#AppCurrencyResponse)
+
+Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application": "000000000000000000000001",
+  "default_currency": {
+    "ref": "5ecf6122d953d4242c044907",
+    "code": "INR"
+  },
+  "supported_currency": [
+    {
+      "_id": "5ecf6122d953d4242c044907",
+      "is_active": true,
+      "name": "Indian Rupee",
+      "code": "INR",
+      "decimal_digits": 2,
+      "symbol": "₹",
+      "created_at": "2020-05-28T06:58:42.532Z",
+      "modified_at": "2021-04-05T16:44:14.358Z"
+    }
+  ]
 }
 ```
 </details>

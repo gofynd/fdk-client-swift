@@ -11,6 +11,7 @@ Authentication Service
 * [loginWithGoogleOauth](#loginwithgoogleoauth)
 * [loginWithGoogleAndroid](#loginwithgoogleandroid)
 * [loginWithGoogleIOS](#loginwithgoogleios)
+* [loginWithAppleIOS](#loginwithappleios)
 * [loginWithOTP](#loginwithotp)
 * [loginWithEmailAndPassword](#loginwithemailandpassword)
 * [sendResetPasswordEmail](#sendresetpasswordemail)
@@ -321,6 +322,69 @@ user.loginWithGoogleIOS(platform: platform, body: body) { (response, error) in
 
 
 Use this API to login or register in iOS app using Google Account credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithAppleIOS
+Login or Register using Apple on iOS
+
+
+
+
+```swift
+user.loginWithAppleIOS(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| platform | String? | no | ID of the application |  
+| body | OAuthRequestSchema | yes | Request body |
+
+
+Use this API to login or register in iOS app using Apple Account credentials.
 
 *Returned Response:*
 
