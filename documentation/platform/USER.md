@@ -919,6 +919,19 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [OAuthRequestAppleSchema](#OAuthRequestAppleSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userIdentifier | String? |  yes  |  |
+ | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)? |  yes  |  |
+ | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [UserObjectSchema](#UserObjectSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1305,6 +1318,30 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | image | String? |  yes  |  |
  | id | String? |  yes  |  |
  | email | String? |  yes  |  |
+ | fullName | String? |  yes  |  |
+ | firstName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identityToken | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | lastName | String? |  yes  |  |
  | fullName | String? |  yes  |  |
  | firstName | String? |  yes  |  |
 
