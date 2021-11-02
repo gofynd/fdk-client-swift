@@ -470,6 +470,7 @@ Success
  | name | String? |  yes  |  |
  | webhookUrl | String? |  yes  |  |
  | association | [Association](#Association)? |  yes  |  |
+ | emailId | String? |  yes  |  |
  | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | authMeta | [AuthMeta](#AuthMeta)? |  yes  |  |
  | createdOn | String? |  yes  |  |
