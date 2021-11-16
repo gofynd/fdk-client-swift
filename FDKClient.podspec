@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Common' do |subspec|
     subspec.source_files = 'Sources/code/common/**/*'
-    subspec.dependency 'Alamofire', '= 5.0.2'
+    subspec.dependency 'Alamofire', '= 5.4.4'
   end
 
   s.subspec 'Application' do |subspec|

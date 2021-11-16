@@ -1107,7 +1107,7 @@ Success, the code is valid and returns a session token
  | trackingDetails | [[TrackingDetails](#TrackingDetails)]? |  yes  |  |
  | beneficiaryDetails | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
- | canBreak | Bool? |  yes  |  |
+ | canBreak | [String: Any]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | needHelpUrl | String? |  yes  |  |
  | shipmentId | String? |  yes  |  |
