@@ -731,8 +731,7 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
       "gst_input": true,
       "staff_selection": true,
       "placing_for_customer": true,
-      "google_map": true,
-      "revenue_engine_coupon": false
+      "google_map": true
     },
     "qr": {
       "application": true,

@@ -1104,6 +1104,8 @@ Success, the code is valid and returns a session token
  | breakupValues | [[BreakupValues](#BreakupValues)]? |  yes  |  |
  | trackUrl | String? |  yes  |  |
  | trakingNo | String? |  yes  |  |
+ | awbNo | String? |  yes  |  |
+ | dpName | String? |  yes  |  |
  | trackingDetails | [[TrackingDetails](#TrackingDetails)]? |  yes  |  |
  | beneficiaryDetails | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
