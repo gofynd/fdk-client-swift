@@ -1012,7 +1012,7 @@ poscart.updateCart(id: id, i: i, b: b, body: body) { (response, error) in
 | body | UpdateCartRequest | yes | Request body |
 
 
-<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
 *Returned Response:*
 
@@ -6545,82 +6545,212 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [CouponBreakup](#CouponBreakup)
+ #### [BasePrice](#BasePrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isApplied | Bool? |  yes  |  |
- | value | Double? |  yes  |  |
- | code | String? |  yes  |  |
- | type | String? |  yes  |  |
- | message | String? |  yes  |  |
- | uid | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | Double? |  yes  |  |
+ | marked | Double? |  yes  |  |
  | currencyCode | String? |  yes  |  |
- | key | String? |  yes  |  |
- | display | String? |  yes  |  |
- | message | [String]? |  yes  |  |
  | currencySymbol | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
 
 ---
 
 
  
  
- #### [LoyaltyPoints](#LoyaltyPoints)
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isApplied | Bool? |  yes  |  |
- | description | String? |  yes  |  |
- | applicable | Double? |  yes  |  |
- | total | Double? |  yes  |  |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
 
 ---
 
 
  
  
- #### [RawBreakup](#RawBreakup)
+ #### [BaseInfo](#BaseInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount | Double? |  yes  |  |
- | coupon | Double? |  yes  |  |
- | mrpTotal | Double? |  yes  |  |
- | deliveryCharge | Double? |  yes  |  |
- | gstCharges | Double? |  yes  |  |
- | total | Double? |  yes  |  |
- | convenienceFee | Double? |  yes  |  |
- | fyndCash | Double? |  yes  |  |
- | subtotal | Double? |  yes  |  |
- | codCharge | Double? |  yes  |  |
- | vog | Double? |  yes  |  |
- | youSaved | Double? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [CartBreakup](#CartBreakup)
+ #### [ProductArticle](#ProductArticle)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
- | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
- | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | type | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | size | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
+ | selling | Double? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | addOn | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | String? |  yes  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secureUrl | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ActionQuery](#ActionQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | productSlug | [String]? |  yes  | Contains list of product slug |
+
+---
+
+
+ 
+ 
+ #### [ProductAction](#ProductAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | String? |  yes  |  |
+ | query | [ActionQuery](#ActionQuery)? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | Int? |  yes  | Product Category Id |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProduct](#CartProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | type | String? |  yes  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
+ | uid | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isValid | Bool? |  yes  |  |
+ | sizes | [String]? |  yes  |  |
+ | otherStoreQuantity | Int? |  yes  |  |
+ | outOfStock | Bool? |  yes  |  |
+ | deliverable | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductInfo](#CartProductInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article | [ProductArticle](#ProductArticle)? |  yes  |  |
+ | message | String? |  yes  |  |
+ | key | String? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | couponMessage | String? |  yes  |  |
+ | bulkOffer | [String: Any]? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
 
 ---
 
@@ -6631,9 +6761,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
  | defaultOptions | String? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
 
 ---
 
@@ -6688,187 +6818,67 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [ProductPrice](#ProductPrice)
+ #### [DisplayBreakup](#DisplayBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | marked | Double? |  yes  |  |
+ | value | Double? |  yes  |  |
  | currencyCode | String? |  yes  |  |
- | effective | Double? |  yes  |  |
+ | message | [String]? |  yes  |  |
+ | key | String? |  yes  |  |
+ | display | String? |  yes  |  |
  | currencySymbol | String? |  yes  |  |
- | addOn | Double? |  yes  |  |
- | selling | Double? |  yes  |  |
 
 ---
 
 
  
  
- #### [ProductPriceInfo](#ProductPriceInfo)
+ #### [LoyaltyPoints](#LoyaltyPoints)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | base | [ProductPrice](#ProductPrice)? |  yes  |  |
- | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | description | String? |  yes  |  |
+ | applicable | Double? |  yes  |  |
 
 ---
 
 
  
  
- #### [PromoMeta](#PromoMeta)
+ #### [RawBreakup](#RawBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | mrpTotal | Double? |  yes  |  |
+ | gstCharges | Double? |  yes  |  |
+ | subtotal | Double? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | fyndCash | Double? |  yes  |  |
+ | convenienceFee | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | vog | Double? |  yes  |  |
+ | coupon | Double? |  yes  |  |
+ | codCharge | Double? |  yes  |  |
+ | deliveryCharge | Double? |  yes  |  |
+ | youSaved | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
  | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | deliverable | Bool? |  yes  |  |
- | sizes | [String]? |  yes  |  |
- | otherStoreQuantity | Int? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ActionQuery](#ActionQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | productSlug | [String]? |  yes  | Contains list of product slug |
-
----
-
-
- 
- 
- #### [ProductAction](#ProductAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery)? |  yes  |  |
- | url | String? |  yes  |  |
+ | code | String? |  yes  |  |
  | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  | Product Category Id |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartProduct](#CartProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
- | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
- | type | String? |  yes  |  |
- | action | [ProductAction](#ProductAction)? |  yes  |  |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
- | images | [[ProductImage](#ProductImage)]? |  yes  |  |
- | uid | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marked | Double? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | effective | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice)? |  yes  |  |
- | converted | [BasePrice](#BasePrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
- | size | String? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | type | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
  | uid | String? |  yes  |  |
 
 ---
@@ -6876,24 +6886,14 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [CartProductInfo](#CartProductInfo)
+ #### [CartBreakup](#CartBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | discount | String? |  yes  |  |
- | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
- | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
- | bulkOffer | [String: Any]? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | product | [CartProduct](#CartProduct)? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | key | String? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | message | String? |  yes  |  |
- | article | [ProductArticle](#ProductArticle)? |  yes  |  |
- | couponMessage | String? |  yes  |  |
- | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
 
 ---
 
@@ -6904,21 +6904,21 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | couponText | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | id | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
  | message | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | gstin | String? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
  | isValid | Bool? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
 
 ---
 
@@ -6929,16 +6929,16 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extraMeta | [String: Any]? |  yes  |  |
- | pos | Bool? |  yes  |  |
  | sellerId | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | display | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
  | articleId | String? |  yes  |  |
  | storeId | Int? |  yes  |  |
- | itemSize | String? |  yes  |  |
  | articleAssignment | [String: Any]? |  yes  |  |
+ | display | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | itemSize | String? |  yes  |  |
+ | pos | Bool? |  yes  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -6960,10 +6960,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | message | String? |  yes  |  |
  | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
  | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
- | message | String? |  yes  |  |
- | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
 
 ---
 
@@ -6974,13 +6974,13 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extraMeta | [String: Any]? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | quantity | Int? |  yes  |  |
  | itemId | Int? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | articleId | String? |  yes  |  |
  | itemIndex | Int? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
  | itemSize | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -7003,9 +7003,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
- | message | String? |  yes  |  |
  | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | message | String? |  yes  |  |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
 
 ---
 
@@ -7023,35 +7023,35 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [Coupon](#Coupon)
+ #### [PageCoupon](#PageCoupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponValue | Double? |  yes  |  |
- | subTitle | String? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | title | String? |  yes  |  |
- | minimumCartValue | Double? |  yes  |  |
- | expiresOn | String? |  yes  |  |
- | isApplicable | Bool? |  yes  |  |
- | couponCode | String? |  yes  |  |
- | message | String? |  yes  |  |
- | maxDiscountValue | Double? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | totalItemCount | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [PageCoupon](#PageCoupon)
+ #### [Coupon](#Coupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total | Int? |  yes  |  |
- | totalItemCount | Int? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | title | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | expiresOn | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | subTitle | String? |  yes  |  |
+ | couponCode | String? |  yes  |  |
+ | isApplicable | Bool? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
 
 ---
 
@@ -7062,8 +7062,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
  | page | [PageCoupon](#PageCoupon)? |  yes  |  |
+ | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
 
 ---
 
@@ -7081,26 +7081,14 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [OfferSeller](#OfferSeller)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  | Seller id |
-
----
-
-
- 
- 
  #### [OfferPrice](#OfferPrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
  | marked | Int? |  yes  | Original price of product |
  | currencyCode | String? |  yes  | Currency code for all amounts |
  | effective | Int? |  yes  | Current per unit price of product after existing deductions |
+ | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
  | currencySymbol | String? |  yes  | Currency symbol for currency |
 
 ---
@@ -7114,11 +7102,23 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | ---------- | ---- | -------- | ----------- |
  | price | [OfferPrice](#OfferPrice)? |  yes  |  |
  | best | Bool? |  yes  | Is true for best offer from all offers present for all sellers |
+ | margin | Int? |  yes  | Percentage value of discount |
+ | total | Double? |  yes  | Total price of offer quantity with discount |
  | type | String? |  yes  | Offer type |
  | autoApplied | Bool? |  yes  |  |
- | total | Double? |  yes  | Total price of offer quantity with discount |
  | quantity | Int? |  yes  | Quantity on which offer is applicable |
- | margin | Int? |  yes  | Percentage value of discount |
+
+---
+
+
+ 
+ 
+ #### [OfferSeller](#OfferSeller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | Int? |  yes  | Seller id |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -7129,8 +7129,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | seller | [OfferSeller](#OfferSeller)? |  yes  |  |
  | offers | [[OfferItem](#OfferItem)]? |  yes  |  |
+ | seller | [OfferSeller](#OfferSeller)? |  yes  |  |
 
 ---
 
@@ -7175,28 +7175,28 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | isDefaultAddress | Bool? |  yes  |  |
- | city | String? |  yes  |  |
- | userId | String? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | geoLocation | [GeoLocation](#GeoLocation)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | country | String? |  yes  |  |
- | id | String? |  yes  |  |
- | googleMapPoint | [String: Any]? |  yes  |  |
  | state | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | areaCode | String? |  yes  |  |
- | phone | String? |  yes  |  |
- | address | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | area | String? |  yes  |  |
- | addressType | String? |  yes  |  |
  | email | String? |  yes  |  |
+ | areaCodeSlug | String? |  yes  |  |
+ | address | String? |  yes  |  |
+ | area | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | geoLocation | [GeoLocation](#GeoLocation)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | isDefaultAddress | Bool? |  yes  |  |
+ | googleMapPoint | [String: Any]? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | phone | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | areaCode | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | userId | String? |  yes  |  |
 
 ---
 
@@ -7218,9 +7218,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -7231,10 +7231,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | isUpdated | Bool? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | isUpdated | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -7257,9 +7257,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cartId | String? |  yes  |  |
  | id | String? |  yes  |  |
  | billingAddressId | String? |  yes  |  |
- | cartId | String? |  yes  |  |
 
 ---
 
@@ -7270,12 +7270,12 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchantCode | String? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
- | id | String? |  yes  |  |
- | paymentMode | String? |  yes  |  |
- | addressId | String? |  yes  |  |
  | aggregatorName | String? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | addressId | String? |  yes  |  |
 
 ---
 
@@ -7286,11 +7286,11 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount | Double? |  yes  |  |
  | title | String? |  yes  |  |
  | code | String? |  yes  |  |
- | displayMessageEn | String? |  yes  |  |
  | valid | Bool? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | displayMessageEn | String? |  yes  |  |
 
 ---
 
@@ -7301,9 +7301,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
  | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
  | message | String? |  yes  |  |
- | success | Bool |  no  |  |
 
 ---
 
@@ -7314,16 +7314,16 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillmentId | Int? |  yes  |  |
- | dpId | String? |  yes  |  |
- | shipmentType | String? |  yes  |  |
- | fulfillmentType | String? |  yes  |  |
- | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | boxType | String? |  yes  |  |
- | orderType | String? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | shipments | Int? |  yes  |  |
+ | fulfillmentType | String? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
+ | shipmentType | String? |  yes  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | dpOptions | [String: Any]? |  yes  |  |
+ | orderType | String? |  yes  |  |
+ | shipments | Int? |  yes  |  |
+ | dpId | String? |  yes  |  |
+ | boxType | String? |  yes  |  |
 
 ---
 
@@ -7334,24 +7334,24 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | lastModified | String? |  yes  |  |
  | message | String? |  yes  |  |
- | gstin | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | error | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
- | couponText | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | cartId | Int? |  yes  |  |
  | comment | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | uid | String? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | cartId | Int? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | error | Bool? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
 
 ---
 
@@ -7362,9 +7362,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articleUid | String |  no  | Article mongo id |
  | quantity | Int? |  yes  | Quantity of product in shipment |
  | shipmentType | String |  no  | Shipment delivery type |
+ | articleUid | String |  no  | Article mongo id |
 
 ---
 
@@ -7398,10 +7398,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String |  no  |  |
- | firstName | String |  no  |  |
  | lastName | String |  no  |  |
+ | id | String |  no  |  |
  | user | String |  no  |  |
+ | firstName | String |  no  |  |
 
 ---
 
@@ -7412,26 +7412,26 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extraMeta | [String: Any]? |  yes  |  |
- | fyndstoreEmpId | String? |  yes  |  |
- | paymentAutoConfirm | Bool? |  yes  |  |
- | addressId | String? |  yes  |  |
- | billingAddress | [String: Any]? |  yes  |  |
- | orderingStore | Int? |  yes  |  |
- | pos | Bool? |  yes  |  |
- | paymentMode | String |  no  |  |
- | callbackUrl | String? |  yes  |  |
- | merchantCode | String? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
- | aggregator | String? |  yes  |  |
- | files | [[Files](#Files)]? |  yes  | List of file url |
- | billingAddressId | String? |  yes  |  |
- | pickAtStoreUid | Int? |  yes  |  |
- | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
- | deliveryAddress | [String: Any]? |  yes  |  |
  | orderType | String |  no  |  |
+ | aggregator | String? |  yes  |  |
+ | billingAddress | [String: Any]? |  yes  |  |
+ | fyndstoreEmpId | String? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | pos | Bool? |  yes  |  |
+ | pickAtStoreUid | Int? |  yes  |  |
+ | addressId | String? |  yes  |  |
+ | callbackUrl | String? |  yes  |  |
+ | files | [[Files](#Files)]? |  yes  | List of file url |
+ | merchantCode | String? |  yes  |  |
  | paymentParams | [String: Any]? |  yes  |  |
+ | billingAddressId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | deliveryAddress | [String: Any]? |  yes  |  |
+ | paymentAutoConfirm | Bool? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | orderingStore | Int? |  yes  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
 
 ---
 
@@ -7442,34 +7442,34 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | lastModified | String? |  yes  |  |
  | message | String? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | userType | String? |  yes  |  |
+ | cartId | Int? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | errorMessage | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | deliveryCharges | Int? |  yes  |  |
+ | codMessage | String? |  yes  |  |
+ | codCharges | Int? |  yes  |  |
+ | id | String? |  yes  |  |
+ | deliveryChargeOrderValue | Int? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | gstin | String? |  yes  |  |
  | storeEmps | [[String: Any]]? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | codMessage | String? |  yes  |  |
- | id | String? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | storeCode | String? |  yes  |  |
- | couponText | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | orderId | String? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | deliveryCharges | Int? |  yes  |  |
- | deliveryChargeOrderValue | Int? |  yes  |  |
- | userType | String? |  yes  |  |
  | uid | String? |  yes  |  |
- | success | Bool? |  yes  |  |
- | codCharges | Int? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
  | codAvailable | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | errorMessage | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | cartId | Int? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
 
 ---
 
@@ -7480,13 +7480,13 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [String: Any]? |  yes  |  |
- | cart | [CheckCart](#CheckCart)? |  yes  |  |
  | orderId | String? |  yes  |  |
- | appInterceptUrl | String? |  yes  |  |
- | callbackUrl | String? |  yes  |  |
+ | data | [String: Any]? |  yes  |  |
  | message | String? |  yes  |  |
+ | appInterceptUrl | String? |  yes  |  |
+ | cart | [CheckCart](#CheckCart)? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | callbackUrl | String? |  yes  |  |
 
 ---
 
@@ -7497,10 +7497,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstin | String? |  yes  |  |
  | comment | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
  | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
+ | gstin | String? |  yes  |  |
 
 ---
 
@@ -7533,8 +7533,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableModes | [String]? |  yes  | Available delivery modes |
  | pickupStores | [Int]? |  yes  | Store pick up available store uids |
+ | availableModes | [String]? |  yes  | Available delivery modes |
 
 ---
 
@@ -7545,22 +7545,22 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | phone | String? |  yes  |  |
- | area | String? |  yes  |  |
  | country | String? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | city | String? |  yes  |  |
- | email | String? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | id | Int? |  yes  |  |
  | landmark | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | name | String? |  yes  |  |
  | state | String? |  yes  |  |
- | address | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | areaCode | String? |  yes  |  |
+ | email | String? |  yes  |  |
+ | storeCode | String? |  yes  |  |
+ | areaCodeSlug | String? |  yes  |  |
+ | address | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | id | Int? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | area | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -7582,8 +7582,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  | Cart uid for generating sharing |
  | meta | [String: Any]? |  yes  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ | id | String? |  yes  | Cart uid for generating sharing |
 
 ---
 
@@ -7606,11 +7606,11 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [String: Any]? |  yes  | User details of who generated share link |
- | createdOn | String? |  yes  |  |
- | source | [String: Any]? |  yes  | Share link device and other source information |
  | meta | [String: Any]? |  yes  | Meta data sent while generating share cart link |
+ | source | [String: Any]? |  yes  | Share link device and other source information |
+ | createdOn | String? |  yes  |  |
  | token | String? |  yes  | Short link id |
+ | user | [String: Any]? |  yes  | User details of who generated share link |
 
 ---
 
@@ -7621,24 +7621,24 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | couponText | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | id | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
  | message | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | gstin | String? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
- | uid | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | cartId | Int? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
 
 ---
 
