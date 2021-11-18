@@ -102,7 +102,7 @@ client.application("<APPLICATION_ID>").user.searchUsers(q: q) { (response, error
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| q | String? | no | The search query. Mobile number or email ID of a customer. |  
+| q | [String: Any]? | no | The search query. Mobile number or email ID of a customer. |  
 
 
 
