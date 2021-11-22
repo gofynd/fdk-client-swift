@@ -1519,6 +1519,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | accountKit | Bool? |  yes  |  |
  | facebook | Bool? |  yes  |  |
  | google | Bool? |  yes  |  |
+ | apple | Bool? |  yes  |  |
 
 ---
 

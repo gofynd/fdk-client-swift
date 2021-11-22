@@ -3014,6 +3014,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | accountKit | Bool? |  yes  |  |
  | facebook | Bool? |  yes  |  |
  | google | Bool? |  yes  |  |
+ | apple | Bool? |  yes  |  |
 
 ---
 
