@@ -1925,7 +1925,7 @@ Success. Refer `ThemesSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | global | [String: Any]? |  yes  |  |
+ | globalConfig | [String: Any]? |  yes  |  |
  | page | [[ConfigPage](#ConfigPage)]? |  yes  |  |
  | name | String? |  yes  |  |
 
