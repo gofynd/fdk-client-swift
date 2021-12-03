@@ -2275,6 +2275,7 @@ Success
  | priority | Double? |  yes  |  |
  | priorityText | String? |  yes  |  |
  | lockStatus | Bool? |  yes  |  |
+ | orderingChannel | String? |  yes  |  |
  | totalShipmentBags | Int? |  yes  |  |
 
 ---
