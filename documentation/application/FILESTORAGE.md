@@ -8,6 +8,7 @@
 File Storage
 * [startUpload](#startupload)
 * [completeUpload](#completeupload)
+* [signUrls](#signurls)
 
 
 
@@ -135,6 +136,60 @@ This operation will return the URL of the uploaded file.
 
 
 [CompleteResponse](#CompleteResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### signUrls
+Explain here
+
+
+
+
+```swift
+client.filestorage.signUrls(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | SignUrlRequest | yes | Request body |
+
+
+Describe here
+
+*Returned Response:*
+
+
+
+
+[SignUrlResponse](#SignUrlResponse)
 
 Success
 
