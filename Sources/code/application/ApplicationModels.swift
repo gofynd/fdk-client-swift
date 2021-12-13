@@ -31249,85 +31249,6 @@
         }
         
         /*
-            Model: Seo
-            Used By: Theme
-        */
-        class Seo: Codable {
-            
-            public var title: String?
-            
-            public var description: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case title = "title"
-                
-                case description = "description"
-                
-            }
-
-            public init(description: String?, title: String?) {
-                
-                self.title = title
-                
-                self.description = description
-                
-            }
-
-            public func duplicate() -> Seo {
-                let dict = self.dictionary!
-                let copy = Seo(dictionary: dict)!
-                return copy
-            }
-
-            required public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                do {
-                    title = try container.decode(String.self, forKey: .title)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                
-                
-                try? container.encodeIfPresent(title, forKey: .title)
-                
-                
-                
-                
-                try? container.encodeIfPresent(description, forKey: .description)
-                
-                
-            }
-            
-        }
-        
-        /*
             Model: Sections
             Used By: Theme
         */
@@ -69638,72 +69559,72 @@
         */
         class AggregatorConfigDetail: Codable {
             
-            public var verifyApi: String?
-            
-            public var configType: String
-            
-            public var key: String
-            
             public var sdk: Bool?
+            
+            public var verifyApi: String?
             
             public var userId: String?
             
-            public var api: String?
+            public var merchantId: String?
             
-            public var merchantKey: String?
+            public var key: String
+            
+            public var api: String?
             
             public var pin: String?
             
             public var secret: String
             
-            public var merchantId: String?
+            public var configType: String
+            
+            public var merchantKey: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case verifyApi = "verify_api"
-                
-                case configType = "config_type"
-                
-                case key = "key"
-                
                 case sdk = "sdk"
+                
+                case verifyApi = "verify_api"
                 
                 case userId = "user_id"
                 
-                case api = "api"
+                case merchantId = "merchant_id"
                 
-                case merchantKey = "merchant_key"
+                case key = "key"
+                
+                case api = "api"
                 
                 case pin = "pin"
                 
                 case secret = "secret"
                 
-                case merchantId = "merchant_id"
+                case configType = "config_type"
+                
+                case merchantKey = "merchant_key"
                 
             }
 
             public init(api: String?, configType: String, key: String, merchantId: String?, merchantKey: String?, pin: String?, sdk: Bool?, secret: String, userId: String?, verifyApi: String?) {
                 
-                self.verifyApi = verifyApi
-                
-                self.configType = configType
-                
-                self.key = key
-                
                 self.sdk = sdk
+                
+                self.verifyApi = verifyApi
                 
                 self.userId = userId
                 
-                self.api = api
+                self.merchantId = merchantId
                 
-                self.merchantKey = merchantKey
+                self.key = key
+                
+                self.api = api
                 
                 self.pin = pin
                 
                 self.secret = secret
                 
-                self.merchantId = merchantId
+                self.configType = configType
+                
+                self.merchantKey = merchantKey
                 
             }
 
@@ -69718,7 +69639,7 @@
                 
                 
                 do {
-                    verifyApi = try container.decode(String.self, forKey: .verifyApi)
+                    sdk = try container.decode(Bool.self, forKey: .sdk)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69729,18 +69650,8 @@
                 
                 
                 
-                configType = try container.decode(String.self, forKey: .configType)
-                
-                
-                
-                
-                key = try container.decode(String.self, forKey: .key)
-                
-                
-                
-                
                 do {
-                    sdk = try container.decode(Bool.self, forKey: .sdk)
+                    verifyApi = try container.decode(String.self, forKey: .verifyApi)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69764,7 +69675,7 @@
                 
                 
                 do {
-                    api = try container.decode(String.self, forKey: .api)
+                    merchantId = try container.decode(String.self, forKey: .merchantId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69775,8 +69686,13 @@
                 
                 
                 
+                key = try container.decode(String.self, forKey: .key)
+                
+                
+                
+                
                 do {
-                    merchantKey = try container.decode(String.self, forKey: .merchantKey)
+                    api = try container.decode(String.self, forKey: .api)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69804,8 +69720,13 @@
                 
                 
                 
+                configType = try container.decode(String.self, forKey: .configType)
+                
+                
+                
+                
                 do {
-                    merchantId = try container.decode(String.self, forKey: .merchantId)
+                    merchantKey = try container.decode(String.self, forKey: .merchantKey)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69822,22 +69743,12 @@
                 
                 
                 
-                try? container.encode(verifyApi, forKey: .verifyApi)
-                
-                
-                
-                
-                try? container.encodeIfPresent(configType, forKey: .configType)
-                
-                
-                
-                
-                try? container.encodeIfPresent(key, forKey: .key)
-                
-                
-                
-                
                 try? container.encode(sdk, forKey: .sdk)
+                
+                
+                
+                
+                try? container.encode(verifyApi, forKey: .verifyApi)
                 
                 
                 
@@ -69847,12 +69758,17 @@
                 
                 
                 
+                try? container.encode(merchantId, forKey: .merchantId)
+                
+                
+                
+                
+                try? container.encodeIfPresent(key, forKey: .key)
+                
+                
+                
+                
                 try? container.encode(api, forKey: .api)
-                
-                
-                
-                
-                try? container.encode(merchantKey, forKey: .merchantKey)
                 
                 
                 
@@ -69867,7 +69783,12 @@
                 
                 
                 
-                try? container.encode(merchantId, forKey: .merchantId)
+                try? container.encodeIfPresent(configType, forKey: .configType)
+                
+                
+                
+                
+                try? container.encode(merchantKey, forKey: .merchantKey)
                 
                 
             }
@@ -69880,46 +69801,46 @@
         */
         class AggregatorsConfigDetailResponse: Codable {
             
-            public var mswipe: AggregatorConfigDetail?
+            public var ccavenue: AggregatorConfigDetail?
             
-            public var stripe: AggregatorConfigDetail?
-            
-            public var payumoney: AggregatorConfigDetail?
-            
-            public var rupifi: AggregatorConfigDetail?
+            public var razorpay: AggregatorConfigDetail?
             
             public var juspay: AggregatorConfigDetail?
             
-            public var ccavenue: AggregatorConfigDetail?
+            public var mswipe: AggregatorConfigDetail?
             
             public var env: String
             
+            public var rupifi: AggregatorConfigDetail?
+            
+            public var payumoney: AggregatorConfigDetail?
+            
             public var success: Bool
             
-            public var razorpay: AggregatorConfigDetail?
+            public var stripe: AggregatorConfigDetail?
             
             public var simpl: AggregatorConfigDetail?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case mswipe = "mswipe"
+                case ccavenue = "ccavenue"
                 
-                case stripe = "stripe"
-                
-                case payumoney = "payumoney"
-                
-                case rupifi = "rupifi"
+                case razorpay = "razorpay"
                 
                 case juspay = "juspay"
                 
-                case ccavenue = "ccavenue"
+                case mswipe = "mswipe"
                 
                 case env = "env"
                 
+                case rupifi = "rupifi"
+                
+                case payumoney = "payumoney"
+                
                 case success = "success"
                 
-                case razorpay = "razorpay"
+                case stripe = "stripe"
                 
                 case simpl = "simpl"
                 
@@ -69927,23 +69848,23 @@
 
             public init(ccavenue: AggregatorConfigDetail?, env: String, juspay: AggregatorConfigDetail?, mswipe: AggregatorConfigDetail?, payumoney: AggregatorConfigDetail?, razorpay: AggregatorConfigDetail?, rupifi: AggregatorConfigDetail?, simpl: AggregatorConfigDetail?, stripe: AggregatorConfigDetail?, success: Bool) {
                 
-                self.mswipe = mswipe
+                self.ccavenue = ccavenue
                 
-                self.stripe = stripe
-                
-                self.payumoney = payumoney
-                
-                self.rupifi = rupifi
+                self.razorpay = razorpay
                 
                 self.juspay = juspay
                 
-                self.ccavenue = ccavenue
+                self.mswipe = mswipe
                 
                 self.env = env
                 
+                self.rupifi = rupifi
+                
+                self.payumoney = payumoney
+                
                 self.success = success
                 
-                self.razorpay = razorpay
+                self.stripe = stripe
                 
                 self.simpl = simpl
                 
@@ -69960,7 +69881,7 @@
                 
                 
                 do {
-                    mswipe = try container.decode(AggregatorConfigDetail.self, forKey: .mswipe)
+                    ccavenue = try container.decode(AggregatorConfigDetail.self, forKey: .ccavenue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69972,31 +69893,7 @@
                 
                 
                 do {
-                    stripe = try container.decode(AggregatorConfigDetail.self, forKey: .stripe)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    payumoney = try container.decode(AggregatorConfigDetail.self, forKey: .payumoney)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    rupifi = try container.decode(AggregatorConfigDetail.self, forKey: .rupifi)
+                    razorpay = try container.decode(AggregatorConfigDetail.self, forKey: .razorpay)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70020,7 +69917,7 @@
                 
                 
                 do {
-                    ccavenue = try container.decode(AggregatorConfigDetail.self, forKey: .ccavenue)
+                    mswipe = try container.decode(AggregatorConfigDetail.self, forKey: .mswipe)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70036,13 +69933,37 @@
                 
                 
                 
+                do {
+                    rupifi = try container.decode(AggregatorConfigDetail.self, forKey: .rupifi)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    payumoney = try container.decode(AggregatorConfigDetail.self, forKey: .payumoney)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
                 success = try container.decode(Bool.self, forKey: .success)
                 
                 
                 
                 
                 do {
-                    razorpay = try container.decode(AggregatorConfigDetail.self, forKey: .razorpay)
+                    stripe = try container.decode(AggregatorConfigDetail.self, forKey: .stripe)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70071,22 +69992,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(mswipe, forKey: .mswipe)
+                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
                 
                 
                 
                 
-                try? container.encodeIfPresent(stripe, forKey: .stripe)
-                
-                
-                
-                
-                try? container.encodeIfPresent(payumoney, forKey: .payumoney)
-                
-                
-                
-                
-                try? container.encodeIfPresent(rupifi, forKey: .rupifi)
+                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
                 
                 
                 
@@ -70096,7 +70007,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
+                try? container.encodeIfPresent(mswipe, forKey: .mswipe)
                 
                 
                 
@@ -70106,12 +70017,22 @@
                 
                 
                 
+                try? container.encodeIfPresent(rupifi, forKey: .rupifi)
+                
+                
+                
+                
+                try? container.encodeIfPresent(payumoney, forKey: .payumoney)
+                
+                
+                
+                
                 try? container.encodeIfPresent(success, forKey: .success)
                 
                 
                 
                 
-                try? container.encodeIfPresent(razorpay, forKey: .razorpay)
+                try? container.encodeIfPresent(stripe, forKey: .stripe)
                 
                 
                 
@@ -70263,9 +70184,9 @@
             
             public var nickname: String?
             
-            public var refresh: Bool?
-            
             public var nameOnCard: String?
+            
+            public var refresh: Bool?
             
 
             public enum CodingKeys: String, CodingKey {
@@ -70274,9 +70195,9 @@
                 
                 case nickname = "nickname"
                 
-                case refresh = "refresh"
-                
                 case nameOnCard = "name_on_card"
+                
+                case refresh = "refresh"
                 
             }
 
@@ -70286,9 +70207,9 @@
                 
                 self.nickname = nickname
                 
-                self.refresh = refresh
-                
                 self.nameOnCard = nameOnCard
+                
+                self.refresh = refresh
                 
             }
 
@@ -70320,7 +70241,7 @@
                 
                 
                 do {
-                    refresh = try container.decode(Bool.self, forKey: .refresh)
+                    nameOnCard = try container.decode(String.self, forKey: .nameOnCard)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70332,7 +70253,7 @@
                 
                 
                 do {
-                    nameOnCard = try container.decode(String.self, forKey: .nameOnCard)
+                    refresh = try container.decode(Bool.self, forKey: .refresh)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70359,12 +70280,12 @@
                 
                 
                 
-                try? container.encode(refresh, forKey: .refresh)
-                
-                
-                
-                
                 try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
+                
+                
+                
+                
+                try? container.encode(refresh, forKey: .refresh)
                 
                 
             }
@@ -70377,30 +70298,30 @@
         */
         class AttachCardsResponse: Codable {
             
+            public var success: Bool
+            
             public var message: String?
             
             public var data: [String: Any]
             
-            public var success: Bool
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case success = "success"
                 
                 case message = "message"
                 
                 case data = "data"
                 
-                case success = "success"
-                
             }
 
             public init(data: [String: Any], message: String?, success: Bool) {
                 
+                self.success = success
+                
                 self.message = message
                 
                 self.data = data
-                
-                self.success = success
                 
             }
 
@@ -70412,6 +70333,11 @@
 
             required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
                 
                 
                 do {
@@ -70430,15 +70356,15 @@
                 
                 
                 
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                
+                
+                try? container.encodeIfPresent(success, forKey: .success)
+                
                 
                 
                 
@@ -70448,11 +70374,6 @@
                 
                 
                 try? container.encodeIfPresent(data, forKey: .data)
-                
-                
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
             }
@@ -70465,18 +70386,18 @@
         */
         class CardPaymentGateway: Codable {
             
-            public var api: String?
-            
             public var customerId: String?
+            
+            public var api: String?
             
             public var aggregator: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case api = "api"
-                
                 case customerId = "customer_id"
+                
+                case api = "api"
                 
                 case aggregator = "aggregator"
                 
@@ -70484,9 +70405,9 @@
 
             public init(aggregator: String, api: String?, customerId: String?) {
                 
-                self.api = api
-                
                 self.customerId = customerId
+                
+                self.api = api
                 
                 self.aggregator = aggregator
                 
@@ -70503,7 +70424,7 @@
                 
                 
                 do {
-                    api = try container.decode(String.self, forKey: .api)
+                    customerId = try container.decode(String.self, forKey: .customerId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70515,7 +70436,7 @@
                 
                 
                 do {
-                    customerId = try container.decode(String.self, forKey: .customerId)
+                    api = try container.decode(String.self, forKey: .api)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70537,12 +70458,12 @@
                 
                 
                 
-                try? container.encode(api, forKey: .api)
-                
-                
-                
-                
                 try? container.encode(customerId, forKey: .customerId)
+                
+                
+                
+                
+                try? container.encode(api, forKey: .api)
                 
                 
                 
@@ -70560,30 +70481,30 @@
         */
         class ActiveCardPaymentGatewayResponse: Codable {
             
+            public var success: Bool
+            
             public var message: String
             
             public var cards: CardPaymentGateway
             
-            public var success: Bool
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case success = "success"
                 
                 case message = "message"
                 
                 case cards = "cards"
                 
-                case success = "success"
-                
             }
 
             public init(cards: CardPaymentGateway, message: String, success: Bool) {
                 
+                self.success = success
+                
                 self.message = message
                 
                 self.cards = cards
-                
-                self.success = success
                 
             }
 
@@ -70597,17 +70518,17 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                
                 message = try container.decode(String.self, forKey: .message)
                 
                 
                 
                 
                 cards = try container.decode(CardPaymentGateway.self, forKey: .cards)
-                
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
                 
                 
                 
@@ -70618,17 +70539,17 @@
                 
                 
                 
+                try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
                 try? container.encodeIfPresent(message, forKey: .message)
                 
                 
                 
                 
                 try? container.encodeIfPresent(cards, forKey: .cards)
-                
-                
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
             }
@@ -70641,108 +70562,108 @@
         */
         class Card: Codable {
             
-            public var cardBrandImage: String?
-            
-            public var cardReference: String?
+            public var nickname: String?
             
             public var cardBrand: String?
             
-            public var expMonth: Int?
+            public var cardIsin: String?
             
             public var aggregatorName: String
             
-            public var nickname: String?
-            
             public var cardType: String?
+            
+            public var cardName: String?
+            
+            public var cardBrandImage: String?
+            
+            public var cardToken: String?
+            
+            public var expMonth: Int?
+            
+            public var expired: Bool?
             
             public var cardFingerprint: String?
             
             public var cardId: String?
             
-            public var cardIsin: String?
+            public var expYear: Int?
             
-            public var expired: Bool?
-            
-            public var cardName: String?
-            
-            public var cardIssuer: String?
-            
-            public var cardToken: String?
+            public var cardReference: String?
             
             public var cardNumber: String?
             
-            public var expYear: Int?
+            public var cardIssuer: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case cardBrandImage = "card_brand_image"
-                
-                case cardReference = "card_reference"
+                case nickname = "nickname"
                 
                 case cardBrand = "card_brand"
                 
-                case expMonth = "exp_month"
+                case cardIsin = "card_isin"
                 
                 case aggregatorName = "aggregator_name"
                 
-                case nickname = "nickname"
-                
                 case cardType = "card_type"
+                
+                case cardName = "card_name"
+                
+                case cardBrandImage = "card_brand_image"
+                
+                case cardToken = "card_token"
+                
+                case expMonth = "exp_month"
+                
+                case expired = "expired"
                 
                 case cardFingerprint = "card_fingerprint"
                 
                 case cardId = "card_id"
                 
-                case cardIsin = "card_isin"
+                case expYear = "exp_year"
                 
-                case expired = "expired"
-                
-                case cardName = "card_name"
-                
-                case cardIssuer = "card_issuer"
-                
-                case cardToken = "card_token"
+                case cardReference = "card_reference"
                 
                 case cardNumber = "card_number"
                 
-                case expYear = "exp_year"
+                case cardIssuer = "card_issuer"
                 
             }
 
             public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, expired: Bool?, expMonth: Int?, expYear: Int?, nickname: String?) {
                 
-                self.cardBrandImage = cardBrandImage
-                
-                self.cardReference = cardReference
+                self.nickname = nickname
                 
                 self.cardBrand = cardBrand
                 
-                self.expMonth = expMonth
+                self.cardIsin = cardIsin
                 
                 self.aggregatorName = aggregatorName
                 
-                self.nickname = nickname
-                
                 self.cardType = cardType
+                
+                self.cardName = cardName
+                
+                self.cardBrandImage = cardBrandImage
+                
+                self.cardToken = cardToken
+                
+                self.expMonth = expMonth
+                
+                self.expired = expired
                 
                 self.cardFingerprint = cardFingerprint
                 
                 self.cardId = cardId
                 
-                self.cardIsin = cardIsin
+                self.expYear = expYear
                 
-                self.expired = expired
-                
-                self.cardName = cardName
-                
-                self.cardIssuer = cardIssuer
-                
-                self.cardToken = cardToken
+                self.cardReference = cardReference
                 
                 self.cardNumber = cardNumber
                 
-                self.expYear = expYear
+                self.cardIssuer = cardIssuer
                 
             }
 
@@ -70757,19 +70678,7 @@
                 
                 
                 do {
-                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardReference = try container.decode(String.self, forKey: .cardReference)
+                    nickname = try container.decode(String.self, forKey: .nickname)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70793,7 +70702,7 @@
                 
                 
                 do {
-                    expMonth = try container.decode(Int.self, forKey: .expMonth)
+                    cardIsin = try container.decode(String.self, forKey: .cardIsin)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70810,7 +70719,7 @@
                 
                 
                 do {
-                    nickname = try container.decode(String.self, forKey: .nickname)
+                    cardType = try container.decode(String.self, forKey: .cardType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70822,7 +70731,55 @@
                 
                 
                 do {
-                    cardType = try container.decode(String.self, forKey: .cardType)
+                    cardName = try container.decode(String.self, forKey: .cardName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardToken = try container.decode(String.self, forKey: .cardToken)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    expMonth = try container.decode(Int.self, forKey: .expMonth)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    expired = try container.decode(Bool.self, forKey: .expired)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70858,7 +70815,7 @@
                 
                 
                 do {
-                    cardIsin = try container.decode(String.self, forKey: .cardIsin)
+                    expYear = try container.decode(Int.self, forKey: .expYear)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70870,43 +70827,7 @@
                 
                 
                 do {
-                    expired = try container.decode(Bool.self, forKey: .expired)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardName = try container.decode(String.self, forKey: .cardName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardToken = try container.decode(String.self, forKey: .cardToken)
+                    cardReference = try container.decode(String.self, forKey: .cardReference)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70930,7 +70851,7 @@
                 
                 
                 do {
-                    expYear = try container.decode(Int.self, forKey: .expYear)
+                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70947,12 +70868,7 @@
                 
                 
                 
-                try? container.encode(cardBrandImage, forKey: .cardBrandImage)
-                
-                
-                
-                
-                try? container.encode(cardReference, forKey: .cardReference)
+                try? container.encode(nickname, forKey: .nickname)
                 
                 
                 
@@ -70962,7 +70878,7 @@
                 
                 
                 
-                try? container.encode(expMonth, forKey: .expMonth)
+                try? container.encode(cardIsin, forKey: .cardIsin)
                 
                 
                 
@@ -70972,12 +70888,32 @@
                 
                 
                 
-                try? container.encode(nickname, forKey: .nickname)
-                
-                
-                
-                
                 try? container.encode(cardType, forKey: .cardType)
+                
+                
+                
+                
+                try? container.encode(cardName, forKey: .cardName)
+                
+                
+                
+                
+                try? container.encode(cardBrandImage, forKey: .cardBrandImage)
+                
+                
+                
+                
+                try? container.encode(cardToken, forKey: .cardToken)
+                
+                
+                
+                
+                try? container.encode(expMonth, forKey: .expMonth)
+                
+                
+                
+                
+                try? container.encode(expired, forKey: .expired)
                 
                 
                 
@@ -70992,27 +70928,12 @@
                 
                 
                 
-                try? container.encode(cardIsin, forKey: .cardIsin)
+                try? container.encode(expYear, forKey: .expYear)
                 
                 
                 
                 
-                try? container.encode(expired, forKey: .expired)
-                
-                
-                
-                
-                try? container.encode(cardName, forKey: .cardName)
-                
-                
-                
-                
-                try? container.encode(cardIssuer, forKey: .cardIssuer)
-                
-                
-                
-                
-                try? container.encode(cardToken, forKey: .cardToken)
+                try? container.encode(cardReference, forKey: .cardReference)
                 
                 
                 
@@ -71022,7 +70943,7 @@
                 
                 
                 
-                try? container.encode(expYear, forKey: .expYear)
+                try? container.encode(cardIssuer, forKey: .cardIssuer)
                 
                 
             }
@@ -71035,30 +70956,30 @@
         */
         class ListCardsResponse: Codable {
             
+            public var success: Bool
+            
             public var message: String
             
             public var data: [Card]?
             
-            public var success: Bool
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case success = "success"
                 
                 case message = "message"
                 
                 case data = "data"
                 
-                case success = "success"
-                
             }
 
             public init(data: [Card]?, message: String, success: Bool) {
                 
+                self.success = success
+                
                 self.message = message
                 
                 self.data = data
-                
-                self.success = success
                 
             }
 
@@ -71070,6 +70991,11 @@
 
             required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
                 
                 
                 message = try container.decode(String.self, forKey: .message)
@@ -71088,15 +71014,15 @@
                 }
                 
                 
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                
+                
+                try? container.encodeIfPresent(success, forKey: .success)
+                
                 
                 
                 
@@ -71106,11 +71032,6 @@
                 
                 
                 try? container.encodeIfPresent(data, forKey: .data)
-                
-                
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
             }
@@ -71172,24 +71093,24 @@
         */
         class DeleteCardsResponse: Codable {
             
-            public var message: String?
-            
             public var success: Bool
+            
+            public var message: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
-                
                 case success = "success"
+                
+                case message = "message"
                 
             }
 
             public init(message: String?, success: Bool) {
                 
-                self.message = message
-                
                 self.success = success
+                
+                self.message = message
                 
             }
 
@@ -71203,6 +71124,11 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                
                 do {
                     message = try container.decode(String.self, forKey: .message)
                 
@@ -71214,11 +71140,6 @@
                 }
                 
                 
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -71226,12 +71147,12 @@
                 
                 
                 
-                try? container.encode(message, forKey: .message)
-                
-                
-                
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
+                try? container.encode(message, forKey: .message)
                 
                 
             }
@@ -71246,18 +71167,20 @@
             
             public var payload: String
             
+            public var transactionAmountInPaise: Int
+            
             public var aggregator: String
             
             public var phoneNumber: String
             
             public var merchantParams: [String: Any]
             
-            public var transactionAmountInPaise: Int
-            
 
             public enum CodingKeys: String, CodingKey {
                 
                 case payload = "payload"
+                
+                case transactionAmountInPaise = "transaction_amount_in_paise"
                 
                 case aggregator = "aggregator"
                 
@@ -71265,21 +71188,19 @@
                 
                 case merchantParams = "merchant_params"
                 
-                case transactionAmountInPaise = "transaction_amount_in_paise"
-                
             }
 
             public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
                 
                 self.payload = payload
                 
+                self.transactionAmountInPaise = transactionAmountInPaise
+                
                 self.aggregator = aggregator
                 
                 self.phoneNumber = phoneNumber
                 
                 self.merchantParams = merchantParams
-                
-                self.transactionAmountInPaise = transactionAmountInPaise
                 
             }
 
@@ -71298,6 +71219,11 @@
                 
                 
                 
+                transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+                
+                
+                
+                
                 aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 
@@ -71312,11 +71238,6 @@
                 
                 
                 
-                
-                transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
-                
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -71325,6 +71246,11 @@
                 
                 
                 try? container.encode(payload, forKey: .payload)
+                
+                
+                
+                
+                try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
                 
                 
                 
@@ -71342,11 +71268,6 @@
                 try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
                 
                 
-                
-                
-                try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
-                
-                
             }
             
         }
@@ -71357,30 +71278,30 @@
         */
         class ValidateCustomerResponse: Codable {
             
+            public var success: Bool
+            
             public var message: String
             
             public var data: [String: Any]
             
-            public var success: Bool
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case success = "success"
                 
                 case message = "message"
                 
                 case data = "data"
                 
-                case success = "success"
-                
             }
 
             public init(data: [String: Any], message: String, success: Bool) {
                 
+                self.success = success
+                
                 self.message = message
                 
                 self.data = data
-                
-                self.success = success
                 
             }
 
@@ -71394,17 +71315,17 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                
                 message = try container.decode(String.self, forKey: .message)
                 
                 
                 
                 
                 data = try container.decode([String: Any].self, forKey: .data)
-                
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
                 
                 
                 
@@ -71415,17 +71336,17 @@
                 
                 
                 
+                try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
                 try? container.encodeIfPresent(message, forKey: .message)
                 
                 
                 
                 
                 try? container.encodeIfPresent(data, forKey: .data)
-                
-                
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
             }
@@ -71438,42 +71359,42 @@
         */
         class ChargeCustomerRequest: Codable {
             
-            public var amount: Int
-            
-            public var aggregator: String
-            
             public var verified: Bool?
             
             public var orderId: String
             
+            public var aggregator: String
+            
             public var transactionToken: String?
+            
+            public var amount: Int
             
 
             public enum CodingKeys: String, CodingKey {
-                
-                case amount = "amount"
-                
-                case aggregator = "aggregator"
                 
                 case verified = "verified"
                 
                 case orderId = "order_id"
                 
+                case aggregator = "aggregator"
+                
                 case transactionToken = "transaction_token"
+                
+                case amount = "amount"
                 
             }
 
             public init(aggregator: String, amount: Int, orderId: String, transactionToken: String?, verified: Bool?) {
                 
-                self.amount = amount
-                
-                self.aggregator = aggregator
-                
                 self.verified = verified
                 
                 self.orderId = orderId
                 
+                self.aggregator = aggregator
+                
                 self.transactionToken = transactionToken
+                
+                self.amount = amount
                 
             }
 
@@ -71485,16 +71406,6 @@
 
             required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                amount = try container.decode(Int.self, forKey: .amount)
-                
-                
-                
-                
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-                
                 
                 
                 do {
@@ -71514,6 +71425,11 @@
                 
                 
                 
+                aggregator = try container.decode(String.self, forKey: .aggregator)
+                
+                
+                
+                
                 do {
                     transactionToken = try container.decode(String.self, forKey: .transactionToken)
                 
@@ -71525,20 +71441,15 @@
                 }
                 
                 
+                
+                amount = try container.decode(Int.self, forKey: .amount)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                
-                
-                try? container.encode(amount, forKey: .amount)
-                
-                
-                
-                
-                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-                
                 
                 
                 
@@ -71552,7 +71463,17 @@
                 
                 
                 
+                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+                
+                
+                
+                
                 try? container.encode(transactionToken, forKey: .transactionToken)
+                
+                
+                
+                
+                try? container.encode(amount, forKey: .amount)
                 
                 
             }
@@ -71565,54 +71486,54 @@
         */
         class ChargeCustomerResponse: Codable {
             
-            public var aggregator: String
-            
-            public var success: Bool
+            public var status: String
             
             public var orderId: String
             
-            public var cartId: String?
+            public var aggregator: String
             
-            public var status: String
+            public var cartId: String?
             
             public var deliveryAddressId: String?
             
             public var message: String
             
+            public var success: Bool
+            
 
             public enum CodingKeys: String, CodingKey {
                 
-                case aggregator = "aggregator"
-                
-                case success = "success"
+                case status = "status"
                 
                 case orderId = "order_id"
                 
-                case cartId = "cart_id"
+                case aggregator = "aggregator"
                 
-                case status = "status"
+                case cartId = "cart_id"
                 
                 case deliveryAddressId = "delivery_address_id"
                 
                 case message = "message"
                 
+                case success = "success"
+                
             }
 
             public init(aggregator: String, cartId: String?, deliveryAddressId: String?, message: String, orderId: String, status: String, success: Bool) {
                 
-                self.aggregator = aggregator
-                
-                self.success = success
+                self.status = status
                 
                 self.orderId = orderId
                 
-                self.cartId = cartId
+                self.aggregator = aggregator
                 
-                self.status = status
+                self.cartId = cartId
                 
                 self.deliveryAddressId = deliveryAddressId
                 
                 self.message = message
+                
+                self.success = success
                 
             }
 
@@ -71626,17 +71547,17 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
+                status = try container.decode(String.self, forKey: .status)
                 
                 
                 
                 
                 orderId = try container.decode(String.self, forKey: .orderId)
+                
+                
+                
+                
+                aggregator = try container.decode(String.self, forKey: .aggregator)
                 
                 
                 
@@ -71650,11 +71571,6 @@
                 } catch {
                     
                 }
-                
-                
-                
-                status = try container.decode(String.self, forKey: .status)
-                
                 
                 
                 
@@ -71674,6 +71590,11 @@
                 
                 
                 
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -71681,12 +71602,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-                
-                
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
+                try? container.encodeIfPresent(status, forKey: .status)
                 
                 
                 
@@ -71696,12 +71612,12 @@
                 
                 
                 
+                try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+                
+                
+                
+                
                 try? container.encode(cartId, forKey: .cartId)
-                
-                
-                
-                
-                try? container.encodeIfPresent(status, forKey: .status)
                 
                 
                 
@@ -71712,6 +71628,11 @@
                 
                 
                 try? container.encodeIfPresent(message, forKey: .message)
+                
+                
+                
+                
+                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
             }
@@ -71726,42 +71647,42 @@
             
             public var aggregatorOrderId: String
             
-            public var razorpayPaymentId: String
-            
-            public var timeout: Int
-            
             public var aggregator: String
-            
-            public var method: String
-            
-            public var merchantOrderId: String
             
             public var virtualId: String?
             
+            public var customerId: String
+            
+            public var method: String
+            
+            public var timeout: Int
+            
+            public var merchantOrderId: String
+            
             public var pollingUrl: String
             
-            public var customerId: String
+            public var razorpayPaymentId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
                 case aggregatorOrderId = "aggregator_order_id"
                 
-                case razorpayPaymentId = "razorpay_payment_id"
-                
-                case timeout = "timeout"
-                
                 case aggregator = "aggregator"
-                
-                case method = "method"
-                
-                case merchantOrderId = "merchant_order_id"
                 
                 case virtualId = "virtual_id"
                 
+                case customerId = "customer_id"
+                
+                case method = "method"
+                
+                case timeout = "timeout"
+                
+                case merchantOrderId = "merchant_order_id"
+                
                 case pollingUrl = "polling_url"
                 
-                case customerId = "customer_id"
+                case razorpayPaymentId = "razorpay_payment_id"
                 
             }
 
@@ -71769,21 +71690,21 @@
                 
                 self.aggregatorOrderId = aggregatorOrderId
                 
-                self.razorpayPaymentId = razorpayPaymentId
-                
-                self.timeout = timeout
-                
                 self.aggregator = aggregator
-                
-                self.method = method
-                
-                self.merchantOrderId = merchantOrderId
                 
                 self.virtualId = virtualId
                 
+                self.customerId = customerId
+                
+                self.method = method
+                
+                self.timeout = timeout
+                
+                self.merchantOrderId = merchantOrderId
+                
                 self.pollingUrl = pollingUrl
                 
-                self.customerId = customerId
+                self.razorpayPaymentId = razorpayPaymentId
                 
             }
 
@@ -71802,27 +71723,7 @@
                 
                 
                 
-                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
-                
-                
-                
-                
-                timeout = try container.decode(Int.self, forKey: .timeout)
-                
-                
-                
-                
                 aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-                
-                
-                
-                method = try container.decode(String.self, forKey: .method)
-                
-                
-                
-                
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
                 
                 
@@ -71839,12 +71740,32 @@
                 
                 
                 
+                customerId = try container.decode(String.self, forKey: .customerId)
+                
+                
+                
+                
+                method = try container.decode(String.self, forKey: .method)
+                
+                
+                
+                
+                timeout = try container.decode(Int.self, forKey: .timeout)
+                
+                
+                
+                
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+                
+                
+                
+                
                 pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
                 
                 
                 
                 
-                customerId = try container.decode(String.self, forKey: .customerId)
+                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
                 
                 
                 
@@ -71860,27 +71781,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
-                
-                
-                
-                
-                try? container.encode(timeout, forKey: .timeout)
-                
-                
-                
-                
                 try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-                
-                
-                
-                
-                try? container.encodeIfPresent(method, forKey: .method)
-                
-                
-                
-                
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
                 
                 
                 
@@ -71890,12 +71791,32 @@
                 
                 
                 
+                try? container.encodeIfPresent(customerId, forKey: .customerId)
+                
+                
+                
+                
+                try? container.encodeIfPresent(method, forKey: .method)
+                
+                
+                
+                
+                try? container.encode(timeout, forKey: .timeout)
+                
+                
+                
+                
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+                
+                
+                
+                
                 try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
                 
                 
                 
                 
-                try? container.encodeIfPresent(customerId, forKey: .customerId)
+                try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
                 
                 
             }
@@ -71908,102 +71829,102 @@
         */
         class PaymentInitializationResponse: Codable {
             
+            public var status: String?
+            
             public var aggregatorOrderId: String?
-            
-            public var razorpayPaymentId: String?
-            
-            public var vpa: String?
-            
-            public var timeout: Int?
-            
-            public var amount: Int?
             
             public var aggregator: String
             
-            public var merchantOrderId: String
+            public var virtualId: String?
             
-            public var success: Bool
+            public var customerId: String?
             
-            public var currency: String?
+            public var amount: Int?
             
             public var method: String
             
-            public var virtualId: String?
+            public var timeout: Int?
+            
+            public var vpa: String?
+            
+            public var currency: String?
+            
+            public var merchantOrderId: String
             
             public var bqrImage: String?
             
             public var pollingUrl: String
             
-            public var status: String?
+            public var success: Bool
             
-            public var customerId: String?
+            public var razorpayPaymentId: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
+                case status = "status"
+                
                 case aggregatorOrderId = "aggregator_order_id"
-                
-                case razorpayPaymentId = "razorpay_payment_id"
-                
-                case vpa = "vpa"
-                
-                case timeout = "timeout"
-                
-                case amount = "amount"
                 
                 case aggregator = "aggregator"
                 
-                case merchantOrderId = "merchant_order_id"
+                case virtualId = "virtual_id"
                 
-                case success = "success"
+                case customerId = "customer_id"
                 
-                case currency = "currency"
+                case amount = "amount"
                 
                 case method = "method"
                 
-                case virtualId = "virtual_id"
+                case timeout = "timeout"
+                
+                case vpa = "vpa"
+                
+                case currency = "currency"
+                
+                case merchantOrderId = "merchant_order_id"
                 
                 case bqrImage = "bqr_image"
                 
                 case pollingUrl = "polling_url"
                 
-                case status = "status"
+                case success = "success"
                 
-                case customerId = "customer_id"
+                case razorpayPaymentId = "razorpay_payment_id"
                 
             }
 
             public init(aggregator: String, aggregatorOrderId: String?, amount: Int?, bqrImage: String?, currency: String?, customerId: String?, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String?, status: String?, success: Bool, timeout: Int?, virtualId: String?, vpa: String?) {
                 
+                self.status = status
+                
                 self.aggregatorOrderId = aggregatorOrderId
-                
-                self.razorpayPaymentId = razorpayPaymentId
-                
-                self.vpa = vpa
-                
-                self.timeout = timeout
-                
-                self.amount = amount
                 
                 self.aggregator = aggregator
                 
-                self.merchantOrderId = merchantOrderId
+                self.virtualId = virtualId
                 
-                self.success = success
+                self.customerId = customerId
                 
-                self.currency = currency
+                self.amount = amount
                 
                 self.method = method
                 
-                self.virtualId = virtualId
+                self.timeout = timeout
+                
+                self.vpa = vpa
+                
+                self.currency = currency
+                
+                self.merchantOrderId = merchantOrderId
                 
                 self.bqrImage = bqrImage
                 
                 self.pollingUrl = pollingUrl
                 
-                self.status = status
+                self.success = success
                 
-                self.customerId = customerId
+                self.razorpayPaymentId = razorpayPaymentId
                 
             }
 
@@ -72018,7 +71939,7 @@
                 
                 
                 do {
-                    aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72030,7 +71951,65 @@
                 
                 
                 do {
-                    razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
+                    aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                aggregator = try container.decode(String.self, forKey: .aggregator)
+                
+                
+                
+                
+                do {
+                    virtualId = try container.decode(String.self, forKey: .virtualId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    customerId = try container.decode(String.self, forKey: .customerId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    amount = try container.decode(Int.self, forKey: .amount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                method = try container.decode(String.self, forKey: .method)
+                
+                
+                
+                
+                do {
+                    timeout = try container.decode(Int.self, forKey: .timeout)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72054,45 +72033,6 @@
                 
                 
                 do {
-                    timeout = try container.decode(Int.self, forKey: .timeout)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    amount = try container.decode(Int.self, forKey: .amount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-                
-                
-                
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-                
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
-                
-                
-                do {
                     currency = try container.decode(String.self, forKey: .currency)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -72104,20 +72044,8 @@
                 
                 
                 
-                method = try container.decode(String.self, forKey: .method)
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
-                
-                
-                
-                do {
-                    virtualId = try container.decode(String.self, forKey: .virtualId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
                 
                 
                 
@@ -72138,20 +72066,13 @@
                 
                 
                 
-                do {
-                    status = try container.decode(String.self, forKey: .status)
+                success = try container.decode(Bool.self, forKey: .success)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
                 
                 
                 
                 do {
-                    customerId = try container.decode(String.self, forKey: .customerId)
+                    razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72168,27 +72089,12 @@
                 
                 
                 
+                try? container.encodeIfPresent(status, forKey: .status)
+                
+                
+                
+                
                 try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
-                
-                
-                
-                
-                try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
-                
-                
-                
-                
-                try? container.encode(vpa, forKey: .vpa)
-                
-                
-                
-                
-                try? container.encode(timeout, forKey: .timeout)
-                
-                
-                
-                
-                try? container.encode(amount, forKey: .amount)
                 
                 
                 
@@ -72198,17 +72104,17 @@
                 
                 
                 
-                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+                try? container.encode(virtualId, forKey: .virtualId)
                 
                 
                 
                 
-                try? container.encodeIfPresent(success, forKey: .success)
+                try? container.encode(customerId, forKey: .customerId)
                 
                 
                 
                 
-                try? container.encode(currency, forKey: .currency)
+                try? container.encode(amount, forKey: .amount)
                 
                 
                 
@@ -72218,7 +72124,22 @@
                 
                 
                 
-                try? container.encode(virtualId, forKey: .virtualId)
+                try? container.encode(timeout, forKey: .timeout)
+                
+                
+                
+                
+                try? container.encode(vpa, forKey: .vpa)
+                
+                
+                
+                
+                try? container.encode(currency, forKey: .currency)
+                
+                
+                
+                
+                try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
                 
                 
                 
@@ -72233,12 +72154,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(status, forKey: .status)
+                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
                 
                 
-                try? container.encode(customerId, forKey: .customerId)
+                try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
                 
                 
             }
@@ -72251,78 +72172,78 @@
         */
         class PaymentStatusUpdateRequest: Codable {
             
-            public var vpa: String
+            public var status: String
             
-            public var contact: String
-            
-            public var amount: Int
+            public var orderId: String
             
             public var email: String
             
             public var aggregator: String
             
-            public var currency: String
+            public var customerId: String
+            
+            public var amount: Int
             
             public var method: String
             
+            public var contact: String
+            
+            public var vpa: String
+            
+            public var currency: String
+            
             public var merchantOrderId: String
-            
-            public var orderId: String
-            
-            public var status: String
-            
-            public var customerId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case vpa = "vpa"
+                case status = "status"
                 
-                case contact = "contact"
-                
-                case amount = "amount"
+                case orderId = "order_id"
                 
                 case email = "email"
                 
                 case aggregator = "aggregator"
                 
-                case currency = "currency"
+                case customerId = "customer_id"
+                
+                case amount = "amount"
                 
                 case method = "method"
                 
+                case contact = "contact"
+                
+                case vpa = "vpa"
+                
+                case currency = "currency"
+                
                 case merchantOrderId = "merchant_order_id"
-                
-                case orderId = "order_id"
-                
-                case status = "status"
-                
-                case customerId = "customer_id"
                 
             }
 
             public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String) {
                 
-                self.vpa = vpa
+                self.status = status
                 
-                self.contact = contact
-                
-                self.amount = amount
+                self.orderId = orderId
                 
                 self.email = email
                 
                 self.aggregator = aggregator
                 
-                self.currency = currency
+                self.customerId = customerId
+                
+                self.amount = amount
                 
                 self.method = method
                 
+                self.contact = contact
+                
+                self.vpa = vpa
+                
+                self.currency = currency
+                
                 self.merchantOrderId = merchantOrderId
-                
-                self.orderId = orderId
-                
-                self.status = status
-                
-                self.customerId = customerId
                 
             }
 
@@ -72336,17 +72257,12 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                vpa = try container.decode(String.self, forKey: .vpa)
+                status = try container.decode(String.self, forKey: .status)
                 
                 
                 
                 
-                contact = try container.decode(String.self, forKey: .contact)
-                
-                
-                
-                
-                amount = try container.decode(Int.self, forKey: .amount)
+                orderId = try container.decode(String.self, forKey: .orderId)
                 
                 
                 
@@ -72361,7 +72277,12 @@
                 
                 
                 
-                currency = try container.decode(String.self, forKey: .currency)
+                customerId = try container.decode(String.self, forKey: .customerId)
+                
+                
+                
+                
+                amount = try container.decode(Int.self, forKey: .amount)
                 
                 
                 
@@ -72371,22 +72292,22 @@
                 
                 
                 
+                contact = try container.decode(String.self, forKey: .contact)
+                
+                
+                
+                
+                vpa = try container.decode(String.self, forKey: .vpa)
+                
+                
+                
+                
+                currency = try container.decode(String.self, forKey: .currency)
+                
+                
+                
+                
                 merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-                
-                
-                
-                
-                orderId = try container.decode(String.self, forKey: .orderId)
-                
-                
-                
-                
-                status = try container.decode(String.self, forKey: .status)
-                
-                
-                
-                
-                customerId = try container.decode(String.self, forKey: .customerId)
                 
                 
                 
@@ -72397,17 +72318,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(vpa, forKey: .vpa)
+                try? container.encodeIfPresent(status, forKey: .status)
                 
                 
                 
                 
-                try? container.encodeIfPresent(contact, forKey: .contact)
-                
-                
-                
-                
-                try? container.encode(amount, forKey: .amount)
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
                 
                 
@@ -72422,7 +72338,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(currency, forKey: .currency)
+                try? container.encodeIfPresent(customerId, forKey: .customerId)
+                
+                
+                
+                
+                try? container.encode(amount, forKey: .amount)
                 
                 
                 
@@ -72432,22 +72353,22 @@
                 
                 
                 
+                try? container.encodeIfPresent(contact, forKey: .contact)
+                
+                
+                
+                
+                try? container.encodeIfPresent(vpa, forKey: .vpa)
+                
+                
+                
+                
+                try? container.encodeIfPresent(currency, forKey: .currency)
+                
+                
+                
+                
                 try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-                
-                
-                
-                
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
-                
-                
-                
-                
-                try? container.encodeIfPresent(status, forKey: .status)
-                
-                
-                
-                
-                try? container.encodeIfPresent(customerId, forKey: .customerId)
                 
                 
             }
@@ -72460,18 +72381,18 @@
         */
         class PaymentStatusUpdateResponse: Codable {
             
-            public var aggregatorName: String
-            
             public var status: String
+            
+            public var aggregatorName: String
             
             public var retry: Bool
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case aggregatorName = "aggregator_name"
-                
                 case status = "status"
+                
+                case aggregatorName = "aggregator_name"
                 
                 case retry = "retry"
                 
@@ -72479,9 +72400,9 @@
 
             public init(aggregatorName: String, retry: Bool, status: String) {
                 
-                self.aggregatorName = aggregatorName
-                
                 self.status = status
+                
+                self.aggregatorName = aggregatorName
                 
                 self.retry = retry
                 
@@ -72497,12 +72418,12 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-                
-                
-                
-                
                 status = try container.decode(String.self, forKey: .status)
+                
+                
+                
+                
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
                 
                 
                 
@@ -72518,12 +72439,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-                
-                
-                
-                
                 try? container.encodeIfPresent(status, forKey: .status)
+                
+                
+                
+                
+                try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
                 
                 
                 
@@ -72536,417 +72457,29 @@
         }
         
         /*
-            Model: AggregatorRoute
-            Used By: Payment
-        */
-        class AggregatorRoute: Codable {
-            
-            public var paymentFlow: String?
-            
-            public var data: [String: Any]?
-            
-            public var apiLink: String?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case paymentFlow = "payment_flow"
-                
-                case data = "data"
-                
-                case apiLink = "api_link"
-                
-            }
-
-            public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?) {
-                
-                self.paymentFlow = paymentFlow
-                
-                self.data = data
-                
-                self.apiLink = apiLink
-                
-            }
-
-            public func duplicate() -> AggregatorRoute {
-                let dict = self.dictionary!
-                let copy = AggregatorRoute(dictionary: dict)!
-                return copy
-            }
-
-            required public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                do {
-                    paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    data = try container.decode([String: Any].self, forKey: .data)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    apiLink = try container.decode(String.self, forKey: .apiLink)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                
-                
-                try? container.encode(paymentFlow, forKey: .paymentFlow)
-                
-                
-                
-                
-                try? container.encode(data, forKey: .data)
-                
-                
-                
-                
-                try? container.encode(apiLink, forKey: .apiLink)
-                
-                
-            }
-            
-        }
-        
-        /*
-            Model: PaymentFlow
-            Used By: Payment
-        */
-        class PaymentFlow: Codable {
-            
-            public var mswipe: AggregatorRoute?
-            
-            public var upiRazorpay: AggregatorRoute?
-            
-            public var stripe: AggregatorRoute?
-            
-            public var rupifi: AggregatorRoute?
-            
-            public var juspay: AggregatorRoute?
-            
-            public var bqrRazorpay: AggregatorRoute?
-            
-            public var ccavenue: AggregatorRoute?
-            
-            public var razorpay: AggregatorRoute?
-            
-            public var payubiz: AggregatorRoute?
-            
-            public var simpl: AggregatorRoute?
-            
-            public var fynd: AggregatorRoute?
-            
-
-            public enum CodingKeys: String, CodingKey {
-                
-                case mswipe = "mswipe"
-                
-                case upiRazorpay = "upi_razorpay"
-                
-                case stripe = "stripe"
-                
-                case rupifi = "rupifi"
-                
-                case juspay = "juspay"
-                
-                case bqrRazorpay = "bqr_razorpay"
-                
-                case ccavenue = "ccavenue"
-                
-                case razorpay = "razorpay"
-                
-                case payubiz = "payubiz"
-                
-                case simpl = "simpl"
-                
-                case fynd = "fynd"
-                
-            }
-
-            public init(bqrRazorpay: AggregatorRoute?, ccavenue: AggregatorRoute?, fynd: AggregatorRoute?, juspay: AggregatorRoute?, mswipe: AggregatorRoute?, payubiz: AggregatorRoute?, razorpay: AggregatorRoute?, rupifi: AggregatorRoute?, simpl: AggregatorRoute?, stripe: AggregatorRoute?, upiRazorpay: AggregatorRoute?) {
-                
-                self.mswipe = mswipe
-                
-                self.upiRazorpay = upiRazorpay
-                
-                self.stripe = stripe
-                
-                self.rupifi = rupifi
-                
-                self.juspay = juspay
-                
-                self.bqrRazorpay = bqrRazorpay
-                
-                self.ccavenue = ccavenue
-                
-                self.razorpay = razorpay
-                
-                self.payubiz = payubiz
-                
-                self.simpl = simpl
-                
-                self.fynd = fynd
-                
-            }
-
-            public func duplicate() -> PaymentFlow {
-                let dict = self.dictionary!
-                let copy = PaymentFlow(dictionary: dict)!
-                return copy
-            }
-
-            required public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                
-                
-                do {
-                    mswipe = try container.decode(AggregatorRoute.self, forKey: .mswipe)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    upiRazorpay = try container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    stripe = try container.decode(AggregatorRoute.self, forKey: .stripe)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    rupifi = try container.decode(AggregatorRoute.self, forKey: .rupifi)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    juspay = try container.decode(AggregatorRoute.self, forKey: .juspay)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    bqrRazorpay = try container.decode(AggregatorRoute.self, forKey: .bqrRazorpay)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    ccavenue = try container.decode(AggregatorRoute.self, forKey: .ccavenue)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    razorpay = try container.decode(AggregatorRoute.self, forKey: .razorpay)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    payubiz = try container.decode(AggregatorRoute.self, forKey: .payubiz)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    simpl = try container.decode(AggregatorRoute.self, forKey: .simpl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    fynd = try container.decode(AggregatorRoute.self, forKey: .fynd)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                
-                
-                try? container.encode(mswipe, forKey: .mswipe)
-                
-                
-                
-                
-                try? container.encode(upiRazorpay, forKey: .upiRazorpay)
-                
-                
-                
-                
-                try? container.encode(stripe, forKey: .stripe)
-                
-                
-                
-                
-                try? container.encode(rupifi, forKey: .rupifi)
-                
-                
-                
-                
-                try? container.encode(juspay, forKey: .juspay)
-                
-                
-                
-                
-                try? container.encode(bqrRazorpay, forKey: .bqrRazorpay)
-                
-                
-                
-                
-                try? container.encode(ccavenue, forKey: .ccavenue)
-                
-                
-                
-                
-                try? container.encode(razorpay, forKey: .razorpay)
-                
-                
-                
-                
-                try? container.encode(payubiz, forKey: .payubiz)
-                
-                
-                
-                
-                try? container.encode(simpl, forKey: .simpl)
-                
-                
-                
-                
-                try? container.encode(fynd, forKey: .fynd)
-                
-                
-            }
-            
-        }
-        
-        /*
             Model: PaymentModeLogo
             Used By: Payment
         */
         class PaymentModeLogo: Codable {
             
-            public var large: String
-            
             public var small: String
+            
+            public var large: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case large = "large"
-                
                 case small = "small"
+                
+                case large = "large"
                 
             }
 
             public init(large: String, small: String) {
                 
-                self.large = large
-                
                 self.small = small
+                
+                self.large = large
                 
             }
 
@@ -72960,12 +72493,12 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                large = try container.decode(String.self, forKey: .large)
-                
-                
-                
-                
                 small = try container.decode(String.self, forKey: .small)
+                
+                
+                
+                
+                large = try container.decode(String.self, forKey: .large)
                 
                 
                 
@@ -72976,12 +72509,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(large, forKey: .large)
-                
-                
-                
-                
                 try? container.encodeIfPresent(small, forKey: .small)
+                
+                
+                
+                
+                try? container.encodeIfPresent(large, forKey: .large)
                 
                 
             }
@@ -72994,174 +72527,174 @@
         */
         class PaymentModeList: Codable {
             
-            public var timeout: Int?
-            
-            public var retryCount: Int?
-            
             public var cardBrand: String?
-            
-            public var expMonth: Int?
-            
-            public var intentAppErrorList: [String]?
             
             public var cardName: String?
             
             public var displayName: String?
             
+            public var cardToken: String?
+            
+            public var displayPriority: Int?
+            
+            public var expired: Bool?
+            
+            public var intentFlow: Bool?
+            
+            public var cardReference: String?
+            
+            public var cardNumber: String?
+            
+            public var intentAppErrorList: [String]?
+            
+            public var cardIsin: String?
+            
             public var name: String?
             
-            public var cardIssuer: String?
+            public var retryCount: Int?
             
-            public var expYear: Int?
+            public var expMonth: Int?
+            
+            public var timeout: Int?
             
             public var cardFingerprint: String?
             
+            public var cardId: String?
+            
+            public var expYear: Int?
+            
             public var fyndVpa: String?
             
-            public var cardToken: String?
+            public var nickname: String?
+            
+            public var code: String?
             
             public var logoUrl: PaymentModeLogo?
             
-            public var intentFlow: Bool?
+            public var merchantCode: String?
+            
+            public var cardBrandImage: String?
             
             public var aggregatorName: String
             
             public var cardType: String?
             
-            public var displayPriority: Int?
-            
-            public var cardId: String?
-            
-            public var cardIsin: String?
-            
-            public var cardNumber: String?
-            
-            public var cardBrandImage: String?
-            
-            public var merchantCode: String?
-            
-            public var cardReference: String?
-            
-            public var nickname: String?
-            
-            public var expired: Bool?
-            
-            public var code: String?
+            public var cardIssuer: String?
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case timeout = "timeout"
-                
-                case retryCount = "retry_count"
-                
                 case cardBrand = "card_brand"
-                
-                case expMonth = "exp_month"
-                
-                case intentAppErrorList = "intent_app_error_list"
                 
                 case cardName = "card_name"
                 
                 case displayName = "display_name"
                 
+                case cardToken = "card_token"
+                
+                case displayPriority = "display_priority"
+                
+                case expired = "expired"
+                
+                case intentFlow = "intent_flow"
+                
+                case cardReference = "card_reference"
+                
+                case cardNumber = "card_number"
+                
+                case intentAppErrorList = "intent_app_error_list"
+                
+                case cardIsin = "card_isin"
+                
                 case name = "name"
                 
-                case cardIssuer = "card_issuer"
+                case retryCount = "retry_count"
                 
-                case expYear = "exp_year"
+                case expMonth = "exp_month"
+                
+                case timeout = "timeout"
                 
                 case cardFingerprint = "card_fingerprint"
                 
+                case cardId = "card_id"
+                
+                case expYear = "exp_year"
+                
                 case fyndVpa = "fynd_vpa"
                 
-                case cardToken = "card_token"
+                case nickname = "nickname"
+                
+                case code = "code"
                 
                 case logoUrl = "logo_url"
                 
-                case intentFlow = "intent_flow"
+                case merchantCode = "merchant_code"
+                
+                case cardBrandImage = "card_brand_image"
                 
                 case aggregatorName = "aggregator_name"
                 
                 case cardType = "card_type"
                 
-                case displayPriority = "display_priority"
-                
-                case cardId = "card_id"
-                
-                case cardIsin = "card_isin"
-                
-                case cardNumber = "card_number"
-                
-                case cardBrandImage = "card_brand_image"
-                
-                case merchantCode = "merchant_code"
-                
-                case cardReference = "card_reference"
-                
-                case nickname = "nickname"
-                
-                case expired = "expired"
-                
-                case code = "code"
+                case cardIssuer = "card_issuer"
                 
             }
 
             public init(aggregatorName: String, cardBrand: String?, cardBrandImage: String?, cardFingerprint: String?, cardId: String?, cardIsin: String?, cardIssuer: String?, cardName: String?, cardNumber: String?, cardReference: String?, cardToken: String?, cardType: String?, code: String?, displayName: String?, displayPriority: Int?, expired: Bool?, expMonth: Int?, expYear: Int?, fyndVpa: String?, intentAppErrorList: [String]?, intentFlow: Bool?, logoUrl: PaymentModeLogo?, merchantCode: String?, name: String?, nickname: String?, retryCount: Int?, timeout: Int?) {
                 
-                self.timeout = timeout
-                
-                self.retryCount = retryCount
-                
                 self.cardBrand = cardBrand
-                
-                self.expMonth = expMonth
-                
-                self.intentAppErrorList = intentAppErrorList
                 
                 self.cardName = cardName
                 
                 self.displayName = displayName
                 
+                self.cardToken = cardToken
+                
+                self.displayPriority = displayPriority
+                
+                self.expired = expired
+                
+                self.intentFlow = intentFlow
+                
+                self.cardReference = cardReference
+                
+                self.cardNumber = cardNumber
+                
+                self.intentAppErrorList = intentAppErrorList
+                
+                self.cardIsin = cardIsin
+                
                 self.name = name
                 
-                self.cardIssuer = cardIssuer
+                self.retryCount = retryCount
                 
-                self.expYear = expYear
+                self.expMonth = expMonth
+                
+                self.timeout = timeout
                 
                 self.cardFingerprint = cardFingerprint
                 
+                self.cardId = cardId
+                
+                self.expYear = expYear
+                
                 self.fyndVpa = fyndVpa
                 
-                self.cardToken = cardToken
+                self.nickname = nickname
+                
+                self.code = code
                 
                 self.logoUrl = logoUrl
                 
-                self.intentFlow = intentFlow
+                self.merchantCode = merchantCode
+                
+                self.cardBrandImage = cardBrandImage
                 
                 self.aggregatorName = aggregatorName
                 
                 self.cardType = cardType
                 
-                self.displayPriority = displayPriority
-                
-                self.cardId = cardId
-                
-                self.cardIsin = cardIsin
-                
-                self.cardNumber = cardNumber
-                
-                self.cardBrandImage = cardBrandImage
-                
-                self.merchantCode = merchantCode
-                
-                self.cardReference = cardReference
-                
-                self.nickname = nickname
-                
-                self.expired = expired
-                
-                self.code = code
+                self.cardIssuer = cardIssuer
                 
             }
 
@@ -73176,55 +72709,7 @@
                 
                 
                 do {
-                    timeout = try container.decode(Int.self, forKey: .timeout)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    retryCount = try container.decode(Int.self, forKey: .retryCount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
                     cardBrand = try container.decode(String.self, forKey: .cardBrand)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    expMonth = try container.decode(Int.self, forKey: .expMonth)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    intentAppErrorList = try container.decode([String].self, forKey: .intentAppErrorList)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73260,6 +72745,102 @@
                 
                 
                 do {
+                    cardToken = try container.decode(String.self, forKey: .cardToken)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    expired = try container.decode(Bool.self, forKey: .expired)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    intentFlow = try container.decode(Bool.self, forKey: .intentFlow)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardReference = try container.decode(String.self, forKey: .cardReference)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardNumber = try container.decode(String.self, forKey: .cardNumber)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    intentAppErrorList = try container.decode([String].self, forKey: .intentAppErrorList)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardIsin = try container.decode(String.self, forKey: .cardIsin)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
                     name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -73272,7 +72853,7 @@
                 
                 
                 do {
-                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
+                    retryCount = try container.decode(Int.self, forKey: .retryCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73284,7 +72865,19 @@
                 
                 
                 do {
-                    expYear = try container.decode(Int.self, forKey: .expYear)
+                    expMonth = try container.decode(Int.self, forKey: .expMonth)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    timeout = try container.decode(Int.self, forKey: .timeout)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73308,6 +72901,30 @@
                 
                 
                 do {
+                    cardId = try container.decode(String.self, forKey: .cardId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    expYear = try container.decode(Int.self, forKey: .expYear)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
                     fyndVpa = try container.decode(String.self, forKey: .fyndVpa)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -73320,7 +72937,19 @@
                 
                 
                 do {
-                    cardToken = try container.decode(String.self, forKey: .cardToken)
+                    nickname = try container.decode(String.self, forKey: .nickname)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73344,7 +72973,19 @@
                 
                 
                 do {
-                    intentFlow = try container.decode(Bool.self, forKey: .intentFlow)
+                    merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73373,115 +73014,7 @@
                 
                 
                 do {
-                    displayPriority = try container.decode(Int.self, forKey: .displayPriority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardId = try container.decode(String.self, forKey: .cardId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardIsin = try container.decode(String.self, forKey: .cardIsin)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardNumber = try container.decode(String.self, forKey: .cardNumber)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    merchantCode = try container.decode(String.self, forKey: .merchantCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    cardReference = try container.decode(String.self, forKey: .cardReference)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    nickname = try container.decode(String.self, forKey: .nickname)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    expired = try container.decode(Bool.self, forKey: .expired)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    code = try container.decode(String.self, forKey: .code)
+                    cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73498,27 +73031,7 @@
                 
                 
                 
-                try? container.encode(timeout, forKey: .timeout)
-                
-                
-                
-                
-                try? container.encode(retryCount, forKey: .retryCount)
-                
-                
-                
-                
                 try? container.encode(cardBrand, forKey: .cardBrand)
-                
-                
-                
-                
-                try? container.encode(expMonth, forKey: .expMonth)
-                
-                
-                
-                
-                try? container.encode(intentAppErrorList, forKey: .intentAppErrorList)
                 
                 
                 
@@ -73533,17 +73046,62 @@
                 
                 
                 
+                try? container.encode(cardToken, forKey: .cardToken)
+                
+                
+                
+                
+                try? container.encode(displayPriority, forKey: .displayPriority)
+                
+                
+                
+                
+                try? container.encode(expired, forKey: .expired)
+                
+                
+                
+                
+                try? container.encode(intentFlow, forKey: .intentFlow)
+                
+                
+                
+                
+                try? container.encode(cardReference, forKey: .cardReference)
+                
+                
+                
+                
+                try? container.encode(cardNumber, forKey: .cardNumber)
+                
+                
+                
+                
+                try? container.encode(intentAppErrorList, forKey: .intentAppErrorList)
+                
+                
+                
+                
+                try? container.encode(cardIsin, forKey: .cardIsin)
+                
+                
+                
+                
                 try? container.encode(name, forKey: .name)
                 
                 
                 
                 
-                try? container.encode(cardIssuer, forKey: .cardIssuer)
+                try? container.encode(retryCount, forKey: .retryCount)
                 
                 
                 
                 
-                try? container.encode(expYear, forKey: .expYear)
+                try? container.encode(expMonth, forKey: .expMonth)
+                
+                
+                
+                
+                try? container.encode(timeout, forKey: .timeout)
                 
                 
                 
@@ -73553,12 +73111,27 @@
                 
                 
                 
+                try? container.encode(cardId, forKey: .cardId)
+                
+                
+                
+                
+                try? container.encode(expYear, forKey: .expYear)
+                
+                
+                
+                
                 try? container.encode(fyndVpa, forKey: .fyndVpa)
                 
                 
                 
                 
-                try? container.encode(cardToken, forKey: .cardToken)
+                try? container.encode(nickname, forKey: .nickname)
+                
+                
+                
+                
+                try? container.encode(code, forKey: .code)
                 
                 
                 
@@ -73568,7 +73141,12 @@
                 
                 
                 
-                try? container.encode(intentFlow, forKey: .intentFlow)
+                try? container.encode(merchantCode, forKey: .merchantCode)
+                
+                
+                
+                
+                try? container.encode(cardBrandImage, forKey: .cardBrandImage)
                 
                 
                 
@@ -73583,52 +73161,7 @@
                 
                 
                 
-                try? container.encode(displayPriority, forKey: .displayPriority)
-                
-                
-                
-                
-                try? container.encode(cardId, forKey: .cardId)
-                
-                
-                
-                
-                try? container.encode(cardIsin, forKey: .cardIsin)
-                
-                
-                
-                
-                try? container.encode(cardNumber, forKey: .cardNumber)
-                
-                
-                
-                
-                try? container.encode(cardBrandImage, forKey: .cardBrandImage)
-                
-                
-                
-                
-                try? container.encode(merchantCode, forKey: .merchantCode)
-                
-                
-                
-                
-                try? container.encode(cardReference, forKey: .cardReference)
-                
-                
-                
-                
-                try? container.encode(nickname, forKey: .nickname)
-                
-                
-                
-                
-                try? container.encode(expired, forKey: .expired)
-                
-                
-                
-                
-                try? container.encode(code, forKey: .code)
+                try? container.encode(cardIssuer, forKey: .cardIssuer)
                 
                 
             }
@@ -73645,13 +73178,13 @@
             
             public var aggregatorName: String?
             
-            public var addCardEnabled: Bool?
-            
-            public var displayPriority: Int
+            public var name: String
             
             public var displayName: String
             
-            public var name: String
+            public var addCardEnabled: Bool?
+            
+            public var displayPriority: Int
             
             public var list: [PaymentModeList]?
             
@@ -73662,13 +73195,13 @@
                 
                 case aggregatorName = "aggregator_name"
                 
-                case addCardEnabled = "add_card_enabled"
-                
-                case displayPriority = "display_priority"
+                case name = "name"
                 
                 case displayName = "display_name"
                 
-                case name = "name"
+                case addCardEnabled = "add_card_enabled"
+                
+                case displayPriority = "display_priority"
                 
                 case list = "list"
                 
@@ -73680,13 +73213,13 @@
                 
                 self.aggregatorName = aggregatorName
                 
-                self.addCardEnabled = addCardEnabled
-                
-                self.displayPriority = displayPriority
+                self.name = name
                 
                 self.displayName = displayName
                 
-                self.name = name
+                self.addCardEnabled = addCardEnabled
+                
+                self.displayPriority = displayPriority
                 
                 self.list = list
                 
@@ -73726,6 +73259,16 @@
                 
                 
                 
+                name = try container.decode(String.self, forKey: .name)
+                
+                
+                
+                
+                displayName = try container.decode(String.self, forKey: .displayName)
+                
+                
+                
+                
                 do {
                     addCardEnabled = try container.decode(Bool.self, forKey: .addCardEnabled)
                 
@@ -73739,16 +73282,6 @@
                 
                 
                 displayPriority = try container.decode(Int.self, forKey: .displayPriority)
-                
-                
-                
-                
-                displayName = try container.decode(String.self, forKey: .displayName)
-                
-                
-                
-                
-                name = try container.decode(String.self, forKey: .name)
                 
                 
                 
@@ -73781,12 +73314,7 @@
                 
                 
                 
-                try? container.encode(addCardEnabled, forKey: .addCardEnabled)
-                
-                
-                
-                
-                try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 
                 
@@ -73796,7 +73324,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(name, forKey: .name)
+                try? container.encode(addCardEnabled, forKey: .addCardEnabled)
+                
+                
+                
+                
+                try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
                 
                 
                 
@@ -73809,29 +73342,417 @@
         }
         
         /*
+            Model: AggregatorRoute
+            Used By: Payment
+        */
+        class AggregatorRoute: Codable {
+            
+            public var apiLink: String?
+            
+            public var paymentFlow: String?
+            
+            public var data: [String: Any]?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case apiLink = "api_link"
+                
+                case paymentFlow = "payment_flow"
+                
+                case data = "data"
+                
+            }
+
+            public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?) {
+                
+                self.apiLink = apiLink
+                
+                self.paymentFlow = paymentFlow
+                
+                self.data = data
+                
+            }
+
+            public func duplicate() -> AggregatorRoute {
+                let dict = self.dictionary!
+                let copy = AggregatorRoute(dictionary: dict)!
+                return copy
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    apiLink = try container.decode(String.self, forKey: .apiLink)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    data = try container.decode([String: Any].self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                
+                
+                try? container.encode(apiLink, forKey: .apiLink)
+                
+                
+                
+                
+                try? container.encode(paymentFlow, forKey: .paymentFlow)
+                
+                
+                
+                
+                try? container.encode(data, forKey: .data)
+                
+                
+            }
+            
+        }
+        
+        /*
+            Model: PaymentFlow
+            Used By: Payment
+        */
+        class PaymentFlow: Codable {
+            
+            public var ccavenue: AggregatorRoute?
+            
+            public var bqrRazorpay: AggregatorRoute?
+            
+            public var razorpay: AggregatorRoute?
+            
+            public var juspay: AggregatorRoute?
+            
+            public var mswipe: AggregatorRoute?
+            
+            public var fynd: AggregatorRoute?
+            
+            public var rupifi: AggregatorRoute?
+            
+            public var upiRazorpay: AggregatorRoute?
+            
+            public var payubiz: AggregatorRoute?
+            
+            public var stripe: AggregatorRoute?
+            
+            public var simpl: AggregatorRoute?
+            
+
+            public enum CodingKeys: String, CodingKey {
+                
+                case ccavenue = "ccavenue"
+                
+                case bqrRazorpay = "bqr_razorpay"
+                
+                case razorpay = "razorpay"
+                
+                case juspay = "juspay"
+                
+                case mswipe = "mswipe"
+                
+                case fynd = "fynd"
+                
+                case rupifi = "rupifi"
+                
+                case upiRazorpay = "upi_razorpay"
+                
+                case payubiz = "payubiz"
+                
+                case stripe = "stripe"
+                
+                case simpl = "simpl"
+                
+            }
+
+            public init(bqrRazorpay: AggregatorRoute?, ccavenue: AggregatorRoute?, fynd: AggregatorRoute?, juspay: AggregatorRoute?, mswipe: AggregatorRoute?, payubiz: AggregatorRoute?, razorpay: AggregatorRoute?, rupifi: AggregatorRoute?, simpl: AggregatorRoute?, stripe: AggregatorRoute?, upiRazorpay: AggregatorRoute?) {
+                
+                self.ccavenue = ccavenue
+                
+                self.bqrRazorpay = bqrRazorpay
+                
+                self.razorpay = razorpay
+                
+                self.juspay = juspay
+                
+                self.mswipe = mswipe
+                
+                self.fynd = fynd
+                
+                self.rupifi = rupifi
+                
+                self.upiRazorpay = upiRazorpay
+                
+                self.payubiz = payubiz
+                
+                self.stripe = stripe
+                
+                self.simpl = simpl
+                
+            }
+
+            public func duplicate() -> PaymentFlow {
+                let dict = self.dictionary!
+                let copy = PaymentFlow(dictionary: dict)!
+                return copy
+            }
+
+            required public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                do {
+                    ccavenue = try container.decode(AggregatorRoute.self, forKey: .ccavenue)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    bqrRazorpay = try container.decode(AggregatorRoute.self, forKey: .bqrRazorpay)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    razorpay = try container.decode(AggregatorRoute.self, forKey: .razorpay)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    juspay = try container.decode(AggregatorRoute.self, forKey: .juspay)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    mswipe = try container.decode(AggregatorRoute.self, forKey: .mswipe)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    fynd = try container.decode(AggregatorRoute.self, forKey: .fynd)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    rupifi = try container.decode(AggregatorRoute.self, forKey: .rupifi)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    upiRazorpay = try container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    payubiz = try container.decode(AggregatorRoute.self, forKey: .payubiz)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    stripe = try container.decode(AggregatorRoute.self, forKey: .stripe)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    simpl = try container.decode(AggregatorRoute.self, forKey: .simpl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                
+                
+                try? container.encode(ccavenue, forKey: .ccavenue)
+                
+                
+                
+                
+                try? container.encode(bqrRazorpay, forKey: .bqrRazorpay)
+                
+                
+                
+                
+                try? container.encode(razorpay, forKey: .razorpay)
+                
+                
+                
+                
+                try? container.encode(juspay, forKey: .juspay)
+                
+                
+                
+                
+                try? container.encode(mswipe, forKey: .mswipe)
+                
+                
+                
+                
+                try? container.encode(fynd, forKey: .fynd)
+                
+                
+                
+                
+                try? container.encode(rupifi, forKey: .rupifi)
+                
+                
+                
+                
+                try? container.encode(upiRazorpay, forKey: .upiRazorpay)
+                
+                
+                
+                
+                try? container.encode(payubiz, forKey: .payubiz)
+                
+                
+                
+                
+                try? container.encode(stripe, forKey: .stripe)
+                
+                
+                
+                
+                try? container.encode(simpl, forKey: .simpl)
+                
+                
+            }
+            
+        }
+        
+        /*
             Model: PaymentOptionAndFlow
             Used By: Payment
         */
         class PaymentOptionAndFlow: Codable {
             
-            public var paymentFlows: PaymentFlow
-            
             public var paymentOption: [RootPaymentMode]
+            
+            public var paymentFlows: PaymentFlow
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case paymentFlows = "payment_flows"
-                
                 case paymentOption = "payment_option"
+                
+                case paymentFlows = "payment_flows"
                 
             }
 
             public init(paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
                 
-                self.paymentFlows = paymentFlows
-                
                 self.paymentOption = paymentOption
+                
+                self.paymentFlows = paymentFlows
                 
             }
 
@@ -73845,12 +73766,12 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
-                
-                
-                
-                
                 paymentOption = try container.decode([RootPaymentMode].self, forKey: .paymentOption)
+                
+                
+                
+                
+                paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
                 
                 
                 
@@ -73861,12 +73782,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
-                
-                
-                
-                
                 try? container.encodeIfPresent(paymentOption, forKey: .paymentOption)
+                
+                
+                
+                
+                try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
                 
                 
             }
@@ -73879,24 +73800,24 @@
         */
         class PaymentModeRouteResponse: Codable {
             
-            public var paymentOptions: PaymentOptionAndFlow
-            
             public var success: Bool
+            
+            public var paymentOptions: PaymentOptionAndFlow
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case paymentOptions = "payment_options"
-                
                 case success = "success"
+                
+                case paymentOptions = "payment_options"
                 
             }
 
             public init(paymentOptions: PaymentOptionAndFlow, success: Bool) {
                 
-                self.paymentOptions = paymentOptions
-                
                 self.success = success
+                
+                self.paymentOptions = paymentOptions
                 
             }
 
@@ -73910,12 +73831,12 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                paymentOptions = try container.decode(PaymentOptionAndFlow.self, forKey: .paymentOptions)
-                
-                
-                
-                
                 success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                
+                paymentOptions = try container.decode(PaymentOptionAndFlow.self, forKey: .paymentOptions)
                 
                 
                 
@@ -73926,12 +73847,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(paymentOptions, forKey: .paymentOptions)
-                
-                
-                
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
+                try? container.encodeIfPresent(paymentOptions, forKey: .paymentOptions)
                 
                 
             }
@@ -74023,24 +73944,24 @@
         */
         class RupifiBannerResponse: Codable {
             
-            public var data: RupifiBannerData
-            
             public var success: Bool
+            
+            public var data: RupifiBannerData
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case data = "data"
-                
                 case success = "success"
+                
+                case data = "data"
                 
             }
 
             public init(data: RupifiBannerData, success: Bool) {
                 
-                self.data = data
-                
                 self.success = success
+                
+                self.data = data
                 
             }
 
@@ -74054,12 +73975,12 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                data = try container.decode(RupifiBannerData.self, forKey: .data)
-                
-                
-                
-                
                 success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                
+                data = try container.decode(RupifiBannerData.self, forKey: .data)
                 
                 
                 
@@ -74070,12 +73991,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(data, forKey: .data)
-                
-                
-                
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
+                try? container.encodeIfPresent(data, forKey: .data)
                 
                 
             }
@@ -74088,42 +74009,42 @@
         */
         class TransferItemsDetails: Codable {
             
-            public var id: String
+            public var name: String
             
             public var displayName: Bool?
             
-            public var logoSmall: String
-            
-            public var name: String
-            
             public var logoLarge: String
+            
+            public var id: String
+            
+            public var logoSmall: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case id = "id"
+                case name = "name"
                 
                 case displayName = "display_name"
                 
-                case logoSmall = "logo_small"
-                
-                case name = "name"
-                
                 case logoLarge = "logo_large"
+                
+                case id = "id"
+                
+                case logoSmall = "logo_small"
                 
             }
 
             public init(displayName: Bool?, id: String, logoLarge: String, logoSmall: String, name: String) {
                 
-                self.id = id
+                self.name = name
                 
                 self.displayName = displayName
                 
-                self.logoSmall = logoSmall
-                
-                self.name = name
-                
                 self.logoLarge = logoLarge
+                
+                self.id = id
+                
+                self.logoSmall = logoSmall
                 
             }
 
@@ -74137,7 +74058,7 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                id = try container.decode(String.self, forKey: .id)
+                name = try container.decode(String.self, forKey: .name)
                 
                 
                 
@@ -74154,17 +74075,17 @@
                 
                 
                 
-                logoSmall = try container.decode(String.self, forKey: .logoSmall)
-                
-                
-                
-                
-                name = try container.decode(String.self, forKey: .name)
-                
-                
-                
-                
                 logoLarge = try container.decode(String.self, forKey: .logoLarge)
+                
+                
+                
+                
+                id = try container.decode(String.self, forKey: .id)
+                
+                
+                
+                
+                logoSmall = try container.decode(String.self, forKey: .logoSmall)
                 
                 
                 
@@ -74175,7 +74096,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(id, forKey: .id)
+                try? container.encodeIfPresent(name, forKey: .name)
                 
                 
                 
@@ -74185,17 +74106,17 @@
                 
                 
                 
-                try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
-                
-                
-                
-                
-                try? container.encodeIfPresent(name, forKey: .name)
-                
-                
-                
-                
                 try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
+                
+                
+                
+                
+                try? container.encodeIfPresent(id, forKey: .id)
+                
+                
+                
+                
+                try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
                 
                 
             }
@@ -74329,24 +74250,24 @@
         */
         class UpdateRefundTransferModeRequest: Codable {
             
-            public var transferMode: String
-            
             public var enable: Bool
+            
+            public var transferMode: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case transferMode = "transfer_mode"
-                
                 case enable = "enable"
+                
+                case transferMode = "transfer_mode"
                 
             }
 
             public init(enable: Bool, transferMode: String) {
                 
-                self.transferMode = transferMode
-                
                 self.enable = enable
+                
+                self.transferMode = transferMode
                 
             }
 
@@ -74360,12 +74281,12 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                transferMode = try container.decode(String.self, forKey: .transferMode)
-                
-                
-                
-                
                 enable = try container.decode(Bool.self, forKey: .enable)
+                
+                
+                
+                
+                transferMode = try container.decode(String.self, forKey: .transferMode)
                 
                 
                 
@@ -74376,12 +74297,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-                
-                
-                
-                
                 try? container.encodeIfPresent(enable, forKey: .enable)
+                
+                
+                
+                
+                try? container.encodeIfPresent(transferMode, forKey: .transferMode)
                 
                 
             }
@@ -74450,126 +74371,126 @@
         */
         class OrderBeneficiaryDetails: Codable {
             
+            public var branchName: Bool?
+            
+            public var displayName: String
+            
             public var isActive: Bool
             
             public var beneficiaryId: String
             
-            public var displayName: String
-            
-            public var createdOn: String
-            
-            public var email: String
+            public var accountNo: String
             
             public var accountHolder: String
             
-            public var modifiedOn: String
+            public var address: String
             
             public var bankName: String
             
-            public var accountNo: String
+            public var subtitle: String
+            
+            public var createdOn: String
             
             public var title: String
             
-            public var subtitle: String
-            
-            public var id: Int
+            public var comment: Bool?
             
             public var delightsUserName: String
             
-            public var ifscCode: String
-            
-            public var address: String
-            
-            public var comment: Bool?
+            public var mobile: Bool?
             
             public var transferMode: String
             
-            public var branchName: Bool?
+            public var id: Int
             
-            public var mobile: Bool?
+            public var ifscCode: String
+            
+            public var modifiedOn: String
+            
+            public var email: String
             
 
             public enum CodingKeys: String, CodingKey {
+                
+                case branchName = "branch_name"
+                
+                case displayName = "display_name"
                 
                 case isActive = "is_active"
                 
                 case beneficiaryId = "beneficiary_id"
                 
-                case displayName = "display_name"
-                
-                case createdOn = "created_on"
-                
-                case email = "email"
+                case accountNo = "account_no"
                 
                 case accountHolder = "account_holder"
                 
-                case modifiedOn = "modified_on"
+                case address = "address"
                 
                 case bankName = "bank_name"
                 
-                case accountNo = "account_no"
+                case subtitle = "subtitle"
+                
+                case createdOn = "created_on"
                 
                 case title = "title"
                 
-                case subtitle = "subtitle"
-                
-                case id = "id"
+                case comment = "comment"
                 
                 case delightsUserName = "delights_user_name"
                 
-                case ifscCode = "ifsc_code"
-                
-                case address = "address"
-                
-                case comment = "comment"
+                case mobile = "mobile"
                 
                 case transferMode = "transfer_mode"
                 
-                case branchName = "branch_name"
+                case id = "id"
                 
-                case mobile = "mobile"
+                case ifscCode = "ifsc_code"
+                
+                case modifiedOn = "modified_on"
+                
+                case email = "email"
                 
             }
 
             public init(accountHolder: String, accountNo: String, address: String, bankName: String, beneficiaryId: String, branchName: Bool?, comment: Bool?, createdOn: String, delightsUserName: String, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, mobile: Bool?, modifiedOn: String, subtitle: String, title: String, transferMode: String) {
                 
+                self.branchName = branchName
+                
+                self.displayName = displayName
+                
                 self.isActive = isActive
                 
                 self.beneficiaryId = beneficiaryId
                 
-                self.displayName = displayName
-                
-                self.createdOn = createdOn
-                
-                self.email = email
+                self.accountNo = accountNo
                 
                 self.accountHolder = accountHolder
                 
-                self.modifiedOn = modifiedOn
+                self.address = address
                 
                 self.bankName = bankName
                 
-                self.accountNo = accountNo
+                self.subtitle = subtitle
+                
+                self.createdOn = createdOn
                 
                 self.title = title
                 
-                self.subtitle = subtitle
-                
-                self.id = id
+                self.comment = comment
                 
                 self.delightsUserName = delightsUserName
                 
-                self.ifscCode = ifscCode
-                
-                self.address = address
-                
-                self.comment = comment
+                self.mobile = mobile
                 
                 self.transferMode = transferMode
                 
-                self.branchName = branchName
+                self.id = id
                 
-                self.mobile = mobile
+                self.ifscCode = ifscCode
+                
+                self.modifiedOn = modifiedOn
+                
+                self.email = email
                 
             }
 
@@ -74583,6 +74504,23 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                do {
+                    branchName = try container.decode(Bool.self, forKey: .branchName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                displayName = try container.decode(String.self, forKey: .displayName)
+                
+                
+                
+                
                 isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 
@@ -74593,17 +74531,7 @@
                 
                 
                 
-                displayName = try container.decode(String.self, forKey: .displayName)
-                
-                
-                
-                
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-                
-                
-                
-                
-                email = try container.decode(String.self, forKey: .email)
+                accountNo = try container.decode(String.self, forKey: .accountNo)
                 
                 
                 
@@ -74613,7 +74541,7 @@
                 
                 
                 
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                address = try container.decode(String.self, forKey: .address)
                 
                 
                 
@@ -74623,37 +74551,17 @@
                 
                 
                 
-                accountNo = try container.decode(String.self, forKey: .accountNo)
-                
-                
-                
-                
-                title = try container.decode(String.self, forKey: .title)
-                
-                
-                
-                
                 subtitle = try container.decode(String.self, forKey: .subtitle)
                 
                 
                 
                 
-                id = try container.decode(Int.self, forKey: .id)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 
                 
                 
-                delightsUserName = try container.decode(String.self, forKey: .delightsUserName)
-                
-                
-                
-                
-                ifscCode = try container.decode(String.self, forKey: .ifscCode)
-                
-                
-                
-                
-                address = try container.decode(String.self, forKey: .address)
+                title = try container.decode(String.self, forKey: .title)
                 
                 
                 
@@ -74670,20 +74578,8 @@
                 
                 
                 
-                transferMode = try container.decode(String.self, forKey: .transferMode)
+                delightsUserName = try container.decode(String.self, forKey: .delightsUserName)
                 
-                
-                
-                
-                do {
-                    branchName = try container.decode(Bool.self, forKey: .branchName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
                 
                 
                 
@@ -74698,10 +74594,45 @@
                 }
                 
                 
+                
+                transferMode = try container.decode(String.self, forKey: .transferMode)
+                
+                
+                
+                
+                id = try container.decode(Int.self, forKey: .id)
+                
+                
+                
+                
+                ifscCode = try container.decode(String.self, forKey: .ifscCode)
+                
+                
+                
+                
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                
+                
+                
+                email = try container.decode(String.self, forKey: .email)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                
+                
+                try? container.encodeIfPresent(branchName, forKey: .branchName)
+                
+                
+                
+                
+                try? container.encodeIfPresent(displayName, forKey: .displayName)
+                
                 
                 
                 
@@ -74715,17 +74646,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(displayName, forKey: .displayName)
-                
-                
-                
-                
-                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-                
-                
-                
-                
-                try? container.encodeIfPresent(email, forKey: .email)
+                try? container.encodeIfPresent(accountNo, forKey: .accountNo)
                 
                 
                 
@@ -74735,7 +74656,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+                try? container.encodeIfPresent(address, forKey: .address)
                 
                 
                 
@@ -74745,7 +74666,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+                try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+                
+                
+                
+                
+                try? container.encodeIfPresent(createdOn, forKey: .createdOn)
                 
                 
                 
@@ -74755,12 +74681,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(subtitle, forKey: .subtitle)
-                
-                
-                
-                
-                try? container.encodeIfPresent(id, forKey: .id)
+                try? container.encodeIfPresent(comment, forKey: .comment)
                 
                 
                 
@@ -74770,17 +74691,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-                
-                
-                
-                
-                try? container.encodeIfPresent(address, forKey: .address)
-                
-                
-                
-                
-                try? container.encodeIfPresent(comment, forKey: .comment)
+                try? container.encodeIfPresent(mobile, forKey: .mobile)
                 
                 
                 
@@ -74790,12 +74701,22 @@
                 
                 
                 
-                try? container.encodeIfPresent(branchName, forKey: .branchName)
+                try? container.encodeIfPresent(id, forKey: .id)
                 
                 
                 
                 
-                try? container.encodeIfPresent(mobile, forKey: .mobile)
+                try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+                
+                
+                
+                
+                try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+                
+                
+                
+                
+                try? container.encodeIfPresent(email, forKey: .email)
                 
                 
             }
@@ -74808,24 +74729,24 @@
         */
         class OrderBeneficiaryResponse: Codable {
             
-            public var beneficiaries: [OrderBeneficiaryDetails]
-            
             public var showBeneficiaryDetails: Bool?
+            
+            public var beneficiaries: [OrderBeneficiaryDetails]
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case beneficiaries = "beneficiaries"
-                
                 case showBeneficiaryDetails = "show_beneficiary_details"
+                
+                case beneficiaries = "beneficiaries"
                 
             }
 
             public init(beneficiaries: [OrderBeneficiaryDetails], showBeneficiaryDetails: Bool?) {
                 
-                self.beneficiaries = beneficiaries
-                
                 self.showBeneficiaryDetails = showBeneficiaryDetails
+                
+                self.beneficiaries = beneficiaries
                 
             }
 
@@ -74839,11 +74760,6 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
-                
-                
-                
-                
                 do {
                     showBeneficiaryDetails = try container.decode(Bool.self, forKey: .showBeneficiaryDetails)
                 
@@ -74855,6 +74771,11 @@
                 }
                 
                 
+                
+                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -74862,12 +74783,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(beneficiaries, forKey: .beneficiaries)
-                
-                
-                
-                
                 try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
+                
+                
+                
+                
+                try? container.encodeIfPresent(beneficiaries, forKey: .beneficiaries)
                 
                 
             }
@@ -74880,30 +74801,30 @@
         */
         class NotFoundResourceError: Codable {
             
+            public var success: Bool
+            
             public var description: String
             
             public var code: String
             
-            public var success: Bool
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case success = "success"
                 
                 case description = "description"
                 
                 case code = "code"
                 
-                case success = "success"
-                
             }
 
             public init(code: String, description: String, success: Bool) {
                 
+                self.success = success
+                
                 self.description = description
                 
                 self.code = code
-                
-                self.success = success
                 
             }
 
@@ -74917,17 +74838,17 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                
                 description = try container.decode(String.self, forKey: .description)
                 
                 
                 
                 
                 code = try container.decode(String.self, forKey: .code)
-                
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
                 
                 
                 
@@ -74938,17 +74859,17 @@
                 
                 
                 
+                try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
                 try? container.encodeIfPresent(description, forKey: .description)
                 
                 
                 
                 
                 try? container.encodeIfPresent(code, forKey: .code)
-                
-                
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
             }
@@ -74961,30 +74882,30 @@
         */
         class IfscCodeResponse: Codable {
             
-            public var branchName: String
+            public var success: Bool?
             
             public var bankName: String
             
-            public var success: Bool?
+            public var branchName: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case branchName = "branch_name"
+                case success = "success"
                 
                 case bankName = "bank_name"
                 
-                case success = "success"
+                case branchName = "branch_name"
                 
             }
 
             public init(bankName: String, branchName: String, success: Bool?) {
                 
-                self.branchName = branchName
+                self.success = success
                 
                 self.bankName = bankName
                 
-                self.success = success
+                self.branchName = branchName
                 
             }
 
@@ -74998,16 +74919,6 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                branchName = try container.decode(String.self, forKey: .branchName)
-                
-                
-                
-                
-                bankName = try container.decode(String.self, forKey: .bankName)
-                
-                
-                
-                
                 do {
                     success = try container.decode(Bool.self, forKey: .success)
                 
@@ -75019,6 +74930,16 @@
                 }
                 
                 
+                
+                bankName = try container.decode(String.self, forKey: .bankName)
+                
+                
+                
+                
+                branchName = try container.decode(String.self, forKey: .branchName)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -75026,7 +74947,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(branchName, forKey: .branchName)
+                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
                 
@@ -75036,7 +74957,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(success, forKey: .success)
+                try? container.encodeIfPresent(branchName, forKey: .branchName)
                 
                 
             }
@@ -75049,30 +74970,30 @@
         */
         class ErrorCodeDescription: Codable {
             
+            public var success: Bool
+            
             public var description: String
             
             public var code: String
             
-            public var success: Bool
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case success = "success"
                 
                 case description = "description"
                 
                 case code = "code"
                 
-                case success = "success"
-                
             }
 
             public init(code: String, description: String, success: Bool) {
                 
+                self.success = success
+                
                 self.description = description
                 
                 self.code = code
-                
-                self.success = success
                 
             }
 
@@ -75086,17 +75007,17 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
+                
+                
                 description = try container.decode(String.self, forKey: .description)
                 
                 
                 
                 
                 code = try container.decode(String.self, forKey: .code)
-                
-                
-                
-                
-                success = try container.decode(Bool.self, forKey: .success)
                 
                 
                 
@@ -75107,17 +75028,17 @@
                 
                 
                 
+                try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
                 try? container.encodeIfPresent(description, forKey: .description)
                 
                 
                 
                 
                 try? container.encodeIfPresent(code, forKey: .code)
-                
-                
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
             }
@@ -75130,30 +75051,30 @@
         */
         class AddBeneficiaryViaOtpVerificationRequest: Codable {
             
+            public var hashKey: String
+            
             public var requestId: String
             
             public var otp: String
             
-            public var hashKey: String
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case hashKey = "hash_key"
                 
                 case requestId = "request_id"
                 
                 case otp = "otp"
                 
-                case hashKey = "hash_key"
-                
             }
 
             public init(hashKey: String, otp: String, requestId: String) {
                 
+                self.hashKey = hashKey
+                
                 self.requestId = requestId
                 
                 self.otp = otp
-                
-                self.hashKey = hashKey
                 
             }
 
@@ -75167,17 +75088,17 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                hashKey = try container.decode(String.self, forKey: .hashKey)
+                
+                
+                
+                
                 requestId = try container.decode(String.self, forKey: .requestId)
                 
                 
                 
                 
                 otp = try container.decode(String.self, forKey: .otp)
-                
-                
-                
-                
-                hashKey = try container.decode(String.self, forKey: .hashKey)
                 
                 
                 
@@ -75188,17 +75109,17 @@
                 
                 
                 
+                try? container.encodeIfPresent(hashKey, forKey: .hashKey)
+                
+                
+                
+                
                 try? container.encodeIfPresent(requestId, forKey: .requestId)
                 
                 
                 
                 
                 try? container.encodeIfPresent(otp, forKey: .otp)
-                
-                
-                
-                
-                try? container.encodeIfPresent(hashKey, forKey: .hashKey)
                 
                 
             }
@@ -75211,24 +75132,24 @@
         */
         class AddBeneficiaryViaOtpVerificationResponse: Codable {
             
-            public var message: String
-            
             public var success: Bool?
+            
+            public var message: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case message = "message"
-                
                 case success = "success"
+                
+                case message = "message"
                 
             }
 
             public init(message: String, success: Bool?) {
                 
-                self.message = message
-                
                 self.success = success
+                
+                self.message = message
                 
             }
 
@@ -75242,11 +75163,6 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                message = try container.decode(String.self, forKey: .message)
-                
-                
-                
-                
                 do {
                     success = try container.decode(Bool.self, forKey: .success)
                 
@@ -75258,6 +75174,11 @@
                 }
                 
                 
+                
+                message = try container.decode(String.self, forKey: .message)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -75265,12 +75186,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(message, forKey: .message)
-                
-                
-                
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
+                try? container.encodeIfPresent(message, forKey: .message)
                 
                 
             }
@@ -75283,30 +75204,30 @@
         */
         class WrongOtpError: Codable {
             
-            public var description: String
+            public var success: String
             
             public var isVerifiedFlag: Bool
             
-            public var success: String
+            public var description: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case description = "description"
+                case success = "success"
                 
                 case isVerifiedFlag = "is_verified_flag"
                 
-                case success = "success"
+                case description = "description"
                 
             }
 
             public init(description: String, isVerifiedFlag: Bool, success: String) {
                 
-                self.description = description
+                self.success = success
                 
                 self.isVerifiedFlag = isVerifiedFlag
                 
-                self.success = success
+                self.description = description
                 
             }
 
@@ -75320,7 +75241,7 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                description = try container.decode(String.self, forKey: .description)
+                success = try container.decode(String.self, forKey: .success)
                 
                 
                 
@@ -75330,7 +75251,7 @@
                 
                 
                 
-                success = try container.decode(String.self, forKey: .success)
+                description = try container.decode(String.self, forKey: .description)
                 
                 
                 
@@ -75341,7 +75262,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(description, forKey: .description)
+                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
                 
@@ -75351,7 +75272,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(success, forKey: .success)
+                try? container.encodeIfPresent(description, forKey: .description)
                 
                 
             }
@@ -75364,78 +75285,78 @@
         */
         class BeneficiaryModeDetails: Codable {
             
-            public var accountHolder: String
+            public var email: String
             
-            public var bankName: String
+            public var branchName: String
+            
+            public var mobile: String
+            
+            public var vpa: String?
             
             public var accountNo: String
             
-            public var email: String
+            public var comment: String?
+            
+            public var accountHolder: String
+            
+            public var address: String?
             
             public var wallet: String?
             
             public var ifscCode: String
             
-            public var address: String?
-            
-            public var comment: String?
-            
-            public var mobile: String
-            
-            public var branchName: String
-            
-            public var vpa: String?
+            public var bankName: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case accountHolder = "account_holder"
+                case email = "email"
                 
-                case bankName = "bank_name"
+                case branchName = "branch_name"
+                
+                case mobile = "mobile"
+                
+                case vpa = "vpa"
                 
                 case accountNo = "account_no"
                 
-                case email = "email"
+                case comment = "comment"
+                
+                case accountHolder = "account_holder"
+                
+                case address = "address"
                 
                 case wallet = "wallet"
                 
                 case ifscCode = "ifsc_code"
                 
-                case address = "address"
-                
-                case comment = "comment"
-                
-                case mobile = "mobile"
-                
-                case branchName = "branch_name"
-                
-                case vpa = "vpa"
+                case bankName = "bank_name"
                 
             }
 
             public init(accountHolder: String, accountNo: String, address: String?, bankName: String, branchName: String, comment: String?, email: String, ifscCode: String, mobile: String, vpa: String?, wallet: String?) {
                 
-                self.accountHolder = accountHolder
+                self.email = email
                 
-                self.bankName = bankName
+                self.branchName = branchName
+                
+                self.mobile = mobile
+                
+                self.vpa = vpa
                 
                 self.accountNo = accountNo
                 
-                self.email = email
+                self.comment = comment
+                
+                self.accountHolder = accountHolder
+                
+                self.address = address
                 
                 self.wallet = wallet
                 
                 self.ifscCode = ifscCode
                 
-                self.address = address
-                
-                self.comment = comment
-                
-                self.mobile = mobile
-                
-                self.branchName = branchName
-                
-                self.vpa = vpa
+                self.bankName = bankName
                 
             }
 
@@ -75449,13 +75370,30 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                accountHolder = try container.decode(String.self, forKey: .accountHolder)
+                email = try container.decode(String.self, forKey: .email)
                 
                 
                 
                 
-                bankName = try container.decode(String.self, forKey: .bankName)
+                branchName = try container.decode(String.self, forKey: .branchName)
                 
+                
+                
+                
+                mobile = try container.decode(String.self, forKey: .mobile)
+                
+                
+                
+                
+                do {
+                    vpa = try container.decode(String.self, forKey: .vpa)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
                 
                 
@@ -75464,8 +75402,32 @@
                 
                 
                 
-                email = try container.decode(String.self, forKey: .email)
+                do {
+                    comment = try container.decode(String.self, forKey: .comment)
                 
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                accountHolder = try container.decode(String.self, forKey: .accountHolder)
+                
+                
+                
+                
+                do {
+                    address = try container.decode(String.self, forKey: .address)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
                 
                 
@@ -75486,49 +75448,8 @@
                 
                 
                 
-                do {
-                    address = try container.decode(String.self, forKey: .address)
+                bankName = try container.decode(String.self, forKey: .bankName)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                do {
-                    comment = try container.decode(String.self, forKey: .comment)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-                
-                
-                mobile = try container.decode(String.self, forKey: .mobile)
-                
-                
-                
-                
-                branchName = try container.decode(String.self, forKey: .branchName)
-                
-                
-                
-                
-                do {
-                    vpa = try container.decode(String.self, forKey: .vpa)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
                 
                 
             }
@@ -75538,12 +75459,22 @@
                 
                 
                 
-                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+                try? container.encodeIfPresent(email, forKey: .email)
                 
                 
                 
                 
-                try? container.encodeIfPresent(bankName, forKey: .bankName)
+                try? container.encodeIfPresent(branchName, forKey: .branchName)
+                
+                
+                
+                
+                try? container.encodeIfPresent(mobile, forKey: .mobile)
+                
+                
+                
+                
+                try? container.encode(vpa, forKey: .vpa)
                 
                 
                 
@@ -75553,7 +75484,17 @@
                 
                 
                 
-                try? container.encodeIfPresent(email, forKey: .email)
+                try? container.encodeIfPresent(comment, forKey: .comment)
+                
+                
+                
+                
+                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+                
+                
+                
+                
+                try? container.encodeIfPresent(address, forKey: .address)
                 
                 
                 
@@ -75568,27 +75509,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(address, forKey: .address)
-                
-                
-                
-                
-                try? container.encodeIfPresent(comment, forKey: .comment)
-                
-                
-                
-                
-                try? container.encodeIfPresent(mobile, forKey: .mobile)
-                
-                
-                
-                
-                try? container.encodeIfPresent(branchName, forKey: .branchName)
-                
-                
-                
-                
-                try? container.encode(vpa, forKey: .vpa)
+                try? container.encodeIfPresent(bankName, forKey: .bankName)
                 
                 
             }
@@ -75601,54 +75522,54 @@
         */
         class AddBeneficiaryDetailsRequest: Codable {
             
-            public var details: BeneficiaryModeDetails
-            
-            public var shipmentId: String
-            
-            public var requestId: String?
+            public var orderId: String
             
             public var delights: Bool
             
-            public var orderId: String
+            public var otp: String?
             
             public var transferMode: String
             
-            public var otp: String?
+            public var details: BeneficiaryModeDetails
+            
+            public var requestId: String?
+            
+            public var shipmentId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case details = "details"
-                
-                case shipmentId = "shipment_id"
-                
-                case requestId = "request_id"
+                case orderId = "order_id"
                 
                 case delights = "delights"
                 
-                case orderId = "order_id"
+                case otp = "otp"
                 
                 case transferMode = "transfer_mode"
                 
-                case otp = "otp"
+                case details = "details"
+                
+                case requestId = "request_id"
+                
+                case shipmentId = "shipment_id"
                 
             }
 
             public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String?, requestId: String?, shipmentId: String, transferMode: String) {
                 
-                self.details = details
-                
-                self.shipmentId = shipmentId
-                
-                self.requestId = requestId
+                self.orderId = orderId
                 
                 self.delights = delights
                 
-                self.orderId = orderId
+                self.otp = otp
                 
                 self.transferMode = transferMode
                 
-                self.otp = otp
+                self.details = details
+                
+                self.requestId = requestId
+                
+                self.shipmentId = shipmentId
                 
             }
 
@@ -75662,12 +75583,34 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
+                orderId = try container.decode(String.self, forKey: .orderId)
+                
+                
+                
+                
+                delights = try container.decode(Bool.self, forKey: .delights)
+                
+                
+                
+                
+                do {
+                    otp = try container.decode(String.self, forKey: .otp)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                transferMode = try container.decode(String.self, forKey: .transferMode)
+                
+                
+                
+                
                 details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
-                
-                
-                
-                
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 
                 
@@ -75684,30 +75627,8 @@
                 
                 
                 
-                delights = try container.decode(Bool.self, forKey: .delights)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
-                
-                
-                
-                orderId = try container.decode(String.self, forKey: .orderId)
-                
-                
-                
-                
-                transferMode = try container.decode(String.self, forKey: .transferMode)
-                
-                
-                
-                
-                do {
-                    otp = try container.decode(String.self, forKey: .otp)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
                 
                 
             }
@@ -75717,17 +75638,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(details, forKey: .details)
-                
-                
-                
-                
-                try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-                
-                
-                
-                
-                try? container.encodeIfPresent(requestId, forKey: .requestId)
+                try? container.encodeIfPresent(orderId, forKey: .orderId)
                 
                 
                 
@@ -75737,7 +75648,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(orderId, forKey: .orderId)
+                try? container.encodeIfPresent(otp, forKey: .otp)
                 
                 
                 
@@ -75747,7 +75658,17 @@
                 
                 
                 
-                try? container.encodeIfPresent(otp, forKey: .otp)
+                try? container.encodeIfPresent(details, forKey: .details)
+                
+                
+                
+                
+                try? container.encodeIfPresent(requestId, forKey: .requestId)
+                
+                
+                
+                
+                try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
                 
                 
             }
@@ -75760,16 +75681,18 @@
         */
         class RefundAccountResponse: Codable {
             
+            public var success: Bool
+            
             public var isVerifiedFlag: Bool?
             
             public var message: String
             
             public var data: [String: Any]?
             
-            public var success: Bool
-            
 
             public enum CodingKeys: String, CodingKey {
+                
+                case success = "success"
                 
                 case isVerifiedFlag = "is_verified_flag"
                 
@@ -75777,19 +75700,17 @@
                 
                 case data = "data"
                 
-                case success = "success"
-                
             }
 
             public init(data: [String: Any]?, isVerifiedFlag: Bool?, message: String, success: Bool) {
+                
+                self.success = success
                 
                 self.isVerifiedFlag = isVerifiedFlag
                 
                 self.message = message
                 
                 self.data = data
-                
-                self.success = success
                 
             }
 
@@ -75801,6 +75722,11 @@
 
             required public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+                
+                success = try container.decode(Bool.self, forKey: .success)
+                
+                
                 
                 
                 do {
@@ -75831,15 +75757,15 @@
                 }
                 
                 
-                
-                success = try container.decode(Bool.self, forKey: .success)
-                
-                
-                
             }
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
+                
+                
+                
+                try? container.encodeIfPresent(success, forKey: .success)
+                
                 
                 
                 
@@ -75856,11 +75782,6 @@
                 try? container.encodeIfPresent(data, forKey: .data)
                 
                 
-                
-                
-                try? container.encodeIfPresent(success, forKey: .success)
-                
-                
             }
             
         }
@@ -75871,42 +75792,42 @@
         */
         class BankDetailsForOTP: Codable {
             
-            public var accountHolder: String
-            
-            public var bankName: String
+            public var branchName: String
             
             public var accountNo: String
             
+            public var accountHolder: String
+            
             public var ifscCode: String
             
-            public var branchName: String
+            public var bankName: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case accountHolder = "account_holder"
-                
-                case bankName = "bank_name"
+                case branchName = "branch_name"
                 
                 case accountNo = "account_no"
                 
+                case accountHolder = "account_holder"
+                
                 case ifscCode = "ifsc_code"
                 
-                case branchName = "branch_name"
+                case bankName = "bank_name"
                 
             }
 
             public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
                 
-                self.accountHolder = accountHolder
-                
-                self.bankName = bankName
+                self.branchName = branchName
                 
                 self.accountNo = accountNo
                 
+                self.accountHolder = accountHolder
+                
                 self.ifscCode = ifscCode
                 
-                self.branchName = branchName
+                self.bankName = bankName
                 
             }
 
@@ -75920,12 +75841,7 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                accountHolder = try container.decode(String.self, forKey: .accountHolder)
-                
-                
-                
-                
-                bankName = try container.decode(String.self, forKey: .bankName)
+                branchName = try container.decode(String.self, forKey: .branchName)
                 
                 
                 
@@ -75935,12 +75851,17 @@
                 
                 
                 
+                accountHolder = try container.decode(String.self, forKey: .accountHolder)
+                
+                
+                
+                
                 ifscCode = try container.decode(String.self, forKey: .ifscCode)
                 
                 
                 
                 
-                branchName = try container.decode(String.self, forKey: .branchName)
+                bankName = try container.decode(String.self, forKey: .bankName)
                 
                 
                 
@@ -75951,12 +75872,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-                
-                
-                
-                
-                try? container.encodeIfPresent(bankName, forKey: .bankName)
+                try? container.encodeIfPresent(branchName, forKey: .branchName)
                 
                 
                 
@@ -75966,12 +75882,17 @@
                 
                 
                 
+                try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+                
+                
+                
+                
                 try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
                 
                 
                 
                 
-                try? container.encodeIfPresent(branchName, forKey: .branchName)
+                try? container.encodeIfPresent(bankName, forKey: .bankName)
                 
                 
             }
@@ -76114,30 +76035,30 @@
         */
         class WalletOtpResponse: Codable {
             
-            public var requestId: String
+            public var success: Bool?
             
             public var isVerifiedFlag: String
             
-            public var success: Bool?
+            public var requestId: String
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case requestId = "request_id"
+                case success = "success"
                 
                 case isVerifiedFlag = "is_verified_flag"
                 
-                case success = "success"
+                case requestId = "request_id"
                 
             }
 
             public init(isVerifiedFlag: String, requestId: String, success: Bool?) {
                 
-                self.requestId = requestId
+                self.success = success
                 
                 self.isVerifiedFlag = isVerifiedFlag
                 
-                self.success = success
+                self.requestId = requestId
                 
             }
 
@@ -76151,16 +76072,6 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                requestId = try container.decode(String.self, forKey: .requestId)
-                
-                
-                
-                
-                isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
-                
-                
-                
-                
                 do {
                     success = try container.decode(Bool.self, forKey: .success)
                 
@@ -76172,6 +76083,16 @@
                 }
                 
                 
+                
+                isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
+                
+                
+                
+                
+                requestId = try container.decode(String.self, forKey: .requestId)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -76179,7 +76100,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(requestId, forKey: .requestId)
+                try? container.encodeIfPresent(success, forKey: .success)
                 
                 
                 
@@ -76189,7 +76110,7 @@
                 
                 
                 
-                try? container.encodeIfPresent(success, forKey: .success)
+                try? container.encodeIfPresent(requestId, forKey: .requestId)
                 
                 
             }
@@ -76267,24 +76188,24 @@
         */
         class SetDefaultBeneficiaryResponse: Codable {
             
-            public var isBeneficiarySet: Bool
-            
             public var success: Bool?
+            
+            public var isBeneficiarySet: Bool
             
 
             public enum CodingKeys: String, CodingKey {
                 
-                case isBeneficiarySet = "is_beneficiary_set"
-                
                 case success = "success"
+                
+                case isBeneficiarySet = "is_beneficiary_set"
                 
             }
 
             public init(isBeneficiarySet: Bool, success: Bool?) {
                 
-                self.isBeneficiarySet = isBeneficiarySet
-                
                 self.success = success
+                
+                self.isBeneficiarySet = isBeneficiarySet
                 
             }
 
@@ -76298,11 +76219,6 @@
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 
                 
-                isBeneficiarySet = try container.decode(Bool.self, forKey: .isBeneficiarySet)
-                
-                
-                
-                
                 do {
                     success = try container.decode(Bool.self, forKey: .success)
                 
@@ -76314,6 +76230,11 @@
                 }
                 
                 
+                
+                isBeneficiarySet = try container.decode(Bool.self, forKey: .isBeneficiarySet)
+                
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -76321,12 +76242,12 @@
                 
                 
                 
-                try? container.encodeIfPresent(isBeneficiarySet, forKey: .isBeneficiarySet)
-                
-                
-                
-                
                 try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
+                try? container.encodeIfPresent(isBeneficiarySet, forKey: .isBeneficiarySet)
                 
                 
             }
