@@ -2420,6 +2420,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verifyEmailOtp | Bool? |  yes  |  |
  | verifyMobileOtp | Bool? |  yes  |  |
  | email | String? |  yes  |  |
+ | requestId | String? |  yes  |  |
 
 ---
 

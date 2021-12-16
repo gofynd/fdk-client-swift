@@ -990,6 +990,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | verifyEmailOtp | Bool? |  yes  |  |
  | verifyMobileOtp | Bool? |  yes  |  |
  | email | String? |  yes  |  |
+ | requestId | String? |  yes  |  |
 
 ---
 

@@ -17,13 +17,13 @@ Content System
 * [getLandingPage](#getlandingpage)
 * [getLegalInformation](#getlegalinformation)
 * [getNavigations](#getnavigations)
-* [getPage](#getpage)
-* [getPages](#getpages)
 * [getSEOConfiguration](#getseoconfiguration)
 * [getSlideshows](#getslideshows)
 * [getSlideshow](#getslideshow)
 * [getSupportInformation](#getsupportinformation)
 * [getTags](#gettags)
+* [getPage](#getpage)
+* [getPages](#getpages)
 
 
 
@@ -729,134 +729,6 @@ Success. Returns a JSON object with navigation details. Check the example shown 
 ---
 
 
-#### getPage
-Get a page
-
-
-
-
-```swift
-content.getPage(slug: slug, rootId: rootId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| slug | String | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v1.0/pages/. |   
-| rootId | String? | no | ID given to the HTML element |  
-
-
-
-Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "$ref": "#/components/examples/PageResponse"
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPages
-Get all pages
-
-
-
-
-```swift
-content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |   
-| pageSize | Int? | no | The number of items to retrieve in each page. |  
-
-
-
-Use this API to get a list of pages.
-
-*Returned Response:*
-
-
-
-
-[PageGetResponse](#PageGetResponse)
-
-Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "$ref": "#/components/examples/PageGetResponse"
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSEOConfiguration
 Get the SEO of an application
 
@@ -1166,6 +1038,134 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 ---
 
 
+#### getPage
+Get a page
+
+
+
+
+```swift
+content.getPage(slug: slug, rootId: rootId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| slug | String | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v2.0/pages/. |   
+| rootId | String? | no | ID given to the HTML element |  
+
+
+
+Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/PageStorefrontResponse"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPages
+Get all pages
+
+
+
+
+```swift
+content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |   
+| pageSize | Int? | no | The number of items to retrieve in each page. |  
+
+
+
+Use this API to get a list of pages.
+
+*Returned Response:*
+
+
+
+
+[PageGetResponse](#PageGetResponse)
+
+Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetStorefrontResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/PageGetStorefrontResponse"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -1195,6 +1195,33 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | ---------- | ---- | -------- | ----------- |
  | question | String? |  yes  |  |
  | answer | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PathMappingSchema](#PathMappingSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | String? |  yes  |  |
+ | redirections | [[RedirectionSchema](#RedirectionSchema)]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RedirectionSchema](#RedirectionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | redirectFrom | String? |  yes  |  |
+ | redirectTo | String? |  yes  |  |
 
 ---
 
@@ -2203,6 +2230,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | application | String? |  yes  |  |
  | componentIds | [String]? |  yes  | Components can be used to store multiple components |
  | content | [[String: Any]]? |  yes  |  |
+ | contentPath | String? |  yes  |  |
  | createdBy | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
  | dateMeta | [DateMeta](#DateMeta)? |  yes  |  |
  | description | String? |  yes  |  |
