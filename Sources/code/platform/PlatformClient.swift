@@ -27,6 +27,8 @@ public class PlatformClient {
 
     public let analytics: Analytics
 
+    public let discount: Discount
+
     public let webhook: Webhook
 
     public init(config: PlatformConfig) {
@@ -53,6 +55,8 @@ public class PlatformClient {
         configuration = Configuration(config: config)
         
         analytics = Analytics(config: config)
+        
+        discount = Discount(config: config)
         
         webhook = Webhook(config: config)
         
@@ -5807,55 +5811,6 @@ if let value = q {
         
         /**
         *
-        * Summary: Get a single brand.
-        * Description: This API helps to get data associated to a particular brand.
-        **/
-        public func getBrand(
-            brandId: String,
-            
-            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Edit a brand.
         * Description: This API allows to edit meta of a brand.
         **/
@@ -5905,6 +5860,55 @@ if let value = q {
         
         /**
         *
+        * Summary: Get a single brand.
+        * Description: This API helps to get data associated to a particular brand.
+        **/
+        public func getBrand(
+            brandId: String,
+            
+            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: Create a Brand.
         * Description: This API allows to create a brand associated to a company.
         **/
@@ -5922,6 +5926,54 @@ if let value = q {
                 config: config,
                 method: "post",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create a company brand mapping.
+        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
+        **/
+        public func createCompanyBrandMapping(
+            body: CompanyBrandPostRequestSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -6084,11 +6136,11 @@ if let value = q {
         
         /**
         *
-        * Summary: Create a company brand mapping.
-        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
+        * Summary: Create a location asscoiated to a company.
+        * Description: This API allows to create a location associated to a company.
         **/
-        public func createCompanyBrandMapping(
-            body: CompanyBrandPostRequestSerializer,
+        public func createLocation(
+            body: LocationSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -6100,7 +6152,7 @@ if let value = q {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -6295,10 +6347,11 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create a location asscoiated to a company.
-        * Description: This API allows to create a location associated to a company.
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
         **/
-        public func createLocation(
+        public func updateLocation(
+            locationId: String,
             body: LocationSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -6310,8 +6363,8 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -6375,55 +6428,6 @@ if let value = pageSize {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetLocationSerializer.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Edit a location asscoiated to a company.
-        * Description: This API allows to edit a location associated to a company.
-        **/
-        public func updateLocation(
-            locationId: String,
-            body: LocationSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -9232,6 +9236,588 @@ if let value = pageSize {
     
     
     
+    public class Discount {        
+        var config: PlatformConfig
+        var companyId: String
+
+        init(config: PlatformConfig) {
+            self.config = config
+            self.companyId = config.companyId
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Fetch discount list.
+        * Description: Fetch discount list.
+        **/
+        public func getDiscounts(
+            view: String?,
+            q: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            archived: Bool?,
+            month: Int?,
+            year: Int?,
+            type: String?,
+            appIds: [String]?,
+            
+            onResponse: @escaping (_ response: ListOrCalender?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = view {
+    
+    xQuery["view"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = archived {
+    
+    xQuery["archived"] = value
+    
+}
+
+
+if let value = month {
+    
+    xQuery["month"] = value
+    
+}
+
+
+if let value = year {
+    
+    xQuery["year"] = value
+    
+}
+
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
+
+if let value = appIds {
+    
+    xQuery["app_ids"] = value
+    
+}
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/job/",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ListOrCalender.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create Discount.
+        * Description: Create Discount.
+        **/
+        public func createDiscount(
+            body: CreateUpdateDiscount,
+            onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/job/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DiscountJob.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Fetch discount.
+        * Description: Fetch discount.
+        **/
+        public func getDiscount(
+            id: String,
+            
+            onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DiscountJob.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create Discount.
+        * Description: Create Discount.
+        **/
+        public func updateDiscount(
+            id: String,
+            body: CreateUpdateDiscount,
+            onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DiscountJob.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Validate File.
+        * Description: Validate File.
+        **/
+        public func validateDiscountFile(
+            discount: String?,
+            body: DiscountJob,
+            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = discount {
+    
+    xQuery["discount"] = value
+    
+}
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/",
+                query: xQuery,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Validate File.
+        * Description: Validate File.
+        **/
+        public func downloadDiscountFile(
+            type: String,
+            body: DownloadFileJob,
+            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/file/\(type)/download/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Validate File Job.
+        * Description: Validate File Job.
+        **/
+        public func getValidationJob(
+            id: String,
+            
+            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Cancel Validation Job.
+        * Description: Cancel Validation Job.
+        **/
+        public func cancelValidationJob(
+            id: String,
+            
+            onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CancelJobResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Download File Job.
+        * Description: Download File Job.
+        **/
+        public func getDownloadJob(
+            id: String,
+            
+            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/file/download/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Cancel Download Job.
+        * Description: Cancel Download Job.
+        **/
+        public func cancelDownloadJob(
+            id: String,
+            
+            onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/platform/discount/v1.0/company/\(companyId)/file/download/\(id)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CancelJobResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+    }
+    
+    
+    
     public class Webhook {        
         var config: PlatformConfig
         var companyId: String
@@ -9613,6 +10199,8 @@ if let value = pageSize {
         
         public let analytics: Analytics
         
+        public let discount: Discount
+        
         public let partner: Partner
         
         
@@ -9649,6 +10237,8 @@ if let value = pageSize {
             rewards = Rewards(config: config, applicationId: applicationId)
             
             analytics = Analytics(config: config, applicationId: applicationId)
+            
+            discount = Discount(config: config, applicationId: applicationId)
             
             partner = Partner(config: config, applicationId: applicationId)
             
@@ -25548,6 +26138,127 @@ if let value = pageSize {
                         }
                 });
             }
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+            
+        public class Discount {        
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Fetch Discount Jobs.
+            * Description: Fetch Discount Jobs.
+            **/
+            public func fetchDiscountJobs(
+                
+                onResponse: @escaping (_ response: ListOrCalender?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/discount/v1.0/company/\(companyId)/application/\(applicationId)/job/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ListOrCalender.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Discounts.
+            * Description: Get Discounts.
+            **/
+            public func getDiscountDetails(
+                body: InternalDiscountQuery,
+                onResponse: @escaping (_ response: DiscountList?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/discount/v1.0/company/\(companyId)/application/\(applicationId)/discount/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DiscountList.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
             
             
             
