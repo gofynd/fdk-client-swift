@@ -14,6 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
+* [getOrderDetails](#getorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -24,6 +25,7 @@ Handles Platform websites OMS
 * [getShipmentTrackDetails](#getshipmenttrackdetails)
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
+* [getOrdersByApplicationId](#getordersbyapplicationid)
 * [getPing](#getping)
 * [voiceCallback](#voicecallback)
 * [voiceClickToCall](#voiceclicktocall)
@@ -312,7 +314,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -327,11 +329,14 @@ client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: 
 | pageSize | String? | no | Page limit |   
 | fromDate | String? | no | From Date |   
 | toDate | String? | no | To Date |   
+| isPrioritySort | Bool? | no | Sorting Order |   
+| lockStatus | Bool? | no | Hide Lock Status |   
 | q | String? | no | Keyword for Search |   
 | stage | String? | no | Specefic Order Stage |   
 | salesChannels | String? | no | Selected Sales Channel |   
 | orderId | String? | no | Order Id |   
 | stores | String? | no | Selected Stores |   
+| deploymentStores | String? | no | Selected Deployment Stores |   
 | status | String? | no | Status of order |   
 | dp | String? | no | Delivery Partners |   
 | shortenUrls | Bool? | no | Shorten URL option |   
@@ -446,6 +451,63 @@ Get Order Details for company based on Company Id and Order Id
 
 ```swift
 client.order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| orderId | String? | no | Order Id |   
+| next | String? | no | Next |   
+| previous | String? | no | Previous |  
+
+
+
+Get Orders
+
+*Returned Response:*
+
+
+
+
+[OrderDetails](#OrderDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
     // Use response
 }
 ```
@@ -1031,6 +1093,73 @@ Update Shipment Address
 [UpdateShipmentAddressResponse](#UpdateShipmentAddressResponse)
 
 Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrdersByApplicationId
+Get Orders for company based on Company Id
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | String? | no | Current page number |   
+| pageSize | String? | no | Page limit |   
+| fromDate | String? | no | From Date |   
+| toDate | String? | no | To Date |   
+| q | String? | no | Keyword for Search |   
+| stage | String? | no | Specefic Order Stage |   
+| salesChannels | String? | no | Selected Sales Channel |   
+| orderId | String? | no | Order Id |   
+| stores | String? | no | Selected Stores |   
+| status | String? | no | Status of order |   
+| dp | String? | no | Delivery Partners |   
+| shortenUrls | Bool? | no | Shorten URL option |   
+| filterType | String? | no | Filters |  
+
+
+
+Get Orders at Application Level
+
+*Returned Response:*
+
+
+
+
+[OrderListing](#OrderListing)
+
+Success
 
 
 
@@ -2200,7 +2329,10 @@ Success
  | prices | [ShipmentPrices](#ShipmentPrices)? |  yes  |  |
  | id | String? |  yes  |  |
  | gst | [ShipmentGst](#ShipmentGst)? |  yes  |  |
- | breakupValues | [ShipmentBreakupValues](#ShipmentBreakupValues)? |  yes  |  |
+ | priority | Double? |  yes  |  |
+ | priorityText | String? |  yes  |  |
+ | lockStatus | Bool? |  yes  |  |
+ | orderingChannel | String? |  yes  |  |
  | totalShipmentBags | Int? |  yes  |  |
 
 ---
@@ -2308,19 +2440,6 @@ Success
 
  
  
- #### [ShipmentBreakupValues](#ShipmentBreakupValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  |  |
- | value | Double? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [Payments](#Payments)
 
  | Properties | Type | Nullable | Description |
@@ -2416,6 +2535,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | stage | String? |  yes  |  |
  | stores | [String]? |  yes  |  |
+ | deploymentStores | [String]? |  yes  |  |
  | dp | [Int]? |  yes  |  |
  | fromDate | String? |  yes  |  |
  | toDate | String? |  yes  |  |
@@ -2506,7 +2626,7 @@ Success
  | coupon | [String: Any]? |  yes  |  |
  | orderSource | String? |  yes  |  |
  | isNotFyndSource | Bool? |  yes  |  |
- | canBreak | Bool? |  yes  |  |
+ | canBreak | [String: Any]? |  yes  |  |
  | comment | String? |  yes  |  |
  | promise | [Promise](#Promise)? |  yes  |  |
  | trackingDetails | [ShipmentTrackingDetails](#ShipmentTrackingDetails)? |  yes  |  |
@@ -2515,6 +2635,8 @@ Success
  | totalShipmentBags | Int? |  yes  |  |
  | pod | [String: Any]? |  yes  |  |
  | lockStatus | Bool? |  yes  |  |
+ | priority | Double? |  yes  |  |
+ | priorityText | String? |  yes  |  |
  | orderingChannel | String? |  yes  |  |
  | creditNoteId | String? |  yes  |  |
  | autoTriggerDpAssignment | Bool? |  yes  |  |
@@ -2815,6 +2937,19 @@ Success
  | priceEffective | Double? |  yes  |  |
  | refundAmount | Double? |  yes  |  |
  | discount | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentBreakupValues](#ShipmentBreakupValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | display | String? |  yes  |  |
+ | value | Double? |  yes  |  |
 
 ---
 

@@ -731,8 +731,7 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
       "gst_input": true,
       "staff_selection": true,
       "placing_for_customer": true,
-      "google_map": true,
-      "revenue_engine_coupon": false
+      "google_map": true
     },
     "qr": {
       "application": true,
@@ -2180,7 +2179,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | from | String? |  yes  |  |
+ | redirectFrom | String? |  yes  |  |
  | redirectTo | String? |  yes  |  |
  | type | String? |  yes  |  |
 

@@ -485,13 +485,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String |  no  |  |
- | url | String |  no  |  |
+ | title | String |  no  | Give a name to the link. |
+ | url | String |  no  | The web address to shorten. |
  | hash | String? |  yes  |  |
  | active | Bool? |  yes  |  |
  | expireAt | String? |  yes  |  |
  | enableTracking | Bool? |  yes  |  |
- | personalized | Bool? |  yes  | To create personalized short links |
+ | personalized | Bool? |  yes  | To create personalized short links. |
  | campaign | [CampaignShortLink](#CampaignShortLink)? |  yes  |  |
  | redirects | [Redirects](#Redirects)? |  yes  |  |
  | attribution | [Attribution](#Attribution)? |  yes  |  |
@@ -532,6 +532,7 @@ Success
  | application | String? |  yes  |  |
  | userId | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | personalized | Bool? |  yes  | To create personalized short links |
  | campaign | [CampaignShortLink](#CampaignShortLink)? |  yes  |  |

@@ -1012,6 +1012,7 @@ Success, the code is valid and returns a session token
  | id | Int? |  yes  |  |
  | name | String? |  yes  |  |
  | companyId | Int? |  yes  |  |
+ | companyName | String? |  yes  |  |
 
 ---
 
@@ -1107,7 +1108,7 @@ Success, the code is valid and returns a session token
  | trackingDetails | [[TrackingDetails](#TrackingDetails)]? |  yes  |  |
  | beneficiaryDetails | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
- | canBreak | Bool? |  yes  |  |
+ | canBreak | [String: Any]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | needHelpUrl | String? |  yes  |  |
  | shipmentId | String? |  yes  |  |
