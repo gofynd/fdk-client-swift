@@ -2696,6 +2696,8 @@ Success
  | updateTime | Int? |  yes  |  |
  | currentStatus | [BagCurrentStatus](#BagCurrentStatus)? |  yes  |  |
  | bagStatus | [BagStatus](#BagStatus)? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | canReturn | Bool? |  yes  |  |
 
 ---
 
