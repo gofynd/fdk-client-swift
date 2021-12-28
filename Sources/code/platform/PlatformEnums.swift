@@ -40,10 +40,10 @@ public extension PlatformClient {
     
     
     /*
-        Enum: TicketAssetType
+        Enum: TicketAssetTypeEnum
         Used By: Lead
     */
-    enum TicketAssetType: String, Codable {
+    enum TicketAssetTypeEnum: String, Codable {
         
         case image = "image"
         
