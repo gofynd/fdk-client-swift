@@ -1797,7 +1797,7 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [APIError](#APIError)
+ #### [ContentAPIError](#ContentAPIError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -2500,6 +2500,19 @@ Success. Returns a list of pages along with their details. Check the example sho
  | position | String? |  yes  |  |
  | attributes | [String: Any]? |  yes  |  |
  | content | String? |  yes  |  |
+ | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TagSourceSchema](#TagSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 

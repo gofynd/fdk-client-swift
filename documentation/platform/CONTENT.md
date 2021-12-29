@@ -4725,7 +4725,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 
  
  
- #### [APIError](#APIError)
+ #### [ContentAPIError](#ContentAPIError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -5428,6 +5428,19 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | position | String? |  yes  |  |
  | attributes | [String: Any]? |  yes  |  |
  | content | String? |  yes  |  |
+ | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TagSourceSchema](#TagSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
