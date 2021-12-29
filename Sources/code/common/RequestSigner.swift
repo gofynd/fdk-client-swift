@@ -35,6 +35,7 @@ class RequestSigner {
         guard let components = self.components else { return finalHeaders }
         finalHeaders.append((key: "host", value: components.host ?? "api.fynd.com"))
         finalHeaders.append((key: "x-fp-date", value: dateStr))
+        finalHeaders = finalHeaders.sorted{ $0.key < $1.key}
         var reqHash = "".sha256()
         if let data = reqData {
             reqHash = data.pretty.sha256()
@@ -58,7 +59,7 @@ class RequestSigner {
         let signature = try? HMAC(key: signingkey, variant: .sha256).authenticate(signatureStr.bytes).toHexString()
         //let signature = signatureStr.hmac(algorithm: .SHA256, key: signingkey)
         if let hmacSignature = signature {
-            finalHeaders.append((key: "x-fp-signature", value: "v1:\(hmacSignature)")) 
+            finalHeaders.append((key: "x-fp-signature", value: "v1.1:\(hmacSignature)")) 
         }
         return finalHeaders
     }

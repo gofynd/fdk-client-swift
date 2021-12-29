@@ -29,8 +29,6 @@ public class ApplicationClient {
 
     public let order: Order
 
-    public let rewards: Rewards
-
     public let feedback: Feedback
 
     public let posCart: PosCart
@@ -64,8 +62,6 @@ public class ApplicationClient {
         payment = Payment(config: config)
         
         order = Order(config: config)
-        
-        rewards = Rewards(config: config)
         
         feedback = Feedback(config: config)
         
@@ -1965,10 +1961,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1982,7 +1978,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2014,10 +2010,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -2031,7 +2027,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2339,6 +2335,230 @@ if let value = longitude {
         }
         
         
+        
+        
+        /**
+        *
+        * Summary: Get store meta information.
+        * Description: Use this API to get a list of stores in a specific application.
+        **/
+        public func getInStockLocations(
+            pageNo: Int?,
+            pageSize: Int?,
+            q: String?,
+            city: String?,
+            range: Int?,
+            latitude: Double?,
+            longitude: Double?,
+            
+            onResponse: @escaping (_ response: ApplicationStoreListing?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = city {
+    
+    xQuery["city"] = value
+    
+}
+
+
+if let value = range {
+    
+    xQuery["range"] = value
+    
+}
+
+
+if let value = latitude {
+    
+    xQuery["latitude"] = value
+    
+}
+
+
+if let value = longitude {
+    
+    xQuery["longitude"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v1.0/in-stock/locations/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ApplicationStoreListing.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getInStockLocations
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getInStockLocationsPaginator(
+            pageSize: Int?,
+            q: String?,
+            city: String?,
+            range: Int?,
+            latitude: Double?,
+            longitude: Double?
+            
+            ) -> Paginator<ApplicationStoreListing> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ApplicationStoreListing>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getInStockLocations(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        city: city,
+                        range: range,
+                        latitude: latitude,
+                        longitude: longitude
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get store meta information.
+        * Description: Use this API to get meta details for a store.
+        **/
+        public func getLocationDetailsById(
+            locationId: Int,
+            
+            onResponse: @escaping (_ response: StoreDetails?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v1.0/locations/\(locationId)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(StoreDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
     }
     
     
@@ -2553,7 +2773,7 @@ if let value = b {
         /**
         *
         * Summary: Update items in the cart
-        * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+        * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
             id: String?,
@@ -3240,7 +3460,7 @@ if let value = isDefault {
         /**
         *
         * Summary: Update address added to an account
-        * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+        * Description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
         **/
         public func updateAddress(
             id: String,
@@ -3336,7 +3556,7 @@ if let value = isDefault {
         /**
         *
         * Summary: Select an address from available addresses
-        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
         **/
         public func selectAddress(
             cartId: String?,
@@ -4020,7 +4240,7 @@ if let value = id {
         * Description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
         **/
         public func createHistory(
-            id: String,
+            ticketId: String,
             body: TicketHistoryPayload,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
@@ -4033,7 +4253,7 @@ if let value = id {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/lead/v1.0/ticket/\(id)/history",
+                url: "/service/application/lead/v1.0/ticket/\(ticketId)/history",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -4709,6 +4929,61 @@ if let value = platform {
                 config: config,
                 method: "post",
                 url: "/service/application/user/authentication/v1.0/login/google-ios",
+                query: xQuery,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AuthSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Login or Register using Apple on iOS
+        * Description: Use this API to login or register in iOS app using Apple Account credentials.
+        **/
+        public func loginWithAppleIOS(
+            platform: String?,
+            body: OAuthRequestAppleSchema,
+            onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/user/authentication/v1.0/login/apple-ios",
                 query: xQuery,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -6450,6 +6725,53 @@ if let value = pageSize {
         
         /**
         *
+        * Summary: Get the data loaders associated with an application
+        * Description: Use this API to get all selected data loaders of the application in the form of tags.
+        **/
+        public func getDataLoaders(
+            
+            onResponse: @escaping (_ response: DataLoaderSchema?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/data-loader",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DataLoaderSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: Get a list of FAQs
         * Description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
         **/
@@ -6888,168 +7210,6 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get a page
-        * Description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
-        **/
-        public func getPage(
-            slug: String,
-            rootId: String?,
-            
-            onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = rootId {
-    
-    xQuery["root_id"] = value
-    
-}
-
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/pages/\(slug)",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get all pages
-        * Description: Use this API to get a list of pages.
-        **/
-        public func getPages(
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/content/v1.0/pages/",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageGetResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getPages
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getPagesPaginator(
-            pageSize: Int?
-            
-            ) -> Paginator<PageGetResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getPages(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
         * Summary: Get the SEO of an application
         * Description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
         **/
@@ -7341,6 +7501,168 @@ if let value = pageSize {
         }
         
         
+        
+        
+        /**
+        *
+        * Summary: Get a page
+        * Description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+        **/
+        public func getPage(
+            slug: String,
+            rootId: String?,
+            
+            onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = rootId {
+    
+    xQuery["root_id"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v2.0/pages/\(slug)",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PageSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get all pages
+        * Description: Use this API to get a list of pages.
+        **/
+        public func getPages(
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v2.0/pages/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PageGetResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getPages
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getPagesPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<PageGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getPages(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
     }
     
     
@@ -7510,8 +7832,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create QR Code of an app
-        * Description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
+        * Summary: Create application QR Code
+        * Description: Create application QR Code
         **/
         public func getApplicationQRCode(
             
@@ -7557,8 +7879,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create QR Code of a product
-        * Description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
+        * Summary: Create product QR Code
+        * Description: Create product QR Code
         **/
         public func getProductQRCodeBySlug(
             slug: String,
@@ -7605,8 +7927,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create QR Code of a collection
-        * Description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
+        * Summary: Create collection QR Code
+        * Description: Create collection QR Code
         **/
         public func getCollectionQRCodeBySlug(
             slug: String,
@@ -7653,8 +7975,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create QR Code of a URL
-        * Description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
+        * Summary: Create url QR Code
+        * Description: Create url QR Code
         **/
         public func getUrlQRCode(
             url: String,
@@ -7706,8 +8028,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Create a short link
-        * Description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
+        * Summary: Create short link
+        * Description: Create short link
         **/
         public func createShortLink(
             body: ShortLinkReq,
@@ -7754,7 +8076,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Get short link by hash
-        * Description: Use this API to get a short link by using a hash value.
+        * Description: Get short link by hash
         **/
         public func getShortLinkByHash(
             hash: String,
@@ -7802,7 +8124,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Get original link by hash
-        * Description: Use this API to retrieve the original link from a short-link by using a hash value.
+        * Description: Get original link by hash
         **/
         public func getOriginalShortLinkByHash(
             hash: String,
@@ -7977,6 +8299,53 @@ This operation will return the URL of the uploaded file.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CompleteResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Explain here
+        * Description: Describe here
+        **/
+        public func signUrls(
+            body: SignUrlRequest,
+            onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/application/assets/v1.0/sign-urls/",
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SignUrlResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -10542,408 +10911,6 @@ if let value = status {
     
     
     
-    public class Rewards {
-        
-        var config: ApplicationConfig
-
-        init(config: ApplicationConfig) {
-            self.config = config;
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get the eligibility of reward points on a product
-        * Description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-        **/
-        public func getPointsOnProduct(
-            body: CatalogueOrderRequest,
-            onResponse: @escaping (_ response: CatalogueOrderResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/rewards/v1.0/catalogue/offer/order/",
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CatalogueOrderResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get offer by name
-        * Description: Use this API to get the offer details and configuration by entering the name of the offer.
-        **/
-        public func getOfferByName(
-            name: String,
-            
-            onResponse: @escaping (_ response: Offer?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/rewards/v1.0/offers/\(name)/",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Offer.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Calculates the discount on order-amount
-        * Description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
-        **/
-        public func getOrderDiscount(
-            body: OrderDiscountRequest,
-            onResponse: @escaping (_ response: OrderDiscountResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/rewards/v1.0/user/offers/order-discount/",
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrderDiscountResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get reward points available with a user
-        * Description: Use this API to retrieve total available points of a user for current application
-        **/
-        public func getUserPoints(
-            
-            onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/rewards/v1.0/user/points/",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PointsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get all transactions of reward points
-        * Description: Use this API to get a list of points transactions. The list of points history is paginated.
-        **/
-        public func getUserPointsHistory(
-            pageId: String?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/rewards/v1.0/user/points/history/",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PointsHistoryResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getUserPointsHistory
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getUserPointsHistoryPaginator(
-            pageSize: Int?
-            
-            ) -> Paginator<PointsHistoryResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "cursor")
-            paginator.onPage = {
-                self.getUserPointsHistory(
-                        
-                        pageId: paginator.pageId
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageId = response.page?.nextId
-                        
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get referral details of a user
-        * Description: Use this API to retrieve the referral details a user has configured in the application.
-        **/
-        public func getUserReferralDetails(
-            
-            onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/rewards/v1.0/user/referral/",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ReferralDetailsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Redeems a referral code and credits reward points to users
-        * Description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
-        **/
-        public func redeemReferralCode(
-            body: RedeemReferralCodeRequest,
-            onResponse: @escaping (_ response: RedeemReferralCodeResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/application/rewards/v1.0/user/referral/redeem/",
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(RedeemReferralCodeResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-    }
-    
-    
-    
     public class Feedback {
         
         var config: ApplicationConfig
@@ -10972,7 +10939,7 @@ if let value = pageSize {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/feedback/v1.0/abuse/",
+                url: "/service/application/feedback/v1.0/abuse",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -11019,7 +10986,7 @@ if let value = pageSize {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/feedback/v1.0/abuse/",
+                url: "/service/application/feedback/v1.0/abuse",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -11217,7 +11184,7 @@ if let value = pageSize {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/application/feedback/v1.0/attributes/",
+                url: "/service/application/feedback/v1.0/attributes",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,
@@ -11307,7 +11274,7 @@ if let value = pageSize {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/feedback/v1.0/attributes/",
+                url: "/service/application/feedback/v1.0/attributes",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -11450,7 +11417,7 @@ if let value = pageSize {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/feedback/v1.0/comment/",
+                url: "/service/application/feedback/v1.0/comment",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -11497,7 +11464,7 @@ if let value = pageSize {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/application/feedback/v1.0/comment/",
+                url: "/service/application/feedback/v1.0/comment",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
@@ -11737,17 +11704,11 @@ if let value = pageSize {
         * Description: Use this API to delete media for an entity ID.
         **/
         public func deleteMedia(
-            ids: [String],
             
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["ids"] = ids
-
-
+ 
 
  
 
@@ -11756,7 +11717,7 @@ var xQuery: [String: Any] = [:]
                 config: config,
                 method: "delete",
                 url: "/service/application/feedback/v1.0/media/",
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: nil,
                 responseType: "application/json",
@@ -13271,7 +13232,7 @@ if let value = b {
         /**
         *
         * Summary: Update items in the cart
-        * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+        * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
             id: String?,
@@ -13958,7 +13919,7 @@ if let value = isDefault {
         /**
         *
         * Summary: Update address added to an account
-        * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+        * Description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
         **/
         public func updateAddress(
             id: String,
@@ -14054,7 +14015,7 @@ if let value = isDefault {
         /**
         *
         * Summary: Select an address from available addresses
-        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+        * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
         **/
         public func selectAddress(
             cartId: String?,
