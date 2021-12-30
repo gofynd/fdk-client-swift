@@ -2590,6 +2590,7 @@ Success
  | createdAt | String? |  yes  |  |
  | totalShipmentsInOrder | Int? |  yes  |  |
  | payments | [ItemsPayments](#ItemsPayments)? |  yes  |  |
+ | paymentMethods | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2699,6 +2700,7 @@ Success
  | bagStatus | [BagStatus](#BagStatus)? |  yes  |  |
  | canCancel | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
+ | paymentMethods | [String: Any]? |  yes  |  |
 
 ---
 
@@ -3384,6 +3386,7 @@ Success
  | createdAt | String? |  yes  |  |
  | totalShipmentsInOrder | Int? |  yes  |  |
  | payments | [ItemsPayments](#ItemsPayments)? |  yes  |  |
+ | paymentMethods | [String: Any]? |  yes  |  |
 
 ---
 

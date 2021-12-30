@@ -10,8 +10,6 @@ Discount
 * [createDiscount](#creatediscount)
 * [getDiscount](#getdiscount)
 * [updateDiscount](#updatediscount)
-* [fetchDiscountJobs](#fetchdiscountjobs)
-* [getDiscountDetails](#getdiscountdetails)
 * [validateDiscountFile](#validatediscountfile)
 * [downloadDiscountFile](#downloaddiscountfile)
 * [getValidationJob](#getvalidationjob)
@@ -226,110 +224,6 @@ Create Discount.
 
 
 [DiscountJob](#DiscountJob)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### fetchDiscountJobs
-Fetch Discount Jobs.
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").discount.fetchDiscountJobs() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Fetch Discount Jobs.
-
-*Returned Response:*
-
-
-
-
-[ListOrCalender](#ListOrCalender)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getDiscountDetails
-Get Discounts.
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").discount.getDiscountDetails(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | InternalDiscountQuery | yes | Request body |
-
-
-Get Discounts.
-
-*Returned Response:*
-
-
-
-
-[DiscountList](#DiscountList)
 
 Success
 
@@ -758,67 +652,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[DiscountJob](#DiscountJob)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [InternalDiscountQuery](#InternalDiscountQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | jobIds | [String] |  no  |  |
- | itemIds | [Int]? |  yes  |  |
- | sellerIdentifiers | [String]? |  yes  |  |
- | brandIds | [Int]? |  yes  |  |
- | storeIds | [Int]? |  yes  |  |
-
----
-
-
- 
- 
- #### [DiscountValueObject](#DiscountValueObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minItems | Int |  no  |  |
- | value | Int |  no  |  |
-
----
-
-
- 
- 
- #### [DiscountDetail](#DiscountDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String |  no  |  |
- | jobId | String |  no  |  |
- | companyId | Int |  no  |  |
- | appIds | [String]? |  yes  |  |
- | discountType | String? |  yes  |  |
- | discount | [[DiscountValueObject](#DiscountValueObject)]? |  yes  |  |
- | brandIds | [Int]? |  yes  |  |
- | storeIds | [Int]? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | sellerIdentifier | String? |  yes  |  |
- | createdOn | String |  no  |  |
- | modifiedOn | String |  no  |  |
-
----
-
-
- 
- 
- #### [DiscountList](#DiscountList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[DiscountDetail](#DiscountDetail)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
 
 ---
