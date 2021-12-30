@@ -29,7 +29,7 @@ Authentication Service
 * [verifyEmailOTP](#verifyemailotp)
 * [getLoggedInUser](#getloggedinuser)
 * [getListOfActiveSessions](#getlistofactivesessions)
-* [getFreshchatRestoreId](#getfreshchatrestoreid)
+* [setFreshchatRestoreId](#setfreshchatrestoreid)
 * [getUserStore](#getuserstore)
 * [getPlatformConfig](#getplatformconfig)
 * [updateProfile](#updateprofile)
@@ -1417,14 +1417,14 @@ Success. Returns a JSON object containing an array of sessions. Refer `SessionLi
 ---
 
 
-#### getFreshchatRestoreId
+#### setFreshchatRestoreId
 Get freshchat restore ID
 
 
 
 
 ```swift
-user.getFreshchatRestoreId(body: body) { (response, error) in
+user.setFreshchatRestoreId(body: body) { (response, error) in
     // Use response
 }
 ```
