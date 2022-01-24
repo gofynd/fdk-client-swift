@@ -1965,10 +1965,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1982,7 +1982,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2014,10 +2014,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -2031,7 +2031,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2560,6 +2560,219 @@ if let value = longitude {
                         onResponse(nil, err)
                     }
             });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get the price of a product size at a PIN Code
+        * Description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
+        **/
+        public func getProductPriceBySlugV2(
+            slug: String,
+            size: String,
+            storeId: Int?,
+            pincode: String?,
+            
+            onResponse: @escaping (_ response: ProductSizePriceResponseV2?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = storeId {
+    
+    xQuery["store_id"] = value
+    
+}
+
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v2.0/products/\(slug)/sizes/\(size)/price/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ProductSizePriceResponseV2.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get the sellers of a product size at a PIN Code
+        * Description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+        **/
+        public func getProductSellersBySlugV2(
+            slug: String,
+            size: String,
+            pincode: String?,
+            strategy: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ProductSizeSellersResponseV2?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
+    
+}
+
+
+if let value = strategy {
+    
+    xQuery["strategy"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v2.0/products/\(slug)/sizes/\(size)/sellers/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ProductSizeSellersResponseV2.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getProductSellersBySlugV2
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getProductSellersBySlugV2Paginator(
+            slug: String,
+            size: String,
+            pincode: String?,
+            strategy: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductSizeSellersResponseV2> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductSizeSellersResponseV2>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getProductSellersBySlugV2(
+                        
+                        slug: slug,
+                        size: size,
+                        pincode: pincode,
+                        strategy: strategy,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -6722,6 +6935,53 @@ if let value = pageSize {
                 }
             }
             return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get the data loaders associated with an application
+        * Description: Use this API to get all selected data loaders of the application in the form of tags.
+        **/
+        public func getDataLoaders(
+            
+            onResponse: @escaping (_ response: DataLoaderSchema?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/content/v1.0/data-loader",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DataLoaderSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
         }
         
         
