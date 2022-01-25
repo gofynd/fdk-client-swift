@@ -1965,10 +1965,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1982,7 +1982,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2014,10 +2014,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -2031,7 +2031,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2773,6 +2773,69 @@ if let value = pageSize {
                 }
             }
             return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get product bundles
+        * Description: Use this API to retrieve products bundles to the one specified by its slug.
+        **/
+        public func getProductBundlesBySlug(
+            slug: String?,
+            id: String?,
+            
+            onResponse: @escaping (_ response: ProductBundle?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = slug {
+    
+    xQuery["slug"] = value
+    
+}
+
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v1.0/product-grouping/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ProductBundle.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
         }
         
         
@@ -10903,7 +10966,7 @@ if let value = aggregator {
         * Summary: API to fetch the customer credit summary
         * Description: Use this API to fetch the customer credit summary.
         **/
-        public func CheckCredit(
+        public func CustomerOnboard(
             body: CustomerOnboardingRequest,
             onResponse: @escaping (_ response: CustomerOnboardingResponse?, _ error: FDKError?) -> Void
         ) {
