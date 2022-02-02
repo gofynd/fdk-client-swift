@@ -113,6 +113,8 @@ public extension PlatformClient {
         
         case inactive = "inactive"
         
+        case blocked = "blocked"
+        
     }
 
     
