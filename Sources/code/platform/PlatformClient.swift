@@ -6794,54 +6794,6 @@ if let value = q {
         
         /**
         *
-        * Summary: Edit company profile
-        * Description: This API allows to edit the company profile of the seller account.
-        **/
-        public func updateCompany(
-            body: UpdateCompany,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "patch",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
         * Summary: Get company profile
         * Description: This API allows to view the company profile of the seller account.
         **/
@@ -6890,6 +6842,54 @@ if let value = q {
         
         /**
         *
+        * Summary: Edit company profile
+        * Description: This API allows to edit the company profile of the seller account.
+        **/
+        public func updateCompany(
+            body: UpdateCompany,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "patch",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: Get company metrics
         * Description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
         **/
@@ -6921,55 +6921,6 @@ if let value = q {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(MetricsSerializer.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Edit a brand.
-        * Description: This API allows to edit meta of a brand.
-        **/
-        public func editBrand(
-            brandId: String,
-            body: CreateUpdateBrandRequestSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -7036,10 +6987,11 @@ if let value = q {
         
         /**
         *
-        * Summary: Create a Brand.
-        * Description: This API allows to create a brand associated to a company.
+        * Summary: Edit a brand.
+        * Description: This API allows to edit meta of a brand.
         **/
-        public func createBrand(
+        public func editBrand(
+            brandId: String,
             body: CreateUpdateBrandRequestSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -7051,8 +7003,8 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand",
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -7084,11 +7036,11 @@ if let value = q {
         
         /**
         *
-        * Summary: Create a company brand mapping.
-        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
+        * Summary: Create a Brand.
+        * Description: This API allows to create a brand associated to a company.
         **/
-        public func createCompanyBrandMapping(
-            body: CompanyBrandPostRequestSerializer,
+        public func createBrand(
+            body: CreateUpdateBrandRequestSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -7100,7 +7052,7 @@ if let value = q {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -7263,11 +7215,11 @@ if let value = q {
         
         /**
         *
-        * Summary: Create a location asscoiated to a company.
-        * Description: This API allows to create a location associated to a company.
+        * Summary: Create a company brand mapping.
+        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
         **/
-        public func createLocation(
-            body: LocationSerializer,
+        public func createCompanyBrandMapping(
+            body: CompanyBrandPostRequestSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -7279,7 +7231,7 @@ if let value = q {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -7474,11 +7426,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Edit a location asscoiated to a company.
-        * Description: This API allows to edit a location associated to a company.
+        * Summary: Create a location asscoiated to a company.
+        * Description: This API allows to create a location associated to a company.
         **/
-        public func updateLocation(
-            locationId: String,
+        public func createLocation(
             body: LocationSerializer,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -7490,8 +7441,8 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                method: "post",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -7555,6 +7506,55 @@ if let value = pageSize {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetLocationSerializer.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
+        **/
+        public func updateLocation(
+            locationId: String,
+            body: LocationSerializer,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -11133,7 +11133,7 @@ if let value = extensionId {
             pageSize: Int?,
             extensionId: String,
             
-            onResponse: @escaping (_ response: SubscriberResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SubscriberConfigList?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -11172,7 +11172,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SubscriberResponse.self, from: data)
+                        let response = Utility.decode(SubscriberConfigList.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -11244,7 +11244,7 @@ if let value = pageSize {
         **/
         public func fetchAllEventConfigurations(
             
-            onResponse: @escaping (_ response: EventConfigList?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: EventConfigResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -11269,7 +11269,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(EventConfigList.self, from: data)
+                        let response = Utility.decode(EventConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
