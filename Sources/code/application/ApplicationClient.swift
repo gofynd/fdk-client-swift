@@ -193,205 +193,6 @@ if let value = storeId {
         
         /**
         *
-        * Summary: Get the price of a product size at a PIN Code
-        * Description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
-        **/
-        public func getProductPriceBySlug(
-            slug: String,
-            size: String,
-            pincode: String,
-            storeId: Int?,
-            
-            onResponse: @escaping (_ response: ProductSizePriceResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/pincode/\(pincode)/price/",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ProductSizePriceResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get the sellers of a product size at a PIN Code
-        * Description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
-        **/
-        public func getProductSellersBySlug(
-            slug: String,
-            size: String,
-            pincode: String,
-            strategy: String?,
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: ProductSizeSellersResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = strategy {
-    
-    xQuery["strategy"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/catalog/v1.0/products/\(slug)/sizes/\(size)/pincode/\(pincode)/sellers/",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ProductSizeSellersResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getProductSellersBySlug
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getProductSellersBySlugPaginator(
-            slug: String,
-            size: String,
-            pincode: String,
-            strategy: String?,
-            pageSize: Int?
-            
-            ) -> Paginator<ProductSizeSellersResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductSizeSellersResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getProductSellersBySlug(
-                        
-                        slug: slug,
-                        size: size,
-                        pincode: pincode,
-                        strategy: strategy,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
         * Summary: Compare products
         * Description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
         **/
@@ -1965,10 +1766,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1982,7 +1783,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2014,10 +1815,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -2031,7 +1832,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2570,7 +2371,7 @@ if let value = longitude {
         * Summary: Get the price of a product size at a PIN Code
         * Description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
         **/
-        public func getProductPriceBySlugV2(
+        public func getProductPriceBySlug(
             slug: String,
             size: String,
             storeId: Int?,
@@ -2635,7 +2436,7 @@ if let value = pincode {
         * Summary: Get the sellers of a product size at a PIN Code
         * Description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
         **/
-        public func getProductSellersBySlugV2(
+        public func getProductSellersBySlug(
             slug: String,
             size: String,
             pincode: String?,
@@ -2740,10 +2541,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: get paginator for getProductSellersBySlugV2
+        * Summary: get paginator for getProductSellersBySlug
         * Description: fetch the next page by calling .next(...) function
         **/
-        public func getProductSellersBySlugV2Paginator(
+        public func getProductSellersBySlugPaginator(
             slug: String,
             size: String,
             pincode: String?,
@@ -2754,7 +2555,7 @@ if let value = pageSize {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<ProductSizeSellersResponseV2>(pageSize: pageSize, type: "number")
             paginator.onPage = {
-                self.getProductSellersBySlugV2(
+                self.getProductSellersBySlug(
                         
                         slug: slug,
                         size: size,
