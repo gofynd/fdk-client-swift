@@ -4249,7 +4249,7 @@ if let value = pageSize {
         * Description: Use this API to get applicable ladder price promotion for current product
         **/
         public func getLadderOffers(
-            slug: String?,
+            slug: String,
             pageSize: Int?,
             
             onResponse: @escaping (_ response: LadderPriceOffers?, _ error: FDKError?) -> Void
@@ -4257,11 +4257,9 @@ if let value = pageSize {
             
 var xQuery: [String: Any] = [:] 
 
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
+
+    xQuery["slug"] = slug
+
 
 
 if let value = pageSize {
