@@ -1328,330 +1328,6 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: List all the collections
-        * Description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
-        **/
-        public func getCollections(
-            pageNo: Int?,
-            pageSize: Int?,
-            tag: [String]?,
-            
-            onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = tag {
-    
-    xQuery["tag"] = value
-    
-}
-
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/catalog/v1.0/collections/",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetCollectionListingResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getCollections
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getCollectionsPaginator(
-            pageSize: Int?,
-            tag: [String]?
-            
-            ) -> Paginator<GetCollectionListingResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getCollections(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        tag: tag
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get the items in a collection
-        * Description: Get items in a collection specified by its `slug`.
-        **/
-        public func getCollectionItemsBySlug(
-            slug: String,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageId: String?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = f {
-    
-    xQuery["f"] = value
-    
-}
-
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/catalog/v1.0/collections/\(slug)/items/",
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ProductListingResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getCollectionItemsBySlug
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getCollectionItemsBySlugPaginator(
-            slug: String,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageSize: Int?
-            
-            ) -> Paginator<ProductListingResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
-            paginator.onPage = {
-                self.getCollectionItemsBySlug(
-                        
-                        slug: slug,
-                        f: f,
-                        filters: filters,
-                        sortOn: sortOn,
-                        pageId: paginator.pageId
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page.hasNext ?? false
-                        paginator.pageId = response.page.nextId
-                        
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get a particular collection
-        * Description: Get the details of a collection by its `slug`.
-        **/
-        public func getCollectionDetailBySlug(
-            slug: String,
-            
-            onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/application/catalog/v1.0/collections/\(slug)/",
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CollectionDetailResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
         * Summary: Get a list of followed Products, Brands, Collections
         * Description: Users can follow a product they like. This API retrieves the products the user have followed.
         **/
@@ -1766,10 +1442,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1783,7 +1459,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1815,10 +1491,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1832,7 +1508,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -2574,6 +2250,330 @@ if let value = pageSize {
                 }
             }
             return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: List all the collections
+        * Description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
+        **/
+        public func getCollections(
+            pageNo: Int?,
+            pageSize: Int?,
+            tag: [String]?,
+            
+            onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = tag {
+    
+    xQuery["tag"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v2.0/collections/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetCollectionListingResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getCollections
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCollectionsPaginator(
+            pageSize: Int?,
+            tag: [String]?
+            
+            ) -> Paginator<GetCollectionListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getCollections(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        tag: tag
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get the items in a collection
+        * Description: Get items in a collection specified by its `slug`.
+        **/
+        public func getCollectionItemsBySlug(
+            slug: String,
+            f: String?,
+            filters: Bool?,
+            sortOn: String?,
+            pageId: String?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = f {
+    
+    xQuery["f"] = value
+    
+}
+
+
+if let value = filters {
+    
+    xQuery["filters"] = value
+    
+}
+
+
+if let value = sortOn {
+    
+    xQuery["sort_on"] = value
+    
+}
+
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v2.0/collections/\(slug)/items/",
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ProductListingResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getCollectionItemsBySlug
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCollectionItemsBySlugPaginator(
+            slug: String,
+            f: String?,
+            filters: Bool?,
+            sortOn: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getCollectionItemsBySlug(
+                        
+                        slug: slug,
+                        f: f,
+                        filters: filters,
+                        sortOn: sortOn,
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageId = response.page.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get a particular collection
+        * Description: Get the details of a collection by its `slug`.
+        **/
+        public func getCollectionDetailBySlug(
+            slug: String,
+            
+            onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/application/catalog/v2.0/collections/\(slug)/",
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CollectionDetailResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
         }
         
         
@@ -4250,6 +4250,7 @@ if let value = pageSize {
         **/
         public func getLadderOffers(
             slug: String,
+            promotionId: String?,
             pageSize: Int?,
             
             onResponse: @escaping (_ response: LadderPriceOffers?, _ error: FDKError?) -> Void
@@ -4260,6 +4261,13 @@ var xQuery: [String: Any] = [:]
 
     xQuery["slug"] = slug
 
+
+
+if let value = promotionId {
+    
+    xQuery["promotion_id"] = value
+    
+}
 
 
 if let value = pageSize {
