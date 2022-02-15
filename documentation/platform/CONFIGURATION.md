@@ -4756,6 +4756,7 @@ Success
  | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
  | discount | [InventoryDiscount](#InventoryDiscount)? |  yes  |  |
  | outOfStock | Bool? |  yes  |  |
+ | onlyVerifiedProducts | Bool? |  yes  |  |
  | franchiseEnabled | Bool? |  yes  |  |
  | excludeCategory | [[String: Any]]? |  yes  |  |
  | image | [String]? |  yes  |  |
