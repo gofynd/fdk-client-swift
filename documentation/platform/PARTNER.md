@@ -181,12 +181,14 @@ Success
 
  
  
- #### [ApiError](#ApiError)
+ #### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | String? |  yes  |  |
  | message | String? |  yes  |  |
+ | info | String? |  yes  | Error code description link |
+ | requestId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
 
 ---

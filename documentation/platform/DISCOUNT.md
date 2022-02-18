@@ -604,6 +604,7 @@ Success
  | companyId | Int |  no  |  |
  | isActive | Bool |  no  |  |
  | appIds | [String] |  no  |  |
+ | extensionIds | [String] |  no  |  |
  | jobType | String |  no  |  |
  | discountType | String |  no  |  |
  | discountLevel | String |  no  |  |

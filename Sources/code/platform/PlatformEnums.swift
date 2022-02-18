@@ -24,6 +24,9 @@ public extension PlatformClient {
     
     
     
+    
+    
+    
     /*
         Enum: SubscriberStatus
         Used By: Webhook
@@ -33,6 +36,8 @@ public extension PlatformClient {
         case active = "active"
         
         case inactive = "inactive"
+        
+        case blocked = "blocked"
         
     }
 
