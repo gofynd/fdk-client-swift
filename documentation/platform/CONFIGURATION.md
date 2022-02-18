@@ -1334,7 +1334,7 @@ Application inventory enabled companies
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppCompanies(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").configuration.getAppCompanies(uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1345,6 +1345,7 @@ client.application("<APPLICATION_ID>").configuration.getAppCompanies(pageNo: pag
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
+| uid | Int? | no | uid of companies to be fetched |   
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |  
 
@@ -4755,6 +4756,7 @@ Success
  | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
  | discount | [InventoryDiscount](#InventoryDiscount)? |  yes  |  |
  | outOfStock | Bool? |  yes  |  |
+ | onlyVerifiedProducts | Bool? |  yes  |  |
  | franchiseEnabled | Bool? |  yes  |  |
  | excludeCategory | [[String: Any]]? |  yes  |  |
  | image | [String]? |  yes  |  |
