@@ -1343,7 +1343,7 @@ Success. Refer `DataLoaderResponseSchema` for more details.
     "_id": "61bc4523a7ffc7504f4de4a5",
     "service": "catalog",
     "operation_id": "fetchSuggestions",
-    "url": "www.dddd.ddd",
+    "url": "/ext/example/url",
     "__source": {
       "type": "extension",
       "id": "000000000000000000000003"
@@ -1358,7 +1358,7 @@ Success. Refer `DataLoaderResponseSchema` for more details.
     "_id": "61bc452da7ffc7504f4de4a7",
     "service": "catalog",
     "operation_id": "fetchSuggestions",
-    "url": "www.dddd.ddd",
+    "url": "/ext/example/url",
     "__source": {
       "type": "extension",
       "id": "000000000000000000000003"
@@ -1555,7 +1555,7 @@ Success. Refer `DataLoaderResponseSchema` for more details.
     "_id": "61bc4523a7ffc7504f4de4a5",
     "service": "catalog",
     "operation_id": "fetchSuggestions",
-    "url": "www.dddd.ddd",
+    "url": "/ext/example/url",
     "__source": {
       "type": "extension",
       "id": "000000000000000000000003"
@@ -1570,7 +1570,7 @@ Success. Refer `DataLoaderResponseSchema` for more details.
     "_id": "61bc452da7ffc7504f4de4a7",
     "service": "catalog",
     "operation_id": "fetchSuggestions",
-    "url": "www.dddd.ddd",
+    "url": "/ext/example/url",
     "__source": {
       "type": "extension",
       "id": "000000000000000000000003"
@@ -7619,6 +7619,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | String? |  yes  |  |
+ | company | String? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
  | service | String? |  yes  |  |
