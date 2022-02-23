@@ -1442,10 +1442,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1459,7 +1459,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1491,10 +1491,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1508,7 +1508,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -10702,7 +10702,7 @@ var xQuery: [String: Any] = [:]
         * Summary: API to fetch the customer credit summary
         * Description: Use this API to fetch the customer credit summary.
         **/
-        public func CustomerCreditSummary(
+        public func customerCreditSummary(
             aggregator: String?,
             
             onResponse: @escaping (_ response: CustomerCreditSummaryResponse?, _ error: FDKError?) -> Void
@@ -10757,7 +10757,7 @@ if let value = aggregator {
         * Summary: API to get the redirect url to redirect the user to aggregator's page
         * Description: Use this API to get the redirect url to redirect the user to aggregator's page
         **/
-        public func RedirectToAggregator(
+        public func redirectToAggregator(
             source: String?,
             
             onResponse: @escaping (_ response: RedirectToAggregatorResponse?, _ error: FDKError?) -> Void
@@ -10812,7 +10812,7 @@ if let value = source {
         * Summary: API to fetch the customer credit summary
         * Description: Use this API to fetch the customer credit summary.
         **/
-        public func CheckCredit(
+        public func checkCredit(
             aggregator: String?,
             
             onResponse: @escaping (_ response: CheckCreditResponse?, _ error: FDKError?) -> Void
@@ -10867,7 +10867,7 @@ if let value = aggregator {
         * Summary: API to fetch the customer credit summary
         * Description: Use this API to fetch the customer credit summary.
         **/
-        public func CustomerOnboard(
+        public func customerOnboard(
             body: CustomerOnboardingRequest,
             onResponse: @escaping (_ response: CustomerOnboardingResponse?, _ error: FDKError?) -> Void
         ) {
