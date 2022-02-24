@@ -3,7 +3,7 @@ import Foundation
 
 public typealias OnResponse = (_ responseData: Data?, _ error: Swift.Error?, _ responseCode: Int?) -> Void
 
-class AlmofireHelper {
+public class AlmofireHelper {
     static func request(_ path: String,
                         query: [String: Any]? = nil,
                         parameters: [String: Any]?,

@@ -5752,6 +5752,7 @@ Success
  | image | [String]? |  yes  |  |
  | franchiseEnabled | Bool? |  yes  |  |
  | outOfStock | Bool? |  yes  |  |
+ | onlyVerifiedProducts | Bool? |  yes  |  |
  | payment | [InventoryPaymentConfig](#InventoryPaymentConfig)? |  yes  |  |
  | articleAssignment | [InventoryArticleAssignment](#InventoryArticleAssignment)? |  yes  |  |
 
