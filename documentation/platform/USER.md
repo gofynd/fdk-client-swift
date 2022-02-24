@@ -12,6 +12,8 @@ Authentication Service
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [updateUser](#updateuser)
 * [createUserSession](#createusersession)
+* [getActiveSessions](#getactivesessions)
+* [deleteActiveSessions](#deleteactivesessions)
 * [getPlatformConfig](#getplatformconfig)
 * [updatePlatformConfig](#updateplatformconfig)
 
@@ -530,6 +532,142 @@ Create user session
   }
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getActiveSessions
+Get a list of all sections for a user
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").user.getActiveSessions(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | ID of a customer. |  
+
+
+
+Use this API to retrieve a list of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionListResponseSchema](#SessionListResponseSchema)
+
+Success. Refer `SessionListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteActiveSessions
+Get a list of all sections for a user
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").user.deleteActiveSessions(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | ID of a customer. |  
+
+
+
+Use this API to retrieve a list of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionListResponseSchema](#SessionListResponseSchema)
+
+Success. Refer `SessionListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -1338,6 +1476,17 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | hasNext | Bool? |  yes  |  |
  | type | String? |  yes  |  |
  | current | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionListResponseSchema](#SessionListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [String]? |  yes  |  |
 
 ---
 
