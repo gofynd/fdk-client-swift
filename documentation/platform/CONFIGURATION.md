@@ -4756,6 +4756,7 @@ Success
  | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
  | discount | [InventoryDiscount](#InventoryDiscount)? |  yes  |  |
  | outOfStock | Bool? |  yes  |  |
+ | onlyVerifiedProducts | Bool? |  yes  |  |
  | franchiseEnabled | Bool? |  yes  |  |
  | excludeCategory | [[String: Any]]? |  yes  |  |
  | image | [String]? |  yes  |  |
@@ -5751,6 +5752,7 @@ Success
  | image | [String]? |  yes  |  |
  | franchiseEnabled | Bool? |  yes  |  |
  | outOfStock | Bool? |  yes  |  |
+ | onlyVerifiedProducts | Bool? |  yes  |  |
  | payment | [InventoryPaymentConfig](#InventoryPaymentConfig)? |  yes  |  |
  | articleAssignment | [InventoryArticleAssignment](#InventoryArticleAssignment)? |  yes  |  |
 
