@@ -13,6 +13,20 @@ Get started with the Swift Development SDK for Fynd Platform
 3. Add `import FDKClient`
 4. Start integrating
 
+### Sample Usage - PublicClient
+
+```swift
+let config = PublicConfig()
+let publicClient = PublicClient(config: config)
+publicClient.webhook.fetchAllWebhookEvents() { (webhookEvents, error) in
+    if let webhookEvents = webhookEvents {
+        print(webhookEvents.debugDescription)
+    } else if let error = error {
+        print(error.message)
+    }
+}
+```
+
 ### Sample Usage - ApplicationClient
 
 ```swift
@@ -34,11 +48,11 @@ applicationClient.catalog.getProductDetailBySlug(slug: "product-slug") { (produc
 ### Sample Usage - PlatformClient
 
 ```swift
-guard let config = PlatformConfig(companyId: "COMPANY_ID", 
-                                  apiKey: "API_KEY", 
-                                  apiSecret: "API_SECRET", 
-                                  domain: "DOMAIN") {
-    return
+guard let config = PlatformConfig(
+    companyId: "COMPANY_ID", 
+    apiKey: "API_KEY", 
+    apiSecret: "API_SECRET") {
+        return
 }
 let platformClient = PlatformClient(config: config)
 platformClient.catalog.getCompanyDetail { (response, error) in
