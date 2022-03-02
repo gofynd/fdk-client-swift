@@ -69,7 +69,7 @@ public extension Dictionary {
         return try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
     }
 
-    var pretty: String {
+    var minifiedJson: String {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [])
             guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else {
