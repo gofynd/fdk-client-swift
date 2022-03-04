@@ -4195,7 +4195,7 @@ if let value = id {
         /**
         *
         * Summary: Search Application
-        * Description: Search Application.
+        * Description: Provide application name or domain url
         **/
         public func searchApplication(
             authorization: String?,
@@ -8415,7 +8415,6 @@ This operation will return the URL of the uploaded file.
         * Description: Describe here
         **/
         public func signUrls(
-            companyId: Int,
             body: SignUrlRequest,
             onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
         ) {
@@ -8428,7 +8427,7 @@ This operation will return the URL of the uploaded file.
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/assets/v1.0/company/\(companyId)/sign-urls/",
+                url: "/service/application/assets/v1.0/sign-urls/",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,

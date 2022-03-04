@@ -168,7 +168,7 @@ Explain here
 
 
 ```swift
-client.filestorage.signUrls(body: body) { (response, error) in
+filestorage.signUrls(body: body) { (response, error) in
     // Use response
 }
 ```

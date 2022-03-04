@@ -38,7 +38,7 @@ class RequestSigner {
         finalHeaders = finalHeaders.sorted{ $0.key < $1.key}
         var reqHash = "".sha256()
         if let data = reqData {
-            reqHash = data.pretty.sha256()
+            reqHash = data.minifiedJson.sha256()
         }
         let releventSignHeaders = finalHeaders.filter({ header -> Bool in
             for regex in HEADERS_TO_INCLUDE
