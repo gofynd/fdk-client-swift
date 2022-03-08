@@ -1766,10 +1766,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1783,7 +1783,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -1815,10 +1815,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1832,7 +1832,7 @@ if let value = pageSize {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/application/catalog/v1.0/follow/\(collectionType)/\(collectionId)/",
                 query: nil,
                 extraHeaders:  [],
@@ -4461,7 +4461,7 @@ if let value = id {
         * Description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
         **/
         public func createHistory(
-            ticketId: String,
+            id: String,
             body: TicketHistoryPayload,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
@@ -4474,7 +4474,7 @@ if let value = id {
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/application/lead/v1.0/ticket/\(ticketId)/history",
+                url: "/service/application/lead/v1.0/ticket/\(id)/history",
                 query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
