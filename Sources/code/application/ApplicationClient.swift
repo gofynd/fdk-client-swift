@@ -9288,6 +9288,67 @@ if let value = user {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAppStaffList
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAppStaffListPaginator(
+            pageSize: Int?,
+            orderIncent: Bool?,
+            orderingStore: Int?,
+            user: String?
+            
+            ) -> Paginator<AppStaffListResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<AppStaffListResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAppStaffList(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        orderIncent: orderIncent,
+                        orderingStore: orderingStore,
+                        user: user
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
         /**
         *
         * Summary: Get a list of staff.
