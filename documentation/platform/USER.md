@@ -1956,6 +1956,8 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | applicationId | String? |  yes  |  |
+ | userId | String? |  yes  |  |
  | firstName | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | lastName | String? |  yes  |  |
