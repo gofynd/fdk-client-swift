@@ -546,7 +546,7 @@ Create user session
 
 
 #### getActiveSessions
-Get a list of all sections for a user
+Get a list of all session for a user
 
 
 
@@ -567,7 +567,7 @@ client.application("<APPLICATION_ID>").user.getActiveSessions(id: id) { (respons
 
 
 
-Use this API to retrieve a list of customers who have registered in the application.
+Use this API to retrieve a list of session of customers who have registered in the application.
 
 *Returned Response:*
 
@@ -614,7 +614,7 @@ Success. Refer `SessionListResponseSchema` for more details.
 
 
 #### deleteActiveSessions
-Get a list of all sections for a user
+Delete a list of all session for a user
 
 
 
@@ -635,16 +635,16 @@ client.application("<APPLICATION_ID>").user.deleteActiveSessions(id: id) { (resp
 
 
 
-Use this API to retrieve a list of customers who have registered in the application.
+Use this API to Delete a list of session of customers who have registered in the application.
 
 *Returned Response:*
 
 
 
 
-[SessionListResponseSchema](#SessionListResponseSchema)
+[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
 
-Success. Refer `SessionListResponseSchema` for more details.
+Success. Refer `SessionDeleteResponseSchema` for more details.
 
 
 
@@ -1483,6 +1483,17 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  
  
  #### [SessionListResponseSchema](#SessionListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

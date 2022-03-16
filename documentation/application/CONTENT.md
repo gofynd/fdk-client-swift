@@ -346,9 +346,9 @@ Use this API to get all selected data loaders of the application in the form of 
 
 
 
-[DataLoadersSchema](#DataLoadersSchema)
+[DataLoaderSchema](#DataLoaderSchema)
 
-Success. Returns a JSON object containing all the data loaders injected in the application. Check the example shown below or refer `DataLoadersSchema` for more details.
+Success. Returns a JSON object containing all the data loaders injected in the application. Check the example shown below or refer `DataLoaderSchema` for more details.
 
 
 
@@ -357,28 +357,26 @@ Success. Returns a JSON object containing all the data loaders injected in the a
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "items": [
-    {
-      "name": "Algolia",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc4523a7ffc7504f4de4a5",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url"
-    },
-    {
-      "name": "Algolia v3",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc452da7ffc7504f4de4a7",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url"
-    }
-  ]
-}
+[
+  {
+    "name": "Algolia",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc4523a7ffc7504f4de4a5",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "/ext/example/url"
+  },
+  {
+    "name": "Algolia v3",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc452da7ffc7504f4de4a7",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "/ext/example/url"
+  }
+]
 ```
 </details>
 
@@ -2478,17 +2476,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | ---------- | ---- | -------- | ----------- |
  | type | String? |  yes  |  |
  | id | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DataLoadersSchema](#DataLoadersSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[DataLoaderSchema](#DataLoaderSchema)]? |  yes  |  |
 
 ---
 
