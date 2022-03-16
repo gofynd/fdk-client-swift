@@ -26,7 +26,7 @@ class ApplicationAPIClient {
         }
 
         headers.append(contentsOf: extraHeaders)
-        AlmofireHelper.request(config.domain.appendAsPath(url),
+        AlmofireHelper.request(url,
                                 query: query,
                                 parameters: body,
                                 type: method,
