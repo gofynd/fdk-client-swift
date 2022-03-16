@@ -35,4 +35,9 @@ Pod::Spec.new do |s|
     subspec.source_files = 'Sources/code/platform/**/*'
     subspec.dependency 'FDKClient/Common'
   end
+
+  s.subspec 'Public' do |subspec|
+    subspec.source_files = 'Sources/code/public/**/*'
+    subspec.dependency 'FDKClient/Common'
+  end
 end

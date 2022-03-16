@@ -1318,20 +1318,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | [[KeyValue](#KeyValue)] |  no  | Form response |
+ | response | [[String: Any]] |  no  | Form response |
  | attachments | [[TicketAsset](#TicketAsset)]? |  yes  | List of all attachments related to the form |
-
----
-
-
- 
- 
- #### [KeyValue](#KeyValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String |  no  | Parameter for evaluating |
- | value | [String: Any] |  no  | Response for the parameter |
 
 ---
 
