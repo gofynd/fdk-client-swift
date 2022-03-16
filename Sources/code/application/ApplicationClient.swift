@@ -2935,7 +2935,6 @@ if let value = pageSize {
             i: Bool?,
             b: Bool?,
             assignCardId: Int?,
-            areaCode: String?,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2966,13 +2965,6 @@ if let value = b {
 if let value = assignCardId {
     
     xQuery["assign_card_id"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
     
 }
 
@@ -3081,7 +3073,6 @@ if let value = id {
         public func addItems(
             i: Bool?,
             b: Bool?,
-            areaCode: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3098,13 +3089,6 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
     
 }
 
@@ -3156,7 +3140,6 @@ if let value = areaCode {
             id: String?,
             i: Bool?,
             b: Bool?,
-            areaCode: String?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3180,13 +3163,6 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
     
 }
 
@@ -7675,7 +7651,7 @@ if let value = pageSize {
         **/
         public func getDataLoaders(
             
-            onResponse: @escaping (_ response: DataLoaderSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DataLoadersSchema?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -7703,7 +7679,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DataLoaderSchema.self, from: data)
+                        let response = Utility.decode(DataLoadersSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -15411,7 +15387,6 @@ if let value = pageSize {
             i: Bool?,
             b: Bool?,
             assignCardId: Int?,
-            areaCode: String?,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15442,13 +15417,6 @@ if let value = b {
 if let value = assignCardId {
     
     xQuery["assign_card_id"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
     
 }
 
@@ -15557,7 +15525,6 @@ if let value = id {
         public func addItems(
             i: Bool?,
             b: Bool?,
-            areaCode: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15574,13 +15541,6 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
     
 }
 
@@ -15632,7 +15592,6 @@ if let value = areaCode {
             id: String?,
             i: Bool?,
             b: Bool?,
-            areaCode: String?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15656,13 +15615,6 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
     
 }
 

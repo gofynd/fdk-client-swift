@@ -15412,7 +15412,7 @@ if let value = pageSize {
             **/
             public func getDataLoaders(
                 
-                onResponse: @escaping (_ response: [DataLoaderResponseSchema]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DataLoadersSchema?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -15437,7 +15437,7 @@ if let value = pageSize {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([DataLoaderResponseSchema].self, from: data)
+                            let response = Utility.decode(DataLoadersSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15559,7 +15559,7 @@ if let value = pageSize {
             public func getDataLoadersByService(
                 serviceName: String,
                 
-                onResponse: @escaping (_ response: [DataLoaderResponseSchema]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DataLoadersSchema?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -15584,7 +15584,7 @@ if let value = pageSize {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([DataLoaderResponseSchema].self, from: data)
+                            let response = Utility.decode(DataLoadersSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
