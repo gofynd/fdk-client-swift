@@ -100,7 +100,7 @@ client.serviceability.getEntityRegionView(body: body) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| body | EntityRegionView_Request_schema | yes | Request body |
+| body | EntityRegionView_Request | yes | Request body |
 
 
 This API returns response for Entity Region View.
@@ -110,7 +110,7 @@ This API returns response for Entity Region View.
 
 
 
-[EntityRegionView_Response_schema](#EntityRegionView_Response_schema)
+[EntityRegionView_Response](#EntityRegionView_Response)
 
 Response status_code
 
@@ -210,7 +210,7 @@ This API returns Company Store View of the application.
 
 
 
-[CompanyStoreView_Response_schema](#CompanyStoreView_Response_schema)
+[CompanyStoreView_Response](#CompanyStoreView_Response)
 
 Get Company Store View Data
 
@@ -460,19 +460,6 @@ Response status_code
 
  
  
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
- | value | String |  no  |  |
- | type | String |  no  |  |
-
----
-
-
- 
- 
  #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
@@ -486,20 +473,33 @@ Response status_code
 
  
  
- #### [ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
+ #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
- | error | [ErrorResponse](#ErrorResponse)? |  yes  |  |
- | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
+ | value | String |  no  |  |
+ | type | String |  no  |  |
+ | message | String |  no  |  |
 
 ---
 
 
  
  
- #### [EntityRegionView_Request_schema](#EntityRegionView_Request_schema)
+ #### [ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
+ | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
+ | success | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_Request](#EntityRegionView_Request)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -515,22 +515,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | subType | String |  no  |  |
- | name | String |  no  |  |
  | uid | String |  no  |  |
-
----
-
-
- 
- 
- #### [EntityRegionView_Error](#EntityRegionView_Error)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | value | String? |  yes  |  |
- | type | String? |  yes  |  |
+ | name | String |  no  |  |
+ | subType | String |  no  |  |
 
 ---
 
@@ -541,53 +528,38 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
  | itemTotal | Int |  no  |  |
  | type | String |  no  |  |
- | hasNext | Bool |  no  |  |
  | current | Int |  no  |  |
- | size | Int |  no  |  |
 
 ---
 
 
  
  
- #### [EntityRegionView_Response_schema](#EntityRegionView_Response_schema)
+ #### [EntityRegionView_Error](#EntityRegionView_Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_Response](#EntityRegionView_Response)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  no  |  |
+ | page | [EntityRegionView_page](#EntityRegionView_page) |  no  |  |
  | error | [EntityRegionView_Error](#EntityRegionView_Error) |  no  |  |
  | success | Bool |  no  |  |
- | page | [EntityRegionView_page](#EntityRegionView_page) |  no  |  |
-
----
-
-
- 
- 
- #### [ListViewSummary](#ListViewSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | totalZones | Int |  no  |  |
- | totalPincodesServed | Int |  no  |  |
- | totalActiveZones | Int |  no  |  |
-
----
-
-
- 
- 
- #### [ZoneDataItem](#ZoneDataItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int |  no  |  |
- | type | String |  no  |  |
- | hasNext | Bool |  no  |  |
- | current | Int |  no  |  |
- | size | Int |  no  |  |
 
 ---
 
@@ -622,15 +594,43 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | storesCount | Int |  no  |  |
- | name | String |  no  |  |
+ | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
+ | isActive | Bool |  no  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  no  |  |
  | id | String |  no  |  |
+ | pincodesCount | Int |  no  |  |
+ | name | String |  no  |  |
  | slug | String |  no  |  |
  | companyId | Int |  no  |  |
- | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
- | product | [ListViewProduct](#ListViewProduct) |  no  |  |
- | isActive | Bool |  no  |  |
- | pincodesCount | Int |  no  |  |
+ | storesCount | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneDataItem](#ZoneDataItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | type | String |  no  |  |
+ | current | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewSummary](#ListViewSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | totalPincodesServed | Int |  no  |  |
+ | totalZones | Int |  no  |  |
+ | totalActiveZones | Int |  no  |  |
 
 ---
 
@@ -641,9 +641,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
  | items | [[ListViewItems](#ListViewItems)] |  no  |  |
+ | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
 
 ---
 
@@ -654,23 +654,23 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
  | itemTotal | Int |  no  |  |
  | type | String |  no  |  |
- | hasNext | Bool |  no  |  |
  | current | Int |  no  |  |
- | size | Int |  no  |  |
 
 ---
 
 
  
  
- #### [CompanyStoreView_Response_schema](#CompanyStoreView_Response_schema)
+ #### [CompanyStoreView_Response](#CompanyStoreView_Response)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  no  |  |
  | items | [[String: Any]]? |  yes  |  |
+ | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  no  |  |
 
 ---
 
@@ -694,9 +694,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
  | statusCode | Int |  no  |  |
  | zoneId | String |  no  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -707,8 +707,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
  | statusCode | Int |  no  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -743,15 +743,15 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zoneId | String |  no  |  |
- | storesCount | Int |  no  |  |
+ | channels | [GetZoneDataViewChannels](#GetZoneDataViewChannels) |  no  |  |
+ | isActive | Bool |  no  |  |
+ | product | [GetZoneDataViewProduct](#GetZoneDataViewProduct) |  no  |  |
+ | pincodesCount | Int |  no  |  |
  | name | String |  no  |  |
  | slug | String |  no  |  |
- | channels | [GetZoneDataViewChannels](#GetZoneDataViewChannels) |  no  |  |
- | pincodesCount | Int |  no  |  |
- | product | [GetZoneDataViewProduct](#GetZoneDataViewProduct) |  no  |  |
- | isActive | Bool |  no  |  |
  | companyId | Int |  no  |  |
+ | storesCount | Int |  no  |  |
+ | zoneId | String |  no  |  |
 
 ---
 
@@ -762,7 +762,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[GetZoneDataViewItems](#GetZoneDataViewItems)] |  no  |  |
+ | data | [GetZoneDataViewItems](#GetZoneDataViewItems) |  no  |  |
 
 ---
 
@@ -773,8 +773,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | String |  no  |  |
  | pincode | String |  no  |  |
+ | country | String |  no  |  |
 
 ---
 
