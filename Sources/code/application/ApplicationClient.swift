@@ -4543,6 +4543,7 @@ if let value = id {
         public func getPromotionOffers(
             slug: String?,
             pageSize: Int?,
+            promotionGroup: Int?,
             
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -4559,6 +4560,13 @@ if let value = slug {
 if let value = pageSize {
     
     xQuery["page_size"] = value
+    
+}
+
+
+if let value = promotionGroup {
+    
+    xQuery["promotion_group"] = value
     
 }
 
