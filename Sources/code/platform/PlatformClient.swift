@@ -14522,8 +14522,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get a list of all sections for a user
-            * Description: Use this API to retrieve a list of customers who have registered in the application.
+            * Summary: Get a list of all session for a user
+            * Description: Use this API to retrieve a list of session of customers who have registered in the application.
             **/
             public func getActiveSessions(
                 id: String,
@@ -14576,13 +14576,13 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get a list of all sections for a user
-            * Description: Use this API to retrieve a list of customers who have registered in the application.
+            * Summary: Delete a list of all session for a user
+            * Description: Use this API to Delete a list of session of customers who have registered in the application.
             **/
             public func deleteActiveSessions(
                 id: String,
                 
-                onResponse: @escaping (_ response: SessionListResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SessionDeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -14612,7 +14612,7 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SessionListResponseSchema.self, from: data)
+                            let response = Utility.decode(SessionDeleteResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

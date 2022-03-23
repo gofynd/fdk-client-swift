@@ -2799,6 +2799,8 @@ public extension PlatformClient {
         
         public var registerToken: String?
         
+        public var resendEmailToken: String?
+        
         public var userExists: Bool?
         
         public var verifyEmailLink: Bool?
@@ -2818,6 +2820,8 @@ public extension PlatformClient {
             
             case registerToken = "register_token"
             
+            case resendEmailToken = "resend_email_token"
+            
             case userExists = "user_exists"
             
             case verifyEmailLink = "verify_email_link"
@@ -2832,11 +2836,13 @@ public extension PlatformClient {
             
         }
 
-        public init(email: String?, registerToken: String?, requestId: String?, user: UserSchema?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+        public init(email: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, user: UserSchema?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
             
             self.user = user
             
             self.registerToken = registerToken
+            
+            self.resendEmailToken = resendEmailToken
             
             self.userExists = userExists
             
@@ -2876,6 +2882,18 @@ public extension PlatformClient {
             
                 do {
                     registerToken = try container.decode(String.self, forKey: .registerToken)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    resendEmailToken = try container.decode(String.self, forKey: .resendEmailToken)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2970,6 +2988,11 @@ public extension PlatformClient {
             
             
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+            
+            
+            
+            try? container.encodeIfPresent(resendEmailToken, forKey: .resendEmailToken)
             
             
             
@@ -4616,6 +4639,64 @@ public extension PlatformClient {
         public func duplicate() -> SessionListResponseSchema {
             let dict = self.dictionary!
             let copy = SessionListResponseSchema(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    items = try container.decode([String].self, forKey: .items)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+        }
+        
+    }
+    
+    /*
+        Model: SessionDeleteResponseSchema
+        Used By: User
+    */
+
+    class SessionDeleteResponseSchema: Codable {
+        
+        
+        public var items: [String]?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case items = "items"
+            
+        }
+
+        public init(items: [String]?) {
+            
+            self.items = items
+            
+        }
+
+        public func duplicate() -> SessionDeleteResponseSchema {
+            let dict = self.dictionary!
+            let copy = SessionDeleteResponseSchema(dictionary: dict)!
             return copy
         }
 

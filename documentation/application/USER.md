@@ -3241,6 +3241,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | ---------- | ---- | -------- | ----------- |
  | user | [UserSchema](#UserSchema)? |  yes  |  |
  | registerToken | String? |  yes  |  |
+ | resendEmailToken | String? |  yes  |  |
  | userExists | Bool? |  yes  |  |
  | verifyEmailLink | Bool? |  yes  |  |
  | verifyEmailOtp | Bool? |  yes  |  |
@@ -3482,6 +3483,17 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  
  
  #### [SessionListResponseSchema](#SessionListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
