@@ -2765,6 +2765,18 @@ public extension ApplicationClient {
             
             public var requestId: String?
             
+            public var countryCode: String?
+            
+            public var mobile: String?
+            
+            public var success: Bool?
+            
+            public var message: String?
+            
+            public var resendTimer: Int?
+            
+            public var resendToken: String?
+            
 
             public enum CodingKeys: String, CodingKey {
                 
@@ -2786,9 +2798,21 @@ public extension ApplicationClient {
                 
                 case requestId = "request_id"
                 
+                case countryCode = "country_code"
+                
+                case mobile = "mobile"
+                
+                case success = "success"
+                
+                case message = "message"
+                
+                case resendTimer = "resend_timer"
+                
+                case resendToken = "resend_token"
+                
             }
 
-            public init(email: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
+            public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
                 
                 self.user = user
                 
@@ -2807,6 +2831,18 @@ public extension ApplicationClient {
                 self.email = email
                 
                 self.requestId = requestId
+                
+                self.countryCode = countryCode
+                
+                self.mobile = mobile
+                
+                self.success = success
+                
+                self.message = message
+                
+                self.resendTimer = resendTimer
+                
+                self.resendToken = resendToken
                 
             }
 
@@ -2927,6 +2963,78 @@ public extension ApplicationClient {
                 }
                 
                 
+                
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    mobile = try container.decode(String.self, forKey: .mobile)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
+                
+                do {
+                    resendToken = try container.decode(String.self, forKey: .resendToken)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+                
             }
             
             public func encode(to encoder: Encoder) throws {
@@ -2975,6 +3083,36 @@ public extension ApplicationClient {
                 
                 
                 try? container.encodeIfPresent(requestId, forKey: .requestId)
+                
+                
+                
+                
+                try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+                
+                
+                
+                
+                try? container.encodeIfPresent(mobile, forKey: .mobile)
+                
+                
+                
+                
+                try? container.encodeIfPresent(success, forKey: .success)
+                
+                
+                
+                
+                try? container.encodeIfPresent(message, forKey: .message)
+                
+                
+                
+                
+                try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
+                
+                
+                
+                
+                try? container.encodeIfPresent(resendToken, forKey: .resendToken)
                 
                 
             }
