@@ -128,9 +128,9 @@ public class ApplicationClient {
             
             ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/") 
             
-            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
-            
             ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
+            
+            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
             
             ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/") 
             
@@ -1924,10 +1924,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1940,7 +1940,7 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["unfollowById"] ?? ""
+            var fullUrl = relativeUrls["followById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
@@ -1948,7 +1948,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1980,10 +1980,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1996,7 +1996,7 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["followById"] ?? ""
+            var fullUrl = relativeUrls["unfollowById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
@@ -2004,7 +2004,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2935,6 +2935,7 @@ if let value = pageSize {
             i: Bool?,
             b: Bool?,
             assignCardId: Int?,
+            areaCode: String?,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2965,6 +2966,13 @@ if let value = b {
 if let value = assignCardId {
     
     xQuery["assign_card_id"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
     
 }
 
@@ -3073,6 +3081,7 @@ if let value = id {
         public func addItems(
             i: Bool?,
             b: Bool?,
+            areaCode: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3089,6 +3098,13 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
     
 }
 
@@ -3140,6 +3156,7 @@ if let value = b {
             id: String?,
             i: Bool?,
             b: Bool?,
+            areaCode: String?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3163,6 +3180,13 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
     
 }
 
@@ -15447,6 +15471,7 @@ if let value = pageSize {
             i: Bool?,
             b: Bool?,
             assignCardId: Int?,
+            areaCode: String?,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15477,6 +15502,13 @@ if let value = b {
 if let value = assignCardId {
     
     xQuery["assign_card_id"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
     
 }
 
@@ -15585,6 +15617,7 @@ if let value = id {
         public func addItems(
             i: Bool?,
             b: Bool?,
+            areaCode: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15601,6 +15634,13 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
     
 }
 
@@ -15652,6 +15692,7 @@ if let value = b {
             id: String?,
             i: Bool?,
             b: Bool?,
+            areaCode: String?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15675,6 +15716,13 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
+    
+}
+
+
+if let value = areaCode {
+    
+    xQuery["area_code"] = value
     
 }
 
