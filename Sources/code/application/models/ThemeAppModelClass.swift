@@ -55,7 +55,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(path: String?, props: [[String: Any]]?, sections: [AvailablePageSchemaSections]?, sectionsMeta: [AvailablePageSectionMetaAttributes]?, seo: AvailablePageSeo?, text: String?, theme: String?, type: String?, value: String?, id: String?) {
+            public init(path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, value: String? = nil, id: String? = nil) {
                 
                 self.value = value
                 
@@ -282,7 +282,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributes: [String: Any]?) {
+            public init(attributes: [String: Any]? = nil) {
                 
                 self.attributes = attributes
                 
@@ -346,7 +346,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, title: String?, id: String?) {
+            public init(description: String? = nil, title: String? = nil, id: String? = nil) {
                 
                 self.title = title
                 
@@ -460,7 +460,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(blocks: [[String: Any]]?, label: String?, name: String?, predicate: AvailablePagePredicate?, preset: [String: Any]?, props: [String: Any]?) {
+            public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil) {
                 
                 self.name = name
                 
@@ -619,7 +619,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(desktop: Bool?, mobile: Bool?, tablet: Bool?) {
+            public init(desktop: Bool? = nil, mobile: Bool? = nil, tablet: Bool? = nil) {
                 
                 self.mobile = mobile
                 
@@ -717,7 +717,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(anonymous: Bool?, authenticated: Bool?) {
+            public init(anonymous: Bool? = nil, authenticated: Bool? = nil) {
                 
                 self.authenticated = authenticated
                 
@@ -800,7 +800,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(exactUrl: String?, query: [String: Any]?, selected: String?) {
+            public init(exactUrl: String? = nil, query: [String: Any]? = nil, selected: String? = nil) {
                 
                 self.selected = selected
                 
@@ -902,7 +902,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(route: AvailablePageRoutePredicate?, screen: AvailablePageScreenPredicate?, user: AvailablePageUserPredicate?) {
+            public init(route: AvailablePageRoutePredicate? = nil, screen: AvailablePageScreenPredicate? = nil, user: AvailablePageUserPredicate? = nil) {
                 
                 self.screen = screen
                 
@@ -996,7 +996,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(pages: [AvailablePageSchema]?) {
+            public init(pages: [AvailablePageSchema]? = nil) {
                 
                 self.pages = pages
                 
@@ -1068,7 +1068,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
+            public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
                 
                 self.size = size
                 
@@ -1204,7 +1204,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [ThemesSchema]?, page: PaginationSchema?) {
+            public init(items: [ThemesSchema]? = nil, page: PaginationSchema? = nil) {
                 
                 self.items = items
                 
@@ -1279,7 +1279,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(themeId: String?) {
+            public init(themeId: String? = nil) {
                 
                 self.themeId = themeId
                 
@@ -1343,7 +1343,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appliedTheme: String?, parentTheme: String?, upgrade: Bool?) {
+            public init(appliedTheme: String? = nil, parentTheme: String? = nil, upgrade: Bool? = nil) {
                 
                 self.parentTheme = parentTheme
                 
@@ -1441,7 +1441,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: FontsSchemaItems?, kind: String?) {
+            public init(items: FontsSchemaItems? = nil, kind: String? = nil) {
                 
                 self.items = items
                 
@@ -1516,7 +1516,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -1572,7 +1572,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -1628,7 +1628,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -1712,7 +1712,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: String?, family: String?, files: FontsSchemaItemsFiles?, kind: String?, lastModified: String?, subsets: [String]?, variants: [String]?, version: String?) {
+            public init(category: String? = nil, family: String? = nil, files: FontsSchemaItemsFiles? = nil, kind: String? = nil, lastModified: String? = nil, subsets: [String]? = nil, variants: [String]? = nil, version: String? = nil) {
                 
                 self.family = family
                 
@@ -1909,7 +1909,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(bold: String?, italic: String?, regular: String?) {
+            public init(bold: String? = nil, italic: String? = nil, regular: String? = nil) {
                 
                 self.regular = regular
                 
@@ -2091,7 +2091,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, applied: Bool?, archived: Bool?, assets: AssetsSchema?, availableSections: [availableSectionSchema]?, colors: Colors?, config: Config?, constants: [String: Any]?, createdAt: String?, customized: Bool?, font: Font?, information: Information?, parentTheme: String?, parentThemeVersion: String?, published: Bool?, settings: [String: Any]?, src: Src?, styles: [String: Any]?, tags: [String]?, updatedAt: String?, version: String?, id: String?, v: Int?) {
+            public init(application: String? = nil, applied: Bool? = nil, archived: Bool? = nil, assets: AssetsSchema? = nil, availableSections: [availableSectionSchema]? = nil, colors: Colors? = nil, config: Config? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, customized: Bool? = nil, font: Font? = nil, information: Information? = nil, parentTheme: String? = nil, parentThemeVersion: String? = nil, published: Bool? = nil, settings: [String: Any]? = nil, src: Src? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil, v: Int? = nil) {
                 
                 self.application = application
                 
@@ -2577,7 +2577,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(blocks: [Blocks]?, label: String?, name: String?, props: [BlocksProps]?) {
+            public init(blocks: [Blocks]? = nil, label: String? = nil, name: String? = nil, props: [BlocksProps]? = nil) {
                 
                 self.blocks = blocks
                 
@@ -2702,7 +2702,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, features: [String]?, images: Images?, name: String?) {
+            public init(description: String? = nil, features: [String]? = nil, images: Images? = nil, name: String? = nil) {
                 
                 self.images = images
                 
@@ -2827,7 +2827,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(android: [String]?, desktop: [String]?, ios: [String]?, thumbnail: [String]?) {
+            public init(android: [String]? = nil, desktop: [String]? = nil, ios: [String]? = nil, thumbnail: [String]? = nil) {
                 
                 self.desktop = desktop
                 
@@ -2940,7 +2940,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(link: String?) {
+            public init(link: String? = nil) {
                 
                 self.link = link
                 
@@ -3004,7 +3004,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(commonJs: CommonJs?, css: Css?, umdJs: UmdJs?) {
+            public init(commonJs: CommonJs? = nil, css: Css? = nil, umdJs: UmdJs? = nil) {
                 
                 self.umdJs = umdJs
                 
@@ -3098,7 +3098,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(link: String?) {
+            public init(link: String? = nil) {
                 
                 self.link = link
                 
@@ -3154,7 +3154,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(link: String?) {
+            public init(link: String? = nil) {
                 
                 self.link = link
                 
@@ -3210,7 +3210,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(link: String?) {
+            public init(link: String? = nil) {
                 
                 self.link = link
                 
@@ -3266,7 +3266,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributes: String?) {
+            public init(attributes: String? = nil) {
                 
                 self.attributes = attributes
                 
@@ -3334,7 +3334,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(current: String?, globalSchema: GlobalSchema?, list: [ListSchemaItem]?, preset: Preset?) {
+            public init(current: String? = nil, globalSchema: GlobalSchema? = nil, list: [ListSchemaItem]? = nil, preset: Preset? = nil) {
                 
                 self.preset = preset
                 
@@ -3447,7 +3447,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(pages: [AvailablePageSchema]?) {
+            public init(pages: [AvailablePageSchema]? = nil) {
                 
                 self.pages = pages
                 
@@ -3503,7 +3503,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(props: [GlobalSchemaProps]?) {
+            public init(props: [GlobalSchemaProps]? = nil) {
                 
                 self.props = props
                 
@@ -3567,7 +3567,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(globalConfig: [String: Any]?, name: String?, page: [ConfigPage]?) {
+            public init(globalConfig: [String: Any]? = nil, name: String? = nil, page: [ConfigPage]? = nil) {
                 
                 self.globalConfig = globalConfig
                 
@@ -3681,7 +3681,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(accentColor: String?, bgColor: String?, buttonSecondaryColor: String?, linkColor: String?, primaryColor: String?, secondaryColor: String?) {
+            public init(accentColor: String? = nil, bgColor: String? = nil, buttonSecondaryColor: String? = nil, linkColor: String? = nil, primaryColor: String? = nil, secondaryColor: String? = nil) {
                 
                 self.bgColor = bgColor
                 
@@ -3832,7 +3832,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(props: [String: Any]?) {
+            public init(props: [String: Any]? = nil) {
                 
                 self.props = props
                 
@@ -3892,7 +3892,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(page: String?, settings: [String: Any]?) {
+            public init(page: String? = nil, settings: [String: Any]? = nil) {
                 
                 self.settings = settings
                 
@@ -3971,7 +3971,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(family: String?, variants: Variants?) {
+            public init(family: String? = nil, variants: Variants? = nil) {
                 
                 self.family = family
                 
@@ -4062,7 +4062,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(bold: Bold?, light: Light?, medium: Medium?, regular: Regular?, semiBold: SemiBold?) {
+            public init(bold: Bold? = nil, light: Light? = nil, medium: Medium? = nil, regular: Regular? = nil, semiBold: SemiBold? = nil) {
                 
                 self.medium = medium
                 
@@ -4198,7 +4198,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(file: String?, name: String?) {
+            public init(file: String? = nil, name: String? = nil) {
                 
                 self.name = name
                 
@@ -4277,7 +4277,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(file: String?, name: String?) {
+            public init(file: String? = nil, name: String? = nil) {
                 
                 self.name = name
                 
@@ -4356,7 +4356,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(file: String?, name: String?) {
+            public init(file: String? = nil, name: String? = nil) {
                 
                 self.name = name
                 
@@ -4435,7 +4435,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(file: String?, name: String?) {
+            public init(file: String? = nil, name: String? = nil) {
                 
                 self.name = name
                 
@@ -4514,7 +4514,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(file: String?, name: String?) {
+            public init(file: String? = nil, name: String? = nil) {
                 
                 self.name = name
                 
@@ -4597,7 +4597,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(name: String?, props: [BlocksProps]?, type: String?) {
+            public init(name: String? = nil, props: [BlocksProps]? = nil, type: String? = nil) {
                 
                 self.type = type
                 
@@ -4703,7 +4703,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: String?, id: String?, label: String?, type: String?) {
+            public init(category: String? = nil, id: String? = nil, label: String? = nil, type: String? = nil) {
                 
                 self.id = id
                 
@@ -4824,7 +4824,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, label: String?, type: String?) {
+            public init(id: String? = nil, label: String? = nil, type: String? = nil) {
                 
                 self.id = id
                 

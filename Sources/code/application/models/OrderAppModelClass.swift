@@ -165,7 +165,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
+            public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
                 
                 self.itemTotal = itemTotal
                 
@@ -297,7 +297,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(statuses: [OrderStatuses]?) {
+            public init(statuses: [OrderStatuses]? = nil) {
                 
                 self.statuses = statuses
                 
@@ -361,7 +361,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(display: String?, isSelected: Bool?, value: Int?) {
+            public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
                 
                 self.display = display
                 
@@ -946,7 +946,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(shipments: [String: Any]?, status: String?) {
+            public init(shipments: [String: Any]? = nil, status: String? = nil) {
                 
                 self.status = status
                 
@@ -1159,7 +1159,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(bagsForReorder: [BagsForReorder]?, breakupValues: [BreakupValues]?, orderCreatedTime: String?, orderId: String?, shipments: [Shipments]?, totalShipmentsInOrder: Int?, userInfo: UserInfo?) {
+            public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
                 
                 self.orderId = orderId
                 
@@ -1349,7 +1349,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(articleAssignment: BagsForReorderArticleAssignment?, itemId: Int?, itemSize: String?, quantity: Int?, sellerId: Int?, storeId: Int?) {
+            public init(articleAssignment: BagsForReorderArticleAssignment? = nil, itemId: Int? = nil, itemSize: String? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil) {
                 
                 self.itemId = itemId
                 
@@ -1504,7 +1504,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(level: String?, strategy: String?) {
+            public init(level: String? = nil, strategy: String? = nil) {
                 
                 self.level = level
                 
@@ -1644,7 +1644,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(currentStatus: CurrentStatus?, financialBreakup: [FinancialBreakup]?, id: Int?, item: Item?, prices: Prices?) {
+            public init(currentStatus: CurrentStatus? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil) {
                 
                 self.item = item
                 
@@ -1800,7 +1800,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(brand: ItemBrand?, code: String?, id: Double?, image: [String]?, name: String?, size: String?, slugKey: String?) {
+            public init(brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
                 
                 self.brand = brand
                 
@@ -2046,7 +2046,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(addedToFyndCash: Bool?, amountPaid: Double?, amountPaidRoundoff: Double?, brandCalculatedAmount: Double?, cashback: Double?, cashbackApplied: Double?, codCharges: Double?, couponEffectiveDiscount: Double?, couponValue: Double?, deliveryCharge: Double?, discount: Double?, fyndCredits: Double?, gstTaxPercentage: Double?, priceEffective: Double?, priceMarked: Double?, promotionEffectiveDiscount: Double?, refundAmount: Double?, refundCredit: Double?, transferPrice: Double?, valueOfGood: Double?) {
+            public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
                 
                 self.amountPaidRoundoff = amountPaidRoundoff
                 
@@ -2475,7 +2475,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(journeyType: String?, name: String?, status: String?, updatedAt: String?) {
+            public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
                 
                 self.updatedAt = updatedAt
                 
@@ -2692,7 +2692,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(addedToFyndCash: Bool?, amountPaid: Double?, amountPaidRoundoff: Double?, brandCalculatedAmount: Double?, cashback: Double?, cashbackApplied: Double?, codCharges: Double?, couponEffectiveDiscount: Double?, couponValue: Double?, deliveryCharge: Double?, discount: Double?, fyndCredits: Double?, gstFee: String?, gstTag: String?, gstTaxPercentage: Double?, hsnCode: String?, identifiers: Identifiers?, itemName: String?, priceEffective: Double?, priceMarked: Double?, promotionEffectiveDiscount: Double?, refundAmount: Double?, refundCredit: Double?, size: String?, totalUnits: Int?, transferPrice: Double?, valueOfGood: Double?) {
+            public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstFee: String? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, identifiers: Identifiers? = nil, itemName: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, size: String? = nil, totalUnits: Int? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
                 
                 self.brandCalculatedAmount = brandCalculatedAmount
                 
@@ -3246,7 +3246,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(ean: String?, skuCode: String?) {
+            public init(ean: String? = nil, skuCode: String? = nil) {
                 
                 self.ean = ean
                 
@@ -3325,7 +3325,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(logo: String?, name: String?) {
+            public init(logo: String? = nil, name: String? = nil) {
                 
                 self.name = name
                 
@@ -3408,7 +3408,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(display: String?, name: String?, value: Double?) {
+            public init(display: String? = nil, name: String? = nil, value: Double? = nil) {
                 
                 self.display = display
                 
@@ -3578,7 +3578,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(address: String?, address1: String?, address2: String?, addressCategory: String?, addressType: String?, area: String?, city: String?, contactPerson: String?, country: String?, createdAt: String?, email: String?, landmark: String?, latitude: Double?, longitude: Double?, name: String?, phone: String?, pincode: String?, state: String?, updatedAt: String?, version: String?) {
+            public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
                 
                 self.pincode = pincode
                 
@@ -4011,7 +4011,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?, companyId: Int?, companyName: String?, id: Int?, name: String?) {
+            public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil) {
                 
                 self.code = code
                 
@@ -4151,7 +4151,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(invoiceUrl: String?, labelUrl: String?, updatedDate: String?) {
+            public init(invoiceUrl: String? = nil, labelUrl: String? = nil, updatedDate: String? = nil) {
                 
                 self.updatedDate = updatedDate
                 
@@ -4245,7 +4245,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(timestamp: Timestamp?) {
+            public init(timestamp: Timestamp? = nil) {
                 
                 self.timestamp = timestamp
                 
@@ -4305,7 +4305,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(max: String?, min: String?) {
+            public init(max: String? = nil, min: String? = nil) {
                 
                 self.min = min
                 
@@ -4400,7 +4400,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(feedbackType: String?, flow: String?, priority: Int?, reasonId: Int?, reasonText: String?, showTextArea: Bool?) {
+            public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
                 
                 self.reasonText = reasonText
                 
@@ -4555,7 +4555,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(hexCode: String?, title: String?) {
+            public init(hexCode: String? = nil, title: String? = nil) {
                 
                 self.title = title
                 
@@ -4642,7 +4642,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(firstName: String?, gender: String?, lastName: String?, mobile: String?) {
+            public init(firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil) {
                 
                 self.gender = gender
                 
@@ -4863,7 +4863,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(awbNo: String?, bags: [Bags]?, beneficiaryDetails: Bool?, breakupValues: [BreakupValues]?, canBreak: [String: Any]?, canCancel: Bool?, canReturn: Bool?, comment: String?, deliveryAddress: DeliveryAddress?, dpName: String?, fulfillingStore: FulfillingStore?, invoice: Invoice?, needHelpUrl: String?, orderId: String?, orderType: String?, payment: ShipmentPayment?, prices: Prices?, promise: Promise?, shipmentCreatedAt: String?, shipmentId: String?, shipmentStatus: ShipmentStatus?, sizeInfo: [String: Any]?, totalBags: Int?, totalDetails: ShipmentTotalDetails?, trackingDetails: [TrackingDetails]?, trackUrl: String?, trakingNo: String?, userInfo: ShipmentUserInfo?) {
+            public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, deliveryAddress: DeliveryAddress? = nil, dpName: String? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
                 
                 self.orderId = orderId
                 
@@ -5440,7 +5440,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(pieces: Int?, sizes: Int?, totalPrice: Double?) {
+            public init(pieces: Int? = nil, sizes: Int? = nil, totalPrice: Double? = nil) {
                 
                 self.totalPrice = totalPrice
                 
@@ -5542,7 +5542,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(logo: String?, mode: String?, status: String?) {
+            public init(logo: String? = nil, mode: String? = nil, status: String? = nil) {
                 
                 self.logo = logo
                 
@@ -5664,7 +5664,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(accountName: String?, awb: String?, lastLocationRecievedAt: String?, reason: String?, shipmentType: String?, status: String?, updatedAt: String?, updatedTime: String?) {
+            public init(accountName: String? = nil, awb: String? = nil, lastLocationRecievedAt: String? = nil, reason: String? = nil, shipmentType: String? = nil, status: String? = nil, updatedAt: String? = nil, updatedTime: String? = nil) {
                 
                 self.awb = awb
                 
@@ -5865,7 +5865,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(isCurrent: Bool?, isPassed: Bool?, status: String?, time: String?) {
+            public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
                 
                 self.isCurrent = isCurrent
                 
@@ -5990,7 +5990,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?, gender: String?, mobile: String?, name: String?) {
+            public init(email: String? = nil, gender: String? = nil, mobile: String? = nil, name: String? = nil) {
                 
                 self.gender = gender
                 
@@ -6103,7 +6103,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 

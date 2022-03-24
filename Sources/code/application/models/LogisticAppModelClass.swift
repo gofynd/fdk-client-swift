@@ -140,7 +140,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(displayName: String?, error: LogisticError?, meta: LogisticMeta?, name: String?, parents: [LogisticParents]?, subType: String?, uid: String?) {
+            public init(displayName: String? = nil, error: LogisticError? = nil, meta: LogisticMeta? = nil, name: String? = nil, parents: [LogisticParents]? = nil, subType: String? = nil, uid: String? = nil) {
                 
                 self.meta = meta
                 
@@ -314,7 +314,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(deliverables: [[String: Any]]?, zone: String?) {
+            public init(deliverables: [[String: Any]]? = nil, zone: String? = nil) {
                 
                 self.zone = zone
                 
@@ -401,7 +401,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(displayName: String?, name: String?, subType: String?, uid: String?) {
+            public init(displayName: String? = nil, name: String? = nil, subType: String? = nil, uid: String? = nil) {
                 
                 self.subType = subType
                 
@@ -522,7 +522,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?, type: String?, value: String?) {
+            public init(message: String? = nil, type: String? = nil, value: String? = nil) {
                 
                 self.type = type
                 
@@ -624,7 +624,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, locationDetails: [LocationDetailsReq], toPincode: String) {
+            public init(action: String? = nil, locationDetails: [LocationDetailsReq], toPincode: String) {
                 
                 self.locationDetails = locationDetails
                 
@@ -712,7 +712,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(articles: [TatReqProductArticles]?, fromPincode: String?, fulfillmentId: Int?) {
+            public init(articles: [TatReqProductArticles]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
                 
                 self.fromPincode = fromPincode
                 
@@ -806,7 +806,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: LogisticRequestCategory?) {
+            public init(category: LogisticRequestCategory? = nil) {
                 
                 self.category = category
                 
@@ -866,7 +866,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: Int?, level: String?) {
+            public init(id: Int? = nil, level: String? = nil) {
                 
                 self.id = id
                 
@@ -1158,7 +1158,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(articles: [TatProductArticles]?, fromPincode: String?, fulfillmentId: Int?) {
+            public init(articles: [TatProductArticles]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
                 
                 self.fromPincode = fromPincode
                 
@@ -1260,7 +1260,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: LogisticResponseCategory?, error: [String: Any]?, promise: LogisticPromise?) {
+            public init(category: LogisticResponseCategory? = nil, error: [String: Any]? = nil, promise: LogisticPromise? = nil) {
                 
                 self.error = error
                 
@@ -1358,7 +1358,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: Int?, level: String?) {
+            public init(id: Int? = nil, level: String? = nil) {
                 
                 self.id = id
                 
@@ -1437,7 +1437,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(formatted: Formatted?, timestamp: LogisticTimestamp?) {
+            public init(formatted: Formatted? = nil, timestamp: LogisticTimestamp? = nil) {
                 
                 self.timestamp = timestamp
                 
@@ -1516,7 +1516,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(max: Int?, min: Int?) {
+            public init(max: Int? = nil, min: Int? = nil) {
                 
                 self.min = min
                 
@@ -1595,7 +1595,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(max: String?, min: String?) {
+            public init(max: String? = nil, min: String? = nil) {
                 
                 self.min = min
                 

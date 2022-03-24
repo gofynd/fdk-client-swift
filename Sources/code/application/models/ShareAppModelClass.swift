@@ -23,7 +23,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(link: String?, svg: String?) {
+            public init(link: String? = nil, svg: String? = nil) {
                 
                 self.link = link
                 
@@ -102,7 +102,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(link: String?, type: String?) {
+            public init(link: String? = nil, type: String? = nil) {
                 
                 self.link = link
                 
@@ -181,7 +181,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(link: String?, type: String?) {
+            public init(link: String? = nil, type: String? = nil) {
                 
                 self.link = link
                 
@@ -268,7 +268,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(android: RedirectDevice?, forceWeb: Bool?, ios: RedirectDevice?, web: WebRedirect?) {
+            public init(android: RedirectDevice? = nil, forceWeb: Bool? = nil, ios: RedirectDevice? = nil, web: WebRedirect? = nil) {
                 
                 self.ios = ios
                 
@@ -385,7 +385,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(medium: String?, source: String?) {
+            public init(medium: String? = nil, source: String? = nil) {
                 
                 self.source = source
                 
@@ -460,7 +460,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(campaignCookieExpiry: String?) {
+            public init(campaignCookieExpiry: String? = nil) {
                 
                 self.campaignCookieExpiry = campaignCookieExpiry
                 
@@ -524,7 +524,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, image: String?, title: String?) {
+            public init(description: String? = nil, image: String? = nil, title: String? = nil) {
                 
                 self.title = title
                 
@@ -662,7 +662,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, attribution: Attribution?, campaign: CampaignShortLink?, count: Int?, enableTracking: Bool?, expireAt: String?, hash: String?, personalized: Bool?, redirects: Redirects?, socialMediaTags: SocialMediaTags?, title: String, url: String) {
+            public init(active: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, hash: String? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String, url: String) {
                 
                 self.title = title
                 
@@ -921,7 +921,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(hash: String?, original: String?, short: String?) {
+            public init(hash: String? = nil, original: String? = nil, short: String? = nil) {
                 
                 self.original = original
                 
@@ -1091,7 +1091,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, application: String?, appRedirect: Bool?, attribution: Attribution?, campaign: CampaignShortLink?, count: Int?, createdAt: String?, createdBy: String?, enableTracking: Bool?, expireAt: String?, fallback: String?, meta: [String: Any]?, personalized: Bool?, redirects: Redirects?, socialMediaTags: SocialMediaTags?, title: String?, updatedAt: String?, url: UrlInfo?, userId: String?, id: String?) {
+            public init(active: Bool? = nil, application: String? = nil, appRedirect: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, fallback: String? = nil, meta: [String: Any]? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String? = nil, updatedAt: String? = nil, url: UrlInfo? = nil, userId: String? = nil, id: String? = nil) {
                 
                 self.title = title
                 
@@ -1512,7 +1512,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [ShortLinkRes]?, page: Page?) {
+            public init(items: [ShortLinkRes]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -1587,7 +1587,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 

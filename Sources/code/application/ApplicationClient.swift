@@ -175,9 +175,11 @@ public class ApplicationClient {
 
 
 
+            
             var fullUrl = relativeUrls["getProductDetailBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -218,7 +220,7 @@ public class ApplicationClient {
         **/
         public func getProductSizesBySlug(
             slug: String,
-            storeId: Int?,
+            storeId: Int? = nil,
             
             onResponse: @escaping (_ response: ProductSizes?, _ error: FDKError?) -> Void
         ) {
@@ -236,9 +238,11 @@ if let value = storeId {
 
 
 
+            
             var fullUrl = relativeUrls["getProductSizesBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -294,8 +298,10 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getProductComparisonBySlugs"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -345,9 +351,11 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getSimilarComparisonProductBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -398,9 +406,11 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getComparedFrequentlyProductBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -452,11 +462,13 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getProductSimilarByIdentifier"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "similar_type" + "}", with: "\(similarType)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -507,9 +519,11 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getProductVariantsBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -549,11 +563,11 @@ var xQuery: [String: Any] = [:]
         * Description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
         **/
         public func getProductStockByIds(
-            itemId: String?,
-            alu: String?,
-            skuCode: String?,
-            ean: String?,
-            upc: String?,
+            itemId: String? = nil,
+            alu: String? = nil,
+            skuCode: String? = nil,
+            ean: String? = nil,
+            upc: String? = nil,
             
             onResponse: @escaping (_ response: ProductStockStatusResponse?, _ error: FDKError?) -> Void
         ) {
@@ -599,8 +613,10 @@ if let value = upc {
 
 
 
+            
             var fullUrl = relativeUrls["getProductStockByIds"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -640,8 +656,8 @@ if let value = upc {
         **/
         public func getProductStockForTimeByIds(
             timestamp: String,
-            pageSize: Int?,
-            pageId: String?,
+            pageSize: Int? = nil,
+            pageId: String? = nil,
             
             onResponse: @escaping (_ response: ProductStockPolling?, _ error: FDKError?) -> Void
         ) {
@@ -671,8 +687,10 @@ if let value = pageId {
 
 
 
+            
             var fullUrl = relativeUrls["getProductStockForTimeByIds"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -727,7 +745,7 @@ if let value = pageId {
         **/
         public func getProductStockForTimeByIdsPaginator(
             timestamp: String,
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<ProductStockPolling> {
             let pageSize = pageSize ?? 20
@@ -761,14 +779,14 @@ if let value = pageId {
         * Description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
         **/
         public func getProducts(
-            q: String?,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageId: String?,
-            pageSize: Int?,
-            pageNo: Int?,
-            pageType: String?,
+            q: String? = nil,
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
+            pageNo: Int? = nil,
+            pageType: String? = nil,
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -835,8 +853,10 @@ if let value = pageType {
 
 
 
+            
             var fullUrl = relativeUrls["getProducts"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -910,11 +930,11 @@ if let value = pageType {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getProductsPaginator(
-            q: String?,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageSize: Int?
+            q: String? = nil,
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
@@ -955,9 +975,9 @@ if let value = pageType {
         * Description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
         **/
         public func getBrands(
-            department: String?,
-            pageNo: Int?,
-            pageSize: Int?,
+            department: String? = nil,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -989,8 +1009,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getBrands"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1044,8 +1066,8 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getBrandsPaginator(
-            department: String?,
-            pageSize: Int?
+            department: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<BrandListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1089,9 +1111,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getBrandDetailBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1131,7 +1155,7 @@ if let value = pageSize {
         * Description: Use this API to list all the categories. You can also filter the categories by department.
         **/
         public func getCategories(
-            department: String?,
+            department: String? = nil,
             
             onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1149,8 +1173,10 @@ if let value = department {
 
 
 
+            
             var fullUrl = relativeUrls["getCategories"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1200,9 +1226,11 @@ if let value = department {
 
 
 
+            
             var fullUrl = relativeUrls["getCategoryDetailBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1242,9 +1270,9 @@ if let value = department {
         * Description: List all the products associated with a brand, collection or category in a random order.
         **/
         public func getHomeProducts(
-            sortOn: String?,
-            pageId: String?,
-            pageSize: Int?,
+            sortOn: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: HomeListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1276,8 +1304,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getHomeProducts"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1331,8 +1361,8 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getHomeProductsPaginator(
-            sortOn: String?,
-            pageSize: Int?
+            sortOn: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<HomeListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1376,8 +1406,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getDepartments"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getDepartments"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1432,8 +1463,10 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getSearchResults"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1472,9 +1505,9 @@ var xQuery: [String: Any] = [:]
         * Description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
         **/
         public func getCollections(
-            pageNo: Int?,
-            pageSize: Int?,
-            tag: [String]?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            tag: [String]? = nil,
             
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1506,8 +1539,10 @@ if let value = tag {
 
 
 
+            
             var fullUrl = relativeUrls["getCollections"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1561,8 +1596,8 @@ if let value = tag {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getCollectionsPaginator(
-            pageSize: Int?,
-            tag: [String]?
+            pageSize: Int? = nil,
+            tag: [String]? = nil
             
             ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1596,11 +1631,11 @@ if let value = tag {
         **/
         public func getCollectionItemsBySlug(
             slug: String,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageId: String?,
-            pageSize: Int?,
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1646,9 +1681,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getCollectionItemsBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1716,10 +1753,10 @@ if let value = pageSize {
         **/
         public func getCollectionItemsBySlugPaginator(
             slug: String,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageSize: Int?
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1767,9 +1804,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getCollectionDetailBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1810,8 +1849,8 @@ if let value = pageSize {
         **/
         public func getFollowedListing(
             collectionType: String,
-            pageId: String?,
-            pageSize: Int?,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: GetFollowListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1836,9 +1875,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getFollowedListing"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1894,7 +1935,7 @@ if let value = pageSize {
         **/
         public func getFollowedListingPaginator(
             collectionType: String,
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<GetFollowListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1940,11 +1981,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["followById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1996,11 +2039,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["unfollowById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -2052,11 +2097,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getFollowerCountById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -2096,7 +2143,7 @@ if let value = pageSize {
         * Description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
         **/
         public func getFollowIds(
-            collectionType: String?,
+            collectionType: String? = nil,
             
             onResponse: @escaping (_ response: FollowIdsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2114,8 +2161,10 @@ if let value = collectionType {
 
 
 
+            
             var fullUrl = relativeUrls["getFollowIds"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2154,13 +2203,13 @@ if let value = collectionType {
         * Description: Use this API to get a list of stores in a specific application.
         **/
         public func getStores(
-            pageNo: Int?,
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil,
             
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2220,8 +2269,10 @@ if let value = longitude {
 
 
 
+            
             var fullUrl = relativeUrls["getStores"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2291,12 +2342,12 @@ if let value = longitude {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getStoresPaginator(
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil
             
             ) -> Paginator<StoreListingResponse> {
             let pageSize = pageSize ?? 20
@@ -2333,13 +2384,13 @@ if let value = longitude {
         * Description: Use this API to get a list of stores in a specific application.
         **/
         public func getInStockLocations(
-            pageNo: Int?,
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil,
             
             onResponse: @escaping (_ response: ApplicationStoreListing?, _ error: FDKError?) -> Void
         ) {
@@ -2399,8 +2450,10 @@ if let value = longitude {
 
 
 
+            
             var fullUrl = relativeUrls["getInStockLocations"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2470,12 +2523,12 @@ if let value = longitude {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getInStockLocationsPaginator(
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil
             
             ) -> Paginator<ApplicationStoreListing> {
             let pageSize = pageSize ?? 20
@@ -2523,9 +2576,11 @@ if let value = longitude {
 
 
 
+            
             var fullUrl = relativeUrls["getLocationDetailsById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "location_id" + "}", with: "\(locationId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -2565,8 +2620,8 @@ if let value = longitude {
         * Description: Use this API to retrieve products bundles to the one specified by its slug.
         **/
         public func getProductBundlesBySlug(
-            slug: String?,
-            id: String?,
+            slug: String? = nil,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: ProductBundle?, _ error: FDKError?) -> Void
         ) {
@@ -2591,8 +2646,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getProductBundlesBySlug"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2633,8 +2690,8 @@ if let value = id {
         public func getProductPriceBySlug(
             slug: String,
             size: String,
-            storeId: Int?,
-            pincode: String?,
+            storeId: Int? = nil,
+            pincode: String? = nil,
             
             onResponse: @escaping (_ response: ProductSizePriceResponseV2?, _ error: FDKError?) -> Void
         ) {
@@ -2659,11 +2716,13 @@ if let value = pincode {
 
 
 
+            
             var fullUrl = relativeUrls["getProductPriceBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "size" + "}", with: "\(size)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -2705,10 +2764,10 @@ if let value = pincode {
         public func getProductSellersBySlug(
             slug: String,
             size: String,
-            pincode: String?,
-            strategy: String?,
-            pageNo: Int?,
-            pageSize: Int?,
+            pincode: String? = nil,
+            strategy: String? = nil,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: ProductSizeSellersResponseV2?, _ error: FDKError?) -> Void
         ) {
@@ -2747,11 +2806,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getProductSellersBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "size" + "}", with: "\(size)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -2820,9 +2881,9 @@ if let value = pageSize {
         public func getProductSellersBySlugPaginator(
             slug: String,
             size: String,
-            pincode: String?,
-            strategy: String?,
-            pageSize: Int?
+            pincode: String? = nil,
+            strategy: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<ProductSizeSellersResponseV2> {
             let pageSize = pageSize ?? 20
@@ -2931,11 +2992,11 @@ if let value = pageSize {
         * Description: Use this API to get details of all the items added to a cart.
         **/
         public func getCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            assignCardId: Int?,
-            areaCode: String?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            assignCardId: Int? = nil,
+            areaCode: String? = nil,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2981,8 +3042,10 @@ if let value = areaCode {
 
 
 
+            
             var fullUrl = relativeUrls["getCart"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3021,7 +3084,7 @@ if let value = areaCode {
         * Description: Use this API to fetch Last-Modified timestamp in header metadata.
         **/
         public func getCartLastModified(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
@@ -3039,8 +3102,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getCartLastModified"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "head",
@@ -3079,9 +3144,9 @@ if let value = id {
         * Description: Use this API to add items to the cart.
         **/
         public func addItems(
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            areaCode: String? = nil,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3113,8 +3178,10 @@ if let value = areaCode {
 
 
 
+            
             var fullUrl = relativeUrls["addItems"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3153,10 +3220,10 @@ if let value = areaCode {
         * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            areaCode: String? = nil,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3195,8 +3262,10 @@ if let value = areaCode {
 
 
 
+            
             var fullUrl = relativeUrls["updateCart"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -3235,7 +3304,7 @@ if let value = areaCode {
         * Description: Use this API to get the total number of items present in cart.
         **/
         public func getItemCount(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3253,8 +3322,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getItemCount"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3293,7 +3364,7 @@ if let value = id {
         * Description: Use this API to get a list of available coupons along with their details.
         **/
         public func getCoupons(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3311,8 +3382,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getCoupons"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3351,10 +3424,10 @@ if let value = id {
         * Description: Use this API to apply coupons on items in the cart.
         **/
         public func applyCoupon(
-            i: Bool?,
-            b: Bool?,
-            p: Bool?,
-            id: String?,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            p: Bool? = nil,
+            id: String? = nil,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3393,8 +3466,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["applyCoupon"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3433,7 +3508,7 @@ if let value = id {
         * Description: Remove Coupon applied on the cart by passing uid in request body.
         **/
         public func removeCoupon(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3451,8 +3526,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["removeCoupon"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -3491,10 +3568,10 @@ if let value = id {
         * Description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
         **/
         public func getBulkDiscountOffers(
-            itemId: Int?,
-            articleId: String?,
-            uid: Int?,
-            slug: String?,
+            itemId: Int? = nil,
+            articleId: String? = nil,
+            uid: Int? = nil,
+            slug: String? = nil,
             
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3533,8 +3610,10 @@ if let value = slug {
 
 
 
+            
             var fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3573,9 +3652,9 @@ if let value = slug {
         * Description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
         **/
         public func applyRewardPoints(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
             body: RewardPointRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3607,8 +3686,10 @@ if let value = b {
 
 
 
+            
             var fullUrl = relativeUrls["applyRewardPoints"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3647,11 +3728,11 @@ if let value = b {
         * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddresses(
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
+            cartId: String? = nil,
+            mobileNo: String? = nil,
+            checkoutMode: String? = nil,
+            tags: String? = nil,
+            isDefault: Bool? = nil,
             
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3697,8 +3778,10 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["getAddresses"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3747,8 +3830,9 @@ if let value = isDefault {
 
 
 
-            var fullUrl = relativeUrls["addAddress"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["addAddress"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3788,11 +3872,11 @@ if let value = isDefault {
         **/
         public func getAddressById(
             id: String,
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
+            cartId: String? = nil,
+            mobileNo: String? = nil,
+            checkoutMode: String? = nil,
+            tags: String? = nil,
+            isDefault: Bool? = nil,
             
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
@@ -3838,9 +3922,11 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["getAddressById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -3891,9 +3977,11 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["updateAddress"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -3944,9 +4032,11 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["removeAddress"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -3986,9 +4076,9 @@ if let value = isDefault {
         * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
         **/
         public func selectAddress(
-            cartId: String?,
-            i: Bool?,
-            b: Bool?,
+            cartId: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -4020,8 +4110,10 @@ if let value = b {
 
 
 
+            
             var fullUrl = relativeUrls["selectAddress"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4060,7 +4152,7 @@ if let value = b {
         * Description: Use this API to update cart payment.
         **/
         public func selectPaymentMode(
-            id: String?,
+            id: String? = nil,
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -4078,8 +4170,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["selectPaymentMode"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -4118,12 +4212,12 @@ if let value = id {
         * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
         **/
         public func validateCouponForPayment(
-            id: String?,
-            addressId: String?,
-            paymentMode: String?,
-            paymentIdentifier: String?,
-            aggregatorName: String?,
-            merchantCode: String?,
+            id: String? = nil,
+            addressId: String? = nil,
+            paymentMode: String? = nil,
+            paymentIdentifier: String? = nil,
+            aggregatorName: String? = nil,
+            merchantCode: String? = nil,
             
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -4176,8 +4270,10 @@ if let value = merchantCode {
 
 
 
+            
             var fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4216,10 +4312,10 @@ if let value = merchantCode {
         * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
         **/
         public func getShipments(
-            p: Bool?,
-            id: String?,
-            addressId: String?,
-            areaCode: String?,
+            p: Bool? = nil,
+            id: String? = nil,
+            addressId: String? = nil,
+            areaCode: String? = nil,
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -4258,8 +4354,10 @@ if let value = areaCode {
 
 
 
+            
             var fullUrl = relativeUrls["getShipments"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4308,8 +4406,9 @@ if let value = areaCode {
 
 
 
-            var fullUrl = relativeUrls["checkoutCart"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["checkoutCart"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4348,7 +4447,7 @@ if let value = areaCode {
         * Description: Use this API to update cart meta like checkout_mode and gstin.
         **/
         public func updateCartMeta(
-            id: String?,
+            id: String? = nil,
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
@@ -4366,8 +4465,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["updateCartMeta"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -4416,8 +4517,9 @@ if let value = id {
 
 
 
-            var fullUrl = relativeUrls["getCartShareLink"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getCartShareLink"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -4467,9 +4569,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getCartSharedItems"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -4521,11 +4625,13 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["updateCartWithSharedItems"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "action" + "}", with: "\(action)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -4565,9 +4671,9 @@ if let value = id {
         * Description: Use this API to get top 5 offers available for current product
         **/
         public func getPromotionOffers(
-            slug: String?,
-            pageSize: Int?,
-            promotionGroup: Int?,
+            slug: String? = nil,
+            pageSize: Int? = nil,
+            promotionGroup: Int? = nil,
             
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -4599,8 +4705,10 @@ if let value = promotionGroup {
 
 
 
+            
             var fullUrl = relativeUrls["getPromotionOffers"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4640,9 +4748,9 @@ if let value = promotionGroup {
         **/
         public func getLadderOffers(
             slug: String,
-            storeId: String?,
-            promotionId: String?,
-            pageSize: Int?,
+            storeId: String? = nil,
+            promotionId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: LadderPriceOffers?, _ error: FDKError?) -> Void
         ) {
@@ -4679,8 +4787,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getLadderOffers"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4742,8 +4852,8 @@ if let value = pageSize {
         * Description: 
         **/
         public func getLocations(
-            locationType: String?,
-            id: String?,
+            locationType: String? = nil,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: Locations?, _ error: FDKError?) -> Void
         ) {
@@ -4768,8 +4878,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getLocations"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -4854,9 +4966,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getTicket"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -4907,9 +5021,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["createHistory"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -4959,8 +5075,9 @@ if let value = id {
 
 
 
-            var fullUrl = relativeUrls["createTicket"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createTicket"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5010,9 +5127,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getCustomForm"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -5063,9 +5182,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["submitCustomForm"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -5116,9 +5237,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getParticipantsInsideVideoRoom"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "unique_name" + "}", with: "\(uniqueName)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -5169,9 +5292,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getTokenForVideoRoom"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "unique_name" + "}", with: "\(uniqueName)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -5251,9 +5376,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getAllPages"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -5305,11 +5432,13 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getPage"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "page_value" + "}", with: "\(pageValue)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -5359,8 +5488,9 @@ if let value = id {
 
 
 
-            var fullUrl = relativeUrls["getAppliedTheme"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getAppliedTheme"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -5410,9 +5540,11 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getThemeForPreview"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -5539,7 +5671,7 @@ if let value = id {
         * Description: Use this API to login or register using Facebook credentials.
         **/
         public func loginWithFacebook(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -5557,8 +5689,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["loginWithFacebook"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5597,7 +5731,7 @@ if let value = platform {
         * Description: Use this API to login or register using Google Account credentials.
         **/
         public func loginWithGoogle(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -5615,8 +5749,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["loginWithGoogle"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5655,7 +5791,7 @@ if let value = platform {
         * Description: Use this API to login or register in Android app using Google Account credentials.
         **/
         public func loginWithGoogleAndroid(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -5673,8 +5809,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["loginWithGoogleAndroid"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5713,7 +5851,7 @@ if let value = platform {
         * Description: Use this API to login or register in iOS app using Google Account credentials.
         **/
         public func loginWithGoogleIOS(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -5731,8 +5869,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["loginWithGoogleIOS"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5771,7 +5911,7 @@ if let value = platform {
         * Description: Use this API to login or register in iOS app using Apple Account credentials.
         **/
         public func loginWithAppleIOS(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestAppleSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -5789,8 +5929,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["loginWithAppleIOS"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5829,7 +5971,7 @@ if let value = platform {
         * Description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
         **/
         public func loginWithOTP(
-            platform: String?,
+            platform: String? = nil,
             body: SendOtpRequestSchema,
             onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5847,8 +5989,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["loginWithOTP"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5897,8 +6041,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["loginWithEmailAndPassword"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["loginWithEmailAndPassword"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -5937,7 +6082,7 @@ if let value = platform {
         * Description: Use this API to reset a password using the link sent on email.
         **/
         public func sendResetPasswordEmail(
-            platform: String?,
+            platform: String? = nil,
             body: SendResetPasswordEmailRequestSchema,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -5955,8 +6100,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["sendResetPasswordEmail"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6005,8 +6152,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["forgotPassword"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["forgotPassword"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6055,8 +6203,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["sendResetToken"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["sendResetToken"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6105,8 +6254,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["loginWithToken"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["loginWithToken"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6145,7 +6295,7 @@ if let value = platform {
         * Description: Use this API to perform user registration by sending form data in the request body.
         **/
         public func registerWithForm(
-            platform: String?,
+            platform: String? = nil,
             body: FormRegisterRequestSchema,
             onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -6163,8 +6313,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["registerWithForm"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6213,8 +6365,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["verifyEmail"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["verifyEmail"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6263,8 +6416,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["verifyMobile"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["verifyMobile"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6313,8 +6467,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["hasPassword"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["hasPassword"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6363,8 +6518,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["updatePassword"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updatePassword"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6413,8 +6569,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["logout"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["logout"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6453,7 +6610,7 @@ if let value = platform {
         * Description: Use this API to send an OTP to a mobile number.
         **/
         public func sendOTPOnMobile(
-            platform: String?,
+            platform: String? = nil,
             body: SendMobileOtpRequestSchema,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -6471,8 +6628,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["sendOTPOnMobile"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6511,7 +6670,7 @@ if let value = platform {
         * Description: Use this API to verify the OTP received on a mobile number.
         **/
         public func verifyMobileOTP(
-            platform: String?,
+            platform: String? = nil,
             body: VerifyOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -6529,8 +6688,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["verifyMobileOTP"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6569,7 +6730,7 @@ if let value = platform {
         * Description: Use this API to send an OTP to an email ID.
         **/
         public func sendOTPOnEmail(
-            platform: String?,
+            platform: String? = nil,
             body: SendEmailOtpRequestSchema,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -6587,8 +6748,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["sendOTPOnEmail"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6627,7 +6790,7 @@ if let value = platform {
         * Description: Use this API to verify the OTP received on an email ID.
         **/
         public func verifyEmailOTP(
-            platform: String?,
+            platform: String? = nil,
             body: VerifyEmailOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -6645,8 +6808,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["verifyEmailOTP"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6695,8 +6860,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["getLoggedInUser"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getLoggedInUser"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6745,8 +6911,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["getListOfActiveSessions"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getListOfActiveSessions"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6785,7 +6952,7 @@ if let value = platform {
         * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
         **/
         public func getPlatformConfig(
-            name: String?,
+            name: String? = nil,
             
             onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
         ) {
@@ -6803,8 +6970,10 @@ if let value = name {
 
 
 
+            
             var fullUrl = relativeUrls["getPlatformConfig"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -6843,7 +7012,7 @@ if let value = name {
         * Description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
         **/
         public func updateProfile(
-            platform: String?,
+            platform: String? = nil,
             body: EditProfileRequestSchema,
             onResponse: @escaping (_ response: ProfileEditSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -6861,8 +7030,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["updateProfile"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -6901,7 +7072,7 @@ if let value = platform {
         * Description: Use this API to add a new mobile number to a profile.
         **/
         public func addMobileNumber(
-            platform: String?,
+            platform: String? = nil,
             body: EditMobileRequestSchema,
             onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -6919,8 +7090,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["addMobileNumber"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -6959,7 +7132,7 @@ if let value = platform {
         * Description: Use this API to delete a mobile number from a profile.
         **/
         public func deleteMobileNumber(
-            platform: String?,
+            platform: String? = nil,
             active: Bool,
             primary: Bool,
             verified: Bool,
@@ -7007,8 +7180,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["deleteMobileNumber"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -7057,8 +7232,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["setMobileNumberAsPrimary"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["setMobileNumberAsPrimary"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7097,7 +7273,7 @@ if let value = platform {
         * Description: Use this API to send a verification link to a mobile number
         **/
         public func sendVerificationLinkToMobile(
-            platform: String?,
+            platform: String? = nil,
             body: SendVerificationLinkMobileRequestSchema,
             onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -7115,8 +7291,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["sendVerificationLinkToMobile"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7155,7 +7333,7 @@ if let value = platform {
         * Description: Use this API to add a new email address to a profile
         **/
         public func addEmail(
-            platform: String?,
+            platform: String? = nil,
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -7173,8 +7351,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["addEmail"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -7213,7 +7393,7 @@ if let value = platform {
         * Description: Use this API to delete an email address from a profile
         **/
         public func deleteEmail(
-            platform: String?,
+            platform: String? = nil,
             active: Bool,
             primary: Bool,
             verified: Bool,
@@ -7255,8 +7435,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["deleteEmail"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -7305,8 +7487,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["setEmailAsPrimary"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["setEmailAsPrimary"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7345,7 +7528,7 @@ if let value = platform {
         * Description: Use this API to send verification link to an email address.
         **/
         public func sendVerificationLinkToEmail(
-            platform: String?,
+            platform: String? = nil,
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -7363,8 +7546,10 @@ if let value = platform {
 
 
 
+            
             var fullUrl = relativeUrls["sendVerificationLinkToEmail"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -7472,8 +7657,9 @@ if let value = platform {
 
 
 
-            var fullUrl = relativeUrls["getAnnouncements"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getAnnouncements"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7513,7 +7699,7 @@ if let value = platform {
         **/
         public func getBlog(
             slug: String,
-            rootId: String?,
+            rootId: String? = nil,
             
             onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
         ) {
@@ -7531,9 +7717,11 @@ if let value = rootId {
 
 
 
+            
             var fullUrl = relativeUrls["getBlog"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -7573,8 +7761,8 @@ if let value = rootId {
         * Description: Use this API to get all the blogs.
         **/
         public func getBlogs(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -7599,8 +7787,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getBlogs"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7650,7 +7840,7 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getBlogsPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<BlogGetResponse> {
             let pageSize = pageSize ?? 20
@@ -7692,8 +7882,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getDataLoaders"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getDataLoaders"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7742,8 +7933,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getFaqs"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getFaqs"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7792,8 +7984,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getFaqCategories"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getFaqCategories"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -7843,9 +8036,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getFaqBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -7896,9 +8091,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getFaqCategoryBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -7949,9 +8146,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getFaqsByCategorySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -8001,8 +8200,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getLandingPage"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getLandingPage"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8051,8 +8251,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getLegalInformation"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getLegalInformation"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8091,8 +8292,8 @@ if let value = pageSize {
         * Description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
         **/
         public func getNavigations(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -8117,8 +8318,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getNavigations"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8168,7 +8371,7 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getNavigationsPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<NavigationGetResponse> {
             let pageSize = pageSize ?? 20
@@ -8210,8 +8413,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getSEOConfiguration"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getSEOConfiguration"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8250,8 +8454,8 @@ if let value = pageSize {
         * Description: Use this API to get a list of slideshows along with their details.
         **/
         public func getSlideshows(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -8276,8 +8480,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getSlideshows"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8327,7 +8533,7 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getSlideshowsPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<SlideshowGetResponse> {
             let pageSize = pageSize ?? 20
@@ -8370,9 +8576,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getSlideshow"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -8422,8 +8630,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getSupportInformation"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getSupportInformation"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8472,8 +8681,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getTags"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getTags"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8513,7 +8723,7 @@ if let value = pageSize {
         **/
         public func getPage(
             slug: String,
-            rootId: String?,
+            rootId: String? = nil,
             
             onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
         ) {
@@ -8531,9 +8741,11 @@ if let value = rootId {
 
 
 
+            
             var fullUrl = relativeUrls["getPage"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -8573,8 +8785,8 @@ if let value = rootId {
         * Description: Use this API to get a list of pages.
         **/
         public func getPages(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -8599,8 +8811,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getPages"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8650,7 +8864,7 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getPagesPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<PageGetResponse> {
             let pageSize = pageSize ?? 20
@@ -8719,8 +8933,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getCommunicationConsent"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getCommunicationConsent"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -8769,8 +8984,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["upsertCommunicationConsent"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["upsertCommunicationConsent"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8819,8 +9035,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["upsertAppPushtoken"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["upsertAppPushtoken"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8904,8 +9121,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getApplicationQRCode"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getApplicationQRCode"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -8955,9 +9173,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getProductQRCodeBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -9008,9 +9228,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getCollectionQRCodeBySlug"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -9066,8 +9288,10 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getUrlQRCode"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9116,8 +9340,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["createShortLink"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createShortLink"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9167,9 +9392,11 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getShortLinkByHash"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "hash" + "}", with: "\(hash)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -9220,9 +9447,11 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getOriginalShortLinkByHash"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "hash" + "}", with: "\(hash)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -9318,9 +9547,11 @@ This operation will return the URL of the uploaded file.
 
 
 
+            
             var fullUrl = relativeUrls["startUpload"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "namespace" + "}", with: "\(namespace)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -9389,9 +9620,11 @@ This operation will return the URL of the uploaded file.
 
 
 
+            
             var fullUrl = relativeUrls["completeUpload"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "namespace" + "}", with: "\(namespace)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -9441,8 +9674,9 @@ This operation will return the URL of the uploaded file.
 
 
 
-            var fullUrl = relativeUrls["signUrls"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["signUrls"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -9542,8 +9776,9 @@ This operation will return the URL of the uploaded file.
 
 
 
-            var fullUrl = relativeUrls["getApplication"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getApplication"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9592,8 +9827,9 @@ This operation will return the URL of the uploaded file.
 
 
 
-            var fullUrl = relativeUrls["getOwnerInfo"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getOwnerInfo"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9642,8 +9878,9 @@ This operation will return the URL of the uploaded file.
 
 
 
-            var fullUrl = relativeUrls["getBasicDetails"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getBasicDetails"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9692,8 +9929,9 @@ This operation will return the URL of the uploaded file.
 
 
 
-            var fullUrl = relativeUrls["getIntegrationTokens"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getIntegrationTokens"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9732,9 +9970,9 @@ This operation will return the URL of the uploaded file.
         * Description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
         **/
         public func getOrderingStores(
-            pageNo: Int?,
-            pageSize: Int?,
-            q: String?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            q: String? = nil,
             
             onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
         ) {
@@ -9766,8 +10004,10 @@ if let value = q {
 
 
 
+            
             var fullUrl = relativeUrls["getOrderingStores"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9821,8 +10061,8 @@ if let value = q {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getOrderingStoresPaginator(
-            pageSize: Int?,
-            q: String?
+            pageSize: Int? = nil,
+            q: String? = nil
             
             ) -> Paginator<OrderingStores> {
             let pageSize = pageSize ?? 20
@@ -9866,9 +10106,11 @@ if let value = q {
 
 
 
+            
             var fullUrl = relativeUrls["getStoreDetailById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "store_id" + "}", with: "\(storeId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -9918,8 +10160,9 @@ if let value = q {
 
 
 
-            var fullUrl = relativeUrls["getFeatures"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getFeatures"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -9968,8 +10211,9 @@ if let value = q {
 
 
 
-            var fullUrl = relativeUrls["getContactInfo"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getContactInfo"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10018,8 +10262,9 @@ if let value = q {
 
 
 
-            var fullUrl = relativeUrls["getCurrencies"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getCurrencies"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10069,9 +10314,11 @@ if let value = q {
 
 
 
+            
             var fullUrl = relativeUrls["getCurrencyById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -10121,8 +10368,9 @@ if let value = q {
 
 
 
-            var fullUrl = relativeUrls["getAppCurrencies"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getAppCurrencies"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10171,8 +10419,9 @@ if let value = q {
 
 
 
-            var fullUrl = relativeUrls["getLanguages"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getLanguages"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10221,8 +10470,9 @@ if let value = q {
 
 
 
-            var fullUrl = relativeUrls["getOrderingStoreCookie"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getOrderingStoreCookie"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10271,8 +10521,9 @@ if let value = q {
 
 
 
-            var fullUrl = relativeUrls["removeOrderingStoreCookie"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["removeOrderingStoreCookie"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -10311,9 +10562,9 @@ if let value = q {
         * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
         **/
         public func getAppStaffs(
-            orderIncent: Bool?,
-            orderingStore: Int?,
-            user: String?,
+            orderIncent: Bool? = nil,
+            orderingStore: Int? = nil,
+            user: String? = nil,
             
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
@@ -10345,8 +10596,10 @@ if let value = user {
 
 
 
+            
             var fullUrl = relativeUrls["getAppStaffs"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10462,8 +10715,8 @@ if let value = user {
         * Description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
         **/
         public func getAggregatorsConfig(
-            xApiToken: String?,
-            refresh: Bool?,
+            xApiToken: String? = nil,
+            refresh: Bool? = nil,
             
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -10487,8 +10740,10 @@ if let value = xApiToken {
 
 
 
+            
             var fullUrl = relativeUrls["getAggregatorsConfig"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10537,8 +10792,9 @@ if let value = xApiToken {
 
 
 
-            var fullUrl = relativeUrls["attachCardToCustomer"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["attachCardToCustomer"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10577,7 +10833,7 @@ if let value = xApiToken {
         * Description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
         **/
         public func getActiveCardAggregator(
-            refresh: Bool?,
+            refresh: Bool? = nil,
             
             onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
         ) {
@@ -10595,8 +10851,10 @@ if let value = refresh {
 
 
 
+            
             var fullUrl = relativeUrls["getActiveCardAggregator"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10635,7 +10893,7 @@ if let value = refresh {
         * Description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
         **/
         public func getActiveUserCards(
-            forceRefresh: Bool?,
+            forceRefresh: Bool? = nil,
             
             onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -10653,8 +10911,10 @@ if let value = forceRefresh {
 
 
 
+            
             var fullUrl = relativeUrls["getActiveUserCards"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -10703,8 +10963,9 @@ if let value = forceRefresh {
 
 
 
-            var fullUrl = relativeUrls["deleteUserCard"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["deleteUserCard"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10753,8 +11014,9 @@ if let value = forceRefresh {
 
 
 
-            var fullUrl = relativeUrls["verifyCustomerForPayment"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["verifyCustomerForPayment"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10803,8 +11065,9 @@ if let value = forceRefresh {
 
 
 
-            var fullUrl = relativeUrls["verifyAndChargePayment"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["verifyAndChargePayment"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10853,8 +11116,9 @@ if let value = forceRefresh {
 
 
 
-            var fullUrl = relativeUrls["initialisePayment"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["initialisePayment"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10903,8 +11167,9 @@ if let value = forceRefresh {
 
 
 
-            var fullUrl = relativeUrls["checkAndUpdatePaymentStatus"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["checkAndUpdatePaymentStatus"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -10947,9 +11212,9 @@ if let value = forceRefresh {
             cartId: String,
             pincode: String,
             checkoutMode: String,
-            refresh: Bool?,
-            cardReference: String?,
-            userDetails: String?,
+            refresh: Bool? = nil,
+            cardReference: String? = nil,
+            userDetails: String? = nil,
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -11001,8 +11266,10 @@ if let value = userDetails {
 
 
 
+            
             var fullUrl = relativeUrls["getPaymentModeRoutes"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11045,10 +11312,10 @@ if let value = userDetails {
             cartId: String,
             pincode: String,
             checkoutMode: String,
-            refresh: Bool?,
-            cardReference: String?,
+            refresh: Bool? = nil,
+            cardReference: String? = nil,
             orderType: String,
-            userDetails: String?,
+            userDetails: String? = nil,
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -11105,8 +11372,10 @@ if let value = userDetails {
 
 
 
+            
             var fullUrl = relativeUrls["getPosPaymentModeRoutes"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11155,8 +11424,9 @@ if let value = userDetails {
 
 
 
-            var fullUrl = relativeUrls["getRupifiBannerDetails"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getRupifiBannerDetails"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11205,8 +11475,9 @@ if let value = userDetails {
 
 
 
-            var fullUrl = relativeUrls["getEpaylaterBannerDetails"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getEpaylaterBannerDetails"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11255,8 +11526,9 @@ if let value = userDetails {
 
 
 
-            var fullUrl = relativeUrls["resendOrCancelPayment"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["resendOrCancelPayment"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11305,8 +11577,9 @@ if let value = userDetails {
 
 
 
-            var fullUrl = relativeUrls["getActiveRefundTransferModes"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getActiveRefundTransferModes"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11355,8 +11628,9 @@ if let value = userDetails {
 
 
 
-            var fullUrl = relativeUrls["enableOrDisableRefundTransferMode"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["enableOrDisableRefundTransferMode"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -11411,8 +11685,10 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getUserBeneficiariesDetail"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11451,7 +11727,7 @@ var xQuery: [String: Any] = [:]
         * Description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
         **/
         public func verifyIfscCode(
-            ifscCode: String?,
+            ifscCode: String? = nil,
             
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
@@ -11469,8 +11745,10 @@ if let value = ifscCode {
 
 
 
+            
             var fullUrl = relativeUrls["verifyIfscCode"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11525,8 +11803,10 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getOrderBeneficiariesDetail"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11575,8 +11855,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForBank"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForBank"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11625,8 +11906,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["addBeneficiaryDetails"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["addBeneficiaryDetails"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11675,8 +11957,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["addRefundBankAccountUsingOTP"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["addRefundBankAccountUsingOTP"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11725,8 +12008,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForWallet"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForWallet"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11775,8 +12059,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["updateDefaultBeneficiary"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updateDefaultBeneficiary"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -11815,7 +12100,7 @@ var xQuery: [String: Any] = [:]
         * Description: Use this API to fetch the customer credit summary.
         **/
         public func customerCreditSummary(
-            aggregator: String?,
+            aggregator: String? = nil,
             
             onResponse: @escaping (_ response: CustomerCreditSummaryResponse?, _ error: FDKError?) -> Void
         ) {
@@ -11833,8 +12118,10 @@ if let value = aggregator {
 
 
 
+            
             var fullUrl = relativeUrls["customerCreditSummary"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11873,8 +12160,8 @@ if let value = aggregator {
         * Description: Use this API to get the redirect url to redirect the user to aggregator's page
         **/
         public func redirectToAggregator(
-            source: String?,
-            aggregator: String?,
+            source: String? = nil,
+            aggregator: String? = nil,
             
             onResponse: @escaping (_ response: RedirectToAggregatorResponse?, _ error: FDKError?) -> Void
         ) {
@@ -11899,8 +12186,10 @@ if let value = aggregator {
 
 
 
+            
             var fullUrl = relativeUrls["redirectToAggregator"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -11939,7 +12228,7 @@ if let value = aggregator {
         * Description: Use this API to fetch the customer credit summary.
         **/
         public func checkCredit(
-            aggregator: String?,
+            aggregator: String? = nil,
             
             onResponse: @escaping (_ response: CheckCreditResponse?, _ error: FDKError?) -> Void
         ) {
@@ -11957,8 +12246,10 @@ if let value = aggregator {
 
 
 
+            
             var fullUrl = relativeUrls["checkCredit"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12007,8 +12298,9 @@ if let value = aggregator {
 
 
 
-            var fullUrl = relativeUrls["customerOnboard"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["customerOnboard"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12088,11 +12380,11 @@ if let value = aggregator {
         * Description: Use this API to retrieve all the orders.
         **/
         public func getOrders(
-            pageNo: Int?,
-            pageSize: Int?,
-            fromDate: String?,
-            toDate: String?,
-            status: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            fromDate: String? = nil,
+            toDate: String? = nil,
+            status: Int? = nil,
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
@@ -12138,8 +12430,10 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["getOrders"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12189,9 +12483,11 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["getOrderById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12242,9 +12538,11 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["getShipmentById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12295,9 +12593,11 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["getShipmentReasons"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12348,9 +12648,11 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12401,9 +12703,11 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["trackShipment"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12454,9 +12758,11 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["getPosOrderById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12508,11 +12814,13 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["getCustomerDetailsByShipmentId"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12564,11 +12872,13 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["sendOtpToShipmentCustomer"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12620,11 +12930,13 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["verifyOtpShipmentCustomer"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12709,8 +13021,9 @@ if let value = status {
 
 
 
-            var fullUrl = relativeUrls["getPointsOnProduct"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getPointsOnProduct"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12760,9 +13073,11 @@ if let value = status {
 
 
 
+            
             var fullUrl = relativeUrls["getOfferByName"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "name" + "}", with: "\(name)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -12812,8 +13127,9 @@ if let value = status {
 
 
 
-            var fullUrl = relativeUrls["getOrderDiscount"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getOrderDiscount"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -12862,8 +13178,9 @@ if let value = status {
 
 
 
-            var fullUrl = relativeUrls["getUserPoints"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getUserPoints"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12902,8 +13219,8 @@ if let value = status {
         * Description: Use this API to get a list of points transactions. The list of points history is paginated.
         **/
         public func getUserPointsHistory(
-            pageId: String?,
-            pageSize: Int?,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
         ) {
@@ -12928,8 +13245,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -12979,7 +13298,7 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getUserPointsHistoryPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<PointsHistoryResponse> {
             let pageSize = pageSize ?? 20
@@ -13022,8 +13341,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["getUserReferralDetails"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getUserReferralDetails"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -13072,8 +13392,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["redeemReferralCode"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["redeemReferralCode"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -13195,8 +13516,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["createAbuseReport"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createAbuseReport"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -13245,8 +13567,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["updateAbuseReport"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updateAbuseReport"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -13287,9 +13610,9 @@ if let value = pageSize {
         public func getAbuseReports(
             entityId: String,
             entityType: String,
-            id: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: ReportAbuseGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -13321,11 +13644,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getAbuseReports"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -13390,8 +13715,8 @@ if let value = pageSize {
         public func getAbuseReportsPaginator(
             entityId: String,
             entityType: String,
-            id: String?,
-            pageSize: Int?
+            id: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<ReportAbuseGetResponse> {
             let pageSize = pageSize ?? 20
@@ -13427,8 +13752,8 @@ if let value = pageSize {
         * Description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
         **/
         public func getAttributes(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: AttributeResponse?, _ error: FDKError?) -> Void
         ) {
@@ -13453,8 +13778,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getAttributes"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -13504,7 +13831,7 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getAttributesPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
             
             ) -> Paginator<AttributeResponse> {
             let pageSize = pageSize ?? 20
@@ -13546,8 +13873,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["createAttribute"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createAttribute"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -13597,9 +13925,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getAttribute"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -13650,9 +13980,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["updateAttribute"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -13702,8 +14034,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["createComment"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createComment"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -13752,8 +14085,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["updateComment"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updateComment"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -13793,11 +14127,11 @@ if let value = pageSize {
         **/
         public func getComments(
             entityType: String,
-            id: String?,
-            entityId: String?,
-            userId: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            entityId: String? = nil,
+            userId: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: CommentGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -13843,9 +14177,11 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getComments"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -13913,10 +14249,10 @@ if let value = pageSize {
         **/
         public func getCommentsPaginator(
             entityType: String,
-            id: String?,
-            entityId: String?,
-            userId: String?,
-            pageSize: Int?
+            id: String? = nil,
+            entityId: String? = nil,
+            userId: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<CommentGetResponse> {
             let pageSize = pageSize ?? 20
@@ -13965,11 +14301,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["checkEligibility"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -14019,8 +14357,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["deleteMedia"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["deleteMedia"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -14069,8 +14408,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["createMedia"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createMedia"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -14119,8 +14459,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["updateMedia"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updateMedia"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -14161,10 +14502,10 @@ if let value = pageSize {
         public func getMedias(
             entityType: String,
             entityId: String,
-            id: String?,
-            type: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            type: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: MediaGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -14203,11 +14544,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getMedias"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -14276,9 +14619,9 @@ if let value = pageSize {
         public func getMediasPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            type: String?,
-            pageSize: Int?
+            id: String? = nil,
+            type: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<MediaGetResponse> {
             let pageSize = pageSize ?? 20
@@ -14317,9 +14660,9 @@ if let value = pageSize {
         public func getReviewSummaries(
             entityType: String,
             entityId: String,
-            id: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: ReviewMetricGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -14351,11 +14694,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getReviewSummaries"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -14420,8 +14765,8 @@ if let value = pageSize {
         public func getReviewSummariesPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            pageSize: Int?
+            id: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<ReviewMetricGetResponse> {
             let pageSize = pageSize ?? 20
@@ -14467,8 +14812,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["createReview"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createReview"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -14517,8 +14863,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["updateReview"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updateReview"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -14559,17 +14906,17 @@ if let value = pageSize {
         public func getReviews(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            media: String?,
-            rating: [Double]?,
-            attributeRating: [String]?,
-            facets: Bool?,
-            sort: String?,
-            active: Bool?,
-            approve: Bool?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            userId: String? = nil,
+            media: String? = nil,
+            rating: [Double]? = nil,
+            attributeRating: [String]? = nil,
+            facets: Bool? = nil,
+            sort: String? = nil,
+            active: Bool? = nil,
+            approve: Bool? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: ReviewGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -14657,11 +15004,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getReviews"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -14758,16 +15107,16 @@ if let value = pageSize {
         public func getReviewsPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            media: String?,
-            rating: [Double]?,
-            attributeRating: [String]?,
-            facets: Bool?,
-            sort: String?,
-            active: Bool?,
-            approve: Bool?,
-            pageSize: Int?
+            id: String? = nil,
+            userId: String? = nil,
+            media: String? = nil,
+            rating: [Double]? = nil,
+            attributeRating: [String]? = nil,
+            facets: Bool? = nil,
+            sort: String? = nil,
+            active: Bool? = nil,
+            approve: Bool? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<ReviewGetResponse> {
             let pageSize = pageSize ?? 20
@@ -14811,9 +15160,9 @@ if let value = pageSize {
         * Description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
         **/
         public func getTemplates(
-            templateId: String?,
-            entityId: String?,
-            entityType: String?,
+            templateId: String? = nil,
+            entityId: String? = nil,
+            entityType: String? = nil,
             
             onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -14845,8 +15194,10 @@ if let value = entityType {
 
 
 
+            
             var fullUrl = relativeUrls["getTemplates"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -14895,8 +15246,9 @@ if let value = entityType {
 
 
 
-            var fullUrl = relativeUrls["createQuestion"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createQuestion"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -14945,8 +15297,9 @@ if let value = entityType {
 
 
 
-            var fullUrl = relativeUrls["updateQuestion"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updateQuestion"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -14987,11 +15340,11 @@ if let value = entityType {
         public func getQuestionAndAnswers(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            showAnswer: Bool?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            userId: String? = nil,
+            showAnswer: Bool? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: QNAGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15037,11 +15390,13 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getQuestionAndAnswers"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -15114,10 +15469,10 @@ if let value = pageSize {
         public func getQuestionAndAnswersPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            showAnswer: Bool?,
-            pageSize: Int?
+            id: String? = nil,
+            userId: String? = nil,
+            showAnswer: Bool? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<QNAGetResponse> {
             let pageSize = pageSize ?? 20
@@ -15155,10 +15510,10 @@ if let value = pageSize {
         * Description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
         **/
         public func getVotes(
-            id: String?,
-            refType: String?,
-            pageNo: Int?,
-            pageSize: Int?,
+            id: String? = nil,
+            refType: String? = nil,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
             
             onResponse: @escaping (_ response: VoteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15197,8 +15552,10 @@ if let value = pageSize {
 
 
 
+            
             var fullUrl = relativeUrls["getVotes"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -15256,9 +15613,9 @@ if let value = pageSize {
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getVotesPaginator(
-            id: String?,
-            refType: String?,
-            pageSize: Int?
+            id: String? = nil,
+            refType: String? = nil,
+            pageSize: Int? = nil
             
             ) -> Paginator<VoteResponse> {
             let pageSize = pageSize ?? 20
@@ -15302,8 +15659,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["createVote"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["createVote"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -15352,8 +15710,9 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["updateVote"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["updateVote"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -15467,11 +15826,11 @@ if let value = pageSize {
         * Description: Use this API to get details of all the items added to a cart.
         **/
         public func getCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            assignCardId: Int?,
-            areaCode: String?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            assignCardId: Int? = nil,
+            areaCode: String? = nil,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15517,8 +15876,10 @@ if let value = areaCode {
 
 
 
+            
             var fullUrl = relativeUrls["getCart"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -15557,7 +15918,7 @@ if let value = areaCode {
         * Description: Use this API to fetch Last-Modified timestamp in header metadata.
         **/
         public func getCartLastModified(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
@@ -15575,8 +15936,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getCartLastModified"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "head",
@@ -15615,9 +15978,9 @@ if let value = id {
         * Description: Use this API to add items to the cart.
         **/
         public func addItems(
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            areaCode: String? = nil,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15649,8 +16012,10 @@ if let value = areaCode {
 
 
 
+            
             var fullUrl = relativeUrls["addItems"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -15689,10 +16054,10 @@ if let value = areaCode {
         * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
         **/
         public func updateCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            areaCode: String? = nil,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15731,8 +16096,10 @@ if let value = areaCode {
 
 
 
+            
             var fullUrl = relativeUrls["updateCart"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -15771,7 +16138,7 @@ if let value = areaCode {
         * Description: Use this API to get the total number of items present in cart.
         **/
         public func getItemCount(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15789,8 +16156,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getItemCount"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -15829,7 +16198,7 @@ if let value = id {
         * Description: Use this API to get a list of available coupons along with their details.
         **/
         public func getCoupons(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15847,8 +16216,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getCoupons"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -15887,10 +16258,10 @@ if let value = id {
         * Description: Use this API to apply coupons on items in the cart.
         **/
         public func applyCoupon(
-            i: Bool?,
-            b: Bool?,
-            p: Bool?,
-            id: String?,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            p: Bool? = nil,
+            id: String? = nil,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15929,8 +16300,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["applyCoupon"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -15969,7 +16342,7 @@ if let value = id {
         * Description: Remove Coupon applied on the cart by passing uid in request body.
         **/
         public func removeCoupon(
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -15987,8 +16360,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["removeCoupon"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -16027,10 +16402,10 @@ if let value = id {
         * Description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
         **/
         public func getBulkDiscountOffers(
-            itemId: Int?,
-            articleId: String?,
-            uid: Int?,
-            slug: String?,
+            itemId: Int? = nil,
+            articleId: String? = nil,
+            uid: Int? = nil,
+            slug: String? = nil,
             
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16069,8 +16444,10 @@ if let value = slug {
 
 
 
+            
             var fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -16109,9 +16486,9 @@ if let value = slug {
         * Description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
         **/
         public func applyRewardPoints(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
             body: RewardPointRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16143,8 +16520,10 @@ if let value = b {
 
 
 
+            
             var fullUrl = relativeUrls["applyRewardPoints"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -16183,11 +16562,11 @@ if let value = b {
         * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
         **/
         public func getAddresses(
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
+            cartId: String? = nil,
+            mobileNo: String? = nil,
+            checkoutMode: String? = nil,
+            tags: String? = nil,
+            isDefault: Bool? = nil,
             
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16233,8 +16612,10 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["getAddresses"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -16283,8 +16664,9 @@ if let value = isDefault {
 
 
 
-            var fullUrl = relativeUrls["addAddress"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["addAddress"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -16324,11 +16706,11 @@ if let value = isDefault {
         **/
         public func getAddressById(
             id: String,
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
+            cartId: String? = nil,
+            mobileNo: String? = nil,
+            checkoutMode: String? = nil,
+            tags: String? = nil,
+            isDefault: Bool? = nil,
             
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
@@ -16374,9 +16756,11 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["getAddressById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -16427,9 +16811,11 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["updateAddress"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -16480,9 +16866,11 @@ if let value = isDefault {
 
 
 
+            
             var fullUrl = relativeUrls["removeAddress"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -16522,9 +16910,9 @@ if let value = isDefault {
         * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
         **/
         public func selectAddress(
-            cartId: String?,
-            i: Bool?,
-            b: Bool?,
+            cartId: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16556,8 +16944,10 @@ if let value = b {
 
 
 
+            
             var fullUrl = relativeUrls["selectAddress"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -16596,7 +16986,7 @@ if let value = b {
         * Description: Use this API to update cart payment.
         **/
         public func selectPaymentMode(
-            id: String?,
+            id: String? = nil,
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16614,8 +17004,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["selectPaymentMode"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -16654,12 +17046,12 @@ if let value = id {
         * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
         **/
         public func validateCouponForPayment(
-            id: String?,
-            addressId: String?,
-            paymentMode: String?,
-            paymentIdentifier: String?,
-            aggregatorName: String?,
-            merchantCode: String?,
+            id: String? = nil,
+            addressId: String? = nil,
+            paymentMode: String? = nil,
+            paymentIdentifier: String? = nil,
+            aggregatorName: String? = nil,
+            merchantCode: String? = nil,
             
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -16712,8 +17104,10 @@ if let value = merchantCode {
 
 
 
+            
             var fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -16752,13 +17146,13 @@ if let value = merchantCode {
         * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
         **/
         public func getShipments(
-            pickAtStoreUid: Int?,
-            orderingStoreId: Int?,
-            p: Bool?,
-            id: String?,
-            addressId: String?,
-            areaCode: String?,
-            orderType: String?,
+            pickAtStoreUid: Int? = nil,
+            orderingStoreId: Int? = nil,
+            p: Bool? = nil,
+            id: String? = nil,
+            addressId: String? = nil,
+            areaCode: String? = nil,
+            orderType: String? = nil,
             
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16818,8 +17212,10 @@ if let value = orderType {
 
 
 
+            
             var fullUrl = relativeUrls["getShipments"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -16858,11 +17254,11 @@ if let value = orderType {
         * Description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
         **/
         public func updateShipments(
-            i: Bool?,
-            p: Bool?,
-            id: String?,
-            addressId: String?,
-            orderType: String?,
+            i: Bool? = nil,
+            p: Bool? = nil,
+            id: String? = nil,
+            addressId: String? = nil,
+            orderType: String? = nil,
             body: UpdateCartShipmentRequest,
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16908,8 +17304,10 @@ if let value = orderType {
 
 
 
+            
             var fullUrl = relativeUrls["updateShipments"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -16948,7 +17346,7 @@ if let value = orderType {
         * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
         **/
         public func checkoutCart(
-            id: String?,
+            id: String? = nil,
             body: CartPosCheckoutDetailRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
@@ -16966,8 +17364,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["checkoutCart"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -17006,7 +17406,7 @@ if let value = id {
         * Description: Use this API to update cart meta like checkout_mode and gstin.
         **/
         public func updateCartMeta(
-            id: String?,
+            id: String? = nil,
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
@@ -17024,8 +17424,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["updateCartMeta"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
@@ -17065,7 +17467,7 @@ if let value = id {
         **/
         public func getAvailableDeliveryModes(
             areaCode: String,
-            id: String?,
+            id: String? = nil,
             
             onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
         ) {
@@ -17088,8 +17490,10 @@ if let value = id {
 
 
 
+            
             var fullUrl = relativeUrls["getAvailableDeliveryModes"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -17144,8 +17548,10 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getStoreAddressByUid"] ?? ""
              
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "get",
@@ -17194,8 +17600,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["getCartShareLink"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getCartShareLink"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -17245,9 +17652,11 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getCartSharedItems"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -17299,11 +17708,13 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["updateCartWithSharedItems"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
             
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "action" + "}", with: "\(action)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -17378,8 +17789,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-            var fullUrl = relativeUrls["getTatProduct"] ?? ""
-             
+            
+            let fullUrl = relativeUrls["getTatProduct"] ?? ""
+            
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
@@ -17429,9 +17841,11 @@ var xQuery: [String: Any] = [:]
 
 
 
+            
             var fullUrl = relativeUrls["getPincodeCity"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
+            
             
             ApplicationAPIClient.execute(
                 config: config,

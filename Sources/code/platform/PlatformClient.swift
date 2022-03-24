@@ -5539,12 +5539,12 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create products in bulk associated with given batch Id.
-        * Description: This API helps to create products in bulk push to kafka for approval/creation.
+        * Summary: Delete Bulk product job.
+        * Description: This API allows to delete bulk product job associated with company.
         **/
-        public func createProductsInBulk(
-            batchId: String,
-            body: BulkProductRequest,
+        public func deleteProductBulkJob(
+            batchId: Int,
+            
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -5555,10 +5555,10 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -5588,12 +5588,12 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Delete Bulk product job.
-        * Description: This API allows to delete bulk product job associated with company.
+        * Summary: Create products in bulk associated with given batch Id.
+        * Description: This API helps to create products in bulk push to kafka for approval/creation.
         **/
-        public func deleteProductBulkJob(
-            batchId: Int,
-            
+        public func createProductsInBulk(
+            batchId: String,
+            body: BulkProductRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -5604,10 +5604,10 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -6225,12 +6225,12 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create products in bulk associated with given batch Id.
-        * Description: This API helps to create products in bulk push to kafka for approval/creation.
+        * Summary: Delete Bulk Inventory job.
+        * Description: This API allows to delete bulk Inventory job associated with company.
         **/
-        public func createBulkInventory(
+        public func deleteBulkInventoryJob(
             batchId: String,
-            body: InventoryBulkRequest,
+            
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -6241,10 +6241,10 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -6274,12 +6274,12 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Delete Bulk Inventory job.
-        * Description: This API allows to delete bulk Inventory job associated with company.
+        * Summary: Create products in bulk associated with given batch Id.
+        * Description: This API helps to create products in bulk push to kafka for approval/creation.
         **/
-        public func deleteBulkInventoryJob(
+        public func createBulkInventory(
             batchId: String,
-            
+            body: InventoryBulkRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -6290,10 +6290,10 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in

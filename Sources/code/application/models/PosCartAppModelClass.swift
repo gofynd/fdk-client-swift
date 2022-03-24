@@ -27,7 +27,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(articleUid: String, quantity: Int?, shipmentType: String) {
+            public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
                 
                 self.articleUid = articleUid
                 
@@ -293,7 +293,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(addressId: String?, aggregator: String?, billingAddress: [String: Any]?, billingAddressId: String?, callbackUrl: String?, deliveryAddress: [String: Any]?, extraMeta: [String: Any]?, files: [Files]?, merchantCode: String?, meta: [String: Any]?, orderingStore: Int?, orderType: String, paymentAutoConfirm: Bool?, paymentIdentifier: String?, paymentMode: String, paymentParams: [String: Any]?, pickAtStoreUid: Int?, pos: Bool?, staff: StaffCheckout?) {
+            public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, deliveryAddress: [String: Any]? = nil, extraMeta: [String: Any]? = nil, files: [Files]? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, orderingStore: Int? = nil, orderType: String, paymentAutoConfirm: Bool? = nil, paymentIdentifier: String? = nil, paymentMode: String, paymentParams: [String: Any]? = nil, pickAtStoreUid: Int? = nil, pos: Bool? = nil, staff: StaffCheckout? = nil) {
                 
                 self.paymentMode = paymentMode
                 
@@ -681,7 +681,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(availableModes: [String]?, pickupStores: [Int]?) {
+            public init(availableModes: [String]? = nil, pickupStores: [Int]? = nil) {
                 
                 self.pickupStores = pickupStores
                 
@@ -816,7 +816,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(address: String?, addressType: String?, area: String?, areaCode: String?, areaCodeSlug: String?, city: String?, country: String?, email: String?, id: Int?, landmark: String?, name: String?, phone: String?, pincode: Int?, state: String?, storeCode: String?, uid: Int?) {
+            public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, id: Int? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, uid: Int? = nil) {
                 
                 self.id = id
                 
@@ -1157,7 +1157,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [PickupStoreDetail]?) {
+            public init(items: [PickupStoreDetail]? = nil) {
                 
                 self.items = items
                 

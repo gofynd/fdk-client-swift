@@ -218,7 +218,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, tags: [String]?, upload: Upload) {
+            public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
                 
                 self.fileName = fileName
                 
@@ -398,7 +398,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(contentType: String, fileName: String, params: [String: Any]?, size: Int, tags: [String]?) {
+            public init(contentType: String, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
                 
                 self.fileName = fileName
                 
@@ -557,7 +557,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: String, tags: [String]?, upload: Upload, id: String) {
+            public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: String, tags: [String]? = nil, upload: Upload, id: String) {
                 
                 self.id = id
                 
@@ -765,7 +765,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attempts: Int?, delay: Int?, timestamp: Int?) {
+            public init(attempts: Int? = nil, delay: Int? = nil, timestamp: Int? = nil) {
                 
                 self.attempts = attempts
                 
@@ -899,7 +899,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attemptsMade: Int, data: BulkRequest, delay: Int, finishedOn: Int, id: String, name: String, opts: Opts, processedOn: Int, progress: Int, stacktrace: [String]?, timestamp: Int) {
+            public init(attemptsMade: Int, data: BulkRequest, delay: Int, finishedOn: Int, id: String, name: String, opts: Opts, processedOn: Int, progress: Int, stacktrace: [String]? = nil, timestamp: Int) {
                 
                 self.id = id
                 
@@ -1140,7 +1140,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(concurrency: Int?) {
+            public init(concurrency: Int? = nil) {
                 
                 self.concurrency = concurrency
                 
@@ -1204,7 +1204,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(basepath: String?, namespace: String, rewrite: String) {
+            public init(basepath: String? = nil, namespace: String, rewrite: String) {
                 
                 self.namespace = namespace
                 
@@ -1292,7 +1292,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(configuration: ReqConfiguration?, destination: Destination, urls: [String]) {
+            public init(configuration: ReqConfiguration? = nil, destination: Destination, urls: [String]) {
                 
                 self.urls = urls
                 
@@ -1611,7 +1611,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String?, success: Bool, tags: [String], upload: Upload, id: String) {
+            public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String? = nil, success: Bool, tags: [String], upload: Upload, id: String) {
                 
                 self.success = success
                 

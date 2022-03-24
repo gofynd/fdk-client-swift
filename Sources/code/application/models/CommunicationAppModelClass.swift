@@ -27,7 +27,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, channel: String?, response: String?) {
+            public init(action: String? = nil, channel: String? = nil, response: String? = nil) {
                 
                 self.response = response
                 
@@ -129,7 +129,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appId: String?, channels: CommunicationConsentChannels?, userId: String?) {
+            public init(appId: String? = nil, channels: CommunicationConsentChannels? = nil, userId: String? = nil) {
                 
                 self.appId = appId
                 
@@ -227,7 +227,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(displayName: String?, response: String?) {
+            public init(displayName: String? = nil, response: String? = nil) {
                 
                 self.response = response
                 
@@ -306,7 +306,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(displayName: String?, response: String?) {
+            public init(displayName: String? = nil, response: String? = nil) {
                 
                 self.response = response
                 
@@ -393,7 +393,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, displayName: String?, phoneNumber: String?, response: String?) {
+            public init(countryCode: String? = nil, displayName: String? = nil, phoneNumber: String? = nil, response: String? = nil) {
                 
                 self.response = response
                 
@@ -514,7 +514,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: CommunicationConsentChannelsEmail?, sms: CommunicationConsentChannelsSms?, whatsapp: CommunicationConsentChannelsWhatsapp?) {
+            public init(email: CommunicationConsentChannelsEmail? = nil, sms: CommunicationConsentChannelsSms? = nil, whatsapp: CommunicationConsentChannelsWhatsapp? = nil) {
                 
                 self.email = email
                 
@@ -616,7 +616,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appId: String?, channels: CommunicationConsentChannels?, userId: String?) {
+            public init(appId: String? = nil, channels: CommunicationConsentChannels? = nil, userId: String? = nil) {
                 
                 self.appId = appId
                 
@@ -726,7 +726,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, bundleIdentifier: String?, pushToken: String?, type: String?, uniqueDeviceId: String?) {
+            public init(action: String? = nil, bundleIdentifier: String? = nil, pushToken: String? = nil, type: String? = nil, uniqueDeviceId: String? = nil) {
                 
                 self.action = action
                 
@@ -898,7 +898,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(applicationId: String?, bundleIdentifier: String?, createdAt: String?, expiredAt: String?, platform: String?, pushToken: String?, type: String?, uniqueDeviceId: String?, updatedAt: String?, userId: String?, id: String?) {
+            public init(applicationId: String? = nil, bundleIdentifier: String? = nil, createdAt: String? = nil, expiredAt: String? = nil, platform: String? = nil, pushToken: String? = nil, type: String? = nil, uniqueDeviceId: String? = nil, updatedAt: String? = nil, userId: String? = nil, id: String? = nil) {
                 
                 self.id = id
                 

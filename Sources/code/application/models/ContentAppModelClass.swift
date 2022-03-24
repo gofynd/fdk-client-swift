@@ -47,7 +47,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, createdAt: String?, faq: [ApplicationLegalFAQ]?, policy: String?, shipping: String?, tnc: String?, updatedAt: String?, id: String?) {
+            public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil) {
                 
                 self.application = application
                 
@@ -240,7 +240,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(answer: String?, question: String?) {
+            public init(answer: String? = nil, question: String? = nil) {
                 
                 self.question = question
                 
@@ -331,7 +331,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, createdAt: String?, redirections: [RedirectionSchema]?, updatedAt: String?, id: String?) {
+            public init(application: String? = nil, createdAt: String? = nil, redirections: [RedirectionSchema]? = nil, updatedAt: String? = nil, id: String? = nil) {
                 
                 self.application = application
                 
@@ -467,7 +467,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(redirectFrom: String?, redirectTo: String?) {
+            public init(redirectFrom: String? = nil, redirectTo: String? = nil) {
                 
                 self.redirectFrom = redirectFrom
                 
@@ -542,7 +542,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(seo: SeoSchema?) {
+            public init(seo: SeoSchema? = nil) {
                 
                 self.seo = seo
                 
@@ -626,7 +626,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(app: String?, createdAt: String?, customMetaTags: [CustomMetaTag]?, details: Detail?, robotsTxt: String?, sitemapEnabled: Bool?, updatedAt: String?, id: String?) {
+            public init(app: String? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
                 
                 self.app = app
                 
@@ -823,7 +823,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(content: String?, name: String?, id: String?) {
+            public init(content: String? = nil, name: String? = nil, id: String? = nil) {
                 
                 self.name = name
                 
@@ -921,7 +921,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, title: String?) {
+            public init(description: String? = nil, title: String? = nil) {
                 
                 self.title = title
                 
@@ -1000,7 +1000,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(pageSlug: String?, type: String?) {
+            public init(pageSlug: String? = nil, type: String? = nil) {
                 
                 self.pageSlug = pageSlug
                 
@@ -1087,7 +1087,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(backgroundColor: String?, content: String?, contentType: String?, foregroundColor: String?) {
+            public init(backgroundColor: String? = nil, content: String? = nil, contentType: String? = nil, foregroundColor: String? = nil) {
                 
                 self.foregroundColor = foregroundColor
                 
@@ -1204,7 +1204,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(createdBy: String?, modifiedBy: String?) {
+            public init(createdBy: String? = nil, modifiedBy: String? = nil) {
                 
                 self.createdBy = createdBy
                 
@@ -1319,7 +1319,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(announcement: String?, app: String?, author: AnnouncementAuthorSchema?, createdAt: String?, editorMeta: EditorMeta?, modifiedAt: String?, pages: [AnnouncementPageSchema]?, platforms: [String]?, title: String?, id: String?, schedule: ScheduleSchema?) {
+            public init(announcement: String? = nil, app: String? = nil, author: AnnouncementAuthorSchema? = nil, createdAt: String? = nil, editorMeta: EditorMeta? = nil, modifiedAt: String? = nil, pages: [AnnouncementPageSchema]? = nil, platforms: [String]? = nil, title: String? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
                 
                 self.id = id
                 
@@ -1581,7 +1581,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cron: String?, duration: Double?, end: String?, nextSchedule: [NextSchedule]?, start: String?) {
+            public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
                 
                 self.cron = cron
                 
@@ -1717,7 +1717,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(end: String?, start: String?) {
+            public init(end: String? = nil, start: String? = nil) {
                 
                 self.start = start
                 
@@ -1796,7 +1796,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(announcement: String?, schedule: ScheduleStartSchema?) {
+            public init(announcement: String? = nil, schedule: ScheduleStartSchema? = nil) {
                 
                 self.announcement = announcement
                 
@@ -1875,7 +1875,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(end: String?, start: String?) {
+            public init(end: String? = nil, start: String? = nil) {
                 
                 self.start = start
                 
@@ -1954,7 +1954,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [BlogSchema]?, page: Page?) {
+            public init(items: [BlogSchema]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -2033,7 +2033,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(type: String?, value: String?) {
+            public init(type: String? = nil, value: String? = nil) {
                 
                 self.type = type
                 
@@ -2116,7 +2116,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(aspectRatio: String?, id: String?, secureUrl: String?) {
+            public init(aspectRatio: String? = nil, id: String? = nil, secureUrl: String? = nil) {
                 
                 self.aspectRatio = aspectRatio
                 
@@ -2218,7 +2218,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(designation: String?, id: String?, name: String?) {
+            public init(designation: String? = nil, id: String? = nil, name: String? = nil) {
                 
                 self.designation = designation
                 
@@ -2368,7 +2368,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, archived: Bool?, author: Author?, content: [ResourceContent]?, dateMeta: DateMeta?, featureImage: Asset?, published: Bool?, readingTime: String?, seo: SEO?, slug: String?, tags: [String]?, title: String?, customJson: [String: Any]?, id: String?, schedule: CronSchedule?) {
+            public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
                 
                 self.id = id
                 
@@ -2698,7 +2698,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, image: SEOImage?, title: String?) {
+            public init(description: String? = nil, image: SEOImage? = nil, title: String? = nil) {
                 
                 self.description = description
                 
@@ -2792,7 +2792,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(url: String?) {
+            public init(url: String? = nil) {
                 
                 self.url = url
                 
@@ -2852,7 +2852,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(createdOn: String?, modifiedOn: String?) {
+            public init(createdOn: String? = nil, modifiedOn: String? = nil) {
                 
                 self.createdOn = createdOn
                 
@@ -2971,7 +2971,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, author: Author?, content: [ResourceContent]?, featureImage: Asset?, published: Bool?, readingTime: String?, seo: SEO?, slug: String?, tags: [String]?, title: String?, customJson: [String: Any]?, schedule: CronSchedule?) {
+            public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
                 
                 self.application = application
                 
@@ -3240,7 +3240,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [AdminAnnouncementSchema]?, page: Page?) {
+            public init(items: [AdminAnnouncementSchema]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -3319,7 +3319,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(data: AdminAnnouncementSchema?, message: String?) {
+            public init(data: AdminAnnouncementSchema? = nil, message: String? = nil) {
                 
                 self.message = message
                 
@@ -3430,7 +3430,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, company: String?, content: String?, name: String?, operationId: String?, service: String?, type: String?, url: String?, id: String?, source: DataLoaderSourceSchema?) {
+            public init(application: String? = nil, company: String? = nil, content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
                 
                 self.application = application
                 
@@ -3657,7 +3657,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(reset: String?) {
+            public init(reset: String? = nil) {
                 
                 self.reset = reset
                 
@@ -3749,7 +3749,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, name: String?, navigation: NavigationReference?, orientation: String?, platform: String?, position: String?, slug: String?, id: String?) {
+            public init(application: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: NavigationReference? = nil, orientation: String? = nil, platform: String? = nil, position: String? = nil, slug: String? = nil, id: String? = nil) {
                 
                 self.name = name
                 
@@ -3984,7 +3984,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(ar: Language?, enUs: Language?, hi: Language?) {
+            public init(ar: Language? = nil, enUs: Language? = nil, hi: Language? = nil) {
                 
                 self.hi = hi
                 
@@ -4078,7 +4078,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(display: String?) {
+            public init(display: String? = nil) {
                 
                 self.display = display
                 
@@ -4142,7 +4142,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(page: ActionPage?, popup: ActionPage?, type: String?) {
+            public init(page: ActionPage? = nil, popup: ActionPage? = nil, type: String? = nil) {
                 
                 self.page = page
                 
@@ -4248,7 +4248,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(params: [String: [String]]?, query: [String: [String]]?, type: PageType, url: String?) {
+            public init(params: [String: [String]]? = nil, query: [String: [String]]? = nil, type: PageType, url: String? = nil) {
                 
                 self.params = params
                 
@@ -4390,7 +4390,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(acl: [String]?, action: Action?, active: Bool?, display: String?, image: String?, sortOrder: Int?, subNavigation: [NavigationReference]?, tags: [String]?, type: String?, localeLanguage: LocaleLanguage?) {
+            public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
                 
                 self.acl = acl
                 
@@ -4621,7 +4621,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(data: LandingPageSchema?, success: Bool?) {
+            public init(data: LandingPageSchema? = nil, success: Bool? = nil) {
                 
                 self.data = data
                 
@@ -4708,7 +4708,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(duration: Int?, sleepTime: Int?, slideDirection: String?, startOnLaunch: Bool?) {
+            public init(duration: Int? = nil, sleepTime: Int? = nil, slideDirection: String? = nil, startOnLaunch: Bool? = nil) {
                 
                 self.sleepTime = sleepTime
                 
@@ -4841,7 +4841,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: Action?, autoDecideDuration: Bool?, bgColor: String?, duration: Int?, type: String?, url: String?) {
+            public init(action: Action? = nil, autoDecideDuration: Bool? = nil, bgColor: String? = nil, duration: Int? = nil, type: String? = nil, url: String? = nil) {
                 
                 self.type = type
                 
@@ -4996,7 +4996,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(data: SlideshowSchema?, success: Bool?) {
+            public init(data: SlideshowSchema? = nil, success: Bool? = nil) {
                 
                 self.data = data
                 
@@ -5079,7 +5079,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(announcements: [String: [AnnouncementSchema]]?, refreshPages: [String]?, refreshRate: Int?) {
+            public init(announcements: [String: [AnnouncementSchema]]? = nil, refreshPages: [String]? = nil, refreshRate: Int? = nil) {
                 
                 self.announcements = announcements
                 
@@ -5173,7 +5173,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(faqs: [FaqSchema]?) {
+            public init(faqs: [FaqSchema]? = nil) {
                 
                 self.faqs = faqs
                 
@@ -5229,7 +5229,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(tag: HandpickedTagSchema?) {
+            public init(tag: HandpickedTagSchema? = nil) {
                 
                 self.tag = tag
                 
@@ -5309,7 +5309,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributes: [String: Any]?, content: String?, name: String?, position: String?, subType: String?, type: String?, url: String?) {
+            public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil) {
                 
                 self.position = position
                 
@@ -5479,7 +5479,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(tags: [String]?) {
+            public init(tags: [String]? = nil) {
                 
                 self.tags = tags
                 
@@ -5563,7 +5563,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributes: [String: Any]?, content: String?, name: String?, position: String?, subType: String?, type: String?, url: String?, id: String?) {
+            public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
                 
                 self.name = name
                 
@@ -5752,7 +5752,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(tags: [CreateTagSchema]?) {
+            public init(tags: [CreateTagSchema]? = nil) {
                 
                 self.tags = tags
                 
@@ -5832,7 +5832,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(content: String?, name: String?, operationId: String?, service: String?, type: String?, url: String?, source: DataLoaderSourceSchema?) {
+            public init(content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, source: DataLoaderSourceSchema? = nil) {
                 
                 self.name = name
                 
@@ -6006,7 +6006,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, type: String?) {
+            public init(id: String? = nil, type: String? = nil) {
                 
                 self.type = type
                 
@@ -6081,7 +6081,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [DataLoaderSchema]?) {
+            public init(items: [DataLoaderSchema]? = nil) {
                 
                 self.items = items
                 
@@ -6137,7 +6137,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(success: Bool?) {
+            public init(success: Bool? = nil) {
                 
                 self.success = success
                 
@@ -6221,7 +6221,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?, exception: String?, info: String?, message: String?, meta: [String: Any]?, requestId: String?, stackTrace: String?, status: Double?) {
+            public init(code: String? = nil, exception: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Double? = nil) {
                 
                 self.message = message
                 
@@ -6442,7 +6442,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, children: [String]?, description: String?, iconUrl: String?, index: Int?, slug: String?, title: String?, customJson: [String: Any]?, id: String?) {
+            public init(application: String? = nil, children: [String]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
                 
                 self.index = index
                 
@@ -6666,7 +6666,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(answer: String?, application: String?, question: String?, slug: String?, id: String?) {
+            public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, id: String? = nil) {
                 
                 self.question = question
                 
@@ -6802,7 +6802,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(slug: String?, title: String?) {
+            public init(slug: String? = nil, title: String? = nil) {
                 
                 self.slug = slug
                 
@@ -6909,7 +6909,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, children: [ChildrenSchema]?, description: String?, iconUrl: String?, index: Int?, slug: String?, title: String?, customJson: [String: Any]?, id: String?) {
+            public init(application: String? = nil, children: [ChildrenSchema]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
                 
                 self.index = index
                 
@@ -7133,7 +7133,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(answer: String?, application: String?, question: String?, slug: String?, id: String?) {
+            public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, id: String? = nil) {
                 
                 self.slug = slug
                 
@@ -7273,7 +7273,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(answer: String?, question: String?, slug: String?) {
+            public init(answer: String? = nil, question: String? = nil, slug: String? = nil) {
                 
                 self.slug = slug
                 
@@ -7367,7 +7367,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(faq: FaqSchema?) {
+            public init(faq: FaqSchema? = nil) {
                 
                 self.faq = faq
                 
@@ -7423,7 +7423,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(faq: FAQ?) {
+            public init(faq: FAQ? = nil) {
                 
                 self.faq = faq
                 
@@ -7479,7 +7479,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(faqs: [FaqSchema]?) {
+            public init(faqs: [FaqSchema]? = nil) {
                 
                 self.faqs = faqs
                 
@@ -7535,7 +7535,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: CategorySchema?) {
+            public init(category: CategorySchema? = nil) {
                 
                 self.category = category
                 
@@ -7591,7 +7591,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: CategoryRequestSchema?) {
+            public init(category: CategoryRequestSchema? = nil) {
                 
                 self.category = category
                 
@@ -7647,7 +7647,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: CategorySchema?) {
+            public init(category: CategorySchema? = nil) {
                 
                 self.category = category
                 
@@ -7703,7 +7703,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(categories: [CategorySchema]?) {
+            public init(categories: [CategorySchema]? = nil) {
                 
                 self.categories = categories
                 
@@ -7759,7 +7759,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: FAQCategorySchema?) {
+            public init(category: FAQCategorySchema? = nil) {
                 
                 self.category = category
                 
@@ -7819,7 +7819,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [LandingPageSchema]?, page: Page?) {
+            public init(items: [LandingPageSchema]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -7926,7 +7926,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: Action?, application: String?, archived: Bool?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, platform: [String]?, slug: String?, customJson: [String: Any]?, id: String?) {
+            public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
                 
                 self.slug = slug
                 
@@ -8134,7 +8134,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [NavigationSchema]?) {
+            public init(items: [NavigationSchema]? = nil) {
                 
                 self.items = items
                 
@@ -8194,7 +8194,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [NavigationSchema]?, page: Page?) {
+            public init(items: [NavigationSchema]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -8273,7 +8273,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(landscape: [String]?, portrait: [String]?) {
+            public init(landscape: [String]? = nil, portrait: [String]? = nil) {
                 
                 self.portrait = portrait
                 
@@ -8388,7 +8388,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, archived: Bool?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, name: String?, navigation: [NavigationReference]?, orientation: Orientation?, platform: [String]?, slug: String?, version: Double?, id: String?) {
+            public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, version: Double? = nil, id: String? = nil) {
                 
                 self.id = id
                 
@@ -8650,7 +8650,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(name: String?, navigation: [NavigationReference]?, orientation: Orientation?, platform: [String]?, slug: String?) {
+            public init(name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil) {
                 
                 self.name = name
                 
@@ -8834,7 +8834,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, content: [[String: Any]]?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, description: String?, orientation: String?, platform: String?, published: Bool?, slug: String?, tags: [String]?, title: String?, type: String?, id: String?, schedule: ScheduleSchema?) {
+            public init(application: String? = nil, content: [[String: Any]]? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, orientation: String? = nil, platform: String? = nil, published: Bool? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
                 
                 self.id = id
                 
@@ -9141,7 +9141,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(type: String?, value: [String: Any]?) {
+            public init(type: String? = nil, value: [String: Any]? = nil) {
                 
                 self.type = type
                 
@@ -9216,7 +9216,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(data: CustomPageSchema?) {
+            public init(data: CustomPageSchema? = nil) {
                 
                 self.data = data
                 
@@ -9272,7 +9272,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(secureUrl: String?) {
+            public init(secureUrl: String? = nil) {
                 
                 self.secureUrl = secureUrl
                 
@@ -9332,7 +9332,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [PageSchema]?, page: Page?) {
+            public init(items: [PageSchema]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -9407,7 +9407,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(specifications: [PageSpecItem]?) {
+            public init(specifications: [PageSpecItem]? = nil) {
                 
                 self.specifications = specifications
                 
@@ -9467,7 +9467,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(key: String?, required: Bool?) {
+            public init(key: String? = nil, required: Bool? = nil) {
                 
                 self.key = key
                 
@@ -9554,7 +9554,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(displayName: String?, pageType: String?, params: [PageSpecParam]?, query: [PageSpecParam]?) {
+            public init(displayName: String? = nil, pageType: String? = nil, params: [PageSpecParam]? = nil, query: [PageSpecParam]? = nil) {
                 
                 self.pageType = pageType
                 
@@ -9751,7 +9751,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, archived: Bool?, componentIds: [String]?, content: [[String: Any]]?, contentPath: String?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, description: String?, featureImage: Asset?, orientation: String?, pageMeta: [[String: Any]]?, platform: String?, published: Bool?, seo: SEO?, slug: String?, tags: [String]?, title: String?, type: String?, visibility: [String: Any]?, customJson: [String: Any]?, id: String?, schedule: ScheduleSchema?) {
+            public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [[String: Any]]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [[String: Any]]? = nil, platform: String? = nil, published: Bool? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
                 
                 self.id = id
                 
@@ -10206,7 +10206,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?) {
+            public init(id: String? = nil) {
                 
                 self.id = id
                 
@@ -10266,7 +10266,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(type: String?, value: [String: Any]?) {
+            public init(type: String? = nil, value: [String: Any]? = nil) {
                 
                 self.type = type
                 
@@ -10345,7 +10345,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(key: String?, value: [String: Any]?) {
+            public init(key: String? = nil, value: [String: Any]? = nil) {
                 
                 self.key = key
                 
@@ -10468,7 +10468,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, author: Author?, content: [[String: Any]]?, featureImage: Asset?, orientation: String?, published: Bool?, readingTime: String?, seo: SEO?, slug: String?, tags: [String]?, title: String?, customJson: [String: Any]?, schedule: CronSchedule?) {
+            public init(application: String? = nil, author: Author? = nil, content: [[String: Any]]? = nil, featureImage: Asset? = nil, orientation: String? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
                 
                 self.schedule = schedule
                 
@@ -10764,7 +10764,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cron: String?, duration: Double?, end: String?, start: String?) {
+            public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, start: String? = nil) {
                 
                 self.cron = cron
                 
@@ -10877,7 +10877,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(publish: Bool?) {
+            public init(publish: Bool? = nil) {
                 
                 self.publish = publish
                 
@@ -10941,7 +10941,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(applicationId: String?, customPages: [PageSchema]?, systemPages: [NavigationSchema]?) {
+            public init(applicationId: String? = nil, customPages: [PageSchema]? = nil, systemPages: [NavigationSchema]? = nil) {
                 
                 self.systemPages = systemPages
                 
@@ -11039,7 +11039,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [SlideshowSchema]?, page: Page?) {
+            public init(items: [SlideshowSchema]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -11150,7 +11150,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, application: String?, archived: Bool?, configuration: ConfigurationSchema?, dateMeta: DateMeta?, media: [SlideshowMedia]?, platform: String?, slug: String?, customJson: [String: Any]?, id: String?) {
+            public init(active: Bool? = nil, application: String? = nil, archived: Bool? = nil, configuration: ConfigurationSchema? = nil, dateMeta: DateMeta? = nil, media: [SlideshowMedia]? = nil, platform: String? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
                 
                 self.id = id
                 
@@ -11393,7 +11393,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, configuration: ConfigurationSchema?, media: SlideshowMedia?, platform: String?, slug: String?) {
+            public init(active: Bool? = nil, configuration: ConfigurationSchema? = nil, media: SlideshowMedia? = nil, platform: String? = nil, slug: String? = nil) {
                 
                 self.slug = slug
                 
@@ -11549,7 +11549,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, configType: String?, contact: ContactSchema?, created: Bool?, createdAt: String?, updatedAt: String?, id: String?) {
+            public init(application: String? = nil, configType: String? = nil, contact: ContactSchema? = nil, created: Bool? = nil, createdAt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
                 
                 self.created = created
                 
@@ -11727,7 +11727,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?, key: String?, number: String?) {
+            public init(code: String? = nil, key: String? = nil, number: String? = nil) {
                 
                 self.key = key
                 
@@ -11825,7 +11825,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, phone: [PhoneProperties]?) {
+            public init(active: Bool? = nil, phone: [PhoneProperties]? = nil) {
                 
                 self.active = active
                 
@@ -11904,7 +11904,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(key: String?, value: String?) {
+            public init(key: String? = nil, value: String? = nil) {
                 
                 self.key = key
                 
@@ -11983,7 +11983,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, email: [EmailProperties]?) {
+            public init(active: Bool? = nil, email: [EmailProperties]? = nil) {
                 
                 self.active = active
                 
@@ -12062,7 +12062,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: EmailSchema?, phone: PhoneSchema?) {
+            public init(email: EmailSchema? = nil, phone: PhoneSchema? = nil) {
                 
                 self.phone = phone
                 
@@ -12145,7 +12145,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: String?, tags: [TagSchema]?, id: String?) {
+            public init(application: String? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
                 
                 self.application = application
                 
@@ -12271,7 +12271,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributes: [String: Any]?, content: String?, name: String?, position: String?, subType: String?, type: String?, url: String?, id: String?, source: TagSourceSchema?) {
+            public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
                 
                 self.name = name
                 
@@ -12483,7 +12483,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, type: String?) {
+            public init(id: String? = nil, type: String? = nil) {
                 
                 self.type = type
                 

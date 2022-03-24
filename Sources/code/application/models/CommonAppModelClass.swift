@@ -23,7 +23,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?, name: String?) {
+            public init(code: String? = nil, name: String? = nil) {
                 
                 self.name = name
                 
@@ -106,7 +106,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?, name: String?, symbol: String?) {
+            public init(code: String? = nil, name: String? = nil, symbol: String? = nil) {
                 
                 self.name = name
                 
@@ -248,7 +248,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(capital: String?, currency: String?, defaultCurrency: LocationDefaultCurrency?, defaultLanguage: LocationDefaultLanguage?, iso2: String?, iso3: String?, name: String?, parent: String?, phoneCode: String?, type: String?, uid: Int?, id: String?, v: Int?) {
+            public init(capital: String? = nil, currency: String? = nil, defaultCurrency: LocationDefaultCurrency? = nil, defaultLanguage: LocationDefaultLanguage? = nil, iso2: String? = nil, iso3: String? = nil, name: String? = nil, parent: String? = nil, phoneCode: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
                 
                 self.capital = capital
                 
@@ -532,7 +532,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [[String: Any]]?) {
+            public init(items: [[String: Any]]? = nil) {
                 
                 self.items = items
                 

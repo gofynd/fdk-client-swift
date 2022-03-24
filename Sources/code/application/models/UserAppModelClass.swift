@@ -27,7 +27,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(reason: String?, status: Bool?, userId: [String]?) {
+            public init(reason: String? = nil, status: Bool? = nil, userId: [String]? = nil) {
                 
                 self.status = status
                 
@@ -121,7 +121,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?) {
+            public init(email: String? = nil) {
                 
                 self.email = email
                 
@@ -193,7 +193,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, countryCode: String?, phone: String?, primary: Bool?, verified: Bool?) {
+            public init(active: Bool? = nil, countryCode: String? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
                 
                 self.verified = verified
                 
@@ -329,7 +329,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, phone: String?) {
+            public init(countryCode: String? = nil, phone: String? = nil) {
                 
                 self.countryCode = countryCode
                 
@@ -444,7 +444,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(androidHash: String?, countryCode: String?, dob: String?, email: String?, firstName: String?, gender: String?, lastName: String?, mobile: EditProfileMobileSchema?, profilePicUrl: String?, registerToken: String?, sender: String?) {
+            public init(androidHash: String? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
                 
                 self.firstName = firstName
                 
@@ -694,7 +694,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, phone: String?) {
+            public init(countryCode: String? = nil, phone: String? = nil) {
                 
                 self.phone = phone
                 
@@ -781,7 +781,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, email: String?, registerToken: String?, token: String?) {
+            public init(action: String? = nil, email: String? = nil, registerToken: String? = nil, token: String? = nil) {
                 
                 self.email = email
                 
@@ -906,7 +906,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, email: String?, otp: String?, registerToken: String?) {
+            public init(action: String? = nil, email: String? = nil, otp: String? = nil, registerToken: String? = nil) {
                 
                 self.email = email
                 
@@ -1027,7 +1027,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(otp: String?, registerToken: String?, requestId: String?) {
+            public init(otp: String? = nil, registerToken: String? = nil, requestId: String? = nil) {
                 
                 self.requestId = requestId
                 
@@ -1145,7 +1145,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, androidHash: String?, captchaCode: String?, countryCode: String?, force: String?, mobile: String?, token: String?) {
+            public init(action: String? = nil, androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
                 
                 self.mobile = mobile
                 
@@ -1319,7 +1319,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(newPassword: String?, oldPassword: String?) {
+            public init(newPassword: String? = nil, oldPassword: String? = nil) {
                 
                 self.oldPassword = oldPassword
                 
@@ -1418,7 +1418,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?, firstName: String?, gender: String?, lastName: String?, password: String?, phone: FormRegisterRequestSchemaPhone?, registerToken: String?) {
+            public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, password: String? = nil, phone: FormRegisterRequestSchemaPhone? = nil, registerToken: String? = nil) {
                 
                 self.firstName = firstName
                 
@@ -1588,7 +1588,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(token: String?) {
+            public init(token: String? = nil) {
                 
                 self.token = token
                 
@@ -1648,7 +1648,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?, password: String?) {
+            public init(code: String? = nil, password: String? = nil) {
                 
                 self.code = code
                 
@@ -1723,7 +1723,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?) {
+            public init(code: String? = nil) {
                 
                 self.code = code
                 
@@ -1783,7 +1783,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(captchaCode: String?, email: String?) {
+            public init(captchaCode: String? = nil, email: String? = nil) {
                 
                 self.email = email
                 
@@ -1866,7 +1866,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(captchaCode: String?, password: String?, username: String?) {
+            public init(captchaCode: String? = nil, password: String? = nil, username: String? = nil) {
                 
                 self.captchaCode = captchaCode
                 
@@ -1968,7 +1968,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(captchaCode: String?, countryCode: String?, mobile: String?) {
+            public init(captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
                 
                 self.countryCode = countryCode
                 
@@ -2070,7 +2070,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(isSignedIn: Bool?, oauth2: OAuthRequestSchemaOauth2?, profile: OAuthRequestSchemaProfile?) {
+            public init(isSignedIn: Bool? = nil, oauth2: OAuthRequestSchemaOauth2? = nil, profile: OAuthRequestSchemaProfile? = nil) {
                 
                 self.isSignedIn = isSignedIn
                 
@@ -2172,7 +2172,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(oauth: OAuthRequestAppleSchemaOauth?, profile: OAuthRequestAppleSchemaProfile?, userIdentifier: String?) {
+            public init(oauth: OAuthRequestAppleSchemaOauth? = nil, profile: OAuthRequestAppleSchemaProfile? = nil, userIdentifier: String? = nil) {
                 
                 self.userIdentifier = userIdentifier
                 
@@ -2266,7 +2266,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(user: UserSchema?) {
+            public init(user: UserSchema? = nil) {
                 
                 self.user = user
                 
@@ -2330,7 +2330,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(registerToken: String?, user: UserSchema?, userExists: Bool?) {
+            public init(registerToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil) {
                 
                 self.registerToken = registerToken
                 
@@ -2472,7 +2472,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, email: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, resendTimer: Int?, resendToken: String?, success: Bool?, userExists: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+            public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, userExists: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
                 
                 self.resendTimer = resendTimer
                 
@@ -2788,7 +2788,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, user: UserSchema?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+            public init(email: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
                 
                 self.user = user
                 
@@ -3004,7 +3004,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(registerToken: String?, requestId: String?, user: UserSchema?) {
+            public init(registerToken: String? = nil, requestId: String? = nil, user: UserSchema? = nil) {
                 
                 self.user = user
                 
@@ -3106,7 +3106,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(registerToken: String?, user: UserSchema?, userExists: Bool?) {
+            public init(registerToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil) {
                 
                 self.user = user
                 
@@ -3200,7 +3200,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(status: String?) {
+            public init(status: String? = nil) {
                 
                 self.status = status
                 
@@ -3304,7 +3304,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, email: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, resendTimer: Int?, resendToken: String?, success: Bool?, userExists: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+            public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, userExists: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
                 
                 self.email = email
                 
@@ -3588,7 +3588,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -3644,7 +3644,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(result: Bool?) {
+            public init(result: Bool? = nil) {
                 
                 self.result = result
                 
@@ -3700,7 +3700,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(logout: Bool?) {
+            public init(logout: Bool? = nil) {
                 
                 self.logout = logout
                 
@@ -3756,7 +3756,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(success: Bool?) {
+            public init(success: Bool? = nil) {
                 
                 self.success = success
                 
@@ -3840,7 +3840,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
+            public init(countryCode: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil) {
                 
                 self.resendTimer = resendTimer
                 
@@ -4029,7 +4029,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(success: Bool?) {
+            public init(success: Bool? = nil) {
                 
                 self.success = success
                 
@@ -4085,7 +4085,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(sessions: [String]?) {
+            public init(sessions: [String]? = nil) {
                 
                 self.sessions = sessions
                 
@@ -4145,7 +4145,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(user: UserSchema?, verifyMobileLink: Bool?) {
+            public init(user: UserSchema? = nil, verifyMobileLink: Bool? = nil) {
                 
                 self.user = user
                 
@@ -4224,7 +4224,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(user: UserSchema?, verifyEmailLink: Bool?) {
+            public init(user: UserSchema? = nil, verifyEmailLink: Bool? = nil) {
                 
                 self.user = user
                 
@@ -4299,7 +4299,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(verifyMobileLink: Bool?) {
+            public init(verifyMobileLink: Bool? = nil) {
                 
                 self.verifyMobileLink = verifyMobileLink
                 
@@ -4355,7 +4355,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(verifyEmailLink: Bool?) {
+            public init(verifyEmailLink: Bool? = nil) {
                 
                 self.verifyEmailLink = verifyEmailLink
                 
@@ -4411,7 +4411,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(users: [UserSchema]?) {
+            public init(users: [UserSchema]? = nil) {
                 
                 self.users = users
                 
@@ -4471,7 +4471,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [UserSchema]?, page: PaginationSchema?) {
+            public init(items: [UserSchema]? = nil, page: PaginationSchema? = nil) {
                 
                 self.items = items
                 
@@ -4546,7 +4546,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [String]?) {
+            public init(items: [String]? = nil) {
                 
                 self.items = items
                 
@@ -4602,7 +4602,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [String]?) {
+            public init(items: [String]? = nil) {
                 
                 self.items = items
                 
@@ -4658,7 +4658,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -4714,7 +4714,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(authenticated: Bool?) {
+            public init(authenticated: Bool? = nil) {
                 
                 self.authenticated = authenticated
                 
@@ -4770,7 +4770,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -4826,7 +4826,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -4882,7 +4882,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?) {
+            public init(message: String? = nil) {
                 
                 self.message = message
                 
@@ -4962,7 +4962,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?, registerToken: String?, user: String?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+            public init(email: String? = nil, registerToken: String? = nil, user: String? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
                 
                 self.email = email
                 
@@ -5136,7 +5136,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, mobile: String?) {
+            public init(countryCode: String? = nil, mobile: String? = nil) {
                 
                 self.countryCode = countryCode
                 
@@ -5219,7 +5219,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(accessToken: String?, expiry: Int?, refreshToken: String?) {
+            public init(accessToken: String? = nil, expiry: Int? = nil, refreshToken: String? = nil) {
                 
                 self.accessToken = accessToken
                 
@@ -5333,7 +5333,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?, firstName: String?, fullName: String?, id: String?, image: String?, lastName: String?) {
+            public init(email: String? = nil, firstName: String? = nil, fullName: String? = nil, id: String? = nil, image: String? = nil, lastName: String? = nil) {
                 
                 self.lastName = lastName
                 
@@ -5484,7 +5484,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(identityToken: String?) {
+            public init(identityToken: String? = nil) {
                 
                 self.identityToken = identityToken
                 
@@ -5548,7 +5548,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(firstName: String?, fullName: String?, lastName: String?) {
+            public init(firstName: String? = nil, fullName: String? = nil, lastName: String? = nil) {
                 
                 self.lastName = lastName
                 
@@ -5658,7 +5658,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, debug: AuthSuccessUserDebug?, emails: AuthSuccessUserEmails?, firstName: String?, lastName: String?) {
+            public init(active: Bool? = nil, debug: AuthSuccessUserDebug? = nil, emails: AuthSuccessUserEmails? = nil, firstName: String? = nil, lastName: String? = nil) {
                 
                 self.firstName = firstName
                 
@@ -5790,7 +5790,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(platform: String?) {
+            public init(platform: String? = nil) {
                 
                 self.platform = platform
                 
@@ -5858,7 +5858,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, email: String?, primary: Bool?, verified: Bool?) {
+            public init(active: Bool? = nil, email: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
                 
                 self.email = email
                 
@@ -5995,7 +5995,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?, firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?, phoneNumber: String, username: String) {
+            public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, username: String) {
                 
                 self.phoneNumber = phoneNumber
                 
@@ -6151,7 +6151,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(user: UserSchema?) {
+            public init(user: UserSchema? = nil) {
                 
                 self.user = user
                 
@@ -6215,7 +6215,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(domain: String?, maxAge: Double?, userId: String?) {
+            public init(domain: String? = nil, maxAge: Double? = nil, userId: String? = nil) {
                 
                 self.domain = domain
                 
@@ -6325,7 +6325,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cookie: [String: Any]?, domain: String?, httpOnly: Bool?, maxAge: Double?, secure: Bool?) {
+            public init(cookie: [String: Any]? = nil, domain: String? = nil, httpOnly: Bool? = nil, maxAge: Double? = nil, secure: Bool? = nil) {
                 
                 self.domain = domain
                 
@@ -6537,7 +6537,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, createdAt: String?, desktopImage: String?, display: String?, flashCard: FlashCard?, forgotPassword: Bool?, login: Login?, lookAndFeel: LookAndFeel?, meta: MetaSchema?, mobileImage: String?, name: String?, register: Bool?, registerRequiredFields: RegisterRequiredFields?, requiredFields: RequiredFields?, skipCaptcha: Bool?, skipLogin: Bool?, social: Social?, socialTokens: SocialTokens?, subtext: String?, updatedAt: String?, id: String?) {
+            public init(active: Bool? = nil, createdAt: String? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
                 
                 self.display = display
                 
@@ -6977,7 +6977,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(backgroundColor: String?, cardPosition: String?) {
+            public init(backgroundColor: String? = nil, cardPosition: String? = nil) {
                 
                 self.cardPosition = cardPosition
                 
@@ -7056,7 +7056,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(otp: Bool?, password: Bool?) {
+            public init(otp: Bool? = nil, password: Bool? = nil) {
                 
                 self.password = password
                 
@@ -7131,7 +7131,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(fyndDefault: Bool?) {
+            public init(fyndDefault: Bool? = nil) {
                 
                 self.fyndDefault = fyndDefault
                 
@@ -7199,7 +7199,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(accountKit: Bool?, apple: Bool?, facebook: Bool?, google: Bool?) {
+            public init(accountKit: Bool? = nil, apple: Bool? = nil, facebook: Bool? = nil, google: Bool? = nil) {
                 
                 self.accountKit = accountKit
                 
@@ -7316,7 +7316,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: PlatformEmail?, mobile: PlatformMobile?) {
+            public init(email: PlatformEmail? = nil, mobile: PlatformMobile? = nil) {
                 
                 self.email = email
                 
@@ -7395,7 +7395,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(isRequired: Bool?, level: String?) {
+            public init(isRequired: Bool? = nil, level: String? = nil) {
                 
                 self.isRequired = isRequired
                 
@@ -7474,7 +7474,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(isRequired: Bool?, level: String?) {
+            public init(isRequired: Bool? = nil, level: String? = nil) {
                 
                 self.isRequired = isRequired
                 
@@ -7553,7 +7553,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: RegisterRequiredFieldsEmail?, mobile: RegisterRequiredFieldsMobile?) {
+            public init(email: RegisterRequiredFieldsEmail? = nil, mobile: RegisterRequiredFieldsMobile? = nil) {
                 
                 self.email = email
                 
@@ -7632,7 +7632,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(isRequired: Bool?, level: String?) {
+            public init(isRequired: Bool? = nil, level: String? = nil) {
                 
                 self.isRequired = isRequired
                 
@@ -7711,7 +7711,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(isRequired: Bool?, level: String?) {
+            public init(isRequired: Bool? = nil, level: String? = nil) {
                 
                 self.isRequired = isRequired
                 
@@ -7794,7 +7794,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(backgroundColor: String?, text: String?, textColor: String?) {
+            public init(backgroundColor: String? = nil, text: String? = nil, textColor: String? = nil) {
                 
                 self.text = text
                 
@@ -7896,7 +7896,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(accountKit: Accountkit?, facebook: Facebook?, google: Google?) {
+            public init(accountKit: Accountkit? = nil, facebook: Facebook? = nil, google: Google? = nil) {
                 
                 self.facebook = facebook
                 
@@ -7990,7 +7990,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appId: String?) {
+            public init(appId: String? = nil) {
                 
                 self.appId = appId
                 
@@ -8046,7 +8046,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appId: String?) {
+            public init(appId: String? = nil) {
                 
                 self.appId = appId
                 
@@ -8102,7 +8102,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appId: String?) {
+            public init(appId: String? = nil) {
                 
                 self.appId = appId
                 
@@ -8174,7 +8174,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(externalId: String?, firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?) {
+            public init(externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil) {
                 
                 self.firstName = firstName
                 
@@ -8374,7 +8374,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(accountType: String?, active: Bool?, applicationId: String?, createdAt: String?, debug: Debug?, dob: String?, emails: [Email]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, meta: [String: Any]?, phoneNumbers: [PhoneNumber]?, profilePicUrl: String?, updatedAt: String?, username: String?, userId: String?, id: String?) {
+            public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
                 
                 self.applicationId = applicationId
                 

@@ -47,7 +47,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(abused: Bool?, dateMeta: DateMeta?, description: String?, entity: Entity?, id: String?, name: String?, state: FeedbackState?, tags: [TagMeta]?) {
+            public init(abused: Bool? = nil, dateMeta: DateMeta? = nil, description: String? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, state: FeedbackState? = nil, tags: [TagMeta]? = nil) {
                 
                 self.abused = abused
                 
@@ -248,7 +248,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(answer: Bool?, askQuestion: Bool?, comment: Bool?, rnr: Bool?) {
+            public init(answer: Bool? = nil, askQuestion: Bool? = nil, comment: Bool? = nil, rnr: Bool? = nil) {
                 
                 self.answer = answer
                 
@@ -377,7 +377,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(entityId: String?, entityType: String?, mediaList: [AddMediaRequest]?, refId: String?, refType: String?) {
+            public init(entityId: String? = nil, entityType: String? = nil, mediaList: [AddMediaRequest]? = nil, refId: String? = nil, refType: String? = nil) {
                 
                 self.entityId = entityId
                 
@@ -549,7 +549,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cloudId: String?, cloudName: String?, cloudProvider: String?, entityId: String?, entityType: String?, mediaUrl: String?, refId: String?, refType: String?, tags: [String]?, thumbnailUrl: String?, type: String?) {
+            public init(cloudId: String? = nil, cloudName: String? = nil, cloudProvider: String? = nil, entityId: String? = nil, entityType: String? = nil, mediaUrl: String? = nil, refId: String? = nil, refType: String? = nil, tags: [String]? = nil, thumbnailUrl: String? = nil, type: String? = nil) {
                 
                 self.cloudId = cloudId
                 
@@ -795,7 +795,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?) {
+            public init(id: String? = nil) {
                 
                 self.id = id
                 
@@ -871,7 +871,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(dateMeta: DateMeta?, description: String?, id: String?, name: String?, slug: String?, tags: [TagMeta]?) {
+            public init(dateMeta: DateMeta? = nil, description: String? = nil, id: String? = nil, name: String? = nil, slug: String? = nil, tags: [TagMeta]? = nil) {
                 
                 self.dateMeta = dateMeta
                 
@@ -1042,7 +1042,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, name: String, slug: String?, title: String?, type: String, value: Double) {
+            public init(description: String? = nil, name: String, slug: String? = nil, title: String? = nil, type: String, value: Double) {
                 
                 self.description = description
                 
@@ -1176,7 +1176,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [Attribute]?, page: Page?) {
+            public init(items: [Attribute]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -1251,7 +1251,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(textDetector: [TextDetector]?) {
+            public init(textDetector: [TextDetector]? = nil) {
                 
                 self.textDetector = textDetector
                 
@@ -1307,7 +1307,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(access: Access?) {
+            public init(access: Access? = nil) {
                 
                 self.access = access
                 
@@ -1371,7 +1371,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, name: String?, provider: String?) {
+            public init(id: String? = nil, name: String? = nil, provider: String? = nil) {
                 
                 self.id = id
                 
@@ -1493,7 +1493,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(comment: [String]?, dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, state: FeedbackState?, tags: [TagMeta]?, voteCount: VoteCount?) {
+            public init(comment: [String]? = nil, dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, state: FeedbackState? = nil, tags: [TagMeta]? = nil, voteCount: VoteCount? = nil) {
                 
                 self.comment = comment
                 
@@ -1686,7 +1686,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [Comment]?, page: Page?) {
+            public init(items: [Comment]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -1870,7 +1870,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(choices: [String]?, entityId: String, entityType: String, maxLen: Int?, sortPriority: Int?, tags: [String]?, text: String, type: String?) {
+            public init(choices: [String]? = nil, entityId: String, entityType: String, maxLen: Int? = nil, sortPriority: Int? = nil, tags: [String]? = nil, text: String, type: String? = nil) {
                 
                 self.choices = choices
                 
@@ -2046,7 +2046,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, name: String?, tags: [TagMeta]?) {
+            public init(id: String? = nil, name: String? = nil, tags: [TagMeta]? = nil) {
                 
                 self.id = id
                 
@@ -2144,7 +2144,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [[String: Any]]?, page: Page?) {
+            public init(items: [[String: Any]]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -2275,7 +2275,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(autoDetectors: AutoDetectors?, createdOn: String?, deviceMeta: DeviceMeta?, entity: ProductEntity?, id: String?, locationMeta: LocationMeta?, modifiedOn: String?, name: String?, rating: ReviewRating?, review: Review?, slug: String?, state: State?, tags: [TagMeta]?, template: Template?, voteCount: VoteCount?) {
+            public init(autoDetectors: AutoDetectors? = nil, createdOn: String? = nil, deviceMeta: DeviceMeta? = nil, entity: ProductEntity? = nil, id: String? = nil, locationMeta: LocationMeta? = nil, modifiedOn: String? = nil, name: String? = nil, rating: ReviewRating? = nil, review: Review? = nil, slug: String? = nil, state: State? = nil, tags: [TagMeta]? = nil, template: Template? = nil, voteCount: VoteCount? = nil) {
                 
                 self.autoDetectors = autoDetectors
                 
@@ -2601,7 +2601,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appVersion: String?, platform: String?) {
+            public init(appVersion: String? = nil, platform: String? = nil) {
                 
                 self.appVersion = appVersion
                 
@@ -2680,7 +2680,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, type: String?) {
+            public init(id: String? = nil, type: String? = nil) {
                 
                 self.id = id
                 
@@ -2759,7 +2759,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(orderId: String?, type: String?) {
+            public init(orderId: String? = nil, type: String? = nil) {
                 
                 self.orderId = orderId
                 
@@ -2862,7 +2862,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: String?, exception: String?, info: String?, message: String?, meta: [String: Any]?, requestId: String?, stackTrace: String?, status: Int?) {
+            public init(code: String? = nil, exception: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
                 
                 self.code = code
                 
@@ -3099,7 +3099,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(application: ApplicationSchema?, cloud: Cloud?, createdBy: CreatedBy?, dateMeta: DateMeta?, description: String?, entity: Entity?, id: String?, name: String?, reference: Entity?, state: MediaState?, tags: [TagMeta]?, type: String?, url: Url?) {
+            public init(application: ApplicationSchema? = nil, cloud: Cloud? = nil, createdBy: CreatedBy? = nil, dateMeta: DateMeta? = nil, description: String? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, reference: Entity? = nil, state: MediaState? = nil, tags: [TagMeta]? = nil, type: String? = nil, url: Url? = nil) {
                 
                 self.application = application
                 
@@ -3403,7 +3403,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, archive: Bool?, media: String?, qna: Bool?, rating: Bool?, review: Bool?) {
+            public init(active: Bool? = nil, archive: Bool? = nil, media: String? = nil, qna: Bool? = nil, rating: Bool? = nil, review: Bool? = nil) {
                 
                 self.active = active
                 
@@ -3558,7 +3558,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(latitude: String?, longitude: String?) {
+            public init(latitude: String? = nil, longitude: String? = nil) {
                 
                 self.latitude = latitude
                 
@@ -3633,7 +3633,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(ids: String?) {
+            public init(ids: String? = nil) {
                 
                 self.ids = ids
                 
@@ -3705,7 +3705,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(countryCode: String?, flagUrl: String?, geoLoc: GeoLoc?, name: String?, pincode: String?) {
+            public init(countryCode: String? = nil, flagUrl: String? = nil, geoLoc: GeoLoc? = nil, name: String? = nil, pincode: String? = nil) {
                 
                 self.countryCode = countryCode
                 
@@ -3841,7 +3841,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(demand: Location?, supply: Location?) {
+            public init(demand: Location? = nil, supply: Location? = nil) {
                 
                 self.demand = demand
                 
@@ -3920,7 +3920,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [FeedbackMedia]?, page: Page?) {
+            public init(items: [FeedbackMedia]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -4015,7 +4015,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cloud: Cloud?, comment: [String]?, description: String?, id: String?, type: String?, url: Url?) {
+            public init(cloud: Cloud? = nil, comment: [String]? = nil, description: String? = nil, id: String? = nil, type: String? = nil, url: Url? = nil) {
                 
                 self.cloud = cloud
                 
@@ -4170,7 +4170,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(approve: Bool?, archive: Bool?) {
+            public init(approve: Bool? = nil, archive: Bool? = nil) {
                 
                 self.approve = approve
                 
@@ -4249,7 +4249,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [[String: Any]]?, page: PageNumber?) {
+            public init(items: [[String: Any]]? = nil, page: PageNumber? = nil) {
                 
                 self.items = items
                 
@@ -4340,7 +4340,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
+            public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
                 
                 self.current = current
                 
@@ -4480,7 +4480,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, meta: EntityMeta?, type: String?) {
+            public init(id: String? = nil, meta: EntityMeta? = nil, type: String? = nil) {
                 
                 self.id = id
                 
@@ -4606,7 +4606,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(comments: [Comment]?, dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, question: Question?, state: QNAState?, tag: [String]?, tags: [TagMeta]?) {
+            public init(comments: [Comment]? = nil, dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, question: Question? = nil, state: QNAState? = nil, tag: [String]? = nil, tags: [TagMeta]? = nil) {
                 
                 self.comments = comments
                 
@@ -4818,7 +4818,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [QNA]?, page: Page?) {
+            public init(items: [QNA]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -4913,7 +4913,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, approve: Bool?, modify: Bool?, priority: Int?, reply: Bool?, vote: Bool?) {
+            public init(active: Bool? = nil, approve: Bool? = nil, modify: Bool? = nil, priority: Int? = nil, reply: Bool? = nil, vote: Bool? = nil) {
                 
                 self.active = active
                 
@@ -5076,7 +5076,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(choices: [String]?, maxLen: Int?, text: String?, type: String?) {
+            public init(choices: [String]? = nil, maxLen: Int? = nil, text: String? = nil, type: String? = nil) {
                 
                 self.choices = choices
                 
@@ -5197,7 +5197,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributes: [Attribute]?, attributesSlugs: [String]?, ui: UI?) {
+            public init(attributes: [Attribute]? = nil, attributesSlugs: [String]? = nil, ui: UI? = nil) {
                 
                 self.attributes = attributes
                 
@@ -5295,7 +5295,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [Rating]?, page: Page?) {
+            public init(items: [Rating]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -5386,7 +5386,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(avg: Double?, count: Int?, name: String?, slug: String?, type: String?) {
+            public init(avg: Double? = nil, count: Int? = nil, name: String? = nil, slug: String? = nil, type: String? = nil) {
                 
                 self.avg = avg
                 
@@ -5522,7 +5522,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [AbuseReport]?, page: Page?) {
+            public init(items: [AbuseReport]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -5605,7 +5605,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, entityId: String, entityType: String) {
+            public init(description: String? = nil, entityId: String, entityType: String) {
                 
                 self.description = description
                 
@@ -5701,7 +5701,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(answerIds: [String]?, comments: [String]?, description: String?, mediaMeta: [MediaMeta]?, title: String?) {
+            public init(answerIds: [String]? = nil, comments: [String]? = nil, description: String? = nil, mediaMeta: [MediaMeta]? = nil, title: String? = nil) {
                 
                 self.answerIds = answerIds
                 
@@ -5849,7 +5849,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(display: String?, name: String?, selected: Bool?, slug: String?, type: String?) {
+            public init(display: String? = nil, name: String? = nil, selected: Bool? = nil, slug: String? = nil, type: String? = nil) {
                 
                 self.display = display
                 
@@ -5993,7 +5993,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(facets: [ReviewFacet]?, items: [CustomerReview]?, page: Page?, sort: [SortMethod]?) {
+            public init(facets: [ReviewFacet]? = nil, items: [CustomerReview]? = nil, page: Page? = nil, sort: [SortMethod]? = nil) {
                 
                 self.facets = facets
                 
@@ -6114,7 +6114,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(maxCount: Double?, size: Double?, type: String?) {
+            public init(maxCount: Double? = nil, size: Double? = nil, type: String? = nil) {
                 
                 self.maxCount = maxCount
                 
@@ -6240,7 +6240,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributeMetric: [RatingMetric]?, createdOn: String?, entity: Entity?, id: String?, modifiedOn: String?, ratingAvg: Double?, ratingCount: Int?, ratingMetric: [RatingMetric]?, reviewCount: Int?) {
+            public init(attributeMetric: [RatingMetric]? = nil, createdOn: String? = nil, entity: Entity? = nil, id: String? = nil, modifiedOn: String? = nil, ratingAvg: Double? = nil, ratingCount: Int? = nil, ratingMetric: [RatingMetric]? = nil, reviewCount: Int? = nil) {
                 
                 self.attributeMetric = attributeMetric
                 
@@ -6452,7 +6452,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [ReviewMetric]?, page: Page?) {
+            public init(items: [ReviewMetric]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -6531,7 +6531,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attributes: [AttributeObject]?, value: Double?) {
+            public init(attributes: [AttributeObject]? = nil, value: Double? = nil) {
                 
                 self.attributes = attributes
                 
@@ -6614,7 +6614,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, name: String, slug: String) {
+            public init(description: String? = nil, name: String, slug: String) {
                 
                 self.description = description
                 
@@ -6702,7 +6702,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(name: String?, selected: Bool?, type: String?) {
+            public init(name: String? = nil, selected: Bool? = nil, type: String? = nil) {
                 
                 self.name = name
                 
@@ -6808,7 +6808,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, approve: Bool?, autoDecided: Bool?, status: Int?) {
+            public init(active: Bool? = nil, approve: Bool? = nil, autoDecided: Bool? = nil, status: Int? = nil) {
                 
                 self.active = active
                 
@@ -6929,7 +6929,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(media: [MediaMeta]?, name: String?, type: String?) {
+            public init(media: [MediaMeta]? = nil, name: String? = nil, type: String? = nil) {
                 
                 self.media = media
                 
@@ -7047,7 +7047,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, rating: Rating?, review: TemplateReview?, state: FeedbackState?) {
+            public init(dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, rating: Rating? = nil, review: TemplateReview? = nil, state: FeedbackState? = nil) {
                 
                 self.dateMeta = dateMeta
                 
@@ -7221,7 +7221,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [Template]?, page: Page?) {
+            public init(items: [Template]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -7316,7 +7316,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, header: String?, imageMeta: ReviewMediaMeta?, title: String?, videoMeta: ReviewMediaMeta?, voteAllowed: Bool?) {
+            public init(description: String? = nil, header: String? = nil, imageMeta: ReviewMediaMeta? = nil, title: String? = nil, videoMeta: ReviewMediaMeta? = nil, voteAllowed: Bool? = nil) {
                 
                 self.description = description
                 
@@ -7479,7 +7479,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(confidence: Double?, text: String?, textClass: String?, textType: String?) {
+            public init(confidence: Double? = nil, text: String? = nil, textClass: String? = nil, textType: String? = nil) {
                 
                 self.confidence = confidence
                 
@@ -7604,7 +7604,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(feedbackQuestion: [String]?, icon: UIIcon?, text: [String]?, type: String?) {
+            public init(feedbackQuestion: [String]? = nil, icon: UIIcon? = nil, text: [String]? = nil, type: String? = nil) {
                 
                 self.feedbackQuestion = feedbackQuestion
                 
@@ -7725,7 +7725,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: String?, inactive: String?, selected: [String]?) {
+            public init(active: String? = nil, inactive: String? = nil, selected: [String]? = nil) {
                 
                 self.active = active
                 
@@ -7843,7 +7843,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(abusive: Bool?, active: Bool?, approve: Bool?, description: String?, entityId: String?, entityType: String?, id: String?) {
+            public init(abusive: Bool? = nil, active: Bool? = nil, approve: Bool? = nil, description: String? = nil, entityId: String? = nil, entityType: String? = nil, id: String? = nil) {
                 
                 self.abusive = abusive
                 
@@ -8021,7 +8021,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, name: String, slug: String?) {
+            public init(description: String? = nil, name: String, slug: String? = nil) {
                 
                 self.description = description
                 
@@ -8120,7 +8120,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, approve: Bool?, comment: [String], id: String) {
+            public init(active: Bool? = nil, approve: Bool? = nil, comment: [String], id: String) {
                 
                 self.active = active
                 
@@ -8231,7 +8231,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(approve: Bool?, archive: Bool?, entityType: String?, ids: [String]?) {
+            public init(approve: Bool? = nil, archive: Bool? = nil, entityType: String? = nil, ids: [String]? = nil) {
                 
                 self.approve = approve
                 
@@ -8360,7 +8360,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, approve: Bool?, choices: [String]?, id: String?, tags: [String]?) {
+            public init(active: Bool? = nil, approve: Bool? = nil, choices: [String]? = nil, id: String? = nil, tags: [String]? = nil) {
                 
                 self.active = active
                 
@@ -8492,7 +8492,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?) {
+            public init(id: String? = nil) {
                 
                 self.id = id
                 
@@ -8600,7 +8600,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, application: String?, approve: Bool?, archive: Bool?, attributesRating: [AttributeObject]?, description: String?, deviceMeta: DeviceMeta?, entityId: String?, entityType: String?, mediaResource: [MediaMeta]?, rating: Double?, reviewId: String?, templateId: String?, title: String?) {
+            public init(active: Bool? = nil, application: String? = nil, approve: Bool? = nil, archive: Bool? = nil, attributesRating: [AttributeObject]? = nil, description: String? = nil, deviceMeta: DeviceMeta? = nil, entityId: String? = nil, entityType: String? = nil, mediaResource: [MediaMeta]? = nil, rating: Double? = nil, reviewId: String? = nil, templateId: String? = nil, title: String? = nil) {
                 
                 self.active = active
                 
@@ -8919,7 +8919,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, active: Bool?, id: String?, refId: String?, refType: String?) {
+            public init(action: String? = nil, active: Bool? = nil, id: String? = nil, refId: String? = nil, refType: String? = nil) {
                 
                 self.action = action
                 
@@ -9055,7 +9055,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(main: String?, thumbnail: String?) {
+            public init(main: String? = nil, thumbnail: String? = nil) {
                 
                 self.main = main
                 
@@ -9158,7 +9158,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, reference: Entity?, state: FeedbackState?, tags: [TagMeta]?) {
+            public init(action: String? = nil, dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, reference: Entity? = nil, state: FeedbackState? = nil, tags: [TagMeta]? = nil) {
                 
                 self.action = action
                 
@@ -9351,7 +9351,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(downvote: Int?, upvote: Int?) {
+            public init(downvote: Int? = nil, upvote: Int? = nil) {
                 
                 self.downvote = downvote
                 
@@ -9442,7 +9442,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(action: String?, entityId: String?, entityType: String?, refId: String?, refType: String?) {
+            public init(action: String? = nil, entityId: String? = nil, entityType: String? = nil, refId: String? = nil, refType: String? = nil) {
                 
                 self.action = action
                 
@@ -9578,7 +9578,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [Vote]?, page: Page?) {
+            public init(items: [Vote]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 

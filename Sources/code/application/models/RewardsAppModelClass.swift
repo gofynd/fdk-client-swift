@@ -19,7 +19,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(slug: [String]?) {
+            public init(slug: [String]? = nil) {
                 
                 self.slug = slug
                 
@@ -75,7 +75,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(articles: [RewardsArticle]?) {
+            public init(articles: [RewardsArticle]? = nil) {
                 
                 self.articles = articles
                 
@@ -131,7 +131,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(articles: [RewardsArticle]?) {
+            public init(articles: [RewardsArticle]? = nil) {
                 
                 self.articles = articles
                 
@@ -203,7 +203,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(absolute: Double?, currency: String?, displayAbsolute: String?, displayPercent: String?, percent: Double?) {
+            public init(absolute: Double? = nil, currency: String? = nil, displayAbsolute: String? = nil, displayPercent: String? = nil, percent: Double? = nil) {
                 
                 self.absolute = absolute
                 
@@ -347,7 +347,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(code: Int?, exception: String?, info: String?, message: String?) {
+            public init(code: Int? = nil, exception: String? = nil, info: String? = nil, message: String? = nil) {
                 
                 self.code = code
                 
@@ -512,7 +512,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, applicationId: String?, bannerImage: Asset?, createdAt: String?, name: String?, rule: [String: Any]?, share: ShareMessages?, subText: String?, text: String?, type: String?, updatedAt: String?, updatedBy: String?, url: String?, schedule: Schedule?) {
+            public init(active: Bool? = nil, applicationId: String? = nil, bannerImage: Asset? = nil, createdAt: String? = nil, name: String? = nil, rule: [String: Any]? = nil, share: ShareMessages? = nil, subText: String? = nil, text: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, url: String? = nil, schedule: Schedule? = nil) {
                 
                 self.schedule = schedule
                 
@@ -819,7 +819,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(currency: String?, orderAmount: Double) {
+            public init(currency: String? = nil, orderAmount: Double) {
                 
                 self.currency = currency
                 
@@ -903,7 +903,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(appliedRuleBucket: OrderDiscountRuleBucket?, baseDiscount: DiscountProperties?, discount: DiscountProperties?, orderAmount: Double?, points: Double?) {
+            public init(appliedRuleBucket: OrderDiscountRuleBucket? = nil, baseDiscount: DiscountProperties? = nil, discount: DiscountProperties? = nil, orderAmount: Double? = nil, points: Double? = nil) {
                 
                 self.appliedRuleBucket = appliedRuleBucket
                 
@@ -1051,7 +1051,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(high: Double?, low: Double?, max: Double?, value: Double?, valueType: String?) {
+            public init(high: Double? = nil, low: Double? = nil, max: Double? = nil, value: Double? = nil, valueType: String? = nil) {
                 
                 self.high = high
                 
@@ -1235,7 +1235,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(applicationId: String?, claimed: Bool?, createdAt: String?, expiresOn: String?, meta: [String: Any]?, points: Double?, remainingPoints: Double?, text1: String?, text2: String?, text3: String?, txnName: String?, updatedAt: String?, userId: String?, id: String?) {
+            public init(applicationId: String? = nil, claimed: Bool? = nil, createdAt: String? = nil, expiresOn: String? = nil, meta: [String: Any]? = nil, points: Double? = nil, remainingPoints: Double? = nil, text1: String? = nil, text2: String? = nil, text3: String? = nil, txnName: String? = nil, updatedAt: String? = nil, userId: String? = nil, id: String? = nil) {
                 
                 self.id = id
                 
@@ -1542,7 +1542,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [PointsHistory]?, page: Page?) {
+            public init(items: [PointsHistory]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -1617,7 +1617,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(points: Double?) {
+            public init(points: Double? = nil) {
                 
                 self.points = points
                 
@@ -1754,7 +1754,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(message: String?, points: Double?, redeemed: Bool?, referrerId: String?, referrerInfo: String?) {
+            public init(message: String? = nil, points: Double? = nil, redeemed: Bool? = nil, referrerId: String? = nil, referrerInfo: String? = nil) {
                 
                 self.message = message
                 
@@ -1898,7 +1898,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(referral: Offer?, referrerInfo: String?, share: ShareMessages?, user: ReferralDetailsUser?) {
+            public init(referral: Offer? = nil, referrerInfo: String? = nil, share: ShareMessages? = nil, user: ReferralDetailsUser? = nil) {
                 
                 self.referral = referral
                 
@@ -2023,7 +2023,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(blocked: Bool?, points: Double?, redeemed: Bool?, referralCode: String?) {
+            public init(blocked: Bool? = nil, points: Double? = nil, redeemed: Bool? = nil, referralCode: String? = nil) {
                 
                 self.blocked = blocked
                 
@@ -2144,7 +2144,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(id: String?, points: Double?, price: Double?) {
+            public init(id: String? = nil, points: Double? = nil, price: Double? = nil) {
                 
                 self.id = id
                 
@@ -2250,7 +2250,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(cron: String?, duration: Int?, end: String?, start: String?) {
+            public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, start: String? = nil) {
                 
                 self.cron = cron
                 
@@ -2395,7 +2395,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(email: String?, facebook: String?, fallback: String?, message: String?, messenger: String?, sms: String?, text: String?, twitter: String?, whatsapp: String?) {
+            public init(email: String? = nil, facebook: String? = nil, fallback: String? = nil, message: String? = nil, messenger: String? = nil, sms: String? = nil, text: String? = nil, twitter: String? = nil, whatsapp: String? = nil) {
                 
                 self.email = email
                 

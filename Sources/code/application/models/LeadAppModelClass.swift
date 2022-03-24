@@ -27,7 +27,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(filters: Filter?, items: [Ticket]?, page: Page?) {
+            public init(filters: Filter? = nil, items: [Ticket]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -145,7 +145,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(current: Int?, hasNext: Bool?, hasPrevious: Bool?, itemTotal: Int?, nextId: String?, size: Int?, type: String) {
+            public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
                 
                 self.itemTotal = itemTotal
                 
@@ -312,7 +312,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [TicketHistory]?, page: Page?) {
+            public init(items: [TicketHistory]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -391,7 +391,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [CustomForm]?, page: Page?) {
+            public init(items: [CustomForm]? = nil, page: Page? = nil) {
                 
                 self.items = items
                 
@@ -498,7 +498,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, headerImage: String?, inputs: [[String: Any]], pollForAssignment: PollForAssignment?, priority: PriorityEnum, shouldNotify: Bool?, slug: String, successMessage: String?, title: String) {
+            public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, slug: String, successMessage: String? = nil, title: String) {
                 
                 self.slug = slug
                 
@@ -710,7 +710,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool?, pollForAssignment: PollForAssignment?, priority: PriorityEnum, shouldNotify: Bool?, successMessage: String?, title: String) {
+            public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool? = nil, pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, successMessage: String? = nil, title: String) {
                 
                 self.title = title
                 
@@ -925,7 +925,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(assignedTo: AgentChangePayload?, category: String?, content: TicketContent?, priority: PriorityEnum?, source: String?, status: String?, subCategory: String?, tags: [String]?) {
+            public init(assignedTo: AgentChangePayload? = nil, category: String? = nil, content: TicketContent? = nil, priority: PriorityEnum? = nil, source: String? = nil, status: String? = nil, subCategory: String? = nil, tags: [String]? = nil) {
                 
                 self.content = content
                 
@@ -1265,7 +1265,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(notify: [NotifyUser]?, uniqueName: String) {
+            public init(notify: [NotifyUser]? = nil, uniqueName: String) {
                 
                 self.uniqueName = uniqueName
                 
@@ -1410,7 +1410,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(assignees: [[String: Any]], categories: [TicketCategory]?, priorities: [Priority], statuses: [Status]) {
+            public init(assignees: [[String: Any]], categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
                 
                 self.priorities = priorities
                 
@@ -1571,7 +1571,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attachments: [TicketAsset]?, response: [[String: Any]]) {
+            public init(attachments: [TicketAsset]? = nil, response: [[String: Any]]) {
                 
                 self.response = response
                 
@@ -1745,7 +1745,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(identity: String?, status: String?, user: UserSchema?) {
+            public init(identity: String? = nil, status: String? = nil, user: UserSchema? = nil) {
                 
                 self.user = user
                 
@@ -1855,7 +1855,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, countryCode: Int?, phone: String?, primary: Bool?, verified: Bool?) {
+            public init(active: Bool? = nil, countryCode: Int? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
                 
                 self.active = active
                 
@@ -1999,7 +1999,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(active: Bool?, email: String?, primary: Bool?, verified: Bool?) {
+            public init(active: Bool? = nil, email: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
                 
                 self.primary = primary
                 
@@ -2116,7 +2116,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(platform: String?, source: String?) {
+            public init(platform: String? = nil, source: String? = nil) {
                 
                 self.source = source
                 
@@ -2244,7 +2244,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(applicationId: String?, companyId: String) {
+            public init(applicationId: String? = nil, companyId: String) {
                 
                 self.applicationId = applicationId
                 
@@ -2369,7 +2369,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(display: String?, type: TicketAssetTypeEnum, value: String) {
+            public init(display: String? = nil, type: TicketAssetTypeEnum, value: String) {
                 
                 self.display = display
                 
@@ -2457,7 +2457,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(attachments: [TicketAsset]?, description: String?, title: String) {
+            public init(attachments: [TicketAsset]? = nil, description: String? = nil, title: String) {
                 
                 self.title = title
                 
@@ -2567,7 +2567,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: String, content: TicketContent, createdBy: [String: Any]?, priority: PriorityEnum?, status: String?) {
+            public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil) {
                 
                 self.createdBy = createdBy
                 
@@ -2863,7 +2863,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(display: String, feedbackForm: TicketFeedbackForm?, form: CustomForm?, key: String, subCategories: [TicketSubCategory]?) {
+            public init(display: String, feedbackForm: TicketFeedbackForm? = nil, form: CustomForm? = nil, key: String, subCategories: [TicketSubCategory]? = nil) {
                 
                 self.key = key
                 
@@ -3050,7 +3050,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(display: [[String: Any]]?, title: String) {
+            public init(display: [[String: Any]]? = nil, title: String) {
                 
                 self.title = title
                 
@@ -3118,7 +3118,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(items: [TicketFeedback]?) {
+            public init(items: [TicketFeedback]? = nil) {
                 
                 self.items = items
                 
@@ -3174,7 +3174,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(formResponse: [String: Any]?) {
+            public init(formResponse: [String: Any]? = nil) {
                 
                 self.formResponse = formResponse
                 
@@ -3464,7 +3464,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(applicationId: String, createdBy: [String: Any]?, createdOn: CreatedOn?, description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment?, priority: Priority, shouldNotify: Bool, slug: String, submitButton: SubmitButton?, successMessage: String?, title: String, id: String) {
+            public init(applicationId: String, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment? = nil, priority: Priority, shouldNotify: Bool, slug: String, submitButton: SubmitButton? = nil, successMessage: String? = nil, title: String, id: String) {
                 
                 self.applicationId = applicationId
                 
@@ -3839,7 +3839,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(category: String?, companyId: String, createdAt: String?, response: [FeedbackResponseItem], ticketId: String, updatedAt: String?, user: [String: Any]?, id: String) {
+            public init(category: String? = nil, companyId: String, createdAt: String? = nil, response: [FeedbackResponseItem], ticketId: String, updatedAt: String? = nil, user: [String: Any]? = nil, id: String) {
                 
                 self.id = id
                 
@@ -4028,7 +4028,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, ticketId: String, type: String, updatedAt: String?, value: [String: Any], id: String) {
+            public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String) {
                 
                 self.type = type
                 
@@ -4257,7 +4257,7 @@ public extension ApplicationClient {
                 
             }
 
-            public init(assignedTo: [String: Any]?, category: TicketCategory, content: TicketContent?, context: TicketContext?, createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, isFeedbackPending: Bool?, priority: Priority, responseId: String?, source: TicketSourceEnum, status: Status, subCategory: TicketSubCategory?, tags: [String]?, ticketId: String, updatedAt: String?, customJson: [String: Any]?, id: String) {
+            public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: TicketSubCategory? = nil, tags: [String]? = nil, ticketId: String, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
                 
                 self.context = context
                 
