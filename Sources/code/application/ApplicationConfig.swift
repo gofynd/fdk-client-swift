@@ -17,12 +17,13 @@ public class ApplicationConfig {
         self.currency = currency
         self.extraHeaders = extraHeaders
 
-        //let regex = "^[0-9a-fA-F]{24}$"
+        // let regex = "^[0-9a-fA-F]{24}$"
         let regex = try? NSRegularExpression(pattern: "^[0-9a-fA-F]{24}$",
-                options: [.caseInsensitive])
+                                             options: [.caseInsensitive])
 
-        if regex?.firstMatch(in: applicationId, options:[],
-        range: NSMakeRange(0, applicationId.utf16.count)) == nil {
+        if regex?.firstMatch(in: applicationId, options: [],
+                             range: NSMakeRange(0, applicationId.utf16.count)) == nil
+        {
             return nil
         }
 
