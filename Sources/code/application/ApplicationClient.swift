@@ -128,9 +128,9 @@ public class ApplicationClient {
             
             ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/") 
             
-            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
-            
             ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
+            
+            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
             
             ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/") 
             
@@ -1924,10 +1924,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollow an entity (product/brand/collection)
-        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+        * Summary: Follow an entity (product/brand/collection)
+        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
         **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
             
@@ -1940,7 +1940,7 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["unfollowById"] ?? ""
+            var fullUrl = relativeUrls["followById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
@@ -1948,7 +1948,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1980,10 +1980,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follow an entity (product/brand/collection)
-        * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+        * Summary: Unfollow an entity (product/brand/collection)
+        * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
         **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
             
@@ -1996,7 +1996,7 @@ if let value = pageSize {
 
 
 
-            var fullUrl = relativeUrls["followById"] ?? ""
+            var fullUrl = relativeUrls["unfollowById"] ?? ""
              
                 fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
@@ -2004,7 +2004,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -7457,8 +7457,6 @@ if let value = platform {
             
             ulrs["getBlogs"] = config.domain.appendAsPath("/service/application/content/v1.0/blogs/") 
             
-            ulrs["getDataLoaders"] = config.domain.appendAsPath("/service/application/content/v1.0/data-loader") 
-            
             ulrs["getFaqs"] = config.domain.appendAsPath("/service/application/content/v1.0/faq") 
             
             ulrs["getFaqCategories"] = config.domain.appendAsPath("/service/application/content/v1.0/faq/categories") 
@@ -7714,56 +7712,6 @@ if let value = pageSize {
                 }
             }
             return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get the data loaders associated with an application
-        * Description: Use this API to get all selected data loaders of the application in the form of tags.
-        **/
-        public func getDataLoaders(
-            
-            onResponse: @escaping (_ response: DataLoadersSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-
-            var fullUrl = relativeUrls["getDataLoaders"] ?? ""
-             
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(DataLoadersSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
         }
         
         
