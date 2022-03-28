@@ -1437,13 +1437,9 @@ public extension ApplicationClient {
 
         public var availableSections: [availableSectionSchema]?
 
-        public var constants: [String: Any]?
-
         public var styles: [String: Any]?
 
         public var config: Config?
-
-        public var settings: [String: Any]?
 
         public var font: Font?
 
@@ -1484,13 +1480,9 @@ public extension ApplicationClient {
 
             case availableSections = "available_sections"
 
-            case constants
-
             case styles
 
             case config
-
-            case settings
 
             case font
 
@@ -1501,7 +1493,7 @@ public extension ApplicationClient {
             case colors
         }
 
-        public init(application: String?, applied: Bool?, archived: Bool?, assets: AssetsSchema?, availableSections: [availableSectionSchema]?, colors: Colors?, config: Config?, constants: [String: Any]?, createdAt: String?, customized: Bool?, font: Font?, information: Information?, parentTheme: String?, parentThemeVersion: String?, published: Bool?, settings: [String: Any]?, src: Src?, styles: [String: Any]?, tags: [String]?, updatedAt: String?, version: String?, id: String?, v: Int?) {
+        public init(application: String?, applied: Bool?, archived: Bool?, assets: AssetsSchema?, availableSections: [availableSectionSchema]?, colors: Colors?, config: Config?, createdAt: String?, customized: Bool?, font: Font?, information: Information?, parentTheme: String?, parentThemeVersion: String?, published: Bool?, src: Src?, styles: [String: Any]?, tags: [String]?, updatedAt: String?, version: String?, id: String?, v: Int?) {
             self.application = application
 
             self.applied = applied
@@ -1532,13 +1524,9 @@ public extension ApplicationClient {
 
             self.availableSections = availableSections
 
-            self.constants = constants
-
             self.styles = styles
 
             self.config = config
-
-            self.settings = settings
 
             self.font = font
 
@@ -1679,14 +1667,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                constants = try container.decode([String: Any].self, forKey: .constants)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 styles = try container.decode([String: Any].self, forKey: .styles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -1696,14 +1676,6 @@ public extension ApplicationClient {
 
             do {
                 config = try container.decode(Config.self, forKey: .config)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                settings = try container.decode([String: Any].self, forKey: .settings)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1776,13 +1748,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(availableSections, forKey: .availableSections)
 
-            try? container.encodeIfPresent(constants, forKey: .constants)
-
             try? container.encodeIfPresent(styles, forKey: .styles)
 
             try? container.encodeIfPresent(config, forKey: .config)
-
-            try? container.encodeIfPresent(settings, forKey: .settings)
 
             try? container.encodeIfPresent(font, forKey: .font)
 
