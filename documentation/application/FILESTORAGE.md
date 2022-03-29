@@ -302,7 +302,7 @@ Success
  | size | Int |  no  |  |
  | upload | [Upload](#Upload) |  no  |  |
  | cdn | [CDN](#CDN) |  no  |  |
- | success | String |  no  |  |
+ | success | Bool |  no  |  |
  | tags | [String]? |  yes  |  |
  | createdOn | String |  no  |  |
  | modifiedOn | String |  no  |  |
