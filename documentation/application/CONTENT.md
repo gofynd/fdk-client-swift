@@ -9,6 +9,7 @@ Content System
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
+* [getDataLoaders](#getdataloaders)
 * [getFaqs](#getfaqs)
 * [getFaqCategories](#getfaqcategories)
 * [getFaqBySlug](#getfaqbyslug)
@@ -308,6 +309,77 @@ Success. Check the example shown below or refer `BlogGetResponse` for more detai
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDataLoaders
+Get the data loaders associated with an application
+
+
+
+
+```swift
+content.getDataLoaders() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to get all selected data loaders of the application in the form of tags.
+
+*Returned Response:*
+
+
+
+
+[DataLoadersSchema](#DataLoadersSchema)
+
+Success. Returns a JSON object containing all the data loaders injected in the application. Check the example shown below or refer `DataLoadersSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "Algolia",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc4523a7ffc7504f4de4a5",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url"
+    },
+    {
+      "name": "Algolia v3",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc452da7ffc7504f4de4a7",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url"
+    }
+  ]
+}
+```
 </details>
 
 
@@ -2115,6 +2187,37 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
+ #### [DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | String? |  yes  |  |
+ | company | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | service | String? |  yes  |  |
+ | operationId | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | content | String? |  yes  |  |
+ | source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reset | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [Navigation](#Navigation)
 
  | Properties | Type | Nullable | Description |
@@ -2346,6 +2449,46 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tags | [[CreateTagSchema](#CreateTagSchema)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderSchema](#DataLoaderSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | service | String? |  yes  |  |
+ | operationId | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | content | String? |  yes  |  |
+ | source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderSourceSchema](#DataLoaderSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | id | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoadersSchema](#DataLoadersSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DataLoaderSchema](#DataLoaderSchema)]? |  yes  |  |
 
 ---
 
