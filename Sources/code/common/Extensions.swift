@@ -1,29 +1,56 @@
 import Foundation
 #if canImport(FoundationNetworking)
-import FoundationNetworking
+    import FoundationNetworking
 #endif
 
 extension String {
     func trim() -> String {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     var asBase64: String {
-        return Data(self.utf8).base64EncodedString()
+        Data(self.utf8).base64EncodedString()
     }
 
     var urlEncoded: String {
-        return addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? self
+        addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? self
     }
 
     func appendAsPath(_ path: String) -> String {
         var pathToJoin = path
-        if (self.last == "/" && path.first == "/") {
+        if self.last == "/", path.first == "/" {
             pathToJoin.removeFirst()
-        } else if (self.last != "/" && path.first != "/") {
+        } else if self.last != "/", path.first != "/" {
             pathToJoin = "/" + pathToJoin
         }
         return self + pathToJoin
+    }
+
+    func classFromString() -> AnyClass! {
+        /// get namespace
+        let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
+
+        /// get 'anyClass' with classname and namespace
+        let cls: AnyClass = NSClassFromString("\(namespace).\(self)")!
+
+        // return AnyClass!
+        return cls
+    }
+}
+
+extension Array {
+    func getIfExists(index: Int) -> Element? {
+        if count > index {
+            return self[index]
+        }
+        return nil
+    }
+
+    mutating func removeIfExists(index: Int) -> Element? {
+        if count > index {
+            return remove(at: index)
+        }
+        return nil
     }
 }
 
@@ -44,16 +71,16 @@ extension Decodable {
 
 public extension Data {
     var dictionary: [String: Any]? {
-        return try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
+        try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
     }
 }
 
 public extension Dictionary {
     var data: Data? {
-        return try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+        try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
     }
 
-    var pretty: String {
+    var minifiedJson: String {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [])
             guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else {
@@ -68,61 +95,57 @@ public extension Dictionary {
     }
 
     var asQueryString: String {
-        get {
-            let paramKeys = Array(self.keys)
-            var queries: [String] = []
-            for keyIndex in paramKeys.indices {
-                let key = paramKeys[keyIndex]
-                let value = self[key]
-                if let valueDict = value as? [String: Any] {
-                    //TODO: check dict implementation for signing
-                    if let jsonData = try? JSONSerialization.data(withJSONObject: valueDict,
-                                                                  options: JSONSerialization.WritingOptions(rawValue: 0)) {
-                        let jsonString = (String(data: jsonData, encoding: .utf8) ?? "{}")
-                            .addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? ""
-                        queries.append("\(key)=\(jsonString)")
-                    } else {
-                        queries.append("\(key)=\("{}".addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
-                    }
-                } else if let valueArray = value as? [Any] {
-                    for value1 in valueArray {
-                        if let strValue = value1 as? String {
-                            queries.append("\(key)=\(strValue.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
-                        } else {
-                            queries.append("\(key)=\(value1)")
-                        }
-                    }
-                } else if let value1 = value as? String {
-                    queries.append("\(key)=\(value1.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
-                } else if let value = value {
-                    queries.append("\(key)=\(value)")
+        let paramKeys = Array(self.keys)
+        var queries: [String] = []
+        for keyIndex in paramKeys.indices {
+            let key = paramKeys[keyIndex]
+            let value = self[key]
+            if let valueDict = value as? [String: Any] {
+                // TODO: check dict implementation for signing
+                if let jsonData = try? JSONSerialization.data(withJSONObject: valueDict,
+                                                              options: JSONSerialization.WritingOptions(rawValue: 0))
+                {
+                    let jsonString = (String(data: jsonData, encoding: .utf8) ?? "{}")
+                        .addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? ""
+                    queries.append("\(key)=\(jsonString)")
+                } else {
+                    queries.append("\(key)=\("{}".addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
                 }
+            } else if let valueArray = value as? [Any] {
+                for value1 in valueArray {
+                    if let strValue = value1 as? String {
+                        queries.append("\(key)=\(strValue.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
+                    } else {
+                        queries.append("\(key)=\(value1)")
+                    }
+                }
+            } else if let value1 = value as? String {
+                queries.append("\(key)=\(value1.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")")
+            } else if let value = value {
+                queries.append("\(key)=\(value)")
             }
-            queries.sort()
-            return queries.joined(separator: "&")
         }
+        queries.sort()
+        return queries.joined(separator: "&")
     }
 
     var asSolrString: String {
-        get {
-            var queryStrings: [String] = []
-            self.keys.forEach { (key) in
-                guard let keyString = key as? String else { return }
-                var valueString: String? = nil
-                if let values = self[key] as? [Any] {
-                    valueString = values.map{ "\($0)" }.joined(separator: "||")
-                } else if let valueOfKey = self[key] {
-                    valueString = "\(valueOfKey)"
-                }
-                if let valueString = valueString {
-                    queryStrings.append("\(keyString):\(valueString)")
-                }
+        var queryStrings: [String] = []
+        self.keys.forEach { key in
+            guard let keyString = key as? String else { return }
+            var valueString: String?
+            if let values = self[key] as? [Any] {
+                valueString = values.map { "\($0)" }.joined(separator: "||")
+            } else if let valueOfKey = self[key] {
+                valueString = "\(valueOfKey)"
             }
-            return queryStrings.joined(separator: ":::")
+            if let valueString = valueString {
+                queryStrings.append("\(keyString):\(valueString)")
+            }
         }
+        return queryStrings.joined(separator: ":::")
     }
 }
-
 
 extension Encodable {
     var dictionary: [String: Any]? {
@@ -138,7 +161,7 @@ extension KeyedDecodingContainer {
         return try container.decode(type)
     }
 
-    func decode(_ type: [[String: Any]].Type, forKey key: K) throws -> [[String: Any]] {
+    func decode(_: [[String: Any]].Type, forKey key: K) throws -> [[String: Any]] {
         var container = try self.nestedUnkeyedContainer(forKey: key)
         if let decodedData = try container.decode([Any].self) as? [[String: Any]] {
             return decodedData
@@ -172,7 +195,7 @@ extension KeyedDecodingContainer {
         return try decode(type, forKey: key)
     }
 
-    func decode(_ type: [String: Any].Type) throws -> [String: Any] {
+    func decode(_: [String: Any].Type) throws -> [String: Any] {
         var dictionary = [String: Any]()
 
         for key in allKeys {
@@ -184,9 +207,9 @@ extension KeyedDecodingContainer {
                 dictionary[key.stringValue] = intValue
             } else if let doubleValue = try? decode(Double.self, forKey: key) {
                 dictionary[key.stringValue] = doubleValue
-            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self, forKey: key) {
+            } else if let nestedDictionary = try? decode([String: Any].self, forKey: key) {
                 dictionary[key.stringValue] = nestedDictionary
-            } else if let nestedArray = try? decode(Array<Any>.self, forKey: key) {
+            } else if let nestedArray = try? decode([Any].self, forKey: key) {
                 dictionary[key.stringValue] = nestedArray
             }
         }
@@ -195,7 +218,7 @@ extension KeyedDecodingContainer {
 }
 
 extension UnkeyedDecodingContainer {
-    mutating func decode(_ type: [Any].Type) throws -> [Any] {
+    mutating func decode(_: [Any].Type) throws -> [Any] {
         var array: [Any] = []
         while isAtEnd == false {
             // See if the current value in the JSON array is `null` first and prevent infite recursion with nested arrays.
@@ -207,9 +230,9 @@ extension UnkeyedDecodingContainer {
                 array.append(value)
             } else if let value = try? decode(String.self) {
                 array.append(value)
-            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self) {
+            } else if let nestedDictionary = try? decode([String: Any].self) {
                 array.append(nestedDictionary)
-            } else if let nestedArray = try? decode(Array<Any>.self) {
+            } else if let nestedArray = try? decode([Any].self) {
                 array.append(nestedArray)
             }
         }
@@ -223,30 +246,33 @@ extension UnkeyedDecodingContainer {
 }
 
 extension KeyedEncodingContainer {
-    
-    mutating func encode(_ value: [String: Any], forKey key: KeyedEncodingContainer<K>.Key) throws {
+    mutating func encode(_ value: [String: Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         var container = self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
-        for item in value {
-            if let val = item.value as? Int {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? String {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Double {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Float {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Bool {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? [Any] {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? [String: Any] {
-                try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else {
-                try self.encodeNil(forKey: key)
+        if let value = value {
+            for item in value {
+                if let val = item.value as? Int {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? String {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? Double {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? Float {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? Bool {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? [Any] {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else if let val = item.value as? [String: Any] {
+                    try container.encode(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+                } else {
+                    try self.encodeNil(forKey: key)
+                }
             }
+        } else {
+            try self.encodeNil(forKey: key)
         }
     }
-    
+
     mutating func encodeIfPresent(_ value: [String: Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         guard let safeValue = value, !safeValue.isEmpty else {
             return
@@ -270,7 +296,7 @@ extension KeyedEncodingContainer {
             }
         }
     }
-    
+
     mutating func encodeIfPresent(_ value: [Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         guard let safeValue = value else {
             return
@@ -290,8 +316,8 @@ extension KeyedEncodingContainer {
             try container.encode(contentsOf: val)
         }
     }
-    
-    mutating func encode(_ value: [Any], forKey key: KeyedEncodingContainer<K>.Key) throws {
+
+    mutating func encode(_ value: [Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         if let val = value as? [Int] {
             try self.encode(val, forKey: key)
         } else if let val = value as? [String] {
@@ -317,7 +343,7 @@ extension UnkeyedEncodingContainer {
             try self.encode(dict)
         }
     }
-    
+
     mutating func encode(_ value: [String: Any]) throws {
         var container = self.nestedContainer(keyedBy: JSONCodingKeys.self)
         for item in value {
@@ -340,8 +366,8 @@ extension UnkeyedEncodingContainer {
     }
 }
 
-class Utility {
-    static func decode<T>(_ decodable: T.Type, from data: Data) -> T? where T: Decodable {
+enum Utility {
+    static func decode<T>(_: T.Type, from data: Data) -> T? where T: Decodable {
         var decodedData: T?
         do {
             decodedData = try JSONDecoder().decode(T.self, from: data)
@@ -378,30 +404,30 @@ struct JSONCodingKeys: CodingKey {
     }
 }
 
-extension URLRequest {
+public extension URLRequest {
     /**
      Returns a cURL command representation of this URL request.
      */
-    public var curlString: String {
+    var curlString: String {
         guard let url = url else { return "" }
         var baseCommand = "curl '\(url.absoluteString)'"
-        
+
         if httpMethod == "HEAD" {
             baseCommand += " --head"
         }
-        
+
         var command = [baseCommand]
-        
-        if let method = httpMethod, method != "GET" && method != "HEAD" {
+
+        if let method = httpMethod, method != "GET", method != "HEAD" {
             command.append("-X \(method)")
         }
-        
+
         if let headers = allHTTPHeaderFields {
             for (key, value) in headers {
                 command.append("-H '\(key): \(value)'")
             }
         }
-        
+
         if let cookies = HTTPCookieStorage.shared.cookies(for: url) {
             var cookiesString = [String]()
             for (index, cookie) in cookies.enumerated() {
@@ -409,19 +435,19 @@ extension URLRequest {
                     cookiesString.append("-H 'Cookie: ")
                 }
                 if index == cookies.count - 1 {
-                    cookiesString.append("\(cookie.name )=\(cookie.value)'")
+                    cookiesString.append("\(cookie.name)=\(cookie.value)'")
                 } else {
-                    cookiesString.append("\(cookie.name )=\(cookie.value); ")
+                    cookiesString.append("\(cookie.name)=\(cookie.value); ")
                 }
             }
             let strCookie = cookiesString.joined()
             command.append(strCookie)
         }
-        
+
         if let data = httpBody, let body = String(data: data, encoding: .utf8) {
             command.append("-d '\(body)'")
         }
-        
+
         return command.joined(separator: " \\\n\t")
     }
 }
