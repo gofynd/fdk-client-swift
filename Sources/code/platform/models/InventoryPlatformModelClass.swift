@@ -7505,4 +7505,511 @@ public extension PlatformClient {
             try? container.encodeIfPresent(page, forKey: .page)
         }
     }
+
+    /*
+         Model: EmailJobMetrics
+         Used By: Inventory
+     */
+
+    class EmailJobMetrics: Codable {
+        public var executed: Bool?
+
+        public var id: String?
+
+        public var jobCode: String?
+
+        public var dailyJob: Bool?
+
+        public var lastExecutedOn: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case executed
+
+            case id
+
+            case jobCode = "job_code"
+
+            case dailyJob = "daily_job"
+
+            case lastExecutedOn = "last_executed_on"
+        }
+
+        public init(dailyJob: Bool?, executed: Bool?, id: String?, jobCode: String?, lastExecutedOn: String?) {
+            self.executed = executed
+
+            self.id = id
+
+            self.jobCode = jobCode
+
+            self.dailyJob = dailyJob
+
+            self.lastExecutedOn = lastExecutedOn
+        }
+
+        public func duplicate() -> EmailJobMetrics {
+            let dict = self.dictionary!
+            let copy = EmailJobMetrics(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                executed = try container.decode(Bool.self, forKey: .executed)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                jobCode = try container.decode(String.self, forKey: .jobCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dailyJob = try container.decode(Bool.self, forKey: .dailyJob)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lastExecutedOn = try container.decode(String.self, forKey: .lastExecutedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(executed, forKey: .executed)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(jobCode, forKey: .jobCode)
+
+            try? container.encodeIfPresent(dailyJob, forKey: .dailyJob)
+
+            try? container.encodeIfPresent(lastExecutedOn, forKey: .lastExecutedOn)
+        }
+    }
+
+    /*
+         Model: ResponseEnvelopeEmailJobMetrics
+         Used By: Inventory
+     */
+
+    class ResponseEnvelopeEmailJobMetrics: Codable {
+        public var timestamp: String?
+
+        public var status: Int?
+
+        public var error: String?
+
+        public var exception: String?
+
+        public var message: String?
+
+        public var totalTimeTakenInMillis: Int?
+
+        public var httpStatus: String?
+
+        public var items: EmailJobMetrics?
+
+        public var payload: EmailJobMetrics?
+
+        public var traceId: String?
+
+        public var page: Page?
+
+        public enum CodingKeys: String, CodingKey {
+            case timestamp
+
+            case status
+
+            case error
+
+            case exception
+
+            case message
+
+            case totalTimeTakenInMillis = "total_time_taken_in_millis"
+
+            case httpStatus = "http_status"
+
+            case items
+
+            case payload
+
+            case traceId = "trace_id"
+
+            case page
+        }
+
+        public init(error: String?, exception: String?, httpStatus: String?, items: EmailJobMetrics?, message: String?, page: Page?, payload: EmailJobMetrics?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
+            self.timestamp = timestamp
+
+            self.status = status
+
+            self.error = error
+
+            self.exception = exception
+
+            self.message = message
+
+            self.totalTimeTakenInMillis = totalTimeTakenInMillis
+
+            self.httpStatus = httpStatus
+
+            self.items = items
+
+            self.payload = payload
+
+            self.traceId = traceId
+
+            self.page = page
+        }
+
+        public func duplicate() -> ResponseEnvelopeEmailJobMetrics {
+            let dict = self.dictionary!
+            let copy = ResponseEnvelopeEmailJobMetrics(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                timestamp = try container.decode(String.self, forKey: .timestamp)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(Int.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                error = try container.decode(String.self, forKey: .error)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                exception = try container.decode(String.self, forKey: .exception)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                totalTimeTakenInMillis = try container.decode(Int.self, forKey: .totalTimeTakenInMillis)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                httpStatus = try container.decode(String.self, forKey: .httpStatus)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode(EmailJobMetrics.self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                payload = try container.decode(EmailJobMetrics.self, forKey: .payload)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                traceId = try container.decode(String.self, forKey: .traceId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                page = try container.decode(Page.self, forKey: .page)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(exception, forKey: .exception)
+
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(totalTimeTakenInMillis, forKey: .totalTimeTakenInMillis)
+
+            try? container.encodeIfPresent(httpStatus, forKey: .httpStatus)
+
+            try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(payload, forKey: .payload)
+
+            try? container.encodeIfPresent(traceId, forKey: .traceId)
+
+            try? container.encodeIfPresent(page, forKey: .page)
+        }
+    }
+
+    /*
+         Model: ResponseEnvelopeObject
+         Used By: Inventory
+     */
+
+    class ResponseEnvelopeObject: Codable {
+        public var timestamp: String?
+
+        public var status: Int?
+
+        public var error: String?
+
+        public var exception: String?
+
+        public var message: String?
+
+        public var totalTimeTakenInMillis: Int?
+
+        public var httpStatus: String?
+
+        public var items: [String: Any]?
+
+        public var payload: [String: Any]?
+
+        public var traceId: String?
+
+        public var page: Page?
+
+        public enum CodingKeys: String, CodingKey {
+            case timestamp
+
+            case status
+
+            case error
+
+            case exception
+
+            case message
+
+            case totalTimeTakenInMillis = "total_time_taken_in_millis"
+
+            case httpStatus = "http_status"
+
+            case items
+
+            case payload
+
+            case traceId = "trace_id"
+
+            case page
+        }
+
+        public init(error: String?, exception: String?, httpStatus: String?, items: [String: Any]?, message: String?, page: Page?, payload: [String: Any]?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
+            self.timestamp = timestamp
+
+            self.status = status
+
+            self.error = error
+
+            self.exception = exception
+
+            self.message = message
+
+            self.totalTimeTakenInMillis = totalTimeTakenInMillis
+
+            self.httpStatus = httpStatus
+
+            self.items = items
+
+            self.payload = payload
+
+            self.traceId = traceId
+
+            self.page = page
+        }
+
+        public func duplicate() -> ResponseEnvelopeObject {
+            let dict = self.dictionary!
+            let copy = ResponseEnvelopeObject(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                timestamp = try container.decode(String.self, forKey: .timestamp)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(Int.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                error = try container.decode(String.self, forKey: .error)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                exception = try container.decode(String.self, forKey: .exception)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                totalTimeTakenInMillis = try container.decode(Int.self, forKey: .totalTimeTakenInMillis)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                httpStatus = try container.decode(String.self, forKey: .httpStatus)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode([String: Any].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                payload = try container.decode([String: Any].self, forKey: .payload)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                traceId = try container.decode(String.self, forKey: .traceId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                page = try container.decode(Page.self, forKey: .page)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(exception, forKey: .exception)
+
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(totalTimeTakenInMillis, forKey: .totalTimeTakenInMillis)
+
+            try? container.encodeIfPresent(httpStatus, forKey: .httpStatus)
+
+            try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(payload, forKey: .payload)
+
+            try? container.encodeIfPresent(traceId, forKey: .traceId)
+
+            try? container.encodeIfPresent(page, forKey: .page)
+        }
+    }
 }
