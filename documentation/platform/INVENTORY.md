@@ -16,7 +16,6 @@
 * [getJobByCode](#getjobbycode)
 * [getJobCodeMetrics](#getjobcodemetrics)
 * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
-* [getJobConfigByIntegrationType](#getjobconfigbyintegrationtype)
 * [getJobCodesMetrics](#getjobcodesmetrics)
 * [saveJobCodesMetrics](#savejobcodesmetrics)
 
@@ -552,62 +551,6 @@ REST Endpoint that returns all job codes by company And integration
 
 
 [ResponseEnvelopeListJobConfigListDTO](#ResponseEnvelopeListJobConfigListDTO)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobConfigByIntegrationType
-Get Job Configs By Integration Type
-
-
-
-
-```swift
-client.inventory.getJobConfigByIntegrationType(integrationType: integrationType, disable: disable) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| integrationType | String | yes | Integration Type |   
-| disable | Bool? | no | JobConfig current state |  
-
-
-
-REST Endpoint that returns all job Configs by Integration Type
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
 
 Successful operation
 
