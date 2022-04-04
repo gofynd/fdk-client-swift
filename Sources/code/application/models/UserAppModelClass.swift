@@ -3,6 +3,78 @@ import Foundation
 import Foundation
 public extension ApplicationClient {
     /*
+         Model: BlockUserRequestSchema
+         Used By: User
+     */
+    class BlockUserRequestSchema: Codable {
+        public var status: Bool?
+
+        public var userId: [String]?
+
+        public var reason: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case status
+
+            case userId = "user_id"
+
+            case reason
+        }
+
+        public init(reason: String?, status: Bool?, userId: [String]?) {
+            self.status = status
+
+            self.userId = userId
+
+            self.reason = reason
+        }
+
+        public func duplicate() -> BlockUserRequestSchema {
+            let dict = self.dictionary!
+            let copy = BlockUserRequestSchema(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                status = try container.decode(Bool.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                userId = try container.decode([String].self, forKey: .userId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reason = try container.decode(String.self, forKey: .reason)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(reason, forKey: .reason)
+        }
+    }
+
+    /*
          Model: EditEmailRequestSchema
          Used By: User
      */
@@ -1865,9 +1937,9 @@ public extension ApplicationClient {
     class ProfileEditSuccess: Codable {
         public var user: UserSchema?
 
-        public var resendEmailToken: String?
-
         public var registerToken: String?
+
+        public var resendEmailToken: String?
 
         public var userExists: Bool?
 
@@ -1884,9 +1956,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case resendEmailToken = "resend_email_token"
-
             case registerToken = "register_token"
+
+            case resendEmailToken = "resend_email_token"
 
             case userExists = "user_exists"
 
@@ -1904,9 +1976,9 @@ public extension ApplicationClient {
         public init(email: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, user: UserSchema?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
             self.user = user
 
-            self.resendEmailToken = resendEmailToken
-
             self.registerToken = registerToken
+
+            self.resendEmailToken = resendEmailToken
 
             self.userExists = userExists
 
@@ -1939,7 +2011,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                resendEmailToken = try container.decode(String.self, forKey: .resendEmailToken)
+                registerToken = try container.decode(String.self, forKey: .registerToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1947,7 +2019,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                registerToken = try container.decode(String.self, forKey: .registerToken)
+                resendEmailToken = try container.decode(String.self, forKey: .resendEmailToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2008,9 +2080,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(resendEmailToken, forKey: .resendEmailToken)
-
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+
+            try? container.encodeIfPresent(resendEmailToken, forKey: .resendEmailToken)
 
             try? container.encodeIfPresent(userExists, forKey: .userExists)
 
@@ -2563,6 +2635,46 @@ public extension ApplicationClient {
     }
 
     /*
+         Model: BlockUserSuccess
+         Used By: User
+     */
+    class BlockUserSuccess: Codable {
+        public var success: Bool?
+
+        public enum CodingKeys: String, CodingKey {
+            case success
+        }
+
+        public init(success: Bool?) {
+            self.success = success
+        }
+
+        public func duplicate() -> BlockUserSuccess {
+            let dict = self.dictionary!
+            let copy = BlockUserSuccess(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+        }
+    }
+
+    /*
          Model: OtpSuccess
          Used By: User
      */
@@ -3079,6 +3191,86 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(page, forKey: .page)
+        }
+    }
+
+    /*
+         Model: SessionListResponseSchema
+         Used By: User
+     */
+    class SessionListResponseSchema: Codable {
+        public var items: [String]?
+
+        public enum CodingKeys: String, CodingKey {
+            case items
+        }
+
+        public init(items: [String]?) {
+            self.items = items
+        }
+
+        public func duplicate() -> SessionListResponseSchema {
+            let dict = self.dictionary!
+            let copy = SessionListResponseSchema(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                items = try container.decode([String].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(items, forKey: .items)
+        }
+    }
+
+    /*
+         Model: SessionDeleteResponseSchema
+         Used By: User
+     */
+    class SessionDeleteResponseSchema: Codable {
+        public var items: [String]?
+
+        public enum CodingKeys: String, CodingKey {
+            case items
+        }
+
+        public init(items: [String]?) {
+            self.items = items
+        }
+
+        public func duplicate() -> SessionDeleteResponseSchema {
+            let dict = self.dictionary!
+            let copy = SessionDeleteResponseSchema(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                items = try container.decode([String].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 
@@ -5561,6 +5753,8 @@ public extension ApplicationClient {
 
         public var gender: String?
 
+        public var externalId: String?
+
         public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
@@ -5570,15 +5764,19 @@ public extension ApplicationClient {
 
             case gender
 
+            case externalId = "external_id"
+
             case meta
         }
 
-        public init(firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?) {
+        public init(externalId: String?, firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?) {
             self.firstName = firstName
 
             self.lastName = lastName
 
             self.gender = gender
+
+            self.externalId = externalId
 
             self.meta = meta
         }
@@ -5617,6 +5815,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                externalId = try container.decode(String.self, forKey: .externalId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -5634,6 +5840,8 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(gender, forKey: .gender)
 
+            try? container.encodeIfPresent(externalId, forKey: .externalId)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
@@ -5643,6 +5851,10 @@ public extension ApplicationClient {
          Used By: User
      */
     class UserSchema: Codable {
+        public var applicationId: String?
+
+        public var userId: String?
+
         public var firstName: String?
 
         public var meta: [String: Any]?
@@ -5665,8 +5877,6 @@ public extension ApplicationClient {
 
         public var accountType: String?
 
-        public var uid: String?
-
         public var debug: Debug?
 
         public var hasOldPasswordHash: Bool?
@@ -5678,6 +5888,10 @@ public extension ApplicationClient {
         public var updatedAt: String?
 
         public enum CodingKeys: String, CodingKey {
+            case applicationId = "application_id"
+
+            case userId = "user_id"
+
             case firstName = "first_name"
 
             case meta
@@ -5700,8 +5914,6 @@ public extension ApplicationClient {
 
             case accountType = "account_type"
 
-            case uid
-
             case debug
 
             case hasOldPasswordHash = "has_old_password_hash"
@@ -5713,7 +5925,11 @@ public extension ApplicationClient {
             case updatedAt = "updated_at"
         }
 
-        public init(accountType: String?, active: Bool?, createdAt: String?, debug: Debug?, dob: String?, emails: [Email]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, meta: [String: Any]?, phoneNumbers: [PhoneNumber]?, profilePicUrl: String?, uid: String?, updatedAt: String?, username: String?, id: String?) {
+        public init(accountType: String?, active: Bool?, applicationId: String?, createdAt: String?, debug: Debug?, dob: String?, emails: [Email]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, meta: [String: Any]?, phoneNumbers: [PhoneNumber]?, profilePicUrl: String?, updatedAt: String?, username: String?, userId: String?, id: String?) {
+            self.applicationId = applicationId
+
+            self.userId = userId
+
             self.firstName = firstName
 
             self.meta = meta
@@ -5736,8 +5952,6 @@ public extension ApplicationClient {
 
             self.accountType = accountType
 
-            self.uid = uid
-
             self.debug = debug
 
             self.hasOldPasswordHash = hasOldPasswordHash
@@ -5757,6 +5971,22 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                applicationId = try container.decode(String.self, forKey: .applicationId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                userId = try container.decode(String.self, forKey: .userId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 firstName = try container.decode(String.self, forKey: .firstName)
@@ -5847,14 +6077,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 debug = try container.decode(Debug.self, forKey: .debug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -5898,6 +6120,10 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
@@ -5919,8 +6145,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(username, forKey: .username)
 
             try? container.encodeIfPresent(accountType, forKey: .accountType)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(debug, forKey: .debug)
 
