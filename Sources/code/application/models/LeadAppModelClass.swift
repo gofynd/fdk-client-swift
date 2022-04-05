@@ -2373,8 +2373,6 @@ public extension ApplicationClient {
 
         public var createdOn: CreatedOn?
 
-        public var createdBy: [String: Any]?
-
         public var pollForAssignment: PollForAssignment?
 
         public var id: String
@@ -2404,14 +2402,12 @@ public extension ApplicationClient {
 
             case createdOn = "created_on"
 
-            case createdBy = "created_by"
-
             case pollForAssignment = "poll_for_assignment"
 
             case id = "_id"
         }
 
-        public init(applicationId: String, createdBy: [String: Any]?, createdOn: CreatedOn?, description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment?, priority: Priority, shouldNotify: Bool, slug: String, submitButton: SubmitButton?, successMessage: String?, title: String, id: String) {
+        public init(applicationId: String, createdOn: CreatedOn?, description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment?, priority: Priority, shouldNotify: Bool, slug: String, submitButton: SubmitButton?, successMessage: String?, title: String, id: String) {
             self.applicationId = applicationId
 
             self.slug = slug
@@ -2435,8 +2431,6 @@ public extension ApplicationClient {
             self.inputs = inputs
 
             self.createdOn = createdOn
-
-            self.createdBy = createdBy
 
             self.pollForAssignment = pollForAssignment
 
@@ -2507,14 +2501,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 pollForAssignment = try container.decode(PollForAssignment.self, forKey: .pollForAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -2551,8 +2537,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(inputs, forKey: .inputs)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(pollForAssignment, forKey: .pollForAssignment)
 
