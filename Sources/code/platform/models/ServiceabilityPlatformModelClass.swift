@@ -3,6 +3,61 @@ import Foundation
 import Foundation
 public extension PlatformClient {
     /*
+         Model: ServiceabilityrErrorResponse
+         Used By: Serviceability
+     */
+
+    class ServiceabilityrErrorResponse: Codable {
+        public var value: String
+
+        public var type: String
+
+        public var message: String
+
+        public enum CodingKeys: String, CodingKey {
+            case value
+
+            case type
+
+            case message
+        }
+
+        public init(message: String, type: String, value: String) {
+            self.value = value
+
+            self.type = type
+
+            self.message = message
+        }
+
+        public func duplicate() -> ServiceabilityrErrorResponse {
+            let dict = self.dictionary!
+            let copy = ServiceabilityrErrorResponse(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            value = try container.decode(String.self, forKey: .value)
+
+            type = try container.decode(String.self, forKey: .type)
+
+            message = try container.decode(String.self, forKey: .message)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(message, forKey: .message)
+        }
+    }
+
+    /*
          Model: ApplicationServiceabilityConfig
          Used By: Serviceability
      */
@@ -10,24 +65,24 @@ public extension PlatformClient {
     class ApplicationServiceabilityConfig: Codable {
         public var channelType: String
 
-        public var channelId: String
-
         public var serviceabilityType: String
+
+        public var channelId: String
 
         public enum CodingKeys: String, CodingKey {
             case channelType = "channel_type"
 
-            case channelId = "channel_id"
-
             case serviceabilityType = "serviceability_type"
+
+            case channelId = "channel_id"
         }
 
         public init(channelId: String, channelType: String, serviceabilityType: String) {
             self.channelType = channelType
 
-            self.channelId = channelId
-
             self.serviceabilityType = serviceabilityType
+
+            self.channelId = channelId
         }
 
         public func duplicate() -> ApplicationServiceabilityConfig {
@@ -41,9 +96,9 @@ public extension PlatformClient {
 
             channelType = try container.decode(String.self, forKey: .channelType)
 
-            channelId = try container.decode(String.self, forKey: .channelId)
-
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
+
+            channelId = try container.decode(String.self, forKey: .channelId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,64 +106,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(channelType, forKey: .channelType)
 
-            try? container.encodeIfPresent(channelId, forKey: .channelId)
-
             try? container.encodeIfPresent(serviceabilityType, forKey: .serviceabilityType)
-        }
-    }
 
-    /*
-         Model: ServiceabilityrErrorResponse
-         Used By: Serviceability
-     */
-
-    class ServiceabilityrErrorResponse: Codable {
-        public var message: String
-
-        public var type: String
-
-        public var value: String
-
-        public enum CodingKeys: String, CodingKey {
-            case message
-
-            case type
-
-            case value
-        }
-
-        public init(message: String, type: String, value: String) {
-            self.message = message
-
-            self.type = type
-
-            self.value = value
-        }
-
-        public func duplicate() -> ServiceabilityrErrorResponse {
-            let dict = self.dictionary!
-            let copy = ServiceabilityrErrorResponse(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            message = try container.decode(String.self, forKey: .message)
-
-            type = try container.decode(String.self, forKey: .type)
-
-            value = try container.decode(String.self, forKey: .value)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(channelId, forKey: .channelId)
         }
     }
 
@@ -118,26 +118,26 @@ public extension PlatformClient {
      */
 
     class ApplicationServiceabilityConfigResponse: Codable {
-        public var data: ApplicationServiceabilityConfig?
+        public var error: ServiceabilityrErrorResponse?
 
         public var success: Bool
 
-        public var error: ServiceabilityrErrorResponse?
+        public var data: ApplicationServiceabilityConfig?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case error
 
             case success
 
-            case error
+            case data
         }
 
         public init(data: ApplicationServiceabilityConfig?, error: ServiceabilityrErrorResponse?, success: Bool) {
-            self.data = data
+            self.error = error
 
             self.success = success
 
-            self.error = error
+            self.data = data
         }
 
         public func duplicate() -> ApplicationServiceabilityConfigResponse {
@@ -150,7 +150,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
+                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +160,7 @@ public extension PlatformClient {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
+                data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,11 +171,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 
@@ -185,20 +185,20 @@ public extension PlatformClient {
      */
 
     class EntityRegionView_Request: Codable {
-        public var parentId: [String]?
-
         public var subType: [String]
 
-        public enum CodingKeys: String, CodingKey {
-            case parentId = "parent_id"
+        public var parentId: [String]?
 
+        public enum CodingKeys: String, CodingKey {
             case subType = "sub_type"
+
+            case parentId = "parent_id"
         }
 
         public init(parentId: [String]?, subType: [String]) {
-            self.parentId = parentId
-
             self.subType = subType
+
+            self.parentId = parentId
         }
 
         public func duplicate() -> EntityRegionView_Request {
@@ -210,6 +210,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            subType = try container.decode([String].self, forKey: .subType)
+
             do {
                 parentId = try container.decode([String].self, forKey: .parentId)
 
@@ -217,16 +219,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            subType = try container.decode([String].self, forKey: .subType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(parentId, forKey: .parentId)
-
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(parentId, forKey: .parentId)
         }
     }
 
@@ -236,36 +236,36 @@ public extension PlatformClient {
      */
 
     class EntityRegionView_page: Codable {
-        public var hasNext: Bool
+        public var type: String
 
         public var itemTotal: Int
 
-        public var type: String
-
         public var size: Int
+
+        public var hasNext: Bool
 
         public var current: Int
 
         public enum CodingKeys: String, CodingKey {
-            case hasNext = "has_next"
+            case type
 
             case itemTotal = "item_total"
 
-            case type
-
             case size
+
+            case hasNext = "has_next"
 
             case current
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
-            self.hasNext = hasNext
+            self.type = type
 
             self.itemTotal = itemTotal
 
-            self.type = type
-
             self.size = size
+
+            self.hasNext = hasNext
 
             self.current = current
         }
@@ -279,13 +279,13 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
+            type = try container.decode(String.self, forKey: .type)
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            type = try container.decode(String.self, forKey: .type)
-
             size = try container.decode(Int.self, forKey: .size)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             current = try container.decode(Int.self, forKey: .current)
         }
@@ -293,70 +293,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(size, forKey: .size)
 
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
             try? container.encodeIfPresent(current, forKey: .current)
-        }
-    }
-
-    /*
-         Model: EntityRegionView_Items
-         Used By: Serviceability
-     */
-
-    class EntityRegionView_Items: Codable {
-        public var uid: String
-
-        public var name: String
-
-        public var subType: String
-
-        public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case name
-
-            case subType = "sub_type"
-        }
-
-        public init(name: String, subType: String, uid: String) {
-            self.uid = uid
-
-            self.name = name
-
-            self.subType = subType
-        }
-
-        public func duplicate() -> EntityRegionView_Items {
-            let dict = self.dictionary!
-            let copy = EntityRegionView_Items(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            uid = try container.decode(String.self, forKey: .uid)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            subType = try container.decode(String.self, forKey: .subType)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(subType, forKey: .subType)
         }
     }
 
@@ -366,26 +311,26 @@ public extension PlatformClient {
      */
 
     class EntityRegionView_Error: Codable {
-        public var message: String?
+        public var value: String?
 
         public var type: String?
 
-        public var value: String?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case value
 
             case type
 
-            case value
+            case message
         }
 
         public init(message: String?, type: String?, value: String?) {
-            self.message = message
+            self.value = value
 
             self.type = type
 
-            self.value = value
+            self.message = message
         }
 
         public func duplicate() -> EntityRegionView_Error {
@@ -398,7 +343,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -414,7 +359,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -425,11 +370,66 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(message, forKey: .message)
+        }
+    }
+
+    /*
+         Model: EntityRegionView_Items
+         Used By: Serviceability
+     */
+
+    class EntityRegionView_Items: Codable {
+        public var uid: String
+
+        public var subType: String
+
+        public var name: String
+
+        public enum CodingKeys: String, CodingKey {
+            case uid
+
+            case subType = "sub_type"
+
+            case name
+        }
+
+        public init(name: String, subType: String, uid: String) {
+            self.uid = uid
+
+            self.subType = subType
+
+            self.name = name
+        }
+
+        public func duplicate() -> EntityRegionView_Items {
+            let dict = self.dictionary!
+            let copy = EntityRegionView_Items(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            uid = try container.decode(String.self, forKey: .uid)
+
+            subType = try container.decode(String.self, forKey: .subType)
+
+            name = try container.decode(String.self, forKey: .name)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 
@@ -439,32 +439,32 @@ public extension PlatformClient {
      */
 
     class EntityRegionView_Response: Codable {
-        public var success: Bool
-
         public var page: EntityRegionView_page
-
-        public var data: [EntityRegionView_Items]
 
         public var error: EntityRegionView_Error
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: Bool
 
+        public var data: [EntityRegionView_Items]
+
+        public enum CodingKeys: String, CodingKey {
             case page
 
-            case data
-
             case error
+
+            case success
+
+            case data
         }
 
         public init(data: [EntityRegionView_Items], error: EntityRegionView_Error, page: EntityRegionView_page, success: Bool) {
-            self.success = success
-
             self.page = page
 
-            self.data = data
-
             self.error = error
+
+            self.success = success
+
+            self.data = data
         }
 
         public func duplicate() -> EntityRegionView_Response {
@@ -476,53 +476,71 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             page = try container.decode(EntityRegionView_page.self, forKey: .page)
 
-            data = try container.decode([EntityRegionView_Items].self, forKey: .data)
-
             error = try container.decode(EntityRegionView_Error.self, forKey: .error)
+
+            success = try container.decode(Bool.self, forKey: .success)
+
+            data = try container.decode([EntityRegionView_Items].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 
     /*
-         Model: ListViewProduct
+         Model: ZoneDataItem
          Used By: Serviceability
      */
 
-    class ListViewProduct: Codable {
+    class ZoneDataItem: Codable {
         public var type: String
 
-        public var count: Int
+        public var itemTotal: Int
+
+        public var size: Int
+
+        public var hasNext: Bool
+
+        public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case count
+            case itemTotal = "item_total"
+
+            case size
+
+            case hasNext = "has_next"
+
+            case current
         }
 
-        public init(count: Int, type: String) {
+        public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
             self.type = type
 
-            self.count = count
+            self.itemTotal = itemTotal
+
+            self.size = size
+
+            self.hasNext = hasNext
+
+            self.current = current
         }
 
-        public func duplicate() -> ListViewProduct {
+        public func duplicate() -> ZoneDataItem {
             let dict = self.dictionary!
-            let copy = ListViewProduct(dictionary: dict)!
+            let copy = ZoneDataItem(dictionary: dict)!
             return copy
         }
 
@@ -531,7 +549,13 @@ public extension PlatformClient {
 
             type = try container.decode(String.self, forKey: .type)
 
-            count = try container.decode(Int.self, forKey: .count)
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+
+            size = try container.decode(Int.self, forKey: .size)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -539,7 +563,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 
@@ -589,67 +619,112 @@ public extension PlatformClient {
     }
 
     /*
+         Model: ListViewProduct
+         Used By: Serviceability
+     */
+
+    class ListViewProduct: Codable {
+        public var type: String
+
+        public var count: Int
+
+        public enum CodingKeys: String, CodingKey {
+            case type
+
+            case count
+        }
+
+        public init(count: Int, type: String) {
+            self.type = type
+
+            self.count = count
+        }
+
+        public func duplicate() -> ListViewProduct {
+            let dict = self.dictionary!
+            let copy = ListViewProduct(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
+
+            count = try container.decode(Int.self, forKey: .count)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(count, forKey: .count)
+        }
+    }
+
+    /*
          Model: ListViewItems
          Used By: Serviceability
      */
 
     class ListViewItems: Codable {
-        public var companyId: Int
+        public var pincodesCount: Int
 
         public var isActive: Bool
 
-        public var product: ListViewProduct
-
         public var channels: ListViewChannels
 
-        public var zoneId: String
-
-        public var storesCount: Int
-
-        public var pincodesCount: Int
-
-        public var slug: String
+        public var product: ListViewProduct
 
         public var name: String
 
+        public var companyId: Int
+
+        public var storesCount: Int
+
+        public var zoneId: String
+
+        public var slug: String
+
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
+            case pincodesCount = "pincodes_count"
 
             case isActive = "is_active"
 
-            case product
-
             case channels
 
-            case zoneId = "zone_id"
+            case product
+
+            case name
+
+            case companyId = "company_id"
 
             case storesCount = "stores_count"
 
-            case pincodesCount = "pincodes_count"
+            case zoneId = "zone_id"
 
             case slug
-
-            case name
         }
 
         public init(channels: ListViewChannels, companyId: Int, isActive: Bool, name: String, pincodesCount: Int, product: ListViewProduct, slug: String, storesCount: Int, zoneId: String) {
-            self.companyId = companyId
+            self.pincodesCount = pincodesCount
 
             self.isActive = isActive
 
-            self.product = product
-
             self.channels = channels
 
-            self.zoneId = zoneId
+            self.product = product
+
+            self.name = name
+
+            self.companyId = companyId
 
             self.storesCount = storesCount
 
-            self.pincodesCount = pincodesCount
+            self.zoneId = zoneId
 
             self.slug = slug
-
-            self.name = name
         }
 
         public func duplicate() -> ListViewItems {
@@ -661,45 +736,45 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
+            pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            product = try container.decode(ListViewProduct.self, forKey: .product)
-
             channels = try container.decode(ListViewChannels.self, forKey: .channels)
 
-            zoneId = try container.decode(String.self, forKey: .zoneId)
+            product = try container.decode(ListViewProduct.self, forKey: .product)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
 
             storesCount = try container.decode(Int.self, forKey: .storesCount)
 
-            pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
+            zoneId = try container.decode(String.self, forKey: .zoneId)
 
             slug = try container.decode(String.self, forKey: .slug)
-
-            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(product, forKey: .product)
-
             try? container.encodeIfPresent(channels, forKey: .channels)
 
-            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
+            try? container.encodeIfPresent(product, forKey: .product)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(storesCount, forKey: .storesCount)
 
-            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
+            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 
@@ -709,26 +784,26 @@ public extension PlatformClient {
      */
 
     class ListViewSummary: Codable {
-        public var totalPincodesServed: Int
+        public var totalActiveZones: Int
 
         public var totalZones: Int
 
-        public var totalActiveZones: Int
+        public var totalPincodesServed: Int
 
         public enum CodingKeys: String, CodingKey {
-            case totalPincodesServed = "total_pincodes_served"
+            case totalActiveZones = "total_active_zones"
 
             case totalZones = "total_zones"
 
-            case totalActiveZones = "total_active_zones"
+            case totalPincodesServed = "total_pincodes_served"
         }
 
         public init(totalActiveZones: Int, totalPincodesServed: Int, totalZones: Int) {
-            self.totalPincodesServed = totalPincodesServed
+            self.totalActiveZones = totalActiveZones
 
             self.totalZones = totalZones
 
-            self.totalActiveZones = totalActiveZones
+            self.totalPincodesServed = totalPincodesServed
         }
 
         public func duplicate() -> ListViewSummary {
@@ -740,96 +815,21 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            totalPincodesServed = try container.decode(Int.self, forKey: .totalPincodesServed)
+            totalActiveZones = try container.decode(Int.self, forKey: .totalActiveZones)
 
             totalZones = try container.decode(Int.self, forKey: .totalZones)
 
-            totalActiveZones = try container.decode(Int.self, forKey: .totalActiveZones)
+            totalPincodesServed = try container.decode(Int.self, forKey: .totalPincodesServed)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalPincodesServed, forKey: .totalPincodesServed)
+            try? container.encodeIfPresent(totalActiveZones, forKey: .totalActiveZones)
 
             try? container.encodeIfPresent(totalZones, forKey: .totalZones)
 
-            try? container.encodeIfPresent(totalActiveZones, forKey: .totalActiveZones)
-        }
-    }
-
-    /*
-         Model: ZoneDataItem
-         Used By: Serviceability
-     */
-
-    class ZoneDataItem: Codable {
-        public var hasNext: Bool
-
-        public var type: String
-
-        public var itemTotal: Int
-
-        public var size: Int
-
-        public var current: Int
-
-        public enum CodingKeys: String, CodingKey {
-            case hasNext = "has_next"
-
-            case type
-
-            case itemTotal = "item_total"
-
-            case size
-
-            case current
-        }
-
-        public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
-            self.hasNext = hasNext
-
-            self.type = type
-
-            self.itemTotal = itemTotal
-
-            self.size = size
-
-            self.current = current
-        }
-
-        public func duplicate() -> ZoneDataItem {
-            let dict = self.dictionary!
-            let copy = ZoneDataItem(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
-
-            type = try container.decode(String.self, forKey: .type)
-
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            size = try container.decode(Int.self, forKey: .size)
-
-            current = try container.decode(Int.self, forKey: .current)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(totalPincodesServed, forKey: .totalPincodesServed)
         }
     }
 
@@ -839,26 +839,26 @@ public extension PlatformClient {
      */
 
     class ListViewResponse: Codable {
+        public var page: [ZoneDataItem]
+
         public var items: [ListViewItems]
 
         public var summary: [ListViewSummary]
 
-        public var page: [ZoneDataItem]
-
         public enum CodingKeys: String, CodingKey {
+            case page
+
             case items
 
             case summary
-
-            case page
         }
 
         public init(items: [ListViewItems], page: [ZoneDataItem], summary: [ListViewSummary]) {
+            self.page = page
+
             self.items = items
 
             self.summary = summary
-
-            self.page = page
         }
 
         public func duplicate() -> ListViewResponse {
@@ -870,21 +870,21 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            page = try container.decode([ZoneDataItem].self, forKey: .page)
+
             items = try container.decode([ListViewItems].self, forKey: .items)
 
             summary = try container.decode([ListViewSummary].self, forKey: .summary)
-
-            page = try container.decode([ZoneDataItem].self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(page, forKey: .page)
+
             try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(summary, forKey: .summary)
-
-            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 
@@ -894,36 +894,36 @@ public extension PlatformClient {
      */
 
     class CompanyStoreView_PageItems: Codable {
-        public var hasNext: Bool
+        public var type: String
 
         public var itemTotal: Int
 
-        public var type: String
-
         public var size: Int
+
+        public var hasNext: Bool
 
         public var current: Int
 
         public enum CodingKeys: String, CodingKey {
-            case hasNext = "has_next"
+            case type
 
             case itemTotal = "item_total"
 
-            case type
-
             case size
+
+            case hasNext = "has_next"
 
             case current
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
-            self.hasNext = hasNext
+            self.type = type
 
             self.itemTotal = itemTotal
 
-            self.type = type
-
             self.size = size
+
+            self.hasNext = hasNext
 
             self.current = current
         }
@@ -937,13 +937,13 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
+            type = try container.decode(String.self, forKey: .type)
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            type = try container.decode(String.self, forKey: .type)
-
             size = try container.decode(Int.self, forKey: .size)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             current = try container.decode(Int.self, forKey: .current)
         }
@@ -951,13 +951,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(current, forKey: .current)
         }
@@ -969,20 +969,20 @@ public extension PlatformClient {
      */
 
     class CompanyStoreView_Response: Codable {
-        public var items: [[String: Any]]?
-
         public var page: [CompanyStoreView_PageItems]
 
-        public enum CodingKeys: String, CodingKey {
-            case items
+        public var items: [[String: Any]]?
 
+        public enum CodingKeys: String, CodingKey {
             case page
+
+            case items
         }
 
         public init(items: [[String: Any]]?, page: [CompanyStoreView_PageItems]) {
-            self.items = items
-
             self.page = page
+
+            self.items = items
         }
 
         public func duplicate() -> CompanyStoreView_Response {
@@ -994,6 +994,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            page = try container.decode([CompanyStoreView_PageItems].self, forKey: .page)
+
             do {
                 items = try container.decode([[String: Any]].self, forKey: .items)
 
@@ -1001,83 +1003,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode([CompanyStoreView_PageItems].self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(page, forKey: .page)
-        }
-    }
 
-    /*
-         Model: ZoneMappingType
-         Used By: Serviceability
-     */
-
-    class ZoneMappingType: Codable {
-        public var pincode: [String]?
-
-        public var state: [String]?
-
-        public var country: String
-
-        public enum CodingKeys: String, CodingKey {
-            case pincode
-
-            case state
-
-            case country
-        }
-
-        public init(country: String, pincode: [String]?, state: [String]?) {
-            self.pincode = pincode
-
-            self.state = state
-
-            self.country = country
-        }
-
-        public func duplicate() -> ZoneMappingType {
-            let dict = self.dictionary!
-            let copy = ZoneMappingType(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                pincode = try container.decode([String].self, forKey: .pincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                state = try container.decode([String].self, forKey: .state)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            country = try container.decode(String.self, forKey: .country)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 
@@ -1172,182 +1105,69 @@ public extension PlatformClient {
     }
 
     /*
-         Model: GetZoneDataViewItems
+         Model: ZoneMappingType
          Used By: Serviceability
      */
 
-    class GetZoneDataViewItems: Codable {
-        public var companyId: Int
+    class ZoneMappingType: Codable {
+        public var pincode: [String]?
 
-        public var mapping: [ZoneMappingType]
+        public var country: String
 
-        public var isActive: Bool
-
-        public var channels: [GetZoneDataViewChannels]
-
-        public var product: ZoneProductTypes
-
-        public var zoneId: String
-
-        public var storesCount: Int
-
-        public var regionType: String
-
-        public var pincodesCount: Int
-
-        public var slug: String
-
-        public var storeIds: [Int]
-
-        public var name: String
+        public var state: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
+            case pincode
 
-            case mapping
+            case country
 
-            case isActive = "is_active"
-
-            case channels
-
-            case product
-
-            case zoneId = "zone_id"
-
-            case storesCount = "stores_count"
-
-            case regionType = "region_type"
-
-            case pincodesCount = "pincodes_count"
-
-            case slug
-
-            case storeIds = "store_ids"
-
-            case name
+            case state
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
-            self.companyId = companyId
+        public init(country: String, pincode: [String]?, state: [String]?) {
+            self.pincode = pincode
 
-            self.mapping = mapping
+            self.country = country
 
-            self.isActive = isActive
-
-            self.channels = channels
-
-            self.product = product
-
-            self.zoneId = zoneId
-
-            self.storesCount = storesCount
-
-            self.regionType = regionType
-
-            self.pincodesCount = pincodesCount
-
-            self.slug = slug
-
-            self.storeIds = storeIds
-
-            self.name = name
+            self.state = state
         }
 
-        public func duplicate() -> GetZoneDataViewItems {
+        public func duplicate() -> ZoneMappingType {
             let dict = self.dictionary!
-            let copy = GetZoneDataViewItems(dictionary: dict)!
+            let copy = ZoneMappingType(dictionary: dict)!
             return copy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
+            do {
+                pincode = try container.decode([String].self, forKey: .pincode)
 
-            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            country = try container.decode(String.self, forKey: .country)
 
-            channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
+            do {
+                state = try container.decode([String].self, forKey: .state)
 
-            product = try container.decode(ZoneProductTypes.self, forKey: .product)
-
-            zoneId = try container.decode(String.self, forKey: .zoneId)
-
-            storesCount = try container.decode(Int.self, forKey: .storesCount)
-
-            regionType = try container.decode(String.self, forKey: .regionType)
-
-            pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
-
-            name = try container.decode(String.self, forKey: .name)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(mapping, forKey: .mapping)
+            try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(channels, forKey: .channels)
-
-            try? container.encodeIfPresent(product, forKey: .product)
-
-            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
-
-            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
-
-            try? container.encodeIfPresent(regionType, forKey: .regionType)
-
-            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-        }
-    }
-
-    /*
-         Model: GetSingleZoneDataViewResponse
-         Used By: Serviceability
-     */
-
-    class GetSingleZoneDataViewResponse: Codable {
-        public var data: GetZoneDataViewItems
-
-        public enum CodingKeys: String, CodingKey {
-            case data
-        }
-
-        public init(data: GetZoneDataViewItems) {
-            self.data = data
-        }
-
-        public func duplicate() -> GetSingleZoneDataViewResponse {
-            let dict = self.dictionary!
-            let copy = GetSingleZoneDataViewResponse(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            data = try container.decode(GetZoneDataViewItems.self, forKey: .data)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(state, forKey: .state)
         }
     }
 
@@ -1357,68 +1177,68 @@ public extension PlatformClient {
      */
 
     class UpdateZoneData: Codable {
-        public var companyId: Int
-
-        public var mapping: [ZoneMappingType]
-
         public var isActive: Bool
 
         public var channels: [GetZoneDataViewChannels]
 
         public var product: ZoneProductTypes
 
-        public var zoneId: String
+        public var name: String
 
         public var regionType: String
 
+        public var zoneId: String
+
         public var slug: String
+
+        public var companyId: Int
+
+        public var mapping: [ZoneMappingType]
 
         public var storeIds: [Int]
 
-        public var name: String
-
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
-
-            case mapping
-
             case isActive = "is_active"
 
             case channels
 
             case product
 
-            case zoneId = "zone_id"
+            case name
 
             case regionType = "region_type"
 
+            case zoneId = "zone_id"
+
             case slug
 
-            case storeIds = "store_ids"
+            case companyId = "company_id"
 
-            case name
+            case mapping
+
+            case storeIds = "store_ids"
         }
 
         public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
-            self.companyId = companyId
-
-            self.mapping = mapping
-
             self.isActive = isActive
 
             self.channels = channels
 
             self.product = product
 
-            self.zoneId = zoneId
+            self.name = name
 
             self.regionType = regionType
 
+            self.zoneId = zoneId
+
             self.slug = slug
 
-            self.storeIds = storeIds
+            self.companyId = companyId
 
-            self.name = name
+            self.mapping = mapping
+
+            self.storeIds = storeIds
         }
 
         public func duplicate() -> UpdateZoneData {
@@ -1430,33 +1250,29 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
-            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
 
             product = try container.decode(ZoneProductTypes.self, forKey: .product)
 
-            zoneId = try container.decode(String.self, forKey: .zoneId)
+            name = try container.decode(String.self, forKey: .name)
 
             regionType = try container.decode(String.self, forKey: .regionType)
 
+            zoneId = try container.decode(String.self, forKey: .zoneId)
+
             slug = try container.decode(String.self, forKey: .slug)
 
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
+            companyId = try container.decode(Int.self, forKey: .companyId)
 
-            name = try container.decode(String.self, forKey: .name)
+            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
+
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(mapping, forKey: .mapping)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
@@ -1464,15 +1280,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(regionType, forKey: .regionType)
 
+            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
+
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(mapping, forKey: .mapping)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
         }
     }
 
@@ -1482,20 +1302,20 @@ public extension PlatformClient {
      */
 
     class ZoneUpdateRequest: Codable {
-        public var data: UpdateZoneData
-
         public var identifier: String
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: UpdateZoneData
 
+        public enum CodingKeys: String, CodingKey {
             case identifier
+
+            case data
         }
 
         public init(data: UpdateZoneData, identifier: String) {
-            self.data = data
-
             self.identifier = identifier
+
+            self.data = data
         }
 
         public func duplicate() -> ZoneUpdateRequest {
@@ -1507,17 +1327,17 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode(UpdateZoneData.self, forKey: .data)
-
             identifier = try container.decode(String.self, forKey: .identifier)
+
+            data = try container.decode(UpdateZoneData.self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 
@@ -1567,14 +1387,12 @@ public extension PlatformClient {
     }
 
     /*
-         Model: CreateZoneData
+         Model: GetZoneDataViewItems
          Used By: Serviceability
      */
 
-    class CreateZoneData: Codable {
-        public var companyId: Int
-
-        public var mapping: [ZoneMappingType]
+    class GetZoneDataViewItems: Codable {
+        public var pincodesCount: Int
 
         public var isActive: Bool
 
@@ -1582,18 +1400,24 @@ public extension PlatformClient {
 
         public var product: ZoneProductTypes
 
+        public var name: String
+
         public var regionType: String
+
+        public var storesCount: Int
+
+        public var zoneId: String
 
         public var slug: String
 
+        public var companyId: Int
+
+        public var mapping: [ZoneMappingType]
+
         public var storeIds: [Int]
 
-        public var name: String
-
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
-
-            case mapping
+            case pincodesCount = "pincodes_count"
 
             case isActive = "is_active"
 
@@ -1601,19 +1425,25 @@ public extension PlatformClient {
 
             case product
 
+            case name
+
             case regionType = "region_type"
+
+            case storesCount = "stores_count"
+
+            case zoneId = "zone_id"
 
             case slug
 
-            case storeIds = "store_ids"
+            case companyId = "company_id"
 
-            case name
+            case mapping
+
+            case storeIds = "store_ids"
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int]) {
-            self.companyId = companyId
-
-            self.mapping = mapping
+        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+            self.pincodesCount = pincodesCount
 
             self.isActive = isActive
 
@@ -1621,13 +1451,183 @@ public extension PlatformClient {
 
             self.product = product
 
+            self.name = name
+
+            self.regionType = regionType
+
+            self.storesCount = storesCount
+
+            self.zoneId = zoneId
+
+            self.slug = slug
+
+            self.companyId = companyId
+
+            self.mapping = mapping
+
+            self.storeIds = storeIds
+        }
+
+        public func duplicate() -> GetZoneDataViewItems {
+            let dict = self.dictionary!
+            let copy = GetZoneDataViewItems(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
+
+            product = try container.decode(ZoneProductTypes.self, forKey: .product)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            regionType = try container.decode(String.self, forKey: .regionType)
+
+            storesCount = try container.decode(Int.self, forKey: .storesCount)
+
+            zoneId = try container.decode(String.self, forKey: .zoneId)
+
+            slug = try container.decode(String.self, forKey: .slug)
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
+
+            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
+
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(channels, forKey: .channels)
+
+            try? container.encodeIfPresent(product, forKey: .product)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(regionType, forKey: .regionType)
+
+            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
+
+            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(mapping, forKey: .mapping)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+        }
+    }
+
+    /*
+         Model: GetSingleZoneDataViewResponse
+         Used By: Serviceability
+     */
+
+    class GetSingleZoneDataViewResponse: Codable {
+        public var data: GetZoneDataViewItems
+
+        public enum CodingKeys: String, CodingKey {
+            case data
+        }
+
+        public init(data: GetZoneDataViewItems) {
+            self.data = data
+        }
+
+        public func duplicate() -> GetSingleZoneDataViewResponse {
+            let dict = self.dictionary!
+            let copy = GetSingleZoneDataViewResponse(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            data = try container.decode(GetZoneDataViewItems.self, forKey: .data)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(data, forKey: .data)
+        }
+    }
+
+    /*
+         Model: CreateZoneData
+         Used By: Serviceability
+     */
+
+    class CreateZoneData: Codable {
+        public var isActive: Bool
+
+        public var channels: [GetZoneDataViewChannels]
+
+        public var product: ZoneProductTypes
+
+        public var name: String
+
+        public var regionType: String
+
+        public var slug: String
+
+        public var companyId: Int
+
+        public var mapping: [ZoneMappingType]
+
+        public var storeIds: [Int]
+
+        public enum CodingKeys: String, CodingKey {
+            case isActive = "is_active"
+
+            case channels
+
+            case product
+
+            case name
+
+            case regionType = "region_type"
+
+            case slug
+
+            case companyId = "company_id"
+
+            case mapping
+
+            case storeIds = "store_ids"
+        }
+
+        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int]) {
+            self.isActive = isActive
+
+            self.channels = channels
+
+            self.product = product
+
+            self.name = name
+
             self.regionType = regionType
 
             self.slug = slug
 
-            self.storeIds = storeIds
+            self.companyId = companyId
 
-            self.name = name
+            self.mapping = mapping
+
+            self.storeIds = storeIds
         }
 
         public func duplicate() -> CreateZoneData {
@@ -1639,31 +1639,27 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
-            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
 
             product = try container.decode(ZoneProductTypes.self, forKey: .product)
 
+            name = try container.decode(String.self, forKey: .name)
+
             regionType = try container.decode(String.self, forKey: .regionType)
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
+            companyId = try container.decode(Int.self, forKey: .companyId)
 
-            name = try container.decode(String.self, forKey: .name)
+            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
+
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(mapping, forKey: .mapping)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
@@ -1671,13 +1667,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(regionType, forKey: .regionType)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(mapping, forKey: .mapping)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
         }
     }
 
@@ -1687,20 +1687,20 @@ public extension PlatformClient {
      */
 
     class ZoneRequest: Codable {
-        public var data: CreateZoneData
-
         public var identifier: String
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: CreateZoneData
 
+        public enum CodingKeys: String, CodingKey {
             case identifier
+
+            case data
         }
 
         public init(data: CreateZoneData, identifier: String) {
-            self.data = data
-
             self.identifier = identifier
+
+            self.data = data
         }
 
         public func duplicate() -> ZoneRequest {
@@ -1712,17 +1712,17 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode(CreateZoneData.self, forKey: .data)
-
             identifier = try container.decode(String.self, forKey: .identifier)
+
+            data = try container.decode(CreateZoneData.self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 
