@@ -30,11 +30,22 @@ public class ApplicationConfig {
 }
 
 public extension ApplicationConfig {
-    struct LocationDetails: Codable {
+    class LocationDetails: Codable {
         var pincode: String
         var country: String
         var city: String?
         var location: LatLong?
+
+        public init(pincode: String, country: String, city: String? = nil, latitude: String? = nil, longitude: String? = nil) {
+            self.pincode = pincode
+            self.country = country
+            self.city = city
+            if let lat = latitude,
+               let long = longitude
+            {
+                self.location = LatLong(longitude: long, latitude: lat)
+            }
+        }
     }
 
     struct LatLong: Codable {
