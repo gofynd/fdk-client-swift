@@ -7,8 +7,9 @@ public class ApplicationConfig {
     var currency: String?
     var language: String?
     var extraHeaders: [(key: String, value: String)] = []
+    var locationDetails: LocationDetails?
 
-    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = []) {
+    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], locationDetails: LocationDetails? = nil) {
         self.applicationId = applicationId
         self.applicationToken = applicationToken
         self.domain = domain
@@ -16,8 +17,7 @@ public class ApplicationConfig {
         self.language = language
         self.currency = currency
         self.extraHeaders = extraHeaders
-
-        // let regex = "^[0-9a-fA-F]{24}$"
+        self.locationDetails = locationDetails
         let regex = try? NSRegularExpression(pattern: "^[0-9a-fA-F]{24}$",
                                              options: [.caseInsensitive])
 
@@ -26,12 +26,19 @@ public class ApplicationConfig {
         {
             return nil
         }
+    }
+}
 
-        // if let mongoObjectIdRegex = NSPredicate(format: "SELF MATCHES %@", regex) {
+public extension ApplicationConfig {
+    struct LocationDetails: Codable {
+        var pincode: String
+        var country: String
+        var city: String?
+        var location: LatLong?
+    }
 
-        //     if (!mongoObjectIdRegex.evaluate(with: applicationId)) {
-        //         return nil
-        //     }
-        // }
+    struct LatLong: Codable {
+        var longitude: String
+        var latitude: String
     }
 }
