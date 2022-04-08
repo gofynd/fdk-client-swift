@@ -2,8 +2,6 @@
 import Foundation
 
 public class ApplicationClient {
-    private let config: ApplicationConfig
-
     public let catalog: Catalog
 
     public let cart: Cart
@@ -39,8 +37,6 @@ public class ApplicationClient {
     public let logistic: Logistic
 
     public init(config: ApplicationConfig) {
-        self.config = config
-
         catalog = Catalog(config: config)
 
         cart = Cart(config: config)
@@ -74,10 +70,6 @@ public class ApplicationClient {
         posCart = PosCart(config: config)
 
         logistic = Logistic(config: config)
-    }
-
-    public func setLocationDetails(details: ApplicationConfig.LocationDetails?) {
-        config.locationDetails = details
     }
 
     public class Catalog {
@@ -266,7 +258,7 @@ public class ApplicationClient {
 
             xQuery["slug"] = slug
 
-            let fullUrl = relativeUrls["getProductComparisonBySlugs"] ?? ""
+            var fullUrl = relativeUrls["getProductComparisonBySlugs"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -508,7 +500,7 @@ public class ApplicationClient {
                 xQuery["upc"] = value
             }
 
-            let fullUrl = relativeUrls["getProductStockByIds"] ?? ""
+            var fullUrl = relativeUrls["getProductStockByIds"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -563,7 +555,7 @@ public class ApplicationClient {
                 xQuery["page_id"] = value
             }
 
-            let fullUrl = relativeUrls["getProductStockForTimeByIds"] ?? ""
+            var fullUrl = relativeUrls["getProductStockForTimeByIds"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -675,7 +667,7 @@ public class ApplicationClient {
                 xQuery["page_type"] = value
             }
 
-            let fullUrl = relativeUrls["getProducts"] ?? ""
+            var fullUrl = relativeUrls["getProducts"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -772,7 +764,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getBrands"] ?? ""
+            var fullUrl = relativeUrls["getBrands"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -892,7 +884,7 @@ public class ApplicationClient {
                 xQuery["department"] = value
             }
 
-            let fullUrl = relativeUrls["getCategories"] ?? ""
+            var fullUrl = relativeUrls["getCategories"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -992,7 +984,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getHomeProducts"] ?? ""
+            var fullUrl = relativeUrls["getHomeProducts"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1061,7 +1053,7 @@ public class ApplicationClient {
         public func getDepartments(
             onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getDepartments"] ?? ""
+            var fullUrl = relativeUrls["getDepartments"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1106,7 +1098,7 @@ public class ApplicationClient {
 
             xQuery["q"] = q
 
-            let fullUrl = relativeUrls["getSearchResults"] ?? ""
+            var fullUrl = relativeUrls["getSearchResults"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1163,7 +1155,7 @@ public class ApplicationClient {
                 xQuery["tag"] = value
             }
 
-            let fullUrl = relativeUrls["getCollections"] ?? ""
+            var fullUrl = relativeUrls["getCollections"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1612,7 +1604,7 @@ public class ApplicationClient {
                 xQuery["collection_type"] = value
             }
 
-            let fullUrl = relativeUrls["getFollowIds"] ?? ""
+            var fullUrl = relativeUrls["getFollowIds"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1689,7 +1681,7 @@ public class ApplicationClient {
                 xQuery["longitude"] = value
             }
 
-            let fullUrl = relativeUrls["getStores"] ?? ""
+            var fullUrl = relativeUrls["getStores"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1804,7 +1796,7 @@ public class ApplicationClient {
                 xQuery["longitude"] = value
             }
 
-            let fullUrl = relativeUrls["getInStockLocations"] ?? ""
+            var fullUrl = relativeUrls["getInStockLocations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1937,7 +1929,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getProductBundlesBySlug"] ?? ""
+            var fullUrl = relativeUrls["getProductBundlesBySlug"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2231,7 +2223,7 @@ public class ApplicationClient {
                 xQuery["assign_card_id"] = value
             }
 
-            let fullUrl = relativeUrls["getCart"] ?? ""
+            var fullUrl = relativeUrls["getCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2278,7 +2270,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getCartLastModified"] ?? ""
+            var fullUrl = relativeUrls["getCartLastModified"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2330,7 +2322,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["addItems"] ?? ""
+            var fullUrl = relativeUrls["addItems"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2387,7 +2379,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["updateCart"] ?? ""
+            var fullUrl = relativeUrls["updateCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2434,7 +2426,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getItemCount"] ?? ""
+            var fullUrl = relativeUrls["getItemCount"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2481,7 +2473,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getCoupons"] ?? ""
+            var fullUrl = relativeUrls["getCoupons"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2543,7 +2535,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["applyCoupon"] ?? ""
+            var fullUrl = relativeUrls["applyCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2590,7 +2582,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["removeCoupon"] ?? ""
+            var fullUrl = relativeUrls["removeCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2652,7 +2644,7 @@ public class ApplicationClient {
                 xQuery["slug"] = value
             }
 
-            let fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
+            var fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2709,7 +2701,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
+            var fullUrl = relativeUrls["applyRewardPoints"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2776,7 +2768,7 @@ public class ApplicationClient {
                 xQuery["is_default"] = value
             }
 
-            let fullUrl = relativeUrls["getAddresses"] ?? ""
+            var fullUrl = relativeUrls["getAddresses"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2816,7 +2808,7 @@ public class ApplicationClient {
             body: Address,
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["addAddress"] ?? ""
+            var fullUrl = relativeUrls["addAddress"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3029,7 +3021,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["selectAddress"] ?? ""
+            var fullUrl = relativeUrls["selectAddress"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3076,7 +3068,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["selectPaymentMode"] ?? ""
+            var fullUrl = relativeUrls["selectPaymentMode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3148,7 +3140,7 @@ public class ApplicationClient {
                 xQuery["merchant_code"] = value
             }
 
-            let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
+            var fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3210,7 +3202,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            let fullUrl = relativeUrls["getShipments"] ?? ""
+            var fullUrl = relativeUrls["getShipments"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3250,7 +3242,7 @@ public class ApplicationClient {
             body: CartCheckoutDetailRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["checkoutCart"] ?? ""
+            var fullUrl = relativeUrls["checkoutCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3297,7 +3289,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["updateCartMeta"] ?? ""
+            var fullUrl = relativeUrls["updateCartMeta"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3337,7 +3329,7 @@ public class ApplicationClient {
             body: GetShareCartLinkRequest,
             onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getCartShareLink"] ?? ""
+            var fullUrl = relativeUrls["getCartShareLink"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3465,7 +3457,7 @@ public class ApplicationClient {
         public func getPromotionOffers(
             slug: String?,
             pageSize: Int?,
-            promotionGroup: Int?,
+            promotionGroup: String?,
 
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3483,7 +3475,7 @@ public class ApplicationClient {
                 xQuery["promotion_group"] = value
             }
 
-            let fullUrl = relativeUrls["getPromotionOffers"] ?? ""
+            var fullUrl = relativeUrls["getPromotionOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3543,7 +3535,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getLadderOffers"] ?? ""
+            var fullUrl = relativeUrls["getLadderOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3619,7 +3611,7 @@ public class ApplicationClient {
                 xHeaders.append((key: "authorization", value: value))
             }
 
-            let fullUrl = relativeUrls["searchApplication"] ?? ""
+            var fullUrl = relativeUrls["searchApplication"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3671,7 +3663,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getLocations"] ?? ""
+            var fullUrl = relativeUrls["getLocations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3829,7 +3821,7 @@ public class ApplicationClient {
             body: AddTicketPayload,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createTicket"] ?? ""
+            var fullUrl = relativeUrls["createTicket"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4155,7 +4147,7 @@ public class ApplicationClient {
         public func getAppliedTheme(
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getAppliedTheme"] ?? ""
+            var fullUrl = relativeUrls["getAppliedTheme"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4329,7 +4321,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["loginWithFacebook"] ?? ""
+            var fullUrl = relativeUrls["loginWithFacebook"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4376,7 +4368,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["loginWithGoogle"] ?? ""
+            var fullUrl = relativeUrls["loginWithGoogle"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4423,7 +4415,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["loginWithGoogleAndroid"] ?? ""
+            var fullUrl = relativeUrls["loginWithGoogleAndroid"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4470,7 +4462,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["loginWithGoogleIOS"] ?? ""
+            var fullUrl = relativeUrls["loginWithGoogleIOS"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4517,7 +4509,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["loginWithAppleIOS"] ?? ""
+            var fullUrl = relativeUrls["loginWithAppleIOS"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4564,7 +4556,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["loginWithOTP"] ?? ""
+            var fullUrl = relativeUrls["loginWithOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4604,7 +4596,7 @@ public class ApplicationClient {
             body: PasswordLoginRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["loginWithEmailAndPassword"] ?? ""
+            var fullUrl = relativeUrls["loginWithEmailAndPassword"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4651,7 +4643,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["sendResetPasswordEmail"] ?? ""
+            var fullUrl = relativeUrls["sendResetPasswordEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4691,7 +4683,7 @@ public class ApplicationClient {
             body: ForgotPasswordRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["forgotPassword"] ?? ""
+            var fullUrl = relativeUrls["forgotPassword"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4731,7 +4723,7 @@ public class ApplicationClient {
             body: CodeRequestBodySchema,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["sendResetToken"] ?? ""
+            var fullUrl = relativeUrls["sendResetToken"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4771,7 +4763,7 @@ public class ApplicationClient {
             body: TokenRequestBodySchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["loginWithToken"] ?? ""
+            var fullUrl = relativeUrls["loginWithToken"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4818,7 +4810,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["registerWithForm"] ?? ""
+            var fullUrl = relativeUrls["registerWithForm"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4858,7 +4850,7 @@ public class ApplicationClient {
             body: CodeRequestBodySchema,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["verifyEmail"] ?? ""
+            var fullUrl = relativeUrls["verifyEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4898,7 +4890,7 @@ public class ApplicationClient {
             body: CodeRequestBodySchema,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["verifyMobile"] ?? ""
+            var fullUrl = relativeUrls["verifyMobile"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4937,7 +4929,7 @@ public class ApplicationClient {
         public func hasPassword(
             onResponse: @escaping (_ response: HasPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["hasPassword"] ?? ""
+            var fullUrl = relativeUrls["hasPassword"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4977,7 +4969,7 @@ public class ApplicationClient {
             body: UpdatePasswordRequestSchema,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updatePassword"] ?? ""
+            var fullUrl = relativeUrls["updatePassword"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5016,7 +5008,7 @@ public class ApplicationClient {
         public func logout(
             onResponse: @escaping (_ response: LogoutSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["logout"] ?? ""
+            var fullUrl = relativeUrls["logout"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5063,7 +5055,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["sendOTPOnMobile"] ?? ""
+            var fullUrl = relativeUrls["sendOTPOnMobile"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5110,7 +5102,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["verifyMobileOTP"] ?? ""
+            var fullUrl = relativeUrls["verifyMobileOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5157,7 +5149,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["sendOTPOnEmail"] ?? ""
+            var fullUrl = relativeUrls["sendOTPOnEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5204,7 +5196,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["verifyEmailOTP"] ?? ""
+            var fullUrl = relativeUrls["verifyEmailOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5243,7 +5235,7 @@ public class ApplicationClient {
         public func getLoggedInUser(
             onResponse: @escaping (_ response: UserObjectSchema?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getLoggedInUser"] ?? ""
+            var fullUrl = relativeUrls["getLoggedInUser"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5282,7 +5274,7 @@ public class ApplicationClient {
         public func getListOfActiveSessions(
             onResponse: @escaping (_ response: SessionListSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getListOfActiveSessions"] ?? ""
+            var fullUrl = relativeUrls["getListOfActiveSessions"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5329,7 +5321,7 @@ public class ApplicationClient {
                 xQuery["name"] = value
             }
 
-            let fullUrl = relativeUrls["getPlatformConfig"] ?? ""
+            var fullUrl = relativeUrls["getPlatformConfig"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5376,7 +5368,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["updateProfile"] ?? ""
+            var fullUrl = relativeUrls["updateProfile"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5423,7 +5415,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["addMobileNumber"] ?? ""
+            var fullUrl = relativeUrls["addMobileNumber"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5485,7 +5477,7 @@ public class ApplicationClient {
 
             xQuery["phone"] = phone
 
-            let fullUrl = relativeUrls["deleteMobileNumber"] ?? ""
+            var fullUrl = relativeUrls["deleteMobileNumber"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5525,7 +5517,7 @@ public class ApplicationClient {
             body: SendVerificationLinkMobileRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["setMobileNumberAsPrimary"] ?? ""
+            var fullUrl = relativeUrls["setMobileNumberAsPrimary"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5572,7 +5564,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["sendVerificationLinkToMobile"] ?? ""
+            var fullUrl = relativeUrls["sendVerificationLinkToMobile"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5619,7 +5611,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["addEmail"] ?? ""
+            var fullUrl = relativeUrls["addEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5678,7 +5670,7 @@ public class ApplicationClient {
 
             xQuery["email"] = email
 
-            let fullUrl = relativeUrls["deleteEmail"] ?? ""
+            var fullUrl = relativeUrls["deleteEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5718,7 +5710,7 @@ public class ApplicationClient {
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["setEmailAsPrimary"] ?? ""
+            var fullUrl = relativeUrls["setEmailAsPrimary"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5765,7 +5757,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            let fullUrl = relativeUrls["sendVerificationLinkToEmail"] ?? ""
+            var fullUrl = relativeUrls["sendVerificationLinkToEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5810,6 +5802,8 @@ public class ApplicationClient {
             ulrs["getBlog"] = config.domain.appendAsPath("/service/application/content/v1.0/blogs/{slug}")
 
             ulrs["getBlogs"] = config.domain.appendAsPath("/service/application/content/v1.0/blogs/")
+
+            ulrs["getDataLoaders"] = config.domain.appendAsPath("/service/application/content/v1.0/data-loader")
 
             ulrs["getFaqs"] = config.domain.appendAsPath("/service/application/content/v1.0/faq")
 
@@ -5858,7 +5852,7 @@ public class ApplicationClient {
         public func getAnnouncements(
             onResponse: @escaping (_ response: AnnouncementsResponseSchema?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getAnnouncements"] ?? ""
+            var fullUrl = relativeUrls["getAnnouncements"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5960,7 +5954,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getBlogs"] ?? ""
+            var fullUrl = relativeUrls["getBlogs"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6021,13 +6015,52 @@ public class ApplicationClient {
 
         /**
          *
+         * Summary: Get the data loaders associated with an application
+         * Description: Use this API to get all selected data loaders of the application in the form of tags.
+         **/
+        public func getDataLoaders(
+            onResponse: @escaping (_ response: DataLoadersSchema?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["getDataLoaders"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DataLoadersSchema.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Get a list of FAQs
          * Description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
          **/
         public func getFaqs(
             onResponse: @escaping (_ response: FaqResponseSchema?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getFaqs"] ?? ""
+            var fullUrl = relativeUrls["getFaqs"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6066,7 +6099,7 @@ public class ApplicationClient {
         public func getFaqCategories(
             onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getFaqCategories"] ?? ""
+            var fullUrl = relativeUrls["getFaqCategories"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6234,7 +6267,7 @@ public class ApplicationClient {
         public func getLandingPage(
             onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getLandingPage"] ?? ""
+            var fullUrl = relativeUrls["getLandingPage"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6273,7 +6306,7 @@ public class ApplicationClient {
         public func getLegalInformation(
             onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getLegalInformation"] ?? ""
+            var fullUrl = relativeUrls["getLegalInformation"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6325,7 +6358,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getNavigations"] ?? ""
+            var fullUrl = relativeUrls["getNavigations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6392,7 +6425,7 @@ public class ApplicationClient {
         public func getSEOConfiguration(
             onResponse: @escaping (_ response: SeoComponent?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getSEOConfiguration"] ?? ""
+            var fullUrl = relativeUrls["getSEOConfiguration"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6444,7 +6477,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getSlideshows"] ?? ""
+            var fullUrl = relativeUrls["getSlideshows"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6554,7 +6587,7 @@ public class ApplicationClient {
         public func getSupportInformation(
             onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getSupportInformation"] ?? ""
+            var fullUrl = relativeUrls["getSupportInformation"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6593,7 +6626,7 @@ public class ApplicationClient {
         public func getTags(
             onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getTags"] ?? ""
+            var fullUrl = relativeUrls["getTags"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6695,7 +6728,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getPages"] ?? ""
+            var fullUrl = relativeUrls["getPages"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6786,7 +6819,7 @@ public class ApplicationClient {
         public func getCommunicationConsent(
             onResponse: @escaping (_ response: CommunicationConsent?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getCommunicationConsent"] ?? ""
+            var fullUrl = relativeUrls["getCommunicationConsent"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6826,7 +6859,7 @@ public class ApplicationClient {
             body: CommunicationConsentReq,
             onResponse: @escaping (_ response: CommunicationConsentRes?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["upsertCommunicationConsent"] ?? ""
+            var fullUrl = relativeUrls["upsertCommunicationConsent"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6866,7 +6899,7 @@ public class ApplicationClient {
             body: PushtokenReq,
             onResponse: @escaping (_ response: PushtokenRes?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["upsertAppPushtoken"] ?? ""
+            var fullUrl = relativeUrls["upsertAppPushtoken"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6937,7 +6970,7 @@ public class ApplicationClient {
         public func getApplicationQRCode(
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getApplicationQRCode"] ?? ""
+            var fullUrl = relativeUrls["getApplicationQRCode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7068,7 +7101,7 @@ public class ApplicationClient {
 
             xQuery["url"] = url
 
-            let fullUrl = relativeUrls["getUrlQRCode"] ?? ""
+            var fullUrl = relativeUrls["getUrlQRCode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7108,7 +7141,7 @@ public class ApplicationClient {
             body: ShortLinkReq,
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createShortLink"] ?? ""
+            var fullUrl = relativeUrls["createShortLink"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7380,7 +7413,7 @@ public class ApplicationClient {
             body: SignUrlRequest,
             onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["signUrls"] ?? ""
+            var fullUrl = relativeUrls["signUrls"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7469,7 +7502,7 @@ public class ApplicationClient {
         public func getApplication(
             onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getApplication"] ?? ""
+            var fullUrl = relativeUrls["getApplication"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7508,7 +7541,7 @@ public class ApplicationClient {
         public func getOwnerInfo(
             onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getOwnerInfo"] ?? ""
+            var fullUrl = relativeUrls["getOwnerInfo"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7547,7 +7580,7 @@ public class ApplicationClient {
         public func getBasicDetails(
             onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getBasicDetails"] ?? ""
+            var fullUrl = relativeUrls["getBasicDetails"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7586,7 +7619,7 @@ public class ApplicationClient {
         public func getIntegrationTokens(
             onResponse: @escaping (_ response: AppTokenResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getIntegrationTokens"] ?? ""
+            var fullUrl = relativeUrls["getIntegrationTokens"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7643,7 +7676,7 @@ public class ApplicationClient {
                 xQuery["q"] = value
             }
 
-            let fullUrl = relativeUrls["getOrderingStores"] ?? ""
+            var fullUrl = relativeUrls["getOrderingStores"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7755,7 +7788,7 @@ public class ApplicationClient {
         public func getFeatures(
             onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getFeatures"] ?? ""
+            var fullUrl = relativeUrls["getFeatures"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7794,7 +7827,7 @@ public class ApplicationClient {
         public func getContactInfo(
             onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getContactInfo"] ?? ""
+            var fullUrl = relativeUrls["getContactInfo"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7833,7 +7866,7 @@ public class ApplicationClient {
         public func getCurrencies(
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getCurrencies"] ?? ""
+            var fullUrl = relativeUrls["getCurrencies"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7915,7 +7948,7 @@ public class ApplicationClient {
         public func getAppCurrencies(
             onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getAppCurrencies"] ?? ""
+            var fullUrl = relativeUrls["getAppCurrencies"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7954,7 +7987,7 @@ public class ApplicationClient {
         public func getLanguages(
             onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getLanguages"] ?? ""
+            var fullUrl = relativeUrls["getLanguages"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7994,7 +8027,7 @@ public class ApplicationClient {
             body: OrderingStoreSelectRequest,
             onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getOrderingStoreCookie"] ?? ""
+            var fullUrl = relativeUrls["getOrderingStoreCookie"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8033,7 +8066,7 @@ public class ApplicationClient {
         public func removeOrderingStoreCookie(
             onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["removeOrderingStoreCookie"] ?? ""
+            var fullUrl = relativeUrls["removeOrderingStoreCookie"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8100,7 +8133,7 @@ public class ApplicationClient {
                 xQuery["user"] = value
             }
 
-            let fullUrl = relativeUrls["getAppStaffList"] ?? ""
+            var fullUrl = relativeUrls["getAppStaffList"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8191,7 +8224,7 @@ public class ApplicationClient {
                 xQuery["user"] = value
             }
 
-            let fullUrl = relativeUrls["getAppStaffs"] ?? ""
+            var fullUrl = relativeUrls["getAppStaffs"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8317,7 +8350,7 @@ public class ApplicationClient {
                 xHeaders.append((key: "x-api-token", value: value))
             }
 
-            let fullUrl = relativeUrls["getAggregatorsConfig"] ?? ""
+            var fullUrl = relativeUrls["getAggregatorsConfig"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8357,7 +8390,7 @@ public class ApplicationClient {
             body: AttachCardRequest,
             onResponse: @escaping (_ response: AttachCardsResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["attachCardToCustomer"] ?? ""
+            var fullUrl = relativeUrls["attachCardToCustomer"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8404,7 +8437,7 @@ public class ApplicationClient {
                 xQuery["refresh"] = value
             }
 
-            let fullUrl = relativeUrls["getActiveCardAggregator"] ?? ""
+            var fullUrl = relativeUrls["getActiveCardAggregator"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8451,7 +8484,7 @@ public class ApplicationClient {
                 xQuery["force_refresh"] = value
             }
 
-            let fullUrl = relativeUrls["getActiveUserCards"] ?? ""
+            var fullUrl = relativeUrls["getActiveUserCards"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8491,7 +8524,7 @@ public class ApplicationClient {
             body: DeletehCardRequest,
             onResponse: @escaping (_ response: DeleteCardsResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["deleteUserCard"] ?? ""
+            var fullUrl = relativeUrls["deleteUserCard"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8531,7 +8564,7 @@ public class ApplicationClient {
             body: ValidateCustomerRequest,
             onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["verifyCustomerForPayment"] ?? ""
+            var fullUrl = relativeUrls["verifyCustomerForPayment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8571,7 +8604,7 @@ public class ApplicationClient {
             body: ChargeCustomerRequest,
             onResponse: @escaping (_ response: ChargeCustomerResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["verifyAndChargePayment"] ?? ""
+            var fullUrl = relativeUrls["verifyAndChargePayment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8611,7 +8644,7 @@ public class ApplicationClient {
             body: PaymentInitializationRequest,
             onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["initialisePayment"] ?? ""
+            var fullUrl = relativeUrls["initialisePayment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8651,7 +8684,7 @@ public class ApplicationClient {
             body: PaymentStatusUpdateRequest,
             onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["checkAndUpdatePaymentStatus"] ?? ""
+            var fullUrl = relativeUrls["checkAndUpdatePaymentStatus"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8720,7 +8753,7 @@ public class ApplicationClient {
                 xQuery["user_details"] = value
             }
 
-            let fullUrl = relativeUrls["getPaymentModeRoutes"] ?? ""
+            var fullUrl = relativeUrls["getPaymentModeRoutes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8792,7 +8825,7 @@ public class ApplicationClient {
                 xQuery["user_details"] = value
             }
 
-            let fullUrl = relativeUrls["getPosPaymentModeRoutes"] ?? ""
+            var fullUrl = relativeUrls["getPosPaymentModeRoutes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8831,7 +8864,7 @@ public class ApplicationClient {
         public func getRupifiBannerDetails(
             onResponse: @escaping (_ response: RupifiBannerResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getRupifiBannerDetails"] ?? ""
+            var fullUrl = relativeUrls["getRupifiBannerDetails"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8870,7 +8903,7 @@ public class ApplicationClient {
         public func getEpaylaterBannerDetails(
             onResponse: @escaping (_ response: EpaylaterBannerResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getEpaylaterBannerDetails"] ?? ""
+            var fullUrl = relativeUrls["getEpaylaterBannerDetails"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8909,7 +8942,7 @@ public class ApplicationClient {
         public func getActiveRefundTransferModes(
             onResponse: @escaping (_ response: TransferModeResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getActiveRefundTransferModes"] ?? ""
+            var fullUrl = relativeUrls["getActiveRefundTransferModes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8949,7 +8982,7 @@ public class ApplicationClient {
             body: UpdateRefundTransferModeRequest,
             onResponse: @escaping (_ response: UpdateRefundTransferModeResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["enableOrDisableRefundTransferMode"] ?? ""
+            var fullUrl = relativeUrls["enableOrDisableRefundTransferMode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8994,7 +9027,7 @@ public class ApplicationClient {
 
             xQuery["order_id"] = orderId
 
-            let fullUrl = relativeUrls["getUserBeneficiariesDetail"] ?? ""
+            var fullUrl = relativeUrls["getUserBeneficiariesDetail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9041,7 +9074,7 @@ public class ApplicationClient {
                 xQuery["ifsc_code"] = value
             }
 
-            let fullUrl = relativeUrls["verifyIfscCode"] ?? ""
+            var fullUrl = relativeUrls["verifyIfscCode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9086,7 +9119,7 @@ public class ApplicationClient {
 
             xQuery["order_id"] = orderId
 
-            let fullUrl = relativeUrls["getOrderBeneficiariesDetail"] ?? ""
+            var fullUrl = relativeUrls["getOrderBeneficiariesDetail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9126,7 +9159,7 @@ public class ApplicationClient {
             body: AddBeneficiaryViaOtpVerificationRequest,
             onResponse: @escaping (_ response: AddBeneficiaryViaOtpVerificationResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForBank"] ?? ""
+            var fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForBank"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9166,7 +9199,7 @@ public class ApplicationClient {
             body: AddBeneficiaryDetailsRequest,
             onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["addBeneficiaryDetails"] ?? ""
+            var fullUrl = relativeUrls["addBeneficiaryDetails"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9206,7 +9239,7 @@ public class ApplicationClient {
             body: AddBeneficiaryDetailsOTPRequest,
             onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["addRefundBankAccountUsingOTP"] ?? ""
+            var fullUrl = relativeUrls["addRefundBankAccountUsingOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9246,7 +9279,7 @@ public class ApplicationClient {
             body: WalletOtpRequest,
             onResponse: @escaping (_ response: WalletOtpResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForWallet"] ?? ""
+            var fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForWallet"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9286,7 +9319,7 @@ public class ApplicationClient {
             body: SetDefaultBeneficiaryRequest,
             onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updateDefaultBeneficiary"] ?? ""
+            var fullUrl = relativeUrls["updateDefaultBeneficiary"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9333,7 +9366,7 @@ public class ApplicationClient {
                 xQuery["aggregator"] = value
             }
 
-            let fullUrl = relativeUrls["customerCreditSummary"] ?? ""
+            var fullUrl = relativeUrls["customerCreditSummary"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9380,7 +9413,7 @@ public class ApplicationClient {
                 xQuery["source"] = value
             }
 
-            let fullUrl = relativeUrls["redirectToAggregator"] ?? ""
+            var fullUrl = relativeUrls["redirectToAggregator"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9427,7 +9460,7 @@ public class ApplicationClient {
                 xQuery["aggregator"] = value
             }
 
-            let fullUrl = relativeUrls["checkCredit"] ?? ""
+            var fullUrl = relativeUrls["checkCredit"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9467,7 +9500,7 @@ public class ApplicationClient {
             body: CustomerOnboardingRequest,
             onResponse: @escaping (_ response: CustomerOnboardingResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["customerOnboard"] ?? ""
+            var fullUrl = relativeUrls["customerOnboard"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9572,7 +9605,7 @@ public class ApplicationClient {
                 xQuery["status"] = value
             }
 
-            let fullUrl = relativeUrls["getOrders"] ?? ""
+            var fullUrl = relativeUrls["getOrders"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10040,7 +10073,7 @@ public class ApplicationClient {
             body: CatalogueOrderRequest,
             onResponse: @escaping (_ response: CatalogueOrderResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getPointsOnProduct"] ?? ""
+            var fullUrl = relativeUrls["getPointsOnProduct"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10123,7 +10156,7 @@ public class ApplicationClient {
             body: OrderDiscountRequest,
             onResponse: @escaping (_ response: OrderDiscountResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getOrderDiscount"] ?? ""
+            var fullUrl = relativeUrls["getOrderDiscount"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10162,7 +10195,7 @@ public class ApplicationClient {
         public func getUserPoints(
             onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getUserPoints"] ?? ""
+            var fullUrl = relativeUrls["getUserPoints"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10214,7 +10247,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
+            var fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10281,7 +10314,7 @@ public class ApplicationClient {
         public func getUserReferralDetails(
             onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getUserReferralDetails"] ?? ""
+            var fullUrl = relativeUrls["getUserReferralDetails"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10321,7 +10354,7 @@ public class ApplicationClient {
             body: RedeemReferralCodeRequest,
             onResponse: @escaping (_ response: RedeemReferralCodeResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["redeemReferralCode"] ?? ""
+            var fullUrl = relativeUrls["redeemReferralCode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10431,7 +10464,7 @@ public class ApplicationClient {
             body: ReportAbuseRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createAbuseReport"] ?? ""
+            var fullUrl = relativeUrls["createAbuseReport"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10471,7 +10504,7 @@ public class ApplicationClient {
             body: UpdateAbuseStatusRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updateAbuseReport"] ?? ""
+            var fullUrl = relativeUrls["updateAbuseReport"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10620,7 +10653,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getAttributes"] ?? ""
+            var fullUrl = relativeUrls["getAttributes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10688,7 +10721,7 @@ public class ApplicationClient {
             body: SaveAttributeRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createAttribute"] ?? ""
+            var fullUrl = relativeUrls["createAttribute"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10814,7 +10847,7 @@ public class ApplicationClient {
             body: CommentRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createComment"] ?? ""
+            var fullUrl = relativeUrls["createComment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10854,7 +10887,7 @@ public class ApplicationClient {
             body: UpdateCommentRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updateComment"] ?? ""
+            var fullUrl = relativeUrls["updateComment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11051,7 +11084,7 @@ public class ApplicationClient {
 
             xQuery["ids"] = ids
 
-            let fullUrl = relativeUrls["deleteMedia"] ?? ""
+            var fullUrl = relativeUrls["deleteMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11091,7 +11124,7 @@ public class ApplicationClient {
             body: AddMediaListRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createMedia"] ?? ""
+            var fullUrl = relativeUrls["createMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11131,7 +11164,7 @@ public class ApplicationClient {
             body: UpdateMediaListRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updateMedia"] ?? ""
+            var fullUrl = relativeUrls["updateMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11372,7 +11405,7 @@ public class ApplicationClient {
             body: UpdateReviewRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createReview"] ?? ""
+            var fullUrl = relativeUrls["createReview"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11412,7 +11445,7 @@ public class ApplicationClient {
             body: UpdateReviewRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updateReview"] ?? ""
+            var fullUrl = relativeUrls["updateReview"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11622,7 +11655,7 @@ public class ApplicationClient {
                 xQuery["entity_type"] = value
             }
 
-            let fullUrl = relativeUrls["getTemplates"] ?? ""
+            var fullUrl = relativeUrls["getTemplates"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11662,7 +11695,7 @@ public class ApplicationClient {
             body: CreateQNARequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createQuestion"] ?? ""
+            var fullUrl = relativeUrls["createQuestion"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11702,7 +11735,7 @@ public class ApplicationClient {
             body: UpdateQNARequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updateQuestion"] ?? ""
+            var fullUrl = relativeUrls["updateQuestion"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11875,7 +11908,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getVotes"] ?? ""
+            var fullUrl = relativeUrls["getVotes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11947,7 +11980,7 @@ public class ApplicationClient {
             body: VoteRequest,
             onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createVote"] ?? ""
+            var fullUrl = relativeUrls["createVote"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11987,7 +12020,7 @@ public class ApplicationClient {
             body: UpdateVoteRequest,
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["updateVote"] ?? ""
+            var fullUrl = relativeUrls["updateVote"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12121,7 +12154,7 @@ public class ApplicationClient {
                 xQuery["assign_card_id"] = value
             }
 
-            let fullUrl = relativeUrls["getCart"] ?? ""
+            var fullUrl = relativeUrls["getCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12168,7 +12201,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getCartLastModified"] ?? ""
+            var fullUrl = relativeUrls["getCartLastModified"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12220,7 +12253,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["addItems"] ?? ""
+            var fullUrl = relativeUrls["addItems"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12277,7 +12310,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["updateCart"] ?? ""
+            var fullUrl = relativeUrls["updateCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12324,7 +12357,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getItemCount"] ?? ""
+            var fullUrl = relativeUrls["getItemCount"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12371,7 +12404,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getCoupons"] ?? ""
+            var fullUrl = relativeUrls["getCoupons"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12433,7 +12466,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["applyCoupon"] ?? ""
+            var fullUrl = relativeUrls["applyCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12480,7 +12513,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["removeCoupon"] ?? ""
+            var fullUrl = relativeUrls["removeCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12542,7 +12575,7 @@ public class ApplicationClient {
                 xQuery["slug"] = value
             }
 
-            let fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
+            var fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12599,7 +12632,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
+            var fullUrl = relativeUrls["applyRewardPoints"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12666,7 +12699,7 @@ public class ApplicationClient {
                 xQuery["is_default"] = value
             }
 
-            let fullUrl = relativeUrls["getAddresses"] ?? ""
+            var fullUrl = relativeUrls["getAddresses"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12706,7 +12739,7 @@ public class ApplicationClient {
             body: Address,
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["addAddress"] ?? ""
+            var fullUrl = relativeUrls["addAddress"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12919,7 +12952,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            let fullUrl = relativeUrls["selectAddress"] ?? ""
+            var fullUrl = relativeUrls["selectAddress"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12966,7 +12999,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["selectPaymentMode"] ?? ""
+            var fullUrl = relativeUrls["selectPaymentMode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13038,7 +13071,7 @@ public class ApplicationClient {
                 xQuery["merchant_code"] = value
             }
 
-            let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
+            var fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13115,7 +13148,7 @@ public class ApplicationClient {
                 xQuery["order_type"] = value
             }
 
-            let fullUrl = relativeUrls["getShipments"] ?? ""
+            var fullUrl = relativeUrls["getShipments"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13182,7 +13215,7 @@ public class ApplicationClient {
                 xQuery["order_type"] = value
             }
 
-            let fullUrl = relativeUrls["updateShipments"] ?? ""
+            var fullUrl = relativeUrls["updateShipments"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13229,7 +13262,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["checkoutCart"] ?? ""
+            var fullUrl = relativeUrls["checkoutCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13276,7 +13309,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["updateCartMeta"] ?? ""
+            var fullUrl = relativeUrls["updateCartMeta"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13326,7 +13359,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getAvailableDeliveryModes"] ?? ""
+            var fullUrl = relativeUrls["getAvailableDeliveryModes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13371,7 +13404,7 @@ public class ApplicationClient {
 
             xQuery["store_uid"] = storeUid
 
-            let fullUrl = relativeUrls["getStoreAddressByUid"] ?? ""
+            var fullUrl = relativeUrls["getStoreAddressByUid"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13411,7 +13444,7 @@ public class ApplicationClient {
             body: GetShareCartLinkRequest,
             onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getCartShareLink"] ?? ""
+            var fullUrl = relativeUrls["getCartShareLink"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13562,7 +13595,7 @@ public class ApplicationClient {
             body: GetTatProductReqBody,
             onResponse: @escaping (_ response: GetTatProductResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getTatProduct"] ?? ""
+            var fullUrl = relativeUrls["getTatProduct"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,

@@ -7,9 +7,8 @@ public class ApplicationConfig {
     var currency: String?
     var language: String?
     var extraHeaders: [(key: String, value: String)] = []
-    var locationDetails: LocationDetails?
 
-    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], locationDetails: LocationDetails? = nil) {
+    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = []) {
         self.applicationId = applicationId
         self.applicationToken = applicationToken
         self.domain = domain
@@ -17,7 +16,8 @@ public class ApplicationConfig {
         self.language = language
         self.currency = currency
         self.extraHeaders = extraHeaders
-        self.locationDetails = locationDetails
+
+        // let regex = "^[0-9a-fA-F]{24}$"
         let regex = try? NSRegularExpression(pattern: "^[0-9a-fA-F]{24}$",
                                              options: [.caseInsensitive])
 
@@ -26,30 +26,12 @@ public class ApplicationConfig {
         {
             return nil
         }
-    }
-}
 
-public extension ApplicationConfig {
-    class LocationDetails: Codable {
-        var pincode: String
-        var country: String
-        var city: String?
-        var location: LatLong?
+        // if let mongoObjectIdRegex = NSPredicate(format: "SELF MATCHES %@", regex) {
 
-        public init(pincode: String, country: String, city: String? = nil, latitude: String? = nil, longitude: String? = nil) {
-            self.pincode = pincode
-            self.country = country
-            self.city = city
-            if let lat = latitude,
-               let long = longitude
-            {
-                self.location = LatLong(longitude: long, latitude: lat)
-            }
-        }
-    }
-
-    struct LatLong: Codable {
-        var longitude: String
-        var latitude: String
+        //     if (!mongoObjectIdRegex.evaluate(with: applicationId)) {
+        //         return nil
+        //     }
+        // }
     }
 }
