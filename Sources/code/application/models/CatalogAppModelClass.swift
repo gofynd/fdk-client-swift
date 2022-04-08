@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class ProductListingActionPage: Codable {
         public var params: [String: Any]?
 
-        public var query: [String: Any]?
-
         public var type: String?
+
+        public var query: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case params
 
-            case query
-
             case type
+
+            case query
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil) {
             self.params = params
 
-            self.query = query
-
             self.type = type
+
+            self.query = query
         }
 
         public func duplicate() -> ProductListingActionPage {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                query = try container.decode([String: Any].self, forKey: .query)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                query = try container.decode([String: Any].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,9 +68,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(params, forKey: .params)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(query, forKey: .query)
         }
     }
 
@@ -247,32 +247,32 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductBrand: Codable {
-        public var uid: Int?
+        public var action: ProductListingAction?
 
         public var name: String?
 
-        public var action: ProductListingAction?
-
         public var logo: Media?
 
+        public var uid: Int?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case action
 
             case name
 
-            case action
-
             case logo
+
+            case uid
         }
 
         public init(action: ProductListingAction? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.uid = uid
+            self.action = action
 
             self.name = name
 
-            self.action = action
-
             self.logo = logo
+
+            self.uid = uid
         }
 
         public func duplicate() -> ProductBrand {
@@ -285,7 +285,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -301,7 +301,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -309,7 +309,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -320,13 +320,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 
@@ -335,20 +335,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class MetaFields: Codable {
-        public var key: String
-
         public var value: String
 
-        public enum CodingKeys: String, CodingKey {
-            case key
+        public var key: String
 
+        public enum CodingKeys: String, CodingKey {
             case value
+
+            case key
         }
 
         public init(key: String, value: String) {
-            self.key = key
-
             self.value = value
+
+            self.key = key
         }
 
         public func duplicate() -> MetaFields {
@@ -360,17 +360,145 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            key = try container.decode(String.self, forKey: .key)
-
             value = try container.decode(String.self, forKey: .value)
+
+            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(value, forKey: .value)
+
             try? container.encodeIfPresent(key, forKey: .key)
+        }
+    }
+
+    /*
+         Model: ProductDetailAttribute
+         Used By: Catalog
+     */
+    class ProductDetailAttribute: Codable {
+        public var value: String?
+
+        public var type: String?
+
+        public var key: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case value
+
+            case type
+
+            case key
+        }
+
+        public init(key: String? = nil, type: String? = nil, value: String? = nil) {
+            self.value = value
+
+            self.type = type
+
+            self.key = key
+        }
+
+        public func duplicate() -> ProductDetailAttribute {
+            let dict = self.dictionary!
+            let copy = ProductDetailAttribute(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                key = try container.decode(String.self, forKey: .key)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(key, forKey: .key)
+        }
+    }
+
+    /*
+         Model: ProductDetailGroupedAttribute
+         Used By: Catalog
+     */
+    class ProductDetailGroupedAttribute: Codable {
+        public var details: [ProductDetailAttribute]?
+
+        public var title: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case details
+
+            case title
+        }
+
+        public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
+            self.details = details
+
+            self.title = title
+        }
+
+        public func duplicate() -> ProductDetailGroupedAttribute {
+            let dict = self.dictionary!
+            let copy = ProductDetailGroupedAttribute(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                details = try container.decode([ProductDetailAttribute].self, forKey: .details)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 
@@ -519,35 +647,185 @@ public extension ApplicationClient {
     }
 
     /*
-         Model: ProductDetailAttribute
+         Model: ProductDetail
          Used By: Catalog
      */
-    class ProductDetailAttribute: Codable {
-        public var key: String?
+    class ProductDetail: Codable {
+        public var name: String?
+
+        public var tryouts: [String]?
 
         public var type: String?
 
-        public var value: String?
+        public var rating: Double?
+
+        public var itemType: String?
+
+        public var action: ProductListingAction?
+
+        public var hasVariant: Bool?
+
+        public var shortDescription: String?
+
+        public var discount: String?
+
+        public var imageNature: String?
+
+        public var color: String?
+
+        public var categories: [ProductBrand]?
+
+        public var description: String?
+
+        public var highlights: [String]?
+
+        public var slug: String
+
+        public var customMeta: [MetaFields]?
+
+        public var medias: [Media]?
+
+        public var itemCode: String?
+
+        public var groupedAttributes: [ProductDetailGroupedAttribute]?
+
+        public var ratingCount: Int?
+
+        public var price: ProductListingPrice?
+
+        public var customJson: [String: Any]?
+
+        public var productOnlineDate: String?
+
+        public var brand: ProductBrand?
+
+        public var attributes: [String: Any]?
+
+        public var teaserTag: String?
+
+        public var similars: [String]?
+
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case key
+            case name
+
+            case tryouts
 
             case type
 
-            case value
+            case rating
+
+            case itemType = "item_type"
+
+            case action
+
+            case hasVariant = "has_variant"
+
+            case shortDescription = "short_description"
+
+            case discount
+
+            case imageNature = "image_nature"
+
+            case color
+
+            case categories
+
+            case description
+
+            case highlights
+
+            case slug
+
+            case customMeta = "_custom_meta"
+
+            case medias
+
+            case itemCode = "item_code"
+
+            case groupedAttributes = "grouped_attributes"
+
+            case ratingCount = "rating_count"
+
+            case price
+
+            case customJson = "_custom_json"
+
+            case productOnlineDate = "product_online_date"
+
+            case brand
+
+            case attributes
+
+            case teaserTag = "teaser_tag"
+
+            case similars
+
+            case uid
         }
 
-        public init(key: String? = nil, type: String? = nil, value: String? = nil) {
-            self.key = key
+        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+            self.name = name
+
+            self.tryouts = tryouts
 
             self.type = type
 
-            self.value = value
+            self.rating = rating
+
+            self.itemType = itemType
+
+            self.action = action
+
+            self.hasVariant = hasVariant
+
+            self.shortDescription = shortDescription
+
+            self.discount = discount
+
+            self.imageNature = imageNature
+
+            self.color = color
+
+            self.categories = categories
+
+            self.description = description
+
+            self.highlights = highlights
+
+            self.slug = slug
+
+            self.customMeta = customMeta
+
+            self.medias = medias
+
+            self.itemCode = itemCode
+
+            self.groupedAttributes = groupedAttributes
+
+            self.ratingCount = ratingCount
+
+            self.price = price
+
+            self.customJson = customJson
+
+            self.productOnlineDate = productOnlineDate
+
+            self.brand = brand
+
+            self.attributes = attributes
+
+            self.teaserTag = teaserTag
+
+            self.similars = similars
+
+            self.uid = uid
         }
 
-        public func duplicate() -> ProductDetailAttribute {
+        public func duplicate() -> ProductDetail {
             let dict = self.dictionary!
-            let copy = ProductDetailAttribute(dictionary: dict)!
+            let copy = ProductDetail(dictionary: dict)!
             return copy
         }
 
@@ -555,7 +833,15 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                tryouts = try container.decode([String].self, forKey: .tryouts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -571,57 +857,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(key, forKey: .key)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(value, forKey: .value)
-        }
-    }
-
-    /*
-         Model: ProductDetailGroupedAttribute
-         Used By: Catalog
-     */
-    class ProductDetailGroupedAttribute: Codable {
-        public var title: String?
-
-        public var details: [ProductDetailAttribute]?
-
-        public enum CodingKeys: String, CodingKey {
-            case title
-
-            case details
-        }
-
-        public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
-            self.title = title
-
-            self.details = details
-        }
-
-        public func duplicate() -> ProductDetailGroupedAttribute {
-            let dict = self.dictionary!
-            let copy = ProductDetailGroupedAttribute(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
+                rating = try container.decode(Double.self, forKey: .rating)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -629,211 +865,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                details = try container.decode([ProductDetailAttribute].self, forKey: .details)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encodeIfPresent(details, forKey: .details)
-        }
-    }
-
-    /*
-         Model: ProductDetail
-         Used By: Catalog
-     */
-    class ProductDetail: Codable {
-        public var uid: Int?
-
-        public var similars: [String]?
-
-        public var brand: ProductBrand?
-
-        public var attributes: [String: Any]?
-
-        public var categories: [ProductBrand]?
-
-        public var ratingCount: Int?
-
-        public var itemCode: String?
-
-        public var type: String?
-
-        public var highlights: [String]?
-
-        public var customMeta: [MetaFields]?
-
-        public var itemType: String?
-
-        public var name: String?
-
-        public var action: ProductListingAction?
-
-        public var color: String?
-
-        public var price: ProductListingPrice?
-
-        public var productOnlineDate: String?
-
-        public var medias: [Media]?
-
-        public var tryouts: [String]?
-
-        public var slug: String
-
-        public var hasVariant: Bool?
-
-        public var discount: String?
-
-        public var customJson: [String: Any]?
-
-        public var imageNature: String?
-
-        public var shortDescription: String?
-
-        public var rating: Double?
-
-        public var teaserTag: String?
-
-        public var groupedAttributes: [ProductDetailGroupedAttribute]?
-
-        public var description: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case similars
-
-            case brand
-
-            case attributes
-
-            case categories
-
-            case ratingCount = "rating_count"
-
-            case itemCode = "item_code"
-
-            case type
-
-            case highlights
-
-            case customMeta = "_custom_meta"
-
-            case itemType = "item_type"
-
-            case name
-
-            case action
-
-            case color
-
-            case price
-
-            case productOnlineDate = "product_online_date"
-
-            case medias
-
-            case tryouts
-
-            case slug
-
-            case hasVariant = "has_variant"
-
-            case discount
-
-            case customJson = "_custom_json"
-
-            case imageNature = "image_nature"
-
-            case shortDescription = "short_description"
-
-            case rating
-
-            case teaserTag = "teaser_tag"
-
-            case groupedAttributes = "grouped_attributes"
-
-            case description
-        }
-
-        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
-            self.uid = uid
-
-            self.similars = similars
-
-            self.brand = brand
-
-            self.attributes = attributes
-
-            self.categories = categories
-
-            self.ratingCount = ratingCount
-
-            self.itemCode = itemCode
-
-            self.type = type
-
-            self.highlights = highlights
-
-            self.customMeta = customMeta
-
-            self.itemType = itemType
-
-            self.name = name
-
-            self.action = action
-
-            self.color = color
-
-            self.price = price
-
-            self.productOnlineDate = productOnlineDate
-
-            self.medias = medias
-
-            self.tryouts = tryouts
-
-            self.slug = slug
-
-            self.hasVariant = hasVariant
-
-            self.discount = discount
-
-            self.customJson = customJson
-
-            self.imageNature = imageNature
-
-            self.shortDescription = shortDescription
-
-            self.rating = rating
-
-            self.teaserTag = teaserTag
-
-            self.groupedAttributes = groupedAttributes
-
-            self.description = description
-        }
-
-        public func duplicate() -> ProductDetail {
-            let dict = self.dictionary!
-            let copy = ProductDetail(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                itemType = try container.decode(String.self, forKey: .itemType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -841,7 +873,137 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                similars = try container.decode([String].self, forKey: .similars)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                hasVariant = try container.decode(Bool.self, forKey: .hasVariant)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shortDescription = try container.decode(String.self, forKey: .shortDescription)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                imageNature = try container.decode(String.self, forKey: .imageNature)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                color = try container.decode(String.self, forKey: .color)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                categories = try container.decode([ProductBrand].self, forKey: .categories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                highlights = try container.decode([String].self, forKey: .highlights)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            slug = try container.decode(String.self, forKey: .slug)
+
+            do {
+                customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                medias = try container.decode([Media].self, forKey: .medias)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemCode = try container.decode(String.self, forKey: .itemCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                groupedAttributes = try container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                ratingCount = try container.decode(Int.self, forKey: .ratingCount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(ProductListingPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -865,168 +1027,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                categories = try container.decode([ProductBrand].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ratingCount = try container.decode(Int.self, forKey: .ratingCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                highlights = try container.decode([String].self, forKey: .highlights)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemType = try container.decode(String.self, forKey: .itemType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                color = try container.decode(String.self, forKey: .color)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode(ProductListingPrice.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                medias = try container.decode([Media].self, forKey: .medias)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tryouts = try container.decode([String].self, forKey: .tryouts)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            do {
-                hasVariant = try container.decode(Bool.self, forKey: .hasVariant)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(String.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                imageNature = try container.decode(String.self, forKey: .imageNature)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shortDescription = try container.decode(String.self, forKey: .shortDescription)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                rating = try container.decode(Double.self, forKey: .rating)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 teaserTag = try container.decode(String.self, forKey: .teaserTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -1035,7 +1035,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                groupedAttributes = try container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
+                similars = try container.decode([String].self, forKey: .similars)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1043,7 +1043,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1054,61 +1054,61 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(similars, forKey: .similars)
+            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(rating, forKey: .rating)
+
+            try? container.encodeIfPresent(itemType, forKey: .itemType)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
+
+            try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(imageNature, forKey: .imageNature)
+
+            try? container.encodeIfPresent(color, forKey: .color)
+
+            try? container.encodeIfPresent(categories, forKey: .categories)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(highlights, forKey: .highlights)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+
+            try? container.encodeIfPresent(medias, forKey: .medias)
+
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
+
+            try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
+
+            try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
 
             try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(attributes, forKey: .attributes)
 
-            try? container.encodeIfPresent(categories, forKey: .categories)
-
-            try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
-
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(highlights, forKey: .highlights)
-
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
-
-            try? container.encodeIfPresent(itemType, forKey: .itemType)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(color, forKey: .color)
-
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
-
-            try? container.encodeIfPresent(medias, forKey: .medias)
-
-            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(imageNature, forKey: .imageNature)
-
-            try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
-
-            try? container.encodeIfPresent(rating, forKey: .rating)
-
             try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
 
-            try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
+            try? container.encodeIfPresent(similars, forKey: .similars)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 
@@ -1153,6 +1153,94 @@ public extension ApplicationClient {
     }
 
     /*
+         Model: ProductSize
+         Used By: Catalog
+     */
+    class ProductSize: Codable {
+        public var value: String?
+
+        public var display: String?
+
+        public var quantity: Int?
+
+        public var isAvailable: Bool?
+
+        public enum CodingKeys: String, CodingKey {
+            case value
+
+            case display
+
+            case quantity
+
+            case isAvailable = "is_available"
+        }
+
+        public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
+            self.value = value
+
+            self.display = display
+
+            self.quantity = quantity
+
+            self.isAvailable = isAvailable
+        }
+
+        public func duplicate() -> ProductSize {
+            let dict = self.dictionary!
+            let copy = ProductSize(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                display = try container.decode(String.self, forKey: .display)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+        }
+    }
+
+    /*
          Model: ProductSizeStores
          Used By: Catalog
      */
@@ -1189,6 +1277,126 @@ public extension ApplicationClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(count, forKey: .count)
+        }
+    }
+
+    /*
+         Model: SizeChartValues
+         Used By: Catalog
+     */
+    class SizeChartValues: Codable {
+        public var col2: String?
+
+        public var col3: String?
+
+        public var col1: String?
+
+        public var col5: String?
+
+        public var col6: String?
+
+        public var col4: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case col2 = "col_2"
+
+            case col3 = "col_3"
+
+            case col1 = "col_1"
+
+            case col5 = "col_5"
+
+            case col6 = "col_6"
+
+            case col4 = "col_4"
+        }
+
+        public init(col1: String? = nil, col2: String? = nil, col3: String? = nil, col4: String? = nil, col5: String? = nil, col6: String? = nil) {
+            self.col2 = col2
+
+            self.col3 = col3
+
+            self.col1 = col1
+
+            self.col5 = col5
+
+            self.col6 = col6
+
+            self.col4 = col4
+        }
+
+        public func duplicate() -> SizeChartValues {
+            let dict = self.dictionary!
+            let copy = SizeChartValues(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                col2 = try container.decode(String.self, forKey: .col2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                col3 = try container.decode(String.self, forKey: .col3)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                col1 = try container.decode(String.self, forKey: .col1)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                col5 = try container.decode(String.self, forKey: .col5)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                col6 = try container.decode(String.self, forKey: .col6)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                col4 = try container.decode(String.self, forKey: .col4)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(col2, forKey: .col2)
+
+            try? container.encodeIfPresent(col3, forKey: .col3)
+
+            try? container.encodeIfPresent(col1, forKey: .col1)
+
+            try? container.encodeIfPresent(col5, forKey: .col5)
+
+            try? container.encodeIfPresent(col6, forKey: .col6)
+
+            try? container.encodeIfPresent(col4, forKey: .col4)
         }
     }
 
@@ -1253,44 +1461,44 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ColumnHeaders: Codable {
-        public var col1: ColumnHeader?
-
-        public var col6: ColumnHeader?
-
         public var col2: ColumnHeader?
-
-        public var col4: ColumnHeader?
 
         public var col3: ColumnHeader?
 
+        public var col1: ColumnHeader?
+
         public var col5: ColumnHeader?
 
+        public var col6: ColumnHeader?
+
+        public var col4: ColumnHeader?
+
         public enum CodingKeys: String, CodingKey {
-            case col1 = "col_1"
-
-            case col6 = "col_6"
-
             case col2 = "col_2"
-
-            case col4 = "col_4"
 
             case col3 = "col_3"
 
+            case col1 = "col_1"
+
             case col5 = "col_5"
+
+            case col6 = "col_6"
+
+            case col4 = "col_4"
         }
 
         public init(col1: ColumnHeader? = nil, col2: ColumnHeader? = nil, col3: ColumnHeader? = nil, col4: ColumnHeader? = nil, col5: ColumnHeader? = nil, col6: ColumnHeader? = nil) {
-            self.col1 = col1
-
-            self.col6 = col6
-
             self.col2 = col2
-
-            self.col4 = col4
 
             self.col3 = col3
 
+            self.col1 = col1
+
             self.col5 = col5
+
+            self.col6 = col6
+
+            self.col4 = col4
         }
 
         public func duplicate() -> ColumnHeaders {
@@ -1303,31 +1511,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                col1 = try container.decode(ColumnHeader.self, forKey: .col1)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 col2 = try container.decode(ColumnHeader.self, forKey: .col2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col4 = try container.decode(ColumnHeader.self, forKey: .col4)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1343,87 +1527,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                col1 = try container.decode(ColumnHeader.self, forKey: .col1)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 col5 = try container.decode(ColumnHeader.self, forKey: .col5)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(col1, forKey: .col1)
-
-            try? container.encodeIfPresent(col6, forKey: .col6)
-
-            try? container.encodeIfPresent(col2, forKey: .col2)
-
-            try? container.encodeIfPresent(col4, forKey: .col4)
-
-            try? container.encodeIfPresent(col3, forKey: .col3)
-
-            try? container.encodeIfPresent(col5, forKey: .col5)
-        }
-    }
-
-    /*
-         Model: SizeChartValues
-         Used By: Catalog
-     */
-    class SizeChartValues: Codable {
-        public var col1: String?
-
-        public var col6: String?
-
-        public var col2: String?
-
-        public var col4: String?
-
-        public var col3: String?
-
-        public var col5: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case col1 = "col_1"
-
-            case col6 = "col_6"
-
-            case col2 = "col_2"
-
-            case col4 = "col_4"
-
-            case col3 = "col_3"
-
-            case col5 = "col_5"
-        }
-
-        public init(col1: String? = nil, col2: String? = nil, col3: String? = nil, col4: String? = nil, col5: String? = nil, col6: String? = nil) {
-            self.col1 = col1
-
-            self.col6 = col6
-
-            self.col2 = col2
-
-            self.col4 = col4
-
-            self.col3 = col3
-
-            self.col5 = col5
-        }
-
-        public func duplicate() -> SizeChartValues {
-            let dict = self.dictionary!
-            let copy = SizeChartValues(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                col1 = try container.decode(String.self, forKey: .col1)
+                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1431,39 +1551,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col6 = try container.decode(String.self, forKey: .col6)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col2 = try container.decode(String.self, forKey: .col2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col4 = try container.decode(String.self, forKey: .col4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col3 = try container.decode(String.self, forKey: .col3)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col5 = try container.decode(String.self, forKey: .col5)
+                col4 = try container.decode(ColumnHeader.self, forKey: .col4)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1474,17 +1562,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(col1, forKey: .col1)
-
-            try? container.encodeIfPresent(col6, forKey: .col6)
-
             try? container.encodeIfPresent(col2, forKey: .col2)
-
-            try? container.encodeIfPresent(col4, forKey: .col4)
 
             try? container.encodeIfPresent(col3, forKey: .col3)
 
+            try? container.encodeIfPresent(col1, forKey: .col1)
+
             try? container.encodeIfPresent(col5, forKey: .col5)
+
+            try? container.encodeIfPresent(col6, forKey: .col6)
+
+            try? container.encodeIfPresent(col4, forKey: .col4)
         }
     }
 
@@ -1495,48 +1583,48 @@ public extension ApplicationClient {
     class SizeChart: Codable {
         public var title: String?
 
+        public var sizes: [SizeChartValues]?
+
+        public var description: String?
+
+        public var sizeTip: String?
+
         public var unit: String?
 
         public var headers: ColumnHeaders?
 
-        public var sizeTip: String?
-
         public var image: String?
-
-        public var description: String?
-
-        public var sizes: [SizeChartValues]?
 
         public enum CodingKeys: String, CodingKey {
             case title
+
+            case sizes
+
+            case description
+
+            case sizeTip = "size_tip"
 
             case unit
 
             case headers
 
-            case sizeTip = "size_tip"
-
             case image
-
-            case description
-
-            case sizes
         }
 
         public init(description: String? = nil, headers: ColumnHeaders? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
             self.title = title
 
+            self.sizes = sizes
+
+            self.description = description
+
+            self.sizeTip = sizeTip
+
             self.unit = unit
 
             self.headers = headers
 
-            self.sizeTip = sizeTip
-
             self.image = image
-
-            self.description = description
-
-            self.sizes = sizes
         }
 
         public func duplicate() -> SizeChart {
@@ -1550,6 +1638,30 @@ public extension ApplicationClient {
 
             do {
                 title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sizeTip = try container.decode(String.self, forKey: .sizeTip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1573,31 +1685,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizeTip = try container.decode(String.self, forKey: .sizeTip)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 image = try container.decode(String.self, forKey: .image)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1610,105 +1698,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
+
             try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
-
             try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-        }
-    }
-
-    /*
-         Model: ProductSize
-         Used By: Catalog
-     */
-    class ProductSize: Codable {
-        public var value: String?
-
-        public var isAvailable: Bool?
-
-        public var quantity: Int?
-
-        public var display: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case value
-
-            case isAvailable = "is_available"
-
-            case quantity
-
-            case display
-        }
-
-        public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
-            self.value = value
-
-            self.isAvailable = isAvailable
-
-            self.quantity = quantity
-
-            self.display = display
-        }
-
-        public func duplicate() -> ProductSize {
-            let dict = self.dictionary!
-            let copy = ProductSize(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                display = try container.decode(String.self, forKey: .display)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 
@@ -1717,9 +1717,9 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSizes: Codable {
-        public var discount: String?
-
         public var price: ProductListingPrice?
+
+        public var sizes: [ProductSize]?
 
         public var stores: ProductSizeStores?
 
@@ -1727,12 +1727,12 @@ public extension ApplicationClient {
 
         public var sizeChart: SizeChart?
 
-        public var sizes: [ProductSize]?
+        public var discount: String?
 
         public enum CodingKeys: String, CodingKey {
-            case discount
-
             case price
+
+            case sizes
 
             case stores
 
@@ -1740,13 +1740,13 @@ public extension ApplicationClient {
 
             case sizeChart = "size_chart"
 
-            case sizes
+            case discount
         }
 
         public init(discount: String? = nil, price: ProductListingPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
-            self.discount = discount
-
             self.price = price
+
+            self.sizes = sizes
 
             self.stores = stores
 
@@ -1754,7 +1754,7 @@ public extension ApplicationClient {
 
             self.sizeChart = sizeChart
 
-            self.sizes = sizes
+            self.discount = discount
         }
 
         public func duplicate() -> ProductSizes {
@@ -1767,7 +1767,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                discount = try container.decode(String.self, forKey: .discount)
+                price = try container.decode(ProductListingPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1775,7 +1775,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                price = try container.decode(ProductListingPrice.self, forKey: .price)
+                sizes = try container.decode([ProductSize].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1807,7 +1807,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizes = try container.decode([ProductSize].self, forKey: .sizes)
+                discount = try container.decode(String.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1818,9 +1818,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
             try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
@@ -1828,7 +1828,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(discount, forKey: .discount)
         }
     }
 
@@ -1837,30 +1837,30 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class AttributeDetail: Codable {
-        public var key: String?
-
         public var logo: String?
 
         public var description: String?
 
+        public var key: String?
+
         public var display: String?
 
         public enum CodingKeys: String, CodingKey {
-            case key
-
             case logo
 
             case description
+
+            case key
 
             case display
         }
 
         public init(description: String? = nil, display: String? = nil, key: String? = nil, logo: String? = nil) {
-            self.key = key
-
             self.logo = logo
 
             self.description = description
+
+            self.key = key
 
             self.display = display
         }
@@ -1873,14 +1873,6 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                key = try container.decode(String.self, forKey: .key)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -1899,6 +1891,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                key = try container.decode(String.self, forKey: .key)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -1910,11 +1910,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(display, forKey: .display)
         }
@@ -1925,20 +1925,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class AttributeMetadata: Codable {
-        public var title: String?
-
         public var details: [AttributeDetail]?
 
-        public enum CodingKeys: String, CodingKey {
-            case title
+        public var title: String?
 
+        public enum CodingKeys: String, CodingKey {
             case details
+
+            case title
         }
 
         public init(details: [AttributeDetail]? = nil, title: String? = nil) {
-            self.title = title
-
             self.details = details
+
+            self.title = title
         }
 
         public func duplicate() -> AttributeMetadata {
@@ -1951,7 +1951,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                details = try container.decode([AttributeDetail].self, forKey: .details)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1959,7 +1959,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                details = try container.decode([AttributeDetail].self, forKey: .details)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1970,9 +1970,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 
@@ -1981,20 +1981,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductsComparisonResponse: Codable {
-        public var items: [ProductDetail]?
-
         public var attributesMetadata: [AttributeMetadata]?
 
-        public enum CodingKeys: String, CodingKey {
-            case items
+        public var items: [ProductDetail]?
 
+        public enum CodingKeys: String, CodingKey {
             case attributesMetadata = "attributes_metadata"
+
+            case items
         }
 
         public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil) {
-            self.items = items
-
             self.attributesMetadata = attributesMetadata
+
+            self.items = items
         }
 
         public func duplicate() -> ProductsComparisonResponse {
@@ -2007,7 +2007,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([ProductDetail].self, forKey: .items)
+                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2015,7 +2015,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
+                items = try container.decode([ProductDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2026,9 +2026,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 
@@ -2037,32 +2037,32 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductCompareResponse: Codable {
-        public var title: String?
+        public var attributesMetadata: [AttributeMetadata]?
 
         public var subtitle: String?
 
         public var items: [ProductDetail]?
 
-        public var attributesMetadata: [AttributeMetadata]?
+        public var title: String?
 
         public enum CodingKeys: String, CodingKey {
-            case title
+            case attributesMetadata = "attributes_metadata"
 
             case subtitle
 
             case items
 
-            case attributesMetadata = "attributes_metadata"
+            case title
         }
 
         public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil, subtitle: String? = nil, title: String? = nil) {
-            self.title = title
+            self.attributesMetadata = attributesMetadata
 
             self.subtitle = subtitle
 
             self.items = items
 
-            self.attributesMetadata = attributesMetadata
+            self.title = title
         }
 
         public func duplicate() -> ProductCompareResponse {
@@ -2075,7 +2075,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2099,7 +2099,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2110,13 +2110,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 
@@ -2165,26 +2165,26 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSimilarItem: Codable {
-        public var title: String?
-
         public var subtitle: String?
 
         public var items: [ProductDetail]?
 
-        public enum CodingKeys: String, CodingKey {
-            case title
+        public var title: String?
 
+        public enum CodingKeys: String, CodingKey {
             case subtitle
 
             case items
+
+            case title
         }
 
         public init(items: [ProductDetail]? = nil, subtitle: String? = nil, title: String? = nil) {
-            self.title = title
-
             self.subtitle = subtitle
 
             self.items = items
+
+            self.title = title
         }
 
         public func duplicate() -> ProductSimilarItem {
@@ -2195,14 +2195,6 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 subtitle = try container.decode(String.self, forKey: .subtitle)
@@ -2219,16 +2211,24 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 
@@ -2277,62 +2277,62 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductVariantItemResponse: Codable {
-        public var uid: Int?
-
-        public var value: String?
-
         public var name: String?
-
-        public var action: ProductListingAction?
-
-        public var slug: String?
 
         public var color: String?
 
-        public var colorName: String?
-
         public var isAvailable: Bool?
+
+        public var action: ProductListingAction?
 
         public var medias: [Media]?
 
+        public var colorName: String?
+
+        public var value: String?
+
+        public var uid: Int?
+
+        public var slug: String?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case value
-
             case name
-
-            case action
-
-            case slug
 
             case color
 
-            case colorName = "color_name"
-
             case isAvailable = "is_available"
 
+            case action
+
             case medias
+
+            case colorName = "color_name"
+
+            case value
+
+            case uid
+
+            case slug
         }
 
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil) {
-            self.uid = uid
-
-            self.value = value
-
             self.name = name
-
-            self.action = action
-
-            self.slug = slug
 
             self.color = color
 
-            self.colorName = colorName
-
             self.isAvailable = isAvailable
 
+            self.action = action
+
             self.medias = medias
+
+            self.colorName = colorName
+
+            self.value = value
+
+            self.uid = uid
+
+            self.slug = slug
         }
 
         public func duplicate() -> ProductVariantItemResponse {
@@ -2345,39 +2345,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2393,7 +2361,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                colorName = try container.decode(String.self, forKey: .colorName)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2401,7 +2369,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2415,28 +2383,60 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                colorName = try container.decode(String.self, forKey: .colorName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(color, forKey: .color)
 
-            try? container.encodeIfPresent(colorName, forKey: .colorName)
-
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(medias, forKey: .medias)
+
+            try? container.encodeIfPresent(colorName, forKey: .colorName)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 
@@ -2447,18 +2447,18 @@ public extension ApplicationClient {
     class ProductVariantResponse: Codable {
         public var items: [ProductVariantItemResponse]?
 
-        public var header: String?
-
         public var key: String?
+
+        public var header: String?
 
         public var displayType: String?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case header
-
             case key
+
+            case header
 
             case displayType = "display_type"
         }
@@ -2466,9 +2466,9 @@ public extension ApplicationClient {
         public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil) {
             self.items = items
 
-            self.header = header
-
             self.key = key
+
+            self.header = header
 
             self.displayType = displayType
         }
@@ -2491,7 +2491,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                header = try container.decode(String.self, forKey: .header)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2499,7 +2499,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                header = try container.decode(String.self, forKey: .header)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2520,9 +2520,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(header, forKey: .header)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(header, forKey: .header)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
         }
@@ -2565,238 +2565,6 @@ public extension ApplicationClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(variants, forKey: .variants)
-        }
-    }
-
-    /*
-         Model: StoreDetail
-         Used By: Catalog
-     */
-    class StoreDetail: Codable {
-        public var name: String?
-
-        public var code: String?
-
-        public var city: String?
-
-        public var id: Int?
-
-        public enum CodingKeys: String, CodingKey {
-            case name
-
-            case code
-
-            case city
-
-            case id
-        }
-
-        public init(city: String? = nil, code: String? = nil, id: Int? = nil, name: String? = nil) {
-            self.name = name
-
-            self.code = code
-
-            self.city = city
-
-            self.id = id
-        }
-
-        public func duplicate() -> StoreDetail {
-            let dict = self.dictionary!
-            let copy = StoreDetail(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                city = try container.decode(String.self, forKey: .city)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(Int.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-        }
-    }
-
-    /*
-         Model: Seller
-         Used By: Catalog
-     */
-    class Seller: Codable {
-        public var uid: Int?
-
-        public var name: String?
-
-        public var count: Int?
-
-        public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case name
-
-            case count
-        }
-
-        public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
-            self.uid = uid
-
-            self.name = name
-
-            self.count = count
-        }
-
-        public func duplicate() -> Seller {
-            let dict = self.dictionary!
-            let copy = Seller(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                count = try container.decode(Int.self, forKey: .count)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(count, forKey: .count)
-        }
-    }
-
-    /*
-         Model: ProductStockPrice
-         Used By: Catalog
-     */
-    class ProductStockPrice: Codable {
-        public var currency: String?
-
-        public var effective: Double?
-
-        public var marked: Double?
-
-        public enum CodingKeys: String, CodingKey {
-            case currency
-
-            case effective
-
-            case marked
-        }
-
-        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil) {
-            self.currency = currency
-
-            self.effective = effective
-
-            self.marked = marked
-        }
-
-        public func duplicate() -> ProductStockPrice {
-            let dict = self.dictionary!
-            let copy = ProductStockPrice(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                effective = try container.decode(Double.self, forKey: .effective)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                marked = try container.decode(Double.self, forKey: .marked)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 
@@ -2857,66 +2625,298 @@ public extension ApplicationClient {
     }
 
     /*
+         Model: Seller
+         Used By: Catalog
+     */
+    class Seller: Codable {
+        public var name: String?
+
+        public var uid: Int?
+
+        public var count: Int?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case uid
+
+            case count
+        }
+
+        public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
+            self.name = name
+
+            self.uid = uid
+
+            self.count = count
+        }
+
+        public func duplicate() -> Seller {
+            let dict = self.dictionary!
+            let copy = Seller(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                count = try container.decode(Int.self, forKey: .count)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(count, forKey: .count)
+        }
+    }
+
+    /*
+         Model: StoreDetail
+         Used By: Catalog
+     */
+    class StoreDetail: Codable {
+        public var name: String?
+
+        public var city: String?
+
+        public var id: Int?
+
+        public var code: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case city
+
+            case id
+
+            case code
+        }
+
+        public init(city: String? = nil, code: String? = nil, id: Int? = nil, name: String? = nil) {
+            self.name = name
+
+            self.city = city
+
+            self.id = id
+
+            self.code = code
+        }
+
+        public func duplicate() -> StoreDetail {
+            let dict = self.dictionary!
+            let copy = StoreDetail(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                city = try container.decode(String.self, forKey: .city)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                id = try container.decode(Int.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(code, forKey: .code)
+        }
+    }
+
+    /*
+         Model: ProductStockPrice
+         Used By: Catalog
+     */
+    class ProductStockPrice: Codable {
+        public var effective: Double?
+
+        public var currency: String?
+
+        public var marked: Double?
+
+        public enum CodingKeys: String, CodingKey {
+            case effective
+
+            case currency
+
+            case marked
+        }
+
+        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil) {
+            self.effective = effective
+
+            self.currency = currency
+
+            self.marked = marked
+        }
+
+        public func duplicate() -> ProductStockPrice {
+            let dict = self.dictionary!
+            let copy = ProductStockPrice(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                effective = try container.decode(Double.self, forKey: .effective)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                marked = try container.decode(Double.self, forKey: .marked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
+        }
+    }
+
+    /*
          Model: ProductStockStatusItem
          Used By: Catalog
      */
     class ProductStockStatusItem: Codable {
-        public var uid: String?
-
-        public var identifier: [String: Any]?
-
-        public var store: StoreDetail?
-
         public var itemId: Int?
-
-        public var seller: Seller?
-
-        public var price: ProductStockPrice?
-
-        public var quantity: Int?
-
-        public var size: String?
 
         public var company: CompanyDetail?
 
+        public var size: String?
+
+        public var seller: Seller?
+
+        public var store: StoreDetail?
+
+        public var identifier: [String: Any]?
+
+        public var price: ProductStockPrice?
+
+        public var uid: String?
+
+        public var quantity: Int?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case identifier
-
-            case store
-
             case itemId = "item_id"
 
-            case seller
-
-            case price
-
-            case quantity
+            case company
 
             case size
 
-            case company
+            case seller
+
+            case store
+
+            case identifier
+
+            case price
+
+            case uid
+
+            case quantity
         }
 
         public init(company: CompanyDetail? = nil, identifier: [String: Any]? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, quantity: Int? = nil, seller: Seller? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
-            self.uid = uid
-
-            self.identifier = identifier
-
-            self.store = store
-
             self.itemId = itemId
 
-            self.seller = seller
-
-            self.price = price
-
-            self.quantity = quantity
+            self.company = company
 
             self.size = size
 
-            self.company = company
+            self.seller = seller
+
+            self.store = store
+
+            self.identifier = identifier
+
+            self.price = price
+
+            self.uid = uid
+
+            self.quantity = quantity
         }
 
         public func duplicate() -> ProductStockStatusItem {
@@ -2929,30 +2929,6 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identifier = try container.decode([String: Any].self, forKey: .identifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                store = try container.decode(StoreDetail.self, forKey: .store)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -2961,23 +2937,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                seller = try container.decode(Seller.self, forKey: .seller)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode(ProductStockPrice.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                company = try container.decode(CompanyDetail.self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2993,7 +2953,47 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                company = try container.decode(CompanyDetail.self, forKey: .company)
+                seller = try container.decode(Seller.self, forKey: .seller)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                store = try container.decode(StoreDetail.self, forKey: .store)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(ProductStockPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -3004,23 +3004,23 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(store, forKey: .store)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(seller, forKey: .seller)
-
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(seller, forKey: .seller)
+
+            try? container.encodeIfPresent(store, forKey: .store)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 
@@ -3115,758 +3115,84 @@ public extension ApplicationClient {
     }
 
     /*
-         Model: ProductVariantListingResponse
-         Used By: Catalog
-     */
-    class ProductVariantListingResponse: Codable {
-        public var items: [ProductVariantItemResponse]?
-
-        public var total: Int?
-
-        public var displayType: String?
-
-        public var key: String?
-
-        public var header: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case items
-
-            case total
-
-            case displayType = "display_type"
-
-            case key
-
-            case header
-        }
-
-        public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil, total: Int? = nil) {
-            self.items = items
-
-            self.total = total
-
-            self.displayType = displayType
-
-            self.key = key
-
-            self.header = header
-        }
-
-        public func duplicate() -> ProductVariantListingResponse {
-            let dict = self.dictionary!
-            let copy = ProductVariantListingResponse(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                total = try container.decode(Int.self, forKey: .total)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                displayType = try container.decode(String.self, forKey: .displayType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                key = try container.decode(String.self, forKey: .key)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                header = try container.decode(String.self, forKey: .header)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(total, forKey: .total)
-
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
-
-            try? container.encodeIfPresent(key, forKey: .key)
-
-            try? container.encodeIfPresent(header, forKey: .header)
-        }
-    }
-
-    /*
-         Model: ProductListingDetail
-         Used By: Catalog
-     */
-    class ProductListingDetail: Codable {
-        public var uid: Int?
-
-        public var similars: [String]?
-
-        public var brand: ProductBrand?
-
-        public var variants: [ProductVariantListingResponse]?
-
-        public var attributes: [String: Any]?
-
-        public var categories: [ProductBrand]?
-
-        public var ratingCount: Int?
-
-        public var itemCode: String?
-
-        public var type: String?
-
-        public var highlights: [String]?
-
-        public var customMeta: [MetaFields]?
-
-        public var itemType: String?
-
-        public var name: String?
-
-        public var action: ProductListingAction?
-
-        public var color: String?
-
-        public var price: ProductListingPrice?
-
-        public var productOnlineDate: String?
-
-        public var medias: [Media]?
-
-        public var tryouts: [String]?
-
-        public var slug: String
-
-        public var sellable: Bool?
-
-        public var hasVariant: Bool?
-
-        public var discount: String?
-
-        public var customJson: [String: Any]?
-
-        public var imageNature: String?
-
-        public var shortDescription: String?
-
-        public var rating: Double?
-
-        public var teaserTag: String?
-
-        public var groupedAttributes: [ProductDetailGroupedAttribute]?
-
-        public var description: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case similars
-
-            case brand
-
-            case variants
-
-            case attributes
-
-            case categories
-
-            case ratingCount = "rating_count"
-
-            case itemCode = "item_code"
-
-            case type
-
-            case highlights
-
-            case customMeta = "_custom_meta"
-
-            case itemType = "item_type"
-
-            case name
-
-            case action
-
-            case color
-
-            case price
-
-            case productOnlineDate = "product_online_date"
-
-            case medias
-
-            case tryouts
-
-            case slug
-
-            case sellable
-
-            case hasVariant = "has_variant"
-
-            case discount
-
-            case customJson = "_custom_json"
-
-            case imageNature = "image_nature"
-
-            case shortDescription = "short_description"
-
-            case rating
-
-            case teaserTag = "teaser_tag"
-
-            case groupedAttributes = "grouped_attributes"
-
-            case description
-        }
-
-        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantListingResponse]? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
-            self.uid = uid
-
-            self.similars = similars
-
-            self.brand = brand
-
-            self.variants = variants
-
-            self.attributes = attributes
-
-            self.categories = categories
-
-            self.ratingCount = ratingCount
-
-            self.itemCode = itemCode
-
-            self.type = type
-
-            self.highlights = highlights
-
-            self.customMeta = customMeta
-
-            self.itemType = itemType
-
-            self.name = name
-
-            self.action = action
-
-            self.color = color
-
-            self.price = price
-
-            self.productOnlineDate = productOnlineDate
-
-            self.medias = medias
-
-            self.tryouts = tryouts
-
-            self.slug = slug
-
-            self.sellable = sellable
-
-            self.hasVariant = hasVariant
-
-            self.discount = discount
-
-            self.customJson = customJson
-
-            self.imageNature = imageNature
-
-            self.shortDescription = shortDescription
-
-            self.rating = rating
-
-            self.teaserTag = teaserTag
-
-            self.groupedAttributes = groupedAttributes
-
-            self.description = description
-        }
-
-        public func duplicate() -> ProductListingDetail {
-            let dict = self.dictionary!
-            let copy = ProductListingDetail(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                similars = try container.decode([String].self, forKey: .similars)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brand = try container.decode(ProductBrand.self, forKey: .brand)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                variants = try container.decode([ProductVariantListingResponse].self, forKey: .variants)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                attributes = try container.decode([String: Any].self, forKey: .attributes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categories = try container.decode([ProductBrand].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ratingCount = try container.decode(Int.self, forKey: .ratingCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                highlights = try container.decode([String].self, forKey: .highlights)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemType = try container.decode(String.self, forKey: .itemType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                color = try container.decode(String.self, forKey: .color)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode(ProductListingPrice.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                medias = try container.decode([Media].self, forKey: .medias)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tryouts = try container.decode([String].self, forKey: .tryouts)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            do {
-                sellable = try container.decode(Bool.self, forKey: .sellable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                hasVariant = try container.decode(Bool.self, forKey: .hasVariant)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(String.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                imageNature = try container.decode(String.self, forKey: .imageNature)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shortDescription = try container.decode(String.self, forKey: .shortDescription)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                rating = try container.decode(Double.self, forKey: .rating)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                teaserTag = try container.decode(String.self, forKey: .teaserTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                groupedAttributes = try container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(similars, forKey: .similars)
-
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(variants, forKey: .variants)
-
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
-
-            try? container.encodeIfPresent(categories, forKey: .categories)
-
-            try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
-
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(highlights, forKey: .highlights)
-
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
-
-            try? container.encodeIfPresent(itemType, forKey: .itemType)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(color, forKey: .color)
-
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
-
-            try? container.encodeIfPresent(medias, forKey: .medias)
-
-            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
-
-            try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(imageNature, forKey: .imageNature)
-
-            try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
-
-            try? container.encodeIfPresent(rating, forKey: .rating)
-
-            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
-
-            try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
-
-            try? container.encodeIfPresent(description, forKey: .description)
-        }
-    }
-
-    /*
-         Model: ProductSortOn
-         Used By: Catalog
-     */
-    class ProductSortOn: Codable {
-        public var value: String?
-
-        public var name: String?
-
-        public var isSelected: Bool?
-
-        public enum CodingKeys: String, CodingKey {
-            case value
-
-            case name
-
-            case isSelected = "is_selected"
-        }
-
-        public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
-            self.value = value
-
-            self.name = name
-
-            self.isSelected = isSelected
-        }
-
-        public func duplicate() -> ProductSortOn {
-            let dict = self.dictionary!
-            let copy = ProductSortOn(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-        }
-    }
-
-    /*
          Model: ProductFiltersValue
          Used By: Catalog
      */
     class ProductFiltersValue: Codable {
-        public var currencySymbol: String?
-
-        public var display: String
-
-        public var queryFormat: String?
-
         public var value: String?
-
-        public var selectedMax: Int?
-
-        public var displayFormat: String?
-
-        public var selectedMin: Int?
 
         public var max: Int?
 
-        public var currencyCode: String?
-
-        public var count: Int?
-
-        public var isSelected: Bool
+        public var selectedMin: Int?
 
         public var min: Int?
 
+        public var isSelected: Bool
+
+        public var queryFormat: String?
+
+        public var currencySymbol: String?
+
+        public var displayFormat: String?
+
+        public var selectedMax: Int?
+
+        public var currencyCode: String?
+
+        public var display: String
+
+        public var count: Int?
+
         public enum CodingKeys: String, CodingKey {
-            case currencySymbol = "currency_symbol"
-
-            case display
-
-            case queryFormat = "query_format"
-
             case value
-
-            case selectedMax = "selected_max"
-
-            case displayFormat = "display_format"
-
-            case selectedMin = "selected_min"
 
             case max
 
-            case currencyCode = "currency_code"
+            case selectedMin = "selected_min"
 
-            case count
+            case min
 
             case isSelected = "is_selected"
 
-            case min
+            case queryFormat = "query_format"
+
+            case currencySymbol = "currency_symbol"
+
+            case displayFormat = "display_format"
+
+            case selectedMax = "selected_max"
+
+            case currencyCode = "currency_code"
+
+            case display
+
+            case count
         }
 
         public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
-            self.currencySymbol = currencySymbol
-
-            self.display = display
-
-            self.queryFormat = queryFormat
-
             self.value = value
-
-            self.selectedMax = selectedMax
-
-            self.displayFormat = displayFormat
-
-            self.selectedMin = selectedMin
 
             self.max = max
 
-            self.currencyCode = currencyCode
+            self.selectedMin = selectedMin
 
-            self.count = count
+            self.min = min
 
             self.isSelected = isSelected
 
-            self.min = min
+            self.queryFormat = queryFormat
+
+            self.currencySymbol = currencySymbol
+
+            self.displayFormat = displayFormat
+
+            self.selectedMax = selectedMax
+
+            self.currencyCode = currencyCode
+
+            self.display = display
+
+            self.count = count
         }
 
         public func duplicate() -> ProductFiltersValue {
@@ -3879,49 +3205,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            display = try container.decode(String.self, forKey: .display)
-
-            do {
-                queryFormat = try container.decode(String.self, forKey: .queryFormat)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                selectedMax = try container.decode(Int.self, forKey: .selectedMax)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                displayFormat = try container.decode(String.self, forKey: .displayFormat)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                selectedMin = try container.decode(Int.self, forKey: .selectedMin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -3937,7 +3221,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                selectedMin = try container.decode(Int.self, forKey: .selectedMin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -3945,7 +3229,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                min = try container.decode(Int.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -3955,7 +3239,49 @@ public extension ApplicationClient {
             isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             do {
-                min = try container.decode(Int.self, forKey: .min)
+                queryFormat = try container.decode(String.self, forKey: .queryFormat)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayFormat = try container.decode(String.self, forKey: .displayFormat)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                selectedMax = try container.decode(Int.self, forKey: .selectedMax)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            display = try container.decode(String.self, forKey: .display)
+
+            do {
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -3966,29 +3292,29 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
-            try? container.encodeIfPresent(display, forKey: .display)
-
-            try? container.encodeIfPresent(queryFormat, forKey: .queryFormat)
-
             try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(selectedMax, forKey: .selectedMax)
-
-            try? container.encodeIfPresent(displayFormat, forKey: .displayFormat)
-
-            try? container.encodeIfPresent(selectedMin, forKey: .selectedMin)
 
             try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(selectedMin, forKey: .selectedMin)
 
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encodeIfPresent(min, forKey: .min)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(queryFormat, forKey: .queryFormat)
+
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(displayFormat, forKey: .displayFormat)
+
+            try? container.encodeIfPresent(selectedMax, forKey: .selectedMax)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 
@@ -3997,32 +3323,32 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductFiltersKey: Codable {
-        public var logo: String?
-
         public var name: String
 
-        public var kind: String?
+        public var logo: String?
 
         public var display: String
 
-        public enum CodingKeys: String, CodingKey {
-            case logo
+        public var kind: String?
 
+        public enum CodingKeys: String, CodingKey {
             case name
 
-            case kind
+            case logo
 
             case display
+
+            case kind
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String) {
-            self.logo = logo
-
             self.name = name
 
-            self.kind = kind
+            self.logo = logo
 
             self.display = display
+
+            self.kind = kind
         }
 
         public func duplicate() -> ProductFiltersKey {
@@ -4034,6 +3360,8 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -4042,7 +3370,7 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            display = try container.decode(String.self, forKey: .display)
 
             do {
                 kind = try container.decode(String.self, forKey: .kind)
@@ -4051,20 +3379,18 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            display = try container.decode(String.self, forKey: .display)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(kind, forKey: .kind)
         }
     }
 
@@ -4113,36 +3439,710 @@ public extension ApplicationClient {
     }
 
     /*
+         Model: ProductSortOn
+         Used By: Catalog
+     */
+    class ProductSortOn: Codable {
+        public var name: String?
+
+        public var value: String?
+
+        public var isSelected: Bool?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case value
+
+            case isSelected = "is_selected"
+        }
+
+        public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
+            self.name = name
+
+            self.value = value
+
+            self.isSelected = isSelected
+        }
+
+        public func duplicate() -> ProductSortOn {
+            let dict = self.dictionary!
+            let copy = ProductSortOn(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+        }
+    }
+
+    /*
+         Model: ProductVariantListingResponse
+         Used By: Catalog
+     */
+    class ProductVariantListingResponse: Codable {
+        public var key: String?
+
+        public var header: String?
+
+        public var total: Int?
+
+        public var items: [ProductVariantItemResponse]?
+
+        public var displayType: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case key
+
+            case header
+
+            case total
+
+            case items
+
+            case displayType = "display_type"
+        }
+
+        public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil, total: Int? = nil) {
+            self.key = key
+
+            self.header = header
+
+            self.total = total
+
+            self.items = items
+
+            self.displayType = displayType
+        }
+
+        public func duplicate() -> ProductVariantListingResponse {
+            let dict = self.dictionary!
+            let copy = ProductVariantListingResponse(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                key = try container.decode(String.self, forKey: .key)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                header = try container.decode(String.self, forKey: .header)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                total = try container.decode(Int.self, forKey: .total)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayType = try container.decode(String.self, forKey: .displayType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(header, forKey: .header)
+
+            try? container.encodeIfPresent(total, forKey: .total)
+
+            try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
+        }
+    }
+
+    /*
+         Model: ProductListingDetail
+         Used By: Catalog
+     */
+    class ProductListingDetail: Codable {
+        public var name: String?
+
+        public var tryouts: [String]?
+
+        public var type: String?
+
+        public var rating: Double?
+
+        public var itemType: String?
+
+        public var action: ProductListingAction?
+
+        public var hasVariant: Bool?
+
+        public var shortDescription: String?
+
+        public var discount: String?
+
+        public var imageNature: String?
+
+        public var color: String?
+
+        public var categories: [ProductBrand]?
+
+        public var description: String?
+
+        public var highlights: [String]?
+
+        public var slug: String
+
+        public var customMeta: [MetaFields]?
+
+        public var medias: [Media]?
+
+        public var itemCode: String?
+
+        public var groupedAttributes: [ProductDetailGroupedAttribute]?
+
+        public var ratingCount: Int?
+
+        public var price: ProductListingPrice?
+
+        public var sellable: Bool?
+
+        public var customJson: [String: Any]?
+
+        public var productOnlineDate: String?
+
+        public var brand: ProductBrand?
+
+        public var attributes: [String: Any]?
+
+        public var teaserTag: String?
+
+        public var similars: [String]?
+
+        public var variants: [ProductVariantListingResponse]?
+
+        public var uid: Int?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case tryouts
+
+            case type
+
+            case rating
+
+            case itemType = "item_type"
+
+            case action
+
+            case hasVariant = "has_variant"
+
+            case shortDescription = "short_description"
+
+            case discount
+
+            case imageNature = "image_nature"
+
+            case color
+
+            case categories
+
+            case description
+
+            case highlights
+
+            case slug
+
+            case customMeta = "_custom_meta"
+
+            case medias
+
+            case itemCode = "item_code"
+
+            case groupedAttributes = "grouped_attributes"
+
+            case ratingCount = "rating_count"
+
+            case price
+
+            case sellable
+
+            case customJson = "_custom_json"
+
+            case productOnlineDate = "product_online_date"
+
+            case brand
+
+            case attributes
+
+            case teaserTag = "teaser_tag"
+
+            case similars
+
+            case variants
+
+            case uid
+        }
+
+        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantListingResponse]? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+            self.name = name
+
+            self.tryouts = tryouts
+
+            self.type = type
+
+            self.rating = rating
+
+            self.itemType = itemType
+
+            self.action = action
+
+            self.hasVariant = hasVariant
+
+            self.shortDescription = shortDescription
+
+            self.discount = discount
+
+            self.imageNature = imageNature
+
+            self.color = color
+
+            self.categories = categories
+
+            self.description = description
+
+            self.highlights = highlights
+
+            self.slug = slug
+
+            self.customMeta = customMeta
+
+            self.medias = medias
+
+            self.itemCode = itemCode
+
+            self.groupedAttributes = groupedAttributes
+
+            self.ratingCount = ratingCount
+
+            self.price = price
+
+            self.sellable = sellable
+
+            self.customJson = customJson
+
+            self.productOnlineDate = productOnlineDate
+
+            self.brand = brand
+
+            self.attributes = attributes
+
+            self.teaserTag = teaserTag
+
+            self.similars = similars
+
+            self.variants = variants
+
+            self.uid = uid
+        }
+
+        public func duplicate() -> ProductListingDetail {
+            let dict = self.dictionary!
+            let copy = ProductListingDetail(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                tryouts = try container.decode([String].self, forKey: .tryouts)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                rating = try container.decode(Double.self, forKey: .rating)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemType = try container.decode(String.self, forKey: .itemType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                hasVariant = try container.decode(Bool.self, forKey: .hasVariant)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shortDescription = try container.decode(String.self, forKey: .shortDescription)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                imageNature = try container.decode(String.self, forKey: .imageNature)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                color = try container.decode(String.self, forKey: .color)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                categories = try container.decode([ProductBrand].self, forKey: .categories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                highlights = try container.decode([String].self, forKey: .highlights)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            slug = try container.decode(String.self, forKey: .slug)
+
+            do {
+                customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                medias = try container.decode([Media].self, forKey: .medias)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemCode = try container.decode(String.self, forKey: .itemCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                groupedAttributes = try container.decode([ProductDetailGroupedAttribute].self, forKey: .groupedAttributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                ratingCount = try container.decode(Int.self, forKey: .ratingCount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(ProductListingPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellable = try container.decode(Bool.self, forKey: .sellable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(ProductBrand.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                attributes = try container.decode([String: Any].self, forKey: .attributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                teaserTag = try container.decode(String.self, forKey: .teaserTag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                similars = try container.decode([String].self, forKey: .similars)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                variants = try container.decode([ProductVariantListingResponse].self, forKey: .variants)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(rating, forKey: .rating)
+
+            try? container.encodeIfPresent(itemType, forKey: .itemType)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
+
+            try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(imageNature, forKey: .imageNature)
+
+            try? container.encodeIfPresent(color, forKey: .color)
+
+            try? container.encodeIfPresent(categories, forKey: .categories)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(highlights, forKey: .highlights)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+
+            try? container.encodeIfPresent(medias, forKey: .medias)
+
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
+
+            try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
+
+            try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(sellable, forKey: .sellable)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
+            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
+
+            try? container.encodeIfPresent(similars, forKey: .similars)
+
+            try? container.encodeIfPresent(variants, forKey: .variants)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+        }
+    }
+
+    /*
          Model: ProductListingResponse
          Used By: Catalog
      */
     class ProductListingResponse: Codable {
-        public var items: [ProductListingDetail]?
-
-        public var sortOn: [ProductSortOn]?
-
         public var filters: [ProductFilters]?
 
         public var page: Page
 
+        public var sortOn: [ProductSortOn]?
+
+        public var items: [ProductListingDetail]?
+
         public enum CodingKeys: String, CodingKey {
-            case items
-
-            case sortOn = "sort_on"
-
             case filters
 
             case page
+
+            case sortOn = "sort_on"
+
+            case items
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
-            self.items = items
-
-            self.sortOn = sortOn
-
             self.filters = filters
 
             self.page = page
+
+            self.sortOn = sortOn
+
+            self.items = items
         }
 
         public func duplicate() -> ProductListingResponse {
@@ -4155,12 +4155,14 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
+                filters = try container.decode([ProductFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            page = try container.decode(Page.self, forKey: .page)
 
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
@@ -4171,26 +4173,24 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                filters = try container.decode([ProductFilters].self, forKey: .filters)
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 
@@ -4255,56 +4255,56 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class BrandItem: Codable {
-        public var uid: Int?
+        public var departments: [String]?
+
+        public var name: String?
+
+        public var banners: ImageUrls?
+
+        public var action: ProductListingAction?
 
         public var logo: Media?
 
         public var discount: String?
 
-        public var name: String?
-
-        public var action: ProductListingAction?
+        public var uid: Int?
 
         public var slug: String?
 
-        public var departments: [String]?
-
-        public var banners: ImageUrls?
-
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case departments
+
+            case name
+
+            case banners
+
+            case action
 
             case logo
 
             case discount
 
-            case name
-
-            case action
+            case uid
 
             case slug
-
-            case departments
-
-            case banners
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.uid = uid
+            self.departments = departments
+
+            self.name = name
+
+            self.banners = banners
+
+            self.action = action
 
             self.logo = logo
 
             self.discount = discount
 
-            self.name = name
-
-            self.action = action
+            self.uid = uid
 
             self.slug = slug
-
-            self.departments = departments
-
-            self.banners = banners
         }
 
         public func duplicate() -> BrandItem {
@@ -4317,7 +4317,31 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                departments = try container.decode([String].self, forKey: .departments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -4341,15 +4365,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -4363,42 +4379,26 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                departments = try container.decode([String].self, forKey: .departments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(departments, forKey: .departments)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(banners, forKey: .banners)
         }
     }
 
@@ -4457,18 +4457,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class BrandDetailResponse: Codable {
-        public var logo: Media?
-
         public var name: String?
+
+        public var logo: Media?
 
         public var banners: ImageUrls?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
             case name
+
+            case logo
 
             case banners
 
@@ -4476,9 +4476,9 @@ public extension ApplicationClient {
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.logo = logo
-
             self.name = name
+
+            self.logo = logo
 
             self.banners = banners
 
@@ -4495,7 +4495,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -4503,7 +4503,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -4530,9 +4530,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
@@ -4601,50 +4601,50 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ThirdLevelChild: Codable {
-        public var uid: Int?
-
-        public var customJson: [String: Any]?
-
         public var name: String?
-
-        public var slug: String?
-
-        public var action: ProductListingAction?
 
         public var childs: [[String: Any]]?
 
         public var banners: ImageUrls?
 
+        public var action: ProductListingAction?
+
+        public var uid: Int?
+
+        public var customJson: [String: Any]?
+
+        public var slug: String?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case customJson = "_custom_json"
-
             case name
-
-            case slug
-
-            case action
 
             case childs
 
             case banners
+
+            case action
+
+            case uid
+
+            case customJson = "_custom_json"
+
+            case slug
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [[String: Any]]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.uid = uid
-
-            self.customJson = customJson
-
             self.name = name
-
-            self.slug = slug
-
-            self.action = action
 
             self.childs = childs
 
             self.banners = banners
+
+            self.action = action
+
+            self.uid = uid
+
+            self.customJson = customJson
+
+            self.slug = slug
         }
 
         public func duplicate() -> ThirdLevelChild {
@@ -4657,39 +4657,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -4711,86 +4679,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-        }
 
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
-            try? container.encodeIfPresent(banners, forKey: .banners)
-        }
-    }
-
-    /*
-         Model: SecondLevelChild
-         Used By: Catalog
-     */
-    class SecondLevelChild: Codable {
-        public var uid: Int?
-
-        public var customJson: [String: Any]?
-
-        public var name: String?
-
-        public var slug: String?
-
-        public var action: ProductListingAction?
-
-        public var childs: [ThirdLevelChild]?
-
-        public var banners: ImageUrls?
-
-        public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case customJson = "_custom_json"
-
-            case name
-
-            case slug
-
-            case action
-
-            case childs
-
-            case banners
-        }
-
-        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.uid = uid
-
-            self.customJson = customJson
-
-            self.name = name
-
-            self.slug = slug
-
-            self.action = action
-
-            self.childs = childs
-
-            self.banners = banners
-        }
-
-        public func duplicate() -> SecondLevelChild {
-            let dict = self.dictionary!
-            let copy = SecondLevelChild(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -4809,23 +4705,95 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+        }
+    }
+
+    /*
+         Model: SecondLevelChild
+         Used By: Catalog
+     */
+    class SecondLevelChild: Codable {
+        public var name: String?
+
+        public var childs: [ThirdLevelChild]?
+
+        public var banners: ImageUrls?
+
+        public var action: ProductListingAction?
+
+        public var uid: Int?
+
+        public var customJson: [String: Any]?
+
+        public var slug: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case childs
+
+            case banners
+
+            case action
+
+            case uid
+
+            case customJson = "_custom_json"
+
+            case slug
+        }
+
+        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+            self.name = name
+
+            self.childs = childs
+
+            self.banners = banners
+
+            self.action = action
+
+            self.uid = uid
+
+            self.customJson = customJson
+
+            self.slug = slug
+        }
+
+        public func duplicate() -> SecondLevelChild {
+            let dict = self.dictionary!
+            let copy = SecondLevelChild(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -4847,86 +4815,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-        }
 
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
-            try? container.encodeIfPresent(banners, forKey: .banners)
-        }
-    }
-
-    /*
-         Model: Child
-         Used By: Catalog
-     */
-    class Child: Codable {
-        public var uid: Int?
-
-        public var customJson: [String: Any]?
-
-        public var name: String?
-
-        public var slug: String?
-
-        public var action: ProductListingAction?
-
-        public var childs: [SecondLevelChild]?
-
-        public var banners: ImageUrls?
-
-        public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case customJson = "_custom_json"
-
-            case name
-
-            case slug
-
-            case action
-
-            case childs
-
-            case banners
-        }
-
-        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [SecondLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.uid = uid
-
-            self.customJson = customJson
-
-            self.name = name
-
-            self.slug = slug
-
-            self.action = action
-
-            self.childs = childs
-
-            self.banners = banners
-        }
-
-        public func duplicate() -> Child {
-            let dict = self.dictionary!
-            let copy = Child(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -4945,23 +4841,95 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+        }
+    }
+
+    /*
+         Model: Child
+         Used By: Catalog
+     */
+    class Child: Codable {
+        public var name: String?
+
+        public var childs: [SecondLevelChild]?
+
+        public var banners: ImageUrls?
+
+        public var action: ProductListingAction?
+
+        public var uid: Int?
+
+        public var customJson: [String: Any]?
+
+        public var slug: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case childs
+
+            case banners
+
+            case action
+
+            case uid
+
+            case customJson = "_custom_json"
+
+            case slug
+        }
+
+        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [SecondLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+            self.name = name
+
+            self.childs = childs
+
+            self.banners = banners
+
+            self.action = action
+
+            self.uid = uid
+
+            self.customJson = customJson
+
+            self.slug = slug
+        }
+
+        public func duplicate() -> Child {
+            let dict = self.dictionary!
+            let copy = Child(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -4983,24 +4951,56 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 
@@ -5009,44 +5009,44 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class CategoryItems: Codable {
-        public var uid: Int?
-
         public var name: String?
-
-        public var action: ProductListingAction?
-
-        public var slug: String?
 
         public var childs: [Child]?
 
         public var banners: ImageUrls?
 
+        public var action: ProductListingAction?
+
+        public var uid: Int?
+
+        public var slug: String?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
-
             case name
-
-            case action
-
-            case slug
 
             case childs
 
             case banners
+
+            case action
+
+            case uid
+
+            case slug
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.uid = uid
-
             self.name = name
-
-            self.action = action
-
-            self.slug = slug
 
             self.childs = childs
 
             self.banners = banners
+
+            self.action = action
+
+            self.uid = uid
+
+            self.slug = slug
         }
 
         public func duplicate() -> CategoryItems {
@@ -5059,31 +5059,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -5105,22 +5081,46 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 
@@ -5129,20 +5129,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class DepartmentCategoryTree: Codable {
-        public var items: [CategoryItems]?
-
         public var department: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case items
+        public var items: [CategoryItems]?
 
+        public enum CodingKeys: String, CodingKey {
             case department
+
+            case items
         }
 
         public init(department: String? = nil, items: [CategoryItems]? = nil) {
-            self.items = items
-
             self.department = department
+
+            self.items = items
         }
 
         public func duplicate() -> DepartmentCategoryTree {
@@ -5155,7 +5155,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([CategoryItems].self, forKey: .items)
+                department = try container.decode(String.self, forKey: .department)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -5163,7 +5163,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                department = try container.decode(String.self, forKey: .department)
+                items = try container.decode([CategoryItems].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -5174,9 +5174,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(department, forKey: .department)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 
@@ -5241,18 +5241,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class CategoryMetaResponse: Codable {
-        public var logo: Media?
-
         public var name: String?
+
+        public var logo: Media?
 
         public var banners: ImageUrls?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
             case name
+
+            case logo
 
             case banners
 
@@ -5260,9 +5260,9 @@ public extension ApplicationClient {
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.logo = logo
-
             self.name = name
+
+            self.logo = logo
 
             self.banners = banners
 
@@ -5279,7 +5279,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -5287,7 +5287,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -5314,9 +5314,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
@@ -5395,36 +5395,36 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class Department: Codable {
-        public var uid: Int?
-
-        public var logo: Media?
+        public var name: String?
 
         public var priorityOrder: Int?
 
-        public var name: String?
+        public var logo: Media?
+
+        public var uid: Int?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case logo
+            case name
 
             case priorityOrder = "priority_order"
 
-            case name
+            case logo
+
+            case uid
 
             case slug
         }
 
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.uid = uid
-
-            self.logo = logo
+            self.name = name
 
             self.priorityOrder = priorityOrder
 
-            self.name = name
+            self.logo = logo
+
+            self.uid = uid
 
             self.slug = slug
         }
@@ -5439,15 +5439,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -5463,7 +5455,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -5482,13 +5482,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }
@@ -5539,30 +5539,30 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class AutocompleteItem: Codable {
+        public var type: String?
+
         public var logo: Media?
 
         public var action: ProductListingAction?
 
-        public var type: String?
-
         public var display: String?
 
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case logo
 
             case action
-
-            case type
 
             case display
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil) {
+            self.type = type
+
             self.logo = logo
 
             self.action = action
-
-            self.type = type
 
             self.display = display
         }
@@ -5575,6 +5575,14 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 logo = try container.decode(Media.self, forKey: .logo)
@@ -5593,14 +5601,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -5612,11 +5612,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(type, forKey: .type)
+
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(display, forKey: .display)
         }
@@ -5663,358 +5663,30 @@ public extension ApplicationClient {
     }
 
     /*
-         Model: GetCollectionDetailNest
-         Used By: Catalog
-     */
-    class GetCollectionDetailNest: Codable {
-        public var schedule: [String: Any]?
-
-        public var uid: String?
-
-        public var tag: [String]?
-
-        public var type: String?
-
-        public var allowFacets: Bool?
-
-        public var allowSort: Bool?
-
-        public var visibleFacetsKeys: [String]?
-
-        public var name: String?
-
-        public var action: ProductListingAction?
-
-        public var meta: [String: Any]?
-
-        public var appId: String?
-
-        public var slug: String?
-
-        public var banners: ImageUrls?
-
-        public var logo: Media?
-
-        public var cron: [String: Any]?
-
-        public var isActive: Bool?
-
-        public var query: [String: Any]?
-
-        public var description: String?
-
-        public var badge: [String: Any]?
-
-        public enum CodingKeys: String, CodingKey {
-            case schedule = "_schedule"
-
-            case uid
-
-            case tag
-
-            case type
-
-            case allowFacets = "allow_facets"
-
-            case allowSort = "allow_sort"
-
-            case visibleFacetsKeys = "visible_facets_keys"
-
-            case name
-
-            case action
-
-            case meta
-
-            case appId = "app_id"
-
-            case slug
-
-            case banners
-
-            case logo
-
-            case cron
-
-            case isActive = "is_active"
-
-            case query
-
-            case description
-
-            case badge
-        }
-
-        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, query: [String: Any]? = nil, slug: String? = nil, tag: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
-            self.schedule = schedule
-
-            self.uid = uid
-
-            self.tag = tag
-
-            self.type = type
-
-            self.allowFacets = allowFacets
-
-            self.allowSort = allowSort
-
-            self.visibleFacetsKeys = visibleFacetsKeys
-
-            self.name = name
-
-            self.action = action
-
-            self.meta = meta
-
-            self.appId = appId
-
-            self.slug = slug
-
-            self.banners = banners
-
-            self.logo = logo
-
-            self.cron = cron
-
-            self.isActive = isActive
-
-            self.query = query
-
-            self.description = description
-
-            self.badge = badge
-        }
-
-        public func duplicate() -> GetCollectionDetailNest {
-            let dict = self.dictionary!
-            let copy = GetCollectionDetailNest(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                schedule = try container.decode([String: Any].self, forKey: .schedule)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tag = try container.decode([String].self, forKey: .tag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                allowSort = try container.decode(Bool.self, forKey: .allowSort)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                appId = try container.decode(String.self, forKey: .appId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(Media.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cron = try container.decode([String: Any].self, forKey: .cron)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                query = try container.decode([String: Any].self, forKey: .query)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                badge = try container.decode([String: Any].self, forKey: .badge)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(tag, forKey: .tag)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
-
-            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
-
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(banners, forKey: .banners)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(cron, forKey: .cron)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(query, forKey: .query)
-
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(badge, forKey: .badge)
-        }
-    }
-
-    /*
          Model: CollectionListingFilterTag
          Used By: Catalog
      */
     class CollectionListingFilterTag: Codable {
         public var name: String?
 
-        public var display: String?
-
         public var isSelected: Bool?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case display
-
             case isSelected = "is_selected"
+
+            case display
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
             self.name = name
 
-            self.display = display
-
             self.isSelected = isSelected
+
+            self.display = display
         }
 
         public func duplicate() -> CollectionListingFilterTag {
@@ -6035,7 +5707,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6043,7 +5715,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6056,9 +5728,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 
@@ -6069,24 +5741,24 @@ public extension ApplicationClient {
     class CollectionListingFilterType: Codable {
         public var name: String?
 
-        public var display: String?
-
         public var isSelected: Bool?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case display
-
             case isSelected = "is_selected"
+
+            case display
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
             self.name = name
 
-            self.display = display
-
             self.isSelected = isSelected
+
+            self.display = display
         }
 
         public func duplicate() -> CollectionListingFilterType {
@@ -6107,7 +5779,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6115,7 +5787,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6128,9 +5800,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 
@@ -6191,185 +5863,131 @@ public extension ApplicationClient {
     }
 
     /*
-         Model: GetCollectionListingResponse
+         Model: GetCollectionDetailNest
          Used By: Catalog
      */
-    class GetCollectionListingResponse: Codable {
-        public var items: [GetCollectionDetailNest]?
-
-        public var filters: CollectionListingFilter?
-
-        public var page: Page
-
-        public enum CodingKeys: String, CodingKey {
-            case items
-
-            case filters
-
-            case page
-        }
-
-        public init(filters: CollectionListingFilter? = nil, items: [GetCollectionDetailNest]? = nil, page: Page) {
-            self.items = items
-
-            self.filters = filters
-
-            self.page = page
-        }
-
-        public func duplicate() -> GetCollectionListingResponse {
-            let dict = self.dictionary!
-            let copy = GetCollectionListingResponse(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                items = try container.decode([GetCollectionDetailNest].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                filters = try container.decode(CollectionListingFilter.self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(page, forKey: .page)
-        }
-    }
-
-    /*
-         Model: CollectionDetailResponse
-         Used By: Catalog
-     */
-    class CollectionDetailResponse: Codable {
-        public var schedule: [String: Any]?
-
-        public var logo: Media?
-
-        public var allowSort: Bool?
-
-        public var visibleFacetsKeys: [String]?
-
-        public var meta: [String: Any]?
-
-        public var appId: String?
-
-        public var cron: [String: Any]?
-
+    class GetCollectionDetailNest: Codable {
         public var name: String?
-
-        public var slug: String?
 
         public var type: String?
 
+        public var allowSort: Bool?
+
+        public var action: ProductListingAction?
+
+        public var cron: [String: Any]?
+
         public var tag: [String]?
 
-        public var allowFacets: Bool?
-
-        public var isActive: Bool?
-
-        public var banners: ImageUrls?
-
-        public var query: [String: Any]?
+        public var visibleFacetsKeys: [String]?
 
         public var description: String?
 
+        public var logo: Media?
+
+        public var meta: [String: Any]?
+
+        public var schedule: [String: Any]?
+
+        public var slug: String?
+
+        public var appId: String?
+
+        public var query: [String: Any]?
+
+        public var banners: ImageUrls?
+
+        public var allowFacets: Bool?
+
         public var badge: [String: Any]?
 
+        public var isActive: Bool?
+
+        public var uid: String?
+
         public enum CodingKeys: String, CodingKey {
-            case schedule = "_schedule"
-
-            case logo
-
-            case allowSort = "allow_sort"
-
-            case visibleFacetsKeys = "visible_facets_keys"
-
-            case meta
-
-            case appId = "app_id"
-
-            case cron
-
             case name
-
-            case slug
 
             case type
 
+            case allowSort = "allow_sort"
+
+            case action
+
+            case cron
+
             case tag
 
-            case allowFacets = "allow_facets"
-
-            case isActive = "is_active"
-
-            case banners
-
-            case query
+            case visibleFacetsKeys = "visible_facets_keys"
 
             case description
 
+            case logo
+
+            case meta
+
+            case schedule = "_schedule"
+
+            case slug
+
+            case appId = "app_id"
+
+            case query
+
+            case banners
+
+            case allowFacets = "allow_facets"
+
             case badge
+
+            case isActive = "is_active"
+
+            case uid
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, query: [String: Any]? = nil, slug: String? = nil, tag: [String]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
-            self.schedule = schedule
-
-            self.logo = logo
-
-            self.allowSort = allowSort
-
-            self.visibleFacetsKeys = visibleFacetsKeys
-
-            self.meta = meta
-
-            self.appId = appId
-
-            self.cron = cron
-
+        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, query: [String: Any]? = nil, slug: String? = nil, tag: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
             self.name = name
-
-            self.slug = slug
 
             self.type = type
 
+            self.allowSort = allowSort
+
+            self.action = action
+
+            self.cron = cron
+
             self.tag = tag
 
-            self.allowFacets = allowFacets
-
-            self.isActive = isActive
-
-            self.banners = banners
-
-            self.query = query
+            self.visibleFacetsKeys = visibleFacetsKeys
 
             self.description = description
 
+            self.logo = logo
+
+            self.meta = meta
+
+            self.schedule = schedule
+
+            self.slug = slug
+
+            self.appId = appId
+
+            self.query = query
+
+            self.banners = banners
+
+            self.allowFacets = allowFacets
+
             self.badge = badge
+
+            self.isActive = isActive
+
+            self.uid = uid
         }
 
-        public func duplicate() -> CollectionDetailResponse {
+        public func duplicate() -> GetCollectionDetailNest {
             let dict = self.dictionary!
-            let copy = CollectionDetailResponse(dictionary: dict)!
+            let copy = GetCollectionDetailNest(dictionary: dict)!
             return copy
         }
 
@@ -6377,71 +5995,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                schedule = try container.decode([String: Any].self, forKey: .schedule)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(Media.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                allowSort = try container.decode(Bool.self, forKey: .allowSort)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                appId = try container.decode(String.self, forKey: .appId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cron = try container.decode([String: Any].self, forKey: .cron)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6457,6 +6011,30 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                allowSort = try container.decode(Bool.self, forKey: .allowSort)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cron = try container.decode([String: Any].self, forKey: .cron)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 tag = try container.decode([String].self, forKey: .tag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -6465,7 +6043,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6473,7 +6051,55 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                schedule = try container.decode([String: Any].self, forKey: .schedule)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                appId = try container.decode(String.self, forKey: .appId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                query = try container.decode([String: Any].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6489,7 +6115,349 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                badge = try container.decode([String: Any].self, forKey: .badge)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(cron, forKey: .cron)
+
+            try? container.encodeIfPresent(tag, forKey: .tag)
+
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+
+            try? container.encodeIfPresent(badge, forKey: .badge)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+        }
+    }
+
+    /*
+         Model: GetCollectionListingResponse
+         Used By: Catalog
+     */
+    class GetCollectionListingResponse: Codable {
+        public var filters: CollectionListingFilter?
+
+        public var items: [GetCollectionDetailNest]?
+
+        public var page: Page
+
+        public enum CodingKeys: String, CodingKey {
+            case filters
+
+            case items
+
+            case page
+        }
+
+        public init(filters: CollectionListingFilter? = nil, items: [GetCollectionDetailNest]? = nil, page: Page) {
+            self.filters = filters
+
+            self.items = items
+
+            self.page = page
+        }
+
+        public func duplicate() -> GetCollectionListingResponse {
+            let dict = self.dictionary!
+            let copy = GetCollectionListingResponse(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                filters = try container.decode(CollectionListingFilter.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode([GetCollectionDetailNest].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            page = try container.decode(Page.self, forKey: .page)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(page, forKey: .page)
+        }
+    }
+
+    /*
+         Model: CollectionDetailResponse
+         Used By: Catalog
+     */
+    class CollectionDetailResponse: Codable {
+        public var name: String?
+
+        public var appId: String?
+
+        public var type: String?
+
+        public var cron: [String: Any]?
+
+        public var query: [String: Any]?
+
+        public var allowSort: Bool?
+
+        public var tag: [String]?
+
+        public var banners: ImageUrls?
+
+        public var allowFacets: Bool?
+
+        public var visibleFacetsKeys: [String]?
+
+        public var schedule: [String: Any]?
+
+        public var description: String?
+
+        public var badge: [String: Any]?
+
+        public var logo: Media?
+
+        public var isActive: Bool?
+
+        public var meta: [String: Any]?
+
+        public var slug: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case appId = "app_id"
+
+            case type
+
+            case cron
+
+            case query
+
+            case allowSort = "allow_sort"
+
+            case tag
+
+            case banners
+
+            case allowFacets = "allow_facets"
+
+            case visibleFacetsKeys = "visible_facets_keys"
+
+            case schedule = "_schedule"
+
+            case description
+
+            case badge
+
+            case logo
+
+            case isActive = "is_active"
+
+            case meta
+
+            case slug
+        }
+
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, query: [String: Any]? = nil, slug: String? = nil, tag: [String]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
+            self.name = name
+
+            self.appId = appId
+
+            self.type = type
+
+            self.cron = cron
+
+            self.query = query
+
+            self.allowSort = allowSort
+
+            self.tag = tag
+
+            self.banners = banners
+
+            self.allowFacets = allowFacets
+
+            self.visibleFacetsKeys = visibleFacetsKeys
+
+            self.schedule = schedule
+
+            self.description = description
+
+            self.badge = badge
+
+            self.logo = logo
+
+            self.isActive = isActive
+
+            self.meta = meta
+
+            self.slug = slug
+        }
+
+        public func duplicate() -> CollectionDetailResponse {
+            let dict = self.dictionary!
+            let copy = CollectionDetailResponse(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                appId = try container.decode(String.self, forKey: .appId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cron = try container.decode([String: Any].self, forKey: .cron)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 query = try container.decode([String: Any].self, forKey: .query)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                allowSort = try container.decode(Bool.self, forKey: .allowSort)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                tag = try container.decode([String].self, forKey: .tag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                schedule = try container.decode([String: Any].self, forKey: .schedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6511,44 +6479,76 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
-
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(type, forKey: .type)
+
             try? container.encodeIfPresent(cron, forKey: .cron)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
 
             try? container.encodeIfPresent(tag, forKey: .tag)
 
-            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(badge, forKey: .badge)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 
@@ -6685,26 +6685,26 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class FollowIdsData: Codable {
+        public var products: [Int]?
+
         public var collections: [Int]?
 
         public var brands: [Int]?
 
-        public var products: [Int]?
-
         public enum CodingKeys: String, CodingKey {
+            case products
+
             case collections
 
             case brands
-
-            case products
         }
 
         public init(brands: [Int]? = nil, collections: [Int]? = nil, products: [Int]? = nil) {
+            self.products = products
+
             self.collections = collections
 
             self.brands = brands
-
-            self.products = products
         }
 
         public func duplicate() -> FollowIdsData {
@@ -6715,6 +6715,14 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                products = try container.decode([Int].self, forKey: .products)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 collections = try container.decode([Int].self, forKey: .collections)
@@ -6731,24 +6739,16 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                products = try container.decode([Int].self, forKey: .products)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(products, forKey: .products)
+
             try? container.encodeIfPresent(collections, forKey: .collections)
 
             try? container.encodeIfPresent(brands, forKey: .brands)
-
-            try? container.encodeIfPresent(products, forKey: .products)
         }
     }
 
@@ -6853,68 +6853,68 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class Store: Codable {
-        public var country: String?
-
-        public var uid: Int?
-
-        public var pincode: Int?
+        public var address: String?
 
         public var name: String?
 
-        public var latLong: LatLong?
-
-        public var city: String?
-
-        public var address: String?
-
-        public var storeCode: String?
+        public var storeEmail: String?
 
         public var state: String?
 
-        public var storeEmail: String?
+        public var pincode: Int?
+
+        public var latLong: LatLong?
+
+        public var country: String?
+
+        public var city: String?
+
+        public var uid: Int?
+
+        public var storeCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case country
-
-            case uid
-
-            case pincode
+            case address
 
             case name
 
-            case latLong = "lat_long"
-
-            case city
-
-            case address
-
-            case storeCode = "store_code"
+            case storeEmail = "store_email"
 
             case state
 
-            case storeEmail = "store_email"
+            case pincode
+
+            case latLong = "lat_long"
+
+            case country
+
+            case city
+
+            case uid
+
+            case storeCode = "store_code"
         }
 
         public init(address: String? = nil, city: String? = nil, country: String? = nil, latLong: LatLong? = nil, name: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, storeEmail: String? = nil, uid: Int? = nil) {
-            self.country = country
-
-            self.uid = uid
-
-            self.pincode = pincode
+            self.address = address
 
             self.name = name
 
-            self.latLong = latLong
-
-            self.city = city
-
-            self.address = address
-
-            self.storeCode = storeCode
+            self.storeEmail = storeEmail
 
             self.state = state
 
-            self.storeEmail = storeEmail
+            self.pincode = pincode
+
+            self.latLong = latLong
+
+            self.country = country
+
+            self.city = city
+
+            self.uid = uid
+
+            self.storeCode = storeCode
         }
 
         public func duplicate() -> Store {
@@ -6927,23 +6927,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                country = try container.decode(String.self, forKey: .country)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
+                address = try container.decode(String.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6959,31 +6943,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                latLong = try container.decode(LatLong.self, forKey: .latLong)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                city = try container.decode(String.self, forKey: .city)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode(String.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                storeEmail = try container.decode(String.self, forKey: .storeEmail)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -6999,7 +6959,47 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                storeEmail = try container.decode(String.self, forKey: .storeEmail)
+                pincode = try container.decode(Int.self, forKey: .pincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                latLong = try container.decode(LatLong.self, forKey: .latLong)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                city = try container.decode(String.self, forKey: .city)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -7010,25 +7010,25 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(latLong, forKey: .latLong)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
         }
     }
 
@@ -7077,24 +7077,384 @@ public extension ApplicationClient {
     }
 
     /*
+         Model: StoreDepartments
+         Used By: Catalog
+     */
+    class StoreDepartments: Codable {
+        public var name: String?
+
+        public var priorityOrder: Int?
+
+        public var logo: String?
+
+        public var uid: Int?
+
+        public var slug: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case priorityOrder = "priority_order"
+
+            case logo
+
+            case uid
+
+            case slug
+        }
+
+        public init(logo: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
+            self.name = name
+
+            self.priorityOrder = priorityOrder
+
+            self.logo = logo
+
+            self.uid = uid
+
+            self.slug = slug
+        }
+
+        public func duplicate() -> StoreDepartments {
+            let dict = self.dictionary!
+            let copy = StoreDepartments(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+        }
+    }
+
+    /*
+         Model: StoreAddressSerializer
+         Used By: Catalog
+     */
+    class StoreAddressSerializer: Codable {
+        public var latitude: Double?
+
+        public var state: String?
+
+        public var address1: String?
+
+        public var pincode: Int?
+
+        public var longitude: Double?
+
+        public var address2: String?
+
+        public var country: String?
+
+        public var city: String?
+
+        public var landmark: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case latitude
+
+            case state
+
+            case address1
+
+            case pincode
+
+            case longitude
+
+            case address2
+
+            case country
+
+            case city
+
+            case landmark
+        }
+
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
+            self.latitude = latitude
+
+            self.state = state
+
+            self.address1 = address1
+
+            self.pincode = pincode
+
+            self.longitude = longitude
+
+            self.address2 = address2
+
+            self.country = country
+
+            self.city = city
+
+            self.landmark = landmark
+        }
+
+        public func duplicate() -> StoreAddressSerializer {
+            let dict = self.dictionary!
+            let copy = StoreAddressSerializer(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                latitude = try container.decode(Double.self, forKey: .latitude)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                state = try container.decode(String.self, forKey: .state)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address1 = try container.decode(String.self, forKey: .address1)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pincode = try container.decode(Int.self, forKey: .pincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                longitude = try container.decode(Double.self, forKey: .longitude)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                city = try container.decode(String.self, forKey: .city)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                landmark = try container.decode(String.self, forKey: .landmark)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(address1, forKey: .address1)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+        }
+    }
+
+    /*
+         Model: CompanyStore
+         Used By: Catalog
+     */
+    class CompanyStore: Codable {
+        public var name: String?
+
+        public var companyType: String?
+
+        public var uid: Int?
+
+        public var businessType: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case companyType = "company_type"
+
+            case uid
+
+            case businessType = "business_type"
+        }
+
+        public init(businessType: String? = nil, companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
+            self.name = name
+
+            self.companyType = companyType
+
+            self.uid = uid
+
+            self.businessType = businessType
+        }
+
+        public func duplicate() -> CompanyStore {
+            let dict = self.dictionary!
+            let copy = CompanyStore(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyType = try container.decode(String.self, forKey: .companyType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                businessType = try container.decode(String.self, forKey: .businessType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
+        }
+    }
+
+    /*
          Model: SellerPhoneNumber
          Used By: Catalog
      */
     class SellerPhoneNumber: Codable {
-        public var number: String
-
         public var countryCode: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case number
+        public var number: String
 
+        public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
+
+            case number
         }
 
         public init(countryCode: Int, number: String) {
-            self.number = number
-
             self.countryCode = countryCode
+
+            self.number = number
         }
 
         public func duplicate() -> SellerPhoneNumber {
@@ -7106,17 +7466,17 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            number = try container.decode(String.self, forKey: .number)
-
             countryCode = try container.decode(Int.self, forKey: .countryCode)
+
+            number = try container.decode(String.self, forKey: .number)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(number, forKey: .number)
-
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(number, forKey: .number)
         }
     }
 
@@ -7193,414 +7553,54 @@ public extension ApplicationClient {
     }
 
     /*
-         Model: StoreDepartments
-         Used By: Catalog
-     */
-    class StoreDepartments: Codable {
-        public var uid: Int?
-
-        public var logo: String?
-
-        public var priorityOrder: Int?
-
-        public var name: String?
-
-        public var slug: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case logo
-
-            case priorityOrder = "priority_order"
-
-            case name
-
-            case slug
-        }
-
-        public init(logo: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.uid = uid
-
-            self.logo = logo
-
-            self.priorityOrder = priorityOrder
-
-            self.name = name
-
-            self.slug = slug
-        }
-
-        public func duplicate() -> StoreDepartments {
-            let dict = self.dictionary!
-            let copy = StoreDepartments(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-        }
-    }
-
-    /*
-         Model: StoreAddressSerializer
-         Used By: Catalog
-     */
-    class StoreAddressSerializer: Codable {
-        public var country: String?
-
-        public var landmark: String?
-
-        public var pincode: Int?
-
-        public var address2: String?
-
-        public var city: String?
-
-        public var state: String?
-
-        public var longitude: Double?
-
-        public var address1: String?
-
-        public var latitude: Double?
-
-        public enum CodingKeys: String, CodingKey {
-            case country
-
-            case landmark
-
-            case pincode
-
-            case address2
-
-            case city
-
-            case state
-
-            case longitude
-
-            case address1
-
-            case latitude
-        }
-
-        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
-            self.country = country
-
-            self.landmark = landmark
-
-            self.pincode = pincode
-
-            self.address2 = address2
-
-            self.city = city
-
-            self.state = state
-
-            self.longitude = longitude
-
-            self.address1 = address1
-
-            self.latitude = latitude
-        }
-
-        public func duplicate() -> StoreAddressSerializer {
-            let dict = self.dictionary!
-            let copy = StoreAddressSerializer(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                country = try container.decode(String.self, forKey: .country)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                landmark = try container.decode(String.self, forKey: .landmark)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                city = try container.decode(String.self, forKey: .city)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                state = try container.decode(String.self, forKey: .state)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                longitude = try container.decode(Double.self, forKey: .longitude)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address1 = try container.decode(String.self, forKey: .address1)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                latitude = try container.decode(Double.self, forKey: .latitude)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
-
-            try? container.encodeIfPresent(address1, forKey: .address1)
-
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-        }
-    }
-
-    /*
-         Model: CompanyStore
-         Used By: Catalog
-     */
-    class CompanyStore: Codable {
-        public var businessType: String?
-
-        public var uid: Int?
-
-        public var name: String?
-
-        public var companyType: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case businessType = "business_type"
-
-            case uid
-
-            case name
-
-            case companyType = "company_type"
-        }
-
-        public init(businessType: String? = nil, companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
-            self.businessType = businessType
-
-            self.uid = uid
-
-            self.name = name
-
-            self.companyType = companyType
-        }
-
-        public func duplicate() -> CompanyStore {
-            let dict = self.dictionary!
-            let copy = CompanyStore(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                businessType = try container.decode(String.self, forKey: .businessType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyType = try container.decode(String.self, forKey: .companyType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
-        }
-    }
-
-    /*
          Model: AppStore
          Used By: Catalog
      */
     class AppStore: Codable {
-        public var uid: Int?
-
-        public var manager: StoreManagerSerializer?
+        public var departments: [StoreDepartments]?
 
         public var name: String?
-
-        public var contactNumbers: [SellerPhoneNumber]?
-
-        public var departments: [StoreDepartments]?
 
         public var address: StoreAddressSerializer?
 
         public var company: CompanyStore?
 
-        public enum CodingKeys: String, CodingKey {
-            case uid
+        public var contactNumbers: [SellerPhoneNumber]?
 
-            case manager
+        public var uid: Int?
+
+        public var manager: StoreManagerSerializer?
+
+        public enum CodingKeys: String, CodingKey {
+            case departments
 
             case name
-
-            case contactNumbers = "contact_numbers"
-
-            case departments
 
             case address
 
             case company
+
+            case contactNumbers = "contact_numbers"
+
+            case uid
+
+            case manager
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, uid: Int? = nil) {
-            self.uid = uid
-
-            self.manager = manager
+            self.departments = departments
 
             self.name = name
-
-            self.contactNumbers = contactNumbers
-
-            self.departments = departments
 
             self.address = address
 
             self.company = company
+
+            self.contactNumbers = contactNumbers
+
+            self.uid = uid
+
+            self.manager = manager
         }
 
         public func duplicate() -> AppStore {
@@ -7613,15 +7613,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                manager = try container.decode(StoreManagerSerializer.self, forKey: .manager)
+                departments = try container.decode([StoreDepartments].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -7630,22 +7622,6 @@ public extension ApplicationClient {
 
             do {
                 name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                departments = try container.decode([StoreDepartments].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -7667,24 +7643,48 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                manager = try container.decode(StoreManagerSerializer.self, forKey: .manager)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(manager, forKey: .manager)
+            try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(manager, forKey: .manager)
         }
     }
 
@@ -7693,24 +7693,24 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ApplicationStoreListing: Codable {
-        public var items: [AppStore]?
-
         public var filters: [StoreDepartments]?
+
+        public var items: [AppStore]?
 
         public var page: Page?
 
         public enum CodingKeys: String, CodingKey {
-            case items
-
             case filters
+
+            case items
 
             case page
         }
 
         public init(filters: [StoreDepartments]? = nil, items: [AppStore]? = nil, page: Page? = nil) {
-            self.items = items
-
             self.filters = filters
+
+            self.items = items
 
             self.page = page
         }
@@ -7725,7 +7725,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([AppStore].self, forKey: .items)
+                filters = try container.decode([StoreDepartments].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -7733,7 +7733,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                filters = try container.decode([StoreDepartments].self, forKey: .filters)
+                items = try container.decode([AppStore].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -7752,9 +7752,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }
@@ -7765,20 +7765,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class Time: Codable {
-        public var minute: Int?
-
         public var hour: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case minute
+        public var minute: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case hour
+
+            case minute
         }
 
         public init(hour: Int? = nil, minute: Int? = nil) {
-            self.minute = minute
-
             self.hour = hour
+
+            self.minute = minute
         }
 
         public func duplicate() -> Time {
@@ -7791,7 +7791,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                minute = try container.decode(Int.self, forKey: .minute)
+                hour = try container.decode(Int.self, forKey: .hour)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -7799,7 +7799,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                hour = try container.decode(Int.self, forKey: .hour)
+                minute = try container.decode(Int.self, forKey: .minute)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -7810,9 +7810,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(minute, forKey: .minute)
-
             try? container.encodeIfPresent(hour, forKey: .hour)
+
+            try? container.encodeIfPresent(minute, forKey: .minute)
         }
     }
 
@@ -7821,30 +7821,30 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StoreTiming: Codable {
-        public var weekday: String?
-
         public var opening: Time?
 
         public var closing: Time?
 
+        public var weekday: String?
+
         public var open: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case weekday
-
             case opening
 
             case closing
+
+            case weekday
 
             case open
         }
 
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
-            self.weekday = weekday
-
             self.opening = opening
 
             self.closing = closing
+
+            self.weekday = weekday
 
             self.open = open
         }
@@ -7857,14 +7857,6 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                weekday = try container.decode(String.self, forKey: .weekday)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 opening = try container.decode(Time.self, forKey: .opening)
@@ -7883,6 +7875,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                weekday = try container.decode(String.self, forKey: .weekday)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -7894,11 +7894,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-
             try? container.encodeIfPresent(opening, forKey: .opening)
 
             try? container.encodeIfPresent(closing, forKey: .closing)
+
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
 
             try? container.encodeIfPresent(open, forKey: .open)
         }
@@ -7909,62 +7909,62 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StoreDetails: Codable {
+        public var departments: [StoreDepartments]?
+
+        public var name: String?
+
+        public var address: StoreAddressSerializer?
+
+        public var customJson: [String: Any]?
+
+        public var company: CompanyStore?
+
+        public var contactNumbers: [SellerPhoneNumber]?
+
         public var uid: Int?
 
         public var manager: StoreManagerSerializer?
 
-        public var name: String?
-
-        public var contactNumbers: [SellerPhoneNumber]?
-
-        public var customJson: [String: Any]?
-
         public var timing: [StoreTiming]?
 
-        public var departments: [StoreDepartments]?
-
-        public var address: StoreAddressSerializer?
-
-        public var company: CompanyStore?
-
         public enum CodingKeys: String, CodingKey {
+            case departments
+
+            case name
+
+            case address
+
+            case customJson = "_custom_json"
+
+            case company
+
+            case contactNumbers = "contact_numbers"
+
             case uid
 
             case manager
 
-            case name
-
-            case contactNumbers = "contact_numbers"
-
-            case customJson = "_custom_json"
-
             case timing
-
-            case departments
-
-            case address
-
-            case company
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+            self.departments = departments
+
+            self.name = name
+
+            self.address = address
+
+            self.customJson = customJson
+
+            self.company = company
+
+            self.contactNumbers = contactNumbers
+
             self.uid = uid
 
             self.manager = manager
 
-            self.name = name
-
-            self.contactNumbers = contactNumbers
-
-            self.customJson = customJson
-
             self.timing = timing
-
-            self.departments = departments
-
-            self.address = address
-
-            self.company = company
         }
 
         public func duplicate() -> StoreDetails {
@@ -7975,6 +7975,54 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                departments = try container.decode([StoreDepartments].self, forKey: .departments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                company = try container.decode(CompanyStore.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -7993,186 +8041,34 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 timing = try container.decode([StoreTiming].self, forKey: .timing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                departments = try container.decode([StoreDepartments].self, forKey: .departments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                company = try container.decode(CompanyStore.self, forKey: .company)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(departments, forKey: .departments)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(manager, forKey: .manager)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(timing, forKey: .timing)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(company, forKey: .company)
-        }
-    }
-
-    /*
-         Model: Price1
-         Used By: Catalog
-     */
-    class Price1: Codable {
-        public var currency: String?
-
-        public var minEffective: Double?
-
-        public var maxMarked: Double?
-
-        public var minMarked: Double?
-
-        public var maxEffective: Double?
-
-        public enum CodingKeys: String, CodingKey {
-            case currency
-
-            case minEffective = "min_effective"
-
-            case maxMarked = "max_marked"
-
-            case minMarked = "min_marked"
-
-            case maxEffective = "max_effective"
-        }
-
-        public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
-            self.currency = currency
-
-            self.minEffective = minEffective
-
-            self.maxMarked = maxMarked
-
-            self.minMarked = minMarked
-
-            self.maxEffective = maxEffective
-        }
-
-        public func duplicate() -> Price1 {
-            let dict = self.dictionary!
-            let copy = Price1(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                minMarked = try container.decode(Double.self, forKey: .minMarked)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
-
-            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
-
-            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
-
-            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
         }
     }
 
@@ -8181,128 +8077,128 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductDetails: Codable {
-        public var attributes: [String: Any]?
+        public var name: String?
 
-        public var isSet: Bool?
-
-        public var itemCode: String?
-
-        public var ratingCount: Int?
+        public var rating: Double?
 
         public var hsnCode: Int?
 
-        public var name: String?
-
-        public var slug: String?
-
-        public var outOfStock: Bool?
-
         public var templateTag: String?
 
-        public var countryOfOrigin: String?
-
-        public var brandUid: Int?
-
         public var hasVariant: Bool?
-
-        public var identifier: [String: Any]?
-
-        public var media: [[String: Any]]?
-
-        public var imageNature: String?
 
         public var shortDescription: String?
 
         public var images: [[String: Any]]?
 
-        public var rating: Double?
+        public var media: [[String: Any]]?
 
-        public var groupedAttributes: [String: Any]?
+        public var imageNature: String?
+
+        public var outOfStock: Bool?
+
+        public var countryOfOrigin: String?
 
         public var description: String?
 
+        public var slug: String?
+
+        public var identifier: [String: Any]?
+
+        public var itemCode: String?
+
+        public var groupedAttributes: [String: Any]?
+
+        public var ratingCount: Int?
+
+        public var brandUid: Int?
+
+        public var isSet: Bool?
+
+        public var attributes: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case attributes
+            case name
 
-            case isSet = "is_set"
-
-            case itemCode = "item_code"
-
-            case ratingCount = "rating_count"
+            case rating
 
             case hsnCode = "hsn_code"
 
-            case name
-
-            case slug
-
-            case outOfStock = "out_of_stock"
-
             case templateTag = "template_tag"
 
-            case countryOfOrigin = "country_of_origin"
-
-            case brandUid = "brand_uid"
-
             case hasVariant = "has_variant"
-
-            case identifier
-
-            case media
-
-            case imageNature = "image_nature"
 
             case shortDescription = "short_description"
 
             case images
 
-            case rating
+            case media
+
+            case imageNature = "image_nature"
+
+            case outOfStock = "out_of_stock"
+
+            case countryOfOrigin = "country_of_origin"
+
+            case description
+
+            case slug
+
+            case identifier
+
+            case itemCode = "item_code"
 
             case groupedAttributes = "grouped_attributes"
 
-            case description
+            case ratingCount = "rating_count"
+
+            case brandUid = "brand_uid"
+
+            case isSet = "is_set"
+
+            case attributes
         }
 
         public init(attributes: [String: Any]? = nil, brandUid: Int? = nil, countryOfOrigin: String? = nil, description: String? = nil, groupedAttributes: [String: Any]? = nil, hasVariant: Bool? = nil, hsnCode: Int? = nil, identifier: [String: Any]? = nil, images: [[String: Any]]? = nil, imageNature: String? = nil, isSet: Bool? = nil, itemCode: String? = nil, media: [[String: Any]]? = nil, name: String? = nil, outOfStock: Bool? = nil, rating: Double? = nil, ratingCount: Int? = nil, shortDescription: String? = nil, slug: String? = nil, templateTag: String? = nil) {
-            self.attributes = attributes
+            self.name = name
 
-            self.isSet = isSet
-
-            self.itemCode = itemCode
-
-            self.ratingCount = ratingCount
+            self.rating = rating
 
             self.hsnCode = hsnCode
 
-            self.name = name
-
-            self.slug = slug
-
-            self.outOfStock = outOfStock
-
             self.templateTag = templateTag
 
-            self.countryOfOrigin = countryOfOrigin
-
-            self.brandUid = brandUid
-
             self.hasVariant = hasVariant
-
-            self.identifier = identifier
-
-            self.media = media
-
-            self.imageNature = imageNature
 
             self.shortDescription = shortDescription
 
             self.images = images
 
-            self.rating = rating
+            self.media = media
+
+            self.imageNature = imageNature
+
+            self.outOfStock = outOfStock
+
+            self.countryOfOrigin = countryOfOrigin
+
+            self.description = description
+
+            self.slug = slug
+
+            self.identifier = identifier
+
+            self.itemCode = itemCode
 
             self.groupedAttributes = groupedAttributes
 
-            self.description = description
+            self.ratingCount = ratingCount
+
+            self.brandUid = brandUid
+
+            self.isSet = isSet
+
+            self.attributes = attributes
         }
 
         public func duplicate() -> ProductDetails {
@@ -8315,7 +8211,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                attributes = try container.decode([String: Any].self, forKey: .attributes)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8323,23 +8219,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ratingCount = try container.decode(Int.self, forKey: .ratingCount)
+                rating = try container.decode(Double.self, forKey: .rating)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8355,30 +8235,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 templateTag = try container.decode(String.self, forKey: .templateTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -8387,47 +8243,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 hasVariant = try container.decode(Bool.self, forKey: .hasVariant)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identifier = try container.decode([String: Any].self, forKey: .identifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                media = try container.decode([[String: Any]].self, forKey: .media)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                imageNature = try container.decode(String.self, forKey: .imageNature)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8451,7 +8267,63 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                rating = try container.decode(Double.self, forKey: .rating)
+                media = try container.decode([[String: Any]].self, forKey: .media)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                imageNature = try container.decode(String.self, forKey: .imageNature)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemCode = try container.decode(String.self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8467,7 +8339,31 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                ratingCount = try container.decode(Int.self, forKey: .ratingCount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandUid = try container.decode(Int.self, forKey: .brandUid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isSet = try container.decode(Bool.self, forKey: .isSet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                attributes = try container.decode([String: Any].self, forKey: .attributes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8478,45 +8374,45 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
-
-            try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
+            try? container.encodeIfPresent(rating, forKey: .rating)
 
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
-
             try? container.encodeIfPresent(templateTag, forKey: .templateTag)
 
-            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
-
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-
             try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(media, forKey: .media)
-
-            try? container.encodeIfPresent(imageNature, forKey: .imageNature)
 
             try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
 
             try? container.encodeIfPresent(images, forKey: .images)
 
-            try? container.encodeIfPresent(rating, forKey: .rating)
+            try? container.encodeIfPresent(media, forKey: .media)
+
+            try? container.encodeIfPresent(imageNature, forKey: .imageNature)
+
+            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
+
+            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
             try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
+
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
+
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
+
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
         }
     }
 
@@ -8527,30 +8423,30 @@ public extension ApplicationClient {
     class Size: Codable {
         public var value: String?
 
-        public var isAvailable: Bool?
+        public var display: String?
 
         public var quantity: Int?
 
-        public var display: String?
+        public var isAvailable: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case isAvailable = "is_available"
+            case display
 
             case quantity
 
-            case display
+            case isAvailable = "is_available"
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
             self.value = value
 
-            self.isAvailable = isAvailable
+            self.display = display
 
             self.quantity = quantity
 
-            self.display = display
+            self.isAvailable = isAvailable
         }
 
         public func duplicate() -> Size {
@@ -8571,7 +8467,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8587,7 +8483,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8600,11 +8496,115 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+        }
+    }
+
+    /*
+         Model: Price1
+         Used By: Catalog
+     */
+    class Price1: Codable {
+        public var maxMarked: Double?
+
+        public var minMarked: Double?
+
+        public var currency: String?
+
+        public var minEffective: Double?
+
+        public var maxEffective: Double?
+
+        public enum CodingKeys: String, CodingKey {
+            case maxMarked = "max_marked"
+
+            case minMarked = "min_marked"
+
+            case currency
+
+            case minEffective = "min_effective"
+
+            case maxEffective = "max_effective"
+        }
+
+        public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
+            self.maxMarked = maxMarked
+
+            self.minMarked = minMarked
+
+            self.currency = currency
+
+            self.minEffective = minEffective
+
+            self.maxEffective = maxEffective
+        }
+
+        public func duplicate() -> Price1 {
+            let dict = self.dictionary!
+            let copy = Price1(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                minMarked = try container.decode(Double.self, forKey: .minMarked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
+
+            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+
+            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
         }
     }
 
@@ -8613,62 +8613,62 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class Products: Codable {
-        public var maxQuantity: Int?
-
-        public var price: Price1?
+        public var productUid: Int?
 
         public var productDetails: ProductDetails?
 
+        public var sizes: [Size]?
+
         public var allowRemove: Bool?
 
-        public var autoAddToCart: Bool?
-
-        public var minQuantity: Int?
-
-        public var productUid: Int?
+        public var maxQuantity: Int?
 
         public var autoSelect: Bool?
 
-        public var sizes: [Size]?
+        public var minQuantity: Int?
+
+        public var autoAddToCart: Bool?
+
+        public var price: Price1?
 
         public enum CodingKeys: String, CodingKey {
-            case maxQuantity = "max_quantity"
-
-            case price
+            case productUid = "product_uid"
 
             case productDetails = "product_details"
 
+            case sizes
+
             case allowRemove = "allow_remove"
 
-            case autoAddToCart = "auto_add_to_cart"
-
-            case minQuantity = "min_quantity"
-
-            case productUid = "product_uid"
+            case maxQuantity = "max_quantity"
 
             case autoSelect = "auto_select"
 
-            case sizes
+            case minQuantity = "min_quantity"
+
+            case autoAddToCart = "auto_add_to_cart"
+
+            case price
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: Price1? = nil, productDetails: ProductDetails? = nil, productUid: Int? = nil, sizes: [Size]? = nil) {
-            self.maxQuantity = maxQuantity
-
-            self.price = price
+            self.productUid = productUid
 
             self.productDetails = productDetails
 
+            self.sizes = sizes
+
             self.allowRemove = allowRemove
 
-            self.autoAddToCart = autoAddToCart
-
-            self.minQuantity = minQuantity
-
-            self.productUid = productUid
+            self.maxQuantity = maxQuantity
 
             self.autoSelect = autoSelect
 
-            self.sizes = sizes
+            self.minQuantity = minQuantity
+
+            self.autoAddToCart = autoAddToCart
+
+            self.price = price
         }
 
         public func duplicate() -> Products {
@@ -8681,15 +8681,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode(Price1.self, forKey: .price)
+                productUid = try container.decode(Int.self, forKey: .productUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8705,6 +8697,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                sizes = try container.decode([Size].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -8713,23 +8713,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                productUid = try container.decode(Int.self, forKey: .productUid)
+                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8745,7 +8729,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizes = try container.decode([Size].self, forKey: .sizes)
+                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(Price1.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8756,23 +8756,23 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(productUid, forKey: .productUid)
 
             try? container.encodeIfPresent(productDetails, forKey: .productDetails)
 
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
-            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
-
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
-            try? container.encodeIfPresent(productUid, forKey: .productUid)
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
             try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
+
+            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
+
+            try? container.encodeIfPresent(price, forKey: .price)
         }
     }
 
@@ -8781,68 +8781,68 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class GetGroupedProducts: Codable {
-        public var active: Bool?
+        public var name: String?
 
-        public var logo: String?
+        public var active: Bool?
 
         public var companyId: Int?
 
-        public var meta: [String: Any]?
+        public var pageVisibility: [String]?
 
-        public var name: String?
-
-        public var slug: String?
-
-        public var products: [Products]?
+        public var logo: String?
 
         public var choice: String?
 
-        public var pageVisibility: [String]?
-
         public var sameStoreAssignment: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case active
+        public var products: [Products]?
 
-            case logo
+        public var meta: [String: Any]?
+
+        public var slug: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case active
 
             case companyId = "company_id"
 
-            case meta
+            case pageVisibility = "page_visibility"
 
-            case name
-
-            case slug
-
-            case products
+            case logo
 
             case choice
 
-            case pageVisibility = "page_visibility"
-
             case sameStoreAssignment = "same_store_assignment"
+
+            case products
+
+            case meta
+
+            case slug
         }
 
         public init(active: Bool? = nil, choice: String? = nil, companyId: Int? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [Products]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
-            self.active = active
+            self.name = name
 
-            self.logo = logo
+            self.active = active
 
             self.companyId = companyId
 
-            self.meta = meta
+            self.pageVisibility = pageVisibility
 
-            self.name = name
-
-            self.slug = slug
-
-            self.products = products
+            self.logo = logo
 
             self.choice = choice
 
-            self.pageVisibility = pageVisibility
-
             self.sameStoreAssignment = sameStoreAssignment
+
+            self.products = products
+
+            self.meta = meta
+
+            self.slug = slug
         }
 
         public func duplicate() -> GetGroupedProducts {
@@ -8855,7 +8855,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                active = try container.decode(Bool.self, forKey: .active)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8863,7 +8863,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                active = try container.decode(Bool.self, forKey: .active)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8879,7 +8879,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8887,23 +8887,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                products = try container.decode([Products].self, forKey: .products)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8919,7 +8903,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+                sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8927,7 +8911,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
+                products = try container.decode([Products].self, forKey: .products)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -8938,25 +8938,25 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(active, forKey: .active)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(active, forKey: .active)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(products, forKey: .products)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(choice, forKey: .choice)
 
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-
             try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
+
+            try? container.encodeIfPresent(products, forKey: .products)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 
@@ -9001,35 +9001,41 @@ public extension ApplicationClient {
     }
 
     /*
-         Model: StoreV2
+         Model: StrategyWiseListingSchemaV2
          Used By: Catalog
      */
-    class StoreV2: Codable {
-        public var uid: Int?
+    class StrategyWiseListingSchemaV2: Codable {
+        public var distance: Int?
 
-        public var name: String?
+        public var pincode: Int?
 
-        public var count: Int?
+        public var tat: Int?
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case distance
 
-            case name
+            case pincode
 
-            case count
+            case tat
+
+            case quantity
         }
 
-        public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
-            self.uid = uid
+        public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
+            self.distance = distance
 
-            self.name = name
+            self.pincode = pincode
 
-            self.count = count
+            self.tat = tat
+
+            self.quantity = quantity
         }
 
-        public func duplicate() -> StoreV2 {
+        public func duplicate() -> StrategyWiseListingSchemaV2 {
             let dict = self.dictionary!
-            let copy = StoreV2(dictionary: dict)!
+            let copy = StrategyWiseListingSchemaV2(dictionary: dict)!
             return copy
         }
 
@@ -9037,7 +9043,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                distance = try container.decode(Int.self, forKey: .distance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9045,7 +9051,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9053,7 +9059,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                tat = try container.decode(Int.self, forKey: .tat)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9064,11 +9078,157 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(distance, forKey: .distance)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encodeIfPresent(tat, forKey: .tat)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+        }
+    }
+
+    /*
+         Model: ReturnConfigSchemaV2
+         Used By: Catalog
+     */
+    class ReturnConfigSchemaV2: Codable {
+        public var returnable: Bool?
+
+        public var unit: String?
+
+        public var time: Int?
+
+        public enum CodingKeys: String, CodingKey {
+            case returnable
+
+            case unit
+
+            case time
+        }
+
+        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
+            self.returnable = returnable
+
+            self.unit = unit
+
+            self.time = time
+        }
+
+        public func duplicate() -> ReturnConfigSchemaV2 {
+            let dict = self.dictionary!
+            let copy = ReturnConfigSchemaV2(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                returnable = try container.decode(Bool.self, forKey: .returnable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                unit = try container.decode(String.self, forKey: .unit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                time = try container.decode(Int.self, forKey: .time)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(time, forKey: .time)
+        }
+    }
+
+    /*
+         Model: ProductStockPriceV2
+         Used By: Catalog
+     */
+    class ProductStockPriceV2: Codable {
+        public var effective: Double?
+
+        public var currency: String?
+
+        public var marked: Double?
+
+        public enum CodingKeys: String, CodingKey {
+            case effective
+
+            case currency
+
+            case marked
+        }
+
+        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil) {
+            self.effective = effective
+
+            self.currency = currency
+
+            self.marked = marked
+        }
+
+        public func duplicate() -> ProductStockPriceV2 {
+            let dict = self.dictionary!
+            let copy = ProductStockPriceV2(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                effective = try container.decode(Double.self, forKey: .effective)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                marked = try container.decode(Double.self, forKey: .marked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 
@@ -9133,24 +9293,24 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class SellerV2: Codable {
-        public var uid: Int?
-
         public var name: String?
+
+        public var uid: Int?
 
         public var count: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
-
             case name
+
+            case uid
 
             case count
         }
 
         public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
-            self.uid = uid
-
             self.name = name
+
+            self.uid = uid
 
             self.count = count
         }
@@ -9165,7 +9325,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9173,7 +9333,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9192,44 +9352,44 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 
     /*
-         Model: ProductStockPriceV2
+         Model: StoreV2
          Used By: Catalog
      */
-    class ProductStockPriceV2: Codable {
-        public var currency: String?
+    class StoreV2: Codable {
+        public var name: String?
 
-        public var effective: Double?
+        public var uid: Int?
 
-        public var marked: Double?
+        public var count: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case currency
+            case name
 
-            case effective
+            case uid
 
-            case marked
+            case count
         }
 
-        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil) {
-            self.currency = currency
+        public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
+            self.name = name
 
-            self.effective = effective
+            self.uid = uid
 
-            self.marked = marked
+            self.count = count
         }
 
-        public func duplicate() -> ProductStockPriceV2 {
+        public func duplicate() -> StoreV2 {
             let dict = self.dictionary!
-            let copy = ProductStockPriceV2(dictionary: dict)!
+            let copy = StoreV2(dictionary: dict)!
             return copy
         }
 
@@ -9237,7 +9397,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9245,7 +9405,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9253,7 +9413,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9264,171 +9424,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
-        }
-    }
-
-    /*
-         Model: ReturnConfigSchemaV2
-         Used By: Catalog
-     */
-    class ReturnConfigSchemaV2: Codable {
-        public var time: Int?
-
-        public var returnable: Bool?
-
-        public var unit: String?
-
-        public enum CodingKeys: String, CodingKey {
-            case time
-
-            case returnable
-
-            case unit
-        }
-
-        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
-            self.time = time
-
-            self.returnable = returnable
-
-            self.unit = unit
-        }
-
-        public func duplicate() -> ReturnConfigSchemaV2 {
-            let dict = self.dictionary!
-            let copy = ReturnConfigSchemaV2(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                time = try container.decode(Int.self, forKey: .time)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                unit = try container.decode(String.self, forKey: .unit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(time, forKey: .time)
-
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
-
-            try? container.encodeIfPresent(unit, forKey: .unit)
-        }
-    }
-
-    /*
-         Model: StrategyWiseListingSchemaV2
-         Used By: Catalog
-     */
-    class StrategyWiseListingSchemaV2: Codable {
-        public var pincode: Int?
-
-        public var distance: Int?
-
-        public var tat: Int?
-
-        public var quantity: Int?
-
-        public enum CodingKeys: String, CodingKey {
-            case pincode
-
-            case distance
-
-            case tat
-
-            case quantity
-        }
-
-        public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
-            self.pincode = pincode
-
-            self.distance = distance
-
-            self.tat = tat
-
-            self.quantity = quantity
-        }
-
-        public func duplicate() -> StrategyWiseListingSchemaV2 {
-            let dict = self.dictionary!
-            let copy = StrategyWiseListingSchemaV2(dictionary: dict)!
-            return copy
-        }
-
-        required public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                distance = try container.decode(Int.self, forKey: .distance)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tat = try container.decode(Int.self, forKey: .tat)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(distance, forKey: .distance)
-
-            try? container.encodeIfPresent(tat, forKey: .tat)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 
@@ -9437,20 +9437,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSetDistributionSizeV2: Codable {
-        public var size: String?
-
         public var pieces: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case size
+        public var size: String?
 
+        public enum CodingKeys: String, CodingKey {
             case pieces
+
+            case size
         }
 
         public init(pieces: Int? = nil, size: String? = nil) {
-            self.size = size
-
             self.pieces = pieces
+
+            self.size = size
         }
 
         public func duplicate() -> ProductSetDistributionSizeV2 {
@@ -9463,7 +9463,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                pieces = try container.decode(Int.self, forKey: .pieces)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9471,7 +9471,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pieces = try container.decode(Int.self, forKey: .pieces)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9482,9 +9482,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(pieces, forKey: .pieces)
+
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 
@@ -9589,26 +9589,26 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class DetailsSchemaV2: Codable {
-        public var key: String?
+        public var value: String?
 
         public var type: String?
 
-        public var value: String?
+        public var key: String?
 
         public enum CodingKeys: String, CodingKey {
-            case key
+            case value
 
             case type
 
-            case value
+            case key
         }
 
         public init(key: String? = nil, type: String? = nil, value: String? = nil) {
-            self.key = key
+            self.value = value
 
             self.type = type
 
-            self.value = value
+            self.key = key
         }
 
         public func duplicate() -> DetailsSchemaV2 {
@@ -9621,7 +9621,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9637,7 +9637,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9648,11 +9648,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 
@@ -9661,20 +9661,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class MarketPlaceSttributesSchemaV2: Codable {
-        public var title: String?
-
         public var details: [DetailsSchemaV2]?
 
-        public enum CodingKeys: String, CodingKey {
-            case title
+        public var title: String?
 
+        public enum CodingKeys: String, CodingKey {
             case details
+
+            case title
         }
 
         public init(details: [DetailsSchemaV2]? = nil, title: String? = nil) {
-            self.title = title
-
             self.details = details
+
+            self.title = title
         }
 
         public func duplicate() -> MarketPlaceSttributesSchemaV2 {
@@ -9687,7 +9687,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                details = try container.decode([DetailsSchemaV2].self, forKey: .details)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9695,7 +9695,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                details = try container.decode([DetailsSchemaV2].self, forKey: .details)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9706,9 +9706,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 
@@ -9717,13 +9717,13 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSizePriceResponseV2: Codable {
-        public var pincode: Int?
+        public var strategyWiseListing: [StrategyWiseListingSchemaV2]?
 
-        public var itemType: String?
+        public var longLat: [Double]?
 
-        public var discount: String?
+        public var returnConfig: ReturnConfigSchemaV2?
 
-        public var store: StoreV2?
+        public var pricePerPiece: ProductStockPriceV2?
 
         public var sellerCount: Int?
 
@@ -9731,34 +9731,34 @@ public extension ApplicationClient {
 
         public var seller: SellerV2?
 
-        public var price: ProductStockPriceV2?
+        public var itemType: String?
 
-        public var returnConfig: ReturnConfigSchemaV2?
-
-        public var articleId: String?
-
-        public var strategyWiseListing: [StrategyWiseListingSchemaV2]?
-
-        public var set: ProductSetV2?
-
-        public var longLat: [Double]?
-
-        public var quantity: Int?
-
-        public var pricePerPiece: ProductStockPriceV2?
+        public var store: StoreV2?
 
         public var specialBadge: String?
 
+        public var set: ProductSetV2?
+
+        public var articleId: String?
+
         public var marketplaceAttributes: [MarketPlaceSttributesSchemaV2]?
 
+        public var discount: String?
+
+        public var pincode: Int?
+
+        public var price: ProductStockPriceV2?
+
+        public var quantity: Int?
+
         public enum CodingKeys: String, CodingKey {
-            case pincode
+            case strategyWiseListing = "strategy_wise_listing"
 
-            case itemType = "item_type"
+            case longLat = "long_lat"
 
-            case discount
+            case returnConfig = "return_config"
 
-            case store
+            case pricePerPiece = "price_per_piece"
 
             case sellerCount = "seller_count"
 
@@ -9766,35 +9766,35 @@ public extension ApplicationClient {
 
             case seller
 
-            case price
+            case itemType = "item_type"
 
-            case returnConfig = "return_config"
-
-            case articleId = "article_id"
-
-            case strategyWiseListing = "strategy_wise_listing"
-
-            case set
-
-            case longLat = "long_lat"
-
-            case quantity
-
-            case pricePerPiece = "price_per_piece"
+            case store
 
             case specialBadge = "special_badge"
 
+            case set
+
+            case articleId = "article_id"
+
             case marketplaceAttributes = "marketplace_attributes"
+
+            case discount
+
+            case pincode
+
+            case price
+
+            case quantity
         }
 
         public init(articleAssignment: ArticleAssignmentV2? = nil, articleId: String? = nil, discount: String? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV2]? = nil, pincode: Int? = nil, price: ProductStockPriceV2? = nil, pricePerPiece: ProductStockPriceV2? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV2? = nil, seller: SellerV2? = nil, sellerCount: Int? = nil, set: ProductSetV2? = nil, specialBadge: String? = nil, store: StoreV2? = nil, strategyWiseListing: [StrategyWiseListingSchemaV2]? = nil) {
-            self.pincode = pincode
+            self.strategyWiseListing = strategyWiseListing
 
-            self.itemType = itemType
+            self.longLat = longLat
 
-            self.discount = discount
+            self.returnConfig = returnConfig
 
-            self.store = store
+            self.pricePerPiece = pricePerPiece
 
             self.sellerCount = sellerCount
 
@@ -9802,25 +9802,25 @@ public extension ApplicationClient {
 
             self.seller = seller
 
-            self.price = price
+            self.itemType = itemType
 
-            self.returnConfig = returnConfig
-
-            self.articleId = articleId
-
-            self.strategyWiseListing = strategyWiseListing
-
-            self.set = set
-
-            self.longLat = longLat
-
-            self.quantity = quantity
-
-            self.pricePerPiece = pricePerPiece
+            self.store = store
 
             self.specialBadge = specialBadge
 
+            self.set = set
+
+            self.articleId = articleId
+
             self.marketplaceAttributes = marketplaceAttributes
+
+            self.discount = discount
+
+            self.pincode = pincode
+
+            self.price = price
+
+            self.quantity = quantity
         }
 
         public func duplicate() -> ProductSizePriceResponseV2 {
@@ -9833,7 +9833,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
+                strategyWiseListing = try container.decode([StrategyWiseListingSchemaV2].self, forKey: .strategyWiseListing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9841,7 +9841,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemType = try container.decode(String.self, forKey: .itemType)
+                longLat = try container.decode([Double].self, forKey: .longLat)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9849,7 +9849,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                discount = try container.decode(String.self, forKey: .discount)
+                returnConfig = try container.decode(ReturnConfigSchemaV2.self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9857,7 +9857,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                store = try container.decode(StoreV2.self, forKey: .store)
+                pricePerPiece = try container.decode(ProductStockPriceV2.self, forKey: .pricePerPiece)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9889,7 +9889,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                price = try container.decode(ProductStockPriceV2.self, forKey: .price)
+                itemType = try container.decode(String.self, forKey: .itemType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9897,55 +9897,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                returnConfig = try container.decode(ReturnConfigSchemaV2.self, forKey: .returnConfig)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                articleId = try container.decode(String.self, forKey: .articleId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                strategyWiseListing = try container.decode([StrategyWiseListingSchemaV2].self, forKey: .strategyWiseListing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                set = try container.decode(ProductSetV2.self, forKey: .set)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                longLat = try container.decode([Double].self, forKey: .longLat)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pricePerPiece = try container.decode(ProductStockPriceV2.self, forKey: .pricePerPiece)
+                store = try container.decode(StoreV2.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9961,7 +9913,55 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                set = try container.decode(ProductSetV2.self, forKey: .set)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                articleId = try container.decode(String.self, forKey: .articleId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 marketplaceAttributes = try container.decode([MarketPlaceSttributesSchemaV2].self, forKey: .marketplaceAttributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pincode = try container.decode(Int.self, forKey: .pincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(ProductStockPriceV2.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -9972,13 +9972,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
 
-            try? container.encodeIfPresent(itemType, forKey: .itemType)
+            try? container.encodeIfPresent(longLat, forKey: .longLat)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(pricePerPiece, forKey: .pricePerPiece)
 
             try? container.encodeIfPresent(sellerCount, forKey: .sellerCount)
 
@@ -9986,25 +9986,25 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(seller, forKey: .seller)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(itemType, forKey: .itemType)
 
-            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
-
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
-
-            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
-
-            try? container.encodeIfPresent(set, forKey: .set)
-
-            try? container.encodeIfPresent(longLat, forKey: .longLat)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(pricePerPiece, forKey: .pricePerPiece)
+            try? container.encodeIfPresent(store, forKey: .store)
 
             try? container.encodeIfPresent(specialBadge, forKey: .specialBadge)
 
+            try? container.encodeIfPresent(set, forKey: .set)
+
+            try? container.encodeIfPresent(articleId, forKey: .articleId)
+
             try? container.encodeIfPresent(marketplaceAttributes, forKey: .marketplaceAttributes)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 
@@ -10013,24 +10013,24 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSizeSellerFilterSchemaV2: Codable {
-        public var value: String?
-
         public var name: String?
+
+        public var value: String?
 
         public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case value
-
             case name
+
+            case value
 
             case isSelected = "is_selected"
         }
 
         public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
-            self.value = value
-
             self.name = name
+
+            self.value = value
 
             self.isSelected = isSelected
         }
@@ -10045,7 +10045,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -10053,7 +10053,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -10072,9 +10072,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }
@@ -10087,24 +10087,24 @@ public extension ApplicationClient {
     class ProductSizeSellersResponseV2: Codable {
         public var items: [ProductSizePriceResponseV2]?
 
-        public var sortOn: [ProductSizeSellerFilterSchemaV2]?
-
         public var page: Page
+
+        public var sortOn: [ProductSizeSellerFilterSchemaV2]?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case sortOn = "sort_on"
-
             case page
+
+            case sortOn = "sort_on"
         }
 
         public init(items: [ProductSizePriceResponseV2]? = nil, page: Page, sortOn: [ProductSizeSellerFilterSchemaV2]? = nil) {
             self.items = items
 
-            self.sortOn = sortOn
-
             self.page = page
+
+            self.sortOn = sortOn
         }
 
         public func duplicate() -> ProductSizeSellersResponseV2 {
@@ -10124,6 +10124,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            page = try container.decode(Page.self, forKey: .page)
+
             do {
                 sortOn = try container.decode([ProductSizeSellerFilterSchemaV2].self, forKey: .sortOn)
 
@@ -10131,8 +10133,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -10140,9 +10140,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
         }
     }
 }

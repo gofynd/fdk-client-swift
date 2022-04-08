@@ -656,13 +656,18 @@ Delete Media
 
 
 ```swift
-feedback.deleteMedia() { (response, error) in
+feedback.deleteMedia(ids: ids) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| ids | [String] | yes | List of media ID |  
 
 
 

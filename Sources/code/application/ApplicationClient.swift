@@ -122,9 +122,9 @@ public class ApplicationClient {
 
             ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/")
 
-            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
-
             ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
+
+            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
 
             ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/")
 
@@ -1452,16 +1452,16 @@ public class ApplicationClient {
 
         /**
          *
-         * Summary: Unfollow an entity (product/brand/collection)
-         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+         * Summary: Follow an entity (product/brand/collection)
+         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
          **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["unfollowById"] ?? ""
+            var fullUrl = relativeUrls["followById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1469,7 +1469,7 @@ public class ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1498,16 +1498,16 @@ public class ApplicationClient {
 
         /**
          *
-         * Summary: Follow an entity (product/brand/collection)
-         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+         * Summary: Unfollow an entity (product/brand/collection)
+         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
          **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["followById"] ?? ""
+            var fullUrl = relativeUrls["unfollowById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1515,7 +1515,7 @@ public class ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -10501,23 +10501,23 @@ public class ApplicationClient {
             self.config = config
             var ulrs = [String: String]()
 
-            ulrs["createAbuseReport"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse")
+            ulrs["createAbuseReport"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse/")
 
-            ulrs["updateAbuseReport"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse")
+            ulrs["updateAbuseReport"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse/")
 
             ulrs["getAbuseReports"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse/entity/{entity_type}/entity-id/{entity_id}")
 
-            ulrs["getAttributes"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes")
+            ulrs["getAttributes"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/")
 
-            ulrs["createAttribute"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes")
+            ulrs["createAttribute"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/")
 
             ulrs["getAttribute"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/{slug}")
 
             ulrs["updateAttribute"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/{slug}")
 
-            ulrs["createComment"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment")
+            ulrs["createComment"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment/")
 
-            ulrs["updateComment"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment")
+            ulrs["updateComment"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment/")
 
             ulrs["getComments"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment/entity/{entity_type}")
 
@@ -11183,15 +11183,21 @@ public class ApplicationClient {
          * Description: Use this API to delete media for an entity ID.
          **/
         public func deleteMedia(
+            ids: [String],
+
             onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["deleteMedia"] ?? ""
+            var xQuery: [String: Any] = [:]
+
+            xQuery["ids"] = ids
+
+            var fullUrl = relativeUrls["deleteMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "delete",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",
