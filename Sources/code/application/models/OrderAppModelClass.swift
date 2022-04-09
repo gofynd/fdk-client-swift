@@ -663,16 +663,22 @@ public extension ApplicationClient {
 
         public var forceTransition: Bool
 
+        public var task: Bool
+
         public enum CodingKeys: String, CodingKey {
             case statuses
 
             case forceTransition = "force_transition"
+
+            case task
         }
 
-        public init(forceTransition: Bool, statuses: [StatusesBody]) {
+        public init(forceTransition: Bool, statuses: [StatusesBody], task: Bool) {
             self.statuses = statuses
 
             self.forceTransition = forceTransition
+
+            self.task = task
         }
 
         public func duplicate() -> ShipmentStatusUpdateBody {
@@ -687,6 +693,8 @@ public extension ApplicationClient {
             statuses = try container.decode([StatusesBody].self, forKey: .statuses)
 
             forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+
+            task = try container.decode(Bool.self, forKey: .task)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -695,6 +703,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
+
+            try? container.encodeIfPresent(task, forKey: .task)
         }
     }
 
