@@ -663,7 +663,7 @@ public extension ApplicationClient {
 
         public var forceTransition: Bool
 
-        public var task: Bool
+        public var task: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case statuses
@@ -673,7 +673,7 @@ public extension ApplicationClient {
             case task
         }
 
-        public init(forceTransition: Bool, statuses: [StatusesBody], task: Bool) {
+        public init(forceTransition: Bool, statuses: [StatusesBody], task: Bool? = nil) {
             self.statuses = statuses
 
             self.forceTransition = forceTransition
@@ -694,7 +694,13 @@ public extension ApplicationClient {
 
             forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
 
-            task = try container.decode(Bool.self, forKey: .task)
+            do {
+                task = try container.decode(Bool.self, forKey: .task)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {

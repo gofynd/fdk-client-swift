@@ -797,7 +797,7 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | statuses | [[StatusesBody](#StatusesBody)] |  no  |  |
  | forceTransition | Bool |  no  |  |
- | task | Bool |  no  |  |
+ | task | Bool? |  yes  |  |
 
 ---
 
