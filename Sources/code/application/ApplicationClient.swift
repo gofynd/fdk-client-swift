@@ -3457,6 +3457,7 @@ public class ApplicationClient {
         public func getPromotionOffers(
             slug: String?,
             pageSize: Int?,
+            promotionGroup: String?,
 
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3468,6 +3469,10 @@ public class ApplicationClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+
+            if let value = promotionGroup {
+                xQuery["promotion_group"] = value
             }
 
             var fullUrl = relativeUrls["getPromotionOffers"] ?? ""
@@ -3508,6 +3513,7 @@ public class ApplicationClient {
          **/
         public func getLadderOffers(
             slug: String,
+            storeId: String?,
             promotionId: String?,
             pageSize: Int?,
 
@@ -3516,6 +3522,10 @@ public class ApplicationClient {
             var xQuery: [String: Any] = [:]
 
             xQuery["slug"] = slug
+
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
 
             if let value = promotionId {
                 xQuery["promotion_id"] = value
