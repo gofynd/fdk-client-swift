@@ -2,6 +2,8 @@
 import Foundation
 
 public class ApplicationClient {
+    private let config: ApplicationConfig
+
     public let catalog: Catalog
 
     public let cart: Cart
@@ -37,6 +39,8 @@ public class ApplicationClient {
     public let logistic: Logistic
 
     public init(config: ApplicationConfig) {
+        self.config = config
+
         catalog = Catalog(config: config)
 
         cart = Cart(config: config)
@@ -70,6 +74,10 @@ public class ApplicationClient {
         posCart = PosCart(config: config)
 
         logistic = Logistic(config: config)
+    }
+
+    public func setLocationDetails(details: ApplicationConfig.LocationDetails?) {
+        config.locationDetails = details
     }
 
     public class Catalog {
@@ -122,9 +130,9 @@ public class ApplicationClient {
 
             ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/")
 
-            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
-
             ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
+
+            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
 
             ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/")
 
@@ -258,7 +266,7 @@ public class ApplicationClient {
 
             xQuery["slug"] = slug
 
-            var fullUrl = relativeUrls["getProductComparisonBySlugs"] ?? ""
+            let fullUrl = relativeUrls["getProductComparisonBySlugs"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -500,7 +508,7 @@ public class ApplicationClient {
                 xQuery["upc"] = value
             }
 
-            var fullUrl = relativeUrls["getProductStockByIds"] ?? ""
+            let fullUrl = relativeUrls["getProductStockByIds"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -555,7 +563,7 @@ public class ApplicationClient {
                 xQuery["page_id"] = value
             }
 
-            var fullUrl = relativeUrls["getProductStockForTimeByIds"] ?? ""
+            let fullUrl = relativeUrls["getProductStockForTimeByIds"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -667,7 +675,7 @@ public class ApplicationClient {
                 xQuery["page_type"] = value
             }
 
-            var fullUrl = relativeUrls["getProducts"] ?? ""
+            let fullUrl = relativeUrls["getProducts"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -764,7 +772,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getBrands"] ?? ""
+            let fullUrl = relativeUrls["getBrands"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -884,7 +892,7 @@ public class ApplicationClient {
                 xQuery["department"] = value
             }
 
-            var fullUrl = relativeUrls["getCategories"] ?? ""
+            let fullUrl = relativeUrls["getCategories"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -984,7 +992,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getHomeProducts"] ?? ""
+            let fullUrl = relativeUrls["getHomeProducts"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1098,7 +1106,7 @@ public class ApplicationClient {
 
             xQuery["q"] = q
 
-            var fullUrl = relativeUrls["getSearchResults"] ?? ""
+            let fullUrl = relativeUrls["getSearchResults"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1155,7 +1163,7 @@ public class ApplicationClient {
                 xQuery["tag"] = value
             }
 
-            var fullUrl = relativeUrls["getCollections"] ?? ""
+            let fullUrl = relativeUrls["getCollections"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1452,16 +1460,16 @@ public class ApplicationClient {
 
         /**
          *
-         * Summary: Unfollow an entity (product/brand/collection)
-         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+         * Summary: Follow an entity (product/brand/collection)
+         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
          **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["unfollowById"] ?? ""
+            var fullUrl = relativeUrls["followById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1469,7 +1477,7 @@ public class ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1498,16 +1506,16 @@ public class ApplicationClient {
 
         /**
          *
-         * Summary: Follow an entity (product/brand/collection)
-         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+         * Summary: Unfollow an entity (product/brand/collection)
+         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
          **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["followById"] ?? ""
+            var fullUrl = relativeUrls["unfollowById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1515,7 +1523,7 @@ public class ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1604,7 +1612,7 @@ public class ApplicationClient {
                 xQuery["collection_type"] = value
             }
 
-            var fullUrl = relativeUrls["getFollowIds"] ?? ""
+            let fullUrl = relativeUrls["getFollowIds"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1681,7 +1689,7 @@ public class ApplicationClient {
                 xQuery["longitude"] = value
             }
 
-            var fullUrl = relativeUrls["getStores"] ?? ""
+            let fullUrl = relativeUrls["getStores"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1796,7 +1804,7 @@ public class ApplicationClient {
                 xQuery["longitude"] = value
             }
 
-            var fullUrl = relativeUrls["getInStockLocations"] ?? ""
+            let fullUrl = relativeUrls["getInStockLocations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1929,7 +1937,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getProductBundlesBySlug"] ?? ""
+            let fullUrl = relativeUrls["getProductBundlesBySlug"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2228,7 +2236,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            var fullUrl = relativeUrls["getCart"] ?? ""
+            let fullUrl = relativeUrls["getCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2275,7 +2283,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getCartLastModified"] ?? ""
+            let fullUrl = relativeUrls["getCartLastModified"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2332,7 +2340,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            var fullUrl = relativeUrls["addItems"] ?? ""
+            let fullUrl = relativeUrls["addItems"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2394,7 +2402,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            var fullUrl = relativeUrls["updateCart"] ?? ""
+            let fullUrl = relativeUrls["updateCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2441,7 +2449,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getItemCount"] ?? ""
+            let fullUrl = relativeUrls["getItemCount"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2488,7 +2496,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getCoupons"] ?? ""
+            let fullUrl = relativeUrls["getCoupons"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2550,7 +2558,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["applyCoupon"] ?? ""
+            let fullUrl = relativeUrls["applyCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2597,7 +2605,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["removeCoupon"] ?? ""
+            let fullUrl = relativeUrls["removeCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2659,7 +2667,7 @@ public class ApplicationClient {
                 xQuery["slug"] = value
             }
 
-            var fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
+            let fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2716,7 +2724,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            var fullUrl = relativeUrls["applyRewardPoints"] ?? ""
+            let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -2783,7 +2791,7 @@ public class ApplicationClient {
                 xQuery["is_default"] = value
             }
 
-            var fullUrl = relativeUrls["getAddresses"] ?? ""
+            let fullUrl = relativeUrls["getAddresses"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3036,7 +3044,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            var fullUrl = relativeUrls["selectAddress"] ?? ""
+            let fullUrl = relativeUrls["selectAddress"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3083,7 +3091,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["selectPaymentMode"] ?? ""
+            let fullUrl = relativeUrls["selectPaymentMode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3155,7 +3163,7 @@ public class ApplicationClient {
                 xQuery["merchant_code"] = value
             }
 
-            var fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
+            let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3217,7 +3225,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            var fullUrl = relativeUrls["getShipments"] ?? ""
+            let fullUrl = relativeUrls["getShipments"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3304,7 +3312,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["updateCartMeta"] ?? ""
+            let fullUrl = relativeUrls["updateCartMeta"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3490,7 +3498,7 @@ public class ApplicationClient {
                 xQuery["promotion_group"] = value
             }
 
-            var fullUrl = relativeUrls["getPromotionOffers"] ?? ""
+            let fullUrl = relativeUrls["getPromotionOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3550,7 +3558,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getLadderOffers"] ?? ""
+            let fullUrl = relativeUrls["getLadderOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3626,7 +3634,7 @@ public class ApplicationClient {
                 xHeaders.append((key: "authorization", value: value))
             }
 
-            var fullUrl = relativeUrls["searchApplication"] ?? ""
+            let fullUrl = relativeUrls["searchApplication"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -3678,7 +3686,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getLocations"] ?? ""
+            let fullUrl = relativeUrls["getLocations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4336,7 +4344,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["loginWithFacebook"] ?? ""
+            let fullUrl = relativeUrls["loginWithFacebook"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4383,7 +4391,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["loginWithGoogle"] ?? ""
+            let fullUrl = relativeUrls["loginWithGoogle"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4430,7 +4438,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["loginWithGoogleAndroid"] ?? ""
+            let fullUrl = relativeUrls["loginWithGoogleAndroid"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4477,7 +4485,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["loginWithGoogleIOS"] ?? ""
+            let fullUrl = relativeUrls["loginWithGoogleIOS"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4524,7 +4532,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["loginWithAppleIOS"] ?? ""
+            let fullUrl = relativeUrls["loginWithAppleIOS"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4571,7 +4579,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["loginWithOTP"] ?? ""
+            let fullUrl = relativeUrls["loginWithOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4658,7 +4666,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["sendResetPasswordEmail"] ?? ""
+            let fullUrl = relativeUrls["sendResetPasswordEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -4825,7 +4833,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["registerWithForm"] ?? ""
+            let fullUrl = relativeUrls["registerWithForm"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5070,7 +5078,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["sendOTPOnMobile"] ?? ""
+            let fullUrl = relativeUrls["sendOTPOnMobile"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5117,7 +5125,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["verifyMobileOTP"] ?? ""
+            let fullUrl = relativeUrls["verifyMobileOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5164,7 +5172,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["sendOTPOnEmail"] ?? ""
+            let fullUrl = relativeUrls["sendOTPOnEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5211,7 +5219,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["verifyEmailOTP"] ?? ""
+            let fullUrl = relativeUrls["verifyEmailOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5336,7 +5344,7 @@ public class ApplicationClient {
                 xQuery["name"] = value
             }
 
-            var fullUrl = relativeUrls["getPlatformConfig"] ?? ""
+            let fullUrl = relativeUrls["getPlatformConfig"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5383,7 +5391,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["updateProfile"] ?? ""
+            let fullUrl = relativeUrls["updateProfile"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5430,7 +5438,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["addMobileNumber"] ?? ""
+            let fullUrl = relativeUrls["addMobileNumber"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5492,7 +5500,7 @@ public class ApplicationClient {
 
             xQuery["phone"] = phone
 
-            var fullUrl = relativeUrls["deleteMobileNumber"] ?? ""
+            let fullUrl = relativeUrls["deleteMobileNumber"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5579,7 +5587,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["sendVerificationLinkToMobile"] ?? ""
+            let fullUrl = relativeUrls["sendVerificationLinkToMobile"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5626,7 +5634,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["addEmail"] ?? ""
+            let fullUrl = relativeUrls["addEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5685,7 +5693,7 @@ public class ApplicationClient {
 
             xQuery["email"] = email
 
-            var fullUrl = relativeUrls["deleteEmail"] ?? ""
+            let fullUrl = relativeUrls["deleteEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5772,7 +5780,7 @@ public class ApplicationClient {
                 xQuery["platform"] = value
             }
 
-            var fullUrl = relativeUrls["sendVerificationLinkToEmail"] ?? ""
+            let fullUrl = relativeUrls["sendVerificationLinkToEmail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -5969,7 +5977,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getBlogs"] ?? ""
+            let fullUrl = relativeUrls["getBlogs"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6373,7 +6381,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getNavigations"] ?? ""
+            let fullUrl = relativeUrls["getNavigations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6492,7 +6500,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getSlideshows"] ?? ""
+            let fullUrl = relativeUrls["getSlideshows"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -6743,7 +6751,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getPages"] ?? ""
+            let fullUrl = relativeUrls["getPages"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7116,7 +7124,7 @@ public class ApplicationClient {
 
             xQuery["url"] = url
 
-            var fullUrl = relativeUrls["getUrlQRCode"] ?? ""
+            let fullUrl = relativeUrls["getUrlQRCode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -7691,7 +7699,7 @@ public class ApplicationClient {
                 xQuery["q"] = value
             }
 
-            var fullUrl = relativeUrls["getOrderingStores"] ?? ""
+            let fullUrl = relativeUrls["getOrderingStores"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8148,7 +8156,7 @@ public class ApplicationClient {
                 xQuery["user"] = value
             }
 
-            var fullUrl = relativeUrls["getAppStaffList"] ?? ""
+            let fullUrl = relativeUrls["getAppStaffList"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8239,7 +8247,7 @@ public class ApplicationClient {
                 xQuery["user"] = value
             }
 
-            var fullUrl = relativeUrls["getAppStaffs"] ?? ""
+            let fullUrl = relativeUrls["getAppStaffs"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8367,7 +8375,7 @@ public class ApplicationClient {
                 xHeaders.append((key: "x-api-token", value: value))
             }
 
-            var fullUrl = relativeUrls["getAggregatorsConfig"] ?? ""
+            let fullUrl = relativeUrls["getAggregatorsConfig"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8454,7 +8462,7 @@ public class ApplicationClient {
                 xQuery["refresh"] = value
             }
 
-            var fullUrl = relativeUrls["getActiveCardAggregator"] ?? ""
+            let fullUrl = relativeUrls["getActiveCardAggregator"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8501,7 +8509,7 @@ public class ApplicationClient {
                 xQuery["force_refresh"] = value
             }
 
-            var fullUrl = relativeUrls["getActiveUserCards"] ?? ""
+            let fullUrl = relativeUrls["getActiveUserCards"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8770,7 +8778,7 @@ public class ApplicationClient {
                 xQuery["user_details"] = value
             }
 
-            var fullUrl = relativeUrls["getPaymentModeRoutes"] ?? ""
+            let fullUrl = relativeUrls["getPaymentModeRoutes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -8842,7 +8850,7 @@ public class ApplicationClient {
                 xQuery["user_details"] = value
             }
 
-            var fullUrl = relativeUrls["getPosPaymentModeRoutes"] ?? ""
+            let fullUrl = relativeUrls["getPosPaymentModeRoutes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9084,7 +9092,7 @@ public class ApplicationClient {
 
             xQuery["order_id"] = orderId
 
-            var fullUrl = relativeUrls["getUserBeneficiariesDetail"] ?? ""
+            let fullUrl = relativeUrls["getUserBeneficiariesDetail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9131,7 +9139,7 @@ public class ApplicationClient {
                 xQuery["ifsc_code"] = value
             }
 
-            var fullUrl = relativeUrls["verifyIfscCode"] ?? ""
+            let fullUrl = relativeUrls["verifyIfscCode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9176,7 +9184,7 @@ public class ApplicationClient {
 
             xQuery["order_id"] = orderId
 
-            var fullUrl = relativeUrls["getOrderBeneficiariesDetail"] ?? ""
+            let fullUrl = relativeUrls["getOrderBeneficiariesDetail"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9423,7 +9431,7 @@ public class ApplicationClient {
                 xQuery["aggregator"] = value
             }
 
-            var fullUrl = relativeUrls["customerCreditSummary"] ?? ""
+            let fullUrl = relativeUrls["customerCreditSummary"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9475,7 +9483,7 @@ public class ApplicationClient {
                 xQuery["aggregator"] = value
             }
 
-            var fullUrl = relativeUrls["redirectToAggregator"] ?? ""
+            let fullUrl = relativeUrls["redirectToAggregator"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9522,7 +9530,7 @@ public class ApplicationClient {
                 xQuery["aggregator"] = value
             }
 
-            var fullUrl = relativeUrls["checkCredit"] ?? ""
+            let fullUrl = relativeUrls["checkCredit"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -9669,7 +9677,7 @@ public class ApplicationClient {
                 xQuery["status"] = value
             }
 
-            var fullUrl = relativeUrls["getOrders"] ?? ""
+            let fullUrl = relativeUrls["getOrders"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10354,7 +10362,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
+            let fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -10760,7 +10768,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getAttributes"] ?? ""
+            let fullUrl = relativeUrls["getAttributes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11191,7 +11199,7 @@ public class ApplicationClient {
 
             xQuery["ids"] = ids
 
-            var fullUrl = relativeUrls["deleteMedia"] ?? ""
+            let fullUrl = relativeUrls["deleteMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -11762,7 +11770,7 @@ public class ApplicationClient {
                 xQuery["entity_type"] = value
             }
 
-            var fullUrl = relativeUrls["getTemplates"] ?? ""
+            let fullUrl = relativeUrls["getTemplates"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12015,7 +12023,7 @@ public class ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            var fullUrl = relativeUrls["getVotes"] ?? ""
+            let fullUrl = relativeUrls["getVotes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12266,7 +12274,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            var fullUrl = relativeUrls["getCart"] ?? ""
+            let fullUrl = relativeUrls["getCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12313,7 +12321,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getCartLastModified"] ?? ""
+            let fullUrl = relativeUrls["getCartLastModified"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12370,7 +12378,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            var fullUrl = relativeUrls["addItems"] ?? ""
+            let fullUrl = relativeUrls["addItems"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12432,7 +12440,7 @@ public class ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            var fullUrl = relativeUrls["updateCart"] ?? ""
+            let fullUrl = relativeUrls["updateCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12479,7 +12487,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getItemCount"] ?? ""
+            let fullUrl = relativeUrls["getItemCount"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12526,7 +12534,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getCoupons"] ?? ""
+            let fullUrl = relativeUrls["getCoupons"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12588,7 +12596,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["applyCoupon"] ?? ""
+            let fullUrl = relativeUrls["applyCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12635,7 +12643,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["removeCoupon"] ?? ""
+            let fullUrl = relativeUrls["removeCoupon"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12697,7 +12705,7 @@ public class ApplicationClient {
                 xQuery["slug"] = value
             }
 
-            var fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
+            let fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12754,7 +12762,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            var fullUrl = relativeUrls["applyRewardPoints"] ?? ""
+            let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -12821,7 +12829,7 @@ public class ApplicationClient {
                 xQuery["is_default"] = value
             }
 
-            var fullUrl = relativeUrls["getAddresses"] ?? ""
+            let fullUrl = relativeUrls["getAddresses"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13074,7 +13082,7 @@ public class ApplicationClient {
                 xQuery["b"] = value
             }
 
-            var fullUrl = relativeUrls["selectAddress"] ?? ""
+            let fullUrl = relativeUrls["selectAddress"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13121,7 +13129,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["selectPaymentMode"] ?? ""
+            let fullUrl = relativeUrls["selectPaymentMode"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13193,7 +13201,7 @@ public class ApplicationClient {
                 xQuery["merchant_code"] = value
             }
 
-            var fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
+            let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13270,7 +13278,7 @@ public class ApplicationClient {
                 xQuery["order_type"] = value
             }
 
-            var fullUrl = relativeUrls["getShipments"] ?? ""
+            let fullUrl = relativeUrls["getShipments"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13337,7 +13345,7 @@ public class ApplicationClient {
                 xQuery["order_type"] = value
             }
 
-            var fullUrl = relativeUrls["updateShipments"] ?? ""
+            let fullUrl = relativeUrls["updateShipments"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13384,7 +13392,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["checkoutCart"] ?? ""
+            let fullUrl = relativeUrls["checkoutCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13431,7 +13439,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["updateCartMeta"] ?? ""
+            let fullUrl = relativeUrls["updateCartMeta"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13481,7 +13489,7 @@ public class ApplicationClient {
                 xQuery["id"] = value
             }
 
-            var fullUrl = relativeUrls["getAvailableDeliveryModes"] ?? ""
+            let fullUrl = relativeUrls["getAvailableDeliveryModes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -13526,7 +13534,7 @@ public class ApplicationClient {
 
             xQuery["store_uid"] = storeUid
 
-            var fullUrl = relativeUrls["getStoreAddressByUid"] ?? ""
+            let fullUrl = relativeUrls["getStoreAddressByUid"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
