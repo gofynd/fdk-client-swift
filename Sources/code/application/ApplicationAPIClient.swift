@@ -24,6 +24,9 @@ class ApplicationAPIClient {
         if let currency = config.currency {
             headers.append((key: "x-currency-code", value: currency))
         }
+        if let locationDetails = config.locationDetails.dictionary?.minifiedJson {
+            headers.append((key: "x-location-detail", value: locationDetails))
+        }
         AlmofireHelper.request(url,
                                query: query,
                                parameters: body,
