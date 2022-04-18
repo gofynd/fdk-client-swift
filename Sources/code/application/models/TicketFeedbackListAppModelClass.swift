@@ -1,0 +1,44 @@
+import Foundation
+
+import Foundation
+public extension ApplicationClient {
+    /*
+         Model: TicketFeedbackList
+         Used By: Lead
+     */
+    class TicketFeedbackList: Codable {
+        public var items: [TicketFeedback]?
+
+        public enum CodingKeys: String, CodingKey {
+            case items
+        }
+
+        public init(items: [TicketFeedback]?) {
+            self.items = items
+        }
+
+        public func duplicate() -> TicketFeedbackList {
+            let dict = self.dictionary!
+            let copy = TicketFeedbackList(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                items = try container.decode([TicketFeedback].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(items, forKey: .items)
+        }
+    }
+}

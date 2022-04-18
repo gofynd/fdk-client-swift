@@ -1,0 +1,61 @@
+import Foundation
+
+import Foundation
+public extension PlatformClient {
+    /*
+         Model: ApplicationWebsite
+         Used By: Common
+     */
+
+    class ApplicationWebsite: Codable {
+        public var enabled: Bool?
+
+        public var basepath: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case enabled
+
+            case basepath
+        }
+
+        public init(basepath: String?, enabled: Bool?) {
+            self.enabled = enabled
+
+            self.basepath = basepath
+        }
+
+        public func duplicate() -> ApplicationWebsite {
+            let dict = self.dictionary!
+            let copy = ApplicationWebsite(dictionary: dict)!
+            return copy
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                enabled = try container.decode(Bool.self, forKey: .enabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                basepath = try container.decode(String.self, forKey: .basepath)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(basepath, forKey: .basepath)
+        }
+    }
+}
