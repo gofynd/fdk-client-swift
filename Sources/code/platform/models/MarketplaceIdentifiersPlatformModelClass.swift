@@ -14,7 +14,7 @@ public extension PlatformClient {
             case tatacliqLuxury = "tatacliq_luxury"
         }
 
-        public init(tatacliqLuxury: TatacliqLuxury?) {
+        public init(tatacliqLuxury: TatacliqLuxury? = nil) {
             self.tatacliqLuxury = tatacliqLuxury
         }
 

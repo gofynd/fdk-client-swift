@@ -62,7 +62,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(createdAt: String?, data: OtherEntityData?, integration: String?, lastPatch: [LastPatch]?, level: String?, meta: [[String: Any]]?, opted: Bool?, permissions: [String]?, token: String?, uid: Int?, updatedAt: String?, id: String?, v: Int?) {
+        public init(createdAt: String? = nil, data: OtherEntityData? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [[String: Any]]? = nil, opted: Bool? = nil, permissions: [String]? = nil, token: String? = nil, uid: Int? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.opted = opted
 
             self.permissions = permissions

@@ -117,7 +117,7 @@ public extension ApplicationClient {
             case gstTaxPercentage = "gst_tax_percentage"
         }
 
-        public init(addedToFyndCash: Bool?, amountPaid: Double?, amountPaidRoundoff: Double?, brandCalculatedAmount: Double?, cashback: Double?, cashbackApplied: Double?, codCharges: Double?, couponEffectiveDiscount: Double?, couponValue: Double?, deliveryCharge: Double?, discount: Double?, fyndCredits: Double?, gstFee: String?, gstTag: String?, gstTaxPercentage: Double?, hsnCode: String?, identifiers: Identifiers?, itemName: String?, priceEffective: Double?, priceMarked: Double?, promotionEffectiveDiscount: Double?, refundAmount: Double?, refundCredit: Double?, size: String?, totalUnits: Int?, transferPrice: Double?, valueOfGood: Double?) {
+        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstFee: String? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, identifiers: Identifiers? = nil, itemName: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, size: String? = nil, totalUnits: Int? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             self.brandCalculatedAmount = brandCalculatedAmount
 
             self.couponValue = couponValue

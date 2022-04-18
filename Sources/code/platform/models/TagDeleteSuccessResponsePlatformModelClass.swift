@@ -14,7 +14,7 @@ public extension PlatformClient {
             case success
         }
 
-        public init(success: Bool?) {
+        public init(success: Bool? = nil) {
             self.success = success
         }
 

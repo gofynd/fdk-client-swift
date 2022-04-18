@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case verifyEmailLink = "verify_email_link"
         }
 
-        public init(verifyEmailLink: Bool?) {
+        public init(verifyEmailLink: Bool? = nil) {
             self.verifyEmailLink = verifyEmailLink
         }
 

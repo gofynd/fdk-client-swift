@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case publish
         }
 
-        public init(publish: Bool?) {
+        public init(publish: Bool? = nil) {
             self.publish = publish
         }
 

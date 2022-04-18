@@ -26,7 +26,7 @@ public extension PlatformClient {
             case version
         }
 
-        public init(eventCategory: String?, eventName: String?, eventType: String?, version: String?) {
+        public init(eventCategory: String? = nil, eventName: String? = nil, eventType: String? = nil, version: String? = nil) {
             self.eventName = eventName
 
             self.eventType = eventType

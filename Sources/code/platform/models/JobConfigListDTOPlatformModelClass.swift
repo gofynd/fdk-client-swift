@@ -42,7 +42,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(active: Bool?, alias: String?, code: String?, createdBy: String?, createdOn: String?, modifiedBy: String?, modifiedOn: String?, type: String?) {
+        public init(active: Bool? = nil, alias: String? = nil, code: String? = nil, createdBy: String? = nil, createdOn: String? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil, type: String? = nil) {
             self.code = code
 
             self.alias = alias

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [LocationSerializer]?) {
+        public init(data: [LocationSerializer]? = nil) {
             self.data = data
         }
 

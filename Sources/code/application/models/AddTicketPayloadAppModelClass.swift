@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case content
         }
 
-        public init(category: String, content: TicketContent, createdBy: [String: Any]?, priority: PriorityEnum?, status: String?) {
+        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil) {
             self.createdBy = createdBy
 
             self.status = status

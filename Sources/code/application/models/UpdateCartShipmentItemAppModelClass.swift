@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case articleUid = "article_uid"
         }
 
-        public init(articleUid: String, quantity: Int?, shipmentType: String) {
+        public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
             self.quantity = quantity
 
             self.shipmentType = shipmentType

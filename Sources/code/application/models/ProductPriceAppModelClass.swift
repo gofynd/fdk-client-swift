@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case effective
         }
 
-        public init(addOn: Double?, currencyCode: String?, currencySymbol: String?, effective: Double?, marked: Double?, selling: Double?) {
+        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
             self.selling = selling
 
             self.currencySymbol = currencySymbol

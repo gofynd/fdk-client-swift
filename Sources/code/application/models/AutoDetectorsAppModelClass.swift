@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case textDetector = "text_detector"
         }
 
-        public init(textDetector: [TextDetector]?) {
+        public init(textDetector: [TextDetector]? = nil) {
             self.textDetector = textDetector
         }
 

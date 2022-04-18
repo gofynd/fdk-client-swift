@@ -30,7 +30,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(discountQty: Double?, key: Double?, max: Double?, min: Double?, value: Double?) {
+        public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
             self.key = key
 
             self.max = max

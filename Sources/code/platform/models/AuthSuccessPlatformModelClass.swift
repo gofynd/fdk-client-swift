@@ -22,7 +22,7 @@ public extension PlatformClient {
             case user
         }
 
-        public init(registerToken: String?, user: UserSchema?, userExists: Bool?) {
+        public init(registerToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil) {
             self.registerToken = registerToken
 
             self.userExists = userExists

@@ -34,7 +34,7 @@ public extension PlatformClient {
             case voteAllowed = "vote_allowed"
         }
 
-        public init(description: String?, header: String?, imageMeta: MediaMeta?, title: String?, videoMeta: MediaMeta?, voteAllowed: Bool?) {
+        public init(description: String? = nil, header: String? = nil, imageMeta: MediaMeta? = nil, title: String? = nil, videoMeta: MediaMeta? = nil, voteAllowed: Bool? = nil) {
             self.description = description
 
             self.header = header

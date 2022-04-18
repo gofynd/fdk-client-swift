@@ -22,7 +22,7 @@ public extension PlatformClient {
             case webToken = "web_token"
         }
 
-        public init(appId: String?, appKey: String?, webToken: String?) {
+        public init(appId: String? = nil, appKey: String? = nil, webToken: String? = nil) {
             self.appId = appId
 
             self.appKey = appKey

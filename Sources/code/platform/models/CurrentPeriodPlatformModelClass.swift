@@ -18,7 +18,7 @@ public extension PlatformClient {
             case endDate = "end_date"
         }
 
-        public init(endDate: String?, startDate: String?) {
+        public init(endDate: String? = nil, startDate: String? = nil) {
             self.startDate = startDate
 
             self.endDate = endDate

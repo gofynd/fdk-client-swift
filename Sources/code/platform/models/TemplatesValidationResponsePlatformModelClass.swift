@@ -18,7 +18,7 @@ public extension PlatformClient {
             case templateDetails = "template_details"
         }
 
-        public init(data: TemplateValidationData?, templateDetails: TemplateDetails?) {
+        public init(data: TemplateValidationData? = nil, templateDetails: TemplateDetails? = nil) {
             self.data = data
 
             self.templateDetails = templateDetails

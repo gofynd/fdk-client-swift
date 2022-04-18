@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(query: ActionQuery?, type: String?, url: String?) {
+        public init(query: ActionQuery? = nil, type: String? = nil, url: String? = nil) {
             self.url = url
 
             self.query = query

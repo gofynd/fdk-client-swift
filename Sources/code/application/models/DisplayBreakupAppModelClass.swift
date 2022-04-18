@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case message
         }
 
-        public init(currencyCode: String?, currencySymbol: String?, display: String?, key: String?, message: [String]?, value: Double?) {
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, value: Double? = nil) {
             self.value = value
 
             self.display = display

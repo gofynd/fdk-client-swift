@@ -22,7 +22,7 @@ public extension PlatformClient {
             case productId = "product_id"
         }
 
-        public init(productId: String, quantity: Int?, size: String) {
+        public init(productId: String, quantity: Int? = nil, size: String) {
             self.quantity = quantity
 
             self.size = size

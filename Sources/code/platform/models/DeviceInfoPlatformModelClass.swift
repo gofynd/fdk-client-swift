@@ -18,7 +18,7 @@ public extension PlatformClient {
             case extraMeta = "extra_meta"
         }
 
-        public init(extraMeta: [String: Any]?, userAgent: String?) {
+        public init(extraMeta: [String: Any]? = nil, userAgent: String? = nil) {
             self.userAgent = userAgent
 
             self.extraMeta = extraMeta

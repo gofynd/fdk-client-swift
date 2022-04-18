@@ -14,7 +14,7 @@ public extension PlatformClient {
             case number
         }
 
-        public init(number: [String]?) {
+        public init(number: [String]? = nil) {
             self.number = number
         }
 

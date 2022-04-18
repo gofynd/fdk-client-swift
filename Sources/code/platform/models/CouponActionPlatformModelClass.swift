@@ -18,7 +18,7 @@ public extension PlatformClient {
             case txnMode = "txn_mode"
         }
 
-        public init(actionDate: String?, txnMode: String?) {
+        public init(actionDate: String? = nil, txnMode: String? = nil) {
             self.actionDate = actionDate
 
             self.txnMode = txnMode

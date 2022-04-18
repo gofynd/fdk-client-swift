@@ -34,7 +34,7 @@ public extension PlatformClient {
             case revenueEngineCoupon = "revenue_engine_coupon"
         }
 
-        public init(bulkCoupons: Bool?, deliveryCharges: DeliveryCharges?, enabled: Bool?, maxCartItems: Int?, minCartValue: Double?, revenueEngineCoupon: Bool?) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, revenueEngineCoupon: Bool? = nil) {
             self.deliveryCharges = deliveryCharges
 
             self.enabled = enabled

@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case orderId = "order_id"
         }
 
-        public init(aggregator: String, amount: Int, orderId: String, transactionToken: String?, verified: Bool?) {
+        public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
             self.aggregator = aggregator
 
             self.verified = verified

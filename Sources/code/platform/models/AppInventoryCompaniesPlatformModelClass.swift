@@ -22,7 +22,7 @@ public extension PlatformClient {
             case companyType = "company_type"
         }
 
-        public init(companyType: String?, name: String?, uid: Int?) {
+        public init(companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
             self.name = name

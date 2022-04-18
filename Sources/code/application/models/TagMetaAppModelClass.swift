@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(media: [MediaMeta]?, name: String?, type: String?) {
+        public init(media: [MediaMeta]? = nil, name: String? = nil, type: String? = nil) {
             self.media = media
 
             self.name = name

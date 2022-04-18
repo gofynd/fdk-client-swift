@@ -22,7 +22,7 @@ public extension PlatformClient {
             case countryOfOrigin = "country_of_origin"
         }
 
-        public init(brandName: String?, countryOfOrigin: String?, itemCode: String?) {
+        public init(brandName: String? = nil, countryOfOrigin: String? = nil, itemCode: String? = nil) {
             self.itemCode = itemCode
 
             self.brandName = brandName

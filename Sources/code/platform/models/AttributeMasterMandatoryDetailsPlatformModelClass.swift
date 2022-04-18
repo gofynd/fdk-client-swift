@@ -14,7 +14,7 @@ public extension PlatformClient {
             case l3Keys = "l3_keys"
         }
 
-        public init(l3Keys: [String]?) {
+        public init(l3Keys: [String]? = nil) {
             self.l3Keys = l3Keys
         }
 

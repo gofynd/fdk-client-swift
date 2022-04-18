@@ -26,7 +26,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(breakupValues: CartBreakup?, isValid: Bool?, items: [CartProductInfo]?, message: String?) {
+        public init(breakupValues: CartBreakup? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
             self.message = message
 
             self.isValid = isValid

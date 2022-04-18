@@ -26,7 +26,7 @@ public extension PlatformClient {
             case mode
         }
 
-        public init(amount: Double, meta: MultiTenderPaymentMeta?, mode: String, name: String?) {
+        public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.name = name
 
             self.amount = amount

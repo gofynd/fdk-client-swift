@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case props
         }
 
-        public init(props: [GlobalSchemaProps]?) {
+        public init(props: [GlobalSchemaProps]? = nil) {
             self.props = props
         }
 

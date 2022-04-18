@@ -41,7 +41,7 @@ public extension ApplicationClient {
             case createdAt = "created_at"
         }
 
-        public init(createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, ticketId: String, type: String, updatedAt: String?, value: [String: Any], id: String) {
+        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String) {
             self.type = type
 
             self.value = value

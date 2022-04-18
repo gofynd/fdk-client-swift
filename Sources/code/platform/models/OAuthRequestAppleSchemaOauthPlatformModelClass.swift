@@ -14,7 +14,7 @@ public extension PlatformClient {
             case identityToken = "identity_token"
         }
 
-        public init(identityToken: String?) {
+        public init(identityToken: String? = nil) {
             self.identityToken = identityToken
         }
 

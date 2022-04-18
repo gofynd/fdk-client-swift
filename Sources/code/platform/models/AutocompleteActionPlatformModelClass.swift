@@ -18,7 +18,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(page: AutocompletePageAction?, type: String?) {
+        public init(page: AutocompletePageAction? = nil, type: String? = nil) {
             self.page = page
 
             self.type = type

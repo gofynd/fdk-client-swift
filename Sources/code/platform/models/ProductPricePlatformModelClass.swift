@@ -34,7 +34,7 @@ public extension PlatformClient {
             case currencySymbol = "currency_symbol"
         }
 
-        public init(addOn: Double?, currencyCode: String?, currencySymbol: String?, effective: Double?, marked: Double?, selling: Double?) {
+        public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
             self.marked = marked
 
             self.currencyCode = currencyCode

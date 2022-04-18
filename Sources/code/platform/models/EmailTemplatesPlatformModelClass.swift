@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [EmailTemplate]?, page: Page?) {
+        public init(items: [EmailTemplate]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

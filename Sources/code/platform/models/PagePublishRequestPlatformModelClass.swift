@@ -14,7 +14,7 @@ public extension PlatformClient {
             case publish
         }
 
-        public init(publish: Bool?) {
+        public init(publish: Bool? = nil) {
             self.publish = publish
         }
 

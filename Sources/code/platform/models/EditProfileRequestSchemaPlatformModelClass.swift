@@ -54,7 +54,7 @@ public extension PlatformClient {
             case registerToken = "register_token"
         }
 
-        public init(androidHash: String?, countryCode: String?, dob: String?, email: String?, firstName: String?, gender: String?, lastName: String?, mobile: EditProfileMobileSchema?, profilePicUrl: String?, registerToken: String?, sender: String?) {
+        public init(androidHash: String? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName

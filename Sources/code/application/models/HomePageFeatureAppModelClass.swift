@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case orderProcessing = "order_processing"
         }
 
-        public init(orderProcessing: Bool?) {
+        public init(orderProcessing: Bool? = nil) {
             self.orderProcessing = orderProcessing
         }
 

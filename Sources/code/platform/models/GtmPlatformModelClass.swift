@@ -18,7 +18,7 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(credentials: GtmCredentials?, enabled: Bool?) {
+        public init(credentials: GtmCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled

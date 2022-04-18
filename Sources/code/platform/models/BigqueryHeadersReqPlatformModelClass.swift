@@ -18,7 +18,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(query: String?, type: String?) {
+        public init(query: String? = nil, type: String? = nil) {
             self.query = query
 
             self.type = type

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(page: ProductListingActionPage?, type: String?) {
+        public init(page: ProductListingActionPage? = nil, type: String? = nil) {
             self.page = page
 
             self.type = type

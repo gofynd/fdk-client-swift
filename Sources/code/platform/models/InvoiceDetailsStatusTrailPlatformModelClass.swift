@@ -22,7 +22,7 @@ public extension PlatformClient {
             case timestamp
         }
 
-        public init(timestamp: String?, value: String?, id: String?) {
+        public init(timestamp: String? = nil, value: String? = nil, id: String? = nil) {
             self.id = id
 
             self.value = value

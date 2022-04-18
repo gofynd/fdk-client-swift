@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case url
         }
 
-        public init(url: String?) {
+        public init(url: String? = nil) {
             self.url = url
         }
 

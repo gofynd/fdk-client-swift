@@ -22,7 +22,7 @@ public extension PlatformClient {
             case profile
         }
 
-        public init(oauth: OAuthRequestAppleSchemaOauth?, profile: OAuthRequestAppleSchemaProfile?, userIdentifier: String?) {
+        public init(oauth: OAuthRequestAppleSchemaOauth? = nil, profile: OAuthRequestAppleSchemaProfile? = nil, userIdentifier: String? = nil) {
             self.userIdentifier = userIdentifier
 
             self.oauth = oauth

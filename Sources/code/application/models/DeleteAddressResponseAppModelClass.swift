@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case isDeleted = "is_deleted"
         }
 
-        public init(id: String?, isDeleted: Bool?) {
+        public init(id: String? = nil, isDeleted: Bool? = nil) {
             self.id = id
 
             self.isDeleted = isDeleted

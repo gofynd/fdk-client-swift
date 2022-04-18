@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case page
         }
 
-        public init(items: [ShortLinkRes]?, page: Page?) {
+        public init(items: [ShortLinkRes]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

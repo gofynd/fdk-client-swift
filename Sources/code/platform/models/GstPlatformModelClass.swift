@@ -26,7 +26,7 @@ public extension PlatformClient {
             case verified
         }
 
-        public init(legalName: String?, type: String?, value: String?, verified: Bool?) {
+        public init(legalName: String? = nil, type: String? = nil, value: String? = nil, verified: Bool? = nil) {
             self.legalName = legalName
 
             self.type = type

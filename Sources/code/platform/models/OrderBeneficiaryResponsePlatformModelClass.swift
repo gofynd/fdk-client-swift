@@ -18,7 +18,7 @@ public extension PlatformClient {
             case showBeneficiaryDetails = "show_beneficiary_details"
         }
 
-        public init(beneficiaries: [OrderBeneficiaryDetails]?, showBeneficiaryDetails: Bool?) {
+        public init(beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
             self.beneficiaries = beneficiaries
 
             self.showBeneficiaryDetails = showBeneficiaryDetails

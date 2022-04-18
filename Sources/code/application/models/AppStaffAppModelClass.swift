@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case profilePicUrl = "profile_pic_url"
         }
 
-        public init(application: String?, employeeCode: String?, firstName: String?, lastName: String?, orderIncent: Bool?, profilePicUrl: String?, stores: [Int]?, title: String?, user: String?, id: String?) {
+        public init(application: String? = nil, employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, orderIncent: Bool? = nil, profilePicUrl: String? = nil, stores: [Int]? = nil, title: String? = nil, user: String? = nil, id: String? = nil) {
             self.id = id
 
             self.orderIncent = orderIncent

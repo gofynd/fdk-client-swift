@@ -90,7 +90,7 @@ public extension PlatformClient {
             case addressCategory = "address_category"
         }
 
-        public init(address: String?, address1: String?, address2: String?, addressCategory: String?, addressType: String?, area: String?, city: String?, contactPerson: String?, country: String?, createdAt: String?, email: String?, landmark: String?, latitude: Double?, longitude: Double?, name: String?, phone: String?, pincode: String?, state: String?, updatedAt: String?, version: String?) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
             self.area = area
 
             self.state = state

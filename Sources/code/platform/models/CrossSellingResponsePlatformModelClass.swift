@@ -18,7 +18,7 @@ public extension PlatformClient {
             case brandDistribution = "brand_distribution"
         }
 
-        public init(brandDistribution: CatalogInsightBrand?, data: CrossSellingData?) {
+        public init(brandDistribution: CatalogInsightBrand? = nil, data: CrossSellingData? = nil) {
             self.data = data
 
             self.brandDistribution = brandDistribution

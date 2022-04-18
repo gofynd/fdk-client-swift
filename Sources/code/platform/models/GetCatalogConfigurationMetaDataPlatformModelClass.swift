@@ -18,7 +18,7 @@ public extension PlatformClient {
             case product
         }
 
-        public init(listing: MetaDataListingResponse?, product: GetCatalogConfigurationDetailsProduct?) {
+        public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             self.listing = listing
 
             self.product = product

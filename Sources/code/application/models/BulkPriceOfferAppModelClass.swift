@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case seller
         }
 
-        public init(offers: [OfferItem]?, seller: OfferSeller?) {
+        public init(offers: [OfferItem]? = nil, seller: OfferSeller? = nil) {
             self.offers = offers
 
             self.seller = seller

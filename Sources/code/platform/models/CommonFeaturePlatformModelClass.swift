@@ -42,7 +42,7 @@ public extension PlatformClient {
             case rewardPoints = "reward_points"
         }
 
-        public init(communicationOptinDialog: CommunicationOptinDialogFeature?, compareProducts: CompareProductsFeature?, currency: CurrencyFeature?, deploymentStoreSelection: DeploymentStoreSelectionFeature?, feedback: FeedbackFeature?, listingPrice: ListingPriceFeature?, revenueEngine: RevenueEngineFeature?, rewardPoints: RewardPointsConfig?) {
+        public init(communicationOptinDialog: CommunicationOptinDialogFeature? = nil, compareProducts: CompareProductsFeature? = nil, currency: CurrencyFeature? = nil, deploymentStoreSelection: DeploymentStoreSelectionFeature? = nil, feedback: FeedbackFeature? = nil, listingPrice: ListingPriceFeature? = nil, revenueEngine: RevenueEngineFeature? = nil, rewardPoints: RewardPointsConfig? = nil) {
             self.communicationOptinDialog = communicationOptinDialog
 
             self.deploymentStoreSelection = deploymentStoreSelection

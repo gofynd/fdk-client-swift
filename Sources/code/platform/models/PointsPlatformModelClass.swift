@@ -14,7 +14,7 @@ public extension PlatformClient {
             case available
         }
 
-        public init(available: Double?) {
+        public init(available: Double? = nil) {
             self.available = available
         }
 

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case otherEntity = "other_entity"
         }
 
-        public init(otherEntity: OtherEntity?, otherIntegration: IntegrationOptIn?, otherOpted: Bool?) {
+        public init(otherEntity: OtherEntity? = nil, otherIntegration: IntegrationOptIn? = nil, otherOpted: Bool? = nil) {
             self.otherOpted = otherOpted
 
             self.otherIntegration = otherIntegration

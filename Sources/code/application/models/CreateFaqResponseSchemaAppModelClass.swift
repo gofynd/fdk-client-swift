@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case faq
         }
 
-        public init(faq: FaqSchema?) {
+        public init(faq: FaqSchema? = nil) {
             self.faq = faq
         }
 

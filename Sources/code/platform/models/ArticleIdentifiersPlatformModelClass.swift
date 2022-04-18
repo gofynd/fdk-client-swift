@@ -14,7 +14,7 @@ public extension PlatformClient {
             case ean
         }
 
-        public init(ean: String?) {
+        public init(ean: String? = nil) {
             self.ean = ean
         }
 

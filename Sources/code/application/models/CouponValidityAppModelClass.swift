@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case displayMessageEn = "display_message_en"
         }
 
-        public init(code: String?, discount: Double?, displayMessageEn: String?, title: String?, valid: Bool?) {
+        public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, title: String? = nil, valid: Bool? = nil) {
             self.discount = discount
 
             self.title = title

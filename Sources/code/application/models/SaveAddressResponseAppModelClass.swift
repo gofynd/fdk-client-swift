@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case isDefaultAddress = "is_default_address"
         }
 
-        public init(id: String?, isDefaultAddress: Bool?, success: Bool?) {
+        public init(id: String? = nil, isDefaultAddress: Bool? = nil, success: Bool? = nil) {
             self.success = success
 
             self.id = id

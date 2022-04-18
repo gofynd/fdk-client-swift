@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case coupon
         }
 
-        public init(coupon: CouponBreakup?, display: [DisplayBreakup]?, loyaltyPoints: LoyaltyPoints?, raw: RawBreakup?) {
+        public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
             self.loyaltyPoints = loyaltyPoints
 
             self.display = display

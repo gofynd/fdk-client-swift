@@ -18,7 +18,7 @@ public extension PlatformClient {
             case mobile
         }
 
-        public init(email: PlatformEmail?, mobile: PlatformMobile?) {
+        public init(email: PlatformEmail? = nil, mobile: PlatformMobile? = nil) {
             self.email = email
 
             self.mobile = mobile

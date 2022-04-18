@@ -26,7 +26,7 @@ public extension PlatformClient {
             case success
         }
 
-        public init(message: String?, orderId: String, orderRefId: String?, success: Bool?) {
+        public init(message: String? = nil, orderId: String, orderRefId: String? = nil, success: Bool? = nil) {
             self.orderId = orderId
 
             self.message = message

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case service
         }
 
-        public init(service: String?) {
+        public init(service: String? = nil) {
             self.service = service
         }
 

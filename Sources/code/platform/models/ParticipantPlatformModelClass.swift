@@ -22,7 +22,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(identity: String?, status: String?, user: UserSchema?) {
+        public init(identity: String? = nil, status: String? = nil, user: UserSchema? = nil) {
             self.user = user
 
             self.identity = identity

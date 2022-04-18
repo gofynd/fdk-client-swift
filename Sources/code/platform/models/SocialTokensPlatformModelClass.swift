@@ -22,7 +22,7 @@ public extension PlatformClient {
             case google
         }
 
-        public init(accountKit: Accountkit?, facebook: Facebook?, google: Google?) {
+        public init(accountKit: Accountkit? = nil, facebook: Facebook? = nil, google: Google? = nil) {
             self.facebook = facebook
 
             self.accountKit = accountKit

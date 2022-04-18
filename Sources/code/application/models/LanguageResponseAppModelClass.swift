@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case items
         }
 
-        public init(items: [SupportedLanguage]?) {
+        public init(items: [SupportedLanguage]? = nil) {
             self.items = items
         }
 

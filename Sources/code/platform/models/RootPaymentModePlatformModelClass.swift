@@ -38,7 +38,7 @@ public extension PlatformClient {
             case displayName = "display_name"
         }
 
-        public init(addCardEnabled: Bool?, aggregatorName: String?, anonymousEnable: Bool?, displayName: String, displayPriority: Int, list: [PaymentModeList]?, name: String) {
+        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, list: [PaymentModeList]? = nil, name: String) {
             self.name = name
 
             self.addCardEnabled = addCardEnabled

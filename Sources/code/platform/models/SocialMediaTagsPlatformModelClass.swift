@@ -22,7 +22,7 @@ public extension PlatformClient {
             case image
         }
 
-        public init(description: String?, image: String?, title: String?) {
+        public init(description: String? = nil, image: String? = nil, title: String? = nil) {
             self.title = title
 
             self.description = description

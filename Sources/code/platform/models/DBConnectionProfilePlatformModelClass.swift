@@ -14,7 +14,7 @@ public extension PlatformClient {
             case inventory
         }
 
-        public init(inventory: String?) {
+        public init(inventory: String? = nil) {
             self.inventory = inventory
         }
 

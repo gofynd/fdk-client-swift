@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case points
         }
 
-        public init(points: Double?) {
+        public init(points: Double? = nil) {
             self.points = points
         }
 

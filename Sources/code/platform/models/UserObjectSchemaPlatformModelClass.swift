@@ -14,7 +14,7 @@ public extension PlatformClient {
             case user
         }
 
-        public init(user: UserSchema?) {
+        public init(user: UserSchema? = nil) {
             self.user = user
         }
 

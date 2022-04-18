@@ -78,7 +78,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(accountType: String?, active: Bool?, createdAt: String?, debug: Debug?, dob: String?, emails: [Email]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, meta: [String: Any]?, phoneNumbers: [PhoneNumber]?, profilePicUrl: String?, uid: String?, updatedAt: String?, username: String?, id: String?) {
+        public init(accountType: String? = nil, active: Bool? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, uid: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil) {
             self.firstName = firstName
 
             self.meta = meta

@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case state
         }
 
-        public init(dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, rating: Rating?, review: TemplateReview?, state: FeedbackState?) {
+        public init(dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, rating: Rating? = nil, review: TemplateReview? = nil, state: FeedbackState? = nil) {
             self.dateMeta = dateMeta
 
             self.entity = entity

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case url
         }
 
-        public init(aspectRatio: String?, url: String?) {
+        public init(aspectRatio: String? = nil, url: String? = nil) {
             self.aspectRatio = aspectRatio
 
             self.url = url

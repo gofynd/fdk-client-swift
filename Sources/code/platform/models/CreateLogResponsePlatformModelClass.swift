@@ -18,7 +18,7 @@ public extension PlatformClient {
             case internalMessage = "internal_message"
         }
 
-        public init(internalMessage: String?, message: String?) {
+        public init(internalMessage: String? = nil, message: String? = nil) {
             self.message = message
 
             self.internalMessage = internalMessage

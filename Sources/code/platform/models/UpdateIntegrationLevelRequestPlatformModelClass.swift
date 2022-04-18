@@ -14,7 +14,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [IntegrationLevel]?) {
+        public init(items: [IntegrationLevel]? = nil) {
             self.items = items
         }
 

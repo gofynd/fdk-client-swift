@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case userExists = "user_exists"
         }
 
-        public init(email: String?, registerToken: String?, user: String?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+        public init(email: String? = nil, registerToken: String? = nil, user: String? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
             self.email = email
 
             self.verifyEmailOtp = verifyEmailOtp

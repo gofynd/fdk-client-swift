@@ -22,7 +22,7 @@ public extension PlatformClient {
             case attachments
         }
 
-        public init(attachments: [TicketAsset]?, description: String?, title: String) {
+        public init(attachments: [TicketAsset]? = nil, description: String? = nil, title: String) {
             self.title = title
 
             self.description = description

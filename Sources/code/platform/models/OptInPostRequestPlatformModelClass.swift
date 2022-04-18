@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class OptInPostRequest: Codable {
-        public var enabled: Bool?
+        public var storeIds: [Int]?
 
         public var brandIds: [Int]?
 
-        public var storeIds: [Int]?
+        public var enabled: Bool?
 
         public var optLevel: String
 
         public enum CodingKeys: String, CodingKey {
-            case enabled
+            case storeIds = "store_ids"
 
             case brandIds = "brand_ids"
 
-            case storeIds = "store_ids"
+            case enabled
 
             case optLevel = "opt_level"
         }
 
-        public init(brandIds: [Int]?, enabled: Bool?, optLevel: String, storeIds: [Int]?) {
-            self.enabled = enabled
+        public init(brandIds: [Int]? = nil, enabled: Bool? = nil, optLevel: String, storeIds: [Int]? = nil) {
+            self.storeIds = storeIds
 
             self.brandIds = brandIds
 
-            self.storeIds = storeIds
+            self.enabled = enabled
 
             self.optLevel = optLevel
         }
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
         }

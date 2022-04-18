@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case symbol
         }
 
-        public init(code: String?, symbol: String?) {
+        public init(code: String? = nil, symbol: String? = nil) {
             self.code = code
 
             self.symbol = symbol

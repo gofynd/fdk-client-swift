@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case identifiers
         }
 
-        public init(articleId: String?, extraMeta: [String: Any]?, identifiers: CartProductIdentifer, itemId: Int?, itemIndex: Int?, itemSize: String?, quantity: Int?) {
+        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, quantity: Int? = nil) {
             self.extraMeta = extraMeta
 
             self.articleId = articleId

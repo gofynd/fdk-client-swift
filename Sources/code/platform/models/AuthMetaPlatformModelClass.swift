@@ -18,7 +18,7 @@ public extension PlatformClient {
             case secret
         }
 
-        public init(secret: String?, type: String?) {
+        public init(secret: String? = nil, type: String? = nil) {
             self.type = type
 
             self.secret = secret

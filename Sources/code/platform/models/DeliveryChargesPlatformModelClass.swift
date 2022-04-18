@@ -18,7 +18,7 @@ public extension PlatformClient {
             case charges
         }
 
-        public init(charges: Charges?, enabled: Bool?) {
+        public init(charges: Charges? = nil, enabled: Bool? = nil) {
             self.enabled = enabled
 
             self.charges = charges

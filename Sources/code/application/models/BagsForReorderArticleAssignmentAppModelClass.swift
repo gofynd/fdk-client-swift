@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case strategy
         }
 
-        public init(level: String?, strategy: String?) {
+        public init(level: String? = nil, strategy: String? = nil) {
             self.level = level
 
             self.strategy = strategy

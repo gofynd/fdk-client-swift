@@ -26,7 +26,7 @@ public extension PlatformClient {
             case networks
         }
 
-        public init(codes: [String]?, networks: [String]?, types: [String]?, uses: PaymentAllowValue?) {
+        public init(codes: [String]? = nil, networks: [String]? = nil, types: [String]? = nil, uses: PaymentAllowValue? = nil) {
             self.uses = uses
 
             self.codes = codes

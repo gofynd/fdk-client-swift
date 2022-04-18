@@ -54,7 +54,7 @@ public extension PlatformClient {
             case bankName = "bank_name"
         }
 
-        public init(accountHolder: String, accountNo: String, address: String?, bankName: String, branchName: String, comment: String?, email: String, ifscCode: String, mobile: String, vpa: String?, wallet: String?) {
+        public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, branchName: String, comment: String? = nil, email: String, ifscCode: String, mobile: String, vpa: String? = nil, wallet: String? = nil) {
             self.accountNo = accountNo
 
             self.branchName = branchName

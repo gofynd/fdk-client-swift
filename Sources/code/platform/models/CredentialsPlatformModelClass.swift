@@ -34,7 +34,7 @@ public extension PlatformClient {
             case apiKey = "api_key"
         }
 
-        public init(android: Android?, apiKey: String?, applicationId: String?, gcmSenderId: String?, ios: Ios?, projectId: String?) {
+        public init(android: Android? = nil, apiKey: String? = nil, applicationId: String? = nil, gcmSenderId: String? = nil, ios: Ios? = nil, projectId: String? = nil) {
             self.ios = ios
 
             self.android = android

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case browserScript = "browser_script"
         }
 
-        public init(browserScript: String?, jsonSchema: [JsonSchema]?) {
+        public init(browserScript: String? = nil, jsonSchema: [JsonSchema]? = nil) {
             self.jsonSchema = jsonSchema
 
             self.browserScript = browserScript

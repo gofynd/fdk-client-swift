@@ -10,24 +10,24 @@ public extension PlatformClient {
     class OrderQuantity: Codable {
         public var isSet: Bool?
 
-        public var maximum: Int?
-
         public var minimum: Int?
+
+        public var maximum: Int?
 
         public enum CodingKeys: String, CodingKey {
             case isSet = "is_set"
 
-            case maximum
-
             case minimum
+
+            case maximum
         }
 
-        public init(isSet: Bool?, maximum: Int?, minimum: Int?) {
+        public init(isSet: Bool? = nil, maximum: Int? = nil, minimum: Int? = nil) {
             self.isSet = isSet
 
-            self.maximum = maximum
-
             self.minimum = minimum
+
+            self.maximum = maximum
         }
 
         public func duplicate() -> OrderQuantity {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                maximum = try container.decode(Int.self, forKey: .maximum)
+                minimum = try container.decode(Int.self, forKey: .minimum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minimum = try container.decode(Int.self, forKey: .minimum)
+                maximum = try container.decode(Int.self, forKey: .maximum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isSet, forKey: .isSet)
 
-            try? container.encodeIfPresent(maximum, forKey: .maximum)
-
             try? container.encodeIfPresent(minimum, forKey: .minimum)
+
+            try? container.encodeIfPresent(maximum, forKey: .maximum)
         }
     }
 }

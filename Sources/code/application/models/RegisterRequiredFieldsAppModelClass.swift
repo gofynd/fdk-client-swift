@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case mobile
         }
 
-        public init(email: RegisterRequiredFieldsEmail?, mobile: RegisterRequiredFieldsMobile?) {
+        public init(email: RegisterRequiredFieldsEmail? = nil, mobile: RegisterRequiredFieldsMobile? = nil) {
             self.email = email
 
             self.mobile = mobile

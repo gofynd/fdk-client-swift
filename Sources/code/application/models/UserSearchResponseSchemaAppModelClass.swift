@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case users
         }
 
-        public init(users: [UserSchema]?) {
+        public init(users: [UserSchema]? = nil) {
             self.users = users
         }
 

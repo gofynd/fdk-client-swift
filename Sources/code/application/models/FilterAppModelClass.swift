@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case assignees
         }
 
-        public init(assignees: [[String: Any]], categories: [TicketCategory]?, priorities: [Priority], statuses: [Status]) {
+        public init(assignees: [[String: Any]], categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
             self.priorities = priorities
 
             self.categories = categories

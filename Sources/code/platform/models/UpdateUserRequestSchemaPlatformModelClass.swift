@@ -26,7 +26,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?) {
+        public init(firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName

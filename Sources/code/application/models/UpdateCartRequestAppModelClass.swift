@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case operation
         }
 
-        public init(items: [UpdateProductCart]?, operation: String) {
+        public init(items: [UpdateProductCart]? = nil, operation: String) {
             self.items = items
 
             self.operation = operation

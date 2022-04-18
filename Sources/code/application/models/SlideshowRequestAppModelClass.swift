@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case active
         }
 
-        public init(active: Bool?, configuration: ConfigurationSchema?, media: SlideshowMedia?, platform: String?, slug: String?) {
+        public init(active: Bool? = nil, configuration: ConfigurationSchema? = nil, media: SlideshowMedia? = nil, platform: String? = nil, slug: String? = nil) {
             self.slug = slug
 
             self.platform = platform

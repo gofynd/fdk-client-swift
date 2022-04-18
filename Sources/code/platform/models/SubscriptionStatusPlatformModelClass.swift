@@ -18,7 +18,7 @@ public extension PlatformClient {
             case subscription
         }
 
-        public init(isEnabled: Bool?, subscription: Subscription?) {
+        public init(isEnabled: Bool? = nil, subscription: Subscription? = nil) {
             self.isEnabled = isEnabled
 
             self.subscription = subscription

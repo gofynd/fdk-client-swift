@@ -18,7 +18,7 @@ public extension PlatformClient {
             case storeIds = "store_ids"
         }
 
-        public init(brandIds: [Int]?, storeIds: [Int]?) {
+        public init(brandIds: [Int]? = nil, storeIds: [Int]? = nil) {
             self.brandIds = brandIds
 
             self.storeIds = storeIds

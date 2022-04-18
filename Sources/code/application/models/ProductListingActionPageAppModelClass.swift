@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case params
         }
 
-        public init(params: [String: Any]?, query: [String: Any]?, type: String?) {
+        public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil) {
             self.query = query
 
             self.type = type

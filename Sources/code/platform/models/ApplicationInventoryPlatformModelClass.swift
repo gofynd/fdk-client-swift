@@ -78,7 +78,7 @@ public extension PlatformClient {
             case modifiedBy = "modified_by"
         }
 
-        public init(app: String?, articleAssignment: ArticleAssignmentConfig?, authentication: AuthenticationConfig?, business: String?, cart: AppCartConfig?, commsEnabled: Bool?, createdAt: String?, inventory: AppInventoryConfig?, logistics: AppLogisticsConfig?, loyaltyPoints: LoyaltyPointsConfig?, modifiedBy: String?, order: AppOrderConfig?, payment: AppPaymentConfig?, platforms: [String]?, rewardPoints: RewardPointsConfig?, updatedAt: String?, id: String?) {
+        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.inventory = inventory
 
             self.authentication = authentication

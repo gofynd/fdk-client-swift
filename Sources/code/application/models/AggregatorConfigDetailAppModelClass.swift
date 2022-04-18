@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case userId = "user_id"
         }
 
-        public init(api: String?, configType: String, key: String, merchantId: String?, merchantKey: String?, pin: String?, sdk: Bool?, secret: String, userId: String?, verifyApi: String?) {
+        public init(api: String? = nil, configType: String, key: String, merchantId: String? = nil, merchantKey: String? = nil, pin: String? = nil, sdk: Bool? = nil, secret: String, userId: String? = nil, verifyApi: String? = nil) {
             self.configType = configType
 
             self.verifyApi = verifyApi

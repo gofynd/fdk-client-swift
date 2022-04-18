@@ -18,7 +18,7 @@ public extension PlatformClient {
             case quantity
         }
 
-        public init(quantity: Int?, sizeDistribution: SizeDistribution) {
+        public init(quantity: Int? = nil, sizeDistribution: SizeDistribution) {
             self.sizeDistribution = sizeDistribution
 
             self.quantity = quantity

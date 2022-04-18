@@ -18,7 +18,7 @@ public extension PlatformClient {
             case entityType = "entity_type"
         }
 
-        public init(entityId: String?, entityType: String?) {
+        public init(entityId: String? = nil, entityType: String? = nil) {
             self.entityId = entityId
 
             self.entityType = entityType

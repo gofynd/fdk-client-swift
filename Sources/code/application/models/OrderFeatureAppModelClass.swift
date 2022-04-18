@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case buyAgain = "buy_again"
         }
 
-        public init(buyAgain: Bool?) {
+        public init(buyAgain: Bool? = nil) {
             self.buyAgain = buyAgain
         }
 

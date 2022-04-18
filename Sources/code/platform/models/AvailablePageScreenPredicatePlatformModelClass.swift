@@ -22,7 +22,7 @@ public extension PlatformClient {
             case tablet
         }
 
-        public init(desktop: Bool?, mobile: Bool?, tablet: Bool?) {
+        public init(desktop: Bool? = nil, mobile: Bool? = nil, tablet: Bool? = nil) {
             self.mobile = mobile
 
             self.desktop = desktop

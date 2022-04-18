@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: AppInventoryCompanies?, page: Page?) {
+        public init(items: AppInventoryCompanies? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

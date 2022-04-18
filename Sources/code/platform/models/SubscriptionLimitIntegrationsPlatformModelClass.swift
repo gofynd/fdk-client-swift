@@ -18,7 +18,7 @@ public extension PlatformClient {
             case limit
         }
 
-        public init(enabled: Bool?, limit: Int?) {
+        public init(enabled: Bool? = nil, limit: Int? = nil) {
             self.enabled = enabled
 
             self.limit = limit

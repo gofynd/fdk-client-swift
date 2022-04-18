@@ -65,7 +65,7 @@ public extension ApplicationClient {
             case userId = "user_id"
         }
 
-        public init(applicationId: String?, claimed: Bool?, createdAt: String?, expiresOn: String?, meta: [String: Any]?, points: Double?, remainingPoints: Double?, text1: String?, text2: String?, text3: String?, txnName: String?, updatedAt: String?, userId: String?, id: String?) {
+        public init(applicationId: String? = nil, claimed: Bool? = nil, createdAt: String? = nil, expiresOn: String? = nil, meta: [String: Any]? = nil, points: Double? = nil, remainingPoints: Double? = nil, text1: String? = nil, text2: String? = nil, text3: String? = nil, txnName: String? = nil, updatedAt: String? = nil, userId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.applicationId = applicationId

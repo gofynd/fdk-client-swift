@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case latitude
         }
 
-        public init(latitude: Double?, longitude: Double?) {
+        public init(latitude: Double? = nil, longitude: Double? = nil) {
             self.longitude = longitude
 
             self.latitude = latitude

@@ -26,7 +26,7 @@ public extension PlatformClient {
             case damaged
         }
 
-        public init(damaged: Damaged?, notAvailable: NotAvailable?, orderCommitted: OrderCommitted?, sellable: Sellable?) {
+        public init(damaged: Damaged? = nil, notAvailable: NotAvailable? = nil, orderCommitted: OrderCommitted? = nil, sellable: Sellable? = nil) {
             self.notAvailable = notAvailable
 
             self.sellable = sellable

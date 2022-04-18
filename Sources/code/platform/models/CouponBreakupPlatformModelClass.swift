@@ -34,7 +34,7 @@ public extension PlatformClient {
             case code
         }
 
-        public init(code: String?, isApplied: Bool?, message: String?, type: String?, uid: String?, value: Double?) {
+        public init(code: String? = nil, isApplied: Bool? = nil, message: String? = nil, type: String? = nil, uid: String? = nil, value: Double? = nil) {
             self.uid = uid
 
             self.message = message

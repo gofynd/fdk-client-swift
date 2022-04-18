@@ -54,7 +54,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(error: String?, exception: String?, httpStatus: String?, items: [JobStepsDTO]?, message: String?, page: Page?, payload: [JobStepsDTO]?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
+        public init(error: String? = nil, exception: String? = nil, httpStatus: String? = nil, items: [JobStepsDTO]? = nil, message: String? = nil, page: Page? = nil, payload: [JobStepsDTO]? = nil, status: Int? = nil, timestamp: String? = nil, totalTimeTakenInMillis: Int? = nil, traceId: String? = nil) {
             self.timestamp = timestamp
 
             self.status = status

@@ -42,7 +42,7 @@ public extension PlatformClient {
             case processedAt = "processed_at"
         }
 
-        public init(deletedCount: Int?, endCount: Int?, processedAt: String?, processedStartTime: String?, startCount: Int?, stepExecutionTime: Int?, stepName: String?, type: String?) {
+        public init(deletedCount: Int? = nil, endCount: Int? = nil, processedAt: String? = nil, processedStartTime: String? = nil, startCount: Int? = nil, stepExecutionTime: Int? = nil, stepName: String? = nil, type: String? = nil) {
             self.stepName = stepName
 
             self.type = type

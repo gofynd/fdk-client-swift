@@ -114,7 +114,7 @@ public extension PlatformClient {
             case countryOfOrigin = "country_of_origin"
         }
 
-        public init(brand: ArticleBrand?, company: Company?, countryOfOrigin: String?, dateMeta: FailOrderDateMeta?, dimension: Dimension?, fragile: Bool?, fyndArticleCode: String?, fyndItemCode: String?, identifier: LineItemsArticleIdentifier?, isActive: Bool?, isSet: Bool?, itemId: Int?, manufacturer: Manufacturer?, marketplaceIdentifiers: MarketplaceIdentifiers?, meta: ArticleMeta?, oldArticleUid: String?, price: ArticlePrice?, quantities: Quantities?, sellerIdentifier: String?, size: String?, store: Store?, totalQuantity: Int?, trackInventory: Bool?, uid: String?, weight: Weight?, id: String?) {
+        public init(brand: ArticleBrand? = nil, company: Company? = nil, countryOfOrigin: String? = nil, dateMeta: FailOrderDateMeta? = nil, dimension: Dimension? = nil, fragile: Bool? = nil, fyndArticleCode: String? = nil, fyndItemCode: String? = nil, identifier: LineItemsArticleIdentifier? = nil, isActive: Bool? = nil, isSet: Bool? = nil, itemId: Int? = nil, manufacturer: Manufacturer? = nil, marketplaceIdentifiers: MarketplaceIdentifiers? = nil, meta: ArticleMeta? = nil, oldArticleUid: String? = nil, price: ArticlePrice? = nil, quantities: Quantities? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: Store? = nil, totalQuantity: Int? = nil, trackInventory: Bool? = nil, uid: String? = nil, weight: Weight? = nil, id: String? = nil) {
             self.quantities = quantities
 
             self.oldArticleUid = oldArticleUid

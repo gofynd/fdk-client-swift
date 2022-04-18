@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case items
         }
 
-        public init(displayName: String, items: [TransferItemsDetails]?) {
+        public init(displayName: String, items: [TransferItemsDetails]? = nil) {
             self.displayName = displayName
 
             self.items = items

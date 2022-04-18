@@ -18,7 +18,7 @@ public extension PlatformClient {
             case stages
         }
 
-        public init(stage: Stage?, stages: Stages?) {
+        public init(stage: Stage? = nil, stages: Stages? = nil) {
             self.stage = stage
 
             self.stages = stages

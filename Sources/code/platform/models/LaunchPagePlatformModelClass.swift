@@ -22,7 +22,7 @@ public extension PlatformClient {
             case query
         }
 
-        public init(pageType: String?, params: [String: Any]?, query: [String: Any]?) {
+        public init(pageType: String? = nil, params: [String: Any]? = nil, query: [String: Any]? = nil) {
             self.pageType = pageType
 
             self.params = params

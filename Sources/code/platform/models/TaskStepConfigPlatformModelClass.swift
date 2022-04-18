@@ -22,7 +22,7 @@ public extension PlatformClient {
             case taskConfigGroupIds = "task_config_group_ids"
         }
 
-        public init(taskConfigs: [TaskConfig]?, taskConfigGroupIds: [Int]?, taskConfigIds: [Int]?) {
+        public init(taskConfigs: [TaskConfig]? = nil, taskConfigGroupIds: [Int]? = nil, taskConfigIds: [Int]? = nil) {
             self.taskConfigs = taskConfigs
 
             self.taskConfigIds = taskConfigIds

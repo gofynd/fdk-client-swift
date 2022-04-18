@@ -14,7 +14,7 @@ public extension PlatformClient {
             case askStoreAddress = "ask_store_address"
         }
 
-        public init(askStoreAddress: Bool?) {
+        public init(askStoreAddress: Bool? = nil) {
             self.askStoreAddress = askStoreAddress
         }
 

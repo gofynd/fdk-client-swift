@@ -22,7 +22,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(cartTotal: String?, items: [AbandonCartsDetail]?, page: Page?) {
+        public init(cartTotal: String? = nil, items: [AbandonCartsDetail]? = nil, page: Page? = nil) {
             self.items = items
 
             self.cartTotal = cartTotal

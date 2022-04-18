@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case user
         }
 
-        public init(referral: Offer?, referrerInfo: String?, share: ShareMessages?, user: ReferralDetailsUser?) {
+        public init(referral: Offer? = nil, referrerInfo: String? = nil, share: ShareMessages? = nil, user: ReferralDetailsUser? = nil) {
             self.referral = referral
 
             self.referrerInfo = referrerInfo

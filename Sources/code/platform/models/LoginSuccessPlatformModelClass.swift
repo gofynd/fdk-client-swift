@@ -22,7 +22,7 @@ public extension PlatformClient {
             case registerToken = "register_token"
         }
 
-        public init(registerToken: String?, requestId: String?, user: UserSchema?) {
+        public init(registerToken: String? = nil, requestId: String? = nil, user: UserSchema? = nil) {
             self.user = user
 
             self.requestId = requestId

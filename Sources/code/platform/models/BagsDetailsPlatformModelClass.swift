@@ -66,7 +66,7 @@ public extension PlatformClient {
             case paymentMethods = "payment_methods"
         }
 
-        public init(article: BagArticle?, bagStatus: BagStatus?, breakupValues: BagBreakupValues?, canCancel: Bool?, canReturn: Bool?, currentStatus: BagCurrentStatus?, financialBreakup: [BagFinancialBreakup]?, gstDetails: GstDetails?, id: Int?, item: BagItem?, paymentMethods: [String: Any]?, prices: BagPrices?, status: BagCurrStatus?, updateTime: Int?) {
+        public init(article: BagArticle? = nil, bagStatus: BagStatus? = nil, breakupValues: BagBreakupValues? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: BagCurrentStatus? = nil, financialBreakup: [BagFinancialBreakup]? = nil, gstDetails: GstDetails? = nil, id: Int? = nil, item: BagItem? = nil, paymentMethods: [String: Any]? = nil, prices: BagPrices? = nil, status: BagCurrStatus? = nil, updateTime: Int? = nil) {
             self.financialBreakup = financialBreakup
 
             self.status = status

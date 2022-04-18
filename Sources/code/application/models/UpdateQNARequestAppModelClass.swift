@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(active: Bool?, approve: Bool?, choices: [String]?, id: String?, tags: [String]?) {
+        public init(active: Bool? = nil, approve: Bool? = nil, choices: [String]? = nil, id: String? = nil, tags: [String]? = nil) {
             self.active = active
 
             self.approve = approve

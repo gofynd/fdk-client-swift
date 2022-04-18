@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case contact
         }
 
-        public init(application: String?, configType: String?, contact: ContactSchema?, created: Bool?, createdAt: String?, updatedAt: String?, id: String?) {
+        public init(application: String? = nil, configType: String? = nil, contact: ContactSchema? = nil, created: Bool? = nil, createdAt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.created = created
 
             self.id = id

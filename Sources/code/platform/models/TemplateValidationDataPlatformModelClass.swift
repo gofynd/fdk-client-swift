@@ -18,7 +18,7 @@ public extension PlatformClient {
             case globalValidation = "global_validation"
         }
 
-        public init(globalValidation: GlobalValidation?, templateValidation: [String: Any]?) {
+        public init(globalValidation: GlobalValidation? = nil, templateValidation: [String: Any]? = nil) {
             self.templateValidation = templateValidation
 
             self.globalValidation = globalValidation

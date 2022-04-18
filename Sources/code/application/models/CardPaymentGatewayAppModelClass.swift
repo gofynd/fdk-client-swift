@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case customerId = "customer_id"
         }
 
-        public init(aggregator: String, api: String?, customerId: String?) {
+        public init(aggregator: String, api: String? = nil, customerId: String? = nil) {
             self.api = api
 
             self.aggregator = aggregator

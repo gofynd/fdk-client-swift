@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case convertable
         }
 
-        public init(convertable: Bool?, value: String?) {
+        public init(convertable: Bool? = nil, value: String? = nil) {
             self.value = value
 
             self.convertable = convertable

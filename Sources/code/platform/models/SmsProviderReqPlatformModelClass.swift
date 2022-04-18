@@ -38,7 +38,7 @@ public extension PlatformClient {
             case provider
         }
 
-        public init(authkey: String?, description: String?, name: String?, provider: String?, sender: String?, type: String?, username: String?) {
+        public init(authkey: String? = nil, description: String? = nil, name: String? = nil, provider: String? = nil, sender: String? = nil, type: String? = nil, username: String? = nil) {
             self.name = name
 
             self.description = description

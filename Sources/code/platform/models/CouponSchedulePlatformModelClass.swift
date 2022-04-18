@@ -30,7 +30,7 @@ public extension PlatformClient {
             case end
         }
 
-        public init(cron: String?, duration: Int?, end: String?, nextSchedule: [[String: Any]]?, start: String?) {
+        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
             self.nextSchedule = nextSchedule
 
             self.start = start

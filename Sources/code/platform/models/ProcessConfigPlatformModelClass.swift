@@ -70,7 +70,7 @@ public extension PlatformClient {
             case googleSpreadsheetConfig = "google_spreadsheet_config"
         }
 
-        public init(awsS3Config: AWSS3config?, dbConfig: DBConfig?, dbParamConfig: DBParamConfig?, docMappingConfig: DocMappingConfig?, emailConfig: EmailConfig?, fileConfig: FileConfig?, ftpConfig: FTPConfig?, googleSpreadsheetConfig: GoogleSpreadSheetConfig?, httpConfig: HttpConfig?, jsonDocConfig: JsonDocConfig?, localFileConfig: LocalFileConfig?, mongoDocConfig: MongoDocConfig?, oauthConfig: OAuthConfig?, sftpConfig: SFTPConfig?, taskStepConfig: TaskStepConfig?) {
+        public init(awsS3Config: AWSS3config? = nil, dbConfig: DBConfig? = nil, dbParamConfig: DBParamConfig? = nil, docMappingConfig: DocMappingConfig? = nil, emailConfig: EmailConfig? = nil, fileConfig: FileConfig? = nil, ftpConfig: FTPConfig? = nil, googleSpreadsheetConfig: GoogleSpreadSheetConfig? = nil, httpConfig: HttpConfig? = nil, jsonDocConfig: JsonDocConfig? = nil, localFileConfig: LocalFileConfig? = nil, mongoDocConfig: MongoDocConfig? = nil, oauthConfig: OAuthConfig? = nil, sftpConfig: SFTPConfig? = nil, taskStepConfig: TaskStepConfig? = nil) {
             self.dbConfig = dbConfig
 
             self.dbParamConfig = dbParamConfig

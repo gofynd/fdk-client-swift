@@ -26,7 +26,7 @@ public extension PlatformClient {
             case reason
         }
 
-        public init(approve: Bool?, entityType: String?, id: String, reason: String?) {
+        public init(approve: Bool? = nil, entityType: String? = nil, id: String, reason: String? = nil) {
             self.approve = approve
 
             self.entityType = entityType

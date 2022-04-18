@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case os
         }
 
-        public init(build: Int?, model: String?, os: OS) {
+        public init(build: Int? = nil, model: String? = nil, os: OS) {
             self.build = build
 
             self.model = model

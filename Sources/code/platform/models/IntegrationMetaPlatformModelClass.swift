@@ -26,7 +26,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(isPublic: Bool?, name: String?, value: String?, id: String?) {
+        public init(isPublic: Bool? = nil, name: String? = nil, value: String? = nil, id: String? = nil) {
             self.isPublic = isPublic
 
             self.id = id

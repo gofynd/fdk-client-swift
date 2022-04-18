@@ -18,7 +18,7 @@ public extension PlatformClient {
             case preferred
         }
 
-        public init(available: [String]?, preferred: String?) {
+        public init(available: [String]? = nil, preferred: String? = nil) {
             self.available = available
 
             self.preferred = preferred

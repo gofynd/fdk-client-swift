@@ -14,7 +14,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(status: Int?) {
+        public init(status: Int? = nil) {
             self.status = status
         }
 

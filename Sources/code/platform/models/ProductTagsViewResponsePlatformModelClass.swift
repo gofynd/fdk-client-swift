@@ -14,7 +14,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: NestedTags?) {
+        public init(items: NestedTags? = nil) {
             self.items = items
         }
 

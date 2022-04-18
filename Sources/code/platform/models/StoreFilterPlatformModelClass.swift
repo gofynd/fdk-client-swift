@@ -22,7 +22,7 @@ public extension PlatformClient {
             case query
         }
 
-        public init(excludeTags: [String]?, includeTags: [String]?, query: [String: Any]?) {
+        public init(excludeTags: [String]? = nil, includeTags: [String]? = nil, query: [String: Any]? = nil) {
             self.includeTags = includeTags
 
             self.excludeTags = excludeTags

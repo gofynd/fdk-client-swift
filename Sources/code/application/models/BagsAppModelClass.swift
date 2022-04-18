@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case financialBreakup = "financial_breakup"
         }
 
-        public init(currentStatus: CurrentStatus?, financialBreakup: [FinancialBreakup]?, id: Int?, item: Item?, prices: Prices?) {
+        public init(currentStatus: CurrentStatus? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil) {
             self.item = item
 
             self.prices = prices

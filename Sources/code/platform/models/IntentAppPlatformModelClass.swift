@@ -26,7 +26,7 @@ public extension PlatformClient {
             case displayName = "display_name"
         }
 
-        public init(code: String?, displayName: String?, logos: PaymentModeLogo?, packageName: String?) {
+        public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, packageName: String? = nil) {
             self.logos = logos
 
             self.packageName = packageName

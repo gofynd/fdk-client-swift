@@ -18,7 +18,7 @@ public extension PlatformClient {
             case charging
         }
 
-        public init(charging: Bool?, generation: Bool?) {
+        public init(charging: Bool? = nil, generation: Bool? = nil) {
             self.generation = generation
 
             self.charging = charging

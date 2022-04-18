@@ -14,7 +14,7 @@ public extension PlatformClient {
             case pushtokens
         }
 
-        public init(pushtokens: [String]?) {
+        public init(pushtokens: [String]? = nil) {
             self.pushtokens = pushtokens
         }
 

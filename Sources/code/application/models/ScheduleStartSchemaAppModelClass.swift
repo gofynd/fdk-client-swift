@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case end
         }
 
-        public init(end: String?, start: String?) {
+        public init(end: String? = nil, start: String? = nil) {
             self.start = start
 
             self.end = end

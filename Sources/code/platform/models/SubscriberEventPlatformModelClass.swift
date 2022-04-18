@@ -26,7 +26,7 @@ public extension PlatformClient {
             case createdDate = "created_date"
         }
 
-        public init(createdDate: String?, eventId: Int?, id: Int?, subscriberId: Int?) {
+        public init(createdDate: String? = nil, eventId: Int? = nil, id: Int? = nil, subscriberId: Int? = nil) {
             self.id = id
 
             self.subscriberId = subscriberId

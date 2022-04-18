@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case strategyChannel = "strategy_channel"
         }
 
-        public init(autoApply: Bool?, enabled: Bool?, strategyChannel: String?) {
+        public init(autoApply: Bool? = nil, enabled: Bool? = nil, strategyChannel: String? = nil) {
             self.enabled = enabled
 
             self.autoApply = autoApply

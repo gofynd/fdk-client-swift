@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class DepartmentIdentifier: Codable {
-        public var slug: String?
-
         public var uid: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case slug
+        public var slug: String?
 
+        public enum CodingKeys: String, CodingKey {
             case uid
+
+            case slug
         }
 
-        public init(slug: String?, uid: Int?) {
-            self.slug = slug
-
+        public init(slug: String? = nil, uid: Int? = nil) {
             self.uid = uid
+
+            self.slug = slug
         }
 
         public func duplicate() -> DepartmentIdentifier {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

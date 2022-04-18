@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case companyName = "company_name"
         }
 
-        public init(code: String?, companyId: Int?, companyName: String?, id: Int?, name: String?) {
+        public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil) {
             self.code = code
 
             self.id = id

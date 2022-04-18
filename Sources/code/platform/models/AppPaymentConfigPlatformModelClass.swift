@@ -42,7 +42,7 @@ public extension PlatformClient {
             case codCharges = "cod_charges"
         }
 
-        public init(callbackUrl: CallbackUrl?, codAmountLimit: Double?, codCharges: Double?, enabled: Bool?, methods: Methods?, modeOfPayment: String?, paymentSelectionLock: PaymentSelectionLock?, source: String?) {
+        public init(callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil) {
             self.callbackUrl = callbackUrl
 
             self.methods = methods

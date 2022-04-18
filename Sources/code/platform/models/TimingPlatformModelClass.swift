@@ -26,7 +26,7 @@ public extension PlatformClient {
             case closing
         }
 
-        public init(closing: Closing?, open: Bool?, opening: Opening?, weekday: String?) {
+        public init(closing: Closing? = nil, open: Bool? = nil, opening: Opening? = nil, weekday: String? = nil) {
             self.opening = opening
 
             self.weekday = weekday

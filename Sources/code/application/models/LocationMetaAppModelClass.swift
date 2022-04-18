@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case supply
         }
 
-        public init(demand: Location?, supply: Location?) {
+        public init(demand: Location? = nil, supply: Location? = nil) {
             self.demand = demand
 
             self.supply = supply

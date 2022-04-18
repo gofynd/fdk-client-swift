@@ -42,7 +42,7 @@ public extension PlatformClient {
             case categories
         }
 
-        public init(action: ProductAction?, brand: BaseInfo?, categories: [CategoryInfo]?, images: [ProductImage]?, name: String?, slug: String?, type: String?, uid: Int?) {
+        public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
             self.images = images
 
             self.slug = slug

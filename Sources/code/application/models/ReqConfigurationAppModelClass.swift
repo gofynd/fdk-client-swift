@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case concurrency
         }
 
-        public init(concurrency: Int?) {
+        public init(concurrency: Int? = nil) {
             self.concurrency = concurrency
         }
 

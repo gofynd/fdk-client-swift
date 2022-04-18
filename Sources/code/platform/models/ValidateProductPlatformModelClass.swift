@@ -14,7 +14,7 @@ public extension PlatformClient {
             case valid
         }
 
-        public init(valid: Bool?) {
+        public init(valid: Bool? = nil) {
             self.valid = valid
         }
 

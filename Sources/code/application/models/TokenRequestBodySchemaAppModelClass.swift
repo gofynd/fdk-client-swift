@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case token
         }
 
-        public init(token: String?) {
+        public init(token: String? = nil) {
             self.token = token
         }
 

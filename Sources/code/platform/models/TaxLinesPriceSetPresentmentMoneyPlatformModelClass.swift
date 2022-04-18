@@ -18,7 +18,7 @@ public extension PlatformClient {
             case amount
         }
 
-        public init(amount: String?, currencyCode: String?) {
+        public init(amount: String? = nil, currencyCode: String? = nil) {
             self.currencyCode = currencyCode
 
             self.amount = amount

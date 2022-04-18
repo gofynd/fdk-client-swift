@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(coordinates: [Double]?, type: String?) {
+        public init(coordinates: [Double]? = nil, type: String? = nil) {
             self.coordinates = coordinates
 
             self.type = type

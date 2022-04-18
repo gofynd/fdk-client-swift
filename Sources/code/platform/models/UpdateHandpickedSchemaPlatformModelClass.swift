@@ -14,7 +14,7 @@ public extension PlatformClient {
             case tag
         }
 
-        public init(tag: HandpickedTagSchema?) {
+        public init(tag: HandpickedTagSchema? = nil) {
             self.tag = tag
         }
 

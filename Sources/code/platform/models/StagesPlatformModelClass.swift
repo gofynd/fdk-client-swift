@@ -26,7 +26,7 @@ public extension PlatformClient {
             case filters
         }
 
-        public init(filters: StagesFilters?, isDefault: Bool?, text: String?, value: String?) {
+        public init(filters: StagesFilters? = nil, isDefault: Bool? = nil, text: String? = nil, value: String? = nil) {
             self.text = text
 
             self.value = value

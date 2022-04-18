@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case effective
         }
 
-        public init(bulkEffective: Double?, currencyCode: String?, currencySymbol: String?, effective: Int?, marked: Int?) {
+        public init(bulkEffective: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil) {
             self.bulkEffective = bulkEffective
 
             self.currencySymbol = currencySymbol

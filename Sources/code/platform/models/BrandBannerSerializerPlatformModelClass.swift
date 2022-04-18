@@ -18,7 +18,7 @@ public extension PlatformClient {
             case portrait
         }
 
-        public init(landscape: String?, portrait: String?) {
+        public init(landscape: String? = nil, portrait: String? = nil) {
             self.landscape = landscape
 
             self.portrait = portrait

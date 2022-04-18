@@ -42,7 +42,7 @@ public extension PlatformClient {
             case alias
         }
 
-        public init(alias: String?, companyId: Int, companyName: String?, integration: String, integrationData: [String: Any]?, jobCode: String?, taskDetails: TaskDTO?, thresholdDetails: DataTresholdDTO?) {
+        public init(alias: String? = nil, companyId: Int, companyName: String? = nil, integration: String, integrationData: [String: Any]? = nil, jobCode: String? = nil, taskDetails: TaskDTO? = nil, thresholdDetails: DataTresholdDTO? = nil) {
             self.integration = integration
 
             self.integrationData = integrationData

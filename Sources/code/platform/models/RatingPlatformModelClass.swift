@@ -22,7 +22,7 @@ public extension PlatformClient {
             case ui
         }
 
-        public init(attributes: [Attribute]?, attributesSlugs: [String]?, ui: UI?) {
+        public init(attributes: [Attribute]? = nil, attributesSlugs: [String]? = nil, ui: UI? = nil) {
             self.attributes = attributes
 
             self.attributesSlugs = attributesSlugs

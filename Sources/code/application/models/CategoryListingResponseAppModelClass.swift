@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [DepartmentCategoryTree]?, departments: [DepartmentIdentifier]?) {
+        public init(data: [DepartmentCategoryTree]? = nil, departments: [DepartmentIdentifier]? = nil) {
             self.departments = departments
 
             self.data = data

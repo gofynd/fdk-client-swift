@@ -26,7 +26,7 @@ public extension PlatformClient {
             case applicable
         }
 
-        public init(applicable: Double?, description: String?, isApplied: Bool?, total: Double?) {
+        public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
             self.isApplied = isApplied
 
             self.total = total

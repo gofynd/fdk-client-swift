@@ -30,7 +30,7 @@ public extension PlatformClient {
             case traceId = "trace_id"
         }
 
-        public init(endTime: String?, eventType: String?, marketplaceName: String?, startTime: String?, traceId: String?) {
+        public init(endTime: String? = nil, eventType: String? = nil, marketplaceName: String? = nil, startTime: String? = nil, traceId: String? = nil) {
             self.marketplaceName = marketplaceName
 
             self.startTime = startTime

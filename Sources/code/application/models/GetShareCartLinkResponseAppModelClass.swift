@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case token
         }
 
-        public init(shareUrl: String?, token: String?) {
+        public init(shareUrl: String? = nil, token: String? = nil) {
             self.shareUrl = shareUrl
 
             self.token = token

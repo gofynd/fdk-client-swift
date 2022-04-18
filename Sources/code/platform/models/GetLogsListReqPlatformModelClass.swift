@@ -26,7 +26,7 @@ public extension PlatformClient {
             case endDate = "end_date"
         }
 
-        public init(companyId: String?, endDate: String?, marketplaceName: String?, startDate: String?) {
+        public init(companyId: String? = nil, endDate: String? = nil, marketplaceName: String? = nil, startDate: String? = nil) {
             self.marketplaceName = marketplaceName
 
             self.startDate = startDate

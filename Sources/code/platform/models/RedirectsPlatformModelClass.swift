@@ -26,7 +26,7 @@ public extension PlatformClient {
             case forceWeb = "force_web"
         }
 
-        public init(android: RedirectDevice?, forceWeb: Bool?, ios: RedirectDevice?, web: WebRedirect?) {
+        public init(android: RedirectDevice? = nil, forceWeb: Bool? = nil, ios: RedirectDevice? = nil, web: WebRedirect? = nil) {
             self.ios = ios
 
             self.android = android

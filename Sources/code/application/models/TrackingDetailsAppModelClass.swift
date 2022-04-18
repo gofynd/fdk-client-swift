@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case isPassed = "is_passed"
         }
 
-        public init(isCurrent: Bool?, isPassed: Bool?, status: String?, time: String?) {
+        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
             self.isCurrent = isCurrent
 
             self.status = status

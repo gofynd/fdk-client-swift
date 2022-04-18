@@ -18,7 +18,7 @@ public extension PlatformClient {
             case uid
         }
 
-        public init(success: Bool?, uid: Int?) {
+        public init(success: Bool? = nil, uid: Int? = nil) {
             self.success = success
 
             self.uid = uid

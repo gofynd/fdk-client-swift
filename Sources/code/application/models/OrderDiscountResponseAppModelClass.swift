@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case points
         }
 
-        public init(appliedRuleBucket: OrderDiscountRuleBucket?, baseDiscount: DiscountProperties?, discount: DiscountProperties?, orderAmount: Double?, points: Double?) {
+        public init(appliedRuleBucket: OrderDiscountRuleBucket? = nil, baseDiscount: DiscountProperties? = nil, discount: DiscountProperties? = nil, orderAmount: Double? = nil, points: Double? = nil) {
             self.appliedRuleBucket = appliedRuleBucket
 
             self.baseDiscount = baseDiscount

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case groups
         }
 
-        public init(groups: [StatGroup]?) {
+        public init(groups: [StatGroup]? = nil) {
             self.groups = groups
         }
 

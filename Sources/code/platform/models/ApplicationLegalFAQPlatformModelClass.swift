@@ -18,7 +18,7 @@ public extension PlatformClient {
             case answer
         }
 
-        public init(answer: String?, question: String?) {
+        public init(answer: String? = nil, question: String? = nil) {
             self.question = question
 
             self.answer = answer

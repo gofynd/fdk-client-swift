@@ -26,7 +26,7 @@ public extension PlatformClient {
             case requestProduct = "request_product"
         }
 
-        public init(requestProduct: Bool?, sellerSelection: Bool?, similar: [String]?, updateProductMeta: Bool?) {
+        public init(requestProduct: Bool? = nil, sellerSelection: Bool? = nil, similar: [String]? = nil, updateProductMeta: Bool? = nil) {
             self.similar = similar
 
             self.sellerSelection = sellerSelection

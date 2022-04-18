@@ -26,7 +26,7 @@ public extension PlatformClient {
             case isActive = "is_active"
         }
 
-        public init(appName: String?, isActive: Bool?, landingImage: LandingImage?, splashImage: SplashImage?) {
+        public init(appName: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, splashImage: SplashImage? = nil) {
             self.appName = appName
 
             self.landingImage = landingImage

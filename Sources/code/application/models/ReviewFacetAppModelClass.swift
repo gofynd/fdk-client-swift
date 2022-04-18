@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(display: String?, name: String?, selected: Bool?, slug: String?, type: String?) {
+        public init(display: String? = nil, name: String? = nil, selected: Bool? = nil, slug: String? = nil, type: String? = nil) {
             self.display = display
 
             self.name = name

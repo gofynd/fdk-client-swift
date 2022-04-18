@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case registerToken = "register_token"
         }
 
-        public init(registerToken: String?, user: UserSchema?, userExists: Bool?) {
+        public init(registerToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil) {
             self.user = user
 
             self.userExists = userExists

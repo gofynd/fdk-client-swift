@@ -46,7 +46,7 @@ public extension PlatformClient {
             case companyId = "company_id"
         }
 
-        public init(appId: String?, companyId: Int?, createdAt: String?, marketplace: String?, marketplaceOrder: MarketplaceOrder?, marketplaceOrderId: String?, reason: String?, updatedAt: String?, id: String?) {
+        public init(appId: String? = nil, companyId: Int? = nil, createdAt: String? = nil, marketplace: String? = nil, marketplaceOrder: MarketplaceOrder? = nil, marketplaceOrderId: String? = nil, reason: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.updatedAt = updatedAt
 
             self.id = id

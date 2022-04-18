@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case credentials
         }
 
-        public init(credentials: FyndRewardsCredentials?) {
+        public init(credentials: FyndRewardsCredentials? = nil) {
             self.credentials = credentials
         }
 

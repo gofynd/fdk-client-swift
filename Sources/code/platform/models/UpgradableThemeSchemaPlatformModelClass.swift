@@ -22,7 +22,7 @@ public extension PlatformClient {
             case upgrade
         }
 
-        public init(appliedTheme: String?, parentTheme: String?, upgrade: Bool?) {
+        public init(appliedTheme: String? = nil, parentTheme: String? = nil, upgrade: Bool? = nil) {
             self.parentTheme = parentTheme
 
             self.appliedTheme = appliedTheme

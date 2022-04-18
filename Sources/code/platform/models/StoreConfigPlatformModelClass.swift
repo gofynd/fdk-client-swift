@@ -38,7 +38,7 @@ public extension PlatformClient {
             case properties
         }
 
-        public init(jobCode: String?, processConfig: ProcessConfig?, properties: [String: String]?, storeid: String?, storeAlias: String?, storeFileName: String?, storeFileRegex: String?) {
+        public init(jobCode: String? = nil, processConfig: ProcessConfig? = nil, properties: [String: String]? = nil, storeid: String? = nil, storeAlias: String? = nil, storeFileName: String? = nil, storeFileRegex: String? = nil) {
             self.jobCode = jobCode
 
             self.storeid = storeid

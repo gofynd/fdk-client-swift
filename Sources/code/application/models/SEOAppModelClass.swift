@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case title
         }
 
-        public init(description: String?, image: SEOImage?, title: String?) {
+        public init(description: String? = nil, image: SEOImage? = nil, title: String? = nil) {
             self.description = description
 
             self.image = image

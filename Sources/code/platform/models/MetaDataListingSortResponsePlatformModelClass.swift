@@ -14,7 +14,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [MetaDataListingSortMetaResponse]?) {
+        public init(data: [MetaDataListingSortMetaResponse]? = nil) {
             self.data = data
         }
 

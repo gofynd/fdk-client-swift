@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class AttributeMasterFilter: Codable {
-        public var priority: Int?
-
         public var dependsOn: [String]?
+
+        public var priority: Int?
 
         public var indexing: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case priority
-
             case dependsOn = "depends_on"
+
+            case priority
 
             case indexing
         }
 
-        public init(dependsOn: [String]?, indexing: Bool, priority: Int?) {
-            self.priority = priority
-
+        public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             self.dependsOn = dependsOn
+
+            self.priority = priority
 
             self.indexing = indexing
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                dependsOn = try container.decode([String].self, forKey: .dependsOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                dependsOn = try container.decode([String].self, forKey: .dependsOn)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
             try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(indexing, forKey: .indexing)
         }

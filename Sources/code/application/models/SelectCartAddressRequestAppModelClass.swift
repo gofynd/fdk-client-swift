@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case cartId = "cart_id"
         }
 
-        public init(billingAddressId: String?, cartId: String?, id: String?) {
+        public init(billingAddressId: String? = nil, cartId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.billingAddressId = billingAddressId

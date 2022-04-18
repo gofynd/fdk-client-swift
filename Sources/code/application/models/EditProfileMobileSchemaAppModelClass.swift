@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case countryCode = "country_code"
         }
 
-        public init(countryCode: String?, phone: String?) {
+        public init(countryCode: String? = nil, phone: String? = nil) {
             self.phone = phone
 
             self.countryCode = countryCode

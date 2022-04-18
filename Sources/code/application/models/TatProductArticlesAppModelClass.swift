@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case promise
         }
 
-        public init(category: LogisticResponseCategory?, error: [String: Any]?, promise: LogisticPromise?) {
+        public init(category: LogisticResponseCategory? = nil, error: [String: Any]? = nil, promise: LogisticPromise? = nil) {
             self.error = error
 
             self.category = category

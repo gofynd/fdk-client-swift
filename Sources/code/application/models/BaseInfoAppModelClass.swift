@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case name
         }
 
-        public init(name: String?, uid: Int?) {
+        public init(name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
             self.name = name

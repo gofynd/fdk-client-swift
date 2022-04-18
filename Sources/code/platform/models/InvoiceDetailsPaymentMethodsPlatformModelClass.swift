@@ -30,7 +30,7 @@ public extension PlatformClient {
             case isDefault = "is_default"
         }
 
-        public init(data: InvoiceDetailsPaymentMethodsData?, id: Int?, isDefault: Bool?, pgPaymentMethodId: String?, type: String?) {
+        public init(data: InvoiceDetailsPaymentMethodsData? = nil, id: Int? = nil, isDefault: Bool? = nil, pgPaymentMethodId: String? = nil, type: String? = nil) {
             self.id = id
 
             self.type = type

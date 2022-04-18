@@ -30,7 +30,7 @@ public extension PlatformClient {
             case feedbackForm = "feedback_form"
         }
 
-        public init(display: String, feedbackForm: TicketFeedbackForm?, form: CustomForm?, key: String, subCategories: [TicketSubCategory]?) {
+        public init(display: String, feedbackForm: TicketFeedbackForm? = nil, form: CustomForm? = nil, key: String, subCategories: [TicketSubCategory]? = nil) {
             self.key = key
 
             self.display = display

@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case sort
         }
 
-        public init(facets: [ReviewFacet]?, items: [CustomerReview]?, page: Page?, sort: [SortMethod]?) {
+        public init(facets: [ReviewFacet]? = nil, items: [CustomerReview]? = nil, page: Page? = nil, sort: [SortMethod]? = nil) {
             self.facets = facets
 
             self.items = items

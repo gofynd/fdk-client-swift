@@ -18,7 +18,7 @@ public extension PlatformClient {
             case brands
         }
 
-        public init(brands: [[String: Any]]?, companies: [Int]?) {
+        public init(brands: [[String: Any]]? = nil, companies: [Int]? = nil) {
             self.companies = companies
 
             self.brands = brands

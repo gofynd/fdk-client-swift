@@ -22,7 +22,7 @@ public extension PlatformClient {
             case collections
         }
 
-        public init(application: Bool?, collections: Bool?, products: Bool?) {
+        public init(application: Bool? = nil, collections: Bool? = nil, products: Bool? = nil) {
             self.application = application
 
             self.products = products

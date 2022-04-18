@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case source = "__source"
         }
 
-        public init(application: String?, company: String?, content: String?, name: String?, operationId: String?, service: String?, type: String?, url: String?, id: String?, source: DataLoaderSourceSchema?) {
+        public init(application: String? = nil, company: String? = nil, content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
             self.application = application
 
             self.company = company

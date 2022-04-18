@@ -14,7 +14,7 @@ public extension PlatformClient {
             case code
         }
 
-        public init(code: String?) {
+        public init(code: String? = nil) {
             self.code = code
         }
 

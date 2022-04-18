@@ -42,7 +42,7 @@ public extension PlatformClient {
             case displayText = "display_text"
         }
 
-        public init(description: String?, displayText: String?, enabled: Bool?, group: String?, icon: String?, links: [String: Any]?, name: String?, slug: String?) {
+        public init(description: String? = nil, displayText: String? = nil, enabled: Bool? = nil, group: String? = nil, icon: String? = nil, links: [String: Any]? = nil, name: String? = nil, slug: String? = nil) {
             self.name = name
 
             self.slug = slug

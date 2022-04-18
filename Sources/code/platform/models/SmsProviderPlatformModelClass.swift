@@ -66,7 +66,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(application: String?, authkey: String?, createdAt: String?, description: String?, name: String?, provider: String?, rpt: Int?, sender: String?, slug: String?, type: String?, updatedAt: String?, username: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
             self.rpt = rpt
 
             self.type = type

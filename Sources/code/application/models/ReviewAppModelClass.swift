@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case title
         }
 
-        public init(answerIds: [String]?, comments: [String]?, description: String?, mediaMeta: [MediaMeta]?, title: String?) {
+        public init(answerIds: [String]? = nil, comments: [String]? = nil, description: String? = nil, mediaMeta: [MediaMeta]? = nil, title: String? = nil) {
             self.answerIds = answerIds
 
             self.comments = comments

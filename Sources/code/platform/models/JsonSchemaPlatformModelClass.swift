@@ -26,7 +26,7 @@ public extension PlatformClient {
             case tooltip
         }
 
-        public init(display: String?, key: String?, tooltip: String?, type: String?) {
+        public init(display: String? = nil, key: String? = nil, tooltip: String? = nil, type: String? = nil) {
             self.display = display
 
             self.key = key

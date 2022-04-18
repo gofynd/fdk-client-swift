@@ -18,7 +18,7 @@ public extension PlatformClient {
             case newPassword = "new_password"
         }
 
-        public init(newPassword: String?, oldPassword: String?) {
+        public init(newPassword: String? = nil, oldPassword: String? = nil) {
             self.oldPassword = oldPassword
 
             self.newPassword = newPassword

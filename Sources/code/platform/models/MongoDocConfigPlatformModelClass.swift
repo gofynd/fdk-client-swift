@@ -34,7 +34,7 @@ public extension PlatformClient {
             case skipSave = "skip_save"
         }
 
-        public init(aggregatePipeline: [[String: Any]]?, collectionName: String?, findQuery: [String: Any]?, projectionQuery: [String: Any]?, propBeanConfigs: [PropBeanConfig]?, skipSave: Bool?) {
+        public init(aggregatePipeline: [[String: Any]]? = nil, collectionName: String? = nil, findQuery: [String: Any]? = nil, projectionQuery: [String: Any]? = nil, propBeanConfigs: [PropBeanConfig]? = nil, skipSave: Bool? = nil) {
             self.collectionName = collectionName
 
             self.findQuery = findQuery

@@ -34,7 +34,7 @@ public extension PlatformClient {
             case postalCode = "postal_code"
         }
 
-        public init(city: String?, country: String?, line1: String?, line2: String?, postalCode: String?, state: String?) {
+        public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) {
             self.country = country
 
             self.state = state

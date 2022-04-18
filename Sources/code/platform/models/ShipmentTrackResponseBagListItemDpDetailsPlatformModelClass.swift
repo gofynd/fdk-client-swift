@@ -18,7 +18,7 @@ public extension PlatformClient {
             case courier
         }
 
-        public init(courier: String?, trackingNo: String?) {
+        public init(courier: String? = nil, trackingNo: String? = nil) {
             self.trackingNo = trackingNo
 
             self.courier = courier

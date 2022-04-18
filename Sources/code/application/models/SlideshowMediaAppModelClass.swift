@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case action
         }
 
-        public init(action: Action?, autoDecideDuration: Bool?, bgColor: String?, duration: Int?, type: String?, url: String?) {
+        public init(action: Action? = nil, autoDecideDuration: Bool? = nil, bgColor: String? = nil, duration: Int? = nil, type: String? = nil, url: String? = nil) {
             self.type = type
 
             self.url = url

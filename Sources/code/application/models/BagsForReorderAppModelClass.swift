@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case articleAssignment = "article_assignment"
         }
 
-        public init(articleAssignment: BagsForReorderArticleAssignment?, itemId: Int?, itemSize: String?, quantity: Int?, sellerId: Int?, storeId: Int?) {
+        public init(articleAssignment: BagsForReorderArticleAssignment? = nil, itemId: Int? = nil, itemSize: String? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil) {
             self.itemId = itemId
 
             self.itemSize = itemSize

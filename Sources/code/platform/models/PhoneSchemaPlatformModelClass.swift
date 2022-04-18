@@ -18,7 +18,7 @@ public extension PlatformClient {
             case phone
         }
 
-        public init(active: Bool?, phone: [PhoneProperties]?) {
+        public init(active: Bool? = nil, phone: [PhoneProperties]? = nil) {
             self.active = active
 
             self.phone = phone

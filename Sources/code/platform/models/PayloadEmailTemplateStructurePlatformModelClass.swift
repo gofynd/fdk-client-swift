@@ -18,7 +18,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(key: String?, value: String?) {
+        public init(key: String? = nil, value: String? = nil) {
             self.key = key
 
             self.value = value

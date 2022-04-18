@@ -18,7 +18,7 @@ public extension PlatformClient {
             case archive
         }
 
-        public init(archive: Bool?, schedule: CouponSchedule?) {
+        public init(archive: Bool? = nil, schedule: CouponSchedule? = nil) {
             self.schedule = schedule
 
             self.archive = archive

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case countryOfOrigin = "country_of_origin"
         }
 
-        public init(countryOfOrigin: [String]?, hsnCode: [String]?) {
+        public init(countryOfOrigin: [String]? = nil, hsnCode: [String]? = nil) {
             self.hsnCode = hsnCode
 
             self.countryOfOrigin = countryOfOrigin

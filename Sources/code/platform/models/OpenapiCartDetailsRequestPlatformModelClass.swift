@@ -14,7 +14,7 @@ public extension PlatformClient {
             case cartItems = "cart_items"
         }
 
-        public init(cartItems: CartItem?) {
+        public init(cartItems: CartItem? = nil) {
             self.cartItems = cartItems
         }
 

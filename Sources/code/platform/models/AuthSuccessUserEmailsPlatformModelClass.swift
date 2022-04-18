@@ -26,7 +26,7 @@ public extension PlatformClient {
             case active
         }
 
-        public init(active: Bool?, email: String?, primary: Bool?, verified: Bool?) {
+        public init(active: Bool? = nil, email: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
             self.email = email
 
             self.verified = verified

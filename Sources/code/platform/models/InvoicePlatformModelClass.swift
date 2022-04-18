@@ -18,7 +18,7 @@ public extension PlatformClient {
             case invoiceItems = "invoice_items"
         }
 
-        public init(invoice: InvoiceDetails?, invoiceItems: [InvoiceItems]?) {
+        public init(invoice: InvoiceDetails? = nil, invoiceItems: [InvoiceItems]? = nil) {
             self.invoice = invoice
 
             self.invoiceItems = invoiceItems

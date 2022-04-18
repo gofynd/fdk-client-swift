@@ -22,7 +22,7 @@ public extension PlatformClient {
             case state
         }
 
-        public init(state: Bool?, title: String?, type: String?) {
+        public init(state: Bool? = nil, title: String? = nil, type: String? = nil) {
             self.title = title
 
             self.type = type

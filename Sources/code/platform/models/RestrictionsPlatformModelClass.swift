@@ -42,7 +42,7 @@ public extension PlatformClient {
             case orderingStores = "ordering_stores"
         }
 
-        public init(bulkBundle: BulkBundleRestriction?, couponAllowed: Bool?, orderingStores: [Int]?, payments: [String: PaymentModes]?, platforms: [String]?, postOrder: PostOrder?, priceRange: PriceRange?, uses: UsesRestriction?) {
+        public init(bulkBundle: BulkBundleRestriction? = nil, couponAllowed: Bool? = nil, orderingStores: [Int]? = nil, payments: [String: PaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder? = nil, priceRange: PriceRange? = nil, uses: UsesRestriction? = nil) {
             self.couponAllowed = couponAllowed
 
             self.payments = payments

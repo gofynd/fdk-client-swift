@@ -90,7 +90,7 @@ public extension PlatformClient {
             case components
         }
 
-        public init(addons: [String]?, amount: Double?, components: [DetailedPlanComponents]?, country: String?, createdAt: String?, currency: String?, description: String?, isActive: Bool?, isTrialPlan: Bool?, isVisible: Bool?, modifiedAt: String?, name: String?, planGroup: String?, productSuiteId: String?, recurring: PlanRecurring?, tags: [String]?, tagLines: [String]?, trialPeriod: Double?, type: String?, id: String?) {
+        public init(addons: [String]? = nil, amount: Double? = nil, components: [DetailedPlanComponents]? = nil, country: String? = nil, createdAt: String? = nil, currency: String? = nil, description: String? = nil, isActive: Bool? = nil, isTrialPlan: Bool? = nil, isVisible: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, planGroup: String? = nil, productSuiteId: String? = nil, recurring: PlanRecurring? = nil, tags: [String]? = nil, tagLines: [String]? = nil, trialPeriod: Double? = nil, type: String? = nil, id: String? = nil) {
             self.recurring = recurring
 
             self.isTrialPlan = isTrialPlan

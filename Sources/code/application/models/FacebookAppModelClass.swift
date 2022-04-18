@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case appId = "app_id"
         }
 
-        public init(appId: String?) {
+        public init(appId: String? = nil) {
             self.appId = appId
         }
 

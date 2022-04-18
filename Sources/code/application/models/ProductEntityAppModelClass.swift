@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(id: String?, meta: EntityMeta?, type: String?) {
+        public init(id: String? = nil, meta: EntityMeta? = nil, type: String? = nil) {
             self.id = id
 
             self.meta = meta

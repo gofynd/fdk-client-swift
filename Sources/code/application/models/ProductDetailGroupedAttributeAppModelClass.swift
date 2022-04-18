@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductDetailGroupedAttribute: Codable {
-        public var title: String?
-
         public var details: [ProductDetailAttribute]?
 
-        public enum CodingKeys: String, CodingKey {
-            case title
+        public var title: String?
 
+        public enum CodingKeys: String, CodingKey {
             case details
+
+            case title
         }
 
-        public init(details: [ProductDetailAttribute]?, title: String?) {
-            self.title = title
-
+        public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
             self.details = details
+
+            self.title = title
         }
 
         public func duplicate() -> ProductDetailGroupedAttribute {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                details = try container.decode([ProductDetailAttribute].self, forKey: .details)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                details = try container.decode([ProductDetailAttribute].self, forKey: .details)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

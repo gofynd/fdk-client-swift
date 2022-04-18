@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case kycUrl = "kyc_url"
         }
 
-        public init(kycUrl: String?, status: String?) {
+        public init(kycUrl: String? = nil, status: String? = nil) {
             self.status = status
 
             self.kycUrl = kycUrl

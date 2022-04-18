@@ -38,7 +38,7 @@ public extension PlatformClient {
             case orderId = "order_id"
         }
 
-        public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String?, requestId: String?, shipmentId: String, transferMode: String) {
+        public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
             self.shipmentId = shipmentId
 
             self.delights = delights

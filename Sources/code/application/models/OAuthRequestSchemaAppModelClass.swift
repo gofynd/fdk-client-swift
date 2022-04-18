@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case profile
         }
 
-        public init(isSignedIn: Bool?, oauth2: OAuthRequestSchemaOauth2?, profile: OAuthRequestSchemaProfile?) {
+        public init(isSignedIn: Bool? = nil, oauth2: OAuthRequestSchemaOauth2? = nil, profile: OAuthRequestSchemaProfile? = nil) {
             self.isSignedIn = isSignedIn
 
             self.oauth2 = oauth2

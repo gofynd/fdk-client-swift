@@ -121,7 +121,7 @@ public extension ApplicationClient {
             case totalDetails = "total_details"
         }
 
-        public init(awbNo: String?, bags: [Bags]?, beneficiaryDetails: Bool?, breakupValues: [BreakupValues]?, canBreak: [String: Any]?, canCancel: Bool?, canReturn: Bool?, comment: String?, deliveryAddress: DeliveryAddress?, dpName: String?, fulfillingStore: FulfillingStore?, invoice: Invoice?, needHelpUrl: String?, orderId: String?, orderType: String?, payment: ShipmentPayment?, prices: Prices?, promise: Promise?, shipmentCreatedAt: String?, shipmentId: String?, shipmentStatus: ShipmentStatus?, sizeInfo: [String: Any]?, totalBags: Int?, totalDetails: ShipmentTotalDetails?, trackingDetails: [TrackingDetails]?, trackUrl: String?, trakingNo: String?, userInfo: ShipmentUserInfo?) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, deliveryAddress: DeliveryAddress? = nil, dpName: String? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             self.orderId = orderId
 
             self.breakupValues = breakupValues

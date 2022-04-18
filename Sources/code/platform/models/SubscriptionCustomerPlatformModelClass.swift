@@ -50,7 +50,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(billingAddress: SubscriptionBillingAddress?, createdAt: String?, data: [String: Any]?, email: String?, modifiedAt: String?, name: String?, phone: Phone?, type: String?, uniqueId: String?, id: String?) {
+        public init(billingAddress: SubscriptionBillingAddress? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: String? = nil, modifiedAt: String? = nil, name: String? = nil, phone: Phone? = nil, type: String? = nil, uniqueId: String? = nil, id: String? = nil) {
             self.phone = phone
 
             self.billingAddress = billingAddress

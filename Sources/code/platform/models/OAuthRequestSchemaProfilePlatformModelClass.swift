@@ -34,7 +34,7 @@ public extension PlatformClient {
             case firstName = "first_name"
         }
 
-        public init(email: String?, firstName: String?, fullName: String?, id: String?, image: String?, lastName: String?) {
+        public init(email: String? = nil, firstName: String? = nil, fullName: String? = nil, id: String? = nil, image: String? = nil, lastName: String? = nil) {
             self.lastName = lastName
 
             self.image = image

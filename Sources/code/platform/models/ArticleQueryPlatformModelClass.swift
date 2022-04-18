@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class ArticleQuery: Codable {
-        public var itemId: Int
-
         public var size: String
+
+        public var itemId: Int
 
         public var ignoredStores: [Int]?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
-
             case size
+
+            case itemId = "item_id"
 
             case ignoredStores = "ignored_stores"
         }
 
-        public init(ignoredStores: [Int]?, itemId: Int, size: String) {
-            self.itemId = itemId
-
+        public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             self.size = size
+
+            self.itemId = itemId
 
             self.ignoredStores = ignoredStores
         }
@@ -39,9 +39,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            itemId = try container.decode(Int.self, forKey: .itemId)
-
             size = try container.decode(String.self, forKey: .size)
+
+            itemId = try container.decode(Int.self, forKey: .itemId)
 
             do {
                 ignoredStores = try container.decode([Int].self, forKey: .ignoredStores)
@@ -55,9 +55,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
         }

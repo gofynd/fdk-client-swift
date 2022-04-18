@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case id = "_id"
         }
 
-        public init(answer: String?, application: String?, question: String?, slug: String?, id: String?) {
+        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, id: String? = nil) {
             self.question = question
 
             self.answer = answer

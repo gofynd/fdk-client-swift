@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case primary
         }
 
-        public init(active: Bool?, countryCode: String?, phone: String?, primary: Bool?, verified: Bool?) {
+        public init(active: Bool? = nil, countryCode: String? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
             self.verified = verified
 
             self.active = active

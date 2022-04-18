@@ -26,7 +26,7 @@ public extension PlatformClient {
             case all
         }
 
-        public init(all: Int?, new: Int?, processing: Int?, returns: Int?) {
+        public init(all: Int? = nil, new: Int? = nil, processing: Int? = nil, returns: Int? = nil) {
             self.new = new
 
             self.processing = processing

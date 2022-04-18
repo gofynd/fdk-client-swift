@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case message
         }
 
-        public init(code: Int?, exception: String?, info: String?, message: String?) {
+        public init(code: Int? = nil, exception: String? = nil, info: String? = nil, message: String? = nil) {
             self.code = code
 
             self.exception = exception

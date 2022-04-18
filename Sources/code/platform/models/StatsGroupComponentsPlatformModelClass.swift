@@ -18,7 +18,7 @@ public extension PlatformClient {
             case components
         }
 
-        public init(components: [StatsGroupComponent]?, title: String?) {
+        public init(components: [StatsGroupComponent]? = nil, title: String? = nil) {
             self.title = title
 
             self.components = components

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case value
         }
 
-        public init(name: String?, value: String?) {
+        public init(name: String? = nil, value: String? = nil) {
             self.name = name
 
             self.value = value

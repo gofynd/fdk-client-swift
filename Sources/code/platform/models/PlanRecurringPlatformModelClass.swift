@@ -18,7 +18,7 @@ public extension PlatformClient {
             case intervalCount = "interval_count"
         }
 
-        public init(interval: String?, intervalCount: Double?) {
+        public init(interval: String? = nil, intervalCount: Double? = nil) {
             self.interval = interval
 
             self.intervalCount = intervalCount

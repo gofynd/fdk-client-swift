@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case link
         }
 
-        public init(link: String?) {
+        public init(link: String? = nil) {
             self.link = link
         }
 

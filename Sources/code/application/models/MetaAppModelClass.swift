@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case source
         }
 
-        public init(source: String?) {
+        public init(source: String? = nil) {
             self.source = source
         }
 

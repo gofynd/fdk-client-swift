@@ -22,7 +22,7 @@ public extension PlatformClient {
             case backgroundColor = "background_color"
         }
 
-        public init(backgroundColor: String?, text: String?, textColor: String?) {
+        public init(backgroundColor: String? = nil, text: String? = nil, textColor: String? = nil) {
             self.text = text
 
             self.textColor = textColor

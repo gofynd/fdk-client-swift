@@ -14,7 +14,7 @@ public extension PlatformClient {
             case authenticated
         }
 
-        public init(authenticated: Bool?) {
+        public init(authenticated: Bool? = nil) {
             self.authenticated = authenticated
         }
 

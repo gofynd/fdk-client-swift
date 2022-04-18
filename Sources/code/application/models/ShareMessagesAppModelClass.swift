@@ -45,7 +45,7 @@ public extension ApplicationClient {
             case whatsapp
         }
 
-        public init(email: String?, facebook: String?, fallback: String?, message: String?, messenger: String?, sms: String?, text: String?, twitter: String?, whatsapp: String?) {
+        public init(email: String? = nil, facebook: String? = nil, fallback: String? = nil, message: String? = nil, messenger: String? = nil, sms: String? = nil, text: String? = nil, twitter: String? = nil, whatsapp: String? = nil) {
             self.email = email
 
             self.facebook = facebook

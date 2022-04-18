@@ -18,7 +18,7 @@ public extension PlatformClient {
             case file
         }
 
-        public init(file: String?, name: String?) {
+        public init(file: String? = nil, name: String? = nil) {
             self.name = name
 
             self.file = file

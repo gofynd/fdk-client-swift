@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case outOfStock = "out_of_stock"
         }
 
-        public init(deliverable: Bool?, isValid: Bool?, otherStoreQuantity: Int?, outOfStock: Bool?, sizes: [String]?) {
+        public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             self.isValid = isValid
 
             self.sizes = sizes

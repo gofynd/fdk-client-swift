@@ -22,7 +22,7 @@ public extension PlatformClient {
             case q
         }
 
-        public init(allStores: Bool?, deployedStores: [Int]?, q: String?) {
+        public init(allStores: Bool? = nil, deployedStores: [Int]? = nil, q: String? = nil) {
             self.allStores = allStores
 
             self.deployedStores = deployedStores

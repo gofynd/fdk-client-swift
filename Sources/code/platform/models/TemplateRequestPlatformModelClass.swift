@@ -42,7 +42,7 @@ public extension PlatformClient {
             case review
         }
 
-        public init(active: Bool, enableMediaType: String?, enableQna: Bool?, enableRating: Bool, enableReview: Bool, entity: EntityRequest, rating: RatingRequest, review: ReviewRequest) {
+        public init(active: Bool, enableMediaType: String? = nil, enableQna: Bool? = nil, enableRating: Bool, enableReview: Bool, entity: EntityRequest, rating: RatingRequest, review: ReviewRequest) {
             self.active = active
 
             self.enableMediaType = enableMediaType

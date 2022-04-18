@@ -34,7 +34,7 @@ public extension PlatformClient {
             case optType = "opt_type"
         }
 
-        public init(company: OtherSellerCompany?, description: String?, domain: String?, name: String?, optType: String?, id: String?) {
+        public init(company: OtherSellerCompany? = nil, description: String? = nil, domain: String? = nil, name: String? = nil, optType: String? = nil, id: String? = nil) {
             self.name = name
 
             self.description = description

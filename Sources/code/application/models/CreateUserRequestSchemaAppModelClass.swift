@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case meta
         }
 
-        public init(email: String?, firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?, phoneNumber: String, username: String) {
+        public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, username: String) {
             self.phoneNumber = phoneNumber
 
             self.email = email

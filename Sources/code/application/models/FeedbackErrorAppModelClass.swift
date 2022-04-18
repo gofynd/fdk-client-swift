@@ -41,7 +41,7 @@ public extension ApplicationClient {
             case status
         }
 
-        public init(code: String?, exception: String?, info: String?, message: String?, meta: [String: Any]?, requestId: String?, stackTrace: String?, status: Int?) {
+        public init(code: String? = nil, exception: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.code = code
 
             self.exception = exception

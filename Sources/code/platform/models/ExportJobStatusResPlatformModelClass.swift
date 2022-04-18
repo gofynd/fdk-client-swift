@@ -22,7 +22,7 @@ public extension PlatformClient {
             case downloadUrl = "download_url"
         }
 
-        public init(downloadUrl: String?, jobId: String?, status: String?) {
+        public init(downloadUrl: String? = nil, jobId: String? = nil, status: String? = nil) {
             self.status = status
 
             self.jobId = jobId

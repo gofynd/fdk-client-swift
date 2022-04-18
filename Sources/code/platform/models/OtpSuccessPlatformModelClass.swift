@@ -42,7 +42,7 @@ public extension PlatformClient {
             case countryCode = "country_code"
         }
 
-        public init(countryCode: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
+        public init(countryCode: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil) {
             self.resendTimer = resendTimer
 
             self.resendToken = resendToken

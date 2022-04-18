@@ -18,7 +18,7 @@ public extension PlatformClient {
             case source
         }
 
-        public init(modeOfPayment: String?, source: String?) {
+        public init(modeOfPayment: String? = nil, source: String? = nil) {
             self.modeOfPayment = modeOfPayment
 
             self.source = source

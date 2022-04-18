@@ -18,7 +18,7 @@ public extension PlatformClient {
             case multivalues
         }
 
-        public init(data: [FilerList]?, multivalues: Bool?) {
+        public init(data: [FilerList]? = nil, multivalues: Bool? = nil) {
             self.data = data
 
             self.multivalues = multivalues

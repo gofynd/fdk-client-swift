@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case description
         }
 
-        public init(applicable: Double?, description: String?, isApplied: Bool?, total: Double?) {
+        public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
             self.applicable = applicable
 
             self.isApplied = isApplied

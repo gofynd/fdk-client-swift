@@ -22,7 +22,7 @@ public extension PlatformClient {
             case returnable
         }
 
-        public init(returnable: Bool?, time: Int?, unit: String?) {
+        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
             self.time = time
 
             self.unit = unit

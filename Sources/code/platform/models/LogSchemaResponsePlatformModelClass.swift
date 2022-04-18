@@ -14,7 +14,7 @@ public extension PlatformClient {
             case docs
         }
 
-        public init(docs: [LogDocs]?) {
+        public init(docs: [LogDocs]? = nil) {
             self.docs = docs
         }
 

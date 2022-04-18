@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case timezone
         }
 
-        public init(application: ApplicationVersionRequest, device: Device, locale: String?, timezone: String?) {
+        public init(application: ApplicationVersionRequest, device: Device, locale: String? = nil, timezone: String? = nil) {
             self.application = application
 
             self.device = device

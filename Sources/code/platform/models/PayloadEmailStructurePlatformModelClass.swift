@@ -18,7 +18,7 @@ public extension PlatformClient {
             case provider
         }
 
-        public init(provider: PayloadEmailProviderStructure?, template: PayloadEmailTemplateStructure?) {
+        public init(provider: PayloadEmailProviderStructure? = nil, template: PayloadEmailTemplateStructure? = nil) {
             self.template = template
 
             self.provider = provider

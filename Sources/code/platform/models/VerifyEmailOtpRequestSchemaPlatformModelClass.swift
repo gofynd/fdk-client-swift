@@ -26,7 +26,7 @@ public extension PlatformClient {
             case otp
         }
 
-        public init(action: String?, email: String?, otp: String?, registerToken: String?) {
+        public init(action: String? = nil, email: String? = nil, otp: String? = nil, registerToken: String? = nil) {
             self.email = email
 
             self.action = action

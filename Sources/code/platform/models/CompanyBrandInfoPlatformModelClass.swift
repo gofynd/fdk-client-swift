@@ -30,7 +30,7 @@ public extension PlatformClient {
             case brandBannerPortraitUrl = "brand_banner_portrait_url"
         }
 
-        public init(brandBannerPortraitUrl: String?, brandBannerUrl: String?, brandLogoUrl: String?, name: String?, value: Int?) {
+        public init(brandBannerPortraitUrl: String? = nil, brandBannerUrl: String? = nil, brandLogoUrl: String? = nil, name: String? = nil, value: Int? = nil) {
             self.name = name
 
             self.value = value

@@ -34,7 +34,7 @@ public extension PlatformClient {
             case fromAddress = "from_address"
         }
 
-        public init(apiKey: String?, description: String?, fromAddress: [EmailProviderReqFrom]?, name: String?, provider: String?, type: String?) {
+        public init(apiKey: String? = nil, description: String? = nil, fromAddress: [EmailProviderReqFrom]? = nil, name: String? = nil, provider: String? = nil, type: String? = nil) {
             self.name = name
 
             self.description = description

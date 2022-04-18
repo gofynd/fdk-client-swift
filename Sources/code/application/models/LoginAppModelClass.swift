@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case otp
         }
 
-        public init(otp: Bool?, password: Bool?) {
+        public init(otp: Bool? = nil, password: Bool? = nil) {
             self.password = password
 
             self.otp = otp

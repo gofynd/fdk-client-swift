@@ -69,7 +69,7 @@ public extension ApplicationClient {
             case resendToken = "resend_token"
         }
 
-        public init(countryCode: String?, email: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, resendTimer: Int?, resendToken: String?, success: Bool?, user: UserSchema?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+        public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
             self.user = user
 
             self.resendEmailToken = resendEmailToken

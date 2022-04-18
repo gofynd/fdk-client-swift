@@ -46,7 +46,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(application: String?, createdAt: String?, event: String?, isDefault: Bool?, slug: String?, template: EventSubscriptionTemplate?, updatedAt: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, createdAt: String? = nil, event: String? = nil, isDefault: Bool? = nil, slug: String? = nil, template: EventSubscriptionTemplate? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.template = template
 
             self.isDefault = isDefault

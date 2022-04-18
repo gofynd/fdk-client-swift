@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case attachments
         }
 
-        public init(attachments: [TicketAsset]?, response: [[String: Any]]) {
+        public init(attachments: [TicketAsset]? = nil, response: [[String: Any]]) {
             self.response = response
 
             self.attachments = attachments

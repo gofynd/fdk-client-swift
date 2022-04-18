@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case status
         }
 
-        public init(active: Bool?, approve: Bool?, autoDecided: Bool?, status: Int?) {
+        public init(active: Bool? = nil, approve: Bool? = nil, autoDecided: Bool? = nil, status: Int? = nil) {
             self.active = active
 
             self.approve = approve

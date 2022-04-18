@@ -8,26 +8,26 @@ public extension PlatformClient {
      */
 
     class Media2: Codable {
-        public var landscape: String
-
         public var portrait: String
 
         public var logo: String
 
-        public enum CodingKeys: String, CodingKey {
-            case landscape
+        public var landscape: String
 
+        public enum CodingKeys: String, CodingKey {
             case portrait
 
             case logo
+
+            case landscape
         }
 
         public init(landscape: String, logo: String, portrait: String) {
-            self.landscape = landscape
-
             self.portrait = portrait
 
             self.logo = logo
+
+            self.landscape = landscape
         }
 
         public func duplicate() -> Media2 {
@@ -39,21 +39,21 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            landscape = try container.decode(String.self, forKey: .landscape)
-
             portrait = try container.decode(String.self, forKey: .portrait)
 
             logo = try container.decode(String.self, forKey: .logo)
+
+            landscape = try container.decode(String.self, forKey: .landscape)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(landscape, forKey: .landscape)
-
             try? container.encodeIfPresent(portrait, forKey: .portrait)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(landscape, forKey: .landscape)
         }
     }
 }

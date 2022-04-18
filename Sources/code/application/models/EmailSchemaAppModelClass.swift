@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case email
         }
 
-        public init(active: Bool?, email: [EmailProperties]?) {
+        public init(active: Bool? = nil, email: [EmailProperties]? = nil) {
             self.active = active
 
             self.email = email

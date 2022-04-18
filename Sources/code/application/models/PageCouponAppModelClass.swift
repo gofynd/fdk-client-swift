@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case total
         }
 
-        public init(current: Int?, hasNext: Bool?, hasPrevious: Bool?, total: Int?, totalItemCount: Int?) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, total: Int? = nil, totalItemCount: Int? = nil) {
             self.hasPrevious = hasPrevious
 
             self.totalItemCount = totalItemCount

@@ -34,7 +34,7 @@ public extension PlatformClient {
             case excludedFields = "excluded_fields"
         }
 
-        public init(aggregators: [[String: Any]]?, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
+        public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
             self.displayFields = displayFields
 
             self.aggregators = aggregators

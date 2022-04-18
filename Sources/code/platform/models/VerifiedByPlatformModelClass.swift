@@ -18,7 +18,7 @@ public extension PlatformClient {
             case username
         }
 
-        public init(username: String?, userId: String?) {
+        public init(username: String? = nil, userId: String? = nil) {
             self.userId = userId
 
             self.username = username

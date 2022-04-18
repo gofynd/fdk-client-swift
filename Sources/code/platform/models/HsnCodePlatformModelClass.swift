@@ -14,7 +14,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: HsnCodesObject?) {
+        public init(data: HsnCodesObject? = nil) {
             self.data = data
         }
 

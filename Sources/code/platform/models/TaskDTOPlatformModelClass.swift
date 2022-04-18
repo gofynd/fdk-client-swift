@@ -18,7 +18,7 @@ public extension PlatformClient {
             case groupList = "group_list"
         }
 
-        public init(groupList: [GenericDTO]?, type: Int?) {
+        public init(groupList: [GenericDTO]? = nil, type: Int? = nil) {
             self.type = type
 
             self.groupList = groupList

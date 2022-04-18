@@ -22,7 +22,7 @@ public extension PlatformClient {
             case archiveDir = "archive_dir"
         }
 
-        public init(archive: Bool?, archiveDir: String?, delete: Bool?) {
+        public init(archive: Bool? = nil, archiveDir: String? = nil, delete: Bool? = nil) {
             self.delete = delete
 
             self.archive = archive

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case firstName = "first_name"
         }
 
-        public init(firstName: String?, fullName: String?, lastName: String?) {
+        public init(firstName: String? = nil, fullName: String? = nil, lastName: String? = nil) {
             self.lastName = lastName
 
             self.fullName = fullName

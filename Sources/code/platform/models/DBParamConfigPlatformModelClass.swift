@@ -14,7 +14,7 @@ public extension PlatformClient {
             case params
         }
 
-        public init(params: [String: Any]?) {
+        public init(params: [String: Any]? = nil) {
             self.params = params
         }
 

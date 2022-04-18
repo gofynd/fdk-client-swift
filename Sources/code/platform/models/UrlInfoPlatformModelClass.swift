@@ -22,7 +22,7 @@ public extension PlatformClient {
             case hash
         }
 
-        public init(hash: String?, original: String?, short: String?) {
+        public init(hash: String? = nil, original: String? = nil, short: String? = nil) {
             self.original = original
 
             self.short = short

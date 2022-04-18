@@ -30,7 +30,7 @@ public extension PlatformClient {
             case defaultHeaders = "default_headers"
         }
 
-        public init(defaultHeaders: DefaultHeadersDTO?, junkDataThresholdCount: Int?, properties: [String: Any]?, propBeanConfigs: [PropBeanConfig]?, unwindField: String?) {
+        public init(defaultHeaders: DefaultHeadersDTO? = nil, junkDataThresholdCount: Int? = nil, properties: [String: Any]? = nil, propBeanConfigs: [PropBeanConfig]? = nil, unwindField: String? = nil) {
             self.properties = properties
 
             self.junkDataThresholdCount = junkDataThresholdCount

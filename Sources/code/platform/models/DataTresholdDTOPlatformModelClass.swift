@@ -30,7 +30,7 @@ public extension PlatformClient {
             case periodTypeList = "period_type_list"
         }
 
-        public init(minPrice: Double?, periodThreshold: Int?, periodThresholdType: String?, periodTypeList: [GenericDTO]?, safeStock: Int?) {
+        public init(minPrice: Double? = nil, periodThreshold: Int? = nil, periodThresholdType: String? = nil, periodTypeList: [GenericDTO]? = nil, safeStock: Int? = nil) {
             self.minPrice = minPrice
 
             self.safeStock = safeStock

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case isActive = "is_active"
         }
 
-        public init(aggregatorName: PaymentGatewayConfig?, appId: String, isActive: Bool?) {
+        public init(aggregatorName: PaymentGatewayConfig? = nil, appId: String, isActive: Bool? = nil) {
             self.aggregatorName = aggregatorName
 
             self.appId = appId

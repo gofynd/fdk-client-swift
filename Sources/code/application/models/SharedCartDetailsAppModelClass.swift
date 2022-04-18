@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case token
         }
 
-        public init(createdOn: String?, meta: [String: Any]?, source: [String: Any]?, token: String?, user: [String: Any]?) {
+        public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
             self.user = user
 
             self.createdOn = createdOn

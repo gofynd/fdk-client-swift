@@ -22,7 +22,7 @@ public extension PlatformClient {
             case domain
         }
 
-        public init(app: App?, configuration: AppInventory?, domain: AppDomain?) {
+        public init(app: App? = nil, configuration: AppInventory? = nil, domain: AppDomain? = nil) {
             self.app = app
 
             self.configuration = configuration

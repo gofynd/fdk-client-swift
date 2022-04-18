@@ -42,7 +42,7 @@ public extension PlatformClient {
             case archiveConfig = "archive_config"
         }
 
-        public init(archiveConfig: ArchiveConfig?, hosturl: String?, httpMethod: String?, localPath: String?, password: String?, requestParams: [String: String]?, requestPayload: String?, username: String?) {
+        public init(archiveConfig: ArchiveConfig? = nil, hosturl: String? = nil, httpMethod: String? = nil, localPath: String? = nil, password: String? = nil, requestParams: [String: String]? = nil, requestPayload: String? = nil, username: String? = nil) {
             self.hosturl = hosturl
 
             self.username = username

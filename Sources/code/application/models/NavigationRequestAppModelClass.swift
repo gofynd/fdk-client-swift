@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case navigation
         }
 
-        public init(name: String?, navigation: [NavigationReference]?, orientation: Orientation?, platform: [String]?, slug: String?) {
+        public init(name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil) {
             self.name = name
 
             self.slug = slug

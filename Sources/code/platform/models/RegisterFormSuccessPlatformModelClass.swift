@@ -62,7 +62,7 @@ public extension PlatformClient {
             case userExists = "user_exists"
         }
 
-        public init(countryCode: String?, email: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, resendTimer: Int?, resendToken: String?, success: Bool?, userExists: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+        public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, userExists: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
             self.email = email
 
             self.resendTimer = resendTimer

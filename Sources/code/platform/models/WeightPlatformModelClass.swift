@@ -22,7 +22,7 @@ public extension PlatformClient {
             case shipping
         }
 
-        public init(isDefault: Bool?, shipping: Int?, unit: String?) {
+        public init(isDefault: Bool? = nil, shipping: Int? = nil, unit: String? = nil) {
             self.isDefault = isDefault
 
             self.unit = unit

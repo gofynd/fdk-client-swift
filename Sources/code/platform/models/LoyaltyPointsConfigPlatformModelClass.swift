@@ -18,7 +18,7 @@ public extension PlatformClient {
             case autoApply = "auto_apply"
         }
 
-        public init(autoApply: Bool?, enabled: Bool?) {
+        public init(autoApply: Bool? = nil, enabled: Bool? = nil) {
             self.enabled = enabled
 
             self.autoApply = autoApply

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case storetypeOrder = "storetype_order"
         }
 
-        public init(enabled: Bool?, storetypeOrder: [String]?) {
+        public init(enabled: Bool? = nil, storetypeOrder: [String]? = nil) {
             self.enabled = enabled
 
             self.storetypeOrder = storetypeOrder

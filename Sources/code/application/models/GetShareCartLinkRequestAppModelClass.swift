@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case meta
         }
 
-        public init(id: String?, meta: [String: Any]?) {
+        public init(id: String? = nil, meta: [String: Any]? = nil) {
             self.id = id
 
             self.meta = meta

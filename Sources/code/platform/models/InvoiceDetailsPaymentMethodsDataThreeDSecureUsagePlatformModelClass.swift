@@ -14,7 +14,7 @@ public extension PlatformClient {
             case supported
         }
 
-        public init(supported: Bool?) {
+        public init(supported: Bool? = nil) {
             self.supported = supported
         }
 

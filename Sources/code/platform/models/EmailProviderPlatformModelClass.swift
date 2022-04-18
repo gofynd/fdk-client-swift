@@ -58,7 +58,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(apiKey: String?, application: String?, createdAt: String?, description: String?, fromAddress: [EmailProviderReqFrom]?, name: String?, provider: String?, slug: String?, type: String?, updatedAt: String?, id: String?, v: Int?) {
+        public init(apiKey: String? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, fromAddress: [EmailProviderReqFrom]? = nil, name: String? = nil, provider: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.type = type
 
             self.provider = provider

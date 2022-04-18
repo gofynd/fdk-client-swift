@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case paymentIdentifier = "payment_identifier"
         }
 
-        public init(addressId: String?, aggregatorName: String?, id: String?, merchantCode: String?, paymentIdentifier: String?, paymentMode: String?) {
+        public init(addressId: String? = nil, aggregatorName: String? = nil, id: String? = nil, merchantCode: String? = nil, paymentIdentifier: String? = nil, paymentMode: String? = nil) {
             self.id = id
 
             self.merchantCode = merchantCode

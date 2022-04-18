@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case referralCode = "referral_code"
         }
 
-        public init(blocked: Bool?, points: Double?, redeemed: Bool?, referralCode: String?) {
+        public init(blocked: Bool? = nil, points: Double? = nil, redeemed: Bool? = nil, referralCode: String? = nil) {
             self.blocked = blocked
 
             self.points = points

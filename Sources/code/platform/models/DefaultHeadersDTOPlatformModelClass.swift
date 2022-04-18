@@ -26,7 +26,7 @@ public extension PlatformClient {
             case quantity
         }
 
-        public init(intfArticleId: PropBeanDTO?, priceEffective: PropBeanDTO?, quantity: PropBeanDTO?, store: PropBeanDTO?) {
+        public init(intfArticleId: PropBeanDTO? = nil, priceEffective: PropBeanDTO? = nil, quantity: PropBeanDTO? = nil, store: PropBeanDTO? = nil) {
             self.store = store
 
             self.intfArticleId = intfArticleId

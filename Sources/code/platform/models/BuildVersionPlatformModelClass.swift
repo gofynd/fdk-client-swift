@@ -46,7 +46,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(application: String?, buildStatus: String?, createdAt: String?, platformType: String?, updatedAt: String?, versionCode: Int?, versionName: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, buildStatus: String? = nil, createdAt: String? = nil, platformType: String? = nil, updatedAt: String? = nil, versionCode: Int? = nil, versionName: String? = nil, id: String? = nil, v: Int? = nil) {
             self.id = id
 
             self.application = application

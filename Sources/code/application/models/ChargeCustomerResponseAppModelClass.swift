@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case message
         }
 
-        public init(aggregator: String, cartId: String?, deliveryAddressId: String?, message: String, orderId: String, status: String, success: Bool) {
+        public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
             self.aggregator = aggregator
 
             self.success = success

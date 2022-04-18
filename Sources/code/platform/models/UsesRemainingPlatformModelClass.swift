@@ -22,7 +22,7 @@ public extension PlatformClient {
             case user
         }
 
-        public init(app: Int?, total: Int?, user: Int?) {
+        public init(app: Int? = nil, total: Int? = nil, user: Int? = nil) {
             self.app = app
 
             self.total = total

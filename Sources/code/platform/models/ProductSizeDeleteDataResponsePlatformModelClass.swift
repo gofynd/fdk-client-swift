@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class ProductSizeDeleteDataResponse: Codable {
-        public var itemId: Int?
-
         public var size: String?
+
+        public var itemId: Int?
 
         public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
-
             case size
+
+            case itemId = "item_id"
 
             case companyId = "company_id"
         }
 
-        public init(companyId: Int?, itemId: Int?, size: String?) {
-            self.itemId = itemId
-
+        public init(companyId: Int? = nil, itemId: Int? = nil, size: String? = nil) {
             self.size = size
+
+            self.itemId = itemId
 
             self.companyId = companyId
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,9 +67,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }

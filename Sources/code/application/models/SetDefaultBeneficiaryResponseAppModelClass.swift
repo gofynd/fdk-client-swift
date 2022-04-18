@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case isBeneficiarySet = "is_beneficiary_set"
         }
 
-        public init(isBeneficiarySet: Bool, success: Bool?) {
+        public init(isBeneficiarySet: Bool, success: Bool? = nil) {
             self.success = success
 
             self.isBeneficiarySet = isBeneficiarySet

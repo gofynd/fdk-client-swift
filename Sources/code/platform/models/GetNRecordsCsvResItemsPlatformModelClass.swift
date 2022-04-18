@@ -30,7 +30,7 @@ public extension PlatformClient {
             case orderid
         }
 
-        public init(email: String?, firstname: String?, lastname: String?, orderid: String?, phoneNumber: String?) {
+        public init(email: String? = nil, firstname: String? = nil, lastname: String? = nil, orderid: String? = nil, phoneNumber: String? = nil) {
             self.phoneNumber = phoneNumber
 
             self.email = email

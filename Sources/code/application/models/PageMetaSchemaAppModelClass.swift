@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case applicationId = "application_id"
         }
 
-        public init(applicationId: String?, customPages: [PageSchema]?, systemPages: [NavigationSchema]?) {
+        public init(applicationId: String? = nil, customPages: [PageSchema]? = nil, systemPages: [NavigationSchema]? = nil) {
             self.systemPages = systemPages
 
             self.customPages = customPages

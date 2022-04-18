@@ -18,7 +18,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: AdminAnnouncementSchema?, message: String?) {
+        public init(data: AdminAnnouncementSchema? = nil, message: String? = nil) {
             self.message = message
 
             self.data = data

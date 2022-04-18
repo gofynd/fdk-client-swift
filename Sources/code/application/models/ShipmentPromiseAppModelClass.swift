@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case formatted
         }
 
-        public init(formatted: PromiseFormatted?, timestamp: PromiseTimestamp?) {
+        public init(formatted: PromiseFormatted? = nil, timestamp: PromiseTimestamp? = nil) {
             self.timestamp = timestamp
 
             self.formatted = formatted

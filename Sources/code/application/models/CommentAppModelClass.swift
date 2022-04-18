@@ -41,7 +41,7 @@ public extension ApplicationClient {
             case voteCount = "vote_count"
         }
 
-        public init(comment: [String]?, dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, state: FeedbackState?, tags: [TagMeta]?, voteCount: VoteCount?) {
+        public init(comment: [String]? = nil, dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, state: FeedbackState? = nil, tags: [TagMeta]? = nil, voteCount: VoteCount? = nil) {
             self.comment = comment
 
             self.dateMeta = dateMeta

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case department
         }
 
-        public init(department: String?, items: [CategoryItems]?) {
+        public init(department: String? = nil, items: [CategoryItems]? = nil) {
             self.items = items
 
             self.department = department

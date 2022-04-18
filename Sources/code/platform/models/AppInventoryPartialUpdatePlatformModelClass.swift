@@ -30,7 +30,7 @@ public extension PlatformClient {
             case commsEnabled = "comms_enabled"
         }
 
-        public init(cart: AppCartConfig?, commsEnabled: Bool?, loyaltyPoints: LoyaltyPointsConfig?, payment: AppPaymentConfig?, rewardPoints: RewardPointsConfig?) {
+        public init(cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, payment: AppPaymentConfig? = nil, rewardPoints: RewardPointsConfig? = nil) {
             self.rewardPoints = rewardPoints
 
             self.cart = cart

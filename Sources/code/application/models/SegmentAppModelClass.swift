@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case enabled
         }
 
-        public init(credentials: SegmentCredentials?, enabled: Bool?) {
+        public init(credentials: SegmentCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case success
         }
 
-        public init(data: LandingPageSchema?, success: Bool?) {
+        public init(data: LandingPageSchema? = nil, success: Bool? = nil) {
             self.data = data
 
             self.success = success

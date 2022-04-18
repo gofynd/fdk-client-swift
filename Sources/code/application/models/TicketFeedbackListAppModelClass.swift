@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case items
         }
 
-        public init(items: [TicketFeedback]?) {
+        public init(items: [TicketFeedback]? = nil) {
             self.items = items
         }
 

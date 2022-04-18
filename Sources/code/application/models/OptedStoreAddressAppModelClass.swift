@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case city
         }
 
-        public init(address1: String?, address2: String?, city: String?, country: String?, latLong: StoreLatLong?, pincode: Int?, state: String?) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, latLong: StoreLatLong? = nil, pincode: Int? = nil, state: String? = nil) {
             self.state = state
 
             self.address1 = address1

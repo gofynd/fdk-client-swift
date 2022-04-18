@@ -38,7 +38,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(eventName: String?, eventTraceId: String?, eventType: String?, id: Int?, messageId: String?, status: Bool?, version: String?) {
+        public init(eventName: String? = nil, eventTraceId: String? = nil, eventType: String? = nil, id: Int? = nil, messageId: String? = nil, status: Bool? = nil, version: String? = nil) {
             self.id = id
 
             self.eventTraceId = eventTraceId

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case dueDate = "due_date"
         }
 
-        public init(dueDate: String?) {
+        public init(dueDate: String? = nil) {
             self.dueDate = dueDate
         }
 

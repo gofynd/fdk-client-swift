@@ -18,7 +18,7 @@ public extension PlatformClient {
             case level
         }
 
-        public init(level: String?, strategy: String?) {
+        public init(level: String? = nil, strategy: String? = nil) {
             self.strategy = strategy
 
             self.level = level

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case sourceSlug = "source_slug"
         }
 
-        public init(sourceSlug: String?) {
+        public init(sourceSlug: String? = nil) {
             self.sourceSlug = sourceSlug
         }
 

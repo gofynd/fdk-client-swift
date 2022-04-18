@@ -18,7 +18,7 @@ public extension PlatformClient {
             case remaining
         }
 
-        public init(maximum: UsesRemaining?, remaining: UsesRemaining?) {
+        public init(maximum: UsesRemaining? = nil, remaining: UsesRemaining? = nil) {
             self.maximum = maximum
 
             self.remaining = remaining

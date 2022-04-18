@@ -30,7 +30,7 @@ public extension PlatformClient {
             case paymentMethod = "payment_method"
         }
 
-        public init(paymentMethod: String?, planId: String?, productSuite: String?, type: String?, uniqueId: String?) {
+        public init(paymentMethod: String? = nil, planId: String? = nil, productSuite: String? = nil, type: String? = nil, uniqueId: String? = nil) {
             self.uniqueId = uniqueId
 
             self.type = type

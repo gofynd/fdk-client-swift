@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case version
         }
 
-        public init(id: String?, name: String, namespace: String?, token: String?, version: String) {
+        public init(id: String? = nil, name: String, namespace: String? = nil, token: String? = nil, version: String) {
             self.id = id
 
             self.name = name

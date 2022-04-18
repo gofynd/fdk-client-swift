@@ -18,7 +18,7 @@ public extension PlatformClient {
             case eWaybill = "e_waybill"
         }
 
-        public init(eInvoice: InvoiceCredSerializer?, eWaybill: InvoiceCredSerializer?) {
+        public init(eInvoice: InvoiceCredSerializer? = nil, eWaybill: InvoiceCredSerializer? = nil) {
             self.eInvoice = eInvoice
 
             self.eWaybill = eWaybill

@@ -30,7 +30,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.current = current
 
             self.hasNext = hasNext

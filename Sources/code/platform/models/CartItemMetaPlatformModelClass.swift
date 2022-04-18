@@ -18,7 +18,7 @@ public extension PlatformClient {
             case primaryItem = "primary_item"
         }
 
-        public init(groupId: String?, primaryItem: Bool?) {
+        public init(groupId: String? = nil, primaryItem: Bool? = nil) {
             self.groupId = groupId
 
             self.primaryItem = primaryItem

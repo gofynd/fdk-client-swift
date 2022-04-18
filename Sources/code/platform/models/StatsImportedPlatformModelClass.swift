@@ -14,7 +14,7 @@ public extension PlatformClient {
             case count
         }
 
-        public init(count: Int?) {
+        public init(count: Int? = nil) {
             self.count = count
         }
 

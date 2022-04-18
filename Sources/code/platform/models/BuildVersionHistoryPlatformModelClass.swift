@@ -18,7 +18,7 @@ public extension PlatformClient {
             case latestAvailableVersionName = "latest_available_version_name"
         }
 
-        public init(latestAvailableVersionName: String?, versions: BuildVersion?) {
+        public init(latestAvailableVersionName: String? = nil, versions: BuildVersion? = nil) {
             self.versions = versions
 
             self.latestAvailableVersionName = latestAvailableVersionName

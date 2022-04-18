@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case id = "_id"
         }
 
-        public init(path: String?, props: [[String: Any]]?, sections: [AvailablePageSchemaSections]?, sectionsMeta: [AvailablePageSectionMetaAttributes]?, seo: AvailablePageSeo?, text: String?, theme: String?, type: String?, value: String?, id: String?) {
+        public init(path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, value: String? = nil, id: String? = nil) {
             self.value = value
 
             self.text = text

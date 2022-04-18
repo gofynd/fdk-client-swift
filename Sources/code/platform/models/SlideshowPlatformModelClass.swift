@@ -18,7 +18,7 @@ public extension PlatformClient {
             case success
         }
 
-        public init(data: SlideshowSchema?, success: Bool?) {
+        public init(data: SlideshowSchema? = nil, success: Bool? = nil) {
             self.data = data
 
             self.success = success

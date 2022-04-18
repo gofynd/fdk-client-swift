@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(data: [String: Any]?, page: Page?) {
+        public init(data: [String: Any]? = nil, page: Page? = nil) {
             self.data = data
 
             self.page = page

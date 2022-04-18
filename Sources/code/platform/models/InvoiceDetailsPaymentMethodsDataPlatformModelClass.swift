@@ -58,7 +58,7 @@ public extension PlatformClient {
             case threeDSecureUsage = "three_d_secure_usage"
         }
 
-        public init(brand: String?, checks: InvoiceDetailsPaymentMethodsDataChecks?, country: String?, expMonth: Int?, expYear: Int?, fingerprint: String?, funding: String?, generatedFrom: String?, last4: String?, networks: InvoiceDetailsPaymentMethodsDataNetworks?, threeDSecureUsage: InvoiceDetailsPaymentMethodsDataThreeDSecureUsage?, wallet: String?) {
+        public init(brand: String? = nil, checks: InvoiceDetailsPaymentMethodsDataChecks? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, fingerprint: String? = nil, funding: String? = nil, generatedFrom: String? = nil, last4: String? = nil, networks: InvoiceDetailsPaymentMethodsDataNetworks? = nil, threeDSecureUsage: InvoiceDetailsPaymentMethodsDataThreeDSecureUsage? = nil, wallet: String? = nil) {
             self.brand = brand
 
             self.last4 = last4

@@ -106,7 +106,7 @@ public extension PlatformClient {
             case deliveryAddress = "delivery_address"
         }
 
-        public init(bagId: String?, brandName: String?, breakupValues: [ShipmentTrackResponseBagListItemBreakValues]?, canCancel: Bool?, canReturn: Bool?, deliveryAddress: String?, dpDetails: ShipmentTrackResponseBagListItemDpDetails?, enableTracking: Bool?, fyndCashMsg: String?, isActive: Bool?, isTryAtHome: Bool?, orderDate: String?, orderId: String?, paymentMode: String?, paymentModeSource: String?, price: String?, priceMarked: String?, productId: Int?, productImage: ShipmentTrackResponseBagListItemsProductImage?, productName: String?, size: String?, status: String?, statuses: [ShipmentTrackResponseBagListItemStatuses]?, timeSlot: String?) {
+        public init(bagId: String? = nil, brandName: String? = nil, breakupValues: [ShipmentTrackResponseBagListItemBreakValues]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, deliveryAddress: String? = nil, dpDetails: ShipmentTrackResponseBagListItemDpDetails? = nil, enableTracking: Bool? = nil, fyndCashMsg: String? = nil, isActive: Bool? = nil, isTryAtHome: Bool? = nil, orderDate: String? = nil, orderId: String? = nil, paymentMode: String? = nil, paymentModeSource: String? = nil, price: String? = nil, priceMarked: String? = nil, productId: Int? = nil, productImage: ShipmentTrackResponseBagListItemsProductImage? = nil, productName: String? = nil, size: String? = nil, status: String? = nil, statuses: [ShipmentTrackResponseBagListItemStatuses]? = nil, timeSlot: String? = nil) {
             self.enableTracking = enableTracking
 
             self.price = price

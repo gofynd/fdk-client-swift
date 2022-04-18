@@ -34,7 +34,7 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(attachments: [[String: Any]]?, description: String?, message: SmsTemplateMessage?, name: String?, priority: String?, templateVariables: [String: Any]?) {
+        public init(attachments: [[String: Any]]? = nil, description: String? = nil, message: SmsTemplateMessage? = nil, name: String? = nil, priority: String? = nil, templateVariables: [String: Any]? = nil) {
             self.name = name
 
             self.description = description

@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case journeyType = "journey_type"
         }
 
-        public init(journeyType: String?, name: String?, status: String?, updatedAt: String?) {
+        public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
             self.updatedAt = updatedAt
 
             self.status = status

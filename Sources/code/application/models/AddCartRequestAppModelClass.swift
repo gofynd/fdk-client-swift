@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case items
         }
 
-        public init(items: [AddProductCart]?) {
+        public init(items: [AddProductCart]? = nil) {
             self.items = items
         }
 

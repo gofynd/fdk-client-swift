@@ -14,7 +14,7 @@ public extension PlatformClient {
             case website
         }
 
-        public init(website: Website?) {
+        public init(website: Website? = nil) {
             self.website = website
         }
 

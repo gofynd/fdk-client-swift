@@ -30,7 +30,7 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(application: String?, createdAt: String?, redirections: [RedirectionSchema]?, updatedAt: String?, id: String?) {
+        public init(application: String? = nil, createdAt: String? = nil, redirections: [RedirectionSchema]? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.application = application
 
             self.redirections = redirections

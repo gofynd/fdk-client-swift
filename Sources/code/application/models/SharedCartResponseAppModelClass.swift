@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case error
         }
 
-        public init(cart: SharedCart?, error: String?) {
+        public init(cart: SharedCart? = nil, error: String? = nil) {
             self.cart = cart
 
             self.error = error

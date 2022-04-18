@@ -22,7 +22,7 @@ public extension PlatformClient {
             case stores
         }
 
-        public init(criteria: String?, rules: [StoreCriteriaRule]?, stores: [Int]?) {
+        public init(criteria: String? = nil, rules: [StoreCriteriaRule]? = nil, stores: [Int]? = nil) {
             self.criteria = criteria
 
             self.rules = rules

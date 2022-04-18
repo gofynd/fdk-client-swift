@@ -26,7 +26,7 @@ public extension PlatformClient {
             case description
         }
 
-        public init(description: String?, features: [String]?, images: Images?, name: String?) {
+        public init(description: String? = nil, features: [String]? = nil, images: Images? = nil, name: String? = nil) {
             self.images = images
 
             self.features = features

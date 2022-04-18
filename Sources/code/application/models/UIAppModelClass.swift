@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(feedbackQuestion: [String]?, icon: UIIcon?, text: [String]?, type: String?) {
+        public init(feedbackQuestion: [String]? = nil, icon: UIIcon? = nil, text: [String]? = nil, type: String? = nil) {
             self.feedbackQuestion = feedbackQuestion
 
             self.icon = icon

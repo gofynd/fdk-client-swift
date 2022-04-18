@@ -45,7 +45,7 @@ public extension ApplicationClient {
             case reviewCount = "review_count"
         }
 
-        public init(attributeMetric: [RatingMetric]?, createdOn: String?, entity: Entity?, id: String?, modifiedOn: String?, ratingAvg: Double?, ratingCount: Int?, ratingMetric: [RatingMetric]?, reviewCount: Int?) {
+        public init(attributeMetric: [RatingMetric]? = nil, createdOn: String? = nil, entity: Entity? = nil, id: String? = nil, modifiedOn: String? = nil, ratingAvg: Double? = nil, ratingCount: Int? = nil, ratingMetric: [RatingMetric]? = nil, reviewCount: Int? = nil) {
             self.attributeMetric = attributeMetric
 
             self.createdOn = createdOn

@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case ownerInfo = "owner_info"
         }
 
-        public init(applicationInfo: ApplicationInfo?, companyInfo: CompanyInfo?, ownerInfo: OwnerInfo?) {
+        public init(applicationInfo: ApplicationInfo? = nil, companyInfo: CompanyInfo? = nil, ownerInfo: OwnerInfo? = nil) {
             self.applicationInfo = applicationInfo
 
             self.companyInfo = companyInfo

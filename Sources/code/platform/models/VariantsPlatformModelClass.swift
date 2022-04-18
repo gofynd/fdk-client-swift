@@ -30,7 +30,7 @@ public extension PlatformClient {
             case regular
         }
 
-        public init(bold: Bold?, light: Light?, medium: Medium?, regular: Regular?, semiBold: SemiBold?) {
+        public init(bold: Bold? = nil, light: Light? = nil, medium: Medium? = nil, regular: Regular? = nil, semiBold: SemiBold? = nil) {
             self.medium = medium
 
             self.semiBold = semiBold

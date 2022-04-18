@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case articleAssignment = "article_assignment"
         }
 
-        public init(articleAssignment: [String: Any]?, articleId: String?, display: String?, extraMeta: [String: Any]?, itemId: Int?, itemSize: String?, pos: Bool?, quantity: Int?, sellerId: Int?, storeId: Int?) {
+        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, pos: Bool? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil) {
             self.display = display
 
             self.extraMeta = extraMeta

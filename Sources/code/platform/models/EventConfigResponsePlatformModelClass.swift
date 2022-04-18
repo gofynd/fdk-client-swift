@@ -14,7 +14,7 @@ public extension PlatformClient {
             case eventConfigs = "event_configs"
         }
 
-        public init(eventConfigs: [EventConfig]?) {
+        public init(eventConfigs: [EventConfig]? = nil) {
             self.eventConfigs = eventConfigs
         }
 

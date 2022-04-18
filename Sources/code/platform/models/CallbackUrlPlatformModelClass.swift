@@ -18,7 +18,7 @@ public extension PlatformClient {
             case web
         }
 
-        public init(app: String?, web: String?) {
+        public init(app: String? = nil, web: String? = nil) {
             self.app = app
 
             self.web = web

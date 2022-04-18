@@ -18,7 +18,7 @@ public extension PlatformClient {
             case confirmUrl = "confirm_url"
         }
 
-        public init(confirmUrl: String?, subscription: EntitySubscription?) {
+        public init(confirmUrl: String? = nil, subscription: EntitySubscription? = nil) {
             self.subscription = subscription
 
             self.confirmUrl = confirmUrl

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case onSameStore = "on_same_store"
         }
 
-        public init(onSameStore: Bool?) {
+        public init(onSameStore: Bool? = nil) {
             self.onSameStore = onSameStore
         }
 

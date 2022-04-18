@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case content
         }
 
-        public init(backgroundColor: String?, content: String?, contentType: String?, foregroundColor: String?) {
+        public init(backgroundColor: String? = nil, content: String? = nil, contentType: String? = nil, foregroundColor: String? = nil) {
             self.foregroundColor = foregroundColor
 
             self.backgroundColor = backgroundColor

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case size
         }
 
-        public init(pieces: Int?, size: String?) {
+        public init(pieces: Int? = nil, size: String? = nil) {
             self.pieces = pieces
 
             self.size = size

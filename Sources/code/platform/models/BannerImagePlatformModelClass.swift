@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class BannerImage: Codable {
-        public var url: String?
-
         public var aspectRatio: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case url
+        public var url: String?
 
+        public enum CodingKeys: String, CodingKey {
             case aspectRatio = "aspect_ratio"
+
+            case url
         }
 
-        public init(aspectRatio: String?, url: String?) {
-            self.url = url
-
+        public init(aspectRatio: String? = nil, url: String? = nil) {
             self.aspectRatio = aspectRatio
+
+            self.url = url
         }
 
         public func duplicate() -> BannerImage {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

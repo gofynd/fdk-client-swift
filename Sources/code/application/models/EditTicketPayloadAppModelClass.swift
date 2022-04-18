@@ -41,7 +41,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(assignedTo: AgentChangePayload?, category: String?, content: TicketContent?, priority: PriorityEnum?, source: String?, status: String?, subCategory: String?, tags: [String]?) {
+        public init(assignedTo: AgentChangePayload? = nil, category: String? = nil, content: TicketContent? = nil, priority: PriorityEnum? = nil, source: String? = nil, status: String? = nil, subCategory: String? = nil, tags: [String]? = nil) {
             self.content = content
 
             self.category = category

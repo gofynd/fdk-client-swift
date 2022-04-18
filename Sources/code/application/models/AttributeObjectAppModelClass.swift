@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case value
         }
 
-        public init(description: String?, name: String, slug: String?, title: String?, type: String, value: Double) {
+        public init(description: String? = nil, name: String, slug: String? = nil, title: String? = nil, type: String, value: Double) {
             self.description = description
 
             self.name = name

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case branchName = "branch_name"
         }
 
-        public init(bankName: String, branchName: String, success: Bool?) {
+        public init(bankName: String, branchName: String, success: Bool? = nil) {
             self.bankName = bankName
 
             self.success = success

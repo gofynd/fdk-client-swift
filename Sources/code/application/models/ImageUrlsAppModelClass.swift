@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case landscape
         }
 
-        public init(landscape: Media?, portrait: Media?) {
+        public init(landscape: Media? = nil, portrait: Media? = nil) {
             self.portrait = portrait
 
             self.landscape = landscape

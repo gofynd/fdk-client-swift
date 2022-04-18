@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case paymentIdentifier = "payment_identifier"
         }
 
-        public init(defaultOptions: String?, enabled: Bool?, paymentIdentifier: String?) {
+        public init(defaultOptions: String? = nil, enabled: Bool? = nil, paymentIdentifier: String? = nil) {
             self.defaultOptions = defaultOptions
 
             self.enabled = enabled

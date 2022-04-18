@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case uid
         }
 
-        public init(displayName: String?, name: String?, subType: String?, uid: String?) {
+        public init(displayName: String? = nil, name: String? = nil, subType: String? = nil, uid: String? = nil) {
             self.subType = subType
 
             self.name = name

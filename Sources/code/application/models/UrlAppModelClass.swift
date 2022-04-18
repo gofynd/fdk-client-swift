@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case thumbnail
         }
 
-        public init(main: String?, thumbnail: String?) {
+        public init(main: String? = nil, thumbnail: String? = nil) {
             self.main = main
 
             self.thumbnail = thumbnail

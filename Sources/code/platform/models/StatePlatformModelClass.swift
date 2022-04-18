@@ -22,7 +22,7 @@ public extension PlatformClient {
             case isArchived = "is_archived"
         }
 
-        public init(isArchived: Bool?, isDisplay: Bool?, isPublic: Bool?) {
+        public init(isArchived: Bool? = nil, isDisplay: Bool? = nil, isPublic: Bool? = nil) {
             self.isPublic = isPublic
 
             self.isDisplay = isDisplay

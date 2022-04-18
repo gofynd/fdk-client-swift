@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case feature
         }
 
-        public init(feature: AppFeature?) {
+        public init(feature: AppFeature? = nil) {
             self.feature = feature
         }
 

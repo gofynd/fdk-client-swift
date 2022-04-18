@@ -57,7 +57,7 @@ public extension ApplicationClient {
             case razorpayPaymentId = "razorpay_payment_id"
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String?, timeout: Int?, vpa: String?) {
+        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
             self.currency = currency
 
             self.contact = contact

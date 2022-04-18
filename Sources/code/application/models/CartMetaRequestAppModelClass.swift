@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case comment
         }
 
-        public init(checkoutMode: String?, comment: String?, gstin: String?, pickUpCustomerDetails: [String: Any]?) {
+        public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.gstin = gstin
 
             self.pickUpCustomerDetails = pickUpCustomerDetails

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case url
         }
 
-        public init(tag: String?, url: String?) {
+        public init(tag: String? = nil, url: String? = nil) {
             self.tag = tag
 
             self.url = url

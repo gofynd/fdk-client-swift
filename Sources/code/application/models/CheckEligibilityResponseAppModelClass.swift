@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case access
         }
 
-        public init(access: Access?) {
+        public init(access: Access? = nil) {
             self.access = access
         }
 

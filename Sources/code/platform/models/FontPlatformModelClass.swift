@@ -18,7 +18,7 @@ public extension PlatformClient {
             case variants
         }
 
-        public init(family: String?, variants: Variants?) {
+        public init(family: String? = nil, variants: Variants? = nil) {
             self.family = family
 
             self.variants = variants

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case interval
         }
 
-        public init(interval: Int?, type: String?) {
+        public init(interval: Int? = nil, type: String? = nil) {
             self.type = type
 
             self.interval = interval

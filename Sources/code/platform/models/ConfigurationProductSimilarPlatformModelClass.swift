@@ -14,7 +14,7 @@ public extension PlatformClient {
             case config
         }
 
-        public init(config: [ConfigurationProductConfig]?) {
+        public init(config: [ConfigurationProductConfig]? = nil) {
             self.config = config
         }
 

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case campaignCookieExpiry = "campaign_cookie_expiry"
         }
 
-        public init(campaignCookieExpiry: String?) {
+        public init(campaignCookieExpiry: String? = nil) {
             self.campaignCookieExpiry = campaignCookieExpiry
         }
 

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case category
         }
 
-        public init(category: CategoryRequestSchema?) {
+        public init(category: CategoryRequestSchema? = nil) {
             self.category = category
         }
 

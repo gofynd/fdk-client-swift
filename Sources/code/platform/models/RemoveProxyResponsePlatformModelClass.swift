@@ -18,7 +18,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [String: Any]?, message: String?) {
+        public init(data: [String: Any]? = nil, message: String? = nil) {
             self.message = message
 
             self.data = data

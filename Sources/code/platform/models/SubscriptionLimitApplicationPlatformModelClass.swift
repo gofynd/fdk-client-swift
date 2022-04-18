@@ -22,7 +22,7 @@ public extension PlatformClient {
             case softLimit = "soft_limit"
         }
 
-        public init(enabled: Bool?, hardLimit: Int?, softLimit: Int?) {
+        public init(enabled: Bool? = nil, hardLimit: Int? = nil, softLimit: Int? = nil) {
             self.enabled = enabled
 
             self.hardLimit = hardLimit

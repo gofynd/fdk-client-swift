@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case aspectRatio = "aspect_ratio"
         }
 
-        public init(aspectRatio: String?, secureUrl: String?, url: String?) {
+        public init(aspectRatio: String? = nil, secureUrl: String? = nil, url: String? = nil) {
             self.url = url
 
             self.secureUrl = secureUrl

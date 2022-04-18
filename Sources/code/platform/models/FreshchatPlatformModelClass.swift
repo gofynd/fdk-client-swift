@@ -18,7 +18,7 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(credentials: FreshchatCredentials?, enabled: Bool?) {
+        public init(credentials: FreshchatCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled

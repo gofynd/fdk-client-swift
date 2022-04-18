@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: CouponAdd?, page: Page?) {
+        public init(items: CouponAdd? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

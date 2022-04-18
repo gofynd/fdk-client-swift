@@ -30,7 +30,7 @@ public extension PlatformClient {
             case isValid = "is_valid"
         }
 
-        public init(deliverable: Bool?, isValid: Bool?, otherStoreQuantity: Int?, outOfStock: Bool?, sizes: [String]?) {
+        public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             self.deliverable = deliverable
 
             self.otherStoreQuantity = otherStoreQuantity

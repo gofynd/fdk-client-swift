@@ -58,7 +58,7 @@ public extension PlatformClient {
             case schedule = "_schedule"
         }
 
-        public init(application: String?, author: Author?, content: [ResourceContent]?, featureImage: Asset?, published: Bool?, readingTime: String?, seo: SEO?, slug: String?, tags: [String]?, title: String?, customJson: [String: Any]?, schedule: CronSchedule?) {
+        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
             self.application = application
 
             self.customJson = customJson

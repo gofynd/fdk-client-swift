@@ -22,7 +22,7 @@ public extension PlatformClient {
             case supportedCurrency = "supported_currency"
         }
 
-        public init(application: String?, defaultCurrency: DefaultCurrency?, supportedCurrency: [Currency]?) {
+        public init(application: String? = nil, defaultCurrency: DefaultCurrency? = nil, supportedCurrency: [Currency]? = nil) {
             self.application = application
 
             self.defaultCurrency = defaultCurrency

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: CustomPageSchema?) {
+        public init(data: CustomPageSchema? = nil) {
             self.data = data
         }
 

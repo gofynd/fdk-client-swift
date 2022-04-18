@@ -18,7 +18,7 @@ public extension PlatformClient {
             case reason
         }
 
-        public init(reason: String?, reasonId: Double?) {
+        public init(reason: String? = nil, reasonId: Double? = nil) {
             self.reasonId = reasonId
 
             self.reason = reason

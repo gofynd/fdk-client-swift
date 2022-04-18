@@ -18,7 +18,7 @@ public extension PlatformClient {
             case kind
         }
 
-        public init(items: FontsSchemaItems?, kind: String?) {
+        public init(items: FontsSchemaItems? = nil, kind: String? = nil) {
             self.items = items
 
             self.kind = kind

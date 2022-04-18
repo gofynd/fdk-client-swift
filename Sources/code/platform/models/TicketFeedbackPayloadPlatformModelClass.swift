@@ -14,7 +14,7 @@ public extension PlatformClient {
             case formResponse = "form_response"
         }
 
-        public init(formResponse: [String: Any]?) {
+        public init(formResponse: [String: Any]? = nil) {
             self.formResponse = formResponse
         }
 

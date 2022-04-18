@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case id
         }
 
-        public init(brand: ItemBrand?, code: String?, id: Double?, image: [String]?, name: String?, size: String?, slugKey: String?) {
+        public init(brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
             self.brand = brand
 
             self.name = name

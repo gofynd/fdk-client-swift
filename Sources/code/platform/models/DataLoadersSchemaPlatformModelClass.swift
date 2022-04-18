@@ -14,7 +14,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [DataLoaderSchema]?) {
+        public init(items: [DataLoaderSchema]? = nil) {
             self.items = items
         }
 

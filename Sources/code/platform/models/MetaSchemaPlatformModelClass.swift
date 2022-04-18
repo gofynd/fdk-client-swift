@@ -14,7 +14,7 @@ public extension PlatformClient {
             case fyndDefault = "fynd_default"
         }
 
-        public init(fyndDefault: Bool?) {
+        public init(fyndDefault: Bool? = nil) {
             self.fyndDefault = fyndDefault
         }
 

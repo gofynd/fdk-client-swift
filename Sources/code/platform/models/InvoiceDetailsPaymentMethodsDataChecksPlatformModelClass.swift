@@ -22,7 +22,7 @@ public extension PlatformClient {
             case addressPostalCodeCheck = "address_postal_code_check"
         }
 
-        public init(addressLine1Check: String?, addressPostalCodeCheck: String?, cvcCheck: String?) {
+        public init(addressLine1Check: String? = nil, addressPostalCodeCheck: String? = nil, cvcCheck: String? = nil) {
             self.cvcCheck = cvcCheck
 
             self.addressLine1Check = addressLine1Check

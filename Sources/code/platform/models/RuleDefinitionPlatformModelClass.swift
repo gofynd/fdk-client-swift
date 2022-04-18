@@ -42,7 +42,7 @@ public extension PlatformClient {
             case scope
         }
 
-        public init(applicableOn: String, autoApply: Bool?, calculateOn: String, currencyCode: String?, isExact: Bool?, scope: [String]?, type: String, valueType: String) {
+        public init(applicableOn: String, autoApply: Bool? = nil, calculateOn: String, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String, valueType: String) {
             self.applicableOn = applicableOn
 
             self.currencyCode = currencyCode

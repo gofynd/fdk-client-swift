@@ -18,7 +18,7 @@ public extension PlatformClient {
             case secureUrl = "secure_url"
         }
 
-        public init(aspectRatio: String?, secureUrl: String?) {
+        public init(aspectRatio: String? = nil, secureUrl: String? = nil) {
             self.aspectRatio = aspectRatio
 
             self.secureUrl = secureUrl

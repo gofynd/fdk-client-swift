@@ -14,7 +14,7 @@ public extension PlatformClient {
             case faq
         }
 
-        public init(faq: FAQ?) {
+        public init(faq: FAQ? = nil) {
             self.faq = faq
         }
 

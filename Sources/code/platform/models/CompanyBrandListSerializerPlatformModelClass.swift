@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [CompanyBrandSerializer]?, page: Page?) {
+        public init(items: [CompanyBrandSerializer]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

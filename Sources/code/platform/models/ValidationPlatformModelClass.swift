@@ -22,7 +22,7 @@ public extension PlatformClient {
             case userRegisteredAfter = "user_registered_after"
         }
 
-        public init(anonymous: Bool?, appId: [String]?, userRegisteredAfter: String?) {
+        public init(anonymous: Bool? = nil, appId: [String]? = nil, userRegisteredAfter: String? = nil) {
             self.appId = appId
 
             self.anonymous = anonymous

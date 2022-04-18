@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case apiLink = "api_link"
         }
 
-        public init(apiLink: String?, data: [String: Any]?, paymentFlow: String?, paymentFlowData: String?) {
+        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
             self.data = data
 
             self.paymentFlowData = paymentFlowData

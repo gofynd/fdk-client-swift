@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case notificationEmails = "notification_emails"
         }
 
-        public init(addresses: [CompanyAboutAddress]?, createdOn: String?, isActive: Bool?, name: String?, notificationEmails: [String]?, uid: Int?, id: String?) {
+        public init(addresses: [CompanyAboutAddress]? = nil, createdOn: String? = nil, isActive: Bool? = nil, name: String? = nil, notificationEmails: [String]? = nil, uid: Int? = nil, id: String? = nil) {
             self.id = id
 
             self.uid = uid

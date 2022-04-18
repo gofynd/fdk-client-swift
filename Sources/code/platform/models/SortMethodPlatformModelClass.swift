@@ -22,7 +22,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(name: String?, selected: Bool?, type: String?) {
+        public init(name: String? = nil, selected: Bool? = nil, type: String? = nil) {
             self.name = name
 
             self.selected = selected

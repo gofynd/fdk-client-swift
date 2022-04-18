@@ -18,7 +18,7 @@ public extension PlatformClient {
             case action
         }
 
-        public init(action: String?, domain: UpdateDomain?) {
+        public init(action: String? = nil, domain: UpdateDomain? = nil) {
             self.domain = domain
 
             self.action = action

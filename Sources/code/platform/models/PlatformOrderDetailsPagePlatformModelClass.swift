@@ -18,7 +18,7 @@ public extension PlatformClient {
             case previous
         }
 
-        public init(next: String?, previous: String?) {
+        public init(next: String? = nil, previous: String? = nil) {
             self.next = next
 
             self.previous = previous

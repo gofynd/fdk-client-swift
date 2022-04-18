@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case isUpdated = "is_updated"
         }
 
-        public init(id: String?, isDefaultAddress: Bool?, isUpdated: Bool?, success: Bool?) {
+        public init(id: String? = nil, isDefaultAddress: Bool? = nil, isUpdated: Bool? = nil, success: Bool? = nil) {
             self.success = success
 
             self.id = id

@@ -45,7 +45,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(comments: [Comment]?, dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, question: Question?, state: QNAState?, tag: [String]?, tags: [TagMeta]?) {
+        public init(comments: [Comment]? = nil, dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, question: Question? = nil, state: QNAState? = nil, tag: [String]? = nil, tags: [TagMeta]? = nil) {
             self.comments = comments
 
             self.dateMeta = dateMeta

@@ -110,7 +110,7 @@ public extension PlatformClient {
             case domain
         }
 
-        public init(appType: String?, auth: ApplicationAuth?, banner: SecureUrl?, cacheTtl: Int?, channelType: String?, companyId: Int?, cors: ApplicationCors?, createdAt: String?, description: String?, domain: Domain?, domains: [Domain]?, favicon: SecureUrl?, isActive: Bool?, isInternal: Bool?, logo: SecureUrl?, meta: [ApplicationMeta]?, mobileLogo: SecureUrl?, name: String?, owner: String?, redirections: [ApplicationRedirections]?, token: String?, updatedAt: String?, website: ApplicationWebsite?, id: String?, v: Int?) {
+        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
             self.website = website
 
             self.cors = cors

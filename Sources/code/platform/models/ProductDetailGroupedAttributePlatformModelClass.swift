@@ -18,7 +18,7 @@ public extension PlatformClient {
             case title
         }
 
-        public init(details: [ProductDetailAttribute]?, title: String?) {
+        public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
             self.details = details
 
             self.title = title

@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, tags: [String]?, upload: Upload) {
+        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
             self.fileName = fileName
 
             self.filePath = filePath

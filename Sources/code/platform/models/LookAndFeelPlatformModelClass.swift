@@ -18,7 +18,7 @@ public extension PlatformClient {
             case backgroundColor = "background_color"
         }
 
-        public init(backgroundColor: String?, cardPosition: String?) {
+        public init(backgroundColor: String? = nil, cardPosition: String? = nil) {
             self.cardPosition = cardPosition
 
             self.backgroundColor = backgroundColor

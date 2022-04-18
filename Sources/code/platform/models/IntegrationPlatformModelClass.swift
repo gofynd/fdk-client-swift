@@ -74,7 +74,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(companies: [[String: Any]]?, constants: [String: Any]?, createdAt: String?, description: String?, descriptionHtml: String?, icon: String?, meta: [IntegrationMeta]?, name: String?, owner: String?, secret: String?, support: [String]?, token: String?, updatedAt: String?, validators: Validators?, id: String?, v: Int?) {
+        public init(companies: [[String: Any]]? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, description: String? = nil, descriptionHtml: String? = nil, icon: String? = nil, meta: [IntegrationMeta]? = nil, name: String? = nil, owner: String? = nil, secret: String? = nil, support: [String]? = nil, token: String? = nil, updatedAt: String? = nil, validators: Validators? = nil, id: String? = nil, v: Int? = nil) {
             self.validators = validators
 
             self.description = description

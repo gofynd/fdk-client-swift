@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case refreshPages = "refresh_pages"
         }
 
-        public init(announcements: [String: [AnnouncementSchema]]?, refreshPages: [String]?, refreshRate: Int?) {
+        public init(announcements: [String: [AnnouncementSchema]]? = nil, refreshPages: [String]? = nil, refreshRate: Int? = nil) {
             self.announcements = announcements
 
             self.refreshRate = refreshRate

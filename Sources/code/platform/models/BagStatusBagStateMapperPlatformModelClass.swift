@@ -30,7 +30,7 @@ public extension PlatformClient {
             case appStateName = "app_state_name"
         }
 
-        public init(appDisplayName: String?, appStateName: String?, displayName: String?, isActive: Bool?, name: String?) {
+        public init(appDisplayName: String? = nil, appStateName: String? = nil, displayName: String? = nil, isActive: Bool? = nil, name: String? = nil) {
             self.isActive = isActive
 
             self.displayName = displayName

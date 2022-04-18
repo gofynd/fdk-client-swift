@@ -22,7 +22,7 @@ public extension PlatformClient {
             case gstFee = "gst_fee"
         }
 
-        public init(brandCalculatedAmount: Double?, gstFee: Double?, valueOfGood: Double?) {
+        public init(brandCalculatedAmount: Double? = nil, gstFee: Double? = nil, valueOfGood: Double? = nil) {
             self.brandCalculatedAmount = brandCalculatedAmount
 
             self.valueOfGood = valueOfGood

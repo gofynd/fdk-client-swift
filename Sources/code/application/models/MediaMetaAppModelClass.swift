@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case url
         }
 
-        public init(cloud: Cloud?, comment: [String]?, description: String?, id: String?, type: String?, url: Url?) {
+        public init(cloud: Cloud? = nil, comment: [String]? = nil, description: String? = nil, id: String? = nil, type: String? = nil, url: Url? = nil) {
             self.cloud = cloud
 
             self.comment = comment

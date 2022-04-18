@@ -22,7 +22,7 @@ public extension PlatformClient {
             case timing
         }
 
-        public init(email: [String]?, phone: [String]?, timing: String?) {
+        public init(email: [String]? = nil, phone: [String]? = nil, timing: String? = nil) {
             self.phone = phone
 
             self.email = email

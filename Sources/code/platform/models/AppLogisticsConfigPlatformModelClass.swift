@@ -26,7 +26,7 @@ public extension PlatformClient {
             case dpAssignment = "dp_assignment"
         }
 
-        public init(dpAssignment: Bool?, logisticsBySeller: Bool?, sameDayDelivery: Bool?, serviceabilityCheck: Bool?) {
+        public init(dpAssignment: Bool? = nil, logisticsBySeller: Bool? = nil, sameDayDelivery: Bool? = nil, serviceabilityCheck: Bool? = nil) {
             self.logisticsBySeller = logisticsBySeller
 
             self.serviceabilityCheck = serviceabilityCheck

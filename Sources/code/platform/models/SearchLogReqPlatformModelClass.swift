@@ -34,7 +34,7 @@ public extension PlatformClient {
             case identifierValue = "identifier_value"
         }
 
-        public init(companyId: String?, endDate: String?, identifier: String?, identifierValue: String?, marketplaceName: String?, startDate: String?) {
+        public init(companyId: String? = nil, endDate: String? = nil, identifier: String? = nil, identifierValue: String? = nil, marketplaceName: String? = nil, startDate: String? = nil) {
             self.marketplaceName = marketplaceName
 
             self.startDate = startDate

@@ -26,7 +26,7 @@ public extension PlatformClient {
             case transfer
         }
 
-        public init(currency: String?, effective: Int?, marked: Int?, transfer: Int?) {
+        public init(currency: String? = nil, effective: Int? = nil, marked: Int? = nil, transfer: Int? = nil) {
             self.marked = marked
 
             self.currency = currency

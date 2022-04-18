@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case props
         }
 
-        public init(name: String?, props: [BlocksProps]?, type: String?) {
+        public init(name: String? = nil, props: [BlocksProps]? = nil, type: String? = nil) {
             self.type = type
 
             self.name = name

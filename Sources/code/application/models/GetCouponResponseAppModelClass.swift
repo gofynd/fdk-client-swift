@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case availableCouponList = "available_coupon_list"
         }
 
-        public init(availableCouponList: [Coupon]?, page: PageCoupon?) {
+        public init(availableCouponList: [Coupon]? = nil, page: PageCoupon? = nil) {
             self.page = page
 
             self.availableCouponList = availableCouponList

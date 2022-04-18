@@ -18,7 +18,7 @@ public extension PlatformClient {
             case captchaCode = "captcha_code"
         }
 
-        public init(captchaCode: String?, email: String?) {
+        public init(captchaCode: String? = nil, email: String? = nil) {
             self.email = email
 
             self.captchaCode = captchaCode

@@ -30,7 +30,7 @@ public extension PlatformClient {
             case lastExecutedOn = "last_executed_on"
         }
 
-        public init(dailyJob: Bool?, executed: Bool?, id: String?, jobCode: String?, lastExecutedOn: String?) {
+        public init(dailyJob: Bool? = nil, executed: Bool? = nil, id: String? = nil, jobCode: String? = nil, lastExecutedOn: String? = nil) {
             self.executed = executed
 
             self.id = id

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: Subscription?, success: Bool?) {
+        public init(data: Subscription? = nil, success: Bool? = nil) {
             self.success = success
 
             self.data = data

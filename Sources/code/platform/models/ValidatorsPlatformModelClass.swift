@@ -26,7 +26,7 @@ public extension PlatformClient {
             case order
         }
 
-        public init(company: CompanyValidator?, inventory: InventoryValidator?, order: OrderValidator?, store: StoreValidator?) {
+        public init(company: CompanyValidator? = nil, inventory: InventoryValidator? = nil, order: OrderValidator? = nil, store: StoreValidator? = nil) {
             self.company = company
 
             self.store = store

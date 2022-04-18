@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case display
         }
 
-        public init(display: [[String: Any]]?, title: String) {
+        public init(display: [[String: Any]]? = nil, title: String) {
             self.title = title
 
             self.display = display

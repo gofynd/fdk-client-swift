@@ -14,7 +14,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: Category?) {
+        public init(data: Category? = nil) {
             self.data = data
         }
 

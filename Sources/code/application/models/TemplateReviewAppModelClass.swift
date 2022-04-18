@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case voteAllowed = "vote_allowed"
         }
 
-        public init(description: String?, header: String?, imageMeta: ReviewMediaMeta?, title: String?, videoMeta: ReviewMediaMeta?, voteAllowed: Bool?) {
+        public init(description: String? = nil, header: String? = nil, imageMeta: ReviewMediaMeta? = nil, title: String? = nil, videoMeta: ReviewMediaMeta? = nil, voteAllowed: Bool? = nil) {
             self.description = description
 
             self.header = header

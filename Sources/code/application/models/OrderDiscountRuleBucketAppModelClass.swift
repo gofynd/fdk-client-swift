@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case valueType = "value_type"
         }
 
-        public init(high: Double?, low: Double?, max: Double?, value: Double?, valueType: String?) {
+        public init(high: Double? = nil, low: Double? = nil, max: Double? = nil, value: Double? = nil, valueType: String? = nil) {
             self.high = high
 
             self.low = low

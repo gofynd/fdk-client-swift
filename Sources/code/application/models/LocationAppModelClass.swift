@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case pincode
         }
 
-        public init(countryCode: String?, flagUrl: String?, geoLoc: GeoLoc?, name: String?, pincode: String?) {
+        public init(countryCode: String? = nil, flagUrl: String? = nil, geoLoc: GeoLoc? = nil, name: String? = nil, pincode: String? = nil) {
             self.countryCode = countryCode
 
             self.flagUrl = flagUrl
