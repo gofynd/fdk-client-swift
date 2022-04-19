@@ -10,24 +10,24 @@ public extension PlatformClient {
     class Meta: Codable {
         public var headers: [String: Any]?
 
-        public var unit: String?
-
         public var values: [[String: Any]]?
+
+        public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
             case headers
 
-            case unit
-
             case values
+
+            case unit
         }
 
         public init(headers: [String: Any]?, unit: String?, values: [[String: Any]]?) {
             self.headers = headers
 
-            self.unit = unit
-
             self.values = values
+
+            self.unit = unit
         }
 
         public func duplicate() -> Meta {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                values = try container.decode([[String: Any]].self, forKey: .values)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }

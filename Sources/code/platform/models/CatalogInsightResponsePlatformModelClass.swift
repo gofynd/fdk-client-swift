@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class CatalogInsightResponse: Codable {
-        public var brandDistribution: CatalogInsightBrand?
-
         public var item: CatalogInsightItem?
 
-        public enum CodingKeys: String, CodingKey {
-            case brandDistribution = "brand_distribution"
+        public var brandDistribution: CatalogInsightBrand?
 
+        public enum CodingKeys: String, CodingKey {
             case item
+
+            case brandDistribution = "brand_distribution"
         }
 
         public init(brandDistribution: CatalogInsightBrand?, item: CatalogInsightItem?) {
-            self.brandDistribution = brandDistribution
-
             self.item = item
+
+            self.brandDistribution = brandDistribution
         }
 
         public func duplicate() -> CatalogInsightResponse {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandDistribution = try container.decode(CatalogInsightBrand.self, forKey: .brandDistribution)
+                item = try container.decode(CatalogInsightItem.self, forKey: .item)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                item = try container.decode(CatalogInsightItem.self, forKey: .item)
+                brandDistribution = try container.decode(CatalogInsightBrand.self, forKey: .brandDistribution)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandDistribution, forKey: .brandDistribution)
-
             try? container.encodeIfPresent(item, forKey: .item)
+
+            try? container.encodeIfPresent(brandDistribution, forKey: .brandDistribution)
         }
     }
 }

@@ -10,24 +10,24 @@ public extension PlatformClient {
     class UserDetail: Codable {
         public var username: String?
 
-        public var fullName: String?
-
         public var userId: String?
+
+        public var fullName: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
-            case fullName = "full_name"
-
             case userId = "user_id"
+
+            case fullName = "full_name"
         }
 
         public init(fullName: String?, username: String?, userId: String?) {
             self.username = username
 
-            self.fullName = fullName
-
             self.userId = userId
+
+            self.fullName = fullName
         }
 
         public func duplicate() -> UserDetail {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                fullName = try container.decode(String.self, forKey: .fullName)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                fullName = try container.decode(String.self, forKey: .fullName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(fullName, forKey: .fullName)
-
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(fullName, forKey: .fullName)
         }
     }
 }

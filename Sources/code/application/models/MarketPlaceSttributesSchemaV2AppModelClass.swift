@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class MarketPlaceSttributesSchemaV2: Codable {
-        public var title: String?
-
         public var details: [DetailsSchemaV2]?
 
-        public enum CodingKeys: String, CodingKey {
-            case title
+        public var title: String?
 
+        public enum CodingKeys: String, CodingKey {
             case details
+
+            case title
         }
 
         public init(details: [DetailsSchemaV2]? = nil, title: String? = nil) {
-            self.title = title
-
             self.details = details
+
+            self.title = title
         }
 
         public func duplicate() -> MarketPlaceSttributesSchemaV2 {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                details = try container.decode([DetailsSchemaV2].self, forKey: .details)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                details = try container.decode([DetailsSchemaV2].self, forKey: .details)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

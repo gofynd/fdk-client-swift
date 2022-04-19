@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ServiceabilityrErrorResponse: Codable {
         public var type: String
 
-        public var message: String
-
         public var value: String
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case message
-
             case value
+
+            case message
         }
 
         public init(message: String, type: String, value: String) {
             self.type = type
 
-            self.message = message
-
             self.value = value
+
+            self.message = message
         }
 
         public func duplicate() -> ServiceabilityrErrorResponse {
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             type = try container.decode(String.self, forKey: .type)
 
-            message = try container.decode(String.self, forKey: .message)
-
             value = try container.decode(String.self, forKey: .value)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

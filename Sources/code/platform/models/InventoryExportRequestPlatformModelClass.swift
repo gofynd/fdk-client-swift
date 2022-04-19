@@ -8,26 +8,26 @@ public extension PlatformClient {
      */
 
     class InventoryExportRequest: Codable {
-        public var brand: [Int]?
+        public var type: String?
 
         public var store: [Int]?
 
-        public var type: String?
+        public var brand: [Int]?
 
         public enum CodingKeys: String, CodingKey {
-            case brand
+            case type
 
             case store
 
-            case type
+            case brand
         }
 
         public init(brand: [Int]?, store: [Int]?, type: String?) {
-            self.brand = brand
+            self.type = type
 
             self.store = store
 
-            self.type = type
+            self.brand = brand
         }
 
         public func duplicate() -> InventoryExportRequest {
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brand = try container.decode([Int].self, forKey: .brand)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                brand = try container.decode([Int].self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,11 +67,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encode(type, forKey: .type)
 
             try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(brand, forKey: .brand)
         }
     }
 }

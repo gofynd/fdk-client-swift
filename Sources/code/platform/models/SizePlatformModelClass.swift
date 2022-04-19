@@ -8,32 +8,32 @@ public extension PlatformClient {
      */
 
     class Size: Codable {
-        public var display: String?
+        public var isAvailable: Bool?
 
         public var value: String?
 
+        public var display: String?
+
         public var quantity: Int?
 
-        public var isAvailable: Bool?
-
         public enum CodingKeys: String, CodingKey {
-            case display
+            case isAvailable = "is_available"
 
             case value
 
-            case quantity
+            case display
 
-            case isAvailable = "is_available"
+            case quantity
         }
 
         public init(display: String?, isAvailable: Bool?, quantity: Int?, value: String?) {
-            self.display = display
+            self.isAvailable = isAvailable
 
             self.value = value
 
-            self.quantity = quantity
+            self.display = display
 
-            self.isAvailable = isAvailable
+            self.quantity = quantity
         }
 
         public func duplicate() -> Size {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,13 +81,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

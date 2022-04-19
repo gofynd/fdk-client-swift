@@ -10,30 +10,30 @@ public extension PlatformClient {
     class DiscountRule: Codable {
         public var buyCondition: String
 
+        public var offer: DiscountOffer
+
         public var discountType: String
 
         public var itemCriteria: ItemCriteria
 
-        public var offer: DiscountOffer
-
         public enum CodingKeys: String, CodingKey {
             case buyCondition = "buy_condition"
+
+            case offer
 
             case discountType = "discount_type"
 
             case itemCriteria = "item_criteria"
-
-            case offer
         }
 
         public init(buyCondition: String, discountType: String, itemCriteria: ItemCriteria, offer: DiscountOffer) {
             self.buyCondition = buyCondition
 
+            self.offer = offer
+
             self.discountType = discountType
 
             self.itemCriteria = itemCriteria
-
-            self.offer = offer
         }
 
         public func duplicate() -> DiscountRule {
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             buyCondition = try container.decode(String.self, forKey: .buyCondition)
 
+            offer = try container.decode(DiscountOffer.self, forKey: .offer)
+
             discountType = try container.decode(String.self, forKey: .discountType)
 
             itemCriteria = try container.decode(ItemCriteria.self, forKey: .itemCriteria)
-
-            offer = try container.decode(DiscountOffer.self, forKey: .offer)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -59,11 +59,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(buyCondition, forKey: .buyCondition)
 
+            try? container.encodeIfPresent(offer, forKey: .offer)
+
             try? container.encodeIfPresent(discountType, forKey: .discountType)
 
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
-
-            try? container.encodeIfPresent(offer, forKey: .offer)
         }
     }
 }

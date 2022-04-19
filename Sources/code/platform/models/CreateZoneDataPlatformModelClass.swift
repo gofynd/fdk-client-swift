@@ -8,62 +8,62 @@ public extension PlatformClient {
      */
 
     class CreateZoneData: Codable {
-        public var mapping: [ZoneMappingType]
-
-        public var slug: String
+        public var regionType: String
 
         public var name: String
 
-        public var isActive: Bool
-
-        public var storeIds: [Int]
+        public var mapping: [ZoneMappingType]
 
         public var channels: [GetZoneDataViewChannels]
 
-        public var regionType: String
+        public var storeIds: [Int]
 
         public var companyId: Int
 
+        public var isActive: Bool
+
         public var product: ZoneProductTypes
 
-        public enum CodingKeys: String, CodingKey {
-            case mapping
+        public var slug: String
 
-            case slug
+        public enum CodingKeys: String, CodingKey {
+            case regionType = "region_type"
 
             case name
 
-            case isActive = "is_active"
-
-            case storeIds = "store_ids"
+            case mapping
 
             case channels
 
-            case regionType = "region_type"
+            case storeIds = "store_ids"
 
             case companyId = "company_id"
 
+            case isActive = "is_active"
+
             case product
+
+            case slug
         }
 
         public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int]) {
-            self.mapping = mapping
-
-            self.slug = slug
+            self.regionType = regionType
 
             self.name = name
 
-            self.isActive = isActive
-
-            self.storeIds = storeIds
+            self.mapping = mapping
 
             self.channels = channels
 
-            self.regionType = regionType
+            self.storeIds = storeIds
 
             self.companyId = companyId
 
+            self.isActive = isActive
+
             self.product = product
+
+            self.slug = slug
         }
 
         public func duplicate() -> CreateZoneData {
@@ -75,45 +75,45 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
-
-            slug = try container.decode(String.self, forKey: .slug)
+            regionType = try container.decode(String.self, forKey: .regionType)
 
             name = try container.decode(String.self, forKey: .name)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
+            mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
 
             channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
 
-            regionType = try container.decode(String.self, forKey: .regionType)
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             companyId = try container.decode(Int.self, forKey: .companyId)
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             product = try container.decode(ZoneProductTypes.self, forKey: .product)
+
+            slug = try container.decode(String.self, forKey: .slug)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mapping, forKey: .mapping)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(regionType, forKey: .regionType)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(mapping, forKey: .mapping)
 
             try? container.encodeIfPresent(channels, forKey: .channels)
 
-            try? container.encodeIfPresent(regionType, forKey: .regionType)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
             try? container.encodeIfPresent(product, forKey: .product)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

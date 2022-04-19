@@ -8,26 +8,26 @@ public extension PlatformClient {
      */
 
     class OrderQuantity: Codable {
-        public var isSet: Bool?
+        public var minimum: Int?
 
         public var maximum: Int?
 
-        public var minimum: Int?
+        public var isSet: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isSet = "is_set"
+            case minimum
 
             case maximum
 
-            case minimum
+            case isSet = "is_set"
         }
 
         public init(isSet: Bool?, maximum: Int?, minimum: Int?) {
-            self.isSet = isSet
+            self.minimum = minimum
 
             self.maximum = maximum
 
-            self.minimum = minimum
+            self.isSet = isSet
         }
 
         public func duplicate() -> OrderQuantity {
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                minimum = try container.decode(Int.self, forKey: .minimum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minimum = try container.decode(Int.self, forKey: .minimum)
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,11 +67,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(minimum, forKey: .minimum)
 
             try? container.encodeIfPresent(maximum, forKey: .maximum)
 
-            try? container.encodeIfPresent(minimum, forKey: .minimum)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
         }
     }
 }

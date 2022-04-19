@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class CollectionBadge: Codable {
-        public var color: String?
-
         public var text: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case color
+        public var color: String?
 
+        public enum CodingKeys: String, CodingKey {
             case text
+
+            case color
         }
 
         public init(color: String?, text: String?) {
-            self.color = color
-
             self.text = text
+
+            self.color = color
         }
 
         public func duplicate() -> CollectionBadge {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                color = try container.decode(String.self, forKey: .color)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                color = try container.decode(String.self, forKey: .color)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(color, forKey: .color)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(color, forKey: .color)
         }
     }
 }

@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class PaymentStatusUpdateResponse: Codable {
         public var status: String
 
-        public var retry: Bool
-
         public var aggregatorName: String
+
+        public var retry: Bool
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case retry
-
             case aggregatorName = "aggregator_name"
+
+            case retry
         }
 
         public init(aggregatorName: String, retry: Bool, status: String) {
             self.status = status
 
-            self.retry = retry
-
             self.aggregatorName = aggregatorName
+
+            self.retry = retry
         }
 
         public func duplicate() -> PaymentStatusUpdateResponse {
@@ -40,9 +40,9 @@ public extension ApplicationClient {
 
             status = try container.decode(String.self, forKey: .status)
 
-            retry = try container.decode(Bool.self, forKey: .retry)
-
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+
+            retry = try container.decode(Bool.self, forKey: .retry)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(retry, forKey: .retry)
-
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+
+            try? container.encodeIfPresent(retry, forKey: .retry)
         }
     }
 }

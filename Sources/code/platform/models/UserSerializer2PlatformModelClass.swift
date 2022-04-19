@@ -10,24 +10,24 @@ public extension PlatformClient {
     class UserSerializer2: Codable {
         public var username: String?
 
-        public var contact: String?
-
         public var userId: String?
+
+        public var contact: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
-            case contact
-
             case userId = "user_id"
+
+            case contact
         }
 
         public init(contact: String?, username: String?, userId: String?) {
             self.username = username
 
-            self.contact = contact
-
             self.userId = userId
+
+            self.contact = contact
         }
 
         public func duplicate() -> UserSerializer2 {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
-
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
         }
     }
 }

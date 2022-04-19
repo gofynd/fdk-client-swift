@@ -7,6 +7,8 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class CustomerOnboardingRequest: Codable {
+        public var marketplaceInfo: MarketplaceInfo?
+
         public var device: DeviceDetails?
 
         public var source: String
@@ -15,11 +17,11 @@ public extension ApplicationClient {
 
         public var aggregator: String
 
-        public var marketplaceInfo: MarketplaceInfo?
-
         public var personalInfo: UserPersonalInfoInDetails
 
         public enum CodingKeys: String, CodingKey {
+            case marketplaceInfo = "marketplace_info"
+
             case device
 
             case source
@@ -28,12 +30,12 @@ public extension ApplicationClient {
 
             case aggregator
 
-            case marketplaceInfo = "marketplace_info"
-
             case personalInfo = "personal_info"
         }
 
         public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
+            self.marketplaceInfo = marketplaceInfo
+
             self.device = device
 
             self.source = source
@@ -41,8 +43,6 @@ public extension ApplicationClient {
             self.businessInfo = businessInfo
 
             self.aggregator = aggregator
-
-            self.marketplaceInfo = marketplaceInfo
 
             self.personalInfo = personalInfo
         }
@@ -55,6 +55,14 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 device = try container.decode(DeviceDetails.self, forKey: .device)
@@ -76,19 +84,13 @@ public extension ApplicationClient {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            do {
-                marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
 
             try? container.encodeIfPresent(device, forKey: .device)
 
@@ -97,8 +99,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
 
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
         }

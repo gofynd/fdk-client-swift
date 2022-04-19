@@ -1,14 +1,13 @@
 import Foundation
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: GetZoneFromPincodeViewResponse
-         Used By: Serviceability
+         Model: GetPincodeZonesResponse
+         Used By: Logistic
      */
-
-    class GetZoneFromPincodeViewResponse: Codable {
-        public var zones: [String]
+    class GetPincodeZonesResponse: Codable {
+        public var zones: [[String: Any]]
 
         public var serviceabilityType: String
 
@@ -18,22 +17,22 @@ public extension PlatformClient {
             case serviceabilityType = "serviceability_type"
         }
 
-        public init(serviceabilityType: String, zones: [String]) {
+        public init(serviceabilityType: String, zones: [[String: Any]]) {
             self.zones = zones
 
             self.serviceabilityType = serviceabilityType
         }
 
-        public func duplicate() -> GetZoneFromPincodeViewResponse {
+        public func duplicate() -> GetPincodeZonesResponse {
             let dict = self.dictionary!
-            let copy = GetZoneFromPincodeViewResponse(dictionary: dict)!
+            let copy = GetPincodeZonesResponse(dictionary: dict)!
             return copy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            zones = try container.decode([String].self, forKey: .zones)
+            zones = try container.decode([[String: Any]].self, forKey: .zones)
 
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
         }

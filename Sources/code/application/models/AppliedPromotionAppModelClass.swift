@@ -7,9 +7,11 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class AppliedPromotion: Codable {
-        public var amount: Double?
-
         public var promoId: String?
+
+        public var offerText: String?
+
+        public var amount: Double?
 
         public var articleQuantity: Int?
 
@@ -18,9 +20,11 @@ public extension ApplicationClient {
         public var promotionType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case amount
-
             case promoId = "promo_id"
+
+            case offerText = "offer_text"
+
+            case amount
 
             case articleQuantity = "article_quantity"
 
@@ -29,10 +33,12 @@ public extension ApplicationClient {
             case promotionType = "promotion_type"
         }
 
-        public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, promotionType: String? = nil, promoId: String? = nil) {
-            self.amount = amount
-
+        public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             self.promoId = promoId
+
+            self.offerText = offerText
+
+            self.amount = amount
 
             self.articleQuantity = articleQuantity
 
@@ -51,7 +57,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +65,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promoId = try container.decode(String.self, forKey: .promoId)
+                offerText = try container.decode(String.self, forKey: .offerText)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +108,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(promoId, forKey: .promoId)
+
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 

@@ -10,42 +10,42 @@ public extension PlatformClient {
     class DisplayMeta: Codable {
         public var remove: DisplayMetaDict?
 
-        public var auto: DisplayMetaDict?
-
         public var subtitle: String?
 
-        public var apply: DisplayMetaDict?
+        public var auto: DisplayMetaDict?
+
+        public var description: String?
 
         public var title: String?
 
-        public var description: String?
+        public var apply: DisplayMetaDict?
 
         public enum CodingKeys: String, CodingKey {
             case remove
 
-            case auto
-
             case subtitle
 
-            case apply
+            case auto
+
+            case description
 
             case title
 
-            case description
+            case apply
         }
 
         public init(apply: DisplayMetaDict?, auto: DisplayMetaDict?, description: String?, remove: DisplayMetaDict?, subtitle: String?, title: String?) {
             self.remove = remove
 
-            self.auto = auto
-
             self.subtitle = subtitle
 
-            self.apply = apply
+            self.auto = auto
+
+            self.description = description
 
             self.title = title
 
-            self.description = description
+            self.apply = apply
         }
 
         public func duplicate() -> DisplayMeta {
@@ -66,14 +66,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                auto = try container.decode(DisplayMetaDict.self, forKey: .auto)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -82,7 +74,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                apply = try container.decode(DisplayMetaDict.self, forKey: .apply)
+                auto = try container.decode(DisplayMetaDict.self, forKey: .auto)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                apply = try container.decode(DisplayMetaDict.self, forKey: .apply)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,15 +111,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(remove, forKey: .remove)
 
-            try? container.encodeIfPresent(auto, forKey: .auto)
-
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(apply, forKey: .apply)
+            try? container.encodeIfPresent(auto, forKey: .auto)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(apply, forKey: .apply)
         }
     }
 }

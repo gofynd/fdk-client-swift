@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductListingPrice: Codable {
-        public var marked: Price?
-
         public var effective: Price?
 
-        public enum CodingKeys: String, CodingKey {
-            case marked
+        public var marked: Price?
 
+        public enum CodingKeys: String, CodingKey {
             case effective
+
+            case marked
         }
 
         public init(effective: Price? = nil, marked: Price? = nil) {
-            self.marked = marked
-
             self.effective = effective
+
+            self.marked = marked
         }
 
         public func duplicate() -> ProductListingPrice {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                marked = try container.decode(Price.self, forKey: .marked)
+                effective = try container.decode(Price.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                effective = try container.decode(Price.self, forKey: .effective)
+                marked = try container.decode(Price.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
-
             try? container.encodeIfPresent(effective, forKey: .effective)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }

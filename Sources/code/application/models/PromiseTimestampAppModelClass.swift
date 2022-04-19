@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class PromiseTimestamp: Codable {
-        public var max: Double?
-
         public var min: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case max
+        public var max: Double?
 
+        public enum CodingKeys: String, CodingKey {
             case min
+
+            case max
         }
 
         public init(max: Double? = nil, min: Double? = nil) {
-            self.max = max
-
             self.min = min
+
+            self.max = max
         }
 
         public func duplicate() -> PromiseTimestamp {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(max, forKey: .max)
-
             try? container.encodeIfPresent(min, forKey: .min)
+
+            try? container.encodeIfPresent(max, forKey: .max)
         }
     }
 }

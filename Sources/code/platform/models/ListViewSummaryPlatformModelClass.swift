@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ListViewSummary: Codable {
         public var totalZones: Int
 
-        public var totalPincodesServed: Int
-
         public var totalActiveZones: Int
+
+        public var totalPincodesServed: Int
 
         public enum CodingKeys: String, CodingKey {
             case totalZones = "total_zones"
 
-            case totalPincodesServed = "total_pincodes_served"
-
             case totalActiveZones = "total_active_zones"
+
+            case totalPincodesServed = "total_pincodes_served"
         }
 
         public init(totalActiveZones: Int, totalPincodesServed: Int, totalZones: Int) {
             self.totalZones = totalZones
 
-            self.totalPincodesServed = totalPincodesServed
-
             self.totalActiveZones = totalActiveZones
+
+            self.totalPincodesServed = totalPincodesServed
         }
 
         public func duplicate() -> ListViewSummary {
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             totalZones = try container.decode(Int.self, forKey: .totalZones)
 
-            totalPincodesServed = try container.decode(Int.self, forKey: .totalPincodesServed)
-
             totalActiveZones = try container.decode(Int.self, forKey: .totalActiveZones)
+
+            totalPincodesServed = try container.decode(Int.self, forKey: .totalPincodesServed)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(totalZones, forKey: .totalZones)
 
-            try? container.encodeIfPresent(totalPincodesServed, forKey: .totalPincodesServed)
-
             try? container.encodeIfPresent(totalActiveZones, forKey: .totalActiveZones)
+
+            try? container.encodeIfPresent(totalPincodesServed, forKey: .totalPincodesServed)
         }
     }
 }

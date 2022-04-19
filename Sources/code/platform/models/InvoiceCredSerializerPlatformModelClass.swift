@@ -10,24 +10,24 @@ public extension PlatformClient {
     class InvoiceCredSerializer: Codable {
         public var username: String?
 
-        public var password: String?
-
         public var enabled: Bool?
+
+        public var password: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
-            case password
-
             case enabled
+
+            case password
         }
 
         public init(enabled: Bool?, password: String?, username: String?) {
             self.username = username
 
-            self.password = password
-
             self.enabled = enabled
+
+            self.password = password
         }
 
         public func duplicate() -> InvoiceCredSerializer {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                password = try container.decode(String.self, forKey: .password)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                password = try container.decode(String.self, forKey: .password)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(password, forKey: .password)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(password, forKey: .password)
         }
     }
 }

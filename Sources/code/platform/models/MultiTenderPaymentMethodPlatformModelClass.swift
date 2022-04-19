@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var mode: String
 
-        public var amount: Double
-
         public var name: String?
+
+        public var amount: Double
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
             case mode
 
-            case amount
-
             case name
+
+            case amount
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta?, mode: String, name: String?) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.mode = mode
 
-            self.amount = amount
-
             self.name = name
+
+            self.amount = amount
         }
 
         public func duplicate() -> MultiTenderPaymentMethod {
@@ -55,8 +55,6 @@ public extension PlatformClient {
 
             mode = try container.decode(String.self, forKey: .mode)
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -64,6 +62,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode(Double.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -73,9 +73,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

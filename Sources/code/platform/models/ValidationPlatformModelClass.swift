@@ -8,26 +8,26 @@ public extension PlatformClient {
      */
 
     class Validation: Codable {
-        public var userRegisteredAfter: String?
+        public var anonymous: Bool?
 
         public var appId: [String]?
 
-        public var anonymous: Bool?
+        public var userRegisteredAfter: String?
 
         public enum CodingKeys: String, CodingKey {
-            case userRegisteredAfter = "user_registered_after"
+            case anonymous
 
             case appId = "app_id"
 
-            case anonymous
+            case userRegisteredAfter = "user_registered_after"
         }
 
         public init(anonymous: Bool?, appId: [String]?, userRegisteredAfter: String?) {
-            self.userRegisteredAfter = userRegisteredAfter
+            self.anonymous = anonymous
 
             self.appId = appId
 
-            self.anonymous = anonymous
+            self.userRegisteredAfter = userRegisteredAfter
         }
 
         public func duplicate() -> Validation {
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userRegisteredAfter = try container.decode(String.self, forKey: .userRegisteredAfter)
+                anonymous = try container.decode(Bool.self, forKey: .anonymous)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                anonymous = try container.decode(Bool.self, forKey: .anonymous)
+                userRegisteredAfter = try container.decode(String.self, forKey: .userRegisteredAfter)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,11 +67,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(userRegisteredAfter, forKey: .userRegisteredAfter)
+            try? container.encodeIfPresent(anonymous, forKey: .anonymous)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(anonymous, forKey: .anonymous)
+            try? container.encode(userRegisteredAfter, forKey: .userRegisteredAfter)
         }
     }
 }

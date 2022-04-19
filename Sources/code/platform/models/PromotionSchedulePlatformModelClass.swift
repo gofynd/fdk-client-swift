@@ -10,26 +10,26 @@ public extension PlatformClient {
     class PromotionSchedule: Codable {
         public var published: Bool
 
-        public var start: String
-
-        public var cron: String?
+        public var end: String?
 
         public var duration: Int?
 
-        public var end: String?
+        public var cron: String?
+
+        public var start: String
 
         public var nextSchedule: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case published
 
-            case start
-
-            case cron
+            case end
 
             case duration
 
-            case end
+            case cron
+
+            case start
 
             case nextSchedule = "next_schedule"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(cron: String?, duration: Int?, end: String?, nextSchedule: [[String: Any]]?, published: Bool, start: String) {
             self.published = published
 
-            self.start = start
-
-            self.cron = cron
+            self.end = end
 
             self.duration = duration
 
-            self.end = end
+            self.cron = cron
+
+            self.start = start
 
             self.nextSchedule = nextSchedule
         }
@@ -59,10 +59,8 @@ public extension PlatformClient {
 
             published = try container.decode(Bool.self, forKey: .published)
 
-            start = try container.decode(String.self, forKey: .start)
-
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                end = try container.decode(String.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,12 +76,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                end = try container.decode(String.self, forKey: .end)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            start = try container.decode(String.self, forKey: .start)
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
@@ -99,13 +99,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(published, forKey: .published)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
-            try? container.encode(cron, forKey: .cron)
+            try? container.encode(end, forKey: .end)
 
             try? container.encode(duration, forKey: .duration)
 
-            try? container.encode(end, forKey: .end)
+            try? container.encode(cron, forKey: .cron)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
         }

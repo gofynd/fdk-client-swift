@@ -10,24 +10,24 @@ public extension PlatformClient {
     class OptinCompanyMetrics: Codable {
         public var company: String?
 
-        public var brand: Int?
-
         public var store: Int?
+
+        public var brand: Int?
 
         public enum CodingKeys: String, CodingKey {
             case company
 
-            case brand
-
             case store
+
+            case brand
         }
 
         public init(brand: Int?, company: String?, store: Int?) {
             self.company = company
 
-            self.brand = brand
-
             self.store = store
+
+            self.brand = brand
         }
 
         public func duplicate() -> OptinCompanyMetrics {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode(Int.self, forKey: .brand)
+                store = try container.decode(Int.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                store = try container.decode(Int.self, forKey: .store)
+                brand = try container.decode(Int.self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(company, forKey: .company)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
             try? container.encodeIfPresent(store, forKey: .store)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
         }
     }
 }
