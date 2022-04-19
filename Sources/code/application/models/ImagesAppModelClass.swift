@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case thumbnail
         }
 
-        public init(android: [String]?, desktop: [String]?, ios: [String]?, thumbnail: [String]?) {
+        public init(android: [String]? = nil, desktop: [String]? = nil, ios: [String]? = nil, thumbnail: [String]? = nil) {
             self.desktop = desktop
 
             self.android = android

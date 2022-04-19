@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case enabled
         }
 
-        public init(enabled: Bool?) {
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
 

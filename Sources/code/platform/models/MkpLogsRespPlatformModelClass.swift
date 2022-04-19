@@ -34,7 +34,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(count: String?, endTimeIso: String?, eventType: String?, startTimeIso: String?, status: String?, traceId: String?) {
+        public init(count: String? = nil, endTimeIso: String? = nil, eventType: String? = nil, startTimeIso: String? = nil, status: String? = nil, traceId: String? = nil) {
             self.startTimeIso = startTimeIso
 
             self.endTimeIso = endTimeIso

@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case success
         }
 
-        public init(couponValidity: CouponValidity?, message: String?, success: Bool) {
+        public init(couponValidity: CouponValidity? = nil, message: String? = nil, success: Bool) {
             self.couponValidity = couponValidity
 
             self.message = message

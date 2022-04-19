@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case dateOfJoining = "date_of_joining"
         }
 
-        public init(dateOfJoining: String?, membershipId: String, name: String) {
+        public init(dateOfJoining: String? = nil, membershipId: String, name: String) {
             self.name = name
 
             self.membershipId = membershipId

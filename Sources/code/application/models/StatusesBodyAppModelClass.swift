@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case shipments
         }
 
-        public init(shipments: [String: Any]?, status: String?) {
+        public init(shipments: [String: Any]? = nil, status: String? = nil) {
             self.status = status
 
             self.shipments = shipments

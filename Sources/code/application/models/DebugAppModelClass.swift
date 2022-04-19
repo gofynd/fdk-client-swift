@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case platform
         }
 
-        public init(platform: String?, source: String?) {
+        public init(platform: String? = nil, source: String? = nil) {
             self.source = source
 
             self.platform = platform

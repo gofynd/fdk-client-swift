@@ -93,7 +93,7 @@ public extension ApplicationClient {
             case desktopImage = "desktop_image"
         }
 
-        public init(active: Bool?, createdAt: String?, desktopImage: String?, display: String?, flashCard: FlashCard?, forgotPassword: Bool?, login: Login?, lookAndFeel: LookAndFeel?, meta: MetaSchema?, mobileImage: String?, name: String?, register: Bool?, registerRequiredFields: RegisterRequiredFields?, requiredFields: RequiredFields?, skipCaptcha: Bool?, skipLogin: Bool?, social: Social?, socialTokens: SocialTokens?, subtext: String?, updatedAt: String?, id: String?) {
+        public init(active: Bool? = nil, createdAt: String? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.display = display
 
             self.lookAndFeel = lookAndFeel

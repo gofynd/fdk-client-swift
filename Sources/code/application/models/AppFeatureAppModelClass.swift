@@ -65,7 +65,7 @@ public extension ApplicationClient {
             case v = "__v"
         }
 
-        public init(app: String?, cart: CartFeature?, common: CommonFeature?, createdAt: String?, homePage: HomePageFeature?, landingPage: LandingPageFeature?, order: OrderFeature?, pcr: PcrFeature?, productDetail: ProductDetailFeature?, qr: QrFeature?, registrationPage: RegistrationPageFeature?, updatedAt: String?, id: String?, v: Int?) {
+        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.productDetail = productDetail
 
             self.landingPage = landingPage

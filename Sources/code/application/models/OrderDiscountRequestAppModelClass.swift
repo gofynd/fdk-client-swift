@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case orderAmount = "order_amount"
         }
 
-        public init(currency: String?, orderAmount: Double) {
+        public init(currency: String? = nil, orderAmount: Double) {
             self.currency = currency
 
             self.orderAmount = orderAmount

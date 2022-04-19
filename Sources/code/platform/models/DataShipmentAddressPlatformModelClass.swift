@@ -58,7 +58,7 @@ public extension PlatformClient {
             case name
         }
 
-        public init(address: String?, addressCategory: String?, addressType: String?, area: String?, city: String?, country: String?, email: String?, landmark: String?, name: String?, phone: String?, pincode: String?, state: String?) {
+        public init(address: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil) {
             self.city = city
 
             self.country = country

@@ -34,7 +34,7 @@ public extension PlatformClient {
             case buttonSecondaryColor = "button_secondary_color"
         }
 
-        public init(accentColor: String?, bgColor: String?, buttonSecondaryColor: String?, linkColor: String?, primaryColor: String?, secondaryColor: String?) {
+        public init(accentColor: String? = nil, bgColor: String? = nil, buttonSecondaryColor: String? = nil, linkColor: String? = nil, primaryColor: String? = nil, secondaryColor: String? = nil) {
             self.bgColor = bgColor
 
             self.primaryColor = primaryColor

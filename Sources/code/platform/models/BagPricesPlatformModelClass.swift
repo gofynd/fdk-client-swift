@@ -66,7 +66,7 @@ public extension PlatformClient {
             case discount
         }
 
-        public init(amountPaid: Double?, amountPaidRoundoff: Double?, cashback: Double?, cashbackApplied: Double?, codCharges: Double?, couponValue: Double?, deliveryCharge: Double?, discount: Double?, fyndCredits: Double?, priceEffective: Double?, priceMarked: Double?, refundAmount: Double?, refundCredit: Double?, valueOfGood: Double?) {
+        public init(amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, valueOfGood: Double? = nil) {
             self.cashback = cashback
 
             self.refundCredit = refundCredit

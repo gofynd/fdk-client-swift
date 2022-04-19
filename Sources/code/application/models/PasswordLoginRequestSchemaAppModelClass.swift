@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case username
         }
 
-        public init(captchaCode: String?, password: String?, username: String?) {
+        public init(captchaCode: String? = nil, password: String? = nil, username: String? = nil) {
             self.captchaCode = captchaCode
 
             self.password = password

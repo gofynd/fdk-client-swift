@@ -14,7 +14,7 @@ public extension PlatformClient {
             case concurrency
         }
 
-        public init(concurrency: Int?) {
+        public init(concurrency: Int? = nil) {
             self.concurrency = concurrency
         }
 

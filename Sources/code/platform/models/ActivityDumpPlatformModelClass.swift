@@ -30,7 +30,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(activity: Activity?, createdBy: CreatedBy?, dateMeta: DateMeta?, id: String?, type: String?) {
+        public init(activity: Activity? = nil, createdBy: CreatedBy? = nil, dateMeta: DateMeta? = nil, id: String? = nil, type: String? = nil) {
             self.activity = activity
 
             self.createdBy = createdBy

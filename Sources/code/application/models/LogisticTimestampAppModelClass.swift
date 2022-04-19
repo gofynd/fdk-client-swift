@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case max
         }
 
-        public init(max: Int?, min: Int?) {
+        public init(max: Int? = nil, min: Int? = nil) {
             self.min = min
 
             self.max = max

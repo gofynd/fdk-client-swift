@@ -22,7 +22,7 @@ public extension PlatformClient {
             case message
         }
 
-        public init(enabled: Bool?, forceReassignment: Bool?, message: String?) {
+        public init(enabled: Bool? = nil, forceReassignment: Bool? = nil, message: String? = nil) {
             self.enabled = enabled
 
             self.forceReassignment = forceReassignment

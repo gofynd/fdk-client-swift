@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case price
         }
 
-        public init(id: String?, points: Double?, price: Double?) {
+        public init(id: String? = nil, points: Double? = nil, price: Double? = nil) {
             self.id = id
 
             self.points = points

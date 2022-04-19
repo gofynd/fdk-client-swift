@@ -14,7 +14,7 @@ public extension PlatformClient {
             case skuCode = "sku_code"
         }
 
-        public init(skuCode: String?) {
+        public init(skuCode: String? = nil) {
             self.skuCode = skuCode
         }
 

@@ -26,7 +26,7 @@ public extension PlatformClient {
             case query
         }
 
-        public init(displayName: String?, pageType: String?, params: [PageSpecParam]?, query: [PageSpecParam]?) {
+        public init(displayName: String? = nil, pageType: String? = nil, params: [PageSpecParam]? = nil, query: [PageSpecParam]? = nil) {
             self.pageType = pageType
 
             self.displayName = displayName

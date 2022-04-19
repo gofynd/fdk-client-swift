@@ -42,7 +42,7 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(application: String?, createdAt: String?, faq: [ApplicationLegalFAQ]?, policy: String?, shipping: String?, tnc: String?, updatedAt: String?, id: String?) {
+        public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.application = application
 
             self.tnc = tnc

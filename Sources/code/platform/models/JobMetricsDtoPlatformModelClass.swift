@@ -42,7 +42,7 @@ public extension PlatformClient {
             case totalJobRuns = "total_job_runs"
         }
 
-        public init(isRunMoreThanUsual: String?, jobCode: String?, jobHistory: [JobHistoryDto]?, totalFailureCount: Int?, totalJobRuns: Int?, totalSuccessCount: Int?, totalSuppressedCount: Int?, totalWarningCount: Int?) {
+        public init(isRunMoreThanUsual: String? = nil, jobCode: String? = nil, jobHistory: [JobHistoryDto]? = nil, totalFailureCount: Int? = nil, totalJobRuns: Int? = nil, totalSuccessCount: Int? = nil, totalSuppressedCount: Int? = nil, totalWarningCount: Int? = nil) {
             self.jobCode = jobCode
 
             self.isRunMoreThanUsual = isRunMoreThanUsual

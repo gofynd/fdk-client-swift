@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case productSlug = "product_slug"
         }
 
-        public init(productSlug: [String]?) {
+        public init(productSlug: [String]? = nil) {
             self.productSlug = productSlug
         }
 

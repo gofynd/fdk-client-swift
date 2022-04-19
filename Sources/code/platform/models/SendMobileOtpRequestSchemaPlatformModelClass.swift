@@ -38,7 +38,7 @@ public extension PlatformClient {
             case captchaCode = "captcha_code"
         }
 
-        public init(action: String?, androidHash: String?, captchaCode: String?, countryCode: String?, force: String?, mobile: String?, token: String?) {
+        public init(action: String? = nil, androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
             self.mobile = mobile
 
             self.countryCode = countryCode

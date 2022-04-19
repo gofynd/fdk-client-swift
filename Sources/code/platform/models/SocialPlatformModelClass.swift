@@ -26,7 +26,7 @@ public extension PlatformClient {
             case apple
         }
 
-        public init(accountKit: Bool?, apple: Bool?, facebook: Bool?, google: Bool?) {
+        public init(accountKit: Bool? = nil, apple: Bool? = nil, facebook: Bool? = nil, google: Bool? = nil) {
             self.accountKit = accountKit
 
             self.facebook = facebook

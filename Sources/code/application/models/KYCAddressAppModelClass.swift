@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case pincode
         }
 
-        public init(addressline1: String, addressline2: String?, city: String, landMark: String?, ownershipType: String?, pincode: String, state: String) {
+        public init(addressline1: String, addressline2: String? = nil, city: String, landMark: String? = nil, ownershipType: String? = nil, pincode: String, state: String) {
             self.ownershipType = ownershipType
 
             self.addressline2 = addressline2

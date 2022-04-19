@@ -18,7 +18,7 @@ public extension PlatformClient {
             case verifyEmailLink = "verify_email_link"
         }
 
-        public init(user: UserSchema?, verifyEmailLink: Bool?) {
+        public init(user: UserSchema? = nil, verifyEmailLink: Bool? = nil) {
             self.user = user
 
             self.verifyEmailLink = verifyEmailLink

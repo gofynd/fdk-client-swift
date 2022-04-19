@@ -86,7 +86,7 @@ public extension PlatformClient {
             case enrichFromMaster = "enrich_from_master"
         }
 
-        public init(allParamFunctionName: String?, concatStr: String?, constValue: [String: Any]?, dataType: String?, defaultValue: [String: Any]?, destinationField: String?, enrichFromMaster: Bool?, functionName: String?, identifierType: String?, ignoreIfNotExists: Bool?, include: Bool?, indexField: String?, optional: Bool?, projectionQuery: [String: Any]?, required: Bool?, sourceField: String?, sourceFields: [String]?, subSeparator: String?, transformerName: String?) {
+        public init(allParamFunctionName: String? = nil, concatStr: String? = nil, constValue: [String: Any]? = nil, dataType: String? = nil, defaultValue: [String: Any]? = nil, destinationField: String? = nil, enrichFromMaster: Bool? = nil, functionName: String? = nil, identifierType: String? = nil, ignoreIfNotExists: Bool? = nil, include: Bool? = nil, indexField: String? = nil, optional: Bool? = nil, projectionQuery: [String: Any]? = nil, required: Bool? = nil, sourceField: String? = nil, sourceFields: [String]? = nil, subSeparator: String? = nil, transformerName: String? = nil) {
             self.required = required
 
             self.optional = optional

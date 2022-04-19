@@ -22,7 +22,7 @@ public extension PlatformClient {
             case userDetails = "user_details"
         }
 
-        public init(asAdministrator: Bool?, userDetails: [String: Any]?, userId: String?) {
+        public init(asAdministrator: Bool? = nil, userDetails: [String: Any]? = nil, userId: String? = nil) {
             self.userId = userId
 
             self.asAdministrator = asAdministrator

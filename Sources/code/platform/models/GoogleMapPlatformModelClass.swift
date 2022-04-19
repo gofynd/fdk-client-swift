@@ -14,7 +14,7 @@ public extension PlatformClient {
             case credentials
         }
 
-        public init(credentials: GoogleMapCredentials?) {
+        public init(credentials: GoogleMapCredentials? = nil) {
             self.credentials = credentials
         }
 

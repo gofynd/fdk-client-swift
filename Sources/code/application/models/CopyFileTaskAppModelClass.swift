@@ -53,7 +53,7 @@ public extension ApplicationClient {
             case processedOn = "processed_on"
         }
 
-        public init(attemptsMade: Int, data: BulkRequest, delay: Int, finishedOn: Int, id: String, name: String, opts: Opts, processedOn: Int, progress: Int, stacktrace: [String]?, timestamp: Int) {
+        public init(attemptsMade: Int, data: BulkRequest, delay: Int, finishedOn: Int, id: String, name: String, opts: Opts, processedOn: Int, progress: Int, stacktrace: [String]? = nil, timestamp: Int) {
             self.id = id
 
             self.name = name

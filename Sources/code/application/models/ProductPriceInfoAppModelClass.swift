@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case base
         }
 
-        public init(base: ProductPrice?, converted: ProductPrice?) {
+        public init(base: ProductPrice? = nil, converted: ProductPrice? = nil) {
             self.converted = converted
 
             self.base = base

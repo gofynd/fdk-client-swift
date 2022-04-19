@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case predicate
         }
 
-        public init(blocks: [[String: Any]]?, label: String?, name: String?, predicate: AvailablePagePredicate?, preset: [String: Any]?, props: [String: Any]?) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil) {
             self.name = name
 
             self.label = label

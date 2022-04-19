@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case mobile
         }
 
-        public init(captchaCode: String?, countryCode: String?, mobile: String?) {
+        public init(captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
             self.countryCode = countryCode
 
             self.captchaCode = captchaCode

@@ -74,7 +74,7 @@ public extension PlatformClient {
             case lastUpdatedAt = "last_updated_at"
         }
 
-        public init(attributes: BagItemAttributes?, brand: String?, brandId: Int?, canCancel: Bool?, canReturn: Bool?, code: String?, id: Int?, image: [String]?, l1Category: [String]?, l2Category: [String]?, l3Category: Int?, l3CategoryName: String?, lastUpdatedAt: String?, name: String?, size: String?, slugKey: String?) {
+        public init(attributes: BagItemAttributes? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, id: Int? = nil, image: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
             self.id = id
 
             self.size = size

@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case status
         }
 
-        public init(logo: String?, mode: String?, status: String?) {
+        public init(logo: String? = nil, mode: String? = nil, status: String? = nil) {
             self.logo = logo
 
             self.mode = mode

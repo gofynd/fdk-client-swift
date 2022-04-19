@@ -81,7 +81,7 @@ public extension ApplicationClient {
             case createdAt = "created_at"
         }
 
-        public init(assignedTo: [String: Any]?, category: TicketCategory, content: TicketContent?, context: TicketContext?, createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, isFeedbackPending: Bool?, priority: Priority, responseId: String?, source: TicketSourceEnum, status: Status, subCategory: TicketSubCategory?, tags: [String]?, ticketId: String, updatedAt: String?, customJson: [String: Any]?, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: TicketSubCategory? = nil, tags: [String]? = nil, ticketId: String, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             self.context = context
 
             self.createdOn = createdOn

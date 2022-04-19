@@ -18,7 +18,7 @@ public extension PlatformClient {
             case user
         }
 
-        public init(points: Points?, user: RewardUser?) {
+        public init(points: Points? = nil, user: RewardUser? = nil) {
             self.points = points
 
             self.user = user

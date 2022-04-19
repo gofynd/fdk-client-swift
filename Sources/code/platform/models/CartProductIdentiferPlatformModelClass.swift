@@ -14,7 +14,7 @@ public extension PlatformClient {
             case identifier
         }
 
-        public init(identifier: String?) {
+        public init(identifier: String? = nil) {
             self.identifier = identifier
         }
 

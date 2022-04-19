@@ -30,7 +30,7 @@ public extension PlatformClient {
             case extraMeta = "extra_meta"
         }
 
-        public init(currentStatus: String?, extraMeta: [String: Any]?, orderId: String?, paymentGateway: String?, paymentId: String?) {
+        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
             self.paymentId = paymentId
 
             self.paymentGateway = paymentGateway

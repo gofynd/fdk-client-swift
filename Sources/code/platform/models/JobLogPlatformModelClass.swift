@@ -42,7 +42,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(campaign: String?, createdAt: String?, imported: [String: Any]?, job: String?, processed: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
+        public init(campaign: String? = nil, createdAt: String? = nil, imported: [String: Any]? = nil, job: String? = nil, processed: [String: Any]? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.imported = imported
 
             self.processed = processed

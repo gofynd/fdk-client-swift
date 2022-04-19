@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(redirectFrom: String?, redirectTo: String?, type: String?) {
+        public init(redirectFrom: String? = nil, redirectTo: String? = nil, type: String? = nil) {
             self.redirectFrom = redirectFrom
 
             self.redirectTo = redirectTo

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: FollowIdsData?) {
+        public init(data: FollowIdsData? = nil) {
             self.data = data
         }
 

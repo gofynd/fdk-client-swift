@@ -22,7 +22,7 @@ public extension PlatformClient {
             case action
         }
 
-        public init(action: String?, id: String?, type: String?) {
+        public init(action: String? = nil, id: String? = nil, type: String? = nil) {
             self.id = id
 
             self.type = type

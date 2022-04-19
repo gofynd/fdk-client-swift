@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case level
         }
 
-        public init(isRequired: Bool?, level: String?) {
+        public init(isRequired: Bool? = nil, level: String? = nil) {
             self.isRequired = isRequired
 
             self.level = level

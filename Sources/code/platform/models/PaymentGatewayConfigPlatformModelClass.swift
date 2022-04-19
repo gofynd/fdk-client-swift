@@ -30,7 +30,7 @@ public extension PlatformClient {
             case key
         }
 
-        public init(configType: String, isActive: Bool?, key: String, merchantSalt: String, secret: String) {
+        public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.configType = configType
 
             self.secret = secret

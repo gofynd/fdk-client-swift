@@ -14,7 +14,7 @@ public extension PlatformClient {
             case extraMeta = "extra_meta"
         }
 
-        public init(extraMeta: [String: Any]?) {
+        public init(extraMeta: [String: Any]? = nil) {
             self.extraMeta = extraMeta
         }
 

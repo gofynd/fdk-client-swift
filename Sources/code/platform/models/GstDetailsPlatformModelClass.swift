@@ -38,7 +38,7 @@ public extension PlatformClient {
             case isDefaultHsnCode = "is_default_hsn_code"
         }
 
-        public init(brandCalculatedAmount: Double?, gstFee: String?, gstTag: String?, gstTaxPercentage: Double?, hsnCode: String?, isDefaultHsnCode: Bool?, valueOfGood: Double?) {
+        public init(brandCalculatedAmount: Double? = nil, gstFee: String? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, isDefaultHsnCode: Bool? = nil, valueOfGood: Double? = nil) {
             self.brandCalculatedAmount = brandCalculatedAmount
 
             self.gstFee = gstFee

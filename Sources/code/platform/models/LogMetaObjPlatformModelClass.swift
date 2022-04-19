@@ -30,7 +30,7 @@ public extension PlatformClient {
             case location
         }
 
-        public init(application: String?, deviceInfo: [String: Any]?, entity: EntityObject?, location: [String: Any]?, modifier: [String: Any]?) {
+        public init(application: String? = nil, deviceInfo: [String: Any]? = nil, entity: EntityObject? = nil, location: [String: Any]? = nil, modifier: [String: Any]? = nil) {
             self.modifier = modifier
 
             self.application = application

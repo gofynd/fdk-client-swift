@@ -26,7 +26,7 @@ public extension PlatformClient {
             case props
         }
 
-        public init(blocks: [Blocks]?, label: String?, name: String?, props: [BlocksProps]?) {
+        public init(blocks: [Blocks]? = nil, label: String? = nil, name: String? = nil, props: [BlocksProps]? = nil) {
             self.blocks = blocks
 
             self.name = name

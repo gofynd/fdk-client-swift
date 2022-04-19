@@ -26,7 +26,7 @@ public extension PlatformClient {
             case onlyDeployed = "only_deployed"
         }
 
-        public init(allStores: Bool?, deployedStores: [Int]?, onlyDeployed: Bool?, q: String?) {
+        public init(allStores: Bool? = nil, deployedStores: [Int]? = nil, onlyDeployed: Bool? = nil, q: String? = nil) {
             self.allStores = allStores
 
             self.deployedStores = deployedStores

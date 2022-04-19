@@ -14,7 +14,7 @@ public extension PlatformClient {
             case id
         }
 
-        public init(id: String?) {
+        public init(id: String? = nil) {
             self.id = id
         }
 

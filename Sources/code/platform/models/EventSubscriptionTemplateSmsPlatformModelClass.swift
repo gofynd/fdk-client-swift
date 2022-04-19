@@ -18,7 +18,7 @@ public extension PlatformClient {
             case template
         }
 
-        public init(subscribed: Bool?, template: String?) {
+        public init(subscribed: Bool? = nil, template: String? = nil) {
             self.subscribed = subscribed
 
             self.template = template

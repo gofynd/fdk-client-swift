@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(id: String?, name: String?, tags: [TagMeta]?) {
+        public init(id: String? = nil, name: String? = nil, tags: [TagMeta]? = nil) {
             self.id = id
 
             self.name = name

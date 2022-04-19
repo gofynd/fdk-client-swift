@@ -18,7 +18,7 @@ public extension PlatformClient {
             case discountAmount = "discount_amount"
         }
 
-        public init(discountAmount: Double?, isValid: Bool?) {
+        public init(discountAmount: Double? = nil, isValid: Bool? = nil) {
             self.isValid = isValid
 
             self.discountAmount = discountAmount

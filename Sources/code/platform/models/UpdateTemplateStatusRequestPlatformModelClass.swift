@@ -18,7 +18,7 @@ public extension PlatformClient {
             case archive
         }
 
-        public init(active: Bool?, archive: Bool?) {
+        public init(active: Bool? = nil, archive: Bool? = nil) {
             self.active = active
 
             self.archive = archive

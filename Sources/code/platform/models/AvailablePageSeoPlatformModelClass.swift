@@ -22,7 +22,7 @@ public extension PlatformClient {
             case id = "_id"
         }
 
-        public init(description: String?, title: String?, id: String?) {
+        public init(description: String? = nil, title: String? = nil, id: String? = nil) {
             self.title = title
 
             self.description = description

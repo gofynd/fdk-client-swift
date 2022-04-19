@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class TemplatesValidationResponse: Codable {
-        public var data: TemplateValidationData?
-
         public var templateDetails: TemplateDetails?
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: TemplateValidationData?
 
+        public enum CodingKeys: String, CodingKey {
             case templateDetails = "template_details"
+
+            case data
         }
 
-        public init(data: TemplateValidationData?, templateDetails: TemplateDetails?) {
-            self.data = data
-
+        public init(data: TemplateValidationData? = nil, templateDetails: TemplateDetails? = nil) {
             self.templateDetails = templateDetails
+
+            self.data = data
         }
 
         public func duplicate() -> TemplatesValidationResponse {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(TemplateValidationData.self, forKey: .data)
+                templateDetails = try container.decode(TemplateDetails.self, forKey: .templateDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                templateDetails = try container.decode(TemplateDetails.self, forKey: .templateDetails)
+                data = try container.decode(TemplateValidationData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(templateDetails, forKey: .templateDetails)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

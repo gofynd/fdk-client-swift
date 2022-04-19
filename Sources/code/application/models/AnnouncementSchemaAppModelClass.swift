@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case schedule
         }
 
-        public init(announcement: String?, schedule: ScheduleStartSchema?) {
+        public init(announcement: String? = nil, schedule: ScheduleStartSchema? = nil) {
             self.announcement = announcement
 
             self.schedule = schedule

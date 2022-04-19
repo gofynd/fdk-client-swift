@@ -14,7 +14,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [GetNRecordsCsvResItems]?) {
+        public init(items: [GetNRecordsCsvResItems]? = nil) {
             self.items = items
         }
 

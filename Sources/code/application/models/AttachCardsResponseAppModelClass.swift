@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case success
         }
 
-        public init(data: [String: Any], message: String?, success: Bool) {
+        public init(data: [String: Any], message: String? = nil, success: Bool) {
             self.message = message
 
             self.data = data

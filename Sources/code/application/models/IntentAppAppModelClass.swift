@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case logos
         }
 
-        public init(code: String?, displayName: String?, logos: PaymentModeLogo?, packageName: String?) {
+        public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, packageName: String? = nil) {
             self.code = code
 
             self.displayName = displayName

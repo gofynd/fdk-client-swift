@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case css
         }
 
-        public init(commonJs: CommonJs?, css: Css?, umdJs: UmdJs?) {
+        public init(commonJs: CommonJs? = nil, css: Css? = nil, umdJs: UmdJs? = nil) {
             self.umdJs = umdJs
 
             self.commonJs = commonJs

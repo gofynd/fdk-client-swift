@@ -38,7 +38,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(code: [String: Any]?, exception: String?, info: String?, message: String?, requestId: String?, stackTrace: String?, status: Int?) {
+        public init(code: [String: Any]? = nil, exception: String? = nil, info: String? = nil, message: String? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.code = code
 
             self.exception = exception

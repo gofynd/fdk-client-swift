@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case success
         }
 
-        public init(cart: CartDetailResponse?, message: String?, success: Bool?) {
+        public init(cart: CartDetailResponse? = nil, message: String? = nil, success: Bool? = nil) {
             self.cart = cart
 
             self.message = message

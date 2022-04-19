@@ -18,7 +18,7 @@ public extension PlatformClient {
             case jobId = "job_id"
         }
 
-        public init(jobId: String?, status: String?) {
+        public init(jobId: String? = nil, status: String? = nil) {
             self.status = status
 
             self.jobId = jobId

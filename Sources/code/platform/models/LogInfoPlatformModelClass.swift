@@ -62,7 +62,7 @@ public extension PlatformClient {
             case sellerIdentifier = "seller_identifier"
         }
 
-        public init(articleId: String?, brandId: Double?, companyId: Double?, event: String?, eventType: String?, itemId: Double?, marketplaceName: String?, sellerIdentifier: String?, status: String?, storeCode: String?, storeId: Double?, traceId: String?, id: String?) {
+        public init(articleId: String? = nil, brandId: Double? = nil, companyId: Double? = nil, event: String? = nil, eventType: String? = nil, itemId: Double? = nil, marketplaceName: String? = nil, sellerIdentifier: String? = nil, status: String? = nil, storeCode: String? = nil, storeId: Double? = nil, traceId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.status = status

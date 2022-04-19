@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case secureUrl = "secure_url"
         }
 
-        public init(secureUrl: String?) {
+        public init(secureUrl: String? = nil) {
             self.secureUrl = secureUrl
         }
 

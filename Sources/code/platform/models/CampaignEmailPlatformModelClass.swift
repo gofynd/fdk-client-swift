@@ -18,7 +18,7 @@ public extension PlatformClient {
             case provider
         }
 
-        public init(provider: CampignEmailProvider?, template: CampaignEmailTemplate?) {
+        public init(provider: CampignEmailProvider? = nil, template: CampaignEmailTemplate? = nil) {
             self.template = template
 
             self.provider = provider

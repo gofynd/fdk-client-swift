@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case email
         }
 
-        public init(email: EmailSchema?, phone: PhoneSchema?) {
+        public init(email: EmailSchema? = nil, phone: PhoneSchema? = nil) {
             self.phone = phone
 
             self.email = email

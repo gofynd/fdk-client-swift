@@ -14,7 +14,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(meta: Meta?) {
+        public init(meta: Meta? = nil) {
             self.meta = meta
         }
 

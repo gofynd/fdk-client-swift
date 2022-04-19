@@ -42,7 +42,7 @@ public extension PlatformClient {
             case totalShipmentsInOrder = "total_shipments_in_order"
         }
 
-        public init(application: PlatformApplication?, channel: Channel?, createdAt: String?, deliveryAddress: PlatformDeliveryAddress?, id: String?, shipments: PlatformShipment?, totalShipmentsInOrder: Int?, user: PlatformOrderUserInfo?) {
+        public init(application: PlatformApplication? = nil, channel: Channel? = nil, createdAt: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, id: String? = nil, shipments: PlatformShipment? = nil, totalShipmentsInOrder: Int? = nil, user: PlatformOrderUserInfo? = nil) {
             self.user = user
 
             self.deliveryAddress = deliveryAddress

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case ui
         }
 
-        public init(attributes: [String], ui: UI?) {
+        public init(attributes: [String], ui: UI? = nil) {
             self.attributes = attributes
 
             self.ui = ui

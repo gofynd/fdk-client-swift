@@ -61,7 +61,7 @@ public extension ApplicationClient {
             case isActive = "is_active"
         }
 
-        public init(banner: SecureUrl?, cors: ApplicationCors?, createdAt: String?, description: String?, domain: Domain?, isActive: Bool?, logo: SecureUrl?, meta: ApplicationMeta?, name: String?, secret: String?, token: String?, website: ApplicationWebsite?, id: String?) {
+        public init(banner: SecureUrl? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, isActive: Bool? = nil, logo: SecureUrl? = nil, meta: ApplicationMeta? = nil, name: String? = nil, secret: String? = nil, token: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil) {
             self.id = id
 
             self.domain = domain

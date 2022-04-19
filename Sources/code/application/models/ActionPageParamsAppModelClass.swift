@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case slug
         }
 
-        public init(slug: [String]?) {
+        public init(slug: [String]? = nil) {
             self.slug = slug
         }
 

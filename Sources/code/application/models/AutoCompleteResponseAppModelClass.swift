@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case items
         }
 
-        public init(items: [AutocompleteItem]?) {
+        public init(items: [AutocompleteItem]? = nil) {
             self.items = items
         }
 

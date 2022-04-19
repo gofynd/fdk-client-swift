@@ -26,7 +26,7 @@ public extension PlatformClient {
             case timestamp
         }
 
-        public init(action: String?, jobType: String?, timestamp: String?, trace: String?) {
+        public init(action: String? = nil, jobType: String? = nil, timestamp: String? = nil, trace: String? = nil) {
             self.jobType = jobType
 
             self.action = action

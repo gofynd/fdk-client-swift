@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case answer
         }
 
-        public init(answer: String?, question: String?, slug: String?) {
+        public init(answer: String? = nil, question: String? = nil, slug: String? = nil) {
             self.slug = slug
 
             self.question = question

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case pgPaymentMethodId = "pg_payment_method_id"
         }
 
-        public init(pgPaymentMethodId: String?) {
+        public init(pgPaymentMethodId: String? = nil) {
             self.pgPaymentMethodId = pgPaymentMethodId
         }
 

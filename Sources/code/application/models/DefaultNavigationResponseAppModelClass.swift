@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case items
         }
 
-        public init(items: [NavigationSchema]?) {
+        public init(items: [NavigationSchema]? = nil) {
             self.items = items
         }
 

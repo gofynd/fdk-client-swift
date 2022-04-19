@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case osVersion = "os_version"
         }
 
-        public init(deviceMake: String?, deviceModel: String?, deviceType: String?, identificationNumber: String?, identifierType: String?, os: String?, osVersion: String?) {
+        public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
             self.deviceType = deviceType
 
             self.deviceModel = deviceModel

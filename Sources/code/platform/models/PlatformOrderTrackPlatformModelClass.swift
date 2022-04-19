@@ -38,7 +38,7 @@ public extension PlatformClient {
             case resendToken = "resend_token"
         }
 
-        public init(countryCode: String, message: String, mobile: String, requestId: String, resendTimer: Int, resendToken: String?, success: Bool) {
+        public init(countryCode: String, message: String, mobile: String, requestId: String, resendTimer: Int, resendToken: String? = nil, success: Bool) {
             self.success = success
 
             self.requestId = requestId

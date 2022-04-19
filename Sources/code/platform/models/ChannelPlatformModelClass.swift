@@ -18,7 +18,7 @@ public extension PlatformClient {
             case logo
         }
 
-        public init(logo: String?, name: String?) {
+        public init(logo: String? = nil, name: String? = nil) {
             self.name = name
 
             self.logo = logo

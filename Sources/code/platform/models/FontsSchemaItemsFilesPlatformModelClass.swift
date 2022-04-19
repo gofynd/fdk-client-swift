@@ -22,7 +22,7 @@ public extension PlatformClient {
             case bold
         }
 
-        public init(bold: String?, italic: String?, regular: String?) {
+        public init(bold: String? = nil, italic: String? = nil, regular: String? = nil) {
             self.regular = regular
 
             self.italic = italic

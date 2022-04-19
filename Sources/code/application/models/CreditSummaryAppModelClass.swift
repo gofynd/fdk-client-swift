@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case balance
         }
 
-        public init(balance: [BalanceDetails]?, merchantCustomerRefId: String, status: String, statusMessage: String) {
+        public init(balance: [BalanceDetails]? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
             self.merchantCustomerRefId = merchantCustomerRefId
 
             self.statusMessage = statusMessage

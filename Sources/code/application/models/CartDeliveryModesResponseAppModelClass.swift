@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case pickupStores = "pickup_stores"
         }
 
-        public init(availableModes: [String]?, pickupStores: [Int]?) {
+        public init(availableModes: [String]? = nil, pickupStores: [Int]? = nil) {
             self.availableModes = availableModes
 
             self.pickupStores = pickupStores

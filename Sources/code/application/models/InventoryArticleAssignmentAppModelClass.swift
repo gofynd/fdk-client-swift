@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case rules
         }
 
-        public init(postOrderReassignment: Bool?, rules: ArticleAssignmentRule?) {
+        public init(postOrderReassignment: Bool? = nil, rules: ArticleAssignmentRule? = nil) {
             self.postOrderReassignment = postOrderReassignment
 
             self.rules = rules

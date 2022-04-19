@@ -22,7 +22,7 @@ public extension PlatformClient {
             case points
         }
 
-        public init(items: [HistoryPretty]?, page: Page?, points: Double?) {
+        public init(items: [HistoryPretty]? = nil, page: Page? = nil, points: Double? = nil) {
             self.items = items
 
             self.page = page

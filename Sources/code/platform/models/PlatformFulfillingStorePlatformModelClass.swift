@@ -110,7 +110,7 @@ public extension PlatformClient {
             case country
         }
 
-        public init(address1: String?, address2: String?, brandStoreTags: [String]?, city: String?, code: String?, companyId: Int?, contactPerson: String?, country: String?, createdAt: String?, fulfillmentChannel: String?, id: Int?, isActive: Bool?, isArchived: Bool?, isEnabledForRecon: Bool?, locationType: String?, loginUsername: String?, meta: FulfillingStoreMeta?, name: String?, packagingMaterialCount: Int?, phone: String?, pincode: String?, state: String?, storeAddressJson: FulfillingStoreStoreAddressJson?, storeEmail: String?, updatedAt: String?) {
+        public init(address1: String? = nil, address2: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String? = nil, companyId: Int? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, fulfillmentChannel: String? = nil, id: Int? = nil, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, locationType: String? = nil, loginUsername: String? = nil, meta: FulfillingStoreMeta? = nil, name: String? = nil, packagingMaterialCount: Int? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeAddressJson: FulfillingStoreStoreAddressJson? = nil, storeEmail: String? = nil, updatedAt: String? = nil) {
             self.packagingMaterialCount = packagingMaterialCount
 
             self.locationType = locationType

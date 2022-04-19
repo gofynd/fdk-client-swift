@@ -86,7 +86,7 @@ public extension PlatformClient {
             case simpl
         }
 
-        public init(card: PaymentModeConfig?, cod: PaymentModeConfig?, fc: PaymentModeConfig?, jiopp: PaymentModeConfig?, jp: PaymentModeConfig?, juspaypg: PaymentModeConfig?, nb: PaymentModeConfig?, pac: PaymentModeConfig?, payubizpg: PaymentModeConfig?, payumoneypg: PaymentModeConfig?, pl: PaymentModeConfig?, pp: PaymentModeConfig?, ps: PaymentModeConfig?, qr: PaymentModeConfig?, rupifipg: PaymentModeConfig?, simpl: PaymentModeConfig?, stripepg: PaymentModeConfig?, upi: PaymentModeConfig?, wl: PaymentModeConfig?) {
+        public init(card: PaymentModeConfig? = nil, cod: PaymentModeConfig? = nil, fc: PaymentModeConfig? = nil, jiopp: PaymentModeConfig? = nil, jp: PaymentModeConfig? = nil, juspaypg: PaymentModeConfig? = nil, nb: PaymentModeConfig? = nil, pac: PaymentModeConfig? = nil, payubizpg: PaymentModeConfig? = nil, payumoneypg: PaymentModeConfig? = nil, pl: PaymentModeConfig? = nil, pp: PaymentModeConfig? = nil, ps: PaymentModeConfig? = nil, qr: PaymentModeConfig? = nil, rupifipg: PaymentModeConfig? = nil, simpl: PaymentModeConfig? = nil, stripepg: PaymentModeConfig? = nil, upi: PaymentModeConfig? = nil, wl: PaymentModeConfig? = nil) {
             self.pl = pl
 
             self.card = card

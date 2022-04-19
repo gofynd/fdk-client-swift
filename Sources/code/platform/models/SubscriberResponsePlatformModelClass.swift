@@ -54,7 +54,7 @@ public extension PlatformClient {
             case eventConfigs = "event_configs"
         }
 
-        public init(association: Association?, authMeta: AuthMeta?, createdOn: String?, customHeaders: [String: Any]?, emailId: String?, eventConfigs: [EventConfig]?, id: Int?, name: String?, status: SubscriberStatus?, updatedOn: String?, webhookUrl: String?) {
+        public init(association: Association? = nil, authMeta: AuthMeta? = nil, createdOn: String? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventConfigs: [EventConfig]? = nil, id: Int? = nil, name: String? = nil, status: SubscriberStatus? = nil, updatedOn: String? = nil, webhookUrl: String? = nil) {
             self.id = id
 
             self.name = name

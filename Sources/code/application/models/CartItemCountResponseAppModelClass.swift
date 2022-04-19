@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case userCartItemsCount = "user_cart_items_count"
         }
 
-        public init(userCartItemsCount: Int?) {
+        public init(userCartItemsCount: Int? = nil) {
             self.userCartItemsCount = userCartItemsCount
         }
 

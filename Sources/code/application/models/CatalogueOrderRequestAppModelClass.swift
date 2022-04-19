@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case articles
         }
 
-        public init(articles: [RewardsArticle]?) {
+        public init(articles: [RewardsArticle]? = nil) {
             self.articles = articles
         }
 

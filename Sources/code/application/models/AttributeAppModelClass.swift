@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(dateMeta: DateMeta?, description: String?, id: String?, name: String?, slug: String?, tags: [TagMeta]?) {
+        public init(dateMeta: DateMeta? = nil, description: String? = nil, id: String? = nil, name: String? = nil, slug: String? = nil, tags: [TagMeta]? = nil) {
             self.dateMeta = dateMeta
 
             self.description = description

@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case subTitle = "sub_title"
         }
 
-        public init(icon: String?, subTitle: String?, title: String?, id: String?) {
+        public init(icon: String? = nil, subTitle: String? = nil, title: String? = nil, id: String? = nil) {
             self.id = id
 
             self.title = title

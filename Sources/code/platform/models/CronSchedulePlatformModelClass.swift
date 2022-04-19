@@ -26,7 +26,7 @@ public extension PlatformClient {
             case duration
         }
 
-        public init(cron: String?, duration: Double?, end: String?, start: String?) {
+        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, start: String? = nil) {
             self.cron = cron
 
             self.start = start

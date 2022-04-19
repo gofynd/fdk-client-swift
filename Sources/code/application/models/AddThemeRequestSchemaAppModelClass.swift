@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case themeId = "theme_id"
         }
 
-        public init(themeId: String?) {
+        public init(themeId: String? = nil) {
             self.themeId = themeId
         }
 

@@ -26,7 +26,7 @@ public extension PlatformClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(addedOnStore: String?, createdOn: String?, inventoryUpdatedOn: String?, modifiedOn: String?) {
+        public init(addedOnStore: String? = nil, createdOn: String? = nil, inventoryUpdatedOn: String? = nil, modifiedOn: String? = nil) {
             self.addedOnStore = addedOnStore
 
             self.inventoryUpdatedOn = inventoryUpdatedOn

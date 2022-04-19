@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case channel
         }
 
-        public init(action: String?, channel: String?, response: String?) {
+        public init(action: String? = nil, channel: String? = nil, response: String? = nil) {
             self.response = response
 
             self.action = action

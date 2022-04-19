@@ -22,7 +22,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(page: ActionPage?, popup: ActionPage?, type: String?) {
+        public init(page: ActionPage? = nil, popup: ActionPage? = nil, type: String? = nil) {
             self.page = page
 
             self.popup = popup

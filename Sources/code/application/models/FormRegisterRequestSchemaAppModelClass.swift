@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case registerToken = "register_token"
         }
 
-        public init(email: String?, firstName: String?, gender: String?, lastName: String?, password: String?, phone: FormRegisterRequestSchemaPhone?, registerToken: String?) {
+        public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, password: String? = nil, phone: FormRegisterRequestSchemaPhone? = nil, registerToken: String? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName

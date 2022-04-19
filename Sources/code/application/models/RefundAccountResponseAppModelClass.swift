@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case success
         }
 
-        public init(data: [String: Any]?, isVerifiedFlag: Bool?, message: String, success: Bool) {
+        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.message = message
 
             self.isVerifiedFlag = isVerifiedFlag

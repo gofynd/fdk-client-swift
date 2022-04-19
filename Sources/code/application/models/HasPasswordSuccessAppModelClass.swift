@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case result
         }
 
-        public init(result: Bool?) {
+        public init(result: Bool? = nil) {
             self.result = result
         }
 

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case address
         }
 
-        public init(address: [String]?, name: String?, type: String?) {
+        public init(address: [String]? = nil, name: String? = nil, type: String? = nil) {
             self.name = name
 
             self.type = type

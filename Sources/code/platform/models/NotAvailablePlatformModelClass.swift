@@ -18,7 +18,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(count: Int?, updatedAt: String?) {
+        public init(count: Int? = nil, updatedAt: String? = nil) {
             self.count = count
 
             self.updatedAt = updatedAt

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case platform
         }
 
-        public init(appVersion: String?, platform: String?) {
+        public init(appVersion: String? = nil, platform: String? = nil) {
             self.appVersion = appVersion
 
             self.platform = platform

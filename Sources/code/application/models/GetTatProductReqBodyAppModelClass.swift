@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case action
         }
 
-        public init(action: String?, locationDetails: [LocationDetailsReq], toPincode: String) {
+        public init(action: String? = nil, locationDetails: [LocationDetailsReq], toPincode: String) {
             self.locationDetails = locationDetails
 
             self.toPincode = toPincode

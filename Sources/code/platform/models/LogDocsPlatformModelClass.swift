@@ -50,7 +50,7 @@ public extension PlatformClient {
             case logs
         }
 
-        public init(application: String?, company: String?, date: String?, deviceInfo: DeviceInfo?, entity: EntityObj?, location: Location?, logs: [String: Any]?, modifier: Modifier?, sessions: String?, id: String?) {
+        public init(application: String? = nil, company: String? = nil, date: String? = nil, deviceInfo: DeviceInfo? = nil, entity: EntityObj? = nil, location: Location? = nil, logs: [String: Any]? = nil, modifier: Modifier? = nil, sessions: String? = nil, id: String? = nil) {
             self.entity = entity
 
             self.modifier = modifier

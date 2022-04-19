@@ -54,7 +54,7 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(application: String?, createdAt: String?, data: [String: Any]?, email: LogEmail?, expireAt: String?, meta: LogMeta?, pushnotification: LogPushnotification?, service: String?, status: String?, step: String?, id: String?) {
+        public init(application: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
             self.email = email
 
             self.pushnotification = pushnotification

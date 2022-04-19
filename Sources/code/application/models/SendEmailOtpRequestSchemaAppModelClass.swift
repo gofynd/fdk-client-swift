@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case registerToken = "register_token"
         }
 
-        public init(action: String?, email: String?, registerToken: String?, token: String?) {
+        public init(action: String? = nil, email: String? = nil, registerToken: String? = nil, token: String? = nil) {
             self.email = email
 
             self.action = action

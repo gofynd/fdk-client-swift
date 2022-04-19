@@ -45,7 +45,7 @@ public extension ApplicationClient {
             case customJson = "_custom_json"
         }
 
-        public init(action: Action?, application: String?, archived: Bool?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, platform: [String]?, slug: String?, customJson: [String: Any]?, id: String?) {
+        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             self.slug = slug
 
             self.action = action

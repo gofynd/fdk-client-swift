@@ -53,7 +53,7 @@ public extension ApplicationClient {
             case businessType = "business_type"
         }
 
-        public init(address: [KYCAddress]?, businessOwnershipType: String?, businessType: String?, entityType: String?, fda: String?, fssai: String?, gstin: String?, name: String?, pan: String?, shopAndEstablishment: [String: Any]?, vintage: String?) {
+        public init(address: [KYCAddress]? = nil, businessOwnershipType: String? = nil, businessType: String? = nil, entityType: String? = nil, fda: String? = nil, fssai: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, shopAndEstablishment: [String: Any]? = nil, vintage: String? = nil) {
             self.shopAndEstablishment = shopAndEstablishment
 
             self.businessOwnershipType = businessOwnershipType

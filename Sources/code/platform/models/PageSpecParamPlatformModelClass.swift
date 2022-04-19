@@ -18,7 +18,7 @@ public extension PlatformClient {
             case required
         }
 
-        public init(key: String?, required: Bool?) {
+        public init(key: String? = nil, required: Bool? = nil) {
             self.key = key
 
             self.required = required

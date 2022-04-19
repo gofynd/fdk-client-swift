@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case whatsapp
         }
 
-        public init(email: CommunicationConsentChannelsEmail?, sms: CommunicationConsentChannelsSms?, whatsapp: CommunicationConsentChannelsWhatsapp?) {
+        public init(email: CommunicationConsentChannelsEmail? = nil, sms: CommunicationConsentChannelsSms? = nil, whatsapp: CommunicationConsentChannelsWhatsapp? = nil) {
             self.email = email
 
             self.sms = sms

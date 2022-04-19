@@ -58,7 +58,7 @@ public extension PlatformClient {
             case count
         }
 
-        public init(active: Bool?, attribution: Attribution?, campaign: CampaignShortLink?, count: Int?, enableTracking: Bool?, expireAt: String?, hash: String?, personalized: Bool?, redirects: Redirects?, socialMediaTags: SocialMediaTags?, title: String, url: String) {
+        public init(active: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, hash: String? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String, url: String) {
             self.title = title
 
             self.url = url

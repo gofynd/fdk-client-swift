@@ -46,7 +46,7 @@ public extension PlatformClient {
             case colorCode = "color_code"
         }
 
-        public init(bagList: [Int]?, colorCode: String?, createdAt: String?, currentShipmentStatus: String?, id: Int?, name: String?, progress: Int?, shipmentId: String?, status: String?) {
+        public init(bagList: [Int]? = nil, colorCode: String? = nil, createdAt: String? = nil, currentShipmentStatus: String? = nil, id: Int? = nil, name: String? = nil, progress: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.id = id
 
             self.bagList = bagList

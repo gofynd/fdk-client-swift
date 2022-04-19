@@ -70,7 +70,7 @@ public extension PlatformClient {
             case address2
         }
 
-        public init(address1: String?, address2: String?, city: String?, code: String?, companyId: Int?, contactPerson: String?, country: String?, id: Int?, locationType: String?, name: String?, phone: String?, pincode: String?, state: String?, storeAddressJson: StoreAddressJson?, storeEmail: String?) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, code: String? = nil, companyId: Int? = nil, contactPerson: String? = nil, country: String? = nil, id: Int? = nil, locationType: String? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeAddressJson: StoreAddressJson? = nil, storeEmail: String? = nil) {
             self.name = name
 
             self.id = id

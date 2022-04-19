@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case delay
         }
 
-        public init(attempts: Int?, delay: Int?, timestamp: Int?) {
+        public init(attempts: Int? = nil, delay: Int? = nil, timestamp: Int? = nil) {
             self.attempts = attempts
 
             self.timestamp = timestamp

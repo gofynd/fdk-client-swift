@@ -46,7 +46,7 @@ public extension PlatformClient {
             case code
         }
 
-        public init(address: OptedStoreAddress?, code: String?, displayName: String?, name: String?, pincode: Int?, storeCode: String?, storeType: String?, uid: Int?, id: String?) {
+        public init(address: OptedStoreAddress? = nil, code: String? = nil, displayName: String? = nil, name: String? = nil, pincode: Int? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
             self.address = address
 
             self.id = id

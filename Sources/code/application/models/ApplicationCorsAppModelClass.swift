@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case domains
         }
 
-        public init(domains: [String]?) {
+        public init(domains: [String]? = nil) {
             self.domains = domains
         }
 

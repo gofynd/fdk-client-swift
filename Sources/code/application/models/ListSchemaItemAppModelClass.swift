@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case name
         }
 
-        public init(globalConfig: [String: Any]?, name: String?, page: [ConfigPage]?) {
+        public init(globalConfig: [String: Any]? = nil, name: String? = nil, page: [ConfigPage]? = nil) {
             self.globalConfig = globalConfig
 
             self.page = page

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case statuses
         }
 
-        public init(statuses: [OrderStatuses]?) {
+        public init(statuses: [OrderStatuses]? = nil) {
             self.statuses = statuses
         }
 

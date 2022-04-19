@@ -14,7 +14,7 @@ public extension PlatformClient {
             case headers
         }
 
-        public init(headers: [BigqueryHeadersResHeaders]?) {
+        public init(headers: [BigqueryHeadersResHeaders]? = nil) {
             self.headers = headers
         }
 

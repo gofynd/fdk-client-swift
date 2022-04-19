@@ -106,7 +106,7 @@ public extension PlatformClient {
             case totalDiscountSet = "total_discount_set"
         }
 
-        public init(adminGraphqlApiId: String?, article: LineItemsArticle?, fulfillableQuantity: Int?, fulfillmentService: String?, giftCard: Bool?, grams: Int?, id: Int?, name: String?, price: String?, priceSet: PriceSet?, productExists: Bool?, productId: Int?, quantity: Int?, requiresShipping: Bool?, sku: String?, taxable: Bool?, taxLines: TaxLines?, title: String?, totalDiscount: String?, totalDiscountSet: TotalDiscountSet?, variantId: Int?, variantInventoryManagement: String?, variantTitle: String?, vendor: String?) {
+        public init(adminGraphqlApiId: String? = nil, article: LineItemsArticle? = nil, fulfillableQuantity: Int? = nil, fulfillmentService: String? = nil, giftCard: Bool? = nil, grams: Int? = nil, id: Int? = nil, name: String? = nil, price: String? = nil, priceSet: PriceSet? = nil, productExists: Bool? = nil, productId: Int? = nil, quantity: Int? = nil, requiresShipping: Bool? = nil, sku: String? = nil, taxable: Bool? = nil, taxLines: TaxLines? = nil, title: String? = nil, totalDiscount: String? = nil, totalDiscountSet: TotalDiscountSet? = nil, variantId: Int? = nil, variantInventoryManagement: String? = nil, variantTitle: String? = nil, vendor: String? = nil) {
             self.sku = sku
 
             self.fulfillableQuantity = fulfillableQuantity

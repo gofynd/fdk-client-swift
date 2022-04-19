@@ -30,7 +30,7 @@ public extension PlatformClient {
             case showRegisterBtn = "show_register_btn"
         }
 
-        public init(continueAsGuest: Bool?, launchPage: LaunchPage?, loginBtnText: String?, showDomainTextbox: Bool?, showRegisterBtn: Bool?) {
+        public init(continueAsGuest: Bool? = nil, launchPage: LaunchPage? = nil, loginBtnText: String? = nil, showDomainTextbox: Bool? = nil, showRegisterBtn: Bool? = nil) {
             self.launchPage = launchPage
 
             self.continueAsGuest = continueAsGuest

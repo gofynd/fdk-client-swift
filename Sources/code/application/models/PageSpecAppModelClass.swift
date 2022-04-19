@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case specifications
         }
 
-        public init(specifications: [PageSpecItem]?) {
+        public init(specifications: [PageSpecItem]? = nil) {
             self.specifications = specifications
         }
 

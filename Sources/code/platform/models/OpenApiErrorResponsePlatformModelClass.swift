@@ -22,7 +22,7 @@ public extension PlatformClient {
             case errors
         }
 
-        public init(errors: [String: Any]?, message: String?, success: Bool?) {
+        public init(errors: [String: Any]? = nil, message: String? = nil, success: Bool? = nil) {
             self.success = success
 
             self.message = message

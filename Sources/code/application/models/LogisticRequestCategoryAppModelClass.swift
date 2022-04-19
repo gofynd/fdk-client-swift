@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case level
         }
 
-        public init(id: Int?, level: String?) {
+        public init(id: Int? = nil, level: String? = nil) {
             self.id = id
 
             self.level = level

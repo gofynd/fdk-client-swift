@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case refType = "ref_type"
         }
 
-        public init(action: String?, active: Bool?, id: String?, refId: String?, refType: String?) {
+        public init(action: String? = nil, active: Bool? = nil, id: String? = nil, refId: String? = nil, refType: String? = nil) {
             self.action = action
 
             self.active = active

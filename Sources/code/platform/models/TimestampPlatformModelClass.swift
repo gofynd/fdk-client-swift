@@ -18,7 +18,7 @@ public extension PlatformClient {
             case max
         }
 
-        public init(max: String?, min: String?) {
+        public init(max: String? = nil, min: String? = nil) {
             self.min = min
 
             self.max = max

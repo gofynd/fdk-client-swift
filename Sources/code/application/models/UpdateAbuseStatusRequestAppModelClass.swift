@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case id
         }
 
-        public init(abusive: Bool?, active: Bool?, approve: Bool?, description: String?, entityId: String?, entityType: String?, id: String?) {
+        public init(abusive: Bool? = nil, active: Bool? = nil, approve: Bool? = nil, description: String? = nil, entityId: String? = nil, entityType: String? = nil, id: String? = nil) {
             self.abusive = abusive
 
             self.active = active

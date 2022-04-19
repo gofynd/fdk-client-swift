@@ -22,7 +22,7 @@ public extension PlatformClient {
             case previousState = "previous_state"
         }
 
-        public init(currentState: [String: Any]?, documentId: String?, previousState: [String: Any]?) {
+        public init(currentState: [String: Any]? = nil, documentId: String? = nil, previousState: [String: Any]? = nil) {
             self.currentState = currentState
 
             self.documentId = documentId

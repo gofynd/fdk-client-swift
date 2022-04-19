@@ -8,32 +8,32 @@ public extension PlatformClient {
      */
 
     class CompanyTax: Codable {
-        public var effectiveDate: String
-
-        public var enable: Bool
-
         public var cess: Double?
 
         public var rate: Double
 
+        public var effectiveDate: String
+
+        public var enable: Bool
+
         public enum CodingKeys: String, CodingKey {
-            case effectiveDate = "effective_date"
-
-            case enable
-
             case cess
 
             case rate
+
+            case effectiveDate = "effective_date"
+
+            case enable
         }
 
-        public init(cess: Double?, effectiveDate: String, enable: Bool, rate: Double) {
-            self.effectiveDate = effectiveDate
-
-            self.enable = enable
-
+        public init(cess: Double? = nil, effectiveDate: String, enable: Bool, rate: Double) {
             self.cess = cess
 
             self.rate = rate
+
+            self.effectiveDate = effectiveDate
+
+            self.enable = enable
         }
 
         public func duplicate() -> CompanyTax {
@@ -45,10 +45,6 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
-
-            enable = try container.decode(Bool.self, forKey: .enable)
-
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -58,18 +54,22 @@ public extension PlatformClient {
             } catch {}
 
             rate = try container.decode(Double.self, forKey: .rate)
+
+            effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+
+            enable = try container.decode(Bool.self, forKey: .enable)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
-
-            try? container.encodeIfPresent(enable, forKey: .enable)
-
             try? container.encodeIfPresent(cess, forKey: .cess)
 
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
+
+            try? container.encodeIfPresent(enable, forKey: .enable)
         }
     }
 }

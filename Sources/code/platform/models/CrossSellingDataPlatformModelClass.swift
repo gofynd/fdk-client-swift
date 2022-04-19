@@ -18,7 +18,7 @@ public extension PlatformClient {
             case products
         }
 
-        public init(articles: Int?, products: Int?) {
+        public init(articles: Int? = nil, products: Int? = nil) {
             self.articles = articles
 
             self.products = products

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case staffUsers = "staff_users"
         }
 
-        public init(staffUsers: [AppStaff]?) {
+        public init(staffUsers: [AppStaff]? = nil) {
             self.staffUsers = staffUsers
         }
 

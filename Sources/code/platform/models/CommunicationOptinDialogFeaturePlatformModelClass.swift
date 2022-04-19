@@ -14,7 +14,7 @@ public extension PlatformClient {
             case visibility
         }
 
-        public init(visibility: Bool?) {
+        public init(visibility: Bool? = nil) {
             self.visibility = visibility
         }
 

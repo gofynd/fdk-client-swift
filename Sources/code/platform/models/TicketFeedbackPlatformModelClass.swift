@@ -42,7 +42,7 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(category: String?, companyId: String, createdAt: String?, response: [FeedbackResponseItem], ticketId: String, updatedAt: String?, user: [String: Any]?, id: String) {
+        public init(category: String? = nil, companyId: String, createdAt: String? = nil, response: [FeedbackResponseItem], ticketId: String, updatedAt: String? = nil, user: [String: Any]? = nil, id: String) {
             self.id = id
 
             self.ticketId = ticketId

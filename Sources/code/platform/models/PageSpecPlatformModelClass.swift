@@ -14,7 +14,7 @@ public extension PlatformClient {
             case specifications
         }
 
-        public init(specifications: [PageSpecItem]?) {
+        public init(specifications: [PageSpecItem]? = nil) {
             self.specifications = specifications
         }
 

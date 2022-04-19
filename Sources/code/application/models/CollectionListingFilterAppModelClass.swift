@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(tags: [CollectionListingFilterTag]?, type: [CollectionListingFilterType]?) {
+        public init(tags: [CollectionListingFilterTag]? = nil, type: [CollectionListingFilterType]? = nil) {
             self.tags = tags
 
             self.type = type

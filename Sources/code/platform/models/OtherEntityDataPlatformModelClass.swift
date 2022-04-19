@@ -14,7 +14,7 @@ public extension PlatformClient {
             case articleIdentifier = "article_identifier"
         }
 
-        public init(articleIdentifier: String?) {
+        public init(articleIdentifier: String? = nil) {
             self.articleIdentifier = articleIdentifier
         }
 

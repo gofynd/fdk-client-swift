@@ -14,7 +14,7 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(priority: Int?) {
+        public init(priority: Int? = nil) {
             self.priority = priority
         }
 

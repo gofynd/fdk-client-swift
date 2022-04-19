@@ -18,7 +18,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(enabled: Bool?, type: String?) {
+        public init(enabled: Bool? = nil, type: String? = nil) {
             self.enabled = enabled
 
             self.type = type

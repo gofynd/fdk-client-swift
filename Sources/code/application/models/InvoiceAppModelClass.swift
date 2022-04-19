@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case labelUrl = "label_url"
         }
 
-        public init(invoiceUrl: String?, labelUrl: String?, updatedDate: String?) {
+        public init(invoiceUrl: String? = nil, labelUrl: String? = nil, updatedDate: String? = nil) {
             self.updatedDate = updatedDate
 
             self.invoiceUrl = invoiceUrl

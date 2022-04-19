@@ -78,7 +78,7 @@ public extension PlatformClient {
             case zip
         }
 
-        public init(address1: String?, address2: String?, city: String?, company: String?, country: String?, countryCode: String?, countryName: String?, customerId: Int?, firstName: String?, id: Int?, isDefault: Bool?, lastName: String?, name: String?, phone: String?, province: String?, provinceCode: String?, zip: String?) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, company: String? = nil, country: String? = nil, countryCode: String? = nil, countryName: String? = nil, customerId: Int? = nil, firstName: String? = nil, id: Int? = nil, isDefault: Bool? = nil, lastName: String? = nil, name: String? = nil, phone: String? = nil, province: String? = nil, provinceCode: String? = nil, zip: String? = nil) {
             self.lastName = lastName
 
             self.name = name

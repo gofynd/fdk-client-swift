@@ -38,7 +38,7 @@ public extension PlatformClient {
             case userId = "user_id"
         }
 
-        public init(active: Bool?, applicationId: String?, blockReason: String?, updatedAt: String?, updatedBy: String?, userId: String?, id: String?) {
+        public init(active: Bool? = nil, applicationId: String? = nil, blockReason: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, userId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.active = active

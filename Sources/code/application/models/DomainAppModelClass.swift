@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case name
         }
 
-        public init(isPrimary: Bool?, isShortlink: Bool?, name: String?, verified: Bool?, id: String?) {
+        public init(isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             self.verified = verified
 
             self.isPrimary = isPrimary

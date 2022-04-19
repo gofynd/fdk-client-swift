@@ -7,26 +7,26 @@ public extension ApplicationClient {
          Used By: PosCart
      */
     class UpdateCartShipmentItem: Codable {
-        public var shipmentType: String
-
         public var articleUid: String
 
         public var quantity: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case shipmentType = "shipment_type"
+        public var shipmentType: String
 
+        public enum CodingKeys: String, CodingKey {
             case articleUid = "article_uid"
 
             case quantity
+
+            case shipmentType = "shipment_type"
         }
 
-        public init(articleUid: String, quantity: Int?, shipmentType: String) {
-            self.shipmentType = shipmentType
-
+        public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
             self.articleUid = articleUid
 
             self.quantity = quantity
+
+            self.shipmentType = shipmentType
         }
 
         public func duplicate() -> UpdateCartShipmentItem {
@@ -38,8 +38,6 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            shipmentType = try container.decode(String.self, forKey: .shipmentType)
-
             articleUid = try container.decode(String.self, forKey: .articleUid)
 
             do {
@@ -49,16 +47,18 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            shipmentType = try container.decode(String.self, forKey: .shipmentType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
-
             try? container.encodeIfPresent(articleUid, forKey: .articleUid)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
         }
     }
 }

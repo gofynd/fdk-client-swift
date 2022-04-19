@@ -22,7 +22,7 @@ public extension PlatformClient {
             case route
         }
 
-        public init(route: AvailablePageRoutePredicate?, screen: AvailablePageScreenPredicate?, user: AvailablePageUserPredicate?) {
+        public init(route: AvailablePageRoutePredicate? = nil, screen: AvailablePageScreenPredicate? = nil, user: AvailablePageUserPredicate? = nil) {
             self.screen = screen
 
             self.user = user

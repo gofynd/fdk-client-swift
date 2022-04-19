@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case hasNext = "has_next"
         }
 
-        public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.itemTotal = itemTotal
 
             self.type = type

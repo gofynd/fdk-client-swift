@@ -10,24 +10,24 @@ public extension PlatformClient {
     class Brand: Codable {
         public var name: String?
 
-        public var uid: Int?
-
         public var logo: Logo?
+
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case uid
-
             case logo
+
+            case uid
         }
 
-        public init(logo: Logo?, name: String?, uid: Int?) {
+        public init(logo: Logo? = nil, name: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.uid = uid
-
             self.logo = logo
+
+            self.uid = uid
         }
 
         public func duplicate() -> Brand {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                logo = try container.decode(Logo.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logo = try container.decode(Logo.self, forKey: .logo)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

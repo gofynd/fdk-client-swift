@@ -18,7 +18,7 @@ public extension PlatformClient {
             case processed
         }
 
-        public init(processed: Bool?, raw: Bool?) {
+        public init(processed: Bool? = nil, raw: Bool? = nil) {
             self.raw = raw
 
             self.processed = processed

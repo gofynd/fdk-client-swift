@@ -14,7 +14,7 @@ public extension PlatformClient {
             case domainUrl = "domain_url"
         }
 
-        public init(domainUrl: String?) {
+        public init(domainUrl: String? = nil) {
             self.domainUrl = domainUrl
         }
 

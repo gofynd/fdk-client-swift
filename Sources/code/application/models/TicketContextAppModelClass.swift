@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case companyId = "company_id"
         }
 
-        public init(applicationId: String?, companyId: String) {
+        public init(applicationId: String? = nil, companyId: String) {
             self.applicationId = applicationId
 
             self.companyId = companyId

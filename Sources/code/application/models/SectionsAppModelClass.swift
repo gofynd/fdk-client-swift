@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case attributes
         }
 
-        public init(attributes: String?) {
+        public init(attributes: String? = nil) {
             self.attributes = attributes
         }
 

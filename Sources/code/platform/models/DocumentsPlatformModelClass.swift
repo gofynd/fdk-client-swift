@@ -14,7 +14,7 @@ public extension PlatformClient {
             case gst
         }
 
-        public init(gst: Gst?) {
+        public init(gst: Gst? = nil) {
             self.gst = gst
         }
 

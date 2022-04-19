@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case entityType = "entity_type"
         }
 
-        public init(description: String?, entityId: String, entityType: String) {
+        public init(description: String? = nil, entityId: String, entityType: String) {
             self.description = description
 
             self.entityId = entityId

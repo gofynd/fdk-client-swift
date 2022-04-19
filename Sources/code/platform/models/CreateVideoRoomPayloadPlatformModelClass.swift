@@ -18,7 +18,7 @@ public extension PlatformClient {
             case notify
         }
 
-        public init(notify: [NotifyUser]?, uniqueName: String) {
+        public init(notify: [NotifyUser]? = nil, uniqueName: String) {
             self.uniqueName = uniqueName
 
             self.notify = notify

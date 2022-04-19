@@ -22,7 +22,7 @@ public extension PlatformClient {
             case selected
         }
 
-        public init(active: String?, inactive: String?, selected: [String]?) {
+        public init(active: String? = nil, inactive: String? = nil, selected: [String]? = nil) {
             self.active = active
 
             self.inactive = inactive

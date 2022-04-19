@@ -18,7 +18,7 @@ public extension PlatformClient {
             case coordinates
         }
 
-        public init(coordinates: [Double]?, type: String?) {
+        public init(coordinates: [Double]? = nil, type: String? = nil) {
             self.type = type
 
             self.coordinates = coordinates

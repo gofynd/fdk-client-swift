@@ -26,7 +26,7 @@ public extension PlatformClient {
             case stateType = "state_type"
         }
 
-        public init(bagStateMapper: BagStateMapper?, stateType: String?, status: String?, updatedAt: String?) {
+        public init(bagStateMapper: BagStateMapper? = nil, stateType: String? = nil, status: String? = nil, updatedAt: String? = nil) {
             self.updatedAt = updatedAt
 
             self.bagStateMapper = bagStateMapper

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case email
         }
 
-        public init(email: String?, mobileNo: SellerPhoneNumber, name: String?) {
+        public init(email: String? = nil, mobileNo: SellerPhoneNumber, name: String? = nil) {
             self.name = name
 
             self.mobileNo = mobileNo

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case emails
         }
 
-        public init(emails: [String]?, phone: [SellerPhoneNumber]?) {
+        public init(emails: [String]? = nil, phone: [SellerPhoneNumber]? = nil) {
             self.phone = phone
 
             self.emails = emails

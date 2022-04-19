@@ -18,7 +18,7 @@ public extension PlatformClient {
             case proxyUrl = "proxy_url"
         }
 
-        public init(attachedPath: String?, proxyUrl: String?) {
+        public init(attachedPath: String? = nil, proxyUrl: String? = nil) {
             self.attachedPath = attachedPath
 
             self.proxyUrl = proxyUrl

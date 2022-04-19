@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case fulfillmentId = "fulfillment_id"
         }
 
-        public init(articles: [TatReqProductArticles]?, fromPincode: String?, fulfillmentId: Int?) {
+        public init(articles: [TatReqProductArticles]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
             self.fromPincode = fromPincode
 
             self.articles = articles

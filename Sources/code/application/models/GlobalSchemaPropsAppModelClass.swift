@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case category
         }
 
-        public init(category: String?, id: String?, label: String?, type: String?) {
+        public init(category: String? = nil, id: String? = nil, label: String? = nil, type: String? = nil) {
             self.id = id
 
             self.label = label

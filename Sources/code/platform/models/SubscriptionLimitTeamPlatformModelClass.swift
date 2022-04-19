@@ -14,7 +14,7 @@ public extension PlatformClient {
             case limit
         }
 
-        public init(limit: Int?) {
+        public init(limit: Int? = nil) {
             self.limit = limit
         }
 

@@ -54,7 +54,7 @@ public extension PlatformClient {
             case optionalProperties = "optional_properties"
         }
 
-        public init(dbname: String?, driverClass: String?, host: String?, jdbcUrl: String?, optionalProperties: [String: String]?, password: String?, port: Int?, procedure: Bool?, query: String?, username: String?, vendor: String?) {
+        public init(dbname: String? = nil, driverClass: String? = nil, host: String? = nil, jdbcUrl: String? = nil, optionalProperties: [String: String]? = nil, password: String? = nil, port: Int? = nil, procedure: Bool? = nil, query: String? = nil, username: String? = nil, vendor: String? = nil) {
             self.vendor = vendor
 
             self.host = host

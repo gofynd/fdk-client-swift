@@ -18,7 +18,7 @@ public extension PlatformClient {
             case custom
         }
 
-        public init(custom: Bool?, domainUrl: String?) {
+        public init(custom: Bool? = nil, domainUrl: String? = nil) {
             self.domainUrl = domainUrl
 
             self.custom = custom

@@ -26,7 +26,7 @@ public extension PlatformClient {
             case sort
         }
 
-        public init(facets: [ReviewFacet]?, items: [[String: Any]]?, page: Page?, sort: [SortMethod]?) {
+        public init(facets: [ReviewFacet]? = nil, items: [[String: Any]]? = nil, page: Page? = nil, sort: [SortMethod]? = nil) {
             self.facets = facets
 
             self.items = items

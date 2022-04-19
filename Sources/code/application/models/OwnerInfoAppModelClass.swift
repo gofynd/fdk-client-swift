@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case profilePic = "profile_pic"
         }
 
-        public init(emails: [UserEmail]?, firstName: String?, lastName: String?, phoneNumbers: [UserPhoneNumber]?, profilePic: String?, id: String?) {
+        public init(emails: [UserEmail]? = nil, firstName: String? = nil, lastName: String? = nil, phoneNumbers: [UserPhoneNumber]? = nil, profilePic: String? = nil, id: String? = nil) {
             self.id = id
 
             self.emails = emails

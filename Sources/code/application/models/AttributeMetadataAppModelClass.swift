@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class AttributeMetadata: Codable {
-        public var details: [AttributeDetail]?
-
         public var title: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case details
+        public var details: [AttributeDetail]?
 
+        public enum CodingKeys: String, CodingKey {
             case title
+
+            case details
         }
 
-        public init(details: [AttributeDetail]?, title: String?) {
-            self.details = details
-
+        public init(details: [AttributeDetail]? = nil, title: String? = nil) {
             self.title = title
+
+            self.details = details
         }
 
         public func duplicate() -> AttributeMetadata {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                details = try container.decode([AttributeDetail].self, forKey: .details)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                details = try container.decode([AttributeDetail].self, forKey: .details)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(details, forKey: .details)
-
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(details, forKey: .details)
         }
     }
 }

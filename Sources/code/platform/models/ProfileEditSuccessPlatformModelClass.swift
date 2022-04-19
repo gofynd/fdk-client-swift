@@ -46,7 +46,7 @@ public extension PlatformClient {
             case requestId = "request_id"
         }
 
-        public init(email: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, user: UserSchema?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+        public init(email: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
             self.user = user
 
             self.registerToken = registerToken

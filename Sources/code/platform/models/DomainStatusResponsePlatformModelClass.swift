@@ -18,7 +18,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(connected: Bool?, status: [DomainStatus]?) {
+        public init(connected: Bool? = nil, status: [DomainStatus]? = nil) {
             self.connected = connected
 
             self.status = status

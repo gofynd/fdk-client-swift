@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class GetCatalogConfigurationMetaData: Codable {
-        public var listing: MetaDataListingResponse?
-
         public var product: GetCatalogConfigurationDetailsProduct?
 
-        public enum CodingKeys: String, CodingKey {
-            case listing
+        public var listing: MetaDataListingResponse?
 
+        public enum CodingKeys: String, CodingKey {
             case product
+
+            case listing
         }
 
-        public init(listing: MetaDataListingResponse?, product: GetCatalogConfigurationDetailsProduct?) {
-            self.listing = listing
-
+        public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             self.product = product
+
+            self.listing = listing
         }
 
         public func duplicate() -> GetCatalogConfigurationMetaData {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
+                product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
+                listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(listing, forKey: .listing)
-
             try? container.encodeIfPresent(product, forKey: .product)
+
+            try? container.encodeIfPresent(listing, forKey: .listing)
         }
     }
 }

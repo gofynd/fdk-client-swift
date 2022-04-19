@@ -34,7 +34,7 @@ public extension PlatformClient {
             case email
         }
 
-        public init(billingAddress: SubscriptionBillingAddress?, email: String?, name: String?, phone: Phone?, type: String?, uniqueId: String?) {
+        public init(billingAddress: SubscriptionBillingAddress? = nil, email: String? = nil, name: String? = nil, phone: Phone? = nil, type: String? = nil, uniqueId: String? = nil) {
             self.phone = phone
 
             self.billingAddress = billingAddress

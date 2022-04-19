@@ -14,7 +14,7 @@ public extension PlatformClient {
             case storePriority = "store_priority"
         }
 
-        public init(storePriority: StorePriorityRule?) {
+        public init(storePriority: StorePriorityRule? = nil) {
             self.storePriority = storePriority
         }
 

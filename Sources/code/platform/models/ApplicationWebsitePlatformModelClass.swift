@@ -18,7 +18,7 @@ public extension PlatformClient {
             case basepath
         }
 
-        public init(basepath: String?, enabled: Bool?) {
+        public init(basepath: String? = nil, enabled: Bool? = nil) {
             self.enabled = enabled
 
             self.basepath = basepath

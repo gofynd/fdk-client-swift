@@ -18,7 +18,7 @@ public extension PlatformClient {
             case configuration
         }
 
-        public init(app: Application?, configuration: ApplicationInventory?) {
+        public init(app: Application? = nil, configuration: ApplicationInventory? = nil) {
             self.app = app
 
             self.configuration = configuration

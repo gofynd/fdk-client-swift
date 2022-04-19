@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case category
         }
 
-        public init(category: LogisticRequestCategory?) {
+        public init(category: LogisticRequestCategory? = nil) {
             self.category = category
         }
 

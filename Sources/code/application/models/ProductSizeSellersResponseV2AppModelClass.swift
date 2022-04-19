@@ -7,26 +7,26 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSizeSellersResponseV2: Codable {
-        public var page: Page
-
         public var items: [ProductSizePriceResponseV2]?
 
         public var sortOn: [ProductSizeSellerFilterSchemaV2]?
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var page: Page
 
+        public enum CodingKeys: String, CodingKey {
             case items
 
             case sortOn = "sort_on"
+
+            case page
         }
 
-        public init(items: [ProductSizePriceResponseV2]?, page: Page, sortOn: [ProductSizeSellerFilterSchemaV2]?) {
-            self.page = page
-
+        public init(items: [ProductSizePriceResponseV2]? = nil, page: Page, sortOn: [ProductSizeSellerFilterSchemaV2]? = nil) {
             self.items = items
 
             self.sortOn = sortOn
+
+            self.page = page
         }
 
         public func duplicate() -> ProductSizeSellersResponseV2 {
@@ -37,8 +37,6 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            page = try container.decode(Page.self, forKey: .page)
 
             do {
                 items = try container.decode([ProductSizePriceResponseV2].self, forKey: .items)
@@ -55,16 +53,18 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            page = try container.decode(Page.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

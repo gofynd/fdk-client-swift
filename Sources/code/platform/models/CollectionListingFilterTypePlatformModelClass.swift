@@ -22,7 +22,7 @@ public extension PlatformClient {
             case display
         }
 
-        public init(display: String?, isSelected: Bool?, name: String?) {
+        public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
             self.name = name
 
             self.isSelected = isSelected

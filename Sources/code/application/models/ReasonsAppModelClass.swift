@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case priority
         }
 
-        public init(feedbackType: String?, flow: String?, priority: Int?, reasonId: Int?, reasonText: String?, showTextArea: Bool?) {
+        public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
             self.reasonText = reasonText
 
             self.showTextArea = showTextArea

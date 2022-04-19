@@ -22,7 +22,7 @@ public extension PlatformClient {
             case count
         }
 
-        public init(count: Int?, header: Bool?, url: String?) {
+        public init(count: Int? = nil, header: Bool? = nil, url: String? = nil) {
             self.url = url
 
             self.header = header

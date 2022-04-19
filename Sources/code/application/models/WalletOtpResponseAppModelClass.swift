@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case requestId = "request_id"
         }
 
-        public init(isVerifiedFlag: String, requestId: String, success: Bool?) {
+        public init(isVerifiedFlag: String, requestId: String, success: Bool? = nil) {
             self.isVerifiedFlag = isVerifiedFlag
 
             self.success = success

@@ -30,7 +30,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(code: String?, info: String?, message: String?, meta: [String: Any]?, requestId: String?) {
+        public init(code: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil) {
             self.code = code
 
             self.message = message

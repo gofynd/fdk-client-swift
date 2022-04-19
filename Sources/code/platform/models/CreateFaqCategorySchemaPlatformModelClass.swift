@@ -14,7 +14,7 @@ public extension PlatformClient {
             case category
         }
 
-        public init(category: CategorySchema?) {
+        public init(category: CategorySchema? = nil) {
             self.category = category
         }
 

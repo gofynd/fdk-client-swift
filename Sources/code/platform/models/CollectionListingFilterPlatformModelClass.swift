@@ -18,7 +18,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(tags: [CollectionListingFilterTag]?, type: [CollectionListingFilterType]?) {
+        public init(tags: [CollectionListingFilterTag]? = nil, type: [CollectionListingFilterType]? = nil) {
             self.type = type
 
             self.tags = tags

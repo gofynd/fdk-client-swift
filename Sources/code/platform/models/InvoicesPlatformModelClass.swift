@@ -34,7 +34,7 @@ public extension PlatformClient {
             case total
         }
 
-        public init(data: [InvoicesData]?, end: Int?, limit: Int?, page: Int?, start: Int?, total: Int?) {
+        public init(data: [InvoicesData]? = nil, end: Int? = nil, limit: Int? = nil, page: Int? = nil, start: Int? = nil, total: Int? = nil) {
             self.data = data
 
             self.start = start

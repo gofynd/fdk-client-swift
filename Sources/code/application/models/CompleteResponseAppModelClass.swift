@@ -65,7 +65,7 @@ public extension ApplicationClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, method: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: String, tags: [String]?, upload: Upload, id: String) {
+        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, method: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: String, tags: [String]? = nil, upload: Upload, id: String) {
             self.id = id
 
             self.fileName = fileName

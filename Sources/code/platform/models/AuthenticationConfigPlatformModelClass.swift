@@ -18,7 +18,7 @@ public extension PlatformClient {
             case provider
         }
 
-        public init(provider: String?, required: Bool?) {
+        public init(provider: String? = nil, required: Bool? = nil) {
             self.required = required
 
             self.provider = provider

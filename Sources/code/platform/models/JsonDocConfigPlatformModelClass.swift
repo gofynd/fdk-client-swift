@@ -14,7 +14,7 @@ public extension PlatformClient {
             case propBeanConfigs = "prop_bean_configs"
         }
 
-        public init(propBeanConfigs: [PropBeanConfig]?) {
+        public init(propBeanConfigs: [PropBeanConfig]? = nil) {
             self.propBeanConfigs = propBeanConfigs
         }
 

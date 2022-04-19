@@ -18,7 +18,7 @@ public extension PlatformClient {
             case sms
         }
 
-        public init(email: StatsProcessedEmail?, sms: StatsProcessedSms?) {
+        public init(email: StatsProcessedEmail? = nil, sms: StatsProcessedSms? = nil) {
             self.email = email
 
             self.sms = sms

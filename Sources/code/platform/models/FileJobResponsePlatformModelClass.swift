@@ -38,7 +38,7 @@ public extension PlatformClient {
             case fileType = "file_type"
         }
 
-        public init(body: [String: Any]?, companyId: Int, failed: Int, fileType: String, stage: String, total: Int, type: String) {
+        public init(body: [String: Any]? = nil, companyId: Int, failed: Int, fileType: String, stage: String, total: Int, type: String) {
             self.stage = stage
 
             self.total = total

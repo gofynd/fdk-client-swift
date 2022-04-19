@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case bagsForReorder = "bags_for_reorder"
         }
 
-        public init(bagsForReorder: [BagsForReorder]?, breakupValues: [BreakupValues]?, orderCreatedTime: String?, orderId: String?, shipments: [Shipments]?, totalShipmentsInOrder: Int?, userInfo: UserInfo?) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             self.orderId = orderId
 
             self.breakupValues = breakupValues

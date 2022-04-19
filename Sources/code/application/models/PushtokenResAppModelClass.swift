@@ -53,7 +53,7 @@ public extension ApplicationClient {
             case expiredAt = "expired_at"
         }
 
-        public init(applicationId: String?, bundleIdentifier: String?, createdAt: String?, expiredAt: String?, platform: String?, pushToken: String?, type: String?, uniqueDeviceId: String?, updatedAt: String?, userId: String?, id: String?) {
+        public init(applicationId: String? = nil, bundleIdentifier: String? = nil, createdAt: String? = nil, expiredAt: String? = nil, platform: String? = nil, pushToken: String? = nil, type: String? = nil, uniqueDeviceId: String? = nil, updatedAt: String? = nil, userId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.bundleIdentifier = bundleIdentifier

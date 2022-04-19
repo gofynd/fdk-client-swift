@@ -18,7 +18,7 @@ public extension PlatformClient {
             case presentmentMoney = "presentment_money"
         }
 
-        public init(presentmentMoney: PriceSetPresentmentMoney?, shopMoney: PriceSetShopMoney?) {
+        public init(presentmentMoney: PriceSetPresentmentMoney? = nil, shopMoney: PriceSetShopMoney? = nil) {
             self.shopMoney = shopMoney
 
             self.presentmentMoney = presentmentMoney

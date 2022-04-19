@@ -50,7 +50,7 @@ public extension PlatformClient {
             case readAllFiles = "read_all_files"
         }
 
-        public init(archiveConfig: ArchiveConfig?, fileRegex: String?, interval: Int?, localDir: String?, readAllFiles: Bool?, retries: Int?, unzip: Bool?, workingDir: String?, zipFileRegex: String?, zipFormat: String?) {
+        public init(archiveConfig: ArchiveConfig? = nil, fileRegex: String? = nil, interval: Int? = nil, localDir: String? = nil, readAllFiles: Bool? = nil, retries: Int? = nil, unzip: Bool? = nil, workingDir: String? = nil, zipFileRegex: String? = nil, zipFormat: String? = nil) {
             self.retries = retries
 
             self.interval = interval

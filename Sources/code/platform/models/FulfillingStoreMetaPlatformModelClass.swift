@@ -42,7 +42,7 @@ public extension PlatformClient {
             case timing
         }
 
-        public init(additionalContactDetails: AdditionalContactDetails?, allowDpAssignmentFromFynd: Bool?, displayName: String?, documents: Documents?, gstNumber: String?, productReturnConfig: ProductReturnConfig?, stage: String?, timing: Timing?) {
+        public init(additionalContactDetails: AdditionalContactDetails? = nil, allowDpAssignmentFromFynd: Bool? = nil, displayName: String? = nil, documents: Documents? = nil, gstNumber: String? = nil, productReturnConfig: ProductReturnConfig? = nil, stage: String? = nil, timing: Timing? = nil) {
             self.additionalContactDetails = additionalContactDetails
 
             self.documents = documents

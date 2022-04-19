@@ -14,7 +14,7 @@ public extension PlatformClient {
             case writeKey = "write_key"
         }
 
-        public init(writeKey: String?) {
+        public init(writeKey: String? = nil) {
             self.writeKey = writeKey
         }
 

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case bcc
         }
 
-        public init(bcc: String?, cc: String?, to: String?) {
+        public init(bcc: String? = nil, cc: String? = nil, to: String? = nil) {
             self.to = to
 
             self.cc = cc

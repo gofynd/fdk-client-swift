@@ -22,7 +22,7 @@ public extension PlatformClient {
             case configuration
         }
 
-        public init(configuration: ReqConfiguration?, destination: Destination, urls: [String]) {
+        public init(configuration: ReqConfiguration? = nil, destination: Destination, urls: [String]) {
             self.urls = urls
 
             self.destination = destination

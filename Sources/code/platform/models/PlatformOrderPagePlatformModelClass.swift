@@ -42,7 +42,7 @@ public extension PlatformClient {
             case itemTotal = "item_total"
         }
 
-        public init(current: Int?, hasNext: Bool?, itemTotal: ItemTotal?, next: String?, previous: String?, size: Int?, total: Int?, type: String?) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: ItemTotal? = nil, next: String? = nil, previous: String? = nil, size: Int? = nil, total: Int? = nil, type: String? = nil) {
             self.next = next
 
             self.previous = previous

@@ -45,7 +45,7 @@ public extension ApplicationClient {
             case customJson = "_custom_json"
         }
 
-        public init(application: String?, children: [String]?, description: String?, iconUrl: String?, index: Int?, slug: String?, title: String?, customJson: [String: Any]?, id: String?) {
+        public init(application: String? = nil, children: [String]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             self.index = index
 
             self.title = title

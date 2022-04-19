@@ -14,7 +14,7 @@ public extension PlatformClient {
             case feature
         }
 
-        public init(feature: AppFeature?) {
+        public init(feature: AppFeature? = nil) {
             self.feature = feature
         }
 

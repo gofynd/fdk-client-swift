@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case displayName = "display_name"
         }
 
-        public init(displayName: String?, error: LogisticError?, meta: LogisticMeta?, name: String?, parents: [LogisticParents]?, subType: String?, uid: String?) {
+        public init(displayName: String? = nil, error: LogisticError? = nil, meta: LogisticMeta? = nil, name: String? = nil, parents: [LogisticParents]? = nil, subType: String? = nil, uid: String? = nil) {
             self.meta = meta
 
             self.parents = parents

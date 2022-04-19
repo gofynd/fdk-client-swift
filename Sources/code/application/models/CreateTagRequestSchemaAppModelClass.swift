@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(tags: [CreateTagSchema]?) {
+        public init(tags: [CreateTagSchema]? = nil) {
             self.tags = tags
         }
 

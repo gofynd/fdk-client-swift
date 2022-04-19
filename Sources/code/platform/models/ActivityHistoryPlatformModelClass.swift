@@ -26,7 +26,7 @@ public extension PlatformClient {
             case user
         }
 
-        public init(createdat: String?, message: String?, type: String?, user: String?) {
+        public init(createdat: String? = nil, message: String? = nil, type: String? = nil, user: String? = nil) {
             self.createdat = createdat
 
             self.message = message

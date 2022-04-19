@@ -46,7 +46,7 @@ public extension PlatformClient {
             case application
         }
 
-        public init(application: String?, description: String?, fileUrl: String?, headers: [String]?, isActive: Bool?, name: String?, recordsCount: Int?, tags: [String]?, type: String?) {
+        public init(application: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
             self.description = description
 
             self.tags = tags

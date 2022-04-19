@@ -18,7 +18,7 @@ public extension PlatformClient {
             case brands
         }
 
-        public init(brands: [[String: Any]]?, criteria: String?) {
+        public init(brands: [[String: Any]]? = nil, criteria: String? = nil) {
             self.criteria = criteria
 
             self.brands = brands

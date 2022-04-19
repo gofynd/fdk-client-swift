@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case textType = "text_type"
         }
 
-        public init(confidence: Double?, text: String?, textClass: String?, textType: String?) {
+        public init(confidence: Double? = nil, text: String? = nil, textClass: String? = nil, textType: String? = nil) {
             self.confidence = confidence
 
             self.text = text

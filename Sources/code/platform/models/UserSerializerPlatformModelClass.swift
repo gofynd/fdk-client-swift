@@ -22,7 +22,7 @@ public extension PlatformClient {
             case userId = "user_id"
         }
 
-        public init(contact: String?, username: String?, userId: String?) {
+        public init(contact: String? = nil, username: String? = nil, userId: String? = nil) {
             self.username = username
 
             self.contact = contact

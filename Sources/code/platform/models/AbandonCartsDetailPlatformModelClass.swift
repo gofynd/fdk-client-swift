@@ -42,7 +42,7 @@ public extension PlatformClient {
             case receivedAt = "received_at"
         }
 
-        public init(contextAppApplicationId: String?, contextTraitsEmail: String?, contextTraitsFirstName: String?, contextTraitsLastName: String?, contextTraitsPhoneNumber: String?, propertiesBreakupValuesRawTotal: String?, propertiesCartId: String?, receivedAt: ReceivedAt?) {
+        public init(contextAppApplicationId: String? = nil, contextTraitsEmail: String? = nil, contextTraitsFirstName: String? = nil, contextTraitsLastName: String? = nil, contextTraitsPhoneNumber: String? = nil, propertiesBreakupValuesRawTotal: String? = nil, propertiesCartId: String? = nil, receivedAt: ReceivedAt? = nil) {
             self.propertiesCartId = propertiesCartId
 
             self.contextTraitsFirstName = contextTraitsFirstName

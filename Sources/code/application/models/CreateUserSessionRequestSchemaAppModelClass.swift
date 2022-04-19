@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case userId = "user_id"
         }
 
-        public init(domain: String?, maxAge: Double?, userId: String?) {
+        public init(domain: String? = nil, maxAge: Double? = nil, userId: String? = nil) {
             self.domain = domain
 
             self.maxAge = maxAge

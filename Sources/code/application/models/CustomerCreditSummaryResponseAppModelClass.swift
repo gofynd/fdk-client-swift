@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case success
         }
 
-        public init(data: [CreditSummary]?, success: Bool) {
+        public init(data: [CreditSummary]? = nil, success: Bool) {
             self.data = data
 
             self.success = success

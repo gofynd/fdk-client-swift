@@ -22,7 +22,7 @@ public extension PlatformClient {
             case otp
         }
 
-        public init(otp: String?, registerToken: String?, requestId: String?) {
+        public init(otp: String? = nil, registerToken: String? = nil, requestId: String? = nil) {
             self.requestId = requestId
 
             self.registerToken = registerToken

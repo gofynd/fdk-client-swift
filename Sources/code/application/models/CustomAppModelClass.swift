@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case props
         }
 
-        public init(props: [String: Any]?) {
+        public init(props: [String: Any]? = nil) {
             self.props = props
         }
 

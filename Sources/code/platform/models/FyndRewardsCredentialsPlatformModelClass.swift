@@ -14,7 +14,7 @@ public extension PlatformClient {
             case publicKey = "public_key"
         }
 
-        public init(publicKey: String?) {
+        public init(publicKey: String? = nil) {
             self.publicKey = publicKey
         }
 

@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case query
         }
 
-        public init(exactUrl: String?, query: [String: Any]?, selected: String?) {
+        public init(exactUrl: String? = nil, query: [String: Any]? = nil, selected: String? = nil) {
             self.selected = selected
 
             self.exactUrl = exactUrl

@@ -106,7 +106,7 @@ public extension PlatformClient {
             case paymentMethod = "payment_method"
         }
 
-        public init(attemp: Int?, autoAdvance: Bool?, client: InvoiceDetailsClient?, collectionMethod: String?, createdAt: String?, currency: String?, currentStatus: String?, hashIdentifier: String?, invoiceUrl: String?, modifiedAt: String?, nextActionTime: String?, number: String?, paid: Bool?, paymentMethod: InvoicePaymentMethod?, period: InvoiceDetailsPeriod?, pgData: [String: Any]?, receiptNumber: String?, statementDescriptor: String?, statusTrail: [InvoiceDetailsStatusTrail]?, subscriberId: String?, subscription: String?, subtotal: Double?, total: Double?, id: String?) {
+        public init(attemp: Int? = nil, autoAdvance: Bool? = nil, client: InvoiceDetailsClient? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currency: String? = nil, currentStatus: String? = nil, hashIdentifier: String? = nil, invoiceUrl: String? = nil, modifiedAt: String? = nil, nextActionTime: String? = nil, number: String? = nil, paid: Bool? = nil, paymentMethod: InvoicePaymentMethod? = nil, period: InvoiceDetailsPeriod? = nil, pgData: [String: Any]? = nil, receiptNumber: String? = nil, statementDescriptor: String? = nil, statusTrail: [InvoiceDetailsStatusTrail]? = nil, subscriberId: String? = nil, subscription: String? = nil, subtotal: Double? = nil, total: Double? = nil, id: String? = nil) {
             self.period = period
 
             self.client = client

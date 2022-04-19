@@ -14,7 +14,7 @@ public extension PlatformClient {
             case brands
         }
 
-        public init(brands: CompanyBrandInfo?) {
+        public init(brands: CompanyBrandInfo? = nil) {
             self.brands = brands
         }
 

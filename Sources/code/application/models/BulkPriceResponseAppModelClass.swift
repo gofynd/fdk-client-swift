@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [BulkPriceOffer]?) {
+        public init(data: [BulkPriceOffer]? = nil) {
             self.data = data
         }
 

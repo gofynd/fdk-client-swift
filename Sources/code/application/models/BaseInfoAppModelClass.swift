@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class BaseInfo: Codable {
-        public var name: String?
-
         public var uid: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String?
 
+        public enum CodingKeys: String, CodingKey {
             case uid
+
+            case name
         }
 
-        public init(name: String?, uid: Int?) {
-            self.name = name
-
+        public init(name: String? = nil, uid: Int? = nil) {
             self.uid = uid
+
+            self.name = name
         }
 
         public func duplicate() -> BaseInfo {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

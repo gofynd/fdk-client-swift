@@ -22,7 +22,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(filters: Filter?, items: [Ticket]?, page: Page?) {
+        public init(filters: Filter? = nil, items: [Ticket]? = nil, page: Page? = nil) {
             self.items = items
 
             self.filters = filters

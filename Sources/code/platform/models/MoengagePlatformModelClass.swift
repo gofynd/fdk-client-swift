@@ -18,7 +18,7 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(credentials: MoengageCredentials?, enabled: Bool?) {
+        public init(credentials: MoengageCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled

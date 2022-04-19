@@ -14,7 +14,7 @@ public extension PlatformClient {
             case attributes
         }
 
-        public init(attributes: String?) {
+        public init(attributes: String? = nil) {
             self.attributes = attributes
         }
 

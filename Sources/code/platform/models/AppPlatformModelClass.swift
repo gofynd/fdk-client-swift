@@ -30,7 +30,7 @@ public extension PlatformClient {
             case desc
         }
 
-        public init(auth: ApplicationAuth?, channelType: String?, companyId: String?, desc: String?, name: String?) {
+        public init(auth: ApplicationAuth? = nil, channelType: String? = nil, companyId: String? = nil, desc: String? = nil, name: String? = nil) {
             self.companyId = companyId
 
             self.channelType = channelType

@@ -41,7 +41,7 @@ public extension ApplicationClient {
             case symbol
         }
 
-        public init(code: String?, createdAt: String?, decimalDigits: Int?, isActive: Bool?, name: String?, symbol: String?, updatedAt: String?, id: String?) {
+        public init(code: String? = nil, createdAt: String? = nil, decimalDigits: Int? = nil, isActive: Bool? = nil, name: String? = nil, symbol: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.id = id
 
             self.isActive = isActive

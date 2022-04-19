@@ -22,7 +22,7 @@ public extension PlatformClient {
             case suppressed
         }
 
-        public init(failed: Int?, success: Int?, suppressed: Int?) {
+        public init(failed: Int? = nil, success: Int? = nil, suppressed: Int? = nil) {
             self.success = success
 
             self.failed = failed

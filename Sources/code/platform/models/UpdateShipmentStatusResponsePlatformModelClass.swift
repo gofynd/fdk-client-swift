@@ -18,7 +18,7 @@ public extension PlatformClient {
             case errorShipments = "error_shipments"
         }
 
-        public init(errorShipments: [[String: Any]]?, shipments: [String: Any]) {
+        public init(errorShipments: [[String: Any]]? = nil, shipments: [String: Any]) {
             self.shipments = shipments
 
             self.errorShipments = errorShipments

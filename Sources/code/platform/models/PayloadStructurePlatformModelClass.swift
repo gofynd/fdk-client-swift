@@ -26,7 +26,7 @@ public extension PlatformClient {
             case application
         }
 
-        public init(application: String?, data: [[String: Any]]?, email: PayloadEmailStructure?, sms: PayloadSmsStructure?) {
+        public init(application: String? = nil, data: [[String: Any]]? = nil, email: PayloadEmailStructure? = nil, sms: PayloadSmsStructure? = nil) {
             self.data = data
 
             self.email = email

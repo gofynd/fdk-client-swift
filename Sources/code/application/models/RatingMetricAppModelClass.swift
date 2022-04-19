@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(avg: Double?, count: Int?, name: String?, slug: String?, type: String?) {
+        public init(avg: Double? = nil, count: Int? = nil, name: String? = nil, slug: String? = nil, type: String? = nil) {
             self.avg = avg
 
             self.count = count

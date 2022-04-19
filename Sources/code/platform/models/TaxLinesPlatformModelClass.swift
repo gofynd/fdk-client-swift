@@ -26,7 +26,7 @@ public extension PlatformClient {
             case priceSet = "price_set"
         }
 
-        public init(price: String?, priceSet: TaxLinesPriceSet?, rate: Int?, title: String?) {
+        public init(price: String? = nil, priceSet: TaxLinesPriceSet? = nil, rate: Int? = nil, title: String? = nil) {
             self.title = title
 
             self.price = price

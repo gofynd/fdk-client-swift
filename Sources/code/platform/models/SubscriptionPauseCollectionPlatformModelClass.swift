@@ -18,7 +18,7 @@ public extension PlatformClient {
             case resumeAt = "resume_at"
         }
 
-        public init(behavior: String?, resumeAt: String?) {
+        public init(behavior: String? = nil, resumeAt: String? = nil) {
             self.behavior = behavior
 
             self.resumeAt = resumeAt

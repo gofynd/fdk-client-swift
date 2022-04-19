@@ -34,7 +34,7 @@ public extension PlatformClient {
             case pincode
         }
 
-        public init(addressLine: [String]?, city: String?, country: String?, loc: String?, phone: InformationPhone?, pincode: Int?) {
+        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: String? = nil, phone: InformationPhone? = nil, pincode: Int? = nil) {
             self.loc = loc
 
             self.addressLine = addressLine

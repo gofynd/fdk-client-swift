@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case list
         }
 
-        public init(current: String?, globalSchema: GlobalSchema?, list: [ListSchemaItem]?, preset: Preset?) {
+        public init(current: String? = nil, globalSchema: GlobalSchema? = nil, list: [ListSchemaItem]? = nil, preset: Preset? = nil) {
             self.preset = preset
 
             self.globalSchema = globalSchema

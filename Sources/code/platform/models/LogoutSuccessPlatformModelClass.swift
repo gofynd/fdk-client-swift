@@ -14,7 +14,7 @@ public extension PlatformClient {
             case logout
         }
 
-        public init(logout: Bool?) {
+        public init(logout: Bool? = nil) {
             self.logout = logout
         }
 

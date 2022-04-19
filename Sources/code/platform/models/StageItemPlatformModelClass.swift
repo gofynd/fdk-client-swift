@@ -22,7 +22,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(count: Int?, text: String?, value: String?) {
+        public init(count: Int? = nil, text: String? = nil, value: String? = nil) {
             self.count = count
 
             self.text = text

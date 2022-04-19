@@ -54,7 +54,7 @@ public extension PlatformClient {
             case packageName = "package_name"
         }
 
-        public init(application: String?, appName: String?, createdAt: String?, isActive: Bool?, landingImage: LandingImage?, packageName: String?, platformType: String?, splashImage: SplashImage?, updatedAt: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, appName: String? = nil, createdAt: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, packageName: String? = nil, platformType: String? = nil, splashImage: SplashImage? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.isActive = isActive
 
             self.id = id

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case catalogId = "catalog_id"
         }
 
-        public init(catalogId: Int?, name: String) {
+        public init(catalogId: Int? = nil, name: String) {
             self.name = name
 
             self.catalogId = catalogId

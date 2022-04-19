@@ -18,7 +18,7 @@ public extension PlatformClient {
             case config
         }
 
-        public init(config: [ConfigurationListingSortConfig]?, defaultKey: String) {
+        public init(config: [ConfigurationListingSortConfig]? = nil, defaultKey: String) {
             self.defaultKey = defaultKey
 
             self.config = config

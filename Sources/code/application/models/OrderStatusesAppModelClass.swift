@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case isSelected = "is_selected"
         }
 
-        public init(display: String?, isSelected: Bool?, value: Int?) {
+        public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
             self.display = display
 
             self.value = value

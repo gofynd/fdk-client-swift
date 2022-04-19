@@ -18,7 +18,7 @@ public extension PlatformClient {
             case brandDistribution = "brand_distribution"
         }
 
-        public init(brandDistribution: CatalogInsightBrand?, item: CatalogInsightItem?) {
+        public init(brandDistribution: CatalogInsightBrand? = nil, item: CatalogInsightItem? = nil) {
             self.item = item
 
             self.brandDistribution = brandDistribution

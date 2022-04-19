@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case marketplaceInfo = "marketplace_info"
         }
 
-        public init(aggregator: String, businessInfo: BusinessDetails?, device: DeviceDetails?, marketplaceInfo: MarketplaceInfo?, personalInfo: UserPersonalInfoInDetails, source: String) {
+        public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
             self.aggregator = aggregator
 
             self.source = source

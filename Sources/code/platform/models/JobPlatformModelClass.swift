@@ -42,7 +42,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(application: String?, campaign: String?, completed: Bool?, createdAt: String?, isActive: Bool?, updatedAt: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, campaign: String? = nil, completed: Bool? = nil, createdAt: String? = nil, isActive: Bool? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.completed = completed
 
             self.isActive = isActive

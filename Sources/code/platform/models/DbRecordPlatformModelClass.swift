@@ -58,7 +58,7 @@ public extension PlatformClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String?, success: Bool, tags: [String], upload: Upload, id: String) {
+        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String? = nil, success: Bool, tags: [String], upload: Upload, id: String) {
             self.success = success
 
             self.tags = tags

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case displayName = "display_name"
         }
 
-        public init(displayName: String?, response: String?) {
+        public init(displayName: String? = nil, response: String? = nil) {
             self.response = response
 
             self.displayName = displayName

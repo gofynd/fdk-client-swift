@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case cookie
         }
 
-        public init(cookie: [String: Any]?, domain: String?, httpOnly: Bool?, maxAge: Double?, secure: Bool?) {
+        public init(cookie: [String: Any]? = nil, domain: String? = nil, httpOnly: Bool? = nil, maxAge: Double? = nil, secure: Bool? = nil) {
             self.domain = domain
 
             self.maxAge = maxAge

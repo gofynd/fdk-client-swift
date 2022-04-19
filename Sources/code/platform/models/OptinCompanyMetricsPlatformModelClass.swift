@@ -22,7 +22,7 @@ public extension PlatformClient {
             case store
         }
 
-        public init(brand: Int?, company: String?, store: Int?) {
+        public init(brand: Int? = nil, company: String? = nil, store: Int? = nil) {
             self.company = company
 
             self.brand = brand

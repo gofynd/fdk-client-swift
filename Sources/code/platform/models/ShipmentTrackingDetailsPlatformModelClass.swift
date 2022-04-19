@@ -26,7 +26,7 @@ public extension PlatformClient {
             case isCurrent = "is_current"
         }
 
-        public init(isCurrent: Bool?, isPassed: Bool?, status: String?, time: String?) {
+        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
             self.status = status
 
             self.time = time

@@ -34,7 +34,7 @@ public extension PlatformClient {
             case clickAction = "click_action"
         }
 
-        public init(body: String?, clickAction: String?, deeplink: String?, icon: String?, subtitle: String?, title: String?) {
+        public init(body: String? = nil, clickAction: String? = nil, deeplink: String? = nil, icon: String? = nil, subtitle: String? = nil, title: String? = nil) {
             self.title = title
 
             self.body = body

@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(choices: [String]?, maxLen: Int?, text: String?, type: String?) {
+        public init(choices: [String]? = nil, maxLen: Int? = nil, text: String? = nil, type: String? = nil) {
             self.choices = choices
 
             self.maxLen = maxLen

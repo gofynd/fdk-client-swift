@@ -42,7 +42,7 @@ public extension PlatformClient {
             case modifiedAt = "modified_at"
         }
 
-        public init(applicationId: String?, attachedPath: String?, companyId: String?, createdAt: String?, extensionId: String?, modifiedAt: String?, proxyUrl: String?, id: String?) {
+        public init(applicationId: String? = nil, attachedPath: String? = nil, companyId: String? = nil, createdAt: String? = nil, extensionId: String? = nil, modifiedAt: String? = nil, proxyUrl: String? = nil, id: String? = nil) {
             self.id = id
 
             self.attachedPath = attachedPath

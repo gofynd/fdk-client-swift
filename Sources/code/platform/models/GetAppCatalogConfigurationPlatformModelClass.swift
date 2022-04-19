@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class GetAppCatalogConfiguration: Codable {
-        public var data: AppCatalogConfiguration?
-
         public var isDefault: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: AppCatalogConfiguration?
 
+        public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
+
+            case data
         }
 
-        public init(data: AppCatalogConfiguration?, isDefault: Bool?) {
-            self.data = data
-
+        public init(data: AppCatalogConfiguration? = nil, isDefault: Bool? = nil) {
             self.isDefault = isDefault
+
+            self.data = data
         }
 
         public func duplicate() -> GetAppCatalogConfiguration {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(AppCatalogConfiguration.self, forKey: .data)
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                data = try container.decode(AppCatalogConfiguration.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

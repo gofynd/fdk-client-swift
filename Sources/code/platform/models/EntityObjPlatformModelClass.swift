@@ -26,7 +26,7 @@ public extension PlatformClient {
             case entityDetails = "entity_details"
         }
 
-        public init(action: String?, entityDetails: [String: Any]?, id: String?, type: String?) {
+        public init(action: String? = nil, entityDetails: [String: Any]? = nil, id: String? = nil, type: String? = nil) {
             self.id = id
 
             self.type = type

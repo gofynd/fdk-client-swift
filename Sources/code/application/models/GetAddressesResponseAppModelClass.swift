@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case address
         }
 
-        public init(address: [Address]?) {
+        public init(address: [Address]? = nil) {
             self.address = address
         }
 

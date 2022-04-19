@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case logoLarge = "logo_large"
         }
 
-        public init(displayName: String?, id: Int, logoLarge: String, logoSmall: String, name: String) {
+        public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.name = name
 
             self.logoSmall = logoSmall

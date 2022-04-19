@@ -22,7 +22,7 @@ public extension PlatformClient {
             case processed
         }
 
-        public init(imported: [String: Any]?, processed: [String: Any]?, id: String?) {
+        public init(imported: [String: Any]? = nil, processed: [String: Any]? = nil, id: String? = nil) {
             self.id = id
 
             self.imported = imported

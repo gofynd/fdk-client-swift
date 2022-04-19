@@ -14,7 +14,7 @@ public extension PlatformClient {
             case props
         }
 
-        public init(props: [GlobalSchemaProps]?) {
+        public init(props: [GlobalSchemaProps]? = nil) {
             self.props = props
         }
 

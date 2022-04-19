@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(maxCount: Double?, size: Double?, type: String?) {
+        public init(maxCount: Double? = nil, size: Double? = nil, type: String? = nil) {
             self.maxCount = maxCount
 
             self.size = size

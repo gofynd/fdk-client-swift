@@ -30,7 +30,7 @@ public extension PlatformClient {
             case params
         }
 
-        public init(contentType: String, fileName: String, params: [String: Any]?, size: Int, tags: [String]?) {
+        public init(contentType: String, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
             self.fileName = fileName
 
             self.contentType = contentType

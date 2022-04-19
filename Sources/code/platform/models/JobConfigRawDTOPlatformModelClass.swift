@@ -26,7 +26,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(companyId: Int, companyName: String, data: JobConfig?, integration: String) {
+        public init(companyId: Int, companyName: String, data: JobConfig? = nil, integration: String) {
             self.integration = integration
 
             self.companyName = companyName

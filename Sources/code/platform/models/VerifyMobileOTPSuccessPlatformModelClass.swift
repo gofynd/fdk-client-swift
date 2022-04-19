@@ -18,7 +18,7 @@ public extension PlatformClient {
             case verifyMobileLink = "verify_mobile_link"
         }
 
-        public init(user: UserSchema?, verifyMobileLink: Bool?) {
+        public init(user: UserSchema? = nil, verifyMobileLink: Bool? = nil) {
             self.user = user
 
             self.verifyMobileLink = verifyMobileLink

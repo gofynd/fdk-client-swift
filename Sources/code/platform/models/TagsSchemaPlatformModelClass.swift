@@ -22,7 +22,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(application: String?, tags: [TagSchema]?, id: String?) {
+        public init(application: String? = nil, tags: [TagSchema]? = nil, id: String? = nil) {
             self.application = application
 
             self.id = id

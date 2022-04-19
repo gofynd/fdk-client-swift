@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case debit
         }
 
-        public init(credit: Credit?, debit: Debit?) {
+        public init(credit: Credit? = nil, debit: Debit? = nil) {
             self.credit = credit
 
             self.debit = debit

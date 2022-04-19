@@ -18,7 +18,7 @@ public extension PlatformClient {
             case multivalue
         }
 
-        public init(data: [[String: Any]]?, multivalue: Bool?) {
+        public init(data: [[String: Any]]? = nil, multivalue: Bool? = nil) {
             self.data = data
 
             self.multivalue = multivalue

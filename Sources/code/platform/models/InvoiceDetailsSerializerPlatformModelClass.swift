@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class InvoiceDetailsSerializer: Codable {
-        public var eInvoice: InvoiceCredSerializer?
-
         public var eWaybill: InvoiceCredSerializer?
 
-        public enum CodingKeys: String, CodingKey {
-            case eInvoice = "e_invoice"
+        public var eInvoice: InvoiceCredSerializer?
 
+        public enum CodingKeys: String, CodingKey {
             case eWaybill = "e_waybill"
+
+            case eInvoice = "e_invoice"
         }
 
-        public init(eInvoice: InvoiceCredSerializer?, eWaybill: InvoiceCredSerializer?) {
-            self.eInvoice = eInvoice
-
+        public init(eInvoice: InvoiceCredSerializer? = nil, eWaybill: InvoiceCredSerializer? = nil) {
             self.eWaybill = eWaybill
+
+            self.eInvoice = eInvoice
         }
 
         public func duplicate() -> InvoiceDetailsSerializer {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                eInvoice = try container.decode(InvoiceCredSerializer.self, forKey: .eInvoice)
+                eWaybill = try container.decode(InvoiceCredSerializer.self, forKey: .eWaybill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                eWaybill = try container.decode(InvoiceCredSerializer.self, forKey: .eWaybill)
+                eInvoice = try container.decode(InvoiceCredSerializer.self, forKey: .eInvoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
-
             try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
+
+            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
         }
     }
 }

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case reset
         }
 
-        public init(reset: String?) {
+        public init(reset: String? = nil) {
             self.reset = reset
         }
 

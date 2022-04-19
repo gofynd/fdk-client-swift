@@ -14,7 +14,7 @@ public extension PlatformClient {
             case sku
         }
 
-        public init(sku: String?) {
+        public init(sku: String? = nil) {
             self.sku = sku
         }
 

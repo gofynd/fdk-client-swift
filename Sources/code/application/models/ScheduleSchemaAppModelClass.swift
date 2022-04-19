@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case nextSchedule = "next_schedule"
         }
 
-        public init(cron: String?, duration: Double?, end: String?, nextSchedule: [NextSchedule]?, start: String?) {
+        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
             self.cron = cron
 
             self.start = start

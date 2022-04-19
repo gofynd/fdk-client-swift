@@ -26,7 +26,7 @@ public extension PlatformClient {
             case phone
         }
 
-        public init(addressLines: [String]?, email: String?, name: String?, phone: String?) {
+        public init(addressLines: [String]? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) {
             self.addressLines = addressLines
 
             self.name = name

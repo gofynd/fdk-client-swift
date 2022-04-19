@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case defaultCurrency = "default_currency"
         }
 
-        public init(defaultCurrency: String?, type: String?, value: [String]?) {
+        public init(defaultCurrency: String? = nil, type: String? = nil, value: [String]? = nil) {
             self.value = value
 
             self.type = type

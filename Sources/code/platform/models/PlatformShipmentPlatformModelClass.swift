@@ -54,7 +54,7 @@ public extension PlatformClient {
             case totalShipmentBags = "total_shipment_bags"
         }
 
-        public init(bags: Bags?, breakupValues: ShipmentBreakupValues?, gst: ShipmentGst?, id: String?, lockStatus: Bool?, orderingChannel: String?, prices: ShipmentPrices?, priority: Double?, priorityText: String?, status: PlatformShipmentStatus?, totalShipmentBags: Int?) {
+        public init(bags: Bags? = nil, breakupValues: ShipmentBreakupValues? = nil, gst: ShipmentGst? = nil, id: String? = nil, lockStatus: Bool? = nil, orderingChannel: String? = nil, prices: ShipmentPrices? = nil, priority: Double? = nil, priorityText: String? = nil, status: PlatformShipmentStatus? = nil, totalShipmentBags: Int? = nil) {
             self.status = status
 
             self.bags = bags

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case email
         }
 
-        public init(email: String?) {
+        public init(email: String? = nil) {
             self.email = email
         }
 

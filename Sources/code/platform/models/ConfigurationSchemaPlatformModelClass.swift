@@ -26,7 +26,7 @@ public extension PlatformClient {
             case slideDirection = "slide_direction"
         }
 
-        public init(duration: Int?, sleepTime: Int?, slideDirection: String?, startOnLaunch: Bool?) {
+        public init(duration: Int? = nil, sleepTime: Int? = nil, slideDirection: String? = nil, startOnLaunch: Bool? = nil) {
             self.sleepTime = sleepTime
 
             self.startOnLaunch = startOnLaunch

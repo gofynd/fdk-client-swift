@@ -61,7 +61,7 @@ public extension ApplicationClient {
             case url
         }
 
-        public init(application: ApplicationSchema?, cloud: Cloud?, createdBy: CreatedBy?, dateMeta: DateMeta?, description: String?, entity: Entity?, id: String?, name: String?, reference: Entity?, state: MediaState?, tags: [TagMeta]?, type: String?, url: Url?) {
+        public init(application: ApplicationSchema? = nil, cloud: Cloud? = nil, createdBy: CreatedBy? = nil, dateMeta: DateMeta? = nil, description: String? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, reference: Entity? = nil, state: MediaState? = nil, tags: [TagMeta]? = nil, type: String? = nil, url: Url? = nil) {
             self.application = application
 
             self.cloud = cloud

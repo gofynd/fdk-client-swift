@@ -10,24 +10,24 @@ public extension PlatformClient {
     class Hierarchy: Codable {
         public var l2: Int
 
-        public var l1: Int
-
         public var department: Int
+
+        public var l1: Int
 
         public enum CodingKeys: String, CodingKey {
             case l2
 
-            case l1
-
             case department
+
+            case l1
         }
 
         public init(department: Int, l1: Int, l2: Int) {
             self.l2 = l2
 
-            self.l1 = l1
-
             self.department = department
+
+            self.l1 = l1
         }
 
         public func duplicate() -> Hierarchy {
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             l2 = try container.decode(Int.self, forKey: .l2)
 
-            l1 = try container.decode(Int.self, forKey: .l1)
-
             department = try container.decode(Int.self, forKey: .department)
+
+            l1 = try container.decode(Int.self, forKey: .l1)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(l2, forKey: .l2)
 
-            try? container.encodeIfPresent(l1, forKey: .l1)
-
             try? container.encodeIfPresent(department, forKey: .department)
+
+            try? container.encodeIfPresent(l1, forKey: .l1)
         }
     }
 }

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case platform
         }
 
-        public init(platform: String?) {
+        public init(platform: String? = nil) {
             self.platform = platform
         }
 

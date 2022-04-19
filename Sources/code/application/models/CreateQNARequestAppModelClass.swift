@@ -41,7 +41,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(choices: [String]?, entityId: String, entityType: String, maxLen: Int?, sortPriority: Int?, tags: [String]?, text: String, type: String?) {
+        public init(choices: [String]? = nil, entityId: String, entityType: String, maxLen: Int? = nil, sortPriority: Int? = nil, tags: [String]? = nil, text: String, type: String? = nil) {
             self.choices = choices
 
             self.entityId = entityId

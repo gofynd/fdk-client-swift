@@ -34,7 +34,7 @@ public extension PlatformClient {
             case topic
         }
 
-        public init(identifier: String?, key: String?, offset: String?, partition: String?, topic: String?, type: String?) {
+        public init(identifier: String? = nil, key: String? = nil, offset: String? = nil, partition: String? = nil, topic: String? = nil, type: String? = nil) {
             self.type = type
 
             self.identifier = identifier

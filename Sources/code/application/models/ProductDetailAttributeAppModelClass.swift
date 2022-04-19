@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class ProductDetailAttribute: Codable {
         public var value: String?
 
-        public var key: String?
-
         public var type: String?
+
+        public var key: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case key
-
             case type
+
+            case key
         }
 
-        public init(key: String?, type: String?, value: String?) {
+        public init(key: String? = nil, type: String? = nil, value: String? = nil) {
             self.value = value
 
-            self.key = key
-
             self.type = type
+
+            self.key = key
         }
 
         public func duplicate() -> ProductDetailAttribute {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,9 +68,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

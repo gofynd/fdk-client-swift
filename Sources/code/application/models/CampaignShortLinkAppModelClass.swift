@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case medium
         }
 
-        public init(medium: String?, source: String?) {
+        public init(medium: String? = nil, source: String? = nil) {
             self.source = source
 
             self.medium = medium

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(maxCount: Int?, size: Int?, type: String?) {
+        public init(maxCount: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.maxCount = maxCount
 
             self.size = size

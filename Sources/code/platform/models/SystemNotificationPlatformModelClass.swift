@@ -34,7 +34,7 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(createdAt: String?, group: String?, notification: Notification?, settings: SystemNotificationUser?, user: SystemNotificationUser?, id: String?) {
+        public init(createdAt: String? = nil, group: String? = nil, notification: Notification? = nil, settings: SystemNotificationUser? = nil, user: SystemNotificationUser? = nil, id: String? = nil) {
             self.notification = notification
 
             self.user = user

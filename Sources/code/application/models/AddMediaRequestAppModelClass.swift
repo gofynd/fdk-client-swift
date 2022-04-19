@@ -53,7 +53,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(cloudId: String?, cloudName: String?, cloudProvider: String?, entityId: String?, entityType: String?, mediaUrl: String?, refId: String?, refType: String?, tags: [String]?, thumbnailUrl: String?, type: String?) {
+        public init(cloudId: String? = nil, cloudName: String? = nil, cloudProvider: String? = nil, entityId: String? = nil, entityType: String? = nil, mediaUrl: String? = nil, refId: String? = nil, refType: String? = nil, tags: [String]? = nil, thumbnailUrl: String? = nil, type: String? = nil) {
             self.cloudId = cloudId
 
             self.cloudName = cloudName

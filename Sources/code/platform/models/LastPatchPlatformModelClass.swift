@@ -22,7 +22,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(op: String?, path: String?, value: String?) {
+        public init(op: String? = nil, path: String? = nil, value: String? = nil) {
             self.op = op
 
             self.path = path

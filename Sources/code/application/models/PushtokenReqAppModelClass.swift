@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(action: String?, bundleIdentifier: String?, pushToken: String?, type: String?, uniqueDeviceId: String?) {
+        public init(action: String? = nil, bundleIdentifier: String? = nil, pushToken: String? = nil, type: String? = nil, uniqueDeviceId: String? = nil) {
             self.action = action
 
             self.bundleIdentifier = bundleIdentifier

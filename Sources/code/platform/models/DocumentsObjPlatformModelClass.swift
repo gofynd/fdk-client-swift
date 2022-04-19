@@ -18,7 +18,7 @@ public extension PlatformClient {
             case verified
         }
 
-        public init(pending: Int?, verified: Int?) {
+        public init(pending: Int? = nil, verified: Int? = nil) {
             self.pending = pending
 
             self.verified = verified

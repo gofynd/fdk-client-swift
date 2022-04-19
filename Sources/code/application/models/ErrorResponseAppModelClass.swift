@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case error
         }
 
-        public init(error: String?) {
+        public init(error: String? = nil) {
             self.error = error
         }
 

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case page
         }
 
-        public init(items: [AbuseReport]?, page: Page?) {
+        public init(items: [AbuseReport]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

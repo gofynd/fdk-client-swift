@@ -37,7 +37,7 @@ public extension ApplicationClient {
             case otp
         }
 
-        public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String?, requestId: String?, shipmentId: String, transferMode: String) {
+        public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
             self.requestId = requestId
 
             self.orderId = orderId

@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case ids
         }
 
-        public init(approve: Bool?, archive: Bool?, entityType: String?, ids: [String]?) {
+        public init(approve: Bool? = nil, archive: Bool? = nil, entityType: String? = nil, ids: [String]? = nil) {
             self.approve = approve
 
             self.archive = archive

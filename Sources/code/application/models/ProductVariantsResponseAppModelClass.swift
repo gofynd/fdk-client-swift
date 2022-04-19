@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case variants
         }
 
-        public init(variants: [ProductVariantResponse]?) {
+        public init(variants: [ProductVariantResponse]? = nil) {
             self.variants = variants
         }
 

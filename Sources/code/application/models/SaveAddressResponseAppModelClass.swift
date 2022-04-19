@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case success
         }
 
-        public init(id: String?, isDefaultAddress: Bool?, success: Bool?) {
+        public init(id: String? = nil, isDefaultAddress: Bool? = nil, success: Bool? = nil) {
             self.isDefaultAddress = isDefaultAddress
 
             self.id = id

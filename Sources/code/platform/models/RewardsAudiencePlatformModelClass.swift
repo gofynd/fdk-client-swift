@@ -18,7 +18,7 @@ public extension PlatformClient {
             case id
         }
 
-        public init(headerUserId: String?, id: String?) {
+        public init(headerUserId: String? = nil, id: String? = nil) {
             self.headerUserId = headerUserId
 
             self.id = id

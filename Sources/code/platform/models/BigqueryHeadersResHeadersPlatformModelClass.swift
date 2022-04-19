@@ -18,7 +18,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(name: String?, type: String?) {
+        public init(name: String? = nil, type: String? = nil) {
             self.name = name
 
             self.type = type

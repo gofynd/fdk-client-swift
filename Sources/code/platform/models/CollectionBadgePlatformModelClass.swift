@@ -18,7 +18,7 @@ public extension PlatformClient {
             case text
         }
 
-        public init(color: String?, text: String?) {
+        public init(color: String? = nil, text: String? = nil) {
             self.color = color
 
             self.text = text

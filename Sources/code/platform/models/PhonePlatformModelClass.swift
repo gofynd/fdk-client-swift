@@ -18,7 +18,7 @@ public extension PlatformClient {
             case phoneCountryCode = "phone_country_code"
         }
 
-        public init(phoneCountryCode: String?, phoneNumber: String?) {
+        public init(phoneCountryCode: String? = nil, phoneNumber: String? = nil) {
             self.phoneNumber = phoneNumber
 
             self.phoneCountryCode = phoneCountryCode

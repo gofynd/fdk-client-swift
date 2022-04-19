@@ -18,7 +18,7 @@ public extension PlatformClient {
             case isSet = "is_set"
         }
 
-        public init(isSet: Bool?, productOnlineDate: String?) {
+        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
             self.productOnlineDate = productOnlineDate
 
             self.isSet = isSet

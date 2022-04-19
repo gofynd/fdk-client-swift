@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case version
         }
 
-        public init(name: String, version: String?) {
+        public init(name: String, version: String? = nil) {
             self.name = name
 
             self.version = version

@@ -62,7 +62,7 @@ public extension PlatformClient {
             case validity
         }
 
-        public init(appIds: [String], brandIds: [Int]?, companyId: Int, discountLevel: String, discountType: String, extensionIds: [String], filePath: String?, isActive: Bool, jobType: String, name: String, storeIds: [Int]?, validity: ValidityObject, value: Int?) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountType: String, extensionIds: [String], filePath: String? = nil, isActive: Bool, jobType: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil) {
             self.name = name
 
             self.companyId = companyId

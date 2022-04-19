@@ -26,7 +26,7 @@ public extension PlatformClient {
             case criteria
         }
 
-        public init(applicationId: [String]?, companyId: Int?, criteria: String?, extensionId: String?) {
+        public init(applicationId: [String]? = nil, companyId: Int? = nil, criteria: String? = nil, extensionId: String? = nil) {
             self.companyId = companyId
 
             self.applicationId = applicationId

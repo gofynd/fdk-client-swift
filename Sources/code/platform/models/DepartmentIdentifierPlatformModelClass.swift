@@ -18,7 +18,7 @@ public extension PlatformClient {
             case uid
         }
 
-        public init(slug: String?, uid: Int?) {
+        public init(slug: String? = nil, uid: Int? = nil) {
             self.slug = slug
 
             self.uid = uid

@@ -30,7 +30,7 @@ public extension PlatformClient {
             case currency
         }
 
-        public init(currency: String?, isAvailable: Bool, name: String, price: Double?, unsupported: Bool?) {
+        public init(currency: String? = nil, isAvailable: Bool, name: String, price: Double? = nil, unsupported: Bool? = nil) {
             self.name = name
 
             self.unsupported = unsupported

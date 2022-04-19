@@ -18,7 +18,7 @@ public extension PlatformClient {
             case apiKey = "api_key"
         }
 
-        public init(apiKey: String?, applicationId: String?) {
+        public init(apiKey: String? = nil, applicationId: String? = nil) {
             self.applicationId = applicationId
 
             self.apiKey = apiKey

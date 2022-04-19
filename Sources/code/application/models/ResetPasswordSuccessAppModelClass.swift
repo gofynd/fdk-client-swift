@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case status
         }
 
-        public init(status: String?) {
+        public init(status: String? = nil) {
             self.status = status
         }
 

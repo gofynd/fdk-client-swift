@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case pieces
         }
 
-        public init(pieces: Int?, sizes: Int?, totalPrice: Double?) {
+        public init(pieces: Int? = nil, sizes: Int? = nil, totalPrice: Double? = nil) {
             self.totalPrice = totalPrice
 
             self.sizes = sizes

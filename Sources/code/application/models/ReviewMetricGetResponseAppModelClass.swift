@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case page
         }
 
-        public init(items: [ReviewMetric]?, page: Page?) {
+        public init(items: [ReviewMetric]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

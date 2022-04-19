@@ -26,7 +26,7 @@ public extension PlatformClient {
             case message
         }
 
-        public init(data: [String: Any]?, isVerifiedFlag: Bool?, message: String, success: Bool) {
+        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.isVerifiedFlag = isVerifiedFlag
 
             self.data = data

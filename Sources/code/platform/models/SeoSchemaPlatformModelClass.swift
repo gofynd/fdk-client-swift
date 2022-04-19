@@ -42,7 +42,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(app: String?, createdAt: String?, customMetaTags: [CustomMetaTag]?, details: Detail?, robotsTxt: String?, sitemapEnabled: Bool?, updatedAt: String?, id: String?) {
+        public init(app: String? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.app = app
 
             self.id = id

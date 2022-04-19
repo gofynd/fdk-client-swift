@@ -34,7 +34,7 @@ public extension PlatformClient {
             case archiveConfig = "archive_config"
         }
 
-        public init(archiveConfig: ArchiveConfig?, clientSecretLocation: String?, credStorageDirectory: String?, localDir: String?, range: String?, sheetId: String?) {
+        public init(archiveConfig: ArchiveConfig? = nil, clientSecretLocation: String? = nil, credStorageDirectory: String? = nil, localDir: String? = nil, range: String? = nil, sheetId: String? = nil) {
             self.range = range
 
             self.sheetId = sheetId

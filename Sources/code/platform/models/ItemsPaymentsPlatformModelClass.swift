@@ -46,7 +46,7 @@ public extension PlatformClient {
             case source
         }
 
-        public init(displayName: String?, displayPriority: Int?, id: Int?, isActive: Bool?, logo: String?, mode: String?, paymentIdentifier: String?, source: String?, sourceNickname: String?) {
+        public init(displayName: String? = nil, displayPriority: Int? = nil, id: Int? = nil, isActive: Bool? = nil, logo: String? = nil, mode: String? = nil, paymentIdentifier: String? = nil, source: String? = nil, sourceNickname: String? = nil) {
             self.displayPriority = displayPriority
 
             self.id = id

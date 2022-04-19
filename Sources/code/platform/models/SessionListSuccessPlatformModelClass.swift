@@ -14,7 +14,7 @@ public extension PlatformClient {
             case sessions
         }
 
-        public init(sessions: [String]?) {
+        public init(sessions: [String]? = nil) {
             self.sessions = sessions
         }
 

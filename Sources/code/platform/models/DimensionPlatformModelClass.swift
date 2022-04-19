@@ -30,7 +30,7 @@ public extension PlatformClient {
             case isDefault = "is_default"
         }
 
-        public init(height: Int?, isDefault: Bool?, length: Int?, unit: String?, width: Int?) {
+        public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
             self.height = height
 
             self.width = width

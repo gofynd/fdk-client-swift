@@ -10,24 +10,24 @@ public extension PlatformClient {
     class State: Codable {
         public var isPublic: Bool?
 
-        public var isDisplay: Bool?
-
         public var isArchived: Bool?
+
+        public var isDisplay: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case isPublic = "is_public"
 
-            case isDisplay = "is_display"
-
             case isArchived = "is_archived"
+
+            case isDisplay = "is_display"
         }
 
-        public init(isArchived: Bool?, isDisplay: Bool?, isPublic: Bool?) {
+        public init(isArchived: Bool? = nil, isDisplay: Bool? = nil, isPublic: Bool? = nil) {
             self.isPublic = isPublic
 
-            self.isDisplay = isDisplay
-
             self.isArchived = isArchived
+
+            self.isDisplay = isDisplay
         }
 
         public func duplicate() -> State {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isDisplay = try container.decode(Bool.self, forKey: .isDisplay)
+                isArchived = try container.decode(Bool.self, forKey: .isArchived)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isArchived = try container.decode(Bool.self, forKey: .isArchived)
+                isDisplay = try container.decode(Bool.self, forKey: .isDisplay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isPublic, forKey: .isPublic)
 
-            try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
-
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
+
+            try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
         }
     }
 }

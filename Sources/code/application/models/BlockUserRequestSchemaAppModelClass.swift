@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case reason
         }
 
-        public init(reason: String?, status: Bool?, userId: [String]?) {
+        public init(reason: String? = nil, status: Bool? = nil, userId: [String]? = nil) {
             self.status = status
 
             self.userId = userId

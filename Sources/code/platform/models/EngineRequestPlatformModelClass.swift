@@ -18,7 +18,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(meta: MetaStructure?, payload: PayloadStructure?) {
+        public init(meta: MetaStructure? = nil, payload: PayloadStructure? = nil) {
             self.payload = payload
 
             self.meta = meta

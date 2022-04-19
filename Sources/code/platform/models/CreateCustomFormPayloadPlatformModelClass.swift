@@ -46,7 +46,7 @@ public extension PlatformClient {
             case pollForAssignment = "poll_for_assignment"
         }
 
-        public init(description: String?, headerImage: String?, inputs: [[String: Any]], pollForAssignment: PollForAssignment?, priority: PriorityEnum, shouldNotify: Bool?, slug: String, successMessage: String?, title: String) {
+        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, slug: String, successMessage: String? = nil, title: String) {
             self.slug = slug
 
             self.title = title

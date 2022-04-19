@@ -22,7 +22,7 @@ public extension PlatformClient {
             case searchText = "search_text"
         }
 
-        public init(brands: Int, companyId: Int?, searchText: String?) {
+        public init(brands: Int, companyId: Int? = nil, searchText: String? = nil) {
             self.companyId = companyId
 
             self.brands = brands

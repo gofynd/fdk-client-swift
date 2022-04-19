@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case link
         }
 
-        public init(icon: String?, link: String?, title: String?) {
+        public init(icon: String? = nil, link: String? = nil, title: String? = nil) {
             self.title = title
 
             self.icon = icon

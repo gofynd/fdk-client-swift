@@ -14,7 +14,7 @@ public extension PlatformClient {
             case domain
         }
 
-        public init(domain: DomainAdd?) {
+        public init(domain: DomainAdd? = nil) {
             self.domain = domain
         }
 

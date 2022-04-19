@@ -14,7 +14,7 @@ public extension PlatformClient {
             case template
         }
 
-        public init(template: String?) {
+        public init(template: String? = nil) {
             self.template = template
         }
 

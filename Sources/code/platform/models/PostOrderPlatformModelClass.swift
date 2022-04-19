@@ -18,7 +18,7 @@ public extension PlatformClient {
             case cancellationAllowed = "cancellation_allowed"
         }
 
-        public init(cancellationAllowed: Bool?, returnAllowed: Bool?) {
+        public init(cancellationAllowed: Bool? = nil, returnAllowed: Bool? = nil) {
             self.returnAllowed = returnAllowed
 
             self.cancellationAllowed = cancellationAllowed

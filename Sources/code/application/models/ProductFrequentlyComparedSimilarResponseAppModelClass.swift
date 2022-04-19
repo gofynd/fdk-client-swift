@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case similars
         }
 
-        public init(similars: ProductCompareResponse?) {
+        public init(similars: ProductCompareResponse? = nil) {
             self.similars = similars
         }
 

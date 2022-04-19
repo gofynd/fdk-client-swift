@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case email
         }
 
-        public init(email: String?, gender: String?, mobile: String?, name: String?) {
+        public init(email: String? = nil, gender: String? = nil, mobile: String? = nil, name: String? = nil) {
             self.gender = gender
 
             self.mobile = mobile

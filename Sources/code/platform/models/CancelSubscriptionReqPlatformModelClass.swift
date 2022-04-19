@@ -26,7 +26,7 @@ public extension PlatformClient {
             case subscriptionId = "subscription_id"
         }
 
-        public init(productSuite: String?, subscriptionId: String?, type: String?, uniqueId: String?) {
+        public init(productSuite: String? = nil, subscriptionId: String? = nil, type: String? = nil, uniqueId: String? = nil) {
             self.uniqueId = uniqueId
 
             self.type = type

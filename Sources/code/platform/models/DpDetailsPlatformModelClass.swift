@@ -14,7 +14,7 @@ public extension PlatformClient {
             case gstTag = "gst_tag"
         }
 
-        public init(gstTag: String?) {
+        public init(gstTag: String? = nil) {
             self.gstTag = gstTag
         }
 

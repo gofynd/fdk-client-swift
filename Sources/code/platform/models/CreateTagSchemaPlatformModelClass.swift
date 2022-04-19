@@ -42,7 +42,7 @@ public extension PlatformClient {
             case content
         }
 
-        public init(attributes: [String: Any]?, content: String?, name: String?, position: String?, subType: String?, type: String?, url: String?, id: String?) {
+        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
             self.name = name
 
             self.subType = subType

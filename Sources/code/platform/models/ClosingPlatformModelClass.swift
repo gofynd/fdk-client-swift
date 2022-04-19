@@ -18,7 +18,7 @@ public extension PlatformClient {
             case minute
         }
 
-        public init(hour: Int?, minute: Int?) {
+        public init(hour: Int? = nil, minute: Int? = nil) {
             self.hour = hour
 
             self.minute = minute

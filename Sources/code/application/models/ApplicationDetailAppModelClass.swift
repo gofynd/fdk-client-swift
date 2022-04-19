@@ -45,7 +45,7 @@ public extension ApplicationClient {
             case id = "_id"
         }
 
-        public init(banner: SecureUrl, description: String, domain: Domain?, domains: [Domain]?, favicon: SecureUrl, logo: SecureUrl, mobileLogo: SecureUrl, name: String, id: String?) {
+        public init(banner: SecureUrl, description: String, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl, logo: SecureUrl, mobileLogo: SecureUrl, name: String, id: String? = nil) {
             self.name = name
 
             self.description = description

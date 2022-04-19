@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case percent
         }
 
-        public init(absolute: Double?, currency: String?, displayAbsolute: String?, displayPercent: String?, percent: Double?) {
+        public init(absolute: Double? = nil, currency: String? = nil, displayAbsolute: String? = nil, displayPercent: String? = nil, percent: Double? = nil) {
             self.absolute = absolute
 
             self.currency = currency

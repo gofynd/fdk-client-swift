@@ -14,7 +14,7 @@ public extension PlatformClient {
             case appId = "app_id"
         }
 
-        public init(appId: String?) {
+        public init(appId: String? = nil) {
             self.appId = appId
         }
 

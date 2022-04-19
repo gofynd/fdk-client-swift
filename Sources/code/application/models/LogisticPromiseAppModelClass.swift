@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case formatted
         }
 
-        public init(formatted: Formatted?, timestamp: LogisticTimestamp?) {
+        public init(formatted: Formatted? = nil, timestamp: LogisticTimestamp? = nil) {
             self.timestamp = timestamp
 
             self.formatted = formatted

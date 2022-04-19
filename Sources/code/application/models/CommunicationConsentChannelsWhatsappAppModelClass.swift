@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case phoneNumber = "phone_number"
         }
 
-        public init(countryCode: String?, displayName: String?, phoneNumber: String?, response: String?) {
+        public init(countryCode: String? = nil, displayName: String? = nil, phoneNumber: String? = nil, response: String? = nil) {
             self.response = response
 
             self.displayName = displayName

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case postOrderReassignment = "post_order_reassignment"
         }
 
-        public init(postOrderReassignment: Bool?, rules: ArticleAssignmentRules?) {
+        public init(postOrderReassignment: Bool? = nil, rules: ArticleAssignmentRules? = nil) {
             self.rules = rules
 
             self.postOrderReassignment = postOrderReassignment

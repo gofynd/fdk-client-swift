@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case lastName = "last_name"
         }
 
-        public init(firstName: String?, gender: String?, lastName: String?, mobile: String?) {
+        public init(firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil) {
             self.gender = gender
 
             self.mobile = mobile

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case archive
         }
 
-        public init(approve: Bool?, archive: Bool?) {
+        public init(approve: Bool? = nil, archive: Bool? = nil) {
             self.approve = approve
 
             self.archive = archive

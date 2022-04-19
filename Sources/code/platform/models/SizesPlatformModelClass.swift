@@ -18,7 +18,7 @@ public extension PlatformClient {
             case pieces
         }
 
-        public init(pieces: Int?, size: String?) {
+        public init(pieces: Int? = nil, size: String? = nil) {
             self.size = size
 
             self.pieces = pieces

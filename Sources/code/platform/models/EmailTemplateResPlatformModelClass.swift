@@ -98,7 +98,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(attachments: [[String: Any]]?, createdAt: String?, description: String?, headers: [EmailTemplateHeaders]?, html: TemplateAndType?, isInternal: Bool?, isSystem: Bool?, keys: EmailTemplateKeys?, name: String?, priority: String?, published: Bool?, replyTo: String?, slug: String?, staticBcc: [String]?, staticCc: [String]?, staticTo: [String]?, subject: TemplateAndType?, tags: [[String: Any]]?, text: TemplateAndType?, updatedAt: String?, id: String?, v: Int?) {
+        public init(attachments: [[String: Any]]? = nil, createdAt: String? = nil, description: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, keys: EmailTemplateKeys? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [[String: Any]]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.isSystem = isSystem
 
             self.isInternal = isInternal

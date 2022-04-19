@@ -22,7 +22,7 @@ public extension PlatformClient {
             case name
         }
 
-        public init(display: String?, name: String?, value: Double?) {
+        public init(display: String? = nil, name: String? = nil, value: Double? = nil) {
             self.display = display
 
             self.value = value

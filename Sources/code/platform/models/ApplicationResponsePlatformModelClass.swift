@@ -14,7 +14,7 @@ public extension PlatformClient {
             case application
         }
 
-        public init(application: Application?) {
+        public init(application: Application? = nil) {
             self.application = application
         }
 

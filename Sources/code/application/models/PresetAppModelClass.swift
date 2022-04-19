@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case pages
         }
 
-        public init(pages: [AvailablePageSchema]?) {
+        public init(pages: [AvailablePageSchema]? = nil) {
             self.pages = pages
         }
 

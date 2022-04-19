@@ -46,7 +46,7 @@ public extension PlatformClient {
             case trackingList = "tracking_list"
         }
 
-        public init(flowType: String?, headerMessage: String?, isDelayed: String?, isNpsDone: Bool?, npsRating: Int?, npsString: String?, progressStatus: [ShipmentTrackResponseBagListItemStatusesProgress]?, statusProgress: Int?, trackingList: [ShipmentTrackResponseBagListItemStatusesTrack]?) {
+        public init(flowType: String? = nil, headerMessage: String? = nil, isDelayed: String? = nil, isNpsDone: Bool? = nil, npsRating: Int? = nil, npsString: String? = nil, progressStatus: [ShipmentTrackResponseBagListItemStatusesProgress]? = nil, statusProgress: Int? = nil, trackingList: [ShipmentTrackResponseBagListItemStatusesTrack]? = nil) {
             self.npsRating = npsRating
 
             self.npsString = npsString

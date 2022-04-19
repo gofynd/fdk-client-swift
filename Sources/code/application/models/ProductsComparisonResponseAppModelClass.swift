@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case attributesMetadata = "attributes_metadata"
         }
 
-        public init(attributesMetadata: [AttributeMetadata]?, items: [ProductDetail]?) {
+        public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil) {
             self.items = items
 
             self.attributesMetadata = attributesMetadata

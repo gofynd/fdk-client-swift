@@ -66,7 +66,7 @@ public extension PlatformClient {
             case metadata
         }
 
-        public init(activatedOn: String?, billingDate: String?, cancelledOn: String?, cappedAmount: Double?, currentPeriod: CurrentPeriod?, isTest: Bool?, metadata: [String: Any]?, name: String?, price: EntityChargePrice?, pricingType: String?, recurring: EntityChargeRecurring?, status: String?, term: String?, id: String?) {
+        public init(activatedOn: String? = nil, billingDate: String? = nil, cancelledOn: String? = nil, cappedAmount: Double? = nil, currentPeriod: CurrentPeriod? = nil, isTest: Bool? = nil, metadata: [String: Any]? = nil, name: String? = nil, price: EntityChargePrice? = nil, pricingType: String? = nil, recurring: EntityChargeRecurring? = nil, status: String? = nil, term: String? = nil, id: String? = nil) {
             self.id = id
 
             self.name = name

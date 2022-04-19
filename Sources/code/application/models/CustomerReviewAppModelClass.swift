@@ -69,7 +69,7 @@ public extension ApplicationClient {
             case voteCount = "vote_count"
         }
 
-        public init(autoDetectors: AutoDetectors?, createdOn: String?, deviceMeta: DeviceMeta?, entity: ProductEntity?, id: String?, locationMeta: LocationMeta?, modifiedOn: String?, name: String?, rating: ReviewRating?, review: Review?, slug: String?, state: State?, tags: [TagMeta]?, template: Template?, voteCount: VoteCount?) {
+        public init(autoDetectors: AutoDetectors? = nil, createdOn: String? = nil, deviceMeta: DeviceMeta? = nil, entity: ProductEntity? = nil, id: String? = nil, locationMeta: LocationMeta? = nil, modifiedOn: String? = nil, name: String? = nil, rating: ReviewRating? = nil, review: Review? = nil, slug: String? = nil, state: State? = nil, tags: [TagMeta]? = nil, template: Template? = nil, voteCount: VoteCount? = nil) {
             self.autoDetectors = autoDetectors
 
             self.createdOn = createdOn

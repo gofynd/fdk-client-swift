@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case rnr
         }
 
-        public init(answer: Bool?, askQuestion: Bool?, comment: Bool?, rnr: Bool?) {
+        public init(answer: Bool? = nil, askQuestion: Bool? = nil, comment: Bool? = nil, rnr: Bool? = nil) {
             self.answer = answer
 
             self.askQuestion = askQuestion

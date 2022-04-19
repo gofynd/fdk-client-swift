@@ -8,68 +8,68 @@ public extension PlatformClient {
      */
 
     class CompanyOptIn: Codable {
-        public var enabled: Bool
+        public var createdOn: Int
 
         public var optLevel: String
 
         public var storeIds: [Int]
 
-        public var companyId: Int
-
         public var modifiedBy: [String: Any]?
-
-        public var createdOn: Int
-
-        public var createdBy: [String: Any]?
 
         public var modifiedOn: Int
 
-        public var brandIds: [Int]
+        public var companyId: Int
+
+        public var enabled: Bool
+
+        public var createdBy: [String: Any]?
 
         public var platform: String
 
+        public var brandIds: [Int]
+
         public enum CodingKeys: String, CodingKey {
-            case enabled
+            case createdOn = "created_on"
 
             case optLevel = "opt_level"
 
             case storeIds = "store_ids"
 
-            case companyId = "company_id"
-
             case modifiedBy = "modified_by"
-
-            case createdOn = "created_on"
-
-            case createdBy = "created_by"
 
             case modifiedOn = "modified_on"
 
-            case brandIds = "brand_ids"
+            case companyId = "company_id"
+
+            case enabled
+
+            case createdBy = "created_by"
 
             case platform
+
+            case brandIds = "brand_ids"
         }
 
-        public init(brandIds: [Int], companyId: Int, createdBy: [String: Any]?, createdOn: Int, enabled: Bool, modifiedBy: [String: Any]?, modifiedOn: Int, optLevel: String, platform: String, storeIds: [Int]) {
-            self.enabled = enabled
+        public init(brandIds: [Int], companyId: Int, createdBy: [String: Any]? = nil, createdOn: Int, enabled: Bool, modifiedBy: [String: Any]? = nil, modifiedOn: Int, optLevel: String, platform: String, storeIds: [Int]) {
+            self.createdOn = createdOn
 
             self.optLevel = optLevel
 
             self.storeIds = storeIds
 
-            self.companyId = companyId
-
             self.modifiedBy = modifiedBy
-
-            self.createdOn = createdOn
-
-            self.createdBy = createdBy
 
             self.modifiedOn = modifiedOn
 
-            self.brandIds = brandIds
+            self.companyId = companyId
+
+            self.enabled = enabled
+
+            self.createdBy = createdBy
 
             self.platform = platform
+
+            self.brandIds = brandIds
         }
 
         public func duplicate() -> CompanyOptIn {
@@ -81,13 +81,11 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            enabled = try container.decode(Bool.self, forKey: .enabled)
+            createdOn = try container.decode(Int.self, forKey: .createdOn)
 
             optLevel = try container.decode(String.self, forKey: .optLevel)
 
             storeIds = try container.decode([Int].self, forKey: .storeIds)
-
-            companyId = try container.decode(Int.self, forKey: .companyId)
 
             do {
                 modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
@@ -97,7 +95,11 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdOn = try container.decode(Int.self, forKey: .createdOn)
+            modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
+
+            enabled = try container.decode(Bool.self, forKey: .enabled)
 
             do {
                 createdBy = try container.decode([String: Any].self, forKey: .createdBy)
@@ -107,35 +109,33 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+            platform = try container.decode(String.self, forKey: .platform)
 
             brandIds = try container.decode([Int].self, forKey: .brandIds)
-
-            platform = try container.decode(String.self, forKey: .platform)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(platform, forKey: .platform)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
         }
     }
 }

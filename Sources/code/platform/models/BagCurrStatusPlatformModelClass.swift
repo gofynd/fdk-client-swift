@@ -30,7 +30,7 @@ public extension PlatformClient {
             case canBeCancelled = "can_be_cancelled"
         }
 
-        public init(canBeCancelled: Bool?, enableTracking: Bool?, isActive: Bool?, isCustomerReturnAllowed: Bool?, isReturnable: Bool?) {
+        public init(canBeCancelled: Bool? = nil, enableTracking: Bool? = nil, isActive: Bool? = nil, isCustomerReturnAllowed: Bool? = nil, isReturnable: Bool? = nil) {
             self.enableTracking = enableTracking
 
             self.isCustomerReturnAllowed = isCustomerReturnAllowed

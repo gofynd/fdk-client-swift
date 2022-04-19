@@ -14,7 +14,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [Department]?) {
+        public init(items: [Department]? = nil) {
             self.items = items
         }
 

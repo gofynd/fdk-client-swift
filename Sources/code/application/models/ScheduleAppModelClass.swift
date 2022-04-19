@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case start
         }
 
-        public init(cron: String?, duration: Int?, end: String?, start: String?) {
+        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, start: String? = nil) {
             self.cron = cron
 
             self.duration = duration

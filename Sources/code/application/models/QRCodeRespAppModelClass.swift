@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case svg
         }
 
-        public init(link: String?, svg: String?) {
+        public init(link: String? = nil, svg: String? = nil) {
             self.link = link
 
             self.svg = svg

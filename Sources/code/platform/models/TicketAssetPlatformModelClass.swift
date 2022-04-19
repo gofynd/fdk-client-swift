@@ -22,7 +22,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(display: String?, type: TicketAssetTypeEnum, value: String) {
+        public init(display: String? = nil, type: TicketAssetTypeEnum, value: String) {
             self.display = display
 
             self.value = value

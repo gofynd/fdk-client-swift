@@ -42,7 +42,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, rating: Rating?, review: Review?, state: FeedbackState?, tags: [TagMeta]?) {
+        public init(dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, rating: Rating? = nil, review: Review? = nil, state: FeedbackState? = nil, tags: [TagMeta]? = nil) {
             self.dateMeta = dateMeta
 
             self.entity = entity

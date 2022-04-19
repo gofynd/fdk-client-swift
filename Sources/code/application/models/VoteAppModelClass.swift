@@ -41,7 +41,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(action: String?, dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, reference: Entity?, state: FeedbackState?, tags: [TagMeta]?) {
+        public init(action: String? = nil, dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, reference: Entity? = nil, state: FeedbackState? = nil, tags: [TagMeta]? = nil) {
             self.action = action
 
             self.dateMeta = dateMeta

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case deploymentMeta = "deployment_meta"
         }
 
-        public init(deploymentMeta: DeploymentMeta?) {
+        public init(deploymentMeta: DeploymentMeta? = nil) {
             self.deploymentMeta = deploymentMeta
         }
 

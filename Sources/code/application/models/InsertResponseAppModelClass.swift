@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case ids
         }
 
-        public init(ids: String?) {
+        public init(ids: String? = nil) {
             self.ids = ids
         }
 

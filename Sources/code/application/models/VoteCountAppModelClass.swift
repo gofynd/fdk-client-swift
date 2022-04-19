@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case upvote
         }
 
-        public init(downvote: Int?, upvote: Int?) {
+        public init(downvote: Int? = nil, upvote: Int? = nil) {
             self.downvote = downvote
 
             self.upvote = upvote

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case taskParams = "task_params"
         }
 
-        public init(name: String?, taskConfigId: Int?, taskParams: [TaskParam]?) {
+        public init(name: String? = nil, taskConfigId: Int? = nil, taskParams: [TaskParam]? = nil) {
             self.name = name
 
             self.taskConfigId = taskConfigId

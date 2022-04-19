@@ -22,7 +22,7 @@ public extension PlatformClient {
             case rules
         }
 
-        public init(criteria: String?, rules: AppStoreRules?, stores: [[String: Any]]?) {
+        public init(criteria: String? = nil, rules: AppStoreRules? = nil, stores: [[String: Any]]? = nil) {
             self.criteria = criteria
 
             self.stores = stores

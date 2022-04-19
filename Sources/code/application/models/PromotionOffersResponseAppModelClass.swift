@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case availablePromotions = "available_promotions"
         }
 
-        public init(availablePromotions: [PromotionOffer]?) {
+        public init(availablePromotions: [PromotionOffer]? = nil) {
             self.availablePromotions = availablePromotions
         }
 

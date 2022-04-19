@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case hexCode = "hex_code"
         }
 
-        public init(hexCode: String?, title: String?) {
+        public init(hexCode: String? = nil, title: String? = nil) {
             self.title = title
 
             self.hexCode = hexCode

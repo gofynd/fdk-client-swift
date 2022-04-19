@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case page
         }
 
-        public init(items: [AdminAnnouncementSchema]?, page: Page?) {
+        public init(items: [AdminAnnouncementSchema]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

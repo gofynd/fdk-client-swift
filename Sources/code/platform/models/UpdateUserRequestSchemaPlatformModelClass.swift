@@ -30,7 +30,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(externalId: String?, firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?) {
+        public init(externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case sizes
         }
 
-        public init(sizes: [ProductSetDistributionSizeV2]?) {
+        public init(sizes: [ProductSetDistributionSizeV2]? = nil) {
             self.sizes = sizes
         }
 

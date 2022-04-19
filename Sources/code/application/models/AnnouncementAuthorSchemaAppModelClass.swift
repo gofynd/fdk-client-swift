@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case modifiedBy = "modified_by"
         }
 
-        public init(createdBy: String?, modifiedBy: String?) {
+        public init(createdBy: String? = nil, modifiedBy: String? = nil) {
             self.createdBy = createdBy
 
             self.modifiedBy = modifiedBy

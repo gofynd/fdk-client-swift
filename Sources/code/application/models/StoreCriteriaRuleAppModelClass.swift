@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case brands
         }
 
-        public init(brands: [Int]?, companies: [Int]?) {
+        public init(brands: [Int]? = nil, companies: [Int]? = nil) {
             self.companies = companies
 
             self.brands = brands

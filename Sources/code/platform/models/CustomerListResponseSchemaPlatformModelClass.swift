@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [UserSchema]?, page: PaginationSchema?) {
+        public init(items: [UserSchema]? = nil, page: PaginationSchema? = nil) {
             self.items = items
 
             self.page = page

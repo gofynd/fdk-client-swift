@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case effective
         }
 
-        public init(effective: Price?, marked: Price?) {
+        public init(effective: Price? = nil, marked: Price? = nil) {
             self.marked = marked
 
             self.effective = effective

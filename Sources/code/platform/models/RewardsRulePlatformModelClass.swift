@@ -14,7 +14,7 @@ public extension PlatformClient {
             case amount
         }
 
-        public init(amount: Double?) {
+        public init(amount: Double? = nil) {
             self.amount = amount
         }
 

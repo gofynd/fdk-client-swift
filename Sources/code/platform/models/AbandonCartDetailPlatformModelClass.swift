@@ -34,7 +34,7 @@ public extension PlatformClient {
             case address
         }
 
-        public init(address: [String: Any]?, articles: [[String: Any]]?, breakup: [String: Any]?, cartValue: String?, userId: String?, id: String?) {
+        public init(address: [String: Any]? = nil, articles: [[String: Any]]? = nil, breakup: [String: Any]? = nil, cartValue: String? = nil, userId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.userId = userId

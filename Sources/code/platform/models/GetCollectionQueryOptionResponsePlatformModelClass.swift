@@ -18,7 +18,7 @@ public extension PlatformClient {
             case sortOn = "sort_on"
         }
 
-        public init(filters: [ProductFilters]?, sortOn: [ProductSortOn]?) {
+        public init(filters: [ProductFilters]? = nil, sortOn: [ProductSortOn]? = nil) {
             self.filters = filters
 
             self.sortOn = sortOn

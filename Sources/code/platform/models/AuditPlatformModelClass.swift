@@ -26,7 +26,7 @@ public extension PlatformClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(createdBy: String?, createdOn: String?, modifiedBy: String?, modifiedOn: String?) {
+        public init(createdBy: String? = nil, createdOn: String? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil) {
             self.createdBy = createdBy
 
             self.modifiedBy = modifiedBy

@@ -62,7 +62,7 @@ public extension PlatformClient {
             case paymentMethods = "payment_methods"
         }
 
-        public init(application: PlatformApplication?, breakupValues: PlatformBreakupValues?, channel: Channel?, createdAt: String?, deliveryAddress: PlatformDeliveryAddress?, fyndstoreEmp: [String: Any]?, id: String?, orderingStore: [String: Any]?, payments: ItemsPayments?, paymentMethods: [String: Any]?, shipments: PlatformShipmentDetails?, totalShipmentsInOrder: Int?, user: PlatformOrderUserInfo?) {
+        public init(application: PlatformApplication? = nil, breakupValues: PlatformBreakupValues? = nil, channel: Channel? = nil, createdAt: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, fyndstoreEmp: [String: Any]? = nil, id: String? = nil, orderingStore: [String: Any]? = nil, payments: ItemsPayments? = nil, paymentMethods: [String: Any]? = nil, shipments: PlatformShipmentDetails? = nil, totalShipmentsInOrder: Int? = nil, user: PlatformOrderUserInfo? = nil) {
             self.user = user
 
             self.deliveryAddress = deliveryAddress

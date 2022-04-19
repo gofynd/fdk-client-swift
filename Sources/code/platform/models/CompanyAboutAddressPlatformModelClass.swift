@@ -38,7 +38,7 @@ public extension PlatformClient {
             case addressType = "address_type"
         }
 
-        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, pincode: Int?, state: String?) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, pincode: Int? = nil, state: String? = nil) {
             self.pincode = pincode
 
             self.address1 = address1

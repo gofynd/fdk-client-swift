@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [EventConfig]?, page: Page?) {
+        public init(items: [EventConfig]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case channels
         }
 
-        public init(appId: String?, channels: CommunicationConsentChannels?, userId: String?) {
+        public init(appId: String? = nil, channels: CommunicationConsentChannels? = nil, userId: String? = nil) {
             self.appId = appId
 
             self.userId = userId

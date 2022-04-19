@@ -14,7 +14,7 @@ public extension PlatformClient {
             case seo
         }
 
-        public init(seo: SeoSchema?) {
+        public init(seo: SeoSchema? = nil) {
             self.seo = seo
         }
 

@@ -34,7 +34,7 @@ public extension PlatformClient {
             case review
         }
 
-        public init(active: Bool?, archive: Bool?, media: String?, qna: Bool?, rating: Bool?, review: Bool?) {
+        public init(active: Bool? = nil, archive: Bool? = nil, media: String? = nil, qna: Bool? = nil, rating: Bool? = nil, review: Bool? = nil) {
             self.active = active
 
             self.archive = archive

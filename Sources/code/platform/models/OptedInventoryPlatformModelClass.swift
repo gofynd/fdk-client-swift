@@ -18,7 +18,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [String: Any]?, optType: OptType?) {
+        public init(items: [String: Any]? = nil, optType: OptType? = nil) {
             self.optType = optType
 
             self.items = items

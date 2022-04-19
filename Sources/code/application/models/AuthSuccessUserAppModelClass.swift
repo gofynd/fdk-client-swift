@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case emails
         }
 
-        public init(active: Bool?, debug: AuthSuccessUserDebug?, emails: AuthSuccessUserEmails?, firstName: String?, lastName: String?) {
+        public init(active: Bool? = nil, debug: AuthSuccessUserDebug? = nil, emails: AuthSuccessUserEmails? = nil, firstName: String? = nil, lastName: String? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName

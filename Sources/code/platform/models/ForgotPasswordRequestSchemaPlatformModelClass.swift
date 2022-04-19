@@ -18,7 +18,7 @@ public extension PlatformClient {
             case password
         }
 
-        public init(code: String?, password: String?) {
+        public init(code: String? = nil, password: String? = nil) {
             self.code = code
 
             self.password = password

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case value
         }
 
-        public init(attributes: [AttributeObject]?, value: Double?) {
+        public init(attributes: [AttributeObject]? = nil, value: Double? = nil) {
             self.attributes = attributes
 
             self.value = value

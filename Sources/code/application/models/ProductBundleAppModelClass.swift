@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case items
         }
 
-        public init(items: [GetGroupedProducts]?) {
+        public init(items: [GetGroupedProducts]? = nil) {
             self.items = items
         }
 

@@ -13,7 +13,7 @@ public extension ApplicationClient {
             case staffSelection = "staff_selection"
         }
 
-        public init(staffSelection: Bool?) {
+        public init(staffSelection: Bool? = nil) {
             self.staffSelection = staffSelection
         }
 

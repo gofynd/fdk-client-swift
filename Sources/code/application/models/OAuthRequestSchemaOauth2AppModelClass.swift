@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case refreshToken = "refresh_token"
         }
 
-        public init(accessToken: String?, expiry: Int?, refreshToken: String?) {
+        public init(accessToken: String? = nil, expiry: Int? = nil, refreshToken: String? = nil) {
             self.accessToken = accessToken
 
             self.expiry = expiry

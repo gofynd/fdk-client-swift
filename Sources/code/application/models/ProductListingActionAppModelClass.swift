@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductListingAction: Codable {
-        public var page: ProductListingActionPage?
-
         public var type: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var page: ProductListingActionPage?
 
+        public enum CodingKeys: String, CodingKey {
             case type
+
+            case page
         }
 
-        public init(page: ProductListingActionPage?, type: String?) {
-            self.page = page
-
+        public init(page: ProductListingActionPage? = nil, type: String? = nil) {
             self.type = type
+
+            self.page = page
         }
 
         public func duplicate() -> ProductListingAction {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                page = try container.decode(ProductListingActionPage.self, forKey: .page)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                page = try container.decode(ProductListingActionPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

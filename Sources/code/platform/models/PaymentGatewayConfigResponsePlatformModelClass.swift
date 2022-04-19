@@ -34,7 +34,7 @@ public extension PlatformClient {
             case aggregators
         }
 
-        public init(aggregators: [[String: Any]]?, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
+        public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
             self.appId = appId
 
             self.success = success

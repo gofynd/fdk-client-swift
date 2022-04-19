@@ -66,7 +66,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(application: String?, createdAt: String?, datasource: String?, description: String?, email: CampaignEmail?, isActive: Bool?, name: String?, recipientHeaders: RecipientHeaders?, slug: String?, tags: [[String: Any]]?, type: String?, updatedAt: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.recipientHeaders = recipientHeaders
 
             self.email = email

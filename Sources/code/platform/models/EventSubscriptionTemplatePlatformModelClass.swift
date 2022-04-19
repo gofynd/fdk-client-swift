@@ -18,7 +18,7 @@ public extension PlatformClient {
             case email
         }
 
-        public init(email: EventSubscriptionTemplateEmail?, sms: EventSubscriptionTemplateSms?) {
+        public init(email: EventSubscriptionTemplateEmail? = nil, sms: EventSubscriptionTemplateSms? = nil) {
             self.sms = sms
 
             self.email = email

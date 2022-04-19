@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case deliverables
         }
 
-        public init(deliverables: [[String: Any]]?, zone: String?) {
+        public init(deliverables: [[String: Any]]? = nil, zone: String? = nil) {
             self.zone = zone
 
             self.deliverables = deliverables

@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case nickname
         }
 
-        public init(cardId: String, nameOnCard: String?, nickname: String?, refresh: Bool?) {
+        public init(cardId: String, nameOnCard: String? = nil, nickname: String? = nil, refresh: Bool? = nil) {
             self.refresh = refresh
 
             self.nameOnCard = nameOnCard

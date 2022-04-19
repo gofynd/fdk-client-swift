@@ -18,7 +18,7 @@ public extension PlatformClient {
             case converted
         }
 
-        public init(base: BasePrice?, converted: BasePrice?) {
+        public init(base: BasePrice? = nil, converted: BasePrice? = nil) {
             self.base = base
 
             self.converted = converted

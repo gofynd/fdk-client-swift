@@ -18,7 +18,7 @@ public extension PlatformClient {
             case cartItems = "cart_items"
         }
 
-        public init(cartItems: CartItem?, shippingAddress: ShippingAddress) {
+        public init(cartItems: CartItem? = nil, shippingAddress: ShippingAddress) {
             self.shippingAddress = shippingAddress
 
             self.cartItems = cartItems

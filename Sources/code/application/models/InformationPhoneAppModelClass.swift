@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case number
         }
 
-        public init(code: String?, number: String?) {
+        public init(code: String? = nil, number: String? = nil) {
             self.code = code
 
             self.number = number

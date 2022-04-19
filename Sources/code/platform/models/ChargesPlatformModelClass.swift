@@ -18,7 +18,7 @@ public extension PlatformClient {
             case charges
         }
 
-        public init(charges: Double?, threshold: Double?) {
+        public init(charges: Double? = nil, threshold: Double? = nil) {
             self.threshold = threshold
 
             self.charges = charges

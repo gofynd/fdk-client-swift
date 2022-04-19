@@ -14,7 +14,7 @@ public extension PlatformClient {
             case max
         }
 
-        public init(max: Int?) {
+        public init(max: Int? = nil) {
             self.max = max
         }
 

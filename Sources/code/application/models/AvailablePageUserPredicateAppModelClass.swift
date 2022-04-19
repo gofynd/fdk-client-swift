@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case anonymous
         }
 
-        public init(anonymous: Bool?, authenticated: Bool?) {
+        public init(anonymous: Bool? = nil, authenticated: Bool? = nil) {
             self.authenticated = authenticated
 
             self.anonymous = anonymous

@@ -14,7 +14,7 @@ public extension PlatformClient {
             case timestamp
         }
 
-        public init(timestamp: Timestamp?) {
+        public init(timestamp: Timestamp? = nil) {
             self.timestamp = timestamp
         }
 

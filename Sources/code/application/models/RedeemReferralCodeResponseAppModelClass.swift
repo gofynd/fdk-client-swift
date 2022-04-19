@@ -29,7 +29,7 @@ public extension ApplicationClient {
             case referrerInfo = "referrer_info"
         }
 
-        public init(message: String?, points: Double?, redeemed: Bool?, referrerId: String?, referrerInfo: String?) {
+        public init(message: String? = nil, points: Double? = nil, redeemed: Bool? = nil, referrerId: String? = nil, referrerInfo: String? = nil) {
             self.message = message
 
             self.points = points

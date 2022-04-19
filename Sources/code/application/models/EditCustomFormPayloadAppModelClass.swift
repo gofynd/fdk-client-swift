@@ -45,7 +45,7 @@ public extension ApplicationClient {
             case pollForAssignment = "poll_for_assignment"
         }
 
-        public init(description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool?, pollForAssignment: PollForAssignment?, priority: PriorityEnum, shouldNotify: Bool?, successMessage: String?, title: String) {
+        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool? = nil, pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, successMessage: String? = nil, title: String) {
             self.title = title
 
             self.inputs = inputs

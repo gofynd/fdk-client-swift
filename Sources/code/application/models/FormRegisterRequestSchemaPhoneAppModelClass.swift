@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case mobile
         }
 
-        public init(countryCode: String?, mobile: String?) {
+        public init(countryCode: String? = nil, mobile: String? = nil) {
             self.countryCode = countryCode
 
             self.mobile = mobile

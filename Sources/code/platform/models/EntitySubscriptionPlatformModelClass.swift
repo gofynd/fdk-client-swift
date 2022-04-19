@@ -50,7 +50,7 @@ public extension PlatformClient {
             case lineItems = "line_items"
         }
 
-        public init(activatedOn: String?, cancelledOn: String?, companyId: Int?, lineItems: [SubscriptionCharge]?, metadata: [String: Any]?, name: String?, status: String?, trialDays: Int?, trialPeriod: SubscriptionTrialPeriod?, id: String?) {
+        public init(activatedOn: String? = nil, cancelledOn: String? = nil, companyId: Int? = nil, lineItems: [SubscriptionCharge]? = nil, metadata: [String: Any]? = nil, name: String? = nil, status: String? = nil, trialDays: Int? = nil, trialPeriod: SubscriptionTrialPeriod? = nil, id: String? = nil) {
             self.id = id
 
             self.name = name

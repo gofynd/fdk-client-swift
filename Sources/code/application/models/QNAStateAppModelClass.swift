@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case vote
         }
 
-        public init(active: Bool?, approve: Bool?, modify: Bool?, priority: Int?, reply: Bool?, vote: Bool?) {
+        public init(active: Bool? = nil, approve: Bool? = nil, modify: Bool? = nil, priority: Int? = nil, reply: Bool? = nil, vote: Bool? = nil) {
             self.active = active
 
             self.approve = approve

@@ -18,7 +18,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(pageSlug: String?, type: String?) {
+        public init(pageSlug: String? = nil, type: String? = nil) {
             self.pageSlug = pageSlug
 
             self.type = type

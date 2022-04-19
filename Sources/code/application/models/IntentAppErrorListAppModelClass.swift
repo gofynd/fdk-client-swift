@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case packageName = "package_name"
         }
 
-        public init(code: String?, packageName: String?) {
+        public init(code: String? = nil, packageName: String? = nil) {
             self.code = code
 
             self.packageName = packageName

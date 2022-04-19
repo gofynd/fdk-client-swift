@@ -10,24 +10,24 @@ public extension PlatformClient {
     class UserCommon: Codable {
         public var username: String?
 
-        public var userId: String?
-
         public var companyId: Int?
+
+        public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
-            case userId = "user_id"
-
             case companyId = "company_id"
+
+            case userId = "user_id"
         }
 
-        public init(companyId: Int?, username: String?, userId: String?) {
+        public init(companyId: Int? = nil, username: String? = nil, userId: String? = nil) {
             self.username = username
 
-            self.userId = userId
-
             self.companyId = companyId
+
+            self.userId = userId
         }
 
         public func duplicate() -> UserCommon {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }

@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case skuCode = "sku_code"
         }
 
-        public init(ean: String?, skuCode: String?) {
+        public init(ean: String? = nil, skuCode: String? = nil) {
             self.ean = ean
 
             self.skuCode = skuCode

@@ -22,7 +22,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [SystemNotification]?, lastReadAnchor: Int?, page: Page?) {
+        public init(items: [SystemNotification]? = nil, lastReadAnchor: Int? = nil, page: Page? = nil) {
             self.items = items
 
             self.lastReadAnchor = lastReadAnchor

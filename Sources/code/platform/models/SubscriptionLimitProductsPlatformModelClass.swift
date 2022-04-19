@@ -18,7 +18,7 @@ public extension PlatformClient {
             case limit
         }
 
-        public init(bulk: Bool?, limit: Int?) {
+        public init(bulk: Bool? = nil, limit: Int? = nil) {
             self.bulk = bulk
 
             self.limit = limit

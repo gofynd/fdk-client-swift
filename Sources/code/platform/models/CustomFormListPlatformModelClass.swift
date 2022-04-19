@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [CustomForm]?, page: Page?) {
+        public init(items: [CustomForm]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page

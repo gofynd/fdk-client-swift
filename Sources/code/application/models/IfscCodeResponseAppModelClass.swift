@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case branchName = "branch_name"
         }
 
-        public init(bankName: String, branchName: String, success: Bool?) {
+        public init(bankName: String, branchName: String, success: Bool? = nil) {
             self.success = success
 
             self.bankName = bankName

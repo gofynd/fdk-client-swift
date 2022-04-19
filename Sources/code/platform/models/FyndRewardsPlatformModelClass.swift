@@ -14,7 +14,7 @@ public extension PlatformClient {
             case credentials
         }
 
-        public init(credentials: FyndRewardsCredentials?) {
+        public init(credentials: FyndRewardsCredentials? = nil) {
             self.credentials = credentials
         }
 

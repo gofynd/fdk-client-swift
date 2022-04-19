@@ -74,7 +74,7 @@ public extension PlatformClient {
             case latestInvoice = "latest_invoice"
         }
 
-        public init(cancelAtPeriodEnd: Bool?, collectionMethod: String?, createdAt: String?, currentPeriod: SubscriptionCurrentPeriod?, currentStatus: String?, invoiceSettings: SubscriptionInvoiceSettings?, isActive: Bool?, latestInvoice: String?, modifiedAt: String?, pauseCollection: SubscriptionPauseCollection?, planData: Plan?, planId: String?, productSuiteId: String?, subscriberId: String?, trial: SubscriptionTrial?, id: String?) {
+        public init(cancelAtPeriodEnd: Bool? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currentPeriod: SubscriptionCurrentPeriod? = nil, currentStatus: String? = nil, invoiceSettings: SubscriptionInvoiceSettings? = nil, isActive: Bool? = nil, latestInvoice: String? = nil, modifiedAt: String? = nil, pauseCollection: SubscriptionPauseCollection? = nil, planData: Plan? = nil, planId: String? = nil, productSuiteId: String? = nil, subscriberId: String? = nil, trial: SubscriptionTrial? = nil, id: String? = nil) {
             self.currentPeriod = currentPeriod
 
             self.pauseCollection = pauseCollection

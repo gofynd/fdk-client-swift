@@ -65,7 +65,7 @@ public extension ApplicationClient {
             case schedule = "_schedule"
         }
 
-        public init(application: String?, content: [[String: Any]]?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, description: String?, orientation: String?, platform: String?, published: Bool?, slug: String?, tags: [String]?, title: String?, type: String?, id: String?, schedule: ScheduleSchema?) {
+        public init(application: String? = nil, content: [[String: Any]]? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, orientation: String? = nil, platform: String? = nil, published: Bool? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
             self.id = id
 
             self.platform = platform
