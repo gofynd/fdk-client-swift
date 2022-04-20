@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(userAgent: String) {
             self.userAgent = userAgent
-        }
-
-        public func duplicate() -> CreatedOn {
-            let dict = self.dictionary!
-            let copy = CreatedOn(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

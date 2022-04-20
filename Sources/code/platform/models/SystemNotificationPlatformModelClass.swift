@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.group = group
 
             self.createdAt = createdAt
-        }
-
-        public func duplicate() -> SystemNotification {
-            let dict = self.dictionary!
-            let copy = SystemNotification(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.total = total
 
             self.user = user
-        }
-
-        public func duplicate() -> UsesRemaining1 {
-            let dict = self.dictionary!
-            let copy = UsesRemaining1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

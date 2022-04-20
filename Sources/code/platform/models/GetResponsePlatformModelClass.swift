@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.data = data
 
             self.page = page
-        }
-
-        public func duplicate() -> GetResponse {
-            let dict = self.dictionary!
-            let copy = GetResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

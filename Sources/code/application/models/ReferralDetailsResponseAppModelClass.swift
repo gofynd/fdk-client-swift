@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.share = share
 
             self.user = user
-        }
-
-        public func duplicate() -> ReferralDetailsResponse {
-            let dict = self.dictionary!
-            let copy = ReferralDetailsResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

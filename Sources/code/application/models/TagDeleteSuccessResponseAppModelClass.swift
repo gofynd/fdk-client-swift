@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(success: Bool? = nil) {
             self.success = success
-        }
-
-        public func duplicate() -> TagDeleteSuccessResponse {
-            let dict = self.dictionary!
-            let copy = TagDeleteSuccessResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

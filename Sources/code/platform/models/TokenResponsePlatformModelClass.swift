@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.v = v
-        }
-
-        public func duplicate() -> TokenResponse {
-            let dict = self.dictionary!
-            let copy = TokenResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

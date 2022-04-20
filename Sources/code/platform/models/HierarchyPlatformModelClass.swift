@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.l2 = l2
 
             self.department = department
-        }
-
-        public func duplicate() -> Hierarchy {
-            let dict = self.dictionary!
-            let copy = Hierarchy(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

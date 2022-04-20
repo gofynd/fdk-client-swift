@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.lastname = lastname
 
             self.orderid = orderid
-        }
-
-        public func duplicate() -> GetNRecordsCsvResItems {
-            let dict = self.dictionary!
-            let copy = GetNRecordsCsvResItems(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

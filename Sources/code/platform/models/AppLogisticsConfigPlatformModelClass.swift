@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.sameDayDelivery = sameDayDelivery
 
             self.dpAssignment = dpAssignment
-        }
-
-        public func duplicate() -> AppLogisticsConfig {
-            let dict = self.dictionary!
-            let copy = AppLogisticsConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

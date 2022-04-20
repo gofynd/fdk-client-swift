@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.offerText = offerText
 
             self.name = name
-        }
-
-        public func duplicate() -> DisplayMeta1 {
-            let dict = self.dictionary!
-            let copy = DisplayMeta1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

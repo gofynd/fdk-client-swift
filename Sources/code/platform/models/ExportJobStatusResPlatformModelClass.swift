@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.jobId = jobId
 
             self.downloadUrl = downloadUrl
-        }
-
-        public func duplicate() -> ExportJobStatusRes {
-            let dict = self.dictionary!
-            let copy = ExportJobStatusRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

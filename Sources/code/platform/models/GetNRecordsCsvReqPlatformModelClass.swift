@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.header = header
 
             self.count = count
-        }
-
-        public func duplicate() -> GetNRecordsCsvReq {
-            let dict = self.dictionary!
-            let copy = GetNRecordsCsvReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

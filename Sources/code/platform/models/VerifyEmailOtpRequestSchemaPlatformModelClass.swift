@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.registerToken = registerToken
 
             self.otp = otp
-        }
-
-        public func duplicate() -> VerifyEmailOtpRequestSchema {
-            let dict = self.dictionary!
-            let copy = VerifyEmailOtpRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

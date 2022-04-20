@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.isArchived = isArchived
 
             self.isPublic = isPublic
-        }
-
-        public func duplicate() -> State {
-            let dict = self.dictionary!
-            let copy = State(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

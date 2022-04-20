@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.label = label
 
             self.props = props
-        }
-
-        public func duplicate() -> availableSectionSchema {
-            let dict = self.dictionary!
-            let copy = availableSectionSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

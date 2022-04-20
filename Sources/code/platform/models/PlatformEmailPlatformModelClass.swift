@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.isRequired = isRequired
 
             self.level = level
-        }
-
-        public func duplicate() -> PlatformEmail {
-            let dict = self.dictionary!
-            let copy = PlatformEmail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

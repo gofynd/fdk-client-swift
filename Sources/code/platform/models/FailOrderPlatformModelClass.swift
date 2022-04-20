@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.marketplace = marketplace
 
             self.companyId = companyId
-        }
-
-        public func duplicate() -> FailOrder {
-            let dict = self.dictionary!
-            let copy = FailOrder(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

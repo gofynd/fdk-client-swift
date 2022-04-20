@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.items = items
 
             self.attributesMetadata = attributesMetadata
-        }
-
-        public func duplicate() -> ProductCompareResponse {
-            let dict = self.dictionary!
-            let copy = ProductCompareResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -184,12 +184,6 @@ public extension PlatformClient {
             self.version = version
 
             self.alias = alias
-        }
-
-        public func duplicate() -> JobConfig {
-            let dict = self.dictionary!
-            let copy = JobConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

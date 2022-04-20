@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.dateMeta = dateMeta
 
             self.schedule = schedule
-        }
-
-        public func duplicate() -> CustomPageSchema {
-            let dict = self.dictionary!
-            let copy = CustomPageSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

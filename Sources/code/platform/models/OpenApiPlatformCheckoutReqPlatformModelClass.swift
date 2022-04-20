@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -118,12 +118,6 @@ public extension PlatformClient {
             self.orderId = orderId
 
             self.couponCode = couponCode
-        }
-
-        public func duplicate() -> OpenApiPlatformCheckoutReq {
-            let dict = self.dictionary!
-            let copy = OpenApiPlatformCheckoutReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.googleMap = googleMap
 
             self.revenueEngineCoupon = revenueEngineCoupon
-        }
-
-        public func duplicate() -> CartFeature {
-            let dict = self.dictionary!
-            let copy = CartFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

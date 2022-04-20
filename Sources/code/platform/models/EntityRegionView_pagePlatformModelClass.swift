@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.hasNext = hasNext
 
             self.type = type
-        }
-
-        public func duplicate() -> EntityRegionView_page {
-            let dict = self.dictionary!
-            let copy = EntityRegionView_page(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

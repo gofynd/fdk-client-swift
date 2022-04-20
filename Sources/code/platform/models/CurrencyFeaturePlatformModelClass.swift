@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.type = type
 
             self.defaultCurrency = defaultCurrency
-        }
-
-        public func duplicate() -> CurrencyFeature {
-            let dict = self.dictionary!
-            let copy = CurrencyFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

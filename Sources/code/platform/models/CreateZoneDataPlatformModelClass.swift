@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.storeIds = storeIds
 
             self.isActive = isActive
-        }
-
-        public func duplicate() -> CreateZoneData {
-            let dict = self.dictionary!
-            let copy = CreateZoneData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

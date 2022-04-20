@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.pincode = pincode
 
             self.distance = distance
-        }
-
-        public func duplicate() -> StrategyWiseListingSchemaV2 {
-            let dict = self.dictionary!
-            let copy = StrategyWiseListingSchemaV2(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

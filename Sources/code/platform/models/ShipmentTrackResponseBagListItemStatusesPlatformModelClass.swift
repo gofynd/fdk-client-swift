@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.isDelayed = isDelayed
 
             self.trackingList = trackingList
-        }
-
-        public func duplicate() -> ShipmentTrackResponseBagListItemStatuses {
-            let dict = self.dictionary!
-            let copy = ShipmentTrackResponseBagListItemStatuses(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

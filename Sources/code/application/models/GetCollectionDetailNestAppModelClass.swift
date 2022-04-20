@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -123,12 +123,6 @@ public extension ApplicationClient {
             self.badge = badge
 
             self.uid = uid
-        }
-
-        public func duplicate() -> GetCollectionDetailNest {
-            let dict = self.dictionary!
-            let copy = GetCollectionDetailNest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

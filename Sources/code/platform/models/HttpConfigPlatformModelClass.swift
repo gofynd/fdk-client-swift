@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.localPath = localPath
 
             self.archiveConfig = archiveConfig
-        }
-
-        public func duplicate() -> HttpConfig {
-            let dict = self.dictionary!
-            let copy = HttpConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

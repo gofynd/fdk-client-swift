@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -45,12 +45,6 @@ public extension ApplicationClient {
             self.videoMeta = videoMeta
 
             self.voteAllowed = voteAllowed
-        }
-
-        public func duplicate() -> TemplateReview {
-            let dict = self.dictionary!
-            let copy = TemplateReview(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

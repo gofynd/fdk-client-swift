@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.maximum = maximum
 
             self.remaining = remaining
-        }
-
-        public func duplicate() -> UsesRestriction1 {
-            let dict = self.dictionary!
-            let copy = UsesRestriction1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

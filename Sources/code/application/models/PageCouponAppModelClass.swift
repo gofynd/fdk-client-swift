@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.current = current
 
             self.hasPrevious = hasPrevious
-        }
-
-        public func duplicate() -> PageCoupon {
-            let dict = self.dictionary!
-            let copy = PageCoupon(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

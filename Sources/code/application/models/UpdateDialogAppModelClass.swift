@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.type = type
 
             self.interval = interval
-        }
-
-        public func duplicate() -> UpdateDialog {
-            let dict = self.dictionary!
-            let copy = UpdateDialog(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

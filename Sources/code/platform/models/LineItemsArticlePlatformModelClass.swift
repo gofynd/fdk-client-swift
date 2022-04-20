@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -166,12 +166,6 @@ public extension PlatformClient {
             self.fyndItemCode = fyndItemCode
 
             self.countryOfOrigin = countryOfOrigin
-        }
-
-        public func duplicate() -> LineItemsArticle {
-            let dict = self.dictionary!
-            let copy = LineItemsArticle(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

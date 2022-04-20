@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.action = action
 
             self.display = display
-        }
-
-        public func duplicate() -> AutocompleteItem {
-            let dict = self.dictionary!
-            let copy = AutocompleteItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

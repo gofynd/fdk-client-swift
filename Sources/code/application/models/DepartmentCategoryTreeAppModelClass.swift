@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.department = department
 
             self.items = items
-        }
-
-        public func duplicate() -> DepartmentCategoryTree {
-            let dict = self.dictionary!
-            let copy = DepartmentCategoryTree(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

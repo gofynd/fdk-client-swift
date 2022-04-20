@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -63,12 +63,6 @@ public extension ApplicationClient {
             self.state = state
 
             self.city = city
-        }
-
-        public func duplicate() -> StoreAddressSerializer {
-            let dict = self.dictionary!
-            let copy = StoreAddressSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

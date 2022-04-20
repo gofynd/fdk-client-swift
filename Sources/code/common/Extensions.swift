@@ -155,6 +155,15 @@ extension Encodable {
     }
 }
 
+public extension Encodable {
+    /// Returns a new deep clone copy of parent object
+    func duplicate() -> Self where Self: Decodable {
+        let dict = self.dictionary!
+        let copy = Self.self.init(dictionary: dict)!
+        return copy
+    }
+}
+
 extension KeyedDecodingContainer {
     func decode(_ type: [String: Any].Type, forKey key: K) throws -> [String: Any] {
         let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)

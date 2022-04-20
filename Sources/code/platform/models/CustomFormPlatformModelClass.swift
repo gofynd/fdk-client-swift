@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.pollForAssignment = pollForAssignment
 
             self.id = id
-        }
-
-        public func duplicate() -> CustomForm {
-            let dict = self.dictionary!
-            let copy = CustomForm(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

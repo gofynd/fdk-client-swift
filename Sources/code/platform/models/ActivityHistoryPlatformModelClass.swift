@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.type = type
 
             self.user = user
-        }
-
-        public func duplicate() -> ActivityHistory {
-            let dict = self.dictionary!
-            let copy = ActivityHistory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.iconUrl = iconUrl
 
             self.customJson = customJson
-        }
-
-        public func duplicate() -> CategorySchema {
-            let dict = self.dictionary!
-            let copy = CategorySchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

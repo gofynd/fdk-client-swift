@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.priority = priority
 
             self.timeToLive = timeToLive
-        }
-
-        public func duplicate() -> SystemNotificationSettings {
-            let dict = self.dictionary!
-            let copy = SystemNotificationSettings(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

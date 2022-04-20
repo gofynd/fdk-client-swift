@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.rewrite = rewrite
 
             self.basepath = basepath
-        }
-
-        public func duplicate() -> Destination {
-            let dict = self.dictionary!
-            let copy = Destination(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

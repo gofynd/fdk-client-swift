@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.oldPassword = oldPassword
 
             self.newPassword = newPassword
-        }
-
-        public func duplicate() -> UpdatePasswordRequestSchema {
-            let dict = self.dictionary!
-            let copy = UpdatePasswordRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

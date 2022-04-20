@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.name = name
 
             self.provider = provider
-        }
-
-        public func duplicate() -> Cloud {
-            let dict = self.dictionary!
-            let copy = Cloud(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

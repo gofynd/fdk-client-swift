@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.breakup = breakup
 
             self.address = address
-        }
-
-        public func duplicate() -> AbandonCartDetail {
-            let dict = self.dictionary!
-            let copy = AbandonCartDetail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

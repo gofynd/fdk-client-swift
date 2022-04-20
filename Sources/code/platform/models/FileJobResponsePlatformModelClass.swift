@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.type = type
 
             self.fileType = fileType
-        }
-
-        public func duplicate() -> FileJobResponse {
-            let dict = self.dictionary!
-            let copy = FileJobResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

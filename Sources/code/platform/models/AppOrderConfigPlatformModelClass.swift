@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.forceReassignment = forceReassignment
 
             self.message = message
-        }
-
-        public func duplicate() -> AppOrderConfig {
-            let dict = self.dictionary!
-            let copy = AppOrderConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

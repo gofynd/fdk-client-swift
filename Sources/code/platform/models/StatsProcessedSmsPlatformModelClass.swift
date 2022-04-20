@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.failed = failed
 
             self.suppressed = suppressed
-        }
-
-        public func duplicate() -> StatsProcessedSms {
-            let dict = self.dictionary!
-            let copy = StatsProcessedSms(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

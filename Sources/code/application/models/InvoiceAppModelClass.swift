@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.invoiceUrl = invoiceUrl
 
             self.labelUrl = labelUrl
-        }
-
-        public func duplicate() -> Invoice {
-            let dict = self.dictionary!
-            let copy = Invoice(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

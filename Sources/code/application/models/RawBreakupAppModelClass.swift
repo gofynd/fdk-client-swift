@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -81,12 +81,6 @@ public extension ApplicationClient {
             self.deliveryCharge = deliveryCharge
 
             self.mrpTotal = mrpTotal
-        }
-
-        public func duplicate() -> RawBreakup {
-            let dict = self.dictionary!
-            let copy = RawBreakup(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

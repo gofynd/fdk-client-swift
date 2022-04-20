@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(credentials: GoogleMapCredentials? = nil) {
             self.credentials = credentials
-        }
-
-        public func duplicate() -> GoogleMap {
-            let dict = self.dictionary!
-            let copy = GoogleMap(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

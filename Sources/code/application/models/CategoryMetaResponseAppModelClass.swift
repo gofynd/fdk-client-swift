@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.uid = uid
 
             self.name = name
-        }
-
-        public func duplicate() -> CategoryMetaResponse {
-            let dict = self.dictionary!
-            let copy = CategoryMetaResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

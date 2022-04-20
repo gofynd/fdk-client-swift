@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.active = active
 
             self.archive = archive
-        }
-
-        public func duplicate() -> UpdateTemplateStatusRequest {
-            let dict = self.dictionary!
-            let copy = UpdateTemplateStatusRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

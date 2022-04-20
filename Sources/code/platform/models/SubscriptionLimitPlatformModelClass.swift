@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.integrations = integrations
 
             self.isTrialPlan = isTrialPlan
-        }
-
-        public func duplicate() -> SubscriptionLimit {
-            let dict = self.dictionary!
-            let copy = SubscriptionLimit(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

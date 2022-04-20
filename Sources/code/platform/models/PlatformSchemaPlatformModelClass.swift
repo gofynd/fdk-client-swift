@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -136,12 +136,6 @@ public extension PlatformClient {
             self.mobileImage = mobileImage
 
             self.desktopImage = desktopImage
-        }
-
-        public func duplicate() -> PlatformSchema {
-            let dict = self.dictionary!
-            let copy = PlatformSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

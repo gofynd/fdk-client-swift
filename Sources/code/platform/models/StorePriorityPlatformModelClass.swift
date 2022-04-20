@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.enabled = enabled
 
             self.storetypeOrder = storetypeOrder
-        }
-
-        public func duplicate() -> StorePriority {
-            let dict = self.dictionary!
-            let copy = StorePriority(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

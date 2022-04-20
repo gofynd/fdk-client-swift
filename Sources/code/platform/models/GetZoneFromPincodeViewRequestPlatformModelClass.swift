@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.country = country
 
             self.pincode = pincode
-        }
-
-        public func duplicate() -> GetZoneFromPincodeViewRequest {
-            let dict = self.dictionary!
-            let copy = GetZoneFromPincodeViewRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.totalPincodesServed = totalPincodesServed
 
             self.totalZones = totalZones
-        }
-
-        public func duplicate() -> ListViewSummary {
-            let dict = self.dictionary!
-            let copy = ListViewSummary(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

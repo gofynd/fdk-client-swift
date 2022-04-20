@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.extensionId = extensionId
 
             self.criteria = criteria
-        }
-
-        public func duplicate() -> Association {
-            let dict = self.dictionary!
-            let copy = Association(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

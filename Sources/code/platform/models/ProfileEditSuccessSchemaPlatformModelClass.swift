@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.registerToken = registerToken
 
             self.userExists = userExists
-        }
-
-        public func duplicate() -> ProfileEditSuccessSchema {
-            let dict = self.dictionary!
-            let copy = ProfileEditSuccessSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.userId = userId
 
             self.channels = channels
-        }
-
-        public func duplicate() -> CommunicationConsent {
-            let dict = self.dictionary!
-            let copy = CommunicationConsent(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.count = count
 
             self.updatedAt = updatedAt
-        }
-
-        public func duplicate() -> OrderCommitted {
-            let dict = self.dictionary!
-            let copy = OrderCommitted(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -106,12 +106,6 @@ public extension PlatformClient {
             self.brand = brand
 
             self.lastUpdatedAt = lastUpdatedAt
-        }
-
-        public func duplicate() -> BagItem {
-            let dict = self.dictionary!
-            let copy = BagItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -45,12 +45,6 @@ public extension ApplicationClient {
             self.autoDecideDuration = autoDecideDuration
 
             self.action = action
-        }
-
-        public func duplicate() -> SlideshowMedia {
-            let dict = self.dictionary!
-            let copy = SlideshowMedia(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

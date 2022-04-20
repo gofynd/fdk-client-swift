@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.pageSlug = pageSlug
 
             self.type = type
-        }
-
-        public func duplicate() -> AnnouncementPageSchema {
-            let dict = self.dictionary!
-            let copy = AnnouncementPageSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

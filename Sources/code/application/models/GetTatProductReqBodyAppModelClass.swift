@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.toPincode = toPincode
 
             self.action = action
-        }
-
-        public func duplicate() -> GetTatProductReqBody {
-            let dict = self.dictionary!
-            let copy = GetTatProductReqBody(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

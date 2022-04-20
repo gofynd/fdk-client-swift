@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> EventSubscriptions {
-            let dict = self.dictionary!
-            let copy = EventSubscriptions(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

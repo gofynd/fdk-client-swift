@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(themeId: String? = nil) {
             self.themeId = themeId
-        }
-
-        public func duplicate() -> AddThemeRequestSchema {
-            let dict = self.dictionary!
-            let copy = AddThemeRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

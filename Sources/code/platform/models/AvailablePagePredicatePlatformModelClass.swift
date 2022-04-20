@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.user = user
 
             self.route = route
-        }
-
-        public func duplicate() -> AvailablePagePredicate {
-            let dict = self.dictionary!
-            let copy = AvailablePagePredicate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

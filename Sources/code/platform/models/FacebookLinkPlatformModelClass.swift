@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.icon = icon
 
             self.link = link
-        }
-
-        public func duplicate() -> FacebookLink {
-            let dict = self.dictionary!
-            let copy = FacebookLink(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

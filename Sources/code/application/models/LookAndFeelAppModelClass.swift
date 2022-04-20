@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.cardPosition = cardPosition
 
             self.backgroundColor = backgroundColor
-        }
-
-        public func duplicate() -> LookAndFeel {
-            let dict = self.dictionary!
-            let copy = LookAndFeel(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

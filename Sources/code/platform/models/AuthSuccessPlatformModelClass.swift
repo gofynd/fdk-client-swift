@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.userExists = userExists
 
             self.user = user
-        }
-
-        public func duplicate() -> AuthSuccess {
-            let dict = self.dictionary!
-            let copy = AuthSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

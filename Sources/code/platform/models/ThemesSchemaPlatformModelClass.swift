@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -136,12 +136,6 @@ public extension PlatformClient {
             self.v = v
 
             self.colors = colors
-        }
-
-        public func duplicate() -> ThemesSchema {
-            let dict = self.dictionary!
-            let copy = ThemesSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

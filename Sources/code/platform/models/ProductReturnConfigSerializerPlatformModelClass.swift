@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -8,33 +8,27 @@ public extension PlatformClient {
      */
 
     class ProductReturnConfigSerializer: Codable {
-        public var storeUid: Int?
-
         public var onSameStore: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case storeUid = "store_uid"
+        public var storeUid: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case onSameStore = "on_same_store"
+
+            case storeUid = "store_uid"
         }
 
         public init(onSameStore: Bool? = nil, storeUid: Int? = nil) {
-            self.storeUid = storeUid
-
             self.onSameStore = onSameStore
-        }
 
-        public func duplicate() -> ProductReturnConfigSerializer {
-            let dict = self.dictionary!
-            let copy = ProductReturnConfigSerializer(dictionary: dict)!
-            return copy
+            self.storeUid = storeUid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeUid = try container.decode(Int.self, forKey: .storeUid)
+                onSameStore = try container.decode(Bool.self, forKey: .onSameStore)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                onSameStore = try container.decode(Bool.self, forKey: .onSameStore)
+                storeUid = try container.decode(Int.self, forKey: .storeUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeUid, forKey: .storeUid)
-
             try? container.encodeIfPresent(onSameStore, forKey: .onSameStore)
+
+            try? container.encodeIfPresent(storeUid, forKey: .storeUid)
         }
     }
 }

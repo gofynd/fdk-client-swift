@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.open = open
 
             self.closing = closing
-        }
-
-        public func duplicate() -> Timing {
-            let dict = self.dictionary!
-            let copy = Timing(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

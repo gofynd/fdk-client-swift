@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.serviceabilityType = serviceabilityType
 
             self.channelType = channelType
-        }
-
-        public func duplicate() -> ApplicationServiceabilityConfig {
-            let dict = self.dictionary!
-            let copy = ApplicationServiceabilityConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

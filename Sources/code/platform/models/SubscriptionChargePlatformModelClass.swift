@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.isTest = isTest
 
             self.metadata = metadata
-        }
-
-        public func duplicate() -> SubscriptionCharge {
-            let dict = self.dictionary!
-            let copy = SubscriptionCharge(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

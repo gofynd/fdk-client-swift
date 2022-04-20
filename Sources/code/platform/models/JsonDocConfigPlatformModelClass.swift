@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(propBeanConfigs: [PropBeanConfig]? = nil) {
             self.propBeanConfigs = propBeanConfigs
-        }
-
-        public func duplicate() -> JsonDocConfig {
-            let dict = self.dictionary!
-            let copy = JsonDocConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

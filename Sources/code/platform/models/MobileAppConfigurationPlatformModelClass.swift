@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.v = v
 
             self.packageName = packageName
-        }
-
-        public func duplicate() -> MobileAppConfiguration {
-            let dict = self.dictionary!
-            let copy = MobileAppConfiguration(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

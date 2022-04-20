@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.verifyMobileOtp = verifyMobileOtp
 
             self.userExists = userExists
-        }
-
-        public func duplicate() -> RegisterFormSuccess {
-            let dict = self.dictionary!
-            let copy = RegisterFormSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

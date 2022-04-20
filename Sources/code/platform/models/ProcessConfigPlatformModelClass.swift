@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -100,12 +100,6 @@ public extension PlatformClient {
             self.oauthConfig = oauthConfig
 
             self.googleSpreadsheetConfig = googleSpreadsheetConfig
-        }
-
-        public func duplicate() -> ProcessConfig {
-            let dict = self.dictionary!
-            let copy = ProcessConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

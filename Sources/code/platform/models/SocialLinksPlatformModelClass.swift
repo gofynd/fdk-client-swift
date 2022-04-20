@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.vimeo = vimeo
 
             self.blogLink = blogLink
-        }
-
-        public func duplicate() -> SocialLinks {
-            let dict = self.dictionary!
-            let copy = SocialLinks(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

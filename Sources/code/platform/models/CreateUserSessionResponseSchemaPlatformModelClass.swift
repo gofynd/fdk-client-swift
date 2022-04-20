@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.httpOnly = httpOnly
 
             self.cookie = cookie
-        }
-
-        public func duplicate() -> CreateUserSessionResponseSchema {
-            let dict = self.dictionary!
-            let copy = CreateUserSessionResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

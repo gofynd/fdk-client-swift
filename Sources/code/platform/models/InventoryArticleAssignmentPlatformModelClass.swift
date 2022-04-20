@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.postOrderReassignment = postOrderReassignment
 
             self.rules = rules
-        }
-
-        public func duplicate() -> InventoryArticleAssignment {
-            let dict = self.dictionary!
-            let copy = InventoryArticleAssignment(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

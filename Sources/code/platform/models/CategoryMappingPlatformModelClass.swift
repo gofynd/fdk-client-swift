@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -8,39 +8,33 @@ public extension PlatformClient {
      */
 
     class CategoryMapping: Codable {
-        public var facebook: CategoryMappingValues?
-
         public var google: CategoryMappingValues?
+
+        public var facebook: CategoryMappingValues?
 
         public var ajio: CategoryMappingValues?
 
         public enum CodingKeys: String, CodingKey {
-            case facebook
-
             case google
+
+            case facebook
 
             case ajio
         }
 
         public init(ajio: CategoryMappingValues? = nil, facebook: CategoryMappingValues? = nil, google: CategoryMappingValues? = nil) {
-            self.facebook = facebook
-
             self.google = google
 
-            self.ajio = ajio
-        }
+            self.facebook = facebook
 
-        public func duplicate() -> CategoryMapping {
-            let dict = self.dictionary!
-            let copy = CategoryMapping(dictionary: dict)!
-            return copy
+            self.ajio = ajio
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                facebook = try container.decode(CategoryMappingValues.self, forKey: .facebook)
+                google = try container.decode(CategoryMappingValues.self, forKey: .google)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                google = try container.decode(CategoryMappingValues.self, forKey: .google)
+                facebook = try container.decode(CategoryMappingValues.self, forKey: .facebook)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(facebook, forKey: .facebook)
-
             try? container.encodeIfPresent(google, forKey: .google)
+
+            try? container.encodeIfPresent(facebook, forKey: .facebook)
 
             try? container.encodeIfPresent(ajio, forKey: .ajio)
         }

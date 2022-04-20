@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.twitter = twitter
 
             self.whatsapp = whatsapp
-        }
-
-        public func duplicate() -> ShareMessages {
-            let dict = self.dictionary!
-            let copy = ShareMessages(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

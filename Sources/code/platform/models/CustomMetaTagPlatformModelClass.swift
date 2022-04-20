@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.content = content
 
             self.id = id
-        }
-
-        public func duplicate() -> CustomMetaTag {
-            let dict = self.dictionary!
-            let copy = CustomMetaTag(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

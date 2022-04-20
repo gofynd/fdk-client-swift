@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(category: LogisticRequestCategory? = nil) {
             self.category = category
-        }
-
-        public func duplicate() -> TatReqProductArticles {
-            let dict = self.dictionary!
-            let copy = TatReqProductArticles(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

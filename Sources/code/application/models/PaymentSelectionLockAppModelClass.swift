@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.paymentIdentifier = paymentIdentifier
 
             self.defaultOptions = defaultOptions
-        }
-
-        public func duplicate() -> PaymentSelectionLock {
-            let dict = self.dictionary!
-            let copy = PaymentSelectionLock(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

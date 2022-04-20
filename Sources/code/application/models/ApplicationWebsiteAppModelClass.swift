@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.enabled = enabled
 
             self.basepath = basepath
-        }
-
-        public func duplicate() -> ApplicationWebsite {
-            let dict = self.dictionary!
-            let copy = ApplicationWebsite(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

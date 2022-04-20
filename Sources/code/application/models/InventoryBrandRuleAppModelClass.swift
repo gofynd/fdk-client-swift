@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.criteria = criteria
 
             self.brands = brands
-        }
-
-        public func duplicate() -> InventoryBrandRule {
-            let dict = self.dictionary!
-            let copy = InventoryBrandRule(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

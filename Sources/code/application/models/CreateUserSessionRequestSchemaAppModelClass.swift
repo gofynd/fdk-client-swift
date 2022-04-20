@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.maxAge = maxAge
 
             self.userId = userId
-        }
-
-        public func duplicate() -> CreateUserSessionRequestSchema {
-            let dict = self.dictionary!
-            let copy = CreateUserSessionRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

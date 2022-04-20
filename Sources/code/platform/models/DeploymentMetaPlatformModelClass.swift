@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.id = id
 
             self.app = app
-        }
-
-        public func duplicate() -> DeploymentMeta {
-            let dict = self.dictionary!
-            let copy = DeploymentMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.success = success
 
             self.message = message
-        }
-
-        public func duplicate() -> PaymentCouponValidate {
-            let dict = self.dictionary!
-            let copy = PaymentCouponValidate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

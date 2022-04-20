@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(extraMeta: [String: Any]? = nil) {
             self.extraMeta = extraMeta
-        }
-
-        public func duplicate() -> Location {
-            let dict = self.dictionary!
-            let copy = Location(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

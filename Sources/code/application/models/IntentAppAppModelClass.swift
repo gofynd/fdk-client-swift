@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class IntentApp: Codable {
         public var logos: PaymentModeLogo?
 
-        public var packageName: String?
-
         public var displayName: String?
+
+        public var packageName: String?
 
         public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case logos
 
-            case packageName = "package_name"
-
             case displayName = "display_name"
+
+            case packageName = "package_name"
 
             case code
         }
@@ -28,17 +28,11 @@ public extension ApplicationClient {
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, packageName: String? = nil) {
             self.logos = logos
 
-            self.packageName = packageName
-
             self.displayName = displayName
 
-            self.code = code
-        }
+            self.packageName = packageName
 
-        public func duplicate() -> IntentApp {
-            let dict = self.dictionary!
-            let copy = IntentApp(dictionary: dict)!
-            return copy
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                packageName = try container.decode(String.self, forKey: .packageName)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                packageName = try container.decode(String.self, forKey: .packageName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encode(logos, forKey: .logos)
 
-            try? container.encode(packageName, forKey: .packageName)
-
             try? container.encode(displayName, forKey: .displayName)
+
+            try? container.encode(packageName, forKey: .packageName)
 
             try? container.encode(code, forKey: .code)
         }

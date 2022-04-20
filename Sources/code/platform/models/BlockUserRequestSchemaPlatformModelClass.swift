@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.userId = userId
 
             self.reason = reason
-        }
-
-        public func duplicate() -> BlockUserRequestSchema {
-            let dict = self.dictionary!
-            let copy = BlockUserRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

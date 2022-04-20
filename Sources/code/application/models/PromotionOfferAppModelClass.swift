@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.validTill = validTill
 
             self.promotionGroup = promotionGroup
-        }
-
-        public func duplicate() -> PromotionOffer {
-            let dict = self.dictionary!
-            let copy = PromotionOffer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

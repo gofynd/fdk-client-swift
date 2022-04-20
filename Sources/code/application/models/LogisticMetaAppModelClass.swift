@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.zone = zone
 
             self.deliverables = deliverables
-        }
-
-        public func duplicate() -> LogisticMeta {
-            let dict = self.dictionary!
-            let copy = LogisticMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

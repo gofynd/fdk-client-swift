@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.lessThan = lessThan
 
             self.greaterThanEquals = greaterThanEquals
-        }
-
-        public func duplicate() -> CompareObject {
-            let dict = self.dictionary!
-            let copy = CompareObject(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

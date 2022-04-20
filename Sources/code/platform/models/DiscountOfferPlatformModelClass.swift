@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.discountPercentage = discountPercentage
 
             self.maxOfferQuantity = maxOfferQuantity
-        }
-
-        public func duplicate() -> DiscountOffer {
-            let dict = self.dictionary!
-            let copy = DiscountOffer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

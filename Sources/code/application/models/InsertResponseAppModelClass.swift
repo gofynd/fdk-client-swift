@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(ids: String? = nil) {
             self.ids = ids
-        }
-
-        public func duplicate() -> InsertResponse {
-            let dict = self.dictionary!
-            let copy = InsertResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

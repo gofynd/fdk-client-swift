@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -118,12 +118,6 @@ public extension PlatformClient {
             self.version = version
 
             self.landmark = landmark
-        }
-
-        public func duplicate() -> StoreAddressJson {
-            let dict = self.dictionary!
-            let copy = StoreAddressJson(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

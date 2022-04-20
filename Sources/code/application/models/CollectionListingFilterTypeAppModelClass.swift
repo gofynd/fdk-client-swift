@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.isSelected = isSelected
 
             self.display = display
-        }
-
-        public func duplicate() -> CollectionListingFilterType {
-            let dict = self.dictionary!
-            let copy = CollectionListingFilterType(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

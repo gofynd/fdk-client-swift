@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.level = level
 
             self.strategy = strategy
-        }
-
-        public func duplicate() -> ArticleAssignment1 {
-            let dict = self.dictionary!
-            let copy = ArticleAssignment1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

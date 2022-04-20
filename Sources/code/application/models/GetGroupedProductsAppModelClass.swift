@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -69,12 +69,6 @@ public extension ApplicationClient {
             self.choice = choice
 
             self.active = active
-        }
-
-        public func duplicate() -> GetGroupedProducts {
-            let dict = self.dictionary!
-            let copy = GetGroupedProducts(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

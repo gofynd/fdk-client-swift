@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -124,12 +124,6 @@ public extension PlatformClient {
             self.rupifipg = rupifipg
 
             self.simpl = simpl
-        }
-
-        public func duplicate() -> Methods {
-            let dict = self.dictionary!
-            let copy = Methods(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

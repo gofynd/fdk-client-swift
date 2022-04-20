@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.verified = verified
 
             self.email = email
-        }
-
-        public func duplicate() -> UserEmail {
-            let dict = self.dictionary!
-            let copy = UserEmail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

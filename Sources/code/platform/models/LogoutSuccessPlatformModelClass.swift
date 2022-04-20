@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(logout: Bool? = nil) {
             self.logout = logout
-        }
-
-        public func duplicate() -> LogoutSuccess {
-            let dict = self.dictionary!
-            let copy = LogoutSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

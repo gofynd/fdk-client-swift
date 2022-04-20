@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(orderProcessing: Bool? = nil) {
             self.orderProcessing = orderProcessing
-        }
-
-        public func duplicate() -> HomePageFeature {
-            let dict = self.dictionary!
-            let copy = HomePageFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

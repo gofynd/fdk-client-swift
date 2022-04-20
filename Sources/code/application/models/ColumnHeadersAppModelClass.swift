@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -45,12 +45,6 @@ public extension ApplicationClient {
             self.col1 = col1
 
             self.col6 = col6
-        }
-
-        public func duplicate() -> ColumnHeaders {
-            let dict = self.dictionary!
-            let copy = ColumnHeaders(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.archive = archive
 
             self.archiveDir = archiveDir
-        }
-
-        public func duplicate() -> ArchiveConfig {
-            let dict = self.dictionary!
-            let copy = ArchiveConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

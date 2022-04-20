@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -57,12 +57,6 @@ public extension ApplicationClient {
             self.appInterceptUrl = appInterceptUrl
 
             self.orderId = orderId
-        }
-
-        public func duplicate() -> CartCheckoutResponse {
-            let dict = self.dictionary!
-            let copy = CartCheckoutResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

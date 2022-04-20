@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.packageName = packageName
 
             self.code = code
-        }
-
-        public func duplicate() -> IntentAppErrorList {
-            let dict = self.dictionary!
-            let copy = IntentAppErrorList(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

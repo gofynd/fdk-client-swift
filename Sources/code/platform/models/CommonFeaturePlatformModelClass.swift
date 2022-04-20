@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.compareProducts = compareProducts
 
             self.rewardPoints = rewardPoints
-        }
-
-        public func duplicate() -> CommonFeature {
-            let dict = self.dictionary!
-            let copy = CommonFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

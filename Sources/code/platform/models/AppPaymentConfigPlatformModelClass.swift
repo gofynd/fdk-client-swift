@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.codAmountLimit = codAmountLimit
 
             self.codCharges = codCharges
-        }
-
-        public func duplicate() -> AppPaymentConfig {
-            let dict = self.dictionary!
-            let copy = AppPaymentConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

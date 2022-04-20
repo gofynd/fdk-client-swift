@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.color = color
 
             self.text = text
-        }
-
-        public func duplicate() -> CollectionBadge {
-            let dict = self.dictionary!
-            let copy = CollectionBadge(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

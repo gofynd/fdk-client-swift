@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.authMeta = authMeta
 
             self.eventId = eventId
-        }
-
-        public func duplicate() -> SubscriberConfig {
-            let dict = self.dictionary!
-            let copy = SubscriberConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

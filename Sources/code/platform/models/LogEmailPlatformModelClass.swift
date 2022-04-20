@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(template: String? = nil) {
             self.template = template
-        }
-
-        public func duplicate() -> LogEmail {
-            let dict = self.dictionary!
-            let copy = LogEmail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

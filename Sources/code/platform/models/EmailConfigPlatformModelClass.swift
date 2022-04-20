@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -148,12 +148,6 @@ public extension PlatformClient {
             self.downloadableLink = downloadableLink
 
             self.properties = properties
-        }
-
-        public func duplicate() -> EmailConfig {
-            let dict = self.dictionary!
-            let copy = EmailConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

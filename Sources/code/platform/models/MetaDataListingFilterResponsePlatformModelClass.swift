@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(data: [MetaDataListingFilterMetaResponse]? = nil) {
             self.data = data
-        }
-
-        public func duplicate() -> MetaDataListingFilterResponse {
-            let dict = self.dictionary!
-            let copy = MetaDataListingFilterResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(cardId: String) {
             self.cardId = cardId
-        }
-
-        public func duplicate() -> DeletehCardRequest {
-            let dict = self.dictionary!
-            let copy = DeletehCardRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -141,12 +141,6 @@ public extension ApplicationClient {
             self.isDefaultAddress = isDefaultAddress
 
             self.name = name
-        }
-
-        public func duplicate() -> Address {
-            let dict = self.dictionary!
-            let copy = Address(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

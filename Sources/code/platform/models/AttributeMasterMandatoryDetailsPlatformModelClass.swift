@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(l3Keys: [String]? = nil) {
             self.l3Keys = l3Keys
-        }
-
-        public func duplicate() -> AttributeMasterMandatoryDetails {
-            let dict = self.dictionary!
-            let copy = AttributeMasterMandatoryDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

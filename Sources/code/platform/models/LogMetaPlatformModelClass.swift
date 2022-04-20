@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.partition = partition
 
             self.topic = topic
-        }
-
-        public func duplicate() -> LogMeta {
-            let dict = self.dictionary!
-            let copy = LogMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

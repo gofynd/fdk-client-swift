@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.autoApply = autoApply
 
             self.strategyChannel = strategyChannel
-        }
-
-        public func duplicate() -> Debit {
-            let dict = self.dictionary!
-            let copy = Debit(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

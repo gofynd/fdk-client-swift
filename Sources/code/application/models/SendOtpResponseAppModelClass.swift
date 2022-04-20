@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -87,12 +87,6 @@ public extension ApplicationClient {
             self.verifyMobileOtp = verifyMobileOtp
 
             self.userExists = userExists
-        }
-
-        public func duplicate() -> SendOtpResponse {
-            let dict = self.dictionary!
-            let copy = SendOtpResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

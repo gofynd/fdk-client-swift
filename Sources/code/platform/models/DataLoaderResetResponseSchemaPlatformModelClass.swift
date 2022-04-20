@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(reset: String? = nil) {
             self.reset = reset
-        }
-
-        public func duplicate() -> DataLoaderResetResponseSchema {
-            let dict = self.dictionary!
-            let copy = DataLoaderResetResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

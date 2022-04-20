@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.type = type
 
             self.message = message
-        }
-
-        public func duplicate() -> EntityRegionView_Error {
-            let dict = self.dictionary!
-            let copy = EntityRegionView_Error(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

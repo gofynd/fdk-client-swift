@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.v = v
 
             self.data = data
-        }
-
-        public func duplicate() -> IntegrationLevel {
-            let dict = self.dictionary!
-            let copy = IntegrationLevel(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

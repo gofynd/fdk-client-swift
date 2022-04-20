@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.documentId = documentId
 
             self.previousState = previousState
-        }
-
-        public func duplicate() -> Activity {
-            let dict = self.dictionary!
-            let copy = Activity(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

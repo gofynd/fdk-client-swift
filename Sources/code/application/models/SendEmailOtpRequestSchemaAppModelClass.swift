@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.token = token
 
             self.registerToken = registerToken
-        }
-
-        public func duplicate() -> SendEmailOtpRequestSchema {
-            let dict = self.dictionary!
-            let copy = SendEmailOtpRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.jdbcUrl = jdbcUrl
 
             self.optionalProperties = optionalProperties
-        }
-
-        public func duplicate() -> DBConfig {
-            let dict = self.dictionary!
-            let copy = DBConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

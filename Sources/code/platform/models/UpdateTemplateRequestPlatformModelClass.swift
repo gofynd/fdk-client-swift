@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.rating = rating
 
             self.review = review
-        }
-
-        public func duplicate() -> UpdateTemplateRequest {
-            let dict = self.dictionary!
-            let copy = UpdateTemplateRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

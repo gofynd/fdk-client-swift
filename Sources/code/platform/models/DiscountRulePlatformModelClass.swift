@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.itemCriteria = itemCriteria
 
             self.discountType = discountType
-        }
-
-        public func duplicate() -> DiscountRule {
-            let dict = self.dictionary!
-            let copy = DiscountRule(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

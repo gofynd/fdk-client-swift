@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(success: Bool? = nil) {
             self.success = success
-        }
-
-        public func duplicate() -> BulkHsnResponse {
-            let dict = self.dictionary!
-            let copy = BulkHsnResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

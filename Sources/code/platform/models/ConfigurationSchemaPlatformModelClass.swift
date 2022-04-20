@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.duration = duration
 
             self.slideDirection = slideDirection
-        }
-
-        public func duplicate() -> ConfigurationSchema {
-            let dict = self.dictionary!
-            let copy = ConfigurationSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

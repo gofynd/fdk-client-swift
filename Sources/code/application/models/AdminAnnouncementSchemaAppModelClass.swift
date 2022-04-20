@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -75,12 +75,6 @@ public extension ApplicationClient {
             self.modifiedAt = modifiedAt
 
             self.schedule = schedule
-        }
-
-        public func duplicate() -> AdminAnnouncementSchema {
-            let dict = self.dictionary!
-            let copy = AdminAnnouncementSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

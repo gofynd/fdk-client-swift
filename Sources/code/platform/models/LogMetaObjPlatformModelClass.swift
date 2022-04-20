@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.deviceInfo = deviceInfo
 
             self.location = location
-        }
-
-        public func duplicate() -> LogMetaObj {
-            let dict = self.dictionary!
-            let copy = LogMetaObj(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

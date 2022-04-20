@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(email: String? = nil) {
             self.email = email
-        }
-
-        public func duplicate() -> EditEmailRequestSchema {
-            let dict = self.dictionary!
-            let copy = EditEmailRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

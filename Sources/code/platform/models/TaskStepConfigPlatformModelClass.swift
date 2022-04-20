@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.taskConfigIds = taskConfigIds
 
             self.taskConfigGroupIds = taskConfigGroupIds
-        }
-
-        public func duplicate() -> TaskStepConfig {
-            let dict = self.dictionary!
-            let copy = TaskStepConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

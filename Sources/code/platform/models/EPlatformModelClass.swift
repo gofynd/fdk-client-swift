@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.stackTrace = stackTrace
 
             self.status = status
-        }
-
-        public func duplicate() -> E {
-            let dict = self.dictionary!
-            let copy = E(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

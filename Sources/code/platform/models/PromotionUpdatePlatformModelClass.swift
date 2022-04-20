@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -136,12 +136,6 @@ public extension PlatformClient {
             self.currency = currency
 
             self.applicationId = applicationId
-        }
-
-        public func duplicate() -> PromotionUpdate {
-            let dict = self.dictionary!
-            let copy = PromotionUpdate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

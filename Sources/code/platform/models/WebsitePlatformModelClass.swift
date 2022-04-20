@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(url: String? = nil) {
             self.url = url
-        }
-
-        public func duplicate() -> Website {
-            let dict = self.dictionary!
-            let copy = Website(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

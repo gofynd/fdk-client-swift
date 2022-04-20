@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.identifier = identifier
 
             self.identifierValue = identifierValue
-        }
-
-        public func duplicate() -> SearchLogReq {
-            let dict = self.dictionary!
-            let copy = SearchLogReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

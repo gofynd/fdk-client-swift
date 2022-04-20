@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.downvote = downvote
 
             self.upvote = upvote
-        }
-
-        public func duplicate() -> VoteCount {
-            let dict = self.dictionary!
-            let copy = VoteCount(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

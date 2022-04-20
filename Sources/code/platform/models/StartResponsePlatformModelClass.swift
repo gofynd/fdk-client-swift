@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.cdn = cdn
 
             self.tags = tags
-        }
-
-        public func duplicate() -> StartResponse {
-            let dict = self.dictionary!
-            let copy = StartResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.autoDecided = autoDecided
 
             self.status = status
-        }
-
-        public func duplicate() -> State {
-            let dict = self.dictionary!
-            let copy = State(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

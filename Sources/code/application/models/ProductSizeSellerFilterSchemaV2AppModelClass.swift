@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.value = value
 
             self.isSelected = isSelected
-        }
-
-        public func duplicate() -> ProductSizeSellerFilterSchemaV2 {
-            let dict = self.dictionary!
-            let copy = ProductSizeSellerFilterSchemaV2(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

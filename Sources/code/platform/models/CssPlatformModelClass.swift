@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(link: String? = nil) {
             self.link = link
-        }
-
-        public func duplicate() -> Css {
-            let dict = self.dictionary!
-            let copy = Css(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

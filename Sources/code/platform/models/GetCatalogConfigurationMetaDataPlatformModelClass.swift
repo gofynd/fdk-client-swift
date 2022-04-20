@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -8,33 +8,27 @@ public extension PlatformClient {
      */
 
     class GetCatalogConfigurationMetaData: Codable {
-        public var product: GetCatalogConfigurationDetailsProduct?
-
         public var listing: MetaDataListingResponse?
 
-        public enum CodingKeys: String, CodingKey {
-            case product
+        public var product: GetCatalogConfigurationDetailsProduct?
 
+        public enum CodingKeys: String, CodingKey {
             case listing
+
+            case product
         }
 
         public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
-            self.product = product
-
             self.listing = listing
-        }
 
-        public func duplicate() -> GetCatalogConfigurationMetaData {
-            let dict = self.dictionary!
-            let copy = GetCatalogConfigurationMetaData(dictionary: dict)!
-            return copy
+            self.product = product
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
+                listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
+                product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(product, forKey: .product)
-
             try? container.encodeIfPresent(listing, forKey: .listing)
+
+            try? container.encodeIfPresent(product, forKey: .product)
         }
     }
 }

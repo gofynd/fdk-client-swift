@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.category = category
 
             self.promise = promise
-        }
-
-        public func duplicate() -> TatProductArticles {
-            let dict = self.dictionary!
-            let copy = TatProductArticles(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

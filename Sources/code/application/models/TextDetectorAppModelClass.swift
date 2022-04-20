@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.textClass = textClass
 
             self.textType = textType
-        }
-
-        public func duplicate() -> TextDetector {
-            let dict = self.dictionary!
-            let copy = TextDetector(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

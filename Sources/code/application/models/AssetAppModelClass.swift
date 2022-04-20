@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.id = id
 
             self.secureUrl = secureUrl
-        }
-
-        public func duplicate() -> Asset {
-            let dict = self.dictionary!
-            let copy = Asset(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

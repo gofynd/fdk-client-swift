@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.q = q
 
             self.onlyDeployed = onlyDeployed
-        }
-
-        public func duplicate() -> FilterOrderingStoreRequest {
-            let dict = self.dictionary!
-            let copy = FilterOrderingStoreRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

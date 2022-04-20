@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.email = email
 
             self.mobileNo = mobileNo
-        }
-
-        public func duplicate() -> StoreManagerSerializer {
-            let dict = self.dictionary!
-            let copy = StoreManagerSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

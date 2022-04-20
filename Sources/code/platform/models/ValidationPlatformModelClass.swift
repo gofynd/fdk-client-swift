@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.appId = appId
 
             self.anonymous = anonymous
-        }
-
-        public func duplicate() -> Validation {
-            let dict = self.dictionary!
-            let copy = Validation(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

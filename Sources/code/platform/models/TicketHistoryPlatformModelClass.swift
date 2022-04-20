@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.createdAt = createdAt
-        }
-
-        public func duplicate() -> TicketHistory {
-            let dict = self.dictionary!
-            let copy = TicketHistory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

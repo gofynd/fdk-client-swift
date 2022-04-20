@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.uid = uid
 
             self.action = action
-        }
-
-        public func duplicate() -> ProductBrand {
-            let dict = self.dictionary!
-            let copy = ProductBrand(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

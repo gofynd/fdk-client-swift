@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -81,12 +81,6 @@ public extension ApplicationClient {
             self.createdOn = createdOn
 
             self.modifiedOn = modifiedOn
-        }
-
-        public func duplicate() -> DbRecord {
-            let dict = self.dictionary!
-            let copy = DbRecord(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

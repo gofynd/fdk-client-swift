@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.successMessage = successMessage
 
             self.failureMessage = failureMessage
-        }
-
-        public func duplicate() -> PollForAssignment {
-            let dict = self.dictionary!
-            let copy = PollForAssignment(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

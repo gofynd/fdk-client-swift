@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.errorType = errorType
 
             self.message = message
-        }
-
-        public func duplicate() -> JobHistoryDto {
-            let dict = self.dictionary!
-            let copy = JobHistoryDto(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

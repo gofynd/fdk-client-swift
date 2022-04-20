@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.id = id
 
             self.level = level
-        }
-
-        public func duplicate() -> LogisticResponseCategory {
-            let dict = self.dictionary!
-            let copy = LogisticResponseCategory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

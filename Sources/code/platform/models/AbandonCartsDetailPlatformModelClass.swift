@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.propertiesBreakupValuesRawTotal = propertiesBreakupValuesRawTotal
 
             self.receivedAt = receivedAt
-        }
-
-        public func duplicate() -> AbandonCartsDetail {
-            let dict = self.dictionary!
-            let copy = AbandonCartsDetail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

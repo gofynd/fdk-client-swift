@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(users: [UserSchema]? = nil) {
             self.users = users
-        }
-
-        public func duplicate() -> UserSearchResponseSchema {
-            let dict = self.dictionary!
-            let copy = UserSearchResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.archiveConfig = archiveConfig
 
             self.readAllFiles = readAllFiles
-        }
-
-        public func duplicate() -> SFTPConfig {
-            let dict = self.dictionary!
-            let copy = SFTPConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -75,12 +75,6 @@ public extension ApplicationClient {
             self.version = version
 
             self.navigation = navigation
-        }
-
-        public func duplicate() -> NavigationSchema {
-            let dict = self.dictionary!
-            let copy = NavigationSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

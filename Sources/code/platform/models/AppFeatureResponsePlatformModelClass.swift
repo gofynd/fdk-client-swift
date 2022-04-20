@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(feature: AppFeature? = nil) {
             self.feature = feature
-        }
-
-        public func duplicate() -> AppFeatureResponse {
-            let dict = self.dictionary!
-            let copy = AppFeatureResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

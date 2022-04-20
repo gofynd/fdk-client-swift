@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.published = published
 
             self.duration = duration
-        }
-
-        public func duplicate() -> PromotionSchedule {
-            let dict = self.dictionary!
-            let copy = PromotionSchedule(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

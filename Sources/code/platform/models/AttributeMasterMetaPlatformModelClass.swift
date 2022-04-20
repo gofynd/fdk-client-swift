@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.mandatoryDetails = mandatoryDetails
 
             self.enriched = enriched
-        }
-
-        public func duplicate() -> AttributeMasterMeta {
-            let dict = self.dictionary!
-            let copy = AttributeMasterMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

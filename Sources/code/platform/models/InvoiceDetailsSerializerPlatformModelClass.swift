@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.eInvoice = eInvoice
 
             self.eWaybill = eWaybill
-        }
-
-        public func duplicate() -> InvoiceDetailsSerializer {
-            let dict = self.dictionary!
-            let copy = InvoiceDetailsSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

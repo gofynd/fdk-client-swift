@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.appliedTheme = appliedTheme
 
             self.upgrade = upgrade
-        }
-
-        public func duplicate() -> UpgradableThemeSchema {
-            let dict = self.dictionary!
-            let copy = UpgradableThemeSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

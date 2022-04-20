@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.parentId = parentId
 
             self.subType = subType
-        }
-
-        public func duplicate() -> EntityRegionView_Request {
-            let dict = self.dictionary!
-            let copy = EntityRegionView_Request(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

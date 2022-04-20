@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -111,12 +111,6 @@ public extension ApplicationClient {
             self.isActive = isActive
 
             self.visibleFacetsKeys = visibleFacetsKeys
-        }
-
-        public func duplicate() -> CollectionDetailResponse {
-            let dict = self.dictionary!
-            let copy = CollectionDetailResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

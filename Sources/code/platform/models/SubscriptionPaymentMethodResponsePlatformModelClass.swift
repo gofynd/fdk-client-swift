@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -8,42 +8,36 @@ public extension PlatformClient {
      */
 
     class SubscriptionPaymentMethodResponse: Codable {
-        public var data: [[String: Any]]
-
         public var success: Bool
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: [[String: Any]]
 
+        public enum CodingKeys: String, CodingKey {
             case success
+
+            case data
         }
 
         public init(data: [[String: Any]], success: Bool) {
-            self.data = data
-
             self.success = success
-        }
 
-        public func duplicate() -> SubscriptionPaymentMethodResponse {
-            let dict = self.dictionary!
-            let copy = SubscriptionPaymentMethodResponse(dictionary: dict)!
-            return copy
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode([[String: Any]].self, forKey: .data)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            data = try container.decode([[String: Any]].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

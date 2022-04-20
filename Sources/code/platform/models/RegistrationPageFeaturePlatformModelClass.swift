@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(askStoreAddress: Bool? = nil) {
             self.askStoreAddress = askStoreAddress
-        }
-
-        public func duplicate() -> RegistrationPageFeature {
-            let dict = self.dictionary!
-            let copy = RegistrationPageFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.aggregatePipeline = aggregatePipeline
 
             self.skipSave = skipSave
-        }
-
-        public func duplicate() -> MongoDocConfig {
-            let dict = self.dictionary!
-            let copy = MongoDocConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

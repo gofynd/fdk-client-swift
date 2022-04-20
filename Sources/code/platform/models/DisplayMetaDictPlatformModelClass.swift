@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.title = title
 
             self.subtitle = subtitle
-        }
-
-        public func duplicate() -> DisplayMetaDict {
-            let dict = self.dictionary!
-            let copy = DisplayMetaDict(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

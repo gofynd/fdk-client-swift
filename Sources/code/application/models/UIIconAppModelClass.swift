@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.inactive = inactive
 
             self.selected = selected
-        }
-
-        public func duplicate() -> UIIcon {
-            let dict = self.dictionary!
-            let copy = UIIcon(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

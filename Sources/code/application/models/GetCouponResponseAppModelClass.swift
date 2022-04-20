@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.page = page
 
             self.availableCouponList = availableCouponList
-        }
-
-        public func duplicate() -> GetCouponResponse {
-            let dict = self.dictionary!
-            let copy = GetCouponResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

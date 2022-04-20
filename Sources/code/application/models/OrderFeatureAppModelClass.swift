@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(buyAgain: Bool? = nil) {
             self.buyAgain = buyAgain
-        }
-
-        public func duplicate() -> OrderFeature {
-            let dict = self.dictionary!
-            let copy = OrderFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

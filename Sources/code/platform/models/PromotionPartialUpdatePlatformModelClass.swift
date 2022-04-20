@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.archive = archive
 
             self.schedule = schedule
-        }
-
-        public func duplicate() -> PromotionPartialUpdate {
-            let dict = self.dictionary!
-            let copy = PromotionPartialUpdate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

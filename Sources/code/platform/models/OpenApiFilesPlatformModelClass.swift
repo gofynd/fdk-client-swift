@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.key = key
 
             self.values = values
-        }
-
-        public func duplicate() -> OpenApiFiles {
-            let dict = self.dictionary!
-            let copy = OpenApiFiles(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

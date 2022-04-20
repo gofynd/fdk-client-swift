@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.refreshRate = refreshRate
 
             self.refreshPages = refreshPages
-        }
-
-        public func duplicate() -> AnnouncementsResponseSchema {
-            let dict = self.dictionary!
-            let copy = AnnouncementsResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

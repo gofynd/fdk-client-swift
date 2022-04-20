@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -118,12 +118,6 @@ public extension PlatformClient {
             self.modifiedBy = modifiedBy
 
             self.meta = meta
-        }
-
-        public func duplicate() -> DiscountJob {
-            let dict = self.dictionary!
-            let copy = DiscountJob(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

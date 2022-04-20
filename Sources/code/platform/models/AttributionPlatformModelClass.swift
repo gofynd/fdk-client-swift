@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(campaignCookieExpiry: String? = nil) {
             self.campaignCookieExpiry = campaignCookieExpiry
-        }
-
-        public func duplicate() -> Attribution {
-            let dict = self.dictionary!
-            let copy = Attribution(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

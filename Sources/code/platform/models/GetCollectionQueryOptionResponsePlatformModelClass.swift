@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.sortOn = sortOn
 
             self.filters = filters
-        }
-
-        public func duplicate() -> GetCollectionQueryOptionResponse {
-            let dict = self.dictionary!
-            let copy = GetCollectionQueryOptionResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

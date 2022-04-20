@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.isValid = isValid
 
             self.deliverable = deliverable
-        }
-
-        public func duplicate() -> ProductAvailability {
-            let dict = self.dictionary!
-            let copy = ProductAvailability(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

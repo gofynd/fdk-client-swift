@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.priceEffective = priceEffective
 
             self.quantity = quantity
-        }
-
-        public func duplicate() -> DefaultHeadersDTO {
-            let dict = self.dictionary!
-            let copy = DefaultHeadersDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

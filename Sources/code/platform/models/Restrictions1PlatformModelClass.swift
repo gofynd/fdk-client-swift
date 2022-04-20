@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.anonymousUsers = anonymousUsers
 
             self.platforms = platforms
-        }
-
-        public func duplicate() -> Restrictions1 {
-            let dict = self.dictionary!
-            let copy = Restrictions1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

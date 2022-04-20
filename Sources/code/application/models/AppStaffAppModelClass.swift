@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -69,12 +69,6 @@ public extension ApplicationClient {
             self.lastName = lastName
 
             self.profilePicUrl = profilePicUrl
-        }
-
-        public func duplicate() -> AppStaff {
-            let dict = self.dictionary!
-            let copy = AppStaff(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

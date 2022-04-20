@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.userBlockReason = userBlockReason
 
             self.userId = userId
-        }
-
-        public func duplicate() -> RewardUser {
-            let dict = self.dictionary!
-            let copy = RewardUser(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

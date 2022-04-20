@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(formResponse: [String: Any]? = nil) {
             self.formResponse = formResponse
-        }
-
-        public func duplicate() -> TicketFeedbackPayload {
-            let dict = self.dictionary!
-            let copy = TicketFeedbackPayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

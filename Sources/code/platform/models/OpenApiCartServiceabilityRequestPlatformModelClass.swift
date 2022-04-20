@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.shippingAddress = shippingAddress
 
             self.cartItems = cartItems
-        }
-
-        public func duplicate() -> OpenApiCartServiceabilityRequest {
-            let dict = self.dictionary!
-            let copy = OpenApiCartServiceabilityRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

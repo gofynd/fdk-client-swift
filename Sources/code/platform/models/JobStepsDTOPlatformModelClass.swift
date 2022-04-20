@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.processedStartTime = processedStartTime
 
             self.processedAt = processedAt
-        }
-
-        public func duplicate() -> JobStepsDTO {
-            let dict = self.dictionary!
-            let copy = JobStepsDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

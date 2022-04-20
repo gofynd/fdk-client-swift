@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.popup = popup
 
             self.type = type
-        }
-
-        public func duplicate() -> Action {
-            let dict = self.dictionary!
-            let copy = Action(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

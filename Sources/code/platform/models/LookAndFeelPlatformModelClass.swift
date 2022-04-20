@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.cardPosition = cardPosition
 
             self.backgroundColor = backgroundColor
-        }
-
-        public func duplicate() -> LookAndFeel {
-            let dict = self.dictionary!
-            let copy = LookAndFeel(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(sizes: [ProductSetDistributionSizeV2]? = nil) {
             self.sizes = sizes
-        }
-
-        public func duplicate() -> ProductSetDistributionV2 {
-            let dict = self.dictionary!
-            let copy = ProductSetDistributionV2(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.name = name
 
             self.appDisplayName = appDisplayName
-        }
-
-        public func duplicate() -> BagStateMapper {
-            let dict = self.dictionary!
-            let copy = BagStateMapper(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

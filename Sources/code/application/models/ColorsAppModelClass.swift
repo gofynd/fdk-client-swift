@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -45,12 +45,6 @@ public extension ApplicationClient {
             self.linkColor = linkColor
 
             self.buttonSecondaryColor = buttonSecondaryColor
-        }
-
-        public func duplicate() -> Colors {
-            let dict = self.dictionary!
-            let copy = Colors(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.preset = preset
 
             self.predicate = predicate
-        }
-
-        public func duplicate() -> AvailablePageSchemaSections {
-            let dict = self.dictionary!
-            let copy = AvailablePageSchemaSections(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

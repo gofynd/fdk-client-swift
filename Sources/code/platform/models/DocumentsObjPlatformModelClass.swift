@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.verified = verified
 
             self.pending = pending
-        }
-
-        public func duplicate() -> DocumentsObj {
-            let dict = self.dictionary!
-            let copy = DocumentsObj(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

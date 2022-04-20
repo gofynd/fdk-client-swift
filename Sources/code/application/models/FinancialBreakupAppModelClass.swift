@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -171,12 +171,6 @@ public extension ApplicationClient {
             self.cashbackApplied = cashbackApplied
 
             self.gstTaxPercentage = gstTaxPercentage
-        }
-
-        public func duplicate() -> FinancialBreakup {
-            let dict = self.dictionary!
-            let copy = FinancialBreakup(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {
