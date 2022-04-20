@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class LadderPriceOffer: Codable {
-        public var offerText: String?
+        public var offerPrices: [LadderOfferItem]?
 
         public var description: String?
 
@@ -15,12 +15,12 @@ public extension ApplicationClient {
 
         public var id: String?
 
+        public var offerText: String?
+
         public var validTill: String?
 
-        public var offerPrices: [LadderOfferItem]?
-
         public enum CodingKeys: String, CodingKey {
-            case offerText = "offer_text"
+            case offerPrices = "offer_prices"
 
             case description
 
@@ -28,13 +28,13 @@ public extension ApplicationClient {
 
             case id
 
-            case validTill = "valid_till"
+            case offerText = "offer_text"
 
-            case offerPrices = "offer_prices"
+            case validTill = "valid_till"
         }
 
         public init(description: String? = nil, id: String? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
-            self.offerText = offerText
+            self.offerPrices = offerPrices
 
             self.description = description
 
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             self.id = id
 
-            self.validTill = validTill
+            self.offerText = offerText
 
-            self.offerPrices = offerPrices
+            self.validTill = validTill
         }
 
         public func duplicate() -> LadderPriceOffer {
@@ -57,7 +57,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                offerPrices = try container.decode([LadderOfferItem].self, forKey: .offerPrices)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offerPrices = try container.decode([LadderOfferItem].self, forKey: .offerPrices)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
+            try? container.encodeIfPresent(offerPrices, forKey: .offerPrices)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
@@ -116,9 +116,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(validTill, forKey: .validTill)
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(offerPrices, forKey: .offerPrices)
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
         }
     }
 }

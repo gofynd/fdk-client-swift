@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class PostOrder: Codable {
-        public var cancellationAllowed: Bool?
-
         public var returnAllowed: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case cancellationAllowed = "cancellation_allowed"
+        public var cancellationAllowed: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case returnAllowed = "return_allowed"
+
+            case cancellationAllowed = "cancellation_allowed"
         }
 
         public init(cancellationAllowed: Bool?, returnAllowed: Bool?) {
-            self.cancellationAllowed = cancellationAllowed
-
             self.returnAllowed = returnAllowed
+
+            self.cancellationAllowed = cancellationAllowed
         }
 
         public func duplicate() -> PostOrder {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cancellationAllowed = try container.decode(Bool.self, forKey: .cancellationAllowed)
+                returnAllowed = try container.decode(Bool.self, forKey: .returnAllowed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                returnAllowed = try container.decode(Bool.self, forKey: .returnAllowed)
+                cancellationAllowed = try container.decode(Bool.self, forKey: .cancellationAllowed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cancellationAllowed, forKey: .cancellationAllowed)
-
             try? container.encodeIfPresent(returnAllowed, forKey: .returnAllowed)
+
+            try? container.encodeIfPresent(cancellationAllowed, forKey: .cancellationAllowed)
         }
     }
 }

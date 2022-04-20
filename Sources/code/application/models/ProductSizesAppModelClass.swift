@@ -9,42 +9,42 @@ public extension ApplicationClient {
     class ProductSizes: Codable {
         public var sizes: [ProductSize]?
 
-        public var sellable: Bool?
+        public var sizeChart: SizeChart?
 
         public var price: ProductListingPrice?
 
-        public var stores: ProductSizeStores?
-
-        public var sizeChart: SizeChart?
-
         public var discount: String?
+
+        public var sellable: Bool?
+
+        public var stores: ProductSizeStores?
 
         public enum CodingKeys: String, CodingKey {
             case sizes
 
-            case sellable
+            case sizeChart = "size_chart"
 
             case price
 
-            case stores
-
-            case sizeChart = "size_chart"
-
             case discount
+
+            case sellable
+
+            case stores
         }
 
         public init(discount: String? = nil, price: ProductListingPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
             self.sizes = sizes
 
-            self.sellable = sellable
+            self.sizeChart = sizeChart
 
             self.price = price
 
-            self.stores = stores
-
-            self.sizeChart = sizeChart
-
             self.discount = discount
+
+            self.sellable = sellable
+
+            self.stores = stores
         }
 
         public func duplicate() -> ProductSizes {
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sellable = try container.decode(Bool.self, forKey: .sellable)
+                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,23 +81,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                stores = try container.decode(ProductSizeStores.self, forKey: .stores)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellable = try container.decode(Bool.self, forKey: .sellable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stores = try container.decode(ProductSizeStores.self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,15 +110,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
+            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(stores, forKey: .stores)
-
-            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
-
             try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(sellable, forKey: .sellable)
+
+            try? container.encodeIfPresent(stores, forKey: .stores)
         }
     }
 }

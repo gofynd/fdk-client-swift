@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class ProductAvailability: Codable {
         public var otherStoreQuantity: Int?
 
-        public var isValid: Bool?
-
-        public var outOfStock: Bool?
-
         public var deliverable: Bool?
 
+        public var isValid: Bool?
+
         public var sizes: [String]?
+
+        public var outOfStock: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case otherStoreQuantity = "other_store_quantity"
 
-            case isValid = "is_valid"
-
-            case outOfStock = "out_of_stock"
-
             case deliverable
 
+            case isValid = "is_valid"
+
             case sizes
+
+            case outOfStock = "out_of_stock"
         }
 
         public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             self.otherStoreQuantity = otherStoreQuantity
 
-            self.isValid = isValid
-
-            self.outOfStock = outOfStock
-
             self.deliverable = deliverable
 
+            self.isValid = isValid
+
             self.sizes = sizes
+
+            self.outOfStock = outOfStock
         }
 
         public func duplicate() -> ProductAvailability {
@@ -59,23 +59,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 deliverable = try container.decode(Bool.self, forKey: .deliverable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,6 +81,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -96,13 +96,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
-
-            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
-
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
+
             try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
         }
     }
 }

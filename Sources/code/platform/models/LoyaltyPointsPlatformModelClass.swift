@@ -8,32 +8,32 @@ public extension PlatformClient {
      */
 
     class LoyaltyPoints: Codable {
-        public var total: Double?
+        public var isApplied: Bool?
 
         public var applicable: Double?
 
-        public var isApplied: Bool?
-
         public var description: String?
 
+        public var total: Double?
+
         public enum CodingKeys: String, CodingKey {
-            case total
+            case isApplied = "is_applied"
 
             case applicable
 
-            case isApplied = "is_applied"
-
             case description
+
+            case total
         }
 
         public init(applicable: Double?, description: String?, isApplied: Bool?, total: Double?) {
-            self.total = total
+            self.isApplied = isApplied
 
             self.applicable = applicable
 
-            self.isApplied = isApplied
-
             self.description = description
+
+            self.total = total
         }
 
         public func duplicate() -> LoyaltyPoints {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                total = try container.decode(Double.self, forKey: .total)
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                total = try container.decode(Double.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,13 +81,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 
             try? container.encodeIfPresent(applicable, forKey: .applicable)
 
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
-
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(total, forKey: .total)
         }
     }
 }

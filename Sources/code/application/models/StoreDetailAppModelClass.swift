@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class StoreDetail: Codable {
         public var city: String?
 
-        public var code: String?
+        public var id: Int?
 
         public var name: String?
 
-        public var id: Int?
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case city
 
-            case code
+            case id
 
             case name
 
-            case id
+            case code
         }
 
         public init(city: String? = nil, code: String? = nil, id: Int? = nil, name: String? = nil) {
             self.city = city
 
-            self.code = code
+            self.id = id
 
             self.name = name
 
-            self.id = id
+            self.code = code
         }
 
         public func duplicate() -> StoreDetail {
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,11 +82,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }
