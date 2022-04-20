@@ -8,26 +8,26 @@ public extension PlatformClient {
      */
 
     class State: Codable {
-        public var isPublic: Bool?
+        public var isDisplay: Bool?
 
         public var isArchived: Bool?
 
-        public var isDisplay: Bool?
+        public var isPublic: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isPublic = "is_public"
+            case isDisplay = "is_display"
 
             case isArchived = "is_archived"
 
-            case isDisplay = "is_display"
+            case isPublic = "is_public"
         }
 
         public init(isArchived: Bool? = nil, isDisplay: Bool? = nil, isPublic: Bool? = nil) {
-            self.isPublic = isPublic
+            self.isDisplay = isDisplay
 
             self.isArchived = isArchived
 
-            self.isDisplay = isDisplay
+            self.isPublic = isPublic
         }
 
         public func duplicate() -> State {
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isPublic = try container.decode(Bool.self, forKey: .isPublic)
+                isDisplay = try container.decode(Bool.self, forKey: .isDisplay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isDisplay = try container.decode(Bool.self, forKey: .isDisplay)
+                isPublic = try container.decode(Bool.self, forKey: .isPublic)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,11 +67,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isPublic, forKey: .isPublic)
+            try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
 
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
 
-            try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
+            try? container.encodeIfPresent(isPublic, forKey: .isPublic)
         }
     }
 }

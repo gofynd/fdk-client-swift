@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class UpdateRefundTransferModeRequest: Codable {
-        public var transferMode: String
-
         public var enable: Bool
 
-        public enum CodingKeys: String, CodingKey {
-            case transferMode = "transfer_mode"
+        public var transferMode: String
 
+        public enum CodingKeys: String, CodingKey {
             case enable
+
+            case transferMode = "transfer_mode"
         }
 
         public init(enable: Bool, transferMode: String) {
-            self.transferMode = transferMode
-
             self.enable = enable
+
+            self.transferMode = transferMode
         }
 
         public func duplicate() -> UpdateRefundTransferModeRequest {
@@ -32,17 +32,17 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            transferMode = try container.decode(String.self, forKey: .transferMode)
-
             enable = try container.decode(Bool.self, forKey: .enable)
+
+            transferMode = try container.decode(String.self, forKey: .transferMode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-
             try? container.encodeIfPresent(enable, forKey: .enable)
+
+            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
         }
     }
 }

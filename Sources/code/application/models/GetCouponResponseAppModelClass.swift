@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class GetCouponResponse: Codable {
-        public var availableCouponList: [Coupon]?
-
         public var page: PageCoupon?
 
-        public enum CodingKeys: String, CodingKey {
-            case availableCouponList = "available_coupon_list"
+        public var availableCouponList: [Coupon]?
 
+        public enum CodingKeys: String, CodingKey {
             case page
+
+            case availableCouponList = "available_coupon_list"
         }
 
         public init(availableCouponList: [Coupon]? = nil, page: PageCoupon? = nil) {
-            self.availableCouponList = availableCouponList
-
             self.page = page
+
+            self.availableCouponList = availableCouponList
         }
 
         public func duplicate() -> GetCouponResponse {
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                availableCouponList = try container.decode([Coupon].self, forKey: .availableCouponList)
+                page = try container.decode(PageCoupon.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                page = try container.decode(PageCoupon.self, forKey: .page)
+                availableCouponList = try container.decode([Coupon].self, forKey: .availableCouponList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +52,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(availableCouponList, forKey: .availableCouponList)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(availableCouponList, forKey: .availableCouponList)
         }
     }
 }

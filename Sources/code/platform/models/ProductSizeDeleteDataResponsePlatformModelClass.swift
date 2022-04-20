@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ProductSizeDeleteDataResponse: Codable {
         public var size: String?
 
-        public var companyId: Int?
-
         public var itemId: Int?
+
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case size
 
-            case companyId = "company_id"
-
             case itemId = "item_id"
+
+            case companyId = "company_id"
         }
 
         public init(companyId: Int? = nil, itemId: Int? = nil, size: String? = nil) {
             self.size = size
 
-            self.companyId = companyId
-
             self.itemId = itemId
+
+            self.companyId = companyId
         }
 
         public func duplicate() -> ProductSizeDeleteDataResponse {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }

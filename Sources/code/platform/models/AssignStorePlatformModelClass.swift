@@ -10,48 +10,48 @@ public extension PlatformClient {
     class AssignStore: Codable {
         public var channelIdentifier: String?
 
-        public var channelType: String?
+        public var pincode: String
+
+        public var storeIds: [Int]?
 
         public var appId: String
 
-        public var storeIds: [Int]?
+        public var channelType: String?
 
         public var companyId: Int?
 
         public var articles: [AssignStoreArticle]
 
-        public var pincode: String
-
         public enum CodingKeys: String, CodingKey {
             case channelIdentifier = "channel_identifier"
 
-            case channelType = "channel_type"
+            case pincode
+
+            case storeIds = "store_ids"
 
             case appId = "app_id"
 
-            case storeIds = "store_ids"
+            case channelType = "channel_type"
 
             case companyId = "company_id"
 
             case articles
-
-            case pincode
         }
 
         public init(appId: String, articles: [AssignStoreArticle], channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String, storeIds: [Int]? = nil) {
             self.channelIdentifier = channelIdentifier
 
-            self.channelType = channelType
+            self.pincode = pincode
+
+            self.storeIds = storeIds
 
             self.appId = appId
 
-            self.storeIds = storeIds
+            self.channelType = channelType
 
             self.companyId = companyId
 
             self.articles = articles
-
-            self.pincode = pincode
         }
 
         public func duplicate() -> AssignStore {
@@ -71,8 +71,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            pincode = try container.decode(String.self, forKey: .pincode)
+
             do {
-                channelType = try container.decode(String.self, forKey: .channelType)
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +84,7 @@ public extension PlatformClient {
             appId = try container.decode(String.self, forKey: .appId)
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
+                channelType = try container.decode(String.self, forKey: .channelType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,8 +100,6 @@ public extension PlatformClient {
             } catch {}
 
             articles = try container.decode([AssignStoreArticle].self, forKey: .articles)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -107,17 +107,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
 
-            try? container.encodeIfPresent(channelType, forKey: .channelType)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(channelType, forKey: .channelType)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }

@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class LocationTimingSerializer: Codable {
-        public var hour: Int?
-
         public var minute: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case hour
+        public var hour: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case minute
+
+            case hour
         }
 
         public init(hour: Int? = nil, minute: Int? = nil) {
-            self.hour = hour
-
             self.minute = minute
+
+            self.hour = hour
         }
 
         public func duplicate() -> LocationTimingSerializer {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hour = try container.decode(Int.self, forKey: .hour)
+                minute = try container.decode(Int.self, forKey: .minute)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minute = try container.decode(Int.self, forKey: .minute)
+                hour = try container.decode(Int.self, forKey: .hour)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hour, forKey: .hour)
-
             try? container.encodeIfPresent(minute, forKey: .minute)
+
+            try? container.encodeIfPresent(hour, forKey: .hour)
         }
     }
 }

@@ -10,24 +10,24 @@ public extension PlatformClient {
     class IfscCodeResponse: Codable {
         public var branchName: String
 
-        public var success: Bool?
-
         public var bankName: String
+
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case branchName = "branch_name"
 
-            case success
-
             case bankName = "bank_name"
+
+            case success
         }
 
         public init(bankName: String, branchName: String, success: Bool? = nil) {
             self.branchName = branchName
 
-            self.success = success
-
             self.bankName = bankName
+
+            self.success = success
         }
 
         public func duplicate() -> IfscCodeResponse {
@@ -41,6 +41,8 @@ public extension PlatformClient {
 
             branchName = try container.decode(String.self, forKey: .branchName)
 
+            bankName = try container.decode(String.self, forKey: .bankName)
+
             do {
                 success = try container.decode(Bool.self, forKey: .success)
 
@@ -48,8 +50,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            bankName = try container.decode(String.self, forKey: .bankName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(bankName, forKey: .bankName)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

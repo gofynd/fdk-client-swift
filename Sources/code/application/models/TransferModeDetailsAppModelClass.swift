@@ -7,20 +7,20 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class TransferModeDetails: Codable {
-        public var displayName: String
-
         public var items: [TransferItemsDetails]?
 
-        public enum CodingKeys: String, CodingKey {
-            case displayName = "display_name"
+        public var displayName: String
 
+        public enum CodingKeys: String, CodingKey {
             case items
+
+            case displayName = "display_name"
         }
 
         public init(displayName: String, items: [TransferItemsDetails]? = nil) {
-            self.displayName = displayName
-
             self.items = items
+
+            self.displayName = displayName
         }
 
         public func duplicate() -> TransferModeDetails {
@@ -32,8 +32,6 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            displayName = try container.decode(String.self, forKey: .displayName)
-
             do {
                 items = try container.decode([TransferItemsDetails].self, forKey: .items)
 
@@ -41,14 +39,16 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            displayName = try container.decode(String.self, forKey: .displayName)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }

@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class ProductPublished: Codable {
-        public var productOnlineDate: Int?
-
         public var isSet: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case productOnlineDate = "product_online_date"
+        public var productOnlineDate: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case isSet = "is_set"
+
+            case productOnlineDate = "product_online_date"
         }
 
         public init(isSet: Bool? = nil, productOnlineDate: Int? = nil) {
-            self.productOnlineDate = productOnlineDate
-
             self.isSet = isSet
+
+            self.productOnlineDate = productOnlineDate
         }
 
         public func duplicate() -> ProductPublished {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                productOnlineDate = try container.decode(Int.self, forKey: .productOnlineDate)
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                productOnlineDate = try container.decode(Int.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
-
             try? container.encodeIfPresent(isSet, forKey: .isSet)
+
+            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
         }
     }
 }

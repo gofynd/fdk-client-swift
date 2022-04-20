@@ -8,32 +8,32 @@ public extension PlatformClient {
      */
 
     class GetCatalogConfigurationDetailsProduct: Codable {
-        public var compare: [String: Any]?
-
         public var similar: [String: Any]?
-
-        public var detail: [String: Any]?
 
         public var variant: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case compare
+        public var detail: [String: Any]?
 
+        public var compare: [String: Any]?
+
+        public enum CodingKeys: String, CodingKey {
             case similar
+
+            case variant
 
             case detail
 
-            case variant
+            case compare
         }
 
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
-            self.compare = compare
-
             self.similar = similar
+
+            self.variant = variant
 
             self.detail = detail
 
-            self.variant = variant
+            self.compare = compare
         }
 
         public func duplicate() -> GetCatalogConfigurationDetailsProduct {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                compare = try container.decode([String: Any].self, forKey: .compare)
+                similar = try container.decode([String: Any].self, forKey: .similar)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
+                variant = try container.decode([String: Any].self, forKey: .variant)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                variant = try container.decode([String: Any].self, forKey: .variant)
+                compare = try container.decode([String: Any].self, forKey: .compare)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,13 +81,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(compare, forKey: .compare)
-
             try? container.encodeIfPresent(similar, forKey: .similar)
+
+            try? container.encodeIfPresent(variant, forKey: .variant)
 
             try? container.encodeIfPresent(detail, forKey: .detail)
 
-            try? container.encodeIfPresent(variant, forKey: .variant)
+            try? container.encodeIfPresent(compare, forKey: .compare)
         }
     }
 }

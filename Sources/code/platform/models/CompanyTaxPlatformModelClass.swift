@@ -10,18 +10,18 @@ public extension PlatformClient {
     class CompanyTax: Codable {
         public var cess: Double?
 
-        public var rate: Double
-
         public var effectiveDate: String
+
+        public var rate: Double
 
         public var enable: Bool
 
         public enum CodingKeys: String, CodingKey {
             case cess
 
-            case rate
-
             case effectiveDate = "effective_date"
+
+            case rate
 
             case enable
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(cess: Double? = nil, effectiveDate: String, enable: Bool, rate: Double) {
             self.cess = cess
 
-            self.rate = rate
-
             self.effectiveDate = effectiveDate
+
+            self.rate = rate
 
             self.enable = enable
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            rate = try container.decode(Double.self, forKey: .rate)
-
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+
+            rate = try container.decode(Double.self, forKey: .rate)
 
             enable = try container.decode(Bool.self, forKey: .enable)
         }
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(cess, forKey: .cess)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
-
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
+
+            try? container.encodeIfPresent(rate, forKey: .rate)
 
             try? container.encodeIfPresent(enable, forKey: .enable)
         }

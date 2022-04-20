@@ -8296,8 +8296,6 @@ public class ApplicationClient {
 
             ulrs["getRupifiBannerDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/rupifi/banner")
 
-            ulrs["getEpaylaterBannerDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/epaylater/banner")
-
             ulrs["getActiveRefundTransferModes"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
 
             ulrs["enableOrDisableRefundTransferMode"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
@@ -8317,14 +8315,6 @@ public class ApplicationClient {
             ulrs["verifyOtpAndAddBeneficiaryForWallet"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/verification/wallet")
 
             ulrs["updateDefaultBeneficiary"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/beneficiary/default")
-
-            ulrs["customerCreditSummary"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/credit-summary/")
-
-            ulrs["redirectToAggregator"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/redirect-to-aggregator/")
-
-            ulrs["checkCredit"] = config.domain.appendAsPath("/service/application/payment/v1.0/check-credits/")
-
-            ulrs["customerOnboard"] = config.domain.appendAsPath("/service/application/payment/v1.0/credit-onboard/")
 
             self.relativeUrls = ulrs
         }
@@ -8905,45 +8895,6 @@ public class ApplicationClient {
 
         /**
          *
-         * Summary: Get Epaylater Enabled
-         * Description: Get Epaylater Enabled if user is tentatively approved by epaylater
-         **/
-        public func getEpaylaterBannerDetails(
-            onResponse: @escaping (_ response: EpaylaterBannerResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["getEpaylaterBannerDetails"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(EpaylaterBannerResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: Lists the mode of refund
          * Description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
          **/
@@ -9346,187 +9297,6 @@ public class ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SetDefaultBeneficiaryResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: API to fetch the customer credit summary
-         * Description: Use this API to fetch the customer credit summary.
-         **/
-        public func customerCreditSummary(
-            aggregator: String?,
-
-            onResponse: @escaping (_ response: CustomerCreditSummaryResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = aggregator {
-                xQuery["aggregator"] = value
-            }
-
-            let fullUrl = relativeUrls["customerCreditSummary"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CustomerCreditSummaryResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: API to get the redirect url to redirect the user to aggregator's page
-         * Description: Use this API to get the redirect url to redirect the user to aggregator's page
-         **/
-        public func redirectToAggregator(
-            source: String?,
-
-            onResponse: @escaping (_ response: RedirectToAggregatorResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = source {
-                xQuery["source"] = value
-            }
-
-            let fullUrl = relativeUrls["redirectToAggregator"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(RedirectToAggregatorResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: API to fetch the customer credit summary
-         * Description: Use this API to fetch the customer credit summary.
-         **/
-        public func checkCredit(
-            aggregator: String?,
-
-            onResponse: @escaping (_ response: CheckCreditResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = aggregator {
-                xQuery["aggregator"] = value
-            }
-
-            let fullUrl = relativeUrls["checkCredit"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CheckCreditResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: API to fetch the customer credit summary
-         * Description: Use this API to fetch the customer credit summary.
-         **/
-        public func customerOnboard(
-            body: CustomerOnboardingRequest,
-            onResponse: @escaping (_ response: CustomerOnboardingResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["customerOnboard"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CustomerOnboardingResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

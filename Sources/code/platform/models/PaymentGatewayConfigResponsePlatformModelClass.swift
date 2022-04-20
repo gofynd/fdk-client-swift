@@ -14,11 +14,11 @@ public extension PlatformClient {
 
         public var excludedFields: [String]
 
+        public var aggregators: [[String: Any]]?
+
         public var displayFields: [String]
 
         public var created: Bool
-
-        public var aggregators: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case excludedFields = "excluded_fields"
 
+            case aggregators
+
             case displayFields = "display_fields"
 
             case created
-
-            case aggregators
         }
 
         public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
@@ -41,11 +41,11 @@ public extension PlatformClient {
 
             self.excludedFields = excludedFields
 
+            self.aggregators = aggregators
+
             self.displayFields = displayFields
 
             self.created = created
-
-            self.aggregators = aggregators
         }
 
         public func duplicate() -> PaymentGatewayConfigResponse {
@@ -63,10 +63,6 @@ public extension PlatformClient {
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
 
-            displayFields = try container.decode([String].self, forKey: .displayFields)
-
-            created = try container.decode(Bool.self, forKey: .created)
-
             do {
                 aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
 
@@ -74,6 +70,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            created = try container.decode(Bool.self, forKey: .created)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -85,11 +85,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
 
+            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
+
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
 
             try? container.encodeIfPresent(created, forKey: .created)
-
-            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
         }
     }
 }

@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class ProductConfigurationDownloads: Codable {
-        public var data: [[String: Any]]?
-
         public var multivalue: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: [[String: Any]]?
 
+        public enum CodingKeys: String, CodingKey {
             case multivalue
+
+            case data
         }
 
         public init(data: [[String: Any]]? = nil, multivalue: Bool? = nil) {
-            self.data = data
-
             self.multivalue = multivalue
+
+            self.data = data
         }
 
         public func duplicate() -> ProductConfigurationDownloads {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                multivalue = try container.decode(Bool.self, forKey: .multivalue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                multivalue = try container.decode(Bool.self, forKey: .multivalue)
+                data = try container.decode([[String: Any]].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(multivalue, forKey: .multivalue)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

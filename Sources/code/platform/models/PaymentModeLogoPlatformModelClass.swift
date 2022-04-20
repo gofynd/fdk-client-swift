@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class PaymentModeLogo: Codable {
-        public var large: String
-
         public var small: String
 
-        public enum CodingKeys: String, CodingKey {
-            case large
+        public var large: String
 
+        public enum CodingKeys: String, CodingKey {
             case small
+
+            case large
         }
 
         public init(large: String, small: String) {
-            self.large = large
-
             self.small = small
+
+            self.large = large
         }
 
         public func duplicate() -> PaymentModeLogo {
@@ -33,17 +33,17 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            large = try container.decode(String.self, forKey: .large)
-
             small = try container.decode(String.self, forKey: .small)
+
+            large = try container.decode(String.self, forKey: .large)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(large, forKey: .large)
-
             try? container.encodeIfPresent(small, forKey: .small)
+
+            try? container.encodeIfPresent(large, forKey: .large)
         }
     }
 }

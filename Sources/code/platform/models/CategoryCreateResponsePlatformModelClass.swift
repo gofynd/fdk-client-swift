@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class CategoryCreateResponse: Codable {
-        public var uid: Int?
-
         public var message: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case uid
+        public var uid: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case message
+
+            case uid
         }
 
         public init(message: String? = nil, uid: Int? = nil) {
-            self.uid = uid
-
             self.message = message
+
+            self.uid = uid
         }
 
         public func duplicate() -> CategoryCreateResponse {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

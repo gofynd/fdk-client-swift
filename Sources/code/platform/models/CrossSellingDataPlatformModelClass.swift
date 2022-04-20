@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class CrossSellingData: Codable {
-        public var articles: Int?
-
         public var products: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case articles
+        public var articles: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case products
+
+            case articles
         }
 
         public init(articles: Int? = nil, products: Int? = nil) {
-            self.articles = articles
-
             self.products = products
+
+            self.articles = articles
         }
 
         public func duplicate() -> CrossSellingData {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                articles = try container.decode(Int.self, forKey: .articles)
+                products = try container.decode(Int.self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                products = try container.decode(Int.self, forKey: .products)
+                articles = try container.decode(Int.self, forKey: .articles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(articles, forKey: .articles)
-
             try? container.encodeIfPresent(products, forKey: .products)
+
+            try? container.encodeIfPresent(articles, forKey: .articles)
         }
     }
 }

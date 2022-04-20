@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class GetCollectionQueryOptionResponse: Codable {
-        public var filters: [ProductFilters]?
-
         public var sortOn: [ProductSortOn]?
 
-        public enum CodingKeys: String, CodingKey {
-            case filters
+        public var filters: [ProductFilters]?
 
+        public enum CodingKeys: String, CodingKey {
             case sortOn = "sort_on"
+
+            case filters
         }
 
         public init(filters: [ProductFilters]? = nil, sortOn: [ProductSortOn]? = nil) {
-            self.filters = filters
-
             self.sortOn = sortOn
+
+            self.filters = filters
         }
 
         public func duplicate() -> GetCollectionQueryOptionResponse {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode([ProductFilters].self, forKey: .filters)
+                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+                filters = try container.decode([ProductFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +53,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class AttributeMasterMeta: Codable {
-        public var enriched: Bool?
-
         public var mandatoryDetails: AttributeMasterMandatoryDetails
 
-        public enum CodingKeys: String, CodingKey {
-            case enriched
+        public var enriched: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case mandatoryDetails = "mandatory_details"
+
+            case enriched
         }
 
         public init(enriched: Bool? = nil, mandatoryDetails: AttributeMasterMandatoryDetails) {
-            self.enriched = enriched
-
             self.mandatoryDetails = mandatoryDetails
+
+            self.enriched = enriched
         }
 
         public func duplicate() -> AttributeMasterMeta {
@@ -33,6 +33,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            mandatoryDetails = try container.decode(AttributeMasterMandatoryDetails.self, forKey: .mandatoryDetails)
+
             do {
                 enriched = try container.decode(Bool.self, forKey: .enriched)
 
@@ -40,16 +42,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mandatoryDetails = try container.decode(AttributeMasterMandatoryDetails.self, forKey: .mandatoryDetails)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enriched, forKey: .enriched)
-
             try? container.encodeIfPresent(mandatoryDetails, forKey: .mandatoryDetails)
+
+            try? container.encodeIfPresent(enriched, forKey: .enriched)
         }
     }
 }
